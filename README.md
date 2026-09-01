@@ -1,12 +1,12 @@
 <div align="center">
 
-# BioDSH
+<a href="http://43.167.193.205"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/wordmark-dark.png"><img src="docs/wordmark-light.png" alt="BioDSH" height="60"></picture></a>
 
 **The bioinformatics agent desktop for clinicians and wet‑lab scientists — built on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).**
 
 Everything is a plugin. Every analysis is a sentence.
 
-[中文说明](README.zh.md) · [Download](https://github.com/sagirimo/BioDSH/releases/latest) · [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+[中文说明](README.zh.md) · [Website](http://43.167.193.205) · [Download](https://github.com/sagirimo/BioDSH/releases/latest) · [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
 
 </div>
 
@@ -58,6 +58,20 @@ The app checks for new releases in the background and offers a one‑click **dow
 ```
 
 A "skill" is a `dsh` plugin: a folder with a `SKILL.md` (instructions the agent follows) and optional scripts. The official skills live in [`biodsh-core/skills/`](biodsh-core/skills); the desktop app is in [`desktop/`](desktop).
+
+## Use with vanilla DeepSeek Harness
+
+BioDSH's official skills are ordinary dsh-native `SKILL.md` skills, so plain `dsh` picks them up automatically — no BioDSH app required. dsh scans a few skill folders; the simplest is a per-project `.agents/skills/`:
+
+```bash
+git clone https://github.com/sagirimo/BioDSH
+cd BioDSH
+# copy the skills into your dsh project (or run it from inside that project for ./.agents/skills)
+./scripts/install-into-dsh.sh /path/to/your/dsh-project/.agents/skills
+#   --global  installs into ~/.agents/skills instead
+```
+
+On Windows use `scripts/install-into-dsh.ps1`. Start `dsh` from that workspace and the BioDSH skills are available. (The scRNA / plotting skills expect a Python env with scanpy, anndata, pandas and matplotlib on PATH.)
 
 ## Build from source
 

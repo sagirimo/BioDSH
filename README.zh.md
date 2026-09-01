@@ -1,12 +1,12 @@
 <div align="center">
 
-# BioDSH
+<a href="http://43.167.193.205"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/wordmark-dark.png"><img src="docs/wordmark-light.png" alt="BioDSH" height="60"></picture></a>
 
 **面向医生与湿实验科学家的生信智能体桌面端——构建于 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 之上。**
 
 一切皆插件，分析只需一句话。
 
-[English](README.md) · [下载](https://github.com/sagirimo/BioDSH/releases/latest) · [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+[English](README.md) · [官网](http://43.167.193.205) · [下载](https://github.com/sagirimo/BioDSH/releases/latest) · [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
 
 </div>
 
@@ -58,6 +58,20 @@ BioDSH 是一个一键安装的桌面软件，把生信智能体交到不用命�
 ```
 
 一个「技能」就是一个 `dsh` 插件：一个包含 `SKILL.md`（给智能体看的说明）和可选脚本的文件夹。官方技能在 [`biodsh-core/skills/`](biodsh-core/skills)，桌面 App 在 [`desktop/`](desktop)。
+
+## 配合原版 DeepSeek Harness 使用
+
+BioDSH 的官方技能就是标准的 dsh 原生 `SKILL.md` 技能——不需要 BioDSH 这个 App，原版 `dsh` 会自动识别。dsh 会扫描若干技能目录，最简单的是项目内的 `.agents/skills/`：
+
+```bash
+git clone https://github.com/sagirimo/BioDSH
+cd BioDSH
+# 把技能复制进你的 dsh 项目（或在该项目里直接跑，写入 ./.agents/skills）
+./scripts/install-into-dsh.sh /你的/dsh项目/.agents/skills
+#   加 --global 则装到 ~/.agents/skills
+```
+
+Windows 用 `scripts/install-into-dsh.ps1`。之后从这个工作区启动 `dsh`，BioDSH 的技能就能用了。（单细胞/作图类技能需要 PATH 上有带 scanpy、anndata、pandas、matplotlib 的 Python 环境。）
 
 ## 从源码构建
 
