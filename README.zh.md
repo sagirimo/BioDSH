@@ -28,8 +28,16 @@ BioDSH 是一个一键安装的桌面软件，把生信智能体交到不用命�
 | 平台 | 文件 | 说明 |
 | --- | --- | --- |
 | Windows 10/11 | `BioDSH_*_x64-setup.exe` | 双击安装。首次运行点「更多信息 → 仍要运行」。 |
-| macOS 12+（Apple 芯片） | `BioDSH_*_aarch64.dmg` | 首次打开右键「打开」。 |
+| macOS 12+（Apple 芯片） | `BioDSH_*_aarch64.dmg` | 未签名——见下方 macOS 说明。 |
 | Linux | `BioDSH_*_amd64.deb` | Debian/Ubuntu。 |
+
+> **macOS 用户注意:** BioDSH 没有 Apple 开发者签名,macOS 可能提示 *「已损坏,无法打开」*。**这不是真的损坏**,是 Gatekeeper 拦截未签名应用。把 BioDSH 拖进**「应用程序」**,然后打开**「终端」**运行:
+>
+> ```bash
+> sudo xattr -cr /Applications/BioDSH.app
+> ```
+>
+> 输入开机密码(不显示,直接回车)后再打开 BioDSH 即可。每次安装只需做一次。
 
 软件会在后台检查新版本，发现后提供一键 **下载 → 校验签名 → 安装 → 重启**。不上传任何东西；更新源就是本仓库的 `latest.json`。
 

@@ -28,8 +28,16 @@ Grab an installer from the [**latest release**](https://github.com/sagirimo/BioD
 | Platform | File | Notes |
 | --- | --- | --- |
 | Windows 10/11 | `BioDSH_*_x64-setup.exe` | Double‑click to install. On first run click *More info → Run anyway*. |
-| macOS 12+ (Apple silicon) | `BioDSH_*_aarch64.dmg` | On first open, right‑click → *Open*. |
+| macOS 12+ (Apple silicon) | `BioDSH_*_aarch64.dmg` | Unsigned — see the macOS note below. |
 | Linux | `BioDSH_*_amd64.deb` | Debian/Ubuntu. |
+
+> **macOS:** BioDSH isn't signed with an Apple Developer certificate, so macOS may say the app is *“damaged and can’t be opened.”* It isn’t — that’s Gatekeeper blocking unsigned apps. Drag BioDSH to **Applications**, then in **Terminal** run:
+>
+> ```bash
+> sudo xattr -cr /Applications/BioDSH.app
+> ```
+>
+> Enter your login password (it stays hidden) and open BioDSH again. You only need to do this once per install.
 
 The app checks for new releases in the background and offers a one‑click **download → verify signature → install → restart**. Nothing is sent anywhere; the update feed is just this repo's `latest.json`.
 
