@@ -1,0 +1,129 @@
+{
+ "europepmc": [
+  {
+   "facet": "exhaustion_ici",
+   "sort": "relevance",
+   "query": "(\"T cell exhaustion\" AND (\"immune checkpoint inhibitor\" OR \"immune checkpoint blockade\") AND (response OR resistance)) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 9449,
+   "returned": 60
+  },
+  {
+   "facet": "exhaustion_ici",
+   "sort": "cited",
+   "query": "(\"T cell exhaustion\" AND (\"immune checkpoint inhibitor\" OR \"immune checkpoint blockade\") AND (response OR resistance)) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 9449,
+   "returned": 60
+  },
+  {
+   "facet": "exhaustion_pd1_tumor",
+   "sort": "relevance",
+   "query": "(\"T cell exhaustion\" AND (PD-1 OR PD-L1 OR \"programmed cell death\") AND (tumor OR cancer OR carcinoma)) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 21937,
+   "returned": 60
+  },
+  {
+   "facet": "exhaustion_pd1_tumor",
+   "sort": "cited",
+   "query": "(\"T cell exhaustion\" AND (PD-1 OR PD-L1 OR \"programmed cell death\") AND (tumor OR cancer OR carcinoma)) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 21937,
+   "returned": 60
+  },
+  {
+   "facet": "scrnaseq_til",
+   "sort": "relevance",
+   "query": "((\"single-cell RNA\" OR \"single-cell transcriptom\" OR scRNA-seq OR \"single cell\") AND (\"tumor-infiltrating\" OR TIL) AND (T cell) AND (exhaustion OR dysfunctional OR \"dysfunction\")) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 13000,
+   "returned": 60
+  },
+  {
+   "facet": "scrnaseq_til",
+   "sort": "cited",
+   "query": "((\"single-cell RNA\" OR \"single-cell transcriptom\" OR scRNA-seq OR \"single cell\") AND (\"tumor-infiltrating\" OR TIL) AND (T cell) AND (exhaustion OR dysfunctional OR \"dysfunction\")) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 13000,
+   "returned": 60
+  },
+  {
+   "facet": "anti_pd1_response",
+   "sort": "relevance",
+   "query": "((anti-PD-1 OR anti-PD-L1 OR pembrolizumab OR nivolumab OR atezolizumab) AND (response OR resistance OR \"clinical benefit\") AND (\"T cell\" OR CD8)) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 139619,
+   "returned": 60
+  },
+  {
+   "facet": "anti_pd1_response",
+   "sort": "cited",
+   "query": "((anti-PD-1 OR anti-PD-L1 OR pembrolizumab OR nivolumab OR atezolizumab) AND (response OR resistance OR \"clinical benefit\") AND (\"T cell\" OR CD8)) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 139619,
+   "returned": 60
+  },
+  {
+   "facet": "progenitor_exhausted",
+   "sort": "relevance",
+   "query": "((\"progenitor exhausted\" OR \"stem-like\" OR TCF1 OR \"T cell factor 1\" OR \"precursor exhausted\") AND (CD8 OR \"T cell\") AND (PD-1 OR \"checkpoint\" OR immunotherapy)) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 12525,
+   "returned": 60
+  },
+  {
+   "facet": "progenitor_exhausted",
+   "sort": "cited",
+   "query": "((\"progenitor exhausted\" OR \"stem-like\" OR TCF1 OR \"T cell factor 1\" OR \"precursor exhausted\") AND (CD8 OR \"T cell\") AND (PD-1 OR \"checkpoint\" OR immunotherapy)) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 12525,
+   "returned": 60
+  },
+  {
+   "facet": "exhaustion_biomarker",
+   "sort": "relevance",
+   "query": "(\"T cell exhaustion\" AND (biomarker OR predictor OR signature OR \"gene signature\") AND (immunotherapy OR \"checkpoint\")) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 14198,
+   "returned": 60
+  },
+  {
+   "facet": "exhaustion_biomarker",
+   "sort": "cited",
+   "query": "(\"T cell exhaustion\" AND (biomarker OR predictor OR signature OR \"gene signature\") AND (immunotherapy OR \"checkpoint\")) AND (PUB_YEAR:[2019 TO 2026]) AND (SRC:MED)",
+   "hits": 14198,
+   "returned": 60
+  },
+  {
+   "facet": "landmark_cited",
+   "sort": "cited",
+   "hits": 24693,
+   "returned": 80
+  }
+ ],
+ "pubmed": [
+  {
+   "facet": "exhaustion_ici",
+   "hits": "269",
+   "returned": 50
+  },
+  {
+   "facet": "exhaustion_pd1_tumor",
+   "hits": "1151",
+   "returned": 50
+  },
+  {
+   "facet": "scrnaseq_til",
+   "hits": "97",
+   "returned": 50
+  },
+  {
+   "facet": "anti_pd1_response",
+   "hits": "4320",
+   "returned": 50
+  },
+  {
+   "facet": "progenitor_exhausted",
+   "hits": "1234",
+   "returned": 50
+  },
+  {
+   "facet": "exhaustion_biomarker",
+   "hits": "582",
+   "returned": 50
+  }
+ ],
+ "started": "2026-08-31 14:39:44",
+ "finished": "2026-08-31 14:44:14",
+ "total_unique": 704
+}

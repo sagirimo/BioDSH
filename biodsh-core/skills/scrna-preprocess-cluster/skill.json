@@ -1,0 +1,26 @@
+{
+  "id": "scrna-preprocess-cluster",
+  "name": "scRNA-seq preprocessing and clustering",
+  "domain": "scrna",
+  "description": "State-aware Scanpy preprocessing and deterministic clustering for real AnnData inputs.",
+  "entry": {
+    "type": "python",
+    "script": "run.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [
+    {
+      "name": "input",
+      "format": "h5ad",
+      "required": true
+    }
+  ],
+  "outputs": [
+    "processed.h5ad",
+    "preprocessing_report.json",
+    "cell_clusters.csv",
+    "cell_disposition.csv"
+  ],
+  "offline": true,
+  "mutates_input": false
+}

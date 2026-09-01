@@ -1,0 +1,34 @@
+{
+  "id": "scrna-treatment-response",
+  "name": "scRNA-seq patient-level treatment-response association",
+  "domain": "scrna",
+  "description": "Patient-aware exploratory response association with longitudinal-label safeguards and deterministic inference.",
+  "entry": {
+    "type": "python",
+    "script": "run.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [
+    {
+      "name": "input",
+      "format": "h5ad",
+      "required": true
+    }
+  ],
+  "outputs": [
+    "specimen_composition.csv",
+    "patient_timepoint_composition.csv",
+    "analysis_patient_composition.csv",
+    "response_associations.csv",
+    "excluded_patients.csv",
+    "confounding_counts.csv",
+    "treatment_response_report.json",
+    "umap_broad_labels.png",
+    "umap_t_states.png",
+    "patient_broad_composition.png",
+    "cohort_flow.png",
+    "recorded_response_associations.png"
+  ],
+  "offline": true,
+  "mutates_input": false
+}

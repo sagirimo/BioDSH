@@ -1,0 +1,16 @@
+﻿基因,分类,免疫组织均TPM,其他组织均TPM,富集倍数,TPM>=1组织%,tau,最高表达组织
+PDCD1,immune,7.5,1.3,5.7,30.0,0.8,Cells - EBV-transformed lymphocytes=23.6495; Spleen=11.889; Heart - Atrial Appendage=5.13584
+CTLA4,immune,3.8,0.6,6.2,19.0,0.78,Spleen=5.79835; Small Intestine - Terminal Ileum=4.92644; Lung=4.35463
+LAG3,immune,15.7,3.9,4.0,67.0,0.68,Ovary=39.9169; Spleen=28.075; Cells - EBV-transformed lymphocytes=20.1576
+HAVCR2,immune,21.4,4.3,4.9,93.0,0.53,Lung=25.8989; Spleen=24.7468; Whole Blood=18.0048
+TIGIT,immune,4.5,0.3,14.6,9.0,0.86,Spleen=6.92435; Cells - EBV-transformed lymphocytes=2.51682; Small Intestine - Terminal Ileum=2.30123
+TOX,broad,4.3,5.3,0.8,81.0,0.52,Colon - Sigmoid=22.4278; Cells - Cultured fibroblasts=16.0439; Brain - Frontal Cortex (BA9)=15.9077
+CXCL13,immune,256.4,1.2,208.4,19.0,0.92,Spleen=512.654; Small Intestine - Terminal Ileum=37.9921; Prostate=3.49293
+GZMB,immune,47.5,1.1,44.6,39.0,0.84,Whole Blood=71.4456; Spleen=23.6435; Lung=14.0836
+PRF1,immune,102.0,2.6,38.9,63.0,0.76,Whole Blood=119.394; Spleen=84.5754; Lung=28.7926
+IFNG,low,1.0,0.1,10.7,2.0,0.86,Whole Blood=1.07525; Spleen=0.916876; Lung=0.881931
+CD8A,immune,61.9,2.6,24.2,72.0,0.75,Spleen=103.418; Whole Blood=20.3662; Small Intestine - Terminal Ileum=17.4284
+ENTPD1,broad,28.4,17.7,1.6,100.0,0.49,Cells - EBV-transformed lymphocytes=158.694; Artery - Tibial=71.351; Artery - Coronary=45.0182
+ITGAE,broad,7.3,7.0,1.1,100.0,0.21,Spleen=11.9828; Small Intestine - Terminal Ileum=11.0996; Lung=10.7758
+EOMES,immune,9.4,1.4,6.7,11.0,0.87,Brain - Cerebellar Hemisphere=29.0672; Brain - Cerebellum=26.8486; Spleen=13.9951
+TCF7,immune,18.5,3.1,5.9,72.0,0.65,Cells - EBV-transformed lymphocytes=32.0201; Spleen=19.8233; Whole Blood=17.2192

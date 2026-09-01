@@ -1,0 +1,19 @@
+{
+  "id": "04-desktop-zotero",
+  "title": "电脑控制与 Zotero",
+  "version": 1,
+  "sessions": [
+    {
+      "id": "session-8b5387e3-1588-47bd-8c9d-84ab3b223d42",
+      "title": "按 DOI 核对 / 加入 Zotero 文献库",
+      "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\04-desktop-zotero",
+      "file": ".session/session-8b5387e3-1588-47bd-8c9d-84ab3b223d42.jsonl.zstd"
+    },
+    {
+      "id": "session-8a75b186-fe73-4d5e-800f-3f9f2dc3a9ac",
+      "title": "把表贴进 Excel 并另存",
+      "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\04-desktop-zotero",
+      "file": ".session/session-8a75b186-fe73-4d5e-800f-3f9f2dc3a9ac.jsonl.zstd"
+    }
+  ]
+}

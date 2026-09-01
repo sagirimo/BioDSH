@@ -1,0 +1,24 @@
+[project]
+name = "biodsh-desktop-env"
+version = "0.1.0"
+description = "BioDSH Desktop bioinformatics Python environment (single-cell skills)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy",
+    "scipy",
+    "pandas",
+    "anndata",
+    "scanpy",
+    "leidenalg",
+    "igraph",
+    "umap-learn",
+    "scikit-learn",
+    "statsmodels",
+    "matplotlib",
+    "seaborn",
+    "h5py",
+    "pyarrow",
+]
+
+[tool.uv]
+package = false

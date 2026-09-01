@@ -1,0 +1,24 @@
+{
+  "id": "scrna-repro-audit",
+  "name": "scRNA-seq run-bundle reproducibility audit",
+  "domain": "scrna",
+  "description": "Read-only audit of a completed run bundle: input, environment, command, outputs and recorded conclusions must be mutually consistent.",
+  "entry": {
+    "type": "python",
+    "script": "run.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [
+    {
+      "name": "input",
+      "format": "result.json",
+      "required": true
+    }
+  ],
+  "outputs": [
+    "repro_audit_report.json",
+    "repro_audit_summary.csv"
+  ],
+  "offline": true,
+  "mutates_input": false
+}

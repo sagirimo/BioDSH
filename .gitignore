@@ -1,0 +1,15 @@
+.DS_Store
+*.log
+node_modules/
+# desktop build outputs (also covered by desktop/.gitignore)
+desktop/out/
+desktop/dist/
+desktop/dist-tauri/
+desktop/release/
+desktop/dsh-runtime/
+desktop/resources/skills/
+desktop/resources/node/
+desktop/resources/bin/
+desktop/resources/community-skills/
+desktop/src-tauri/target*/
+desktop/src-tauri/gen/

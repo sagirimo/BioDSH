@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "broad": {
+    "T_cell": ["CD3D", "CD3E", "TRAC", "CD247"],
+    "NK_cell": ["NKG7", "GNLY", "KLRD1", "FCGR3A"],
+    "B_cell": ["MS4A1", "CD79A", "CD74", "HLA-DRA"],
+    "plasma_cell": ["MZB1", "JCHAIN", "SDC1", "IGHG1"],
+    "myeloid": ["LST1", "TYROBP", "FCER1G", "CTSS"],
+    "dendritic": ["FCER1A", "CD1C", "CLEC10A", "CST3"]
+  },
+  "t_state": {
+    "naive_memory": ["CCR7", "IL7R", "TCF7", "LEF1", "LTB"],
+    "cytotoxic": ["NKG7", "GNLY", "PRF1", "GZMB", "GZMH"],
+    "exhaustion": ["PDCD1", "LAG3", "HAVCR2", "TIGIT", "TOX"],
+    "regulatory": ["FOXP3", "IL2RA", "CTLA4", "IKZF2"],
+    "cycling": ["MKI67", "TOP2A", "STMN1", "TUBA1B"],
+    "interferon": ["ISG15", "IFIT1", "IFIT3", "MX1"],
+    "activation": ["CD69", "FOS", "JUN", "TNFRSF9"]
+  }
+}

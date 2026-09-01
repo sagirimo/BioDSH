@@ -1,0 +1,43 @@
+{
+  "id": "zotero-connect",
+  "name": "Zotero 文献库连接",
+  "domain": "literature",
+  "description": "Search, read (incl. PDF full text), add by DOI/PMID and export references in the user's local Zotero 7 library via the desktop app's local API. Read-only for existing items; never deletes.",
+  "entry": {
+    "type": "python",
+    "script": "zotero.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [
+    {
+      "name": "q",
+      "format": "text",
+      "required": false,
+      "description": "search query for `search --q`"
+    },
+    {
+      "name": "key",
+      "format": "text",
+      "required": false,
+      "description": "Zotero item key for `item` / `pdf-text` / `export --keys`"
+    },
+    {
+      "name": "doi_or_pmid",
+      "format": "text",
+      "required": false,
+      "description": "identifier for `add --doi` / `add --pmid`, or a JSON list via `add --json`"
+    }
+  ],
+  "outputs": [
+    "stdout JSON (search hits, item records, PDF text, add results)",
+    "exports/references.bib | .ris | .json (export)"
+  ],
+  "offline": true,
+  "mutates_input": false,
+  "requires": {
+    "python": true,
+    "env": "bioenv",
+    "packages": ["requests", "pymupdf (optional, for pdf-text)"],
+    "external": "Zotero 7 desktop running with Settings → Advanced → 'Allow other applications on this computer to communicate with Zotero' enabled; internet only for add --doi/--pmid metadata lookup"
+  }
+}

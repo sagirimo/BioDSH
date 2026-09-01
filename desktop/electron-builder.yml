@@ -1,0 +1,64 @@
+appId: org.biodsh.desktop
+productName: BioDSH
+copyright: Copyright © 2026 BioDSH
+directories:
+  output: release
+  buildResources: build
+files:
+  - out/**
+  - package.json
+  - "!**/*.map"
+extraResources:
+  - from: dsh-runtime/node_modules
+    to: dsh/node_modules
+  - from: resources/skills
+    to: skills
+  - from: resources/community-skills
+    to: community-skills
+  - from: resources/bioenv
+    to: bioenv
+mac:
+  category: public.app-category.medical
+  target:
+    - { target: dmg, arch: [arm64, x64] }
+  icon: build/icon-1024.png
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  extraResources:
+    - from: resources/bin/darwin-${arch}
+      to: bin
+    - from: resources/node/darwin-${arch}
+      to: node
+win:
+  target:
+    - { target: nsis, arch: [x64] }
+  icon: build/icon.ico
+  requestedExecutionLevel: asInvoker
+  extraResources:
+    - from: resources/bin/win32-x64
+      to: bin
+    - from: resources/node/win32-x64
+      to: node
+nsis:
+  oneClick: true
+  perMachine: false
+  allowElevation: false
+  createDesktopShortcut: true
+  shortcutName: BioDSH
+  artifactName: ${productName}-${version}-Setup-${arch}.${ext}
+linux:
+  target: [AppImage]
+  category: Science
+  icon: build/icon.png
+  extraResources:
+    - from: resources/bin/linux-x64
+      to: bin
+    - from: resources/node/linux-x64
+      to: node
+dmg:
+  artifactName: ${productName}-${version}-${arch}.${ext}
+  contents:
+    - { x: 130, y: 220 }
+    - { x: 410, y: 220, type: link, path: /Applications }

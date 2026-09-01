@@ -1,0 +1,90 @@
+# One-click installers for BioDSH Desktop.
+# Push a tag like `desktop-tauri-v0.2.1` (or run manually) to build on macOS (arm64 + x64),
+# Windows and Linux and publish a GitHub Release with installers + `latest.json` (the auto-update feed).
+#
+# Required repository secrets (Settings → Secrets and variables → Actions):
+#   TAURI_SIGNING_PRIVATE_KEY           # from `npm run tauri signer generate` — signs the update artifacts
+#   TAURI_SIGNING_PRIVATE_KEY_PASSWORD  # its password
+# The public key is committed in desktop/src-tauri/tauri.conf.json (plugins.updater.pubkey).
+name: release
+on:
+  push:
+    tags: ['desktop-tauri-v*']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            arch: arm64
+          - os: macos-13
+            target: x86_64-apple-darwin
+            arch: x64
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            arch: x64
+          - os: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+            arch: x64
+            bundles: --bundles deb
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run: { working-directory: desktop }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: desktop/src-tauri
+      - uses: actions/cache@v4
+        with:
+          path: desktop/dsh-runtime
+          key: dsh-runtime-${{ runner.os }}-0.1.1-rc.2
+      - name: Linux webkit deps
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+        env: { npm_config_registry: https://registry.npmjs.org/ }
+      - name: Stage dsh runtime (all platform native packages)
+        run: node scripts/stage-dsh.mjs
+        env: { CI: 'true' }
+      - name: Sync official skills into resources
+        run: node scripts/sync-skills.mjs
+      # Community skills pack is large and lives as a release asset, not in git; missing → build without it.
+      - name: Fetch community skills pack
+        shell: bash
+        run: |
+          mkdir -p resources/community-skills
+          curl -fL --retry 3 -o /tmp/community-skills.zip https://github.com/sagirimo/BioDSH/releases/download/skills-pack-v1/community-skills.zip \
+            && python3 -c "import zipfile; zipfile.ZipFile('/tmp/community-skills.zip').extractall('resources')" \
+            && echo "skills pack ok: $(ls resources/community-skills | wc -l)" || echo "skills pack unavailable, building without community skills"
+      - name: Fetch sidecars (uv + Node)
+        run: node scripts/fetch-uv.mjs --all && node scripts/fetch-node.mjs --all
+        env: { CI: 'true' }
+      - name: Prepare macOS platform resources
+        if: runner.os == 'macOS'
+        run: node scripts/prep-tauri-platform.mjs --arch ${{ matrix.arch }}
+      - name: Build frontend
+        run: npx vite build --config vite.tauri.config.ts
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          projectPath: desktop
+          args: --target ${{ matrix.target }} ${{ matrix.bundles || '' }} --config '{"build":{"beforeBuildCommand":""}}'
+          tagName: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '' }}
+          releaseName: 'BioDSH Desktop ${{ github.ref_name }}'
+          releaseDraft: false
+          includeUpdaterJson: true

@@ -1,0 +1,25 @@
+{
+  "id": "01-scrna-analysis",
+  "title": "单细胞分析与作图",
+  "version": 1,
+  "sessions": [
+    {
+      "id": "session-603c05ee-bbc6-4bba-890e-b7264ba2869a",
+      "title": "这份单细胞数据质量怎么样",
+      "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\01-scrna-analysis",
+      "file": ".session/session-603c05ee-bbc6-4bba-890e-b7264ba2869a.jsonl.zstd"
+    },
+    {
+      "id": "session-812d56bf-1bb5-4c5d-bd6b-b09d2f814e23",
+      "title": "质控→聚类→细胞类型注释→出图",
+      "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\01-scrna-analysis",
+      "file": ".session/session-812d56bf-1bb5-4c5d-bd6b-b09d2f814e23.jsonl.zstd"
+    },
+    {
+      "id": "session-e3164530-fc83-4cd2-aba5-19560fb26045",
+      "title": "复核：CD8 T 和 NK 分对了吗",
+      "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\01-scrna-analysis",
+      "file": ".session/session-e3164530-fc83-4cd2-aba5-19560fb26045.jsonl.zstd"
+    }
+  ]
+}

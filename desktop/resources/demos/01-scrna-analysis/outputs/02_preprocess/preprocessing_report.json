@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "input": {
+    "path": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\01-scrna-analysis\\data\\pbmc3k_raw.h5ad",
+    "sha256_before": "89a96f1beaa2dd83a687666d3f19a4513ac27a2a2d12581fcd77afed7ea653a1",
+    "sha256_after": "89a96f1beaa2dd83a687666d3f19a4513ac27a2a2d12581fcd77afed7ea653a1",
+    "source_unchanged": true
+  },
+  "seed": 0,
+  "matrix_state": "raw_counts",
+  "state_evidence": {
+    "stored_values": 2286884,
+    "integer_like_fraction": 1.0,
+    "log1p_metadata_present": false
+  },
+  "normalization_action": "normalize_total_then_log1p",
+  "parameters": {
+    "schema_version": "1.0",
+    "seed": 0,
+    "matrix_state": "raw_counts",
+    "normalization_action": "normalize_total_then_log1p",
+    "min_genes_per_cell": 200,
+    "min_cells_per_gene": 3,
+    "target_sum": 10000.0,
+    "n_top_genes": 2000,
+    "n_pcs": 50,
+    "n_neighbors": 15,
+    "leiden_resolution": 1.0
+  },
+  "shape": {
+    "input": [
+      2700,
+      32738
+    ],
+    "processed": [
+      2700,
+      13714
+    ],
+    "removed_cells": 0,
+    "removed_genes": 19024
+  },
+  "features": {
+    "highly_variable_genes": 2000,
+    "pca_components": 50,
+    "umap_dimensions": 2
+  },
+  "clustering": {
+    "method": "leiden",
+    "n_clusters": 9,
+    "cluster_sizes": {
+      "0": 368,
+      "1": 569,
+      "2": 348,
+      "3": 246,
+      "4": 151,
+      "5": 548,
+      "6": 405,
+      "7": 53,
+      "8": 12
+    },
+    "biological_labels_assigned": false
+  },
+  "versions": {
+    "anndata": "0.13.3.post0",
+    "scanpy": "1.12.4",
+    "numpy": "2.5.2",
+    "pandas": "2.3.3",
+    "scipy": "1.18.1",
+    "igraph": "1.0.0",
+    "leidenalg": "0.12.0"
+  },
+  "warnings": []
+}

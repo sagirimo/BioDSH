@@ -1,0 +1,25 @@
+{
+  "id": "scrna-inspect-qc",
+  "name": "scRNA-seq inspect and QC",
+  "domain": "scrna",
+  "description": "Read-only inspection and auditable QC profiling for AnnData h5ad inputs.",
+  "entry": {
+    "type": "python",
+    "script": "run.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [
+    {
+      "name": "input",
+      "format": "h5ad",
+      "required": true
+    }
+  ],
+  "outputs": [
+    "dataset_profile.json",
+    "cell_qc.csv",
+    "gene_qc.csv"
+  ],
+  "offline": true,
+  "mutates_input": false
+}

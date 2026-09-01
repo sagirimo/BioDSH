@@ -1,0 +1,29 @@
+{
+  "id": "desktop-control",
+  "name": "Desktop control (text-only GUI automation)",
+  "domain": "desktop",
+  "description": "Let a text-only agent see and drive the user's desktop: list and focus windows, read on-screen controls and text with coordinates (UI Automation or OCR), click, type, send hotkeys, open apps, and paste tables into Excel/SPSS/Prism.",
+  "entry": {
+    "type": "python",
+    "script": "control.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [],
+  "outputs": [],
+  "offline": true,
+  "mutates_input": false,
+  "requires": {
+    "python": true,
+    "env": "bioenv",
+    "packages": [
+      "pyautogui",
+      "pywinauto (Windows only)",
+      "mss",
+      "pyperclip",
+      "pillow",
+      "rapidocr-onnxruntime (optional, for --ocr)",
+      "pandas (optional, for paste-table)"
+    ],
+    "external": "Windows 10/11 for `inspect` (UI Automation); macOS needs Accessibility + Screen Recording permission; Linux needs X11 + wmctrl. The BioDSH env pack '电脑控制' installs the packages."
+  }
+}

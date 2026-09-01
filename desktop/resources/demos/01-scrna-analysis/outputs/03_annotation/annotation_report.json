@@ -1,0 +1,566 @@
+{
+  "schema_version": "1.0",
+  "input": {
+    "path": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\01-scrna-analysis\\outputs\\02_preprocess\\processed.h5ad",
+    "sha256_before": "efb87abf6e9beb5cdde886a0793339f1477fa3c348a369949fda20921d3bc209",
+    "sha256_after": "efb87abf6e9beb5cdde886a0793339f1477fa3c348a369949fda20921d3bc209",
+    "source_unchanged": true
+  },
+  "seed": 0,
+  "method": {
+    "schema_version": "1.0",
+    "method": "cluster_median_of_standardized_marker_programs",
+    "broad_margin": 0.15,
+    "state_margin": 0.1,
+    "minimum_markers": 2,
+    "clinical_metadata_used": false,
+    "biological_reference_kind": "marker_program_not_ground_truth"
+  },
+  "marker_program_sha256": "810cebda1212b419bfc90e5b607c568471a3b7b60944a1077b7b4e59a0b3ea12",
+  "marker_coverage": {
+    "broad": {
+      "T_cell": {
+        "requested": [
+          "CD3D",
+          "CD3E",
+          "TRAC",
+          "CD247"
+        ],
+        "present": [
+          "CD3D",
+          "CD3E",
+          "CD247"
+        ],
+        "present_count": 3
+      },
+      "NK_cell": {
+        "requested": [
+          "NKG7",
+          "GNLY",
+          "KLRD1",
+          "FCGR3A"
+        ],
+        "present": [
+          "NKG7",
+          "GNLY",
+          "KLRD1",
+          "FCGR3A"
+        ],
+        "present_count": 4
+      },
+      "B_cell": {
+        "requested": [
+          "MS4A1",
+          "CD79A",
+          "CD74",
+          "HLA-DRA"
+        ],
+        "present": [
+          "MS4A1",
+          "CD79A",
+          "CD74",
+          "HLA-DRA"
+        ],
+        "present_count": 4
+      },
+      "plasma_cell": {
+        "requested": [
+          "MZB1",
+          "JCHAIN",
+          "SDC1",
+          "IGHG1"
+        ],
+        "present": [
+          "MZB1"
+        ],
+        "present_count": 1
+      },
+      "myeloid": {
+        "requested": [
+          "LST1",
+          "TYROBP",
+          "FCER1G",
+          "CTSS"
+        ],
+        "present": [
+          "LST1",
+          "TYROBP",
+          "FCER1G",
+          "CTSS"
+        ],
+        "present_count": 4
+      },
+      "dendritic": {
+        "requested": [
+          "FCER1A",
+          "CD1C",
+          "CLEC10A",
+          "CST3"
+        ],
+        "present": [
+          "FCER1A",
+          "CD1C",
+          "CLEC10A",
+          "CST3"
+        ],
+        "present_count": 4
+      }
+    },
+    "t_state": {
+      "naive_memory": {
+        "requested": [
+          "CCR7",
+          "IL7R",
+          "TCF7",
+          "LEF1",
+          "LTB"
+        ],
+        "present": [
+          "CCR7",
+          "IL7R",
+          "TCF7",
+          "LEF1",
+          "LTB"
+        ],
+        "present_count": 5
+      },
+      "cytotoxic": {
+        "requested": [
+          "NKG7",
+          "GNLY",
+          "PRF1",
+          "GZMB",
+          "GZMH"
+        ],
+        "present": [
+          "NKG7",
+          "GNLY",
+          "PRF1",
+          "GZMB",
+          "GZMH"
+        ],
+        "present_count": 5
+      },
+      "exhaustion": {
+        "requested": [
+          "PDCD1",
+          "LAG3",
+          "HAVCR2",
+          "TIGIT",
+          "TOX"
+        ],
+        "present": [
+          "PDCD1",
+          "LAG3",
+          "HAVCR2",
+          "TIGIT",
+          "TOX"
+        ],
+        "present_count": 5
+      },
+      "regulatory": {
+        "requested": [
+          "FOXP3",
+          "IL2RA",
+          "CTLA4",
+          "IKZF2"
+        ],
+        "present": [
+          "FOXP3",
+          "IL2RA",
+          "CTLA4",
+          "IKZF2"
+        ],
+        "present_count": 4
+      },
+      "cycling": {
+        "requested": [
+          "MKI67",
+          "TOP2A",
+          "STMN1",
+          "TUBA1B"
+        ],
+        "present": [
+          "MKI67",
+          "TOP2A",
+          "STMN1",
+          "TUBA1B"
+        ],
+        "present_count": 4
+      },
+      "interferon": {
+        "requested": [
+          "ISG15",
+          "IFIT1",
+          "IFIT3",
+          "MX1"
+        ],
+        "present": [
+          "ISG15",
+          "IFIT1",
+          "IFIT3",
+          "MX1"
+        ],
+        "present_count": 4
+      },
+      "activation": {
+        "requested": [
+          "CD69",
+          "FOS",
+          "JUN",
+          "TNFRSF9"
+        ],
+        "present": [
+          "CD69",
+          "FOS",
+          "JUN",
+          "TNFRSF9"
+        ],
+        "present_count": 4
+      }
+    }
+  },
+  "marker_feature_resolution": {
+    "CCR7": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CCR7",
+      "selected_mean_expression": 0.3629215657711029
+    },
+    "CD1C": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CD1C",
+      "selected_mean_expression": 0.04578418284654617
+    },
+    "CD247": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CD247",
+      "selected_mean_expression": 0.5192946791648865
+    },
+    "CD3D": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CD3D",
+      "selected_mean_expression": 1.2597488164901733
+    },
+    "CD3E": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CD3E",
+      "selected_mean_expression": 1.0488523244857788
+    },
+    "CD69": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CD69",
+      "selected_mean_expression": 0.7328961491584778
+    },
+    "CD74": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CD74",
+      "selected_mean_expression": 2.565115451812744
+    },
+    "CD79A": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CD79A",
+      "selected_mean_expression": 0.42221149802207947
+    },
+    "CLEC10A": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CLEC10A",
+      "selected_mean_expression": 0.04103614389896393
+    },
+    "CST3": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CST3",
+      "selected_mean_expression": 1.2577778100967407
+    },
+    "CTLA4": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CTLA4",
+      "selected_mean_expression": 0.006864386145025492
+    },
+    "CTSS": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "CTSS",
+      "selected_mean_expression": 1.2517086267471313
+    },
+    "FCER1A": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "FCER1A",
+      "selected_mean_expression": 0.04530569911003113
+    },
+    "FCER1G": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "FCER1G",
+      "selected_mean_expression": 0.9897752404212952
+    },
+    "FCGR3A": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "FCGR3A",
+      "selected_mean_expression": 0.4409063458442688
+    },
+    "FOS": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "FOS",
+      "selected_mean_expression": 2.818711519241333
+    },
+    "FOXP3": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "FOXP3",
+      "selected_mean_expression": 0.006378086283802986
+    },
+    "GNLY": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "GNLY",
+      "selected_mean_expression": 0.49924761056900024
+    },
+    "GZMB": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "GZMB",
+      "selected_mean_expression": 0.34767261147499084
+    },
+    "GZMH": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "GZMH",
+      "selected_mean_expression": 0.2633383870124817
+    },
+    "HAVCR2": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "HAVCR2",
+      "selected_mean_expression": 0.08059217780828476
+    },
+    "HLA-DRA": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "HLA-DRA",
+      "selected_mean_expression": 1.7569103240966797
+    },
+    "IFIT1": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "IFIT1",
+      "selected_mean_expression": 0.13374891877174377
+    },
+    "IFIT3": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "IFIT3",
+      "selected_mean_expression": 0.18381422758102417
+    },
+    "IGHG1": {
+      "status": "missing",
+      "candidate_features": 0
+    },
+    "IKZF2": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "IKZF2",
+      "selected_mean_expression": 0.011278243735432625
+    },
+    "IL2RA": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "IL2RA",
+      "selected_mean_expression": 0.02736370451748371
+    },
+    "IL7R": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "IL7R",
+      "selected_mean_expression": 0.8682829737663269
+    },
+    "ISG15": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "ISG15",
+      "selected_mean_expression": 0.9703705310821533
+    },
+    "JCHAIN": {
+      "status": "missing",
+      "candidate_features": 0
+    },
+    "JUN": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "JUN",
+      "selected_mean_expression": 1.8955785036087036
+    },
+    "KLRD1": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "KLRD1",
+      "selected_mean_expression": 0.11760493367910385
+    },
+    "LAG3": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "LAG3",
+      "selected_mean_expression": 0.05867806822061539
+    },
+    "LEF1": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "LEF1",
+      "selected_mean_expression": 0.2917272448539734
+    },
+    "LST1": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "LST1",
+      "selected_mean_expression": 0.9777979254722595
+    },
+    "LTB": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "LTB",
+      "selected_mean_expression": 2.008024215698242
+    },
+    "MKI67": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "MKI67",
+      "selected_mean_expression": 0.00525549054145813
+    },
+    "MS4A1": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "MS4A1",
+      "selected_mean_expression": 0.35341694951057434
+    },
+    "MX1": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "MX1",
+      "selected_mean_expression": 0.3878404200077057
+    },
+    "MZB1": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "MZB1",
+      "selected_mean_expression": 0.053497862070798874
+    },
+    "NKG7": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "NKG7",
+      "selected_mean_expression": 0.9086987972259521
+    },
+    "PDCD1": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "PDCD1",
+      "selected_mean_expression": 0.017849812284111977
+    },
+    "PRF1": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "PRF1",
+      "selected_mean_expression": 0.37516844272613525
+    },
+    "SDC1": {
+      "status": "missing",
+      "candidate_features": 0
+    },
+    "STMN1": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "STMN1",
+      "selected_mean_expression": 0.13405849039554596
+    },
+    "TCF7": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "TCF7",
+      "selected_mean_expression": 0.4111836552619934
+    },
+    "TIGIT": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "TIGIT",
+      "selected_mean_expression": 0.1371069699525833
+    },
+    "TNFRSF9": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "TNFRSF9",
+      "selected_mean_expression": 0.007924984209239483
+    },
+    "TOP2A": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "TOP2A",
+      "selected_mean_expression": 0.0037359939888119698
+    },
+    "TOX": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "TOX",
+      "selected_mean_expression": 0.027683058753609657
+    },
+    "TRAC": {
+      "status": "missing",
+      "candidate_features": 0
+    },
+    "TUBA1B": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "TUBA1B",
+      "selected_mean_expression": 0.8343209624290466
+    },
+    "TYROBP": {
+      "status": "selected",
+      "candidate_features": 1,
+      "selected_feature": "TYROBP",
+      "selected_mean_expression": 1.2617831230163574
+    }
+  },
+  "usable_marker_count": 49,
+  "clusters": 9,
+  "broad_label_cells": {
+    "B_cell": 348,
+    "NK_cell": 151,
+    "T_cell": 1485,
+    "dendritic": 65,
+    "myeloid": 651
+  },
+  "t_state_cells": {
+    "cytotoxic": 368,
+    "naive_memory": 1117,
+    "not_applicable": 1215
+  },
+  "leakage_guard": {
+    "clinical_metadata_used": false,
+    "clinical_columns_present_but_ignored": [],
+    "cell_annotation_columns": [
+      "cell_id",
+      "leiden_cluster",
+      "broad_label",
+      "t_state"
+    ]
+  },
+  "versions": {
+    "anndata": "0.13.3.post0",
+    "numpy": "2.5.2",
+    "pandas": "2.3.3",
+    "scipy": "1.18.1"
+  },
+  "claim_boundary": "Marker-program annotations are hypotheses, not reference truth or treatment-response evidence."
+}

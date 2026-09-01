@@ -1,0 +1,25 @@
+{
+  "id": "02-literature-review",
+  "title": "文献调研",
+  "version": 1,
+  "sessions": [
+    {
+      "id": "session-c4cdab59-a0d1-47e9-85ff-307428a7492b",
+      "title": "检索 PubMed / Europe PMC，整理成文献表",
+      "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\02-literature-review",
+      "file": ".session/session-c4cdab59-a0d1-47e9-85ff-307428a7492b.jsonl.zstd"
+    },
+    {
+      "id": "session-be14bb89-f0b3-48a2-91e7-5f827b841900",
+      "title": "写综述提纲（带 DOI 引用）",
+      "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\02-literature-review",
+      "file": ".session/session-be14bb89-f0b3-48a2-91e7-5f827b841900.jsonl.zstd"
+    },
+    {
+      "id": "session-00bcff8b-44dc-401f-85ce-070a9a71718f",
+      "title": "挑 3 篇最值得精读的",
+      "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\02-literature-review",
+      "file": ".session/session-00bcff8b-44dc-401f-85ce-070a9a71718f.jsonl.zstd"
+    }
+  ]
+}

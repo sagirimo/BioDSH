@@ -1,0 +1,19 @@
+{
+  "id": "scanpy-clustering",
+  "name": "Scanpy single-cell clustering",
+  "domain": "scrna",
+  "description": "scRNA-seq 质控、归一化、HVG、PCA、Leiden 聚类与 UMAP。",
+  "entry": {
+    "type": "python",
+    "script": "run.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [],
+  "outputs": [
+    "clusters.csv",
+    "umap.png",
+    "summary.json"
+  ],
+  "offline": true
+}
+

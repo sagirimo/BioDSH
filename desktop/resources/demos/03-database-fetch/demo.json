@@ -1,0 +1,25 @@
+{
+  "id": "03-database-fetch",
+  "title": "公共数据库抓取",
+  "version": 1,
+  "sessions": [
+    {
+      "id": "session-26fec21d-eba7-4b27-9a84-662126e15951",
+      "title": "从 NCBI / UniProt 抓基因注释表",
+      "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\03-database-fetch",
+      "file": ".session/session-26fec21d-eba7-4b27-9a84-662126e15951.jsonl.zstd"
+    },
+    {
+      "id": "session-0b31906d-9199-4fe4-ab22-08b61a09e410",
+      "title": "Hallmark 通路富集分析",
+      "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\03-database-fetch",
+      "file": ".session/session-0b31906d-9199-4fe4-ab22-08b61a09e410.jsonl.zstd"
+    },
+    {
+      "id": "session-f2c4472b-fbf9-460c-ab03-ff338e64ac06",
+      "title": "GTEx 正常组织表达热图",
+      "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\03-database-fetch",
+      "file": ".session/session-f2c4472b-fbf9-460c-ab03-ff338e64ac06.jsonl.zstd"
+    }
+  ]
+}

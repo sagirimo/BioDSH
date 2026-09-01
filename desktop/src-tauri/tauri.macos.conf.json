@@ -1,0 +1,1 @@
+{ "bundle": { "resources": { "../resources/node/darwin-current": "node", "../resources/bin/darwin-current": "bin" } } }

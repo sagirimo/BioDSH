@@ -1,0 +1,41 @@
+{
+  "id": "data-format-bridge",
+  "name": "数据格式桥接（SPSS / R / Prism / Excel / Stata）",
+  "domain": "tables",
+  "description": "Inspect and convert result tables into SPSS .sav, Stata .dta, R .rds (+ .R loader script), GraphPad Prism .pzfx (+ Prism-ready wide CSV) and tidy Excel workbooks; dump h5ad obs/var (+ selected genes) for external statistics. Input is never modified.",
+  "entry": {
+    "type": "python",
+    "script": "convert.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [
+    {
+      "name": "input",
+      "format": "csv|tsv|xlsx|parquet|json|sav|dta|rds|h5ad",
+      "required": true
+    },
+    {
+      "name": "to",
+      "format": "sav|dta|xlsx|rds|r|csv|pzfx",
+      "required": false,
+      "description": "target format for `convert`"
+    }
+  ],
+  "outputs": [
+    "exports/<name>.sav",
+    "exports/<name>.dta",
+    "exports/<name>.xlsx",
+    "exports/<name>.rds",
+    "exports/<name>_load.R",
+    "exports/<name>.pzfx",
+    "exports/<name>_prism_wide.csv",
+    "exports/<name>_tables/obs.csv, var.csv, obs_with_genes.csv"
+  ],
+  "offline": true,
+  "mutates_input": false,
+  "requires": {
+    "python": true,
+    "env": "bioenv",
+    "packages": ["pandas", "pyreadstat (sav/dta)", "pyreadr (rds)", "openpyxl (xlsx)", "anndata (h5ad)"]
+  }
+}

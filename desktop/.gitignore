@@ -1,0 +1,12 @@
+node_modules/
+out/
+release/
+resources/bin/
+resources/skills/
+*.log
+dsh-runtime/
+resources/node/
+resources/community-skills/
+dist-tauri/
+src-tauri/target*/
+src-tauri/gen/

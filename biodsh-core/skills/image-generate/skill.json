@@ -1,0 +1,23 @@
+{
+  "id": "image-generate",
+  "name": "AI 科研插图生成",
+  "domain": "figures",
+  "description": "Text-to-image for scientific illustration (graphical abstracts, mechanism schematics, cover and poster art) through any OpenAI-compatible Images API configured in the BioDSH app.",
+  "entry": {
+    "type": "python",
+    "script": "generate.py"
+  },
+  "inputs": [
+    {
+      "name": "prompt",
+      "format": "text",
+      "required": true
+    }
+  ],
+  "outputs": [
+    "<name>.png",
+    "generation.json"
+  ],
+  "offline": false,
+  "mutates_input": false
+}

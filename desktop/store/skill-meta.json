@@ -1,0 +1,188 @@
+{
+  "scrna-inspect-qc": {
+    "title": "单细胞数据体检（QC）",
+    "summary": "只读检查一份 h5ad 单细胞数据：细胞数、基因数、线粒体比例等质控指标，生成可审计的体检表。不改动原始数据。",
+    "category": "qc",
+    "icon": "🩺",
+    "tags": [
+      "单细胞",
+      "质控",
+      "只读"
+    ],
+    "featured": true,
+    "evidence": {
+      "tests": "13/13 grader",
+      "offline": true,
+      "reproducible": true
+    }
+  },
+  "scrna-preprocess-cluster": {
+    "title": "单细胞预处理与聚类",
+    "summary": "自动判断数据状态（原始计数/已归一化），做归一化、高变基因、PCA、Leiden 聚类，全程固定随机种子，结果可复现。",
+    "category": "analysis",
+    "icon": "🧫",
+    "tags": [
+      "单细胞",
+      "聚类",
+      "Scanpy"
+    ],
+    "featured": true,
+    "evidence": {
+      "tests": "14/14 grader",
+      "offline": true,
+      "reproducible": true
+    }
+  },
+  "scrna-cellstate-annotation": {
+    "title": "免疫细胞类型与状态注释",
+    "summary": "基于 marker 基因程序，给每个细胞簇贴上免疫细胞大类和 T 细胞状态标签，每个标签附带证据表；注释过程不接触临床结局，避免信息泄漏。",
+    "category": "analysis",
+    "icon": "🏷️",
+    "tags": [
+      "单细胞",
+      "注释",
+      "免疫"
+    ],
+    "featured": true,
+    "evidence": {
+      "tests": "28/28 grader",
+      "offline": true,
+      "reproducible": true
+    }
+  },
+  "scrna-treatment-response": {
+    "title": "治疗反应组间比较",
+    "summary": "把细胞按患者聚合，比较有效（R）与无效（NR）患者的免疫细胞组成差异，自动排除标签冲突的患者，输出统计表与森林图。已在 GSE120575（16,291 细胞 / 28 患者）验证。",
+    "category": "clinical",
+    "icon": "💊",
+    "tags": [
+      "单细胞",
+      "临床",
+      "免疫治疗"
+    ],
+    "featured": true,
+    "evidence": {
+      "tests": "28/28 grader",
+      "offline": true,
+      "reproducible": true,
+      "dataset": "GSE120575"
+    }
+  },
+  "scrna-repro-audit": {
+    "title": "结果复现审计",
+    "summary": "对一次已完成的分析做只读审计：核对输入、命令、输出文件的哈希是否一致，确认结果没有被改动、可以复现。",
+    "category": "audit",
+    "icon": "🔏",
+    "tags": [
+      "审计",
+      "可复现"
+    ],
+    "featured": false,
+    "evidence": {
+      "tests": "11/11 grader",
+      "offline": true,
+      "reproducible": true
+    }
+  },
+  "scanpy-clustering": {
+    "title": "Scanpy 快速聚类（入门）",
+    "summary": "内部冒烟测试用的合成数据流程，不面向用户。",
+    "category": "analysis",
+    "icon": "🔬",
+    "tags": [
+      "单细胞",
+      "入门"
+    ],
+    "featured": false,
+    "evidence": {
+      "offline": true,
+      "reproducible": true
+    },
+    "hidden": true
+  },
+  "desktop-control": {
+    "title": "电脑控制",
+    "summary": "让智能体操作你的电脑：找窗口、读屏幕上的文字和按钮、点击输入、把表格贴进 Excel / SPSS / Prism、打开 Zotero 加文献。不靠看图，靠读控件名，稳定可复现。",
+    "category": "tool",
+    "icon": "🖱️",
+    "tags": [
+      "电脑控制",
+      "Excel",
+      "SPSS",
+      "Prism",
+      "Zotero"
+    ],
+    "featured": true,
+    "domain_zh": "数据与工具",
+    "subcategory": "自动化与工作流",
+    "version": "0.1.0",
+    "evidence": {
+      "tests": "Windows 11 实测",
+      "offline": true,
+      "reproducible": false
+    }
+  },
+  "image-generate": {
+    "title": "AI 科研插图生成",
+    "summary": "用文字生成机制示意图、图形摘要、封面图。接智谱 CogView / 通义万相 / SiliconFlow / OpenAI 任一图像接口（在「更多 → 图像生成」里填）。数据图表不用它，用 matplotlib。",
+    "category": "visualization",
+    "icon": "🎨",
+    "tags": [
+      "插图",
+      "图形摘要",
+      "生图"
+    ],
+    "featured": true,
+    "domain_zh": "数据与工具",
+    "subcategory": "可视化与作图",
+    "version": "0.1.0",
+    "evidence": {
+      "tests": "接口联调",
+      "offline": false,
+      "reproducible": false
+    }
+  },
+  "zotero-connect": {
+    "title": "Zotero 文献库联动",
+    "summary": "读你本机 Zotero 里的文献：检索、取 PDF 全文做总结、按 DOI/PMID 把新文献加进库、导出 BibTeX。只需 Zotero 开着并允许本地应用连接。",
+    "category": "literature",
+    "icon": "📚",
+    "tags": [
+      "Zotero",
+      "文献",
+      "PDF",
+      "BibTeX"
+    ],
+    "featured": true,
+    "domain_zh": "数据与工具",
+    "subcategory": "文献与写作",
+    "version": "0.1.0",
+    "evidence": {
+      "tests": "Zotero 7 实测",
+      "offline": true,
+      "reproducible": true
+    }
+  },
+  "data-format-bridge": {
+    "title": "SPSS / R / Prism / Excel 格式桥接",
+    "summary": "把分析结果转成临床常用软件直接能开的文件：SPSS .sav、R .rds（附加载脚本）、GraphPad Prism .pzfx、Excel .xlsx、Stata .dta；也能把 h5ad 拆成表。",
+    "category": "tool",
+    "icon": "🔁",
+    "tags": [
+      "SPSS",
+      "R",
+      "Prism",
+      "Excel",
+      "Stata"
+    ],
+    "featured": true,
+    "domain_zh": "数据与工具",
+    "subcategory": "数据格式与转换",
+    "version": "0.1.0",
+    "evidence": {
+      "tests": "往返读写测试",
+      "offline": true,
+      "reproducible": true
+    }
+  }
+}

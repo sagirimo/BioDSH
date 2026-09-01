@@ -1,0 +1,9 @@
+cluster,cell_type,n_cells,fraction
+0,CD4 T,1144,0.42
+1,CD14 Mono,480,0.18
+2,B,342,0.13
+3,CD8 T,316,0.12
+4,NK,154,0.06
+5,FCGR3A Mono,150,0.06
+6,DC,32,0.01
+7,Platelet,14,0.01

@@ -1,0 +1,26 @@
+{
+  "id": "scrna-cellstate-annotation",
+  "name": "scRNA-seq cell-state annotation",
+  "domain": "scrna",
+  "description": "Outcome-blind broad immune and T-cell-state annotation with marker-level evidence.",
+  "entry": {
+    "type": "python",
+    "script": "run.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [
+    {
+      "name": "input",
+      "format": "h5ad",
+      "required": true
+    }
+  ],
+  "outputs": [
+    "annotated.h5ad",
+    "cell_annotations.csv",
+    "cluster_annotation_evidence.csv",
+    "annotation_report.json"
+  ],
+  "offline": true,
+  "mutates_input": false
+}

@@ -1,0 +1,615 @@
+{
+ "total_unique": 704,
+ "candidates": [
+  {
+   "rank": 1,
+   "pmid": "30635237",
+   "doi": "10.1016/j.immuni.2018.12.021",
+   "title": "Intratumoral Tcf1<sup>+</sup>PD-1<sup>+</sup>CD8<sup>+</sup> T Cells with Stem-like Properties Promote Tumor Control in Response to Vaccination and Checkpoint Blockade Immunotherapy.",
+   "first_author": "Siddiqui I",
+   "year": "2019",
+   "journal": "Immunity",
+   "citations": 1507,
+   "score": 8.481,
+   "facet_hits": 3,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "Journal Article"
+   ],
+   "abstract_snippet": "Checkpoint blockade mediates a proliferative response of tumor-infiltrating CD8<sup>+</sup> T lymphocytes (TILs). The origin of this response has remained elusive because chronic activation promotes terminal differentiation or exhaustion of tumor-specific T cells. Here we identified a subset of tumor-reactive TILs bearing hallmarks of exhausted cells and central memory cells, including expression of the checkpoint protein PD-1 and the transcription factor Tcf1. Tcf1<sup>+</sup>PD-1<sup>+</sup> TILs mediated the proliferative response to immunotherapy, generating both Tcf1<sup>+</sup>PD-1<sup>+</sup> and differentiated Tcf1<sup>-</sup>PD-1<sup>+</sup> cells. Ablation of Tcf1<sup>+</sup>PD-1<s"
+  },
+  {
+   "rank": 2,
+   "pmid": "30778252",
+   "doi": "10.1038/s41590-019-0312-6",
+   "title": "Subsets of exhausted CD8<sup>+</sup> T cells differentially mediate tumor control and respond to checkpoint blockade.",
+   "first_author": "Miller BC",
+   "year": "2019",
+   "journal": "Nature immunology",
+   "citations": 1895,
+   "score": 7.67,
+   "facet_hits": 5,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article"
+   ],
+   "abstract_snippet": "T cell dysfunction is a hallmark of many cancers, but the basis for T cell dysfunction and the mechanisms by which antibody blockade of the inhibitory receptor PD-1 (anti-PD-1) reinvigorates T cells are not fully understood. Here we show that such therapy acts on a specific subpopulation of exhausted CD8<sup>+</sup> tumor-infiltrating lymphocytes (TILs). Dysfunctional CD8<sup>+</sup> TILs possess canonical epigenetic and transcriptional features of exhaustion that mirror those seen in chronic viral infection. Exhausted CD8<sup>+</sup> TILs include a subpopulation of 'progenitor exhausted' cells that retain polyfunctionality, persist long term and differentiate into 'terminally exhausted' TIL"
+  },
+  {
+   "rank": 3,
+   "pmid": "30742119",
+   "doi": "10.1038/s41591-019-0349-y",
+   "title": "Immune and genomic correlates of response to anti-PD-1 immunotherapy in glioblastoma.",
+   "first_author": "Zhao J",
+   "year": "2019",
+   "journal": "Nature medicine",
+   "citations": 790,
+   "score": 7.328,
+   "facet_hits": 2,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Immune checkpoint inhibitors have been successful across several tumor types; however, their efficacy has been uncommon and unpredictable in glioblastomas (GBM), where <10% of patients show long-term responses. To understand the molecular determinants of immunotherapeutic response in GBM, we longitudinally profiled 66 patients, including 17 long-term responders, during standard therapy and after treatment with PD-1 inhibitors (nivolumab or pembrolizumab). Genomic and transcriptomic analysis revealed a significant enrichment of PTEN mutations associated with immunosuppressive expression signatures in non-responders, and an enrichment of MAPK pathway alterations (PTPN11, BRAF) in responders. R"
+  },
+  {
+   "rank": 4,
+   "pmid": "33542131",
+   "doi": "10.1126/science.abf3363",
+   "title": "Fecal microbiota transplant overcomes resistance to anti-PD-1 therapy in melanoma patients.",
+   "first_author": "Davar D",
+   "year": "2021",
+   "journal": "Science (New York, N.Y.)",
+   "citations": 1390,
+   "score": 7.289,
+   "facet_hits": 2,
+   "pubtype": [
+    "Clinical Trial, Phase II",
+    "Research Support, N.I.H., Intramural",
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Anti-programmed cell death protein 1 (PD-1) therapy provides long-term clinical benefits to patients with advanced melanoma. The composition of the gut microbiota correlates with anti-PD-1 efficacy in preclinical models and cancer patients. To investigate whether resistance to anti-PD-1 can be overcome by changing the gut microbiota, this clinical trial evaluated the safety and efficacy of responder-derived fecal microbiota transplantation (FMT) together with anti-PD-1 in patients with PD-1-refractory melanoma. This combination was well tolerated, provided clinical benefit in 6 of 15 patients, and induced rapid and durable microbiota perturbation. Responders exhibited increased abundance of "
+  },
+  {
+   "rank": 5,
+   "pmid": "31359002",
+   "doi": "10.1038/s41591-019-0522-3",
+   "title": "Clonal replacement of tumor-specific T cells following PD-1 blockade.",
+   "first_author": "Yost KE",
+   "year": "2019",
+   "journal": "Nature medicine",
+   "citations": 1371,
+   "score": 7.244,
+   "facet_hits": 4,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Research Support, U.S. Gov't, Non-P.H.S.",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Immunotherapies that block inhibitory checkpoint receptors on T cells have transformed the clinical care of patients with cancer<sup>1</sup>. However, whether the T cell response to checkpoint blockade relies on reinvigoration of pre-existing tumor-infiltrating lymphocytes or on recruitment of novel T cells remains unclear<sup>2-4</sup>. Here we performed paired single-cell RNA and T cell receptor sequencing on 79,046 cells from site-matched tumors from patients with basal or squamous cell carcinoma before and after anti-PD-1 therapy. Tracking T cell receptor clones and transcriptional phenotypes revealed coupling of tumor recognition, clonal expansion and T cell dysfunction marked by clonal"
+  },
+  {
+   "rank": 6,
+   "pmid": "33762733",
+   "doi": "10.1038/s41586-021-03362-0",
+   "title": "NASH limits anti-tumour surveillance in immunotherapy-treated HCC.",
+   "first_author": "Pfister D",
+   "year": "2021",
+   "journal": "",
+   "citations": 1101,
+   "score": 7.198,
+   "facet_hits": 4,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article"
+   ],
+   "abstract_snippet": "Hepatocellular carcinoma (HCC) can have viral or non-viral causes<sup>1-5</sup>. Non-alcoholic steatohepatitis (NASH) is an important driver of HCC. Immunotherapy has been approved for treating HCC, but biomarker-based stratification of patients for optimal response to therapy is an unmet need<sup>6,7</sup>. Here we report the progressive accumulation of exhausted, unconventionally activated CD8<sup>+</sup>PD1<sup>+</sup> T cells in NASH-affected livers. In preclinical models of NASH-induced HCC, therapeutic immunotherapy targeted at programmed death-1 (PD1) expanded activated CD8<sup>+</sup>PD1<sup>+</sup> T cells within tumours but did not lead to tumour regression, which indicates that tu"
+  },
+  {
+   "rank": 7,
+   "pmid": "30951669",
+   "doi": "10.1016/j.cell.2019.02.016",
+   "title": "Suppression of Exosomal PD-L1 Induces Systemic Anti-tumor Immunity and Memory.",
+   "first_author": "Poggio M",
+   "year": "2019",
+   "journal": "",
+   "citations": 1164,
+   "score": 7.18,
+   "facet_hits": 2,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "PD-L1 on the surface of tumor cells binds its receptor PD-1 on effector T cells, thereby suppressing their activity. Antibody blockade of PD-L1 can activate an anti-tumor immune response leading to durable remissions in a subset of cancer patients. Here, we describe an alternative mechanism of PD-L1 activity involving its secretion in tumor-derived exosomes. Removal of exosomal PD-L1 inhibits tumor growth, even in models resistant to anti-PD-L1 antibodies. Exosomal PD-L1 from the tumor suppresses T cell activation in the draining lymph node. Systemically introduced exosomal PD-L1 rescues growth of tumors unable to secrete their own. Exposure to exosomal PD-L1-deficient tumor cells suppresses"
+  },
+  {
+   "rank": 8,
+   "pmid": "30595452",
+   "doi": "10.1016/j.cell.2018.11.043",
+   "title": "Dysfunctional CD8 T Cells Form a Proliferative, Dynamically Regulated Compartment within Human Melanoma.",
+   "first_author": "Li H",
+   "year": "2019",
+   "journal": "",
+   "citations": 993,
+   "score": 7.118,
+   "facet_hits": 3,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article"
+   ],
+   "abstract_snippet": "Tumor immune cell compositions play a major role in response to immunotherapy, but the heterogeneity and dynamics of immune infiltrates in human cancer lesions remain poorly characterized. Here, we identify conserved intratumoral CD4 and CD8 T cell behaviors in scRNA-seq data from 25 melanoma patients. We discover a large population of CD8 T cells showing continuous progression from an early effector \"transitional\" into a dysfunctional T cell state. CD8 T cells that express a complete cytotoxic gene set are rare, and TCR sharing data suggest their independence from the transitional and dysfunctional cell states. Notably, we demonstrate that dysfunctional T cells are the major intratumoral pr"
+  },
+  {
+   "rank": 9,
+   "pmid": "31375813",
+   "doi": "10.1038/s41587-019-0206-z",
+   "title": "Massively parallel single-cell chromatin landscapes of human immune cell development and intratumoral T cell exhaustion.",
+   "first_author": "Satpathy AT",
+   "year": "2019",
+   "journal": "",
+   "citations": 945,
+   "score": 7.098,
+   "facet_hits": 2,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Research Support, U.S. Gov't, Non-P.H.S.",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Understanding complex tissues requires single-cell deconstruction of gene regulation with precision and scale. Here, we assess the performance of a massively parallel droplet-based method for mapping transposase-accessible chromatin in single cells using sequencing (scATAC-seq). We apply scATAC-seq to obtain chromatin profiles of more than 200,000 single cells in human blood and basal cell carcinoma. In blood, application of scATAC-seq enables marker-free identification of cell type-specific cis- and trans-regulatory elements, mapping of disease-associated enhancer activity and reconstruction of trajectories of cellular differentiation. In basal cell carcinoma, application of scATAC-seq reve"
+  },
+  {
+   "rank": 10,
+   "pmid": "31031094",
+   "doi": "10.1016/j.cmet.2019.04.002",
+   "title": "Cholesterol Induces CD8<sup>+</sup> T Cell Exhaustion in the Tumor Microenvironment.",
+   "first_author": "Ma X",
+   "year": "2019",
+   "journal": "Cell metabolism",
+   "citations": 908,
+   "score": 7.083,
+   "facet_hits": 2,
+   "pubtype": [
+    "research-article",
+    "Research Support, U.S. Gov't, Non-P.H.S.",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Tumor-infiltrating T cells often lose their effector function; however, the mechanisms are incompletely understood. We report that cholesterol in the tumor microenvironment induces CD8<sup>+</sup> T cell expression of immune checkpoints and exhaustion. Tumor tissues enriched with cholesterol and cholesterol content in tumor-infiltrating CD8<sup>+</sup> T cells were positively and progressively associated with upregulated T cell expression of PD-1, 2B4, TIM-3, and LAG-3. Adoptively transferred CD8<sup>+</sup> T cells acquired cholesterol, expressed high levels of immune checkpoints, and became exhausted upon entering a tumor. Tumor culture supernatant or cholesterol induced immune checkpoint "
+  },
+  {
+   "rank": 11,
+   "pmid": "33508232",
+   "doi": "10.1016/j.cell.2021.01.002",
+   "title": "Meta-analysis of tumor- and T cell-intrinsic mechanisms of sensitization to checkpoint inhibition.",
+   "first_author": "Litchfield K",
+   "year": "2021",
+   "journal": "",
+   "citations": 769,
+   "score": 7.058,
+   "facet_hits": 3,
+   "pubtype": [
+    "Meta-Analysis",
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Checkpoint inhibitors (CPIs) augment adaptive immunity. Systematic pan-tumor analyses may reveal the relative importance of tumor-cell-intrinsic and microenvironmental features underpinning CPI sensitization. Here, we collated whole-exome and transcriptomic data for >1,000 CPI-treated patients across seven tumor types, utilizing standardized bioinformatics workflows and clinical outcome criteria to validate multivariable predictors of CPI sensitization. Clonal tumor mutation burden (TMB) was the strongest predictor of CPI response, followed by total TMB and CXCL9 expression. Subclonal TMB, somatic copy alteration burden, and histocompatibility leukocyte antigen (HLA) evolutionary divergence "
+  },
+  {
+   "rank": 12,
+   "pmid": "32385277",
+   "doi": "10.1038/s41467-020-16164-1",
+   "title": "Single-cell RNA sequencing demonstrates the molecular and cellular reprogramming of metastatic lung adenocarcinoma.",
+   "first_author": "Kim N",
+   "year": "2020",
+   "journal": "",
+   "citations": 1073,
+   "score": 6.868,
+   "facet_hits": 3,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article"
+   ],
+   "abstract_snippet": "Advanced metastatic cancer poses utmost clinical challenges and may present molecular and cellular features distinct from an early-stage cancer. Herein, we present single-cell transcriptome profiling of metastatic lung adenocarcinoma, the most prevalent histological lung cancer type diagnosed at stage IV in over 40% of all cases. From 208,506 cells populating the normal tissues or early to metastatic stage cancer in 44 patients, we identify a cancer cell subtype deviating from the normal differentiation trajectory and dominating the metastatic stage. In all stages, the stromal and immune cell dynamics reveal ontological and functional changes that create a pro-tumoral and immunosuppressive m"
+  },
+  {
+   "rank": 13,
+   "pmid": "31591603",
+   "doi": "10.1038/s41591-019-0590-4",
+   "title": "Single-cell immune landscape of human atherosclerotic plaques.",
+   "first_author": "Fernandez DM",
+   "year": "2019",
+   "journal": "",
+   "citations": 823,
+   "score": 6.744,
+   "facet_hits": 2,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Atherosclerosis is driven by multifaceted contributions of the immune system within the circulation and at vascular focal sites. However, specific characteristics of dysregulated immune cells within atherosclerotic lesions that lead to clinical events such as ischemic stroke or myocardial infarction are poorly understood. Here, using single-cell proteomic and transcriptomic analyses, we uncovered distinct features of both T cells and macrophages in carotid artery plaques of patients with clinically symptomatic disease (recent stroke or transient ischemic attack) compared to asymptomatic disease (no recent stroke). Plaques from symptomatic patients were characterized by a distinct subset of C"
+  },
+  {
+   "rank": 14,
+   "pmid": "30777870",
+   "doi": "10.1158/2159-8290.cd-18-1020",
+   "title": "Targeting DNA Damage Response Promotes Antitumor Immunity through STING-Mediated T-cell Activation in Small Cell Lung Cancer.",
+   "first_author": "Sen T",
+   "year": "2019",
+   "journal": "",
+   "citations": 762,
+   "score": 6.714,
+   "facet_hits": 3,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Despite recent advances in the use of immunotherapy, only a minority of patients with small cell lung cancer (SCLC) respond to immune checkpoint blockade (ICB). Here, we show that targeting the DNA damage response (DDR) proteins PARP and checkpoint kinase 1 (CHK1) significantly increased protein and surface expression of PD-L1. PARP or CHK1 inhibition remarkably potentiated the antitumor effect of PD-L1 blockade and augmented cytotoxic T-cell infiltration in multiple immunocompetent SCLC <i>in vivo</i> models. CD8<sup>+</sup> T-cell depletion reversed the antitumor effect, demonstrating the role of CD8<sup>+</sup> T cells in combined DDR-PD-L1 blockade in SCLC. We further demonstrate that DD"
+  },
+  {
+   "rank": 15,
+   "pmid": "31588021",
+   "doi": "10.1016/j.ccell.2019.08.007",
+   "title": "Tumor Cell Biodiversity Drives Microenvironmental Reprogramming in Liver Cancer.",
+   "first_author": "Ma L",
+   "year": "2019",
+   "journal": "",
+   "citations": 712,
+   "score": 6.688,
+   "facet_hits": 2,
+   "pubtype": [
+    "Research Support, N.I.H., Intramural",
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Observational Study"
+   ],
+   "abstract_snippet": "Cellular diversity in tumors is a key factor for therapeutic failures and lethal outcomes of solid malignancies. Here, we determined the single-cell transcriptomic landscape of liver cancer biospecimens from 19 patients. We found varying degrees of heterogeneity in malignant cells within and between tumors and diverse landscapes of tumor microenvironment (TME). Strikingly, tumors with higher transcriptomic diversity were associated with patient's worse overall survival. We found a link between hypoxia-dependent vascular endothelial growth factor expression in tumor diversity and TME polarization. Moreover, T cells from higher heterogeneous tumors showed lower cytolytic activities. Consistent"
+  },
+  {
+   "rank": 16,
+   "pmid": "30420753",
+   "doi": "10.1038/s41591-018-0221-5",
+   "title": "Paradoxical effects of obesity on T cell function during tumor progression and PD-1 checkpoint blockade.",
+   "first_author": "Wang Z",
+   "year": "2019",
+   "journal": "",
+   "citations": 755,
+   "score": 6.611,
+   "facet_hits": 2,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "The recent successes of immunotherapy have shifted the paradigm in cancer treatment, but because only a percentage of patients are responsive to immunotherapy, it is imperative to identify factors impacting outcome. Obesity is reaching pandemic proportions and is a major risk factor for certain malignancies, but the impact of obesity on immune responses, in general and in cancer immunotherapy, is poorly understood. Here, we demonstrate, across multiple species and tumor models, that obesity results in increased immune aging, tumor progression and PD-1-mediated T cell dysfunction which is driven, at least in part, by leptin. However, obesity is also associated with increased efficacy of PD-1/"
+  },
+  {
+   "rank": 17,
+   "pmid": "31207603",
+   "doi": "10.1038/s41586-019-1325-x",
+   "title": "TOX transcriptionally and epigenetically programs CD8<sup>+</sup> T cell exhaustion.",
+   "first_author": "Khan O",
+   "year": "2019",
+   "journal": "",
+   "citations": 1457,
+   "score": 6.567,
+   "facet_hits": 4,
+   "pubtype": [
+    "research-article",
+    "Journal Article"
+   ],
+   "abstract_snippet": "Exhausted CD8<sup>+</sup> T (T<sub>ex</sub>) cells in chronic infections and cancer have limited effector function, high co-expression of inhibitory receptors and extensive transcriptional changes compared with effector (T<sub>eff</sub>) or memory (T<sub>mem</sub>) CD8<sup>+</sup> T cells. T<sub>ex</sub> cells are important clinical targets of checkpoint blockade and other immunotherapies. Epigenetically, T<sub>ex</sub> cells are a distinct immune subset, with a unique chromatin landscape compared with T<sub>eff</sub> and T<sub>mem</sub> cells. However, the mechanisms that govern the transcriptional and epigenetic development of T<sub>ex</sub> cells remain unknown. Here we identify the HMG-b"
+  },
+  {
+   "rank": 18,
+   "pmid": "32396847",
+   "doi": "10.1016/j.immuni.2020.04.014",
+   "title": "Developmental Relationships of Four Exhausted CD8<sup>+</sup> T Cell Subsets Reveals Underlying Transcriptional and Epigenetic Landscape Control Mechanisms.",
+   "first_author": "Beltra JC",
+   "year": "2020",
+   "journal": "Immunity",
+   "citations": 1024,
+   "score": 6.45,
+   "facet_hits": 4,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "CD8<sup>+</sup> T cell exhaustion is a major barrier to current anti-cancer immunotherapies. Despite this, the developmental biology of exhausted CD8<sup>+</sup> T cells (Tex) remains poorly defined, restraining improvement of strategies aimed at \"re-invigorating\" Tex cells. Here, we defined a four-cell-stage developmental framework for Tex cells. Two TCF1<sup>+</sup> progenitor subsets were identified, one tissue restricted and quiescent and one more blood accessible, that gradually lost TCF1 as it divided and converted to a third intermediate Tex subset. This intermediate subset re-engaged some effector biology and increased upon PD-L1 blockade but ultimately converted into a fourth, termi"
+  },
+  {
+   "rank": 19,
+   "pmid": "33398183",
+   "doi": "10.1038/s41590-020-00834-9",
+   "title": "Mitochondrial stress induced by continuous stimulation under hypoxia rapidly drives T cell exhaustion.",
+   "first_author": "Scharping NE",
+   "year": "2021",
+   "journal": "",
+   "citations": 815,
+   "score": 6.381,
+   "facet_hits": 4,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Research Support, U.S. Gov't, Non-P.H.S.",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Cancer and chronic infections induce T cell exhaustion, a hypofunctional fate carrying distinct epigenetic, transcriptomic and metabolic characteristics. However, drivers of exhaustion remain poorly understood. As intratumoral exhausted T cells experience severe hypoxia, we hypothesized that metabolic stress alters their responses to other signals, specifically, persistent antigenic stimulation. In vitro, although CD8<sup>+</sup> T cells experiencing continuous stimulation or hypoxia alone differentiated into functional effectors, the combination rapidly drove T cell dysfunction consistent with exhaustion. Continuous stimulation promoted Blimp-1-mediated repression of PGC-1α-dependent mitoch"
+  },
+  {
+   "rank": 20,
+   "pmid": "31802004",
+   "doi": "10.1038/s41586-019-1805-z",
+   "title": "c-Jun overexpression in CAR T cells induces exhaustion resistance.",
+   "first_author": "Lynn RC",
+   "year": "2019",
+   "journal": "",
+   "citations": 804,
+   "score": 6.335,
+   "facet_hits": 2,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Chimeric antigen receptor (CAR) T cells mediate anti-tumour effects in a small subset of patients with cancer<sup>1-3</sup>, but dysfunction due to T cell exhaustion is an important barrier to progress<sup>4-6</sup>. To investigate the biology of exhaustion in human T cells expressing CAR receptors, we used a model system with a tonically signaling CAR, which induces hallmark features of exhaustion<sup>6</sup>. Exhaustion was associated with a profound defect in the production of IL-2, along with increased chromatin accessibility of AP-1 transcription factor motifs and overexpression of the bZIP and IRF transcription factors that have been implicated in mediating dysfunction in exhausted T c"
+  },
+  {
+   "rank": 21,
+   "pmid": "31207604",
+   "doi": "10.1038/s41586-019-1324-y",
+   "title": "TOX is a critical regulator of tumour-specific T cell differentiation.",
+   "first_author": "Scott AC",
+   "year": "2019",
+   "journal": "",
+   "citations": 1023,
+   "score": 6.129,
+   "facet_hits": 3,
+   "pubtype": [
+    "research-article",
+    "Journal Article"
+   ],
+   "abstract_snippet": "Tumour-specific CD8 T cell dysfunction is a differentiation state that is distinct from the functional effector or memory T cell states<sup>1-6</sup>. Here we identify the nuclear factor TOX as a crucial regulator of the differentiation of tumour-specific T (TST) cells. We show that TOX is highly expressed in dysfunctional TST cells from tumours and in exhausted T cells during chronic viral infection. Expression of TOX is driven by chronic T cell receptor stimulation and NFAT activation. Ectopic expression of TOX in effector T cells in vitro induced a transcriptional program associated with T cell exhaustion. Conversely, deletion of Tox in TST cells in tumours abrogated the exhaustion progra"
+  },
+  {
+   "rank": 22,
+   "pmid": "32470396",
+   "doi": "10.1016/j.cell.2020.05.007",
+   "title": "Interrogation of the Microenvironmental Landscape in Brain Tumors Reveals Disease-Specific Alterations of Immune Cells.",
+   "first_author": "Klemm F",
+   "year": "2020",
+   "journal": "",
+   "citations": 870,
+   "score": 6.086,
+   "facet_hits": 4,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Brain malignancies encompass a range of primary and metastatic cancers, including low-grade and high-grade gliomas and brain metastases (BrMs) originating from diverse extracranial tumors. Our understanding of the brain tumor microenvironment (TME) remains limited, and it is unknown whether it is sculpted differentially by primary versus metastatic disease. We therefore comprehensively analyzed the brain TME landscape via flow cytometry, RNA sequencing, protein arrays, culture assays, and spatial tissue characterization. This revealed disease-specific enrichment of immune cells with pronounced differences in proportional abundance of tissue-resident microglia, infiltrating monocyte-derived m"
+  },
+  {
+   "rank": 23,
+   "pmid": "31633216",
+   "doi": "10.1002/eji.201970107",
+   "title": "Guidelines for the use of flow cytometry and cell sorting in immunological studies (second edition).",
+   "first_author": "Cossarizza A",
+   "year": "2019",
+   "journal": "",
+   "citations": 833,
+   "score": 6.049,
+   "facet_hits": 3,
+   "pubtype": [
+    "research-article",
+    "Journal Article"
+   ],
+   "abstract_snippet": "These guidelines are a consensus work of a considerable number of members of the immunology and flow cytometry community. They provide the theory and key practical aspects of flow cytometry enabling immunologists to avoid the common errors that often undermine immunological data. Notably, there are comprehensive sections of all major immune cell types with helpful Tables detailing phenotypes in murine and human cells. The latest flow cytometry techniques and applications are also described, featuring examples of the data that can be generated and, importantly, how the data can be analysed. Furthermore, there are sections detailing tips, tricks and pitfalls to avoid, all written and peer-revi"
+  },
+  {
+   "rank": 24,
+   "pmid": "30814732",
+   "doi": "10.1038/s41586-019-0985-x",
+   "title": "NR4A transcription factors limit CAR T cell function in solid tumours.",
+   "first_author": "Chen J",
+   "year": "2019",
+   "journal": "",
+   "citations": 795,
+   "score": 6.031,
+   "facet_hits": 2,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "T cells expressing chimeric antigen receptors (CAR T cells) targeting human CD19 (hCD19) have shown clinical efficacy against B cell malignancies<sup>1,2</sup>. CAR T cells have been less effective against solid tumours<sup>3-5</sup>, in part because they enter a hyporesponsive ('exhausted' or 'dysfunctional') state<sup>6-9</sup> triggered by chronic antigen stimulation and characterized by upregulation of inhibitory receptors and loss of effector function. To investigate the function of CAR T cells in solid tumours, we transferred hCD19-reactive CAR T cells into hCD19<sup>+</sup> tumour-bearing mice. CD8<sup>+</sup>CAR<sup>+</sup> tumour-infiltrating lymphocytes and CD8<sup>+</sup> endogeno"
+  },
+  {
+   "rank": 25,
+   "pmid": "32612154",
+   "doi": "10.1038/s41423-020-0488-6",
+   "title": "The history and advances in cancer immunotherapy: understanding the characteristics of tumor-infiltrating immune cells and their therapeutic implications.",
+   "first_author": "Zhang Y",
+   "year": "2020",
+   "journal": "",
+   "citations": 2316,
+   "score": 5.836,
+   "facet_hits": 3,
+   "pubtype": [
+    "Historical Article",
+    "Research Support, Non-U.S. Gov't",
+    "review-article",
+    "Review",
+    "Journal Article"
+   ],
+   "abstract_snippet": "Immunotherapy has revolutionized cancer treatment and rejuvenated the field of tumor immunology. Several types of immunotherapy, including adoptive cell transfer (ACT) and immune checkpoint inhibitors (ICIs), have obtained durable clinical responses, but their efficacies vary, and only subsets of cancer patients can benefit from them. Immune infiltrates in the tumor microenvironment (TME) have been shown to play a key role in tumor development and will affect the clinical outcomes of cancer patients. Comprehensive profiling of tumor-infiltrating immune cells would shed light on the mechanisms of cancer-immune evasion, thus providing opportunities for the development of novel therapeutic stra"
+  },
+  {
+   "rank": 26,
+   "pmid": "32433532",
+   "doi": "10.1038/s41577-020-0306-5",
+   "title": "A guide to cancer immunotherapy: from T cell basic science to clinical practice.",
+   "first_author": "Waldman AD",
+   "year": "2020",
+   "journal": "",
+   "citations": 3319,
+   "score": 5.717,
+   "facet_hits": 5,
+   "pubtype": [
+    "Research Support, N.I.H., Intramural",
+    "Research Support, Non-U.S. Gov't",
+    "review-article",
+    "Review",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "The T lymphocyte, especially its capacity for antigen-directed cytotoxicity, has become a central focus for engaging the immune system in the fight against cancer. Basic science discoveries elucidating the molecular and cellular biology of the T cell have led to new strategies in this fight, including checkpoint blockade, adoptive cellular therapy and cancer vaccinology. This area of immunological research has been highly active for the past 50 years and is now enjoying unprecedented bench-to-bedside clinical success. Here, we provide a comprehensive historical and biological perspective regarding the advent and clinical implementation of cancer immunotherapeutics, with an emphasis on the fu"
+  },
+  {
+   "rank": 27,
+   "pmid": "35062949",
+   "doi": "10.1186/s12943-021-01489-2",
+   "title": "Combination strategies with PD-1/PD-L1 blockade: current advances and future directions.",
+   "first_author": "Yi M",
+   "year": "2022",
+   "journal": "",
+   "citations": 1162,
+   "score": 5.674,
+   "facet_hits": 3,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "review-article",
+    "Review",
+    "Journal Article"
+   ],
+   "abstract_snippet": "Antibodies targeting programmed cell death protein-1 (PD-1) or its ligand PD-L1 rescue T cells from exhausted status and revive immune response against cancer cells. Based on the immense success in clinical trials, ten α-PD-1 (nivolumab, pembrolizumab, cemiplimab, sintilimab, camrelizumab, toripalimab, tislelizumab, zimberelimab, prolgolimab, and dostarlimab) and three α-PD-L1 antibodies (atezolizumab, durvalumab, and avelumab) have been approved for various types of cancers. Nevertheless, the low response rate of α-PD-1/PD-L1 therapy remains to be resolved. For most cancer patients, PD-1/PD-L1 pathway is not the sole speed-limiting factor of antitumor immunity, and it is insufficient to mot"
+  },
+  {
+   "rank": 28,
+   "pmid": "32467592",
+   "doi": "10.1038/s41422-020-0343-4",
+   "title": "Immune checkpoint signaling and cancer immunotherapy.",
+   "first_author": "He X",
+   "year": "2020",
+   "journal": "",
+   "citations": 1130,
+   "score": 5.626,
+   "facet_hits": 3,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "review-article",
+    "Review",
+    "Journal Article"
+   ],
+   "abstract_snippet": "Immune checkpoint blockade therapy has become a major weapon in fighting cancer. Antibody drugs, such as anti-PD-1 and anti-PD-L1, demonstrate obvious advantages such as broad applicability across cancer types and durable clinical response when treatment is effective. However, the overall response rates are still unsatisfying, especially for cancers with low mutational burden. Moreover, adverse effects, such as autoimmune symptoms and tumor hyperprogression, present a significant downside in some clinical applications. These challenges reflect the urgent need to fully understand the basic biology of immune checkpoints. In this review, we discuss regulation of immune checkpoint signaling at m"
+  },
+  {
+   "rank": 29,
+   "pmid": "36216928",
+   "doi": "10.1038/s41571-022-00689-z",
+   "title": "Clinical implications of T cell exhaustion for cancer immunotherapy.",
+   "first_author": "Chow A",
+   "year": "2022",
+   "journal": "",
+   "citations": 812,
+   "score": 5.569,
+   "facet_hits": 4,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Review",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Immunotherapy has been a remarkable clinical advancement in the treatment of cancer. T cells are pivotal to the efficacy of current cancer immunotherapies, including immune-checkpoint inhibitors and adoptive cell therapies. However, cancer is associated with T cell exhaustion, a hypofunctional state characterized by progressive loss of T cell effector functions and self-renewal capacity. The 'un-exhausting' of T cells in the tumour microenvironment is commonly regarded as a key mechanism of action for immune-checkpoint inhibitors, and T cell exhaustion is considered a pathway of resistance for cellular immunotherapies. Several elegant studies have provided important insights into the transcr"
+  },
+  {
+   "rank": 30,
+   "pmid": "30718830",
+   "doi": "10.1038/s41577-019-0127-6",
+   "title": "Macrophages as regulators of tumour immunity and immunotherapy.",
+   "first_author": "DeNardo DG",
+   "year": "2019",
+   "journal": "",
+   "citations": 2025,
+   "score": 5.552,
+   "facet_hits": 2,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Review",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Macrophages are critical mediators of tissue homeostasis, with tumours distorting this proclivity to stimulate proliferation, angiogenesis and metastasis. This had led to an interest in targeting macrophages in cancer, and preclinical studies have demonstrated efficacy across therapeutic modalities and tumour types. Much of the observed efficacy can be traced to the suppressive capacity of macrophages, driven by microenvironmental cues such as hypoxia and fibrosis. As a result, tumour macrophages display an ability to suppress T cell recruitment and function as well as to regulate other aspects of tumour immunity. With the increasing impact of cancer immunotherapy, macrophage targeting is no"
+  },
+  {
+   "rank": 31,
+   "pmid": "32001626",
+   "doi": "10.1126/science.aax0182",
+   "title": "Neoadjuvant checkpoint blockade for cancer immunotherapy.",
+   "first_author": "Topalian SL",
+   "year": "2020",
+   "journal": "",
+   "citations": 811,
+   "score": 5.529,
+   "facet_hits": 2,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Review",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Cancer immunotherapies that target the programmed cell death 1 (PD-1):programmed death-ligand 1 (PD-L1) immune checkpoint pathway have ushered in the modern oncology era. Drugs that block PD-1 or PD-L1 facilitate endogenous antitumor immunity and, because of their broad activity spectrum, have been regarded as a common denominator for cancer therapy. Nevertheless, many advanced tumors demonstrate de novo or acquired treatment resistance, and ongoing research efforts are focused on improving patient outcomes. Using anti-PD-1 or anti-PD-L1 treatment against earlier stages of cancer is hypothesized to be one such solution. This Review focuses on the development of neoadjuvant (presurgical) immu"
+  },
+  {
+   "rank": 32,
+   "pmid": "33243986",
+   "doi": "10.1038/s41572-020-00224-3",
+   "title": "Head and neck squamous cell carcinoma.",
+   "first_author": "Johnson DE",
+   "year": "2020",
+   "journal": "",
+   "citations": 3329,
+   "score": 5.493,
+   "facet_hits": 2,
+   "pubtype": [
+    "Research Support, Non-U.S. Gov't",
+    "research-article",
+    "Review",
+    "Journal Article",
+    "Research Support, N.I.H., Extramural"
+   ],
+   "abstract_snippet": "Most head and neck cancers are derived from the mucosal epithelium in the oral cavity, pharynx and larynx and are known collectively as head and neck squamous cell carcinoma (HNSCC). Oral cavity and larynx cancers are generally associated with tobacco consumption, alcohol abuse or both, whereas pharynx cancers are increasingly attributed to infection with human papillomavirus (HPV), primarily HPV-16. Thus, HNSCC can be separated into HPV-negative and HPV-positive HNSCC. Despite evidence of histological progression from cellular atypia through various degrees of dysplasia, ultimately leading to invasive HNSCC, most patients are diagnosed with late-stage HNSCC without a clinically evident ante"
+  }
+ ]
+}

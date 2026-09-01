@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "input": {
+    "path": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\demos\\01-scrna-analysis\\data\\pbmc3k_raw.h5ad",
+    "sha256": "89a96f1beaa2dd83a687666d3f19a4513ac27a2a2d12581fcd77afed7ea653a1",
+    "format": "h5ad"
+  },
+  "shape": {
+    "cells": 2700,
+    "genes": 32738
+  },
+  "matrix": {
+    "storage": "sparse",
+    "dtype": "float32",
+    "nonzero_values": 2286884,
+    "sparsity": 0.9741281057464086,
+    "stored_values": 2286884,
+    "nonfinite_values": 0,
+    "negative_values": 0,
+    "integer_like_fraction": 1.0,
+    "appears_count_like": true
+  },
+  "identifiers": {
+    "duplicate_cell_ids": 0,
+    "duplicate_gene_ids": 0
+  },
+  "annotations": {
+    "obs_columns": [],
+    "var_columns": [
+      "gene_ids"
+    ],
+    "layers": [],
+    "obsm": [],
+    "uns": []
+  },
+  "qc_summary": {
+    "total_counts": {
+      "min": 548.0,
+      "q25": 1757.75,
+      "median": 2197.0,
+      "q75": 2763.0,
+      "max": 15844.0
+    },
+    "n_genes_by_counts": {
+      "min": 212.0,
+      "q25": 690.0,
+      "median": 817.0,
+      "q75": 953.25,
+      "max": 3422.0
+    },
+    "pct_counts_mt": {
+      "min": 0.0,
+      "q25": 1.5362379550933838,
+      "median": 2.02963924407959,
+      "q75": 2.640217661857605,
+      "max": 22.569026947021484
+    },
+    "mitochondrial_gene_count": 13
+  },
+  "warnings": [
+    "cell_metadata_absent"
+  ],
+  "interpretation": {
+    "source_modified": false,
+    "cells_filtered": 0,
+    "thresholds_applied": false
+  }
+}

@@ -1,0 +1,1 @@
+{ "bundle": { "resources": { "../resources/node/win32-x64": "node", "../resources/bin/win32-x64": "bin" } } }
