@@ -169,3 +169,17 @@ input, textarea, pre, code, .selectable { user-select: text; cursor: auto; }
 .bio-logo-dark{display:none}
 :root[data-theme="dark"] .bio-logo-light{display:none}
 :root[data-theme="dark"] .bio-logo-dark{display:block}
+
+/* 自动更新提醒（右下角悬浮卡片） */
+.auto-update-toast{position:fixed;right:18px;bottom:18px;z-index:1000;display:flex;gap:12px;align-items:flex-start;
+  width:340px;max-width:calc(100vw - 36px);padding:14px 14px 14px 14px;border-radius:12px;
+  background:var(--surface-2,#1b1d22);border:1px solid var(--border,rgba(255,255,255,.10));
+  box-shadow:0 12px 40px rgba(0,0,0,.38);animation:au-in .28s cubic-bezier(.2,.7,.3,1)}
+@keyframes au-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.auto-update-toast .au-icon{color:var(--accent,#2c58fc);flex-shrink:0;margin-top:1px}
+.auto-update-toast .au-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:7px}
+.auto-update-toast .au-title{font-weight:600;font-size:13.5px;color:var(--text,#e9eaee)}
+.auto-update-toast .au-notes{font-size:12px;color:var(--text-dim,#9a9ca6);line-height:1.5;overflow:hidden}
+.auto-update-toast .au-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px}
+.auto-update-toast .au-close{position:absolute;top:8px;right:8px;background:none;border:0;color:var(--text-dim,#9a9ca6);cursor:pointer;padding:4px;border-radius:6px;line-height:0}
+.auto-update-toast .au-close:hover{background:var(--surface-3,rgba(255,255,255,.06));color:var(--text,#e9eaee)}

@@ -71,7 +71,22 @@ for (const name of readdirSync(srcRoot).sort()) {
   });
   console.log(`ok ${name}`);
 }
-for (const s of skills) { const mm = meta[s.id] ?? {}; s.tier = 'official'; s.bundle = 'skills'; s.domain_zh = mm.domain_zh ?? '单细胞与空间'; s.subcategory = mm.subcategory ?? { qc: '单细胞预处理与质控', analysis: '聚类与降维', clinical: '细胞类型注释', audit: '流程与环境' }[s.category] ?? ''; if (s.id === 'scrna-treatment-response') s.subcategory = '细胞类型注释'; if (s.id === 'scrna-cellstate-annotation') s.subcategory = '细胞类型注释'; }
+// 技能评分模型：五维加权综合分(0-100)。权重依据公认评测实践(正确性主导)。
+// 只有拿到「正确性」信号(公认 benchmark 或内部自动评测)的技能才评分；否则记为未评测(unrated)，绝不臆造分数。
+const SCORE_WEIGHTS = { correctness: 0.45, robustness: 0.15, reproducibility: 0.15, offline: 0.15, efficiency: 0.10 };
+function computeScore(sc) {
+  if (!sc || typeof sc.correctness !== 'number') return null; // 无正确性数据 = 未评测
+  let num = 0, den = 0;
+  for (const [k, w] of Object.entries(SCORE_WEIGHTS)) {
+    if (typeof sc[k] === 'number') { num += w * Math.max(0, Math.min(100, sc[k])); den += w; }
+  }
+  return den > 0 ? Math.round(num / den) : null; // 只按已有维度归一,不给缺失维度补分
+}
+
+for (const s of skills) { const mm = meta[s.id] ?? {}; s.tier = 'official'; s.bundle = 'skills'; s.domain_zh = mm.domain_zh ?? '单细胞与空间'; s.subcategory = mm.subcategory ?? { qc: '单细胞预处理与质控', analysis: '聚类与降维', clinical: '细胞类型注释', audit: '流程与环境' }[s.category] ?? ''; if (s.id === 'scrna-treatment-response') s.subcategory = '细胞类型注释'; if (s.id === 'scrna-cellstate-annotation') s.subcategory = '细胞类型注释';
+  // 评分：多维度加权综合分(0-100)。维度分来自 skill-meta 的 scores;没有正确性数据则不评分(unrated)。
+  const sc = mm.scores ?? null; s.score = computeScore(sc); s.scoreBreakdown = sc; s.benchmarks = mm.benchmarks ?? null;
+}
 
 // 社区收编技能：由 scripts/harvest_skills.py 从 competitors/ 收集到 resources/community-skills/，索引在 store/community-index.json
 const communityIndex = path.join(here, '..', 'store', 'community-index.json');

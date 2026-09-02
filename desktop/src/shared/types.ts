@@ -19,6 +19,10 @@ export interface CatalogSkill {
   mutates_input: boolean;
   version: string;
   evidence: { tests?: string; offline?: boolean; reproducible?: boolean; dataset?: string } | null;
+  score?: number | null;
+  scoreBreakdown?: { correctness?: number; robustness?: number; reproducibility?: number; offline?: number; efficiency?: number } | null;
+  score_source?: string;
+  benchmarks?: string[] | null;
   featured: boolean;
   requires: { python: boolean; env: string };
   tier: 'official' | 'community';

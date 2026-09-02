@@ -6,6 +6,17 @@ import { useApp } from '../store';
 import type { McpServer } from '@shared/types';
 import { useT } from '../i18n';
 
+// OpenAI 兼容的模型提供商预设：选一个自动填「接口地址 + 模型名」，也可手填。
+// dsh 引擎走 chat/completions 协议，这些都是兼容端点；Anthropic 原生协议暂不支持。
+const PROVIDERS: { id: string; label: string; base: string; model: string }[] = [
+  { id: 'deepseek', label: 'DeepSeek 官方', base: 'https://api.deepseek.com/v1', model: 'deepseek-chat' },
+  { id: 'openai', label: 'OpenAI (Codex / GPT)', base: 'https://api.openai.com/v1', model: 'gpt-4o' },
+  { id: 'moonshot', label: 'Moonshot Kimi', base: 'https://api.moonshot.cn/v1', model: 'moonshot-v1-32k' },
+  { id: 'qwen', label: '通义千问 DashScope', base: 'https://dashscope.aliyuncs.com/compatible-mode/v1', model: 'qwen-plus' },
+  { id: 'zhipu', label: '智谱 GLM', base: 'https://open.bigmodel.cn/api/paas/v4', model: 'glm-4-plus' },
+  { id: 'siliconflow', label: '硅基流动 SiliconFlow', base: 'https://api.siliconflow.cn/v1', model: 'deepseek-ai/DeepSeek-V3' },
+];
+
 export default function SettingsView() {
   const { settings, updateSettings, credential, saveKey, info, restartDsh } = useApp();
   const { t } = useT();
@@ -32,6 +43,11 @@ export default function SettingsView() {
             </div>
             {offline && (
               <div className="flex flex-col gap-2 mt-3">
+                <label className="t-caption">{t('提供商预设（选一个自动填地址和模型，也可手填）')}</label>
+                <select className="field" value="" onChange={(e) => { const p = PROVIDERS.find((x) => x.id === e.target.value); if (p) setDraft((d) => ({ ...d, offlineBaseUrl: p.base, offlineModel: p.model })); }}>
+                  <option value="">{t('选择提供商…')}</option>
+                  {PROVIDERS.map((p) => <option key={p.id} value={p.id}>{p.label}</option>)}
+                </select>
                 <label className="t-caption">{t('模型接口地址（OpenAI/DeepSeek 兼容，例如 http://192.168.1.10:8000/v1）')}</label>
                 <input className="field t-mono" placeholder="http://…" value={draft.offlineBaseUrl ?? settings.offlineBaseUrl ?? ''} onChange={(e) => setDraft((d) => ({ ...d, offlineBaseUrl: e.target.value }))} />
                 <div className="flex gap-2">
@@ -42,6 +58,7 @@ export default function SettingsView() {
                 <input className="field t-mono" placeholder="http://192.168.1.10:3080" value={draft.remoteDshUrl ?? settings.remoteDshUrl ?? ''} onChange={(e) => setDraft((d) => ({ ...d, remoteDshUrl: e.target.value }))} />
                 <div className="t-caption" style={{ color: 'var(--text-3)' }}>{t('服务器上启动命令示例：dsh web --host 0.0.0.0 --trusted-host 服务器IP:3080')}</div>
                 <div><button className="btn btn-primary" disabled={Object.keys(draft).length === 0} onClick={saveOffline}>{t('保存并重启智能体')}</button></div>
+                <div className="t-caption" style={{ color: 'var(--text-3)' }}>{t('以上均为 OpenAI 兼容接口；BioDSH 引擎(dsh)走 chat/completions 协议。Claude/Anthropic 原生协议暂不支持；非 DeepSeek 模型在 dsh 上的效果不保证。')}</div>
               </div>
             )}
           </Section>

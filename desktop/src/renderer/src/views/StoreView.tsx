@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { DomainIcon, SkillIcon } from '../icons';
-import { Search, ShieldCheck, WifiOff, RotateCcw, X, FolderOpen, Trash2, ExternalLink, Sparkles, Users, Download, ThumbsUp, ThumbsDown, LayoutGrid } from 'lucide-react';
+import { Search, ShieldCheck, WifiOff, RotateCcw, X, FolderOpen, Trash2, ExternalLink, Sparkles, Users, Download, ThumbsUp, ThumbsDown, LayoutGrid, Award } from 'lucide-react';
 import { useApp } from '../store';
 import InstallButton from '../components/InstallButton';
 import Markdown from '../components/Markdown';
@@ -26,6 +26,7 @@ export default function StoreView() {
   const [sub, setSub] = useState('all');
   const [page, setPage] = useState(1);
   const [open, setOpen] = useState<CatalogSkill | null>(null);
+  const [scoreInfo, setScoreInfo] = useState(false);
   const [ratings, setRatings] = useState<Record<string, Rating>>(ratingsCache);
   useEffect(() => { void (window.biodsh.ratingsGet() as Promise<Record<string, Rating>>).then((r) => { ratingsCache = r; setRatings(r); }); }, []);
   const rate = async (id: string, vote: number) => { const cur = ratings[id]?.vote ?? 0; const next = cur === vote ? 0 : vote; const all = await window.biodsh.ratingsSet(id, next, '') as Record<string, Rating>; ratingsCache = all; setRatings({ ...all }); };
@@ -53,7 +54,7 @@ export default function StoreView() {
     if (!q.trim()) return true;
     const needle = q.toLowerCase();
     return [s.name, s.name_en ?? '', s.summary, s.description ?? '', s.id, s.subcategory ?? '', ...s.tags].some((x) => x.toLowerCase().includes(needle));
-  }), [inDomain, sub, q]);
+  }).sort((a, b) => (b.score ?? -1) - (a.score ?? -1)), [inDomain, sub, q]); // 有评分的排前(按分降序),未评测的保持原序在后
   const shown = list.slice(0, page * PAGE);
   const [batchBusy, setBatchBusy] = useState(false);
   const { install: installOne } = useApp();
@@ -131,6 +132,7 @@ export default function StoreView() {
               </div>
               {domain === 'all' && tier !== 'installed' && <span className="t-caption">{t('左侧选一个领域，再按小类筛选')}</span>}
               <span className="flex items-center gap-2 shrink-0">
+                <button className="btn btn-ghost !h-[26px] !px-2" onClick={() => setScoreInfo(true)} title={t('评分说明')}><Award size={13} /> {t('评分说明')}</button>
                 {list.length > 0 && tier !== 'installed' && <button className="btn btn-fill !h-[26px]" disabled={batchBusy} onClick={() => installAll(list)}>{batchBusy ? t('批量安装中…') : t('安装本列表全部（{n}）', { n: list.filter((s) => (statuses[s.id]?.state ?? 'not_installed') !== 'installed').length })}</button>}
                 <span className="t-caption shrink-0">{t('{n} 个', { n: list.length })}{tier === 'community' ? ` · ${t('来自开源社区，未经 BioDSH 评测')}` : tier === 'official' ? ` · ${t('离线、可复现、已评测')}` : ''}</span>
               </span>
@@ -154,7 +156,65 @@ export default function StoreView() {
       </div>
 
       {open && <DetailSheet skill={open} onClose={() => setOpen(null)} rating={ratings[open.id]} onRate={(v) => rate(open.id, v)} />}
+      {scoreInfo && <ScoreInfoModal onClose={() => setScoreInfo(false)} />}
     </div>
+  );
+}
+
+// 评分说明弹窗：讲清五维权重、用到/计划接入的公认 benchmark、以及诚实边界。
+function ScoreInfoModal({ onClose }: { onClose: () => void }) {
+  const { t } = useT();
+  useEffect(() => { const h = (e: KeyboardEvent) => e.key === 'Escape' && onClose(); window.addEventListener('keydown', h); return () => window.removeEventListener('keydown', h); }, [onClose]);
+  const dims: [string, string, string][] = [
+    ['正确性', '45%', '在公认 benchmark 或内部自动评测上的表现'],
+    ['鲁棒性', '15%', '换数据集 / 随机种子，结果稳不稳'],
+    ['可复现', '15%', '锁定依赖、重跑结果一致'],
+    ['离线', '15%', '能否不联网、不依赖付费接口运行'],
+    ['效率', '10%', '运行时间 / 内存开销'],
+  ];
+  const benches: [string, string][] = [
+    ['单细胞', 'scIB · ARI / NMI · Azimuth'],
+    ['基因调控 / 虚拟敲除', 'BEELINE (AUPRC/EPR) · scPerturb · CellOracle'],
+    ['分子对接 / 虚拟筛选', 'DUD-E · LIT-PCBA · CASF-2016 (EF/AUROC/pose)'],
+    ['生信 Agent', 'BixBench · LAB-Bench · ScienceAgentBench'],
+    ['分子动力学', 'RMSD / RMSF 稳定性 · B-factor 相关性'],
+  ];
+  return (
+    <>
+      <div className="sheet-backdrop" onClick={onClose} />
+      <div className="sheet" style={{ maxWidth: 560 }}>
+        <div className="px-6 pt-6 pb-4 flex items-start gap-3 hairline-b">
+          <span className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'var(--accent-soft)', color: 'var(--accent)' }}><Award size={18} /></span>
+          <div className="flex-1"><div className="t-title1">{t('技能评分是怎么来的')}</div><div className="t-caption mt-1">{t('一个 0–100 的综合分，让你一眼看出哪个技能更可靠')}</div></div>
+          <button className="btn btn-ghost !h-6 !px-2" onClick={onClose}><X size={14} /></button>
+        </div>
+        <div className="flex-1 min-h-0 overflow-y-auto px-6 py-5 flex flex-col gap-5">
+          <div>
+            <div className="t-headline mb-2">{t('五个维度加权')}</div>
+            <div className="flex flex-col gap-1.5">
+              {dims.map(([n, w, d]) => (
+                <div key={n} className="flex items-baseline gap-2 t-body" style={{ fontSize: 13.5 }}>
+                  <span style={{ width: 52 }} className="shrink-0 font-medium">{t(n)}</span>
+                  <span className="badge badge-blue shrink-0">{w}</span>
+                  <span style={{ color: 'var(--text-2)' }}>{t(d)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="t-headline mb-2">{t('用到 / 计划接入的公认 benchmark')}</div>
+            <div className="flex flex-col gap-1.5">
+              {benches.map(([k, v]) => (
+                <div key={k} className="t-body" style={{ fontSize: 13.5 }}><span className="font-medium">{t(k)}</span><span style={{ color: 'var(--text-2)' }}> — {v}</span></div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-xl p-4 t-body" style={{ background: 'var(--surface-2)', fontSize: 13, lineHeight: '20px', color: 'var(--text-2)' }}>
+            {t('诚实说明：目前官方技能的分数来自 BioDSH 内部自动评测（自建 grader，全部通过），上面的公认 benchmark 正在逐步接入以给出可对外的分数。没跑过评测的技能一律标「未评测」，我们不臆造分数。')}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -193,6 +253,7 @@ function Badges({ skill }: { skill: CatalogSkill }) {
   }
   return (
     <>
+      {typeof skill.score === 'number' && <span className="badge badge-blue" title={skill.score_source ?? t('内部评测')}><Award size={11} /> {t('评分')} {skill.score}</span>}
       {skill.offline && <span className="badge badge-green"><WifiOff size={11} /> {t('离线')}</span>}
       {skill.evidence?.reproducible && <span className="badge badge-green"><RotateCcw size={11} /> {t('可复现')}</span>}
       {skill.evidence?.tests && <span className="badge badge-blue"><ShieldCheck size={11} /> {t('评测')} {skill.evidence.tests}</span>}
@@ -277,6 +338,8 @@ function DetailSheet({ skill, onClose, rating, onRate }: { skill: CatalogSkill; 
                 </div>
               ) : (
                 <div className="grid grid-cols-2 gap-3">
+                  <Info label={t('综合评分')} value={typeof skill.score === 'number' ? `${skill.score} / 100` : t('未评测')} sub={typeof skill.score === 'number' ? (skill.score_source ?? t('五维加权：正确性/鲁棒性/可复现/离线/效率')) : t('尚无公认 benchmark 分数')} />
+                  {skill.benchmarks && skill.benchmarks.length > 0 && <Info label={t('计划接入 benchmark')} value={skill.benchmarks.join(' · ')} />}
                   <Info label={t('运行方式')} value={t('本机离线运行，数据不出电脑')} />
                   <Info label={t('可复现性')} value={skill.evidence?.reproducible ? t('同输入重跑结果逐字节一致') : t('未验证')} />
                   <Info label={t('评测')} value={skill.evidence?.tests ? t('独立评分器 {tests} 通过', { tests: skill.evidence.tests }) : t('暂无')} />

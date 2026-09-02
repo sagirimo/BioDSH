@@ -1,0 +1,51 @@
+{
+  "id": "drug-docking",
+  "name": "分子对接虚拟筛选（AutoDock Vina）",
+  "domain": "drug",
+  "description": "Virtual screening by docking a set of small-molecule ligands (SMILES or SDF) into a receptor pocket with AutoDock Vina, ranking hits by predicted binding affinity and saving the best pose per ligand.",
+  "entry": {
+    "type": "python",
+    "script": "run.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [
+    {
+      "name": "receptor",
+      "format": "pdb|pdbqt",
+      "required": true
+    },
+    {
+      "name": "ligands",
+      "format": "smi|csv|txt|sdf",
+      "required": true
+    },
+    {
+      "name": "center",
+      "format": "x,y,z",
+      "required": false
+    },
+    {
+      "name": "ref-ligand",
+      "format": "pdb|pdbqt|sdf|mol|mol2",
+      "required": false
+    },
+    {
+      "name": "box-size",
+      "format": "sx,sy,sz",
+      "required": false
+    },
+    {
+      "name": "exhaustiveness",
+      "format": "int",
+      "required": false
+    }
+  ],
+  "outputs": [
+    "docking_scores.csv",
+    "poses/<ligand_id>.pdbqt",
+    "docking_top.png",
+    "docking_summary.json"
+  ],
+  "offline": false,
+  "mutates_input": false
+}

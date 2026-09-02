@@ -1,0 +1,48 @@
+{
+  "id": "md-simulation",
+  "name": "分子动力学模拟（OpenMM）",
+  "domain": "structure",
+  "description": "Short molecular dynamics of a protein (optionally a protein-ligand complex) with OpenMM: fix the structure, minimize, equilibrate and run a brief production trajectory, then report backbone RMSD stability over time.",
+  "entry": {
+    "type": "python",
+    "script": "run.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [
+    {
+      "name": "pdb",
+      "format": "pdb",
+      "required": true
+    },
+    {
+      "name": "solvent",
+      "format": "implicit|explicit",
+      "required": false
+    },
+    {
+      "name": "steps",
+      "format": "int",
+      "required": false
+    },
+    {
+      "name": "temperature",
+      "format": "kelvin",
+      "required": false
+    },
+    {
+      "name": "ff",
+      "format": "xml",
+      "required": false
+    }
+  ],
+  "outputs": [
+    "minimized.pdb",
+    "trajectory.dcd",
+    "energy_log.csv",
+    "rmsd.csv",
+    "rmsd.png",
+    "md_summary.json"
+  ],
+  "offline": false,
+  "mutates_input": false
+}

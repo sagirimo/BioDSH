@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Check, ExternalLink } from 'lucide-react';
+import { ArrowRight, Check, ExternalLink, Star } from 'lucide-react';
 import { useApp } from '../store';
 import { Logo } from '../components/Sidebar';
 import { useT } from '../i18n';
@@ -28,7 +28,7 @@ export default function Onboarding() {
         )}
         {step === 1 && (
           <>
-            <div className="t-caption">{t('第 1 步 / 共 2 步')}</div>
+            <div className="t-caption">{t('第 1 步 / 共 3 步')}</div>
             <div className="t-title1 mt-2">{t('连接模型')}</div>
             <p className="t-body mt-2" style={{ color: 'var(--text-2)' }}>{t('填入 DeepSeek API Key。之后也可以在「设置」里改。')}</p>
             <input className="field t-mono mt-6 text-center" type="password" autoFocus placeholder={credential.hasKey ? t('已设置 {masked}', { masked: credential.masked ?? '' }) : 'sk-…'} value={key} onChange={(e) => setKey(e.target.value)} />
@@ -41,7 +41,7 @@ export default function Onboarding() {
         )}
         {step === 2 && (
           <>
-            <div className="t-caption">{t('第 2 步 / 共 2 步')}</div>
+            <div className="t-caption">{t('第 2 步 / 共 3 步')}</div>
             <div className="t-title1 mt-2">{t('准备分析环境')}</div>
             <p className="t-body mt-2 max-w-[400px]" style={{ color: 'var(--text-2)' }}>
               {t('技能依赖一套 Python 分析软件包（scanpy 等）。只需安装一次，约需几分钟，期间可以先去逛商店。')}
@@ -62,8 +62,24 @@ export default function Onboarding() {
             </div>
             <div className="flex gap-3 mt-6">
               {!env.ready && !installing && <button className="btn btn-primary btn-lg" onClick={() => installEnv()}>{env.step === 'error' ? t('重试安装') : t('开始安装')}</button>}
-              <button className={`btn btn-lg ${env.ready ? 'btn-primary' : 'btn-fill'}`} onClick={() => finish(true)}>{env.ready ? t('进入商店') : t('稍后再装，先逛商店')} <ArrowRight size={15} /></button>
+              <button className={`btn btn-lg ${env.ready ? 'btn-primary' : 'btn-fill'}`} onClick={() => setStep(3)}>{env.ready ? t('下一步') : t('稍后再装')} <ArrowRight size={15} /></button>
             </div>
+          </>
+        )}
+        {step === 3 && (
+          <>
+            <div className="t-caption">{t('第 3 步 / 共 3 步')}</div>
+            <div className="t-title1 mt-2">{t('给 BioDSH 点个 Star ⭐')}</div>
+            <p className="t-body mt-2 max-w-[420px]" style={{ color: 'var(--text-2)' }}>
+              {t('BioDSH 完全免费开源。在 GitHub 上点一个 Star，是对我们最大的鼓励，也能让更多同行看到它。')}
+            </p>
+            <div className="w-full mt-5 rounded-xl p-4 text-left t-body" style={{ background: 'var(--surface-2)', color: 'var(--text-2)', lineHeight: '28px' }}>
+              {t('① 点下面的按钮打开 GitHub 页面')}<br />
+              {t('② 点页面右上角那个 ⭐ Star 按钮（需要 GitHub 账号，没有就顺手注册一个）')}<br />
+              {t('③ 回到这里点「完成」')}
+            </div>
+            <button className="btn btn-primary btn-lg mt-6" onClick={() => window.biodsh.openExternal('https://github.com/sagirimo/BioDSH')}><Star size={15} /> {t('去 GitHub 点 Star')}</button>
+            <button className="btn btn-ghost mt-2" onClick={() => finish(true)}>{t('完成，进入软件')}</button>
           </>
         )}
       </div>

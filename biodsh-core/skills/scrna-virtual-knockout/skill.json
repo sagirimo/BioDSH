@@ -1,0 +1,30 @@
+{
+  "id": "scrna-virtual-knockout",
+  "name": "scRNA-seq virtual knockout",
+  "domain": "scrna",
+  "description": "In-silico single-gene knockout (scTenifoldKnk-style): build a gene regulatory network, virtually remove a gene, and rank the genes most affected by its loss.",
+  "entry": {
+    "type": "python",
+    "script": "run.py",
+    "python": "bioenv/.venv/bin/python"
+  },
+  "inputs": [
+    {
+      "name": "input",
+      "format": "h5ad",
+      "required": true
+    },
+    {
+      "name": "gene",
+      "format": "string",
+      "required": true
+    }
+  ],
+  "outputs": [
+    "virtual_ko_ranked.csv",
+    "virtual_ko_top_genes.png",
+    "virtual_ko_summary.json"
+  ],
+  "offline": true,
+  "mutates_input": false
+}

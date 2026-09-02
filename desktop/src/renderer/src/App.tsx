@@ -9,6 +9,8 @@ import EnvView from './views/EnvView';
 import SettingsView from './views/SettingsView';
 import Onboarding from './views/Onboarding';
 import AskPopover from './components/AskPopover';
+import AutoUpdate from './components/AutoUpdate';
+import StarPrompt from './components/StarPrompt';
 import { LangContext, resolveLang } from './i18n';
 
 function useTheme() {
@@ -40,6 +42,8 @@ function Shell() {
       </main>
       {!settings.onboarded && <Onboarding />}
       <AskPopover />
+      <AutoUpdate />
+      <StarPrompt />
     </div>
     </LangContext.Provider>
   );
