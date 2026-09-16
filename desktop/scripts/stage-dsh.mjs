@@ -1,8 +1,11 @@
 // 把 dsh 运行时（@deepseek-ai/dsh 及其全部依赖）单独装到 dsh-runtime/node_modules，
 // 打包时整棵树作为 extraResources 原样带走。不用 electron-builder 的依赖裁剪：它会漏掉 dsh 动态按名加载的插件包。
-import { mkdirSync, writeFileSync, readFileSync, rmSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync, rmSync, existsSync, readdirSync, statSync, cpSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import path from 'node:path';
+import { patchGuard } from './patch-dsh-guard.mjs';
+import { patchToolcall } from './patch-dsh-toolcall.mjs';
+import { patchSse } from './patch-dsh-sse.mjs';
 import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -50,4 +53,18 @@ if (missing.length) {
 }
 // .bin 里全是符号链接，运行时用不到；在 WSL 装出来的链接会让 Windows 侧 7-Zip 打包失败。
 rmSync(path.join(dir, 'node_modules', '.bin'), { recursive: true, force: true });
+patchGuard(dir);
+patchToolcall(dir);
+patchSse(dir);
+// 技能语义路由:0.3.0 起改为 cordis 插件(官方扩展面),不再打补丁改 dsh 代码。把插件包拷进运行时,
+// 由 cordis.patch.yml(ensure_home 生成)以 `@biodsh/skill-router` 加载。
+for (const p of ['skill-router']) {
+  const src = path.join(root, 'dsh-plugins', p);
+  if (existsSync(src)) {
+    const dst = path.join(dir, 'node_modules', '@biodsh', p);
+    rmSync(dst, { recursive: true, force: true });
+    cpSync(src, dst, { recursive: true });
+    console.log(`[stage-dsh] 已装 BioDSH 插件 @biodsh/${p}`);
+  }
+}
 console.log('ok');

@@ -1,0 +1,8 @@
+{
+  "id": "gene-enrichment",
+  "title": "基因列表富集分析出图",
+  "version": 1,
+  "sessions": [
+    { "id": "session-df935a01-873d-45a6-800e-713a34f290b9", "title": "基因列表富集分析出图", "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\_demobuild\\gene-enrichment", "file": ".session/session-df935a01-873d-45a6-800e-713a34f290b9.jsonl.zstd" }
+  ]
+}

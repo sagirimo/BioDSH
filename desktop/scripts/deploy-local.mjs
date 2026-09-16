@@ -5,6 +5,7 @@
 import { cpSync, existsSync, statSync, copyFileSync, renameSync, rmSync, readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import path from 'node:path';
+import { homedir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -12,7 +13,7 @@ const args = process.argv.slice(2);
 const opt = (k, d) => (args.includes(k) ? args[args.indexOf(k) + 1] : d);
 const full = args.includes('--full');
 const from = path.resolve(here, '..', opt('--from', 'src-tauri/target-bundle/release'));
-const installDir = opt('--install-dir', process.env.BIODSH_INSTALL_DIR ?? 'C:\\Users\\MOLIEX-DESKTOP\\Desktop\\BioDSH');
+const installDir = opt('--install-dir', process.env.BIODSH_INSTALL_DIR ?? path.join(homedir(), 'Desktop', 'BioDSH'));
 const onWsl = process.platform === 'linux' && existsSync('/mnt/c');
 const toLocal = (win) => (onWsl ? '/mnt/c/' + win.replace(/^[A-Za-z]:\\/, '').replace(/\\/g, '/') : win);
 const dst = toLocal(installDir);
@@ -44,8 +45,16 @@ step('程序本体 biodsh-desktop.exe', () => {
 const walkStamp = (dir) => { let acc = 0, n = 0; const rec = (d) => { for (const e of readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) rec(p); else { const st = statSync(p); acc += st.size + Math.floor(st.mtimeMs / 1000); n++; } } }; try { rec(dir); } catch { /* */ } return `${n}-${acc}`; };
 // 资源以 desktop/resources 为准（构建输出里的副本是上次 tauri build 时拷的，可能过期）
 const resSrc = (r) => path.join(here, '..', 'resources', r);
-const fingerprint = (r) => { if (r === 'demos' || r === 'skills' || r === 'scripts') return walkStamp(resSrc(r)); const probe = r === 'community-skills' ? path.join(resSrc('skills'), 'catalog.json') : resSrc(r); try { const st = statSync(probe); return `${st.size}-${st.mtimeMs}`; } catch { return ''; } };
-for (const r of ['skills', 'community-skills', 'bioenv', 'demos', 'scripts']) {
+const fingerprint = (r) => {
+  if (r === 'demos' || r === 'skills' || r === 'scripts') return walkStamp(resSrc(r));
+  if (r === 'embed') { // 顶层 .mjs 任一改动就重同步(node_modules/models 不变,不遍历)
+    let s = ''; try { for (const f of readdirSync(resSrc('embed'))) if (f.endsWith('.mjs')) { const st = statSync(path.join(resSrc('embed'), f)); s += `${f}:${Math.floor(st.mtimeMs)};`; } } catch { /* */ }
+    return s;
+  }
+  const probe = r === 'community-skills' ? path.join(resSrc('skills'), 'catalog.json') : resSrc(r);
+  try { const st = statSync(probe); return `${st.size}-${st.mtimeMs}`; } catch { return ''; }
+};
+for (const r of ['skills', 'community-skills', 'bioenv', 'demos', 'scripts', 'embed', 'databases']) {
   const src = resSrc(r);
   if (!existsSync(src)) continue;
   const stamp = path.join(dst, `.${r}.stamp`);

@@ -1,0 +1,9 @@
+{
+  "name": "biodsh-embed",
+  "private": true,
+  "type": "module",
+  "description": "本地离线 embedding：给技能语义路由算查询向量（transformers.js + onnxruntime，int8 多语模型）",
+  "dependencies": {
+    "@huggingface/transformers": "3.8.1"
+  }
+}

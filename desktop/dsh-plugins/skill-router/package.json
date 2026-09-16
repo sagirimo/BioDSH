@@ -1,0 +1,8 @@
+{
+  "name": "@biodsh/skill-router",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "description": "BioDSH 技能语义路由 —— cordis 插件版(用官方 ctx.skills 服务 + agent/pre-step 事件,不改 dsh 内核)"
+}

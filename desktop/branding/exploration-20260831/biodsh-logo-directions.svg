@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080">
+  <rect width="1600" height="1080" fill="#070a10"/>
+
+  <g font-family="Montserrat, 'DM Sans', 'Segoe UI', Arial, sans-serif">
+    <text x="72" y="76" fill="#ffffff" font-size="42" font-weight="650">BioDSH 标志方向探索</text>
+    <text x="72" y="116" fill="#98a6bb" font-size="20">借用 Harness 的深色、流动、模块化语法；不复制其鲸鱼、字标或具体构图</text>
+    <rect x="1280" y="62" width="248" height="42" rx="21" fill="#101827" stroke="#29364b"/>
+    <circle cx="1310" cy="83" r="5" fill="#22d3ee"/>
+    <text x="1326" y="90" fill="#d7deea" font-size="16" font-weight="600">VECTOR-FIRST / v0.1</text>
+
+    <!-- Cards -->
+    <g fill="#0d1420" stroke="#253249" stroke-width="2">
+      <rect x="72" y="160" width="456" height="386" rx="28"/>
+      <rect x="572" y="160" width="456" height="386" rx="28"/>
+      <rect x="1072" y="160" width="456" height="386" rx="28"/>
+      <rect x="72" y="582" width="456" height="386" rx="28"/>
+      <rect x="572" y="582" width="456" height="386" rx="28"/>
+      <rect x="1072" y="582" width="456" height="386" rx="28"/>
+    </g>
+
+    <!-- A: Evidence-node B -->
+    <g transform="translate(72 160)">
+      <rect x="24" y="22" width="42" height="30" rx="15" fill="#4d6bfe"/>
+      <text x="45" y="43" fill="#ffffff" font-size="18" font-weight="750" text-anchor="middle">A</text>
+      <text x="82" y="44" fill="#ffffff" font-size="24" font-weight="700">证据节点 B</text>
+      <text x="82" y="72" fill="#93a1b7" font-size="15">现有“双弦 B”的 benchmark 进化版</text>
+      <g transform="translate(128 89)">
+        <path d="M58 24V176 M58 25H112C157 25 157 91 112 91H58 M58 103H116C163 103 163 176 116 176H58"
+              fill="none" stroke="#f8fafc" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M58 48H106C126 48 126 69 106 69H84 M84 126H110C134 126 134 153 110 153H84"
+              fill="none" stroke="#4d6bfe" stroke-width="8" stroke-linecap="round"/>
+        <path d="M34 81H58 M34 110H58" stroke="#22d3ee" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="34" cy="81" r="7" fill="#22d3ee"/>
+        <circle cx="34" cy="110" r="7" fill="#22d3ee"/>
+        <circle cx="111" cy="69" r="7" fill="#4d6bfe" stroke="#cbd5ff" stroke-width="3"/>
+        <circle cx="111" cy="153" r="7" fill="#4d6bfe" stroke="#cbd5ff" stroke-width="3"/>
+      </g>
+      <text x="228" y="322" fill="#ffffff" font-size="32" font-weight="700" text-anchor="middle">BioDSH</text>
+      <text x="228" y="352" fill="#718199" font-size="14" text-anchor="middle">品牌识别 · 插件接口 · 可追溯节点</text>
+      <rect x="369" y="312" width="54" height="54" rx="14" fill="#070a10" stroke="#2b3a52"/>
+      <path d="M387 326V352 M387 326H399C407 326 407 338 399 338H387 M387 342H400C409 342 409 354 400 354H387"
+            fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="405" cy="338" r="2.8" fill="#22d3ee"/>
+    </g>
+
+    <!-- B: Living Brackets -->
+    <g transform="translate(572 160)">
+      <rect x="24" y="22" width="42" height="30" rx="15" fill="#20304a"/>
+      <text x="45" y="43" fill="#ffffff" font-size="18" font-weight="750" text-anchor="middle">B</text>
+      <text x="82" y="44" fill="#ffffff" font-size="24" font-weight="700">生命括号</text>
+      <text x="82" y="72" fill="#93a1b7" font-size="15">把生命数据放进可组合的计算框架</text>
+      <g transform="translate(128 92)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M82 23C56 23 46 37 46 59V77C46 92 38 100 22 100C38 100 46 108 46 123V141C46 163 56 177 82 177"
+              stroke="#f8fafc" stroke-width="18"/>
+        <path d="M118 23C144 23 154 37 154 59V77C154 92 162 100 178 100C162 100 154 108 154 123V141C154 163 144 177 118 177"
+              stroke="#f8fafc" stroke-width="18"/>
+        <circle cx="100" cy="100" r="24" fill="#4d6bfe" stroke="none"/>
+        <circle cx="100" cy="100" r="8" fill="#22d3ee" stroke="none"/>
+        <path d="M72 23H86 M114 177H128" stroke="#22d3ee" stroke-width="7"/>
+      </g>
+      <text x="228" y="322" fill="#ffffff" font-size="32" font-weight="700" text-anchor="middle">BioDSH</text>
+      <text x="228" y="352" fill="#718199" font-size="14" text-anchor="middle">生命科学 · 代码容器 · 插件断口</text>
+      <rect x="369" y="312" width="54" height="54" rx="14" fill="#070a10" stroke="#2b3a52"/>
+      <path d="M392 324C382 324 380 330 380 338C380 344 377 347 372 347C377 347 380 350 380 356C380 362 384 366 392 366 M400 324C410 324 412 330 412 338C412 344 415 347 420 347C415 347 412 350 412 356C412 362 408 366 400 366"
+            fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="396" cy="347" r="5" fill="#4d6bfe"/>
+    </g>
+
+    <!-- C: TraceCell -->
+    <g transform="translate(1072 160)">
+      <rect x="24" y="22" width="42" height="30" rx="15" fill="#20304a"/>
+      <text x="45" y="43" fill="#ffffff" font-size="18" font-weight="750" text-anchor="middle">C</text>
+      <text x="82" y="44" fill="#ffffff" font-size="24" font-weight="700">可追溯细胞</text>
+      <text x="82" y="72" fill="#93a1b7" font-size="15">输入、运行、证据，收进同一条轨迹</text>
+      <g transform="translate(128 92)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M153 54A70 70 0 1 0 163 132" stroke="#f8fafc" stroke-width="17"/>
+        <path d="M46 128C72 128 72 76 101 82C124 87 119 120 151 105C163 99 168 86 172 72"
+              stroke="#4d6bfe" stroke-width="11"/>
+        <circle cx="46" cy="128" r="10" fill="#4d6bfe" stroke="none"/>
+        <circle cx="101" cy="82" r="10" fill="#4d6bfe" stroke="none"/>
+        <circle cx="151" cy="105" r="10" fill="#4d6bfe" stroke="none"/>
+        <circle cx="172" cy="72" r="12" fill="#22d3ee" stroke="none"/>
+      </g>
+      <text x="228" y="322" fill="#ffffff" font-size="32" font-weight="700" text-anchor="middle">BioDSH</text>
+      <text x="228" y="352" fill="#718199" font-size="14" text-anchor="middle">样本语义 · 运行轨迹 · 审计终点</text>
+      <rect x="369" y="312" width="54" height="54" rx="14" fill="#070a10" stroke="#2b3a52"/>
+      <path d="M409 329A18 18 0 1 0 412 352" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+      <path d="M380 352C389 352 388 337 397 341C404 344 401 352 412 347" fill="none" stroke="#4d6bfe" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="412" cy="347" r="4" fill="#22d3ee"/>
+    </g>
+
+    <!-- D: BioCore Orbit -->
+    <g transform="translate(72 582)">
+      <rect x="24" y="22" width="42" height="30" rx="15" fill="#20304a"/>
+      <text x="45" y="43" fill="#ffffff" font-size="18" font-weight="750" text-anchor="middle">D</text>
+      <text x="82" y="44" fill="#ffffff" font-size="24" font-weight="700">插件轨道</text>
+      <text x="82" y="72" fill="#93a1b7" font-size="15">内核不变，能力由外部模块自由组合</text>
+      <g transform="translate(128 88)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M57 47A76 76 0 0 1 146 45 M173 91A76 76 0 0 1 140 165 M79 172A76 76 0 0 1 28 113"
+              stroke="#4d6bfe" stroke-width="13"/>
+        <rect x="70" y="70" width="60" height="60" rx="18" fill="#f8fafc" stroke="none"/>
+        <circle cx="100" cy="100" r="13" fill="#0d1420" stroke="none"/>
+        <rect x="30" y="24" width="48" height="38" rx="13" fill="#22d3ee" stroke="none" transform="rotate(-18 54 43)"/>
+        <rect x="144" y="43" width="48" height="38" rx="13" fill="#f8fafc" stroke="none" transform="rotate(18 168 62)"/>
+        <rect x="132" y="145" width="48" height="38" rx="13" fill="#4d6bfe" stroke="none" transform="rotate(-18 156 164)"/>
+      </g>
+      <text x="228" y="322" fill="#ffffff" font-size="32" font-weight="700" text-anchor="middle">BioDSH</text>
+      <text x="228" y="352" fill="#718199" font-size="14" text-anchor="middle">Cordis 内核 · Skill 模块 · 开放生态</text>
+      <rect x="369" y="312" width="54" height="54" rx="14" fill="#070a10" stroke="#2b3a52"/>
+      <rect x="388" y="338" width="16" height="16" rx="5" fill="#ffffff"/>
+      <circle cx="396" cy="346" r="4" fill="#070a10"/>
+      <circle cx="380" cy="331" r="5" fill="#22d3ee"/>
+      <circle cx="414" cy="334" r="5" fill="#ffffff"/>
+      <circle cx="412" cy="361" r="5" fill="#4d6bfe"/>
+    </g>
+
+    <!-- E: Evidence Stack -->
+    <g transform="translate(572 582)">
+      <rect x="24" y="22" width="42" height="30" rx="15" fill="#20304a"/>
+      <text x="45" y="43" fill="#ffffff" font-size="18" font-weight="750" text-anchor="middle">E</text>
+      <text x="82" y="44" fill="#ffffff" font-size="24" font-weight="700">证据栈</text>
+      <text x="82" y="72" fill="#93a1b7" font-size="15">Skill、Run bundle、Grader 层层收敛</text>
+      <g transform="translate(128 88)">
+        <rect x="51" y="31" width="98" height="31" rx="15.5" fill="#f8fafc"/>
+        <rect x="35" y="82" width="130" height="31" rx="15.5" fill="#b9c7ff"/>
+        <rect x="19" y="133" width="162" height="31" rx="15.5" fill="#4d6bfe"/>
+        <path d="M136 46V149" stroke="#22d3ee" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="136" cy="46" r="10" fill="#0d1420" stroke="#22d3ee" stroke-width="5"/>
+        <circle cx="136" cy="97" r="10" fill="#0d1420" stroke="#22d3ee" stroke-width="5"/>
+        <circle cx="136" cy="148" r="10" fill="#0d1420" stroke="#22d3ee" stroke-width="5"/>
+        <path d="M60 46H105 M52 97H98 M43 148H90" stroke="#0d1420" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+      </g>
+      <text x="228" y="322" fill="#ffffff" font-size="32" font-weight="700" text-anchor="middle">BioDSH</text>
+      <text x="228" y="352" fill="#718199" font-size="14" text-anchor="middle">方法层 · 运行包 · 独立评分</text>
+      <rect x="369" y="312" width="54" height="54" rx="14" fill="#070a10" stroke="#2b3a52"/>
+      <rect x="380" y="328" width="32" height="7" rx="3.5" fill="#ffffff"/>
+      <rect x="376" y="342" width="36" height="7" rx="3.5" fill="#b9c7ff"/>
+      <rect x="372" y="356" width="40" height="7" rx="3.5" fill="#4d6bfe"/>
+      <path d="M405 331V359" stroke="#22d3ee" stroke-width="3"/>
+    </g>
+
+    <!-- F: Wordmark-first -->
+    <g transform="translate(1072 582)">
+      <rect x="24" y="22" width="42" height="30" rx="15" fill="#20304a"/>
+      <text x="45" y="43" fill="#ffffff" font-size="18" font-weight="750" text-anchor="middle">F</text>
+      <text x="82" y="44" fill="#ffffff" font-size="24" font-weight="700">字标接口</text>
+      <text x="82" y="72" fill="#93a1b7" font-size="15">科研报告优先的横向组合字标</text>
+      <g transform="translate(48 124)">
+        <text x="0" y="82" fill="#f8fafc" font-size="78" font-weight="700" letter-spacing="-3">Bio</text>
+        <text x="125" y="82" fill="#4d6bfe" font-size="78" font-weight="700" letter-spacing="-3">DSH</text>
+        <path d="M205 55H236" stroke="#22d3ee" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="205" cy="55" r="10" fill="#22d3ee"/>
+        <circle cx="236" cy="55" r="10" fill="#0d1420" stroke="#22d3ee" stroke-width="6"/>
+        <path d="M292 103A20 20 0 1 1 272 83A20 20 0 1 1 292 103" fill="none" stroke="#4d6bfe" stroke-width="9"/>
+        <path d="M312 83A20 20 0 1 1 292 103A20 20 0 1 1 312 83" fill="none" stroke="#22d3ee" stroke-width="9"/>
+      </g>
+      <text x="228" y="322" fill="#ffffff" font-size="32" font-weight="700" text-anchor="middle">BioDSH</text>
+      <text x="228" y="352" fill="#718199" font-size="14" text-anchor="middle">论文页眉 · 网站导航 · 联合品牌</text>
+      <rect x="369" y="312" width="54" height="54" rx="14" fill="#070a10" stroke="#2b3a52"/>
+      <path d="M379 347H413" stroke="#4d6bfe" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="396" cy="347" r="5" fill="#22d3ee"/>
+    </g>
+
+    <!-- Footer -->
+    <line x1="72" y1="1012" x2="1528" y2="1012" stroke="#1b2738"/>
+    <text x="72" y="1048" fill="#6f7d91" font-size="16">共同约束：先过纯黑白测试；16 px 仅保留主轮廓；蓝光与雾化只进入扩展视觉，不承担识别。</text>
+    <text x="1528" y="1048" fill="#4d6bfe" font-size="16" font-weight="700" text-anchor="end">推荐顺序 A → B → C</text>
+  </g>
+</svg>

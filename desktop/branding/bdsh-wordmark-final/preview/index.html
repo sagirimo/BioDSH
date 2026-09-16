@@ -1,0 +1,25 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>BioDSH brand kit preview</title>
+<style>
+*{box-sizing:border-box} body{margin:0;background:#eef2f7;color:#0A1428;font:16px/1.45 "Segoe UI",Arial,sans-serif}
+main{width:1600px;margin:0 auto;padding:54px 64px 72px} h1{font-size:40px;margin:0 0 8px} .lead{color:#65748a;margin:0 0 32px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px} .card{border:1px solid #d9e0ea;border-radius:24px;overflow:hidden;background:white}
+.stage{height:260px;display:flex;align-items:center;justify-content:center;padding:44px} .stage.dark{background:#0A1428} .stage.light{background:#fff}
+.wordmark{width:82%;height:auto} .meta{padding:18px 22px;color:#65748a} .meta b{color:#0A1428}
+.icons{display:flex;gap:28px;align-items:center;justify-content:center} .app{width:190px;height:190px} .small{display:flex;gap:18px;align-items:end}
+.small img{image-rendering:auto} footer{margin-top:28px;color:#65748a}
+</style>
+<main>
+  <h1>BioDSH 标志与应用图标</h1>
+  <p class="lead">字形来自用户批准的 238×66 源图；最终 SVG 为描摹路径，不依赖字体。</p>
+  <section class="grid">
+    <article class="card"><div class="stage dark"><img class="wordmark" src="../svg/wordmark-on-dark.svg"></div><div class="meta"><b>深色模式</b> · Bio 白 / DSH 蓝 / 连接件青</div></article>
+    <article class="card"><div class="stage light"><img class="wordmark" src="../svg/wordmark-on-light.svg"></div><div class="meta"><b>浅色模式</b> · Bio 品牌墨 / DSH 蓝 / 连接件青</div></article>
+    <article class="card"><div class="stage dark"><div class="icons"><img class="app" src="../svg/app-icon-dark-rounded.svg"><img class="app" src="../svg/app-icon-dark-square.svg"></div></div><div class="meta"><b>应用图标</b> · 圆角展示版与系统裁切方形版</div></article>
+    <article class="card"><div class="stage light"><div class="icons"><img class="app" src="../svg/app-icon-light-rounded.svg"><div class="small">
+      <img src="../dist/app-dark/icon-16.png" width="16" height="16"><img src="../dist/app-dark/icon-24.png" width="24" height="24"><img src="../dist/app-dark/icon-32.png" width="32" height="32"><img src="../dist/app-dark/icon-48.png" width="48" height="48"><img src="../dist/app-dark/icon-64.png" width="64" height="64">
+    </div></div></div><div class="meta"><b>浅色与小尺寸</b> · 16–32 px 使用独立简化母版</div></article>
+  </section>
+  <footer>规范色：#0A1428 · #FFFFFF · #2C58FC · #00D8F7</footer>
+</main>

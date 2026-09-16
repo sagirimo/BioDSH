@@ -1,0 +1,45 @@
+{
+ "gene_list": [
+  "PDCD1",
+  "CTLA4",
+  "LAG3",
+  "HAVCR2",
+  "TIGIT",
+  "TOX",
+  "CXCL13",
+  "GZMB",
+  "PRF1",
+  "IFNG",
+  "CD8A",
+  "ENTPD1",
+  "ITGAE",
+  "EOMES",
+  "TCF7"
+ ],
+ "GO_BP": {
+  "tested_terms": 273,
+  "significant_fdr005": 9,
+  "background_annotated_genes": 14350,
+  "annotated_foreground": 15,
+  "top_hit": {
+   "term": "Negative Regulation Of T Cell Differentiation",
+   "pvalue": 7.902312781954455e-05,
+   "p_adjust": 0.007191104631578554,
+   "overlap": "2/15",
+   "fold": 147.2
+  }
+ },
+ "KEGG": {
+  "tested_terms": 65,
+  "significant_fdr005": 10,
+  "background_annotated_genes": 8067,
+  "annotated_foreground": 11,
+  "top_hit": {
+   "term": "Type I diabetes mellitus",
+   "pvalue": 2.2597906077556108e-05,
+   "p_adjust": 0.00036721597376028676,
+   "overlap": "3/11",
+   "fold": 51.2
+  }
+ }
+}

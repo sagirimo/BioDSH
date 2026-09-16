@@ -1,0 +1,11 @@
+﻿序号,标题（英文）,发表年份,期刊,一句话核心贡献（中文）,文献类型
+1,Defining T Cell States Associated with Response to Checkpoint Immunotherapy in Melanoma,2018,Cell,对48例黑色素瘤患者在PD-1治疗前后的肿瘤组织做单细胞测序，发现应答者富集一类记忆样（TCF7+）CD8+T细胞且克隆扩增活跃，提出可用T细胞状态区分疗效，是该领域的奠基性工作之一。,原始研究
+2,A Cancer Cell Program Promotes T Cell Exclusion and Resistance to Checkpoint Blockade,2018,Cell,对黑色素瘤肿瘤细胞进行单细胞分析并定义了"免疫逃逸/排斥"基因程序（与T细胞浸润负相关），其表达水平可预测抗PD-1治疗耐药，是该领域的另一奠基性工作。,原始研究
+3,Clonal Replacement of Tumor-Specific T Cells following PD-1 Blockade,2019,Nature Medicine,治疗前后配对的单细胞＋TCR（T细胞受体）测序显示：PD-1阻断有效的基底细胞癌患者肿瘤内抗肿瘤T细胞并非被"唤醒"，而是被新出现的克隆大量替代、扩张。,原始研究
+4,Pan-Cancer Single-Cell Landscape of Tumor-Infiltrating T Cells,2021,Science,构建21种癌症浸润T细胞的泛癌单细胞图谱，发现跨癌种共享的CD8+耗竭T细胞亚型（如CXCL13+）及肿瘤特异T细胞特征，为免疫治疗通用靶点与生物标志物提供了公开资源。,原始研究
+5,Transcriptional Programs of Neoantigen-Specific TIL in Anti-PD-1-Treated Lung Cancers,2021,Nature,在肺腺癌抗PD-1队列中结合单细胞与TCR追踪发现：应答依赖于治疗前已存在、能识别肿瘤新抗原并呈克隆性扩张的CD8+T细胞，耐药患者缺乏这种"预存应答"。,原始研究
+6,A Single-Cell Map of Intratumoral Changes during Anti-PD1 Treatment of Patients with Breast Cancer,2021,Nature Medicine,在乳腺癌新辅助抗PD-1临床试验中系统绘制治疗引起的肿瘤微环境细胞重塑，展示了把单细胞测序"嵌入"临床试验来研究疗效与耐药机制的可操作性。,原始研究
+7,Spatially Organized Multicellular Immune Hubs in Human Colorectal Cancer,2021,Cell,整合单细胞转录组/染色质可及性测序与空间成像（CODEX），发现结直肠癌中存在由特定T细胞、B细胞等组成的"多细胞免疫中心"结构，其形成与更优预后和免疫应答相关。,原始研究
+8,From Bench to Bedside: Single-Cell Analysis for Cancer Immunotherapy,2021,Cancer Cell,（综述）系统梳理单细胞技术如何用于免疫治疗生物标志物发现、应答/耐药机制解析及临床转化，是该方向快速入门的高引用权威综述。,综述
+9,A Pan-Cancer Single-Cell RNA-Seq Atlas of Intratumoral B Cells,2024,Cancer Cell,首次建立泛癌肿瘤浸润B细胞单细胞图谱，揭示肿瘤相关B细胞的分化规律及其与T滤泡辅助细胞的协作，提示B细胞介导的体液免疫在免疫治疗应答中的价值。,原始研究
+10,A Single-Cell Pan-Cancer Analysis to Show the Variability of Tumor-Infiltrating Myeloid Cells in Immune Checkpoint Blockade,2024,Nature Communications,泛癌比较免疫治疗应答与耐药中肿瘤浸润髓系细胞（巨噬细胞、树突状细胞等）的组成和状态差异，提示靶向髓系细胞是改善"冷肿瘤"免疫治疗的可能策略。,原始研究

@@ -29,17 +29,12 @@ fn find(app: &AppHandle, id: &str) -> Option<Value> {
     catalog(app).into_iter().find(|s| s.get("id").and_then(|x| x.as_str()) == Some(id))
 }
 
-pub fn statuses(app: &AppHandle, p: &AppPaths) -> Vec<SkillStatus> {
+pub fn statuses(app: &AppHandle, _p: &AppPaths) -> Vec<SkillStatus> {
     catalog(app).iter().map(|s| {
         let id = s["id"].as_str().unwrap_or_default().to_string();
-        let dir = p.skills.join(&id);
-        if !dir.join("SKILL.md").exists() {
-            return SkillStatus { id, state: "not_installed".into(), installed_version: None, error: None };
-        }
-        let installed = fs::read_to_string(dir.join(".biodsh-version")).ok().map(|v| v.trim().to_string());
-        let latest = s["version"].as_str().unwrap_or_default();
-        let state = match &installed { Some(v) if v != latest => "update_available", _ => "installed" };
-        SkillStatus { id, state: state.into(), installed_version: installed, error: None }
+        // 技能全量可用：所有技能都被挂成可发现的技能根（官方 customSkillDir 优先级高于 dsh-home，社区 bundled），
+        // 无需复制到 dsh-home 即可被智能体按需调用 → 一律「可用」，不再区分「已安装/未安装/打开」。
+        SkillStatus { id, state: "available".into(), installed_version: None, error: None }
     }).collect()
 }
 

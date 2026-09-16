@@ -1,0 +1,13 @@
+﻿变量,组别,取值,人数,占比%
+sex,全部,F,32,40.0
+sex,全部,M,48,60.0
+sex,试验组treatment,F,20,50.0
+sex,试验组treatment,M,20,50.0
+sex,对照组control,F,12,30.0
+sex,对照组control,M,28,70.0
+improved,全部,no,33,41.2
+improved,全部,yes,47,58.8
+improved,试验组treatment,no,9,22.5
+improved,试验组treatment,yes,31,77.5
+improved,对照组control,no,24,60.0
+improved,对照组control,yes,16,40.0

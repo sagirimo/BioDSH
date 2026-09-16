@@ -1,0 +1,8 @@
+{
+  "id": "scrna-qc",
+  "title": "单细胞数据一键体检",
+  "version": 1,
+  "sessions": [
+    { "id": "session-8535d029-eb19-48f0-b0e1-4e742d97118b", "title": "单细胞数据一键体检", "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\_demobuild\\scrna-qc", "file": ".session/session-8535d029-eb19-48f0-b0e1-4e742d97118b.jsonl.zstd" }
+  ]
+}

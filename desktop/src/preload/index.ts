@@ -12,6 +12,7 @@ const api = {
   dshStatus: () => ipcRenderer.invoke('dsh:status'),
   dshStart: () => ipcRenderer.invoke('dsh:start'),
   dshRestart: () => ipcRenderer.invoke('dsh:restart'),
+  dshStop: () => ipcRenderer.invoke('dsh:stop'),
   dshReload: () => ipcRenderer.invoke('dsh:reload'),
   dshBounds: (rect: Rect, visible: boolean) => ipcRenderer.send('dsh:bounds', rect, visible),
   skillsCatalog: () => ipcRenderer.invoke('skills:catalog'),

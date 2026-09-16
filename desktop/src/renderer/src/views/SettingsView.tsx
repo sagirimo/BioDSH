@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { RefreshCw } from 'lucide-react';
+import { RefreshCw, Info as InfoIcon, Sparkles, Github, Plug, Plus, Trash2 } from 'lucide-react';
 import UpdateCheck from '../components/UpdateCheck';
 import { ExternalLink, FolderOpen, KeyRound } from 'lucide-react';
 import { useApp } from '../store';
@@ -27,6 +27,7 @@ export default function SettingsView() {
   const [saved, setSaved] = useState(false);
   const [upd, setUpd] = useState<{ dsh: { current: string; latest: string; outdated: boolean } } | null | 'checking' | 'error'>(null);
   const checkUpd = async () => { setUpd('checking'); try { setUpd(await window.biodsh.checkUpdates() as { dsh: { current: string; latest: string; outdated: boolean } }); } catch { setUpd('error'); } };
+  const dshVersion = (info as { dshVersion?: string } | null)?.dshVersion ?? '?';
   useEffect(() => { setSaved(false); }, [key]);
   if (!settings) return null;
   const submit = async () => { await saveKey(key); setKey(''); setSaved(true); };
@@ -42,23 +43,27 @@ export default function SettingsView() {
               {(['online', 'offline'] as const).map((k) => <button key={k} className={(settings.mode ?? 'online') === k ? 'active' : ''} onClick={async () => { await updateSettings({ mode: k }); void restartDsh(); }}>{t({ online: '在线模式', offline: '纯离线模式' }[k])}</button>)}
             </div>
             {offline && (
-              <div className="flex flex-col gap-2 mt-3">
-                <label className="t-caption">{t('提供商预设（选一个自动填地址和模型，也可手填）')}</label>
-                <select className="field" value="" onChange={(e) => { const p = PROVIDERS.find((x) => x.id === e.target.value); if (p) setDraft((d) => ({ ...d, offlineBaseUrl: p.base, offlineModel: p.model })); }}>
-                  <option value="">{t('选择提供商…')}</option>
-                  {PROVIDERS.map((p) => <option key={p.id} value={p.id}>{p.label}</option>)}
-                </select>
-                <label className="t-caption">{t('模型接口地址（OpenAI/DeepSeek 兼容，例如 http://192.168.1.10:8000/v1）')}</label>
-                <input className="field t-mono" placeholder="http://…" value={draft.offlineBaseUrl ?? settings.offlineBaseUrl ?? ''} onChange={(e) => setDraft((d) => ({ ...d, offlineBaseUrl: e.target.value }))} />
-                <div className="flex gap-2">
-                  <div className="flex-1 flex flex-col gap-1"><label className="t-caption">{t('模型名称')}</label><input className="field t-mono" placeholder="qwen3-32b / deepseek-r1 …" value={draft.offlineModel ?? settings.offlineModel ?? ''} onChange={(e) => setDraft((d) => ({ ...d, offlineModel: e.target.value }))} /></div>
-                  <div className="flex-1 flex flex-col gap-1"><label className="t-caption">{t('接口密钥（内网服务不需要就留空）')}</label><input className="field t-mono" type="password" value={draft.offlineApiKey ?? settings.offlineApiKey ?? ''} onChange={(e) => setDraft((d) => ({ ...d, offlineApiKey: e.target.value }))} /></div>
+              <div className="flex flex-col gap-3 mt-3">
+                <div className="flex flex-col gap-1.5">
+                  <FieldLabel label={t('提供商预设')} tip={t('选一个自动填接口地址和模型名，也可以下面手动填。')} />
+                  <select className="field" value="" onChange={(e) => { const p = PROVIDERS.find((x) => x.id === e.target.value); if (p) setDraft((d) => ({ ...d, offlineBaseUrl: p.base, offlineModel: p.model })); }}>
+                    <option value="">{t('选择提供商…')}</option>
+                    {PROVIDERS.map((p) => <option key={p.id} value={p.id}>{p.label}</option>)}
+                  </select>
                 </div>
-                <label className="t-caption mt-1">{t('远程 dsh 服务器（可选）：课题组已在 Linux 服务器部署 dsh 时填它的地址，本机就不再启动智能体')}</label>
-                <input className="field t-mono" placeholder="http://192.168.1.10:3080" value={draft.remoteDshUrl ?? settings.remoteDshUrl ?? ''} onChange={(e) => setDraft((d) => ({ ...d, remoteDshUrl: e.target.value }))} />
-                <div className="t-caption" style={{ color: 'var(--text-3)' }}>{t('服务器上启动命令示例：dsh web --host 0.0.0.0 --trusted-host 服务器IP:3080')}</div>
-                <div><button className="btn btn-primary" disabled={Object.keys(draft).length === 0} onClick={saveOffline}>{t('保存并重启智能体')}</button></div>
-                <div className="t-caption" style={{ color: 'var(--text-3)' }}>{t('以上均为 OpenAI 兼容接口；BioDSH 引擎(dsh)走 chat/completions 协议。Claude/Anthropic 原生协议暂不支持；非 DeepSeek 模型在 dsh 上的效果不保证。')}</div>
+                <div className="flex flex-col gap-1.5">
+                  <FieldLabel label={t('模型接口地址')} tip={t('OpenAI/DeepSeek 兼容端点，例如 http://192.168.1.10:8000/v1')} />
+                  <input className="field t-mono" placeholder="http://192.168.1.10:8000/v1" value={draft.offlineBaseUrl ?? settings.offlineBaseUrl ?? ''} onChange={(e) => setDraft((d) => ({ ...d, offlineBaseUrl: e.target.value }))} />
+                </div>
+                <div className="flex gap-3">
+                  <div className="flex-1 flex flex-col gap-1.5"><FieldLabel label={t('模型名称')} /><input className="field t-mono" placeholder="qwen3-32b / deepseek-r1" value={draft.offlineModel ?? settings.offlineModel ?? ''} onChange={(e) => setDraft((d) => ({ ...d, offlineModel: e.target.value }))} /></div>
+                  <div className="flex-1 flex flex-col gap-1.5"><FieldLabel label={t('接口密钥')} tip={t('内网自建服务通常不需要密钥，留空即可。')} /><input className="field t-mono" type="password" placeholder={t('可留空')} value={draft.offlineApiKey ?? settings.offlineApiKey ?? ''} onChange={(e) => setDraft((d) => ({ ...d, offlineApiKey: e.target.value }))} /></div>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <FieldLabel label={t('远程 dsh 服务器（可选）')} tip={t('课题组已在 Linux 服务器部署 dsh 时填它的地址，本机就不再启动智能体。服务器启动示例：dsh web --host 0.0.0.0 --trusted-host 服务器IP:3080')} />
+                  <input className="field t-mono" placeholder="http://192.168.1.10:3080" value={draft.remoteDshUrl ?? settings.remoteDshUrl ?? ''} onChange={(e) => setDraft((d) => ({ ...d, remoteDshUrl: e.target.value }))} />
+                </div>
+                <div className="flex items-center gap-2 pt-0.5"><button className="btn btn-primary" disabled={Object.keys(draft).length === 0} onClick={saveOffline}>{t('保存并重启智能体')}</button><InfoDot text={t('以上均为 OpenAI 兼容接口；BioDSH 引擎(dsh)走 chat/completions 协议。Claude/Anthropic 原生协议暂不支持；非 DeepSeek 模型在 dsh 上的效果不保证。')} /></div>
               </div>
             )}
           </Section>
@@ -108,24 +113,36 @@ export default function SettingsView() {
           <DemosSection />
 
           <Section title={t('关于')}>
-            <div className="t-body flex flex-col gap-1" style={{ color: 'var(--text-2)' }}>
-              <div>{t('BioDSH Desktop v{v} · DeepSeek Harness 内核 v{dsh}', { v: info?.version ?? '', dsh: (info as { dshVersion?: string } | null)?.dshVersion ?? '?' })}</div>
-              <UpdateCheck currentVersion={info?.version} />
-              <div className="flex items-center gap-2">
-                <button className="btn btn-ghost" onClick={checkUpd}><RefreshCw size={13} /> {t('检查 dsh 内核版本')}</button>
-                {upd === 'checking' && <span className="t-caption">{t('正在检查…')}</span>}
-                {upd === 'error' && <span className="t-caption">{t('检查失败（网络？）')}</span>}
-                {upd && typeof upd === 'object' && (upd.dsh.outdated
-                  ? <span className="t-caption" style={{ color: 'var(--orange)' }}>{t('dsh 内核有新版 {latest}（当前 {current}），等 BioDSH 下个安装包一并更新', { latest: upd.dsh.latest, current: upd.dsh.current })}</span>
-                  : <span className="t-caption" style={{ color: 'var(--green)' }}>{t('dsh 内核已是最新（{current}）', { current: upd.dsh.current })}</span>)}
-              </div>
-              <div className="t-caption">{t('你的设置、API Key、分析环境和已装技能都在数据目录里，升级安装包不会丢失。')}</div>
-              <div className="t-mono">{t('数据目录：{path}', { path: info?.paths.root ?? '' })}</div>
-              <div className="flex gap-2 mt-2">
-                <button className="btn btn-ghost" onClick={() => info && window.biodsh.openPath(info.paths.root)}><FolderOpen size={13} /> {t('打开数据目录')}</button>
-                <button className="btn btn-ghost" onClick={() => updateSettings({ onboarded: false })}>{t('重新看一遍引导')}</button>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style={{ background: 'var(--accent-soft)', color: 'var(--accent)' }}><Sparkles size={24} /></div>
+              <div className="min-w-0">
+                <div className="t-title2">BioDSH Desktop <span className="t-caption" style={{ fontWeight: 400 }}>v{info?.version ?? ''}</span></div>
+                <div className="t-caption mt-0.5">{t('面向医生与湿实验科学家的一体化生信助手 · DeepSeek Harness 内核 v{dsh}', { dsh: dshVersion })}</div>
               </div>
             </div>
+            <div className="flex flex-col gap-2">
+              <div className="rounded-xl px-3.5 py-2.5 flex items-center gap-3" style={{ background: 'var(--surface-2)' }}>
+                <div className="flex-1 min-w-0"><div className="t-caption">{t('数据目录')}</div><div className="t-mono truncate" title={info?.paths.root ?? ''} style={{ color: 'var(--text-2)' }}>{info?.paths.root ?? ''}</div></div>
+                <button className="btn btn-ghost !h-7 shrink-0" onClick={() => info && window.biodsh.openPath(info.paths.root)}><FolderOpen size={13} /> {t('打开')}</button>
+              </div>
+              <div className="rounded-xl px-3.5 py-2.5 flex items-center gap-3" style={{ background: 'var(--surface-2)' }}>
+                <div className="flex-1 min-w-0">
+                  <div className="t-caption">{t('dsh 内核版本')}</div>
+                  <div className="t-body" style={{ color: 'var(--text-2)' }}>
+                    {upd === 'checking' ? t('正在检查…') : upd === 'error' ? t('检查失败（网络？）') : (upd && typeof upd === 'object')
+                      ? (upd.dsh.outdated ? <span style={{ color: 'var(--orange)' }}>{t('有新版 {latest}（当前 {current}），随下个安装包更新', { latest: upd.dsh.latest, current: upd.dsh.current })}</span> : <span style={{ color: 'var(--green)' }}>{t('已是最新（{current}）', { current: upd.dsh.current })}</span>)
+                      : `v${dshVersion}`}
+                  </div>
+                </div>
+                <button className="btn btn-ghost !h-7 shrink-0" onClick={checkUpd}><RefreshCw size={13} /> {t('检查')}</button>
+              </div>
+            </div>
+            <div style={{ marginTop: 8 }}><UpdateCheck currentVersion={info?.version} /></div>
+            <div className="flex gap-2 flex-wrap mt-3">
+              <button className="btn btn-fill" onClick={() => window.biodsh.openExternal('https://github.com/sagirimo/BioDSH')}><Github size={13} /> {t('开源仓库 · 给个 Star')}</button>
+              <button className="btn btn-ghost" onClick={() => updateSettings({ onboarded: false })}>{t('重新看引导')}</button>
+            </div>
+            <div className="t-caption mt-3" style={{ color: 'var(--text-3)' }}>{t('你的设置、API Key、分析环境、项目与对话记录都存在上面的数据目录里，升级安装包不会丢失。')}</div>
           </Section>
         </div>
       </div>
@@ -133,12 +150,28 @@ export default function SettingsView() {
   );
 }
 
+// 圆形 i 图标 + 悬停气泡：把说明小字收成一个可查看的注释。align 决定气泡朝左/右展开。
+export function InfoDot({ text, align = 'left' }: { text: string; align?: 'left' | 'right' }) {
+  return (
+    <span className="info-wrap" tabIndex={0} aria-label={text}>
+      <span className="info-dot"><InfoIcon size={11} strokeWidth={2.5} /></span>
+      <span className={`info-tip${align === 'right' ? ' tip-right' : ''}`} role="tooltip">{text}</span>
+    </span>
+  );
+}
+
+// 表单项标签 + 紧跟其后的圈-i（每个小项自己的说明，而不是堆在最底下）。
+function FieldLabel({ label, tip }: { label: string; tip?: string }) {
+  return <div className="flex items-center gap-1.5"><span className="t-caption">{label}</span>{tip && <InfoDot text={tip} />}</div>;
+}
+
 function Section({ title, desc, children }: { title: string; desc?: string; children: React.ReactNode }) {
   return (
     <section className="card p-5 rise">
-      <div className="t-headline">{title}</div>
-      {desc && <div className="t-caption mt-0.5 mb-3">{desc}</div>}
-      {!desc && <div className="mb-3" />}
+      <div className="flex items-center justify-between gap-2 mb-3">
+        <div className="t-headline">{title}</div>
+        {desc && <InfoDot text={desc} align="right" />}
+      </div>
       {children}
     </section>
   );
@@ -249,10 +282,22 @@ function McpSection() {
   const save = async () => { await updateSettings({ mcpServers: cur.filter((m) => m.name.trim()) }); setList(null); setDirty(false); void restartDsh(); };
   return (
     <Section title={t('MCP 接入')} desc={t('把外部工具服务（MCP）接给智能体：Zotero、PubMed、文件系统、课题组自建服务……接上后智能体多出一批工具，名字以 mcp_服务名 开头。改完要重启智能体。')}>
-      <div className="flex flex-wrap gap-1.5 mb-3">
-        {MCP_PRESETS.map((p) => <button key={p.name} className="btn btn-ghost" title={p.hint} onClick={() => set([...cur, { ...p.server, args: [...(p.server.args ?? [])], env: { ...(p.server.env ?? {}) } }])}>+ {p.name}</button>)}
+      <div className="t-caption mb-2" style={{ color: 'var(--text-3)' }}>{t('从预设快速添加：')}</div>
+      <div className="grid gap-2 mb-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))' }}>
+        {MCP_PRESETS.map((p) => (
+          <button key={p.name} className="mcp-preset" onClick={() => set([...cur, { ...p.server, args: [...(p.server.args ?? [])], env: { ...(p.server.env ?? {}) } }])}>
+            <span className="flex items-center gap-1.5" style={{ color: 'var(--accent)' }}><Plus size={13} /><span className="t-body" style={{ fontWeight: 600, color: 'var(--text)' }}>{p.name}</span></span>
+            <span className="t-caption" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{p.hint}</span>
+          </button>
+        ))}
       </div>
-      {cur.length === 0 && <div className="t-caption" style={{ color: 'var(--text-3)' }}>{t('还没有接入任何 MCP 服务。点上面的预设加一个，或自己填命令。')}</div>}
+      {cur.length === 0 && (
+        <div className="rounded-xl px-4 py-6 flex flex-col items-center gap-1" style={{ border: '1px dashed var(--border)' }}>
+          <Plug size={20} style={{ color: 'var(--text-3)' }} />
+          <div className="t-body" style={{ color: 'var(--text-2)' }}>{t('还没接入任何 MCP 服务')}</div>
+          <div className="t-caption">{t('点上面的预设加一个，或在下方自己填命令')}</div>
+        </div>
+      )}
       <div className="flex flex-col gap-2">
         {cur.map((m, i) => (
           <div key={i} className="p-3 rounded-xl flex flex-col gap-2" style={{ background: 'var(--surface-2)' }}>
@@ -262,7 +307,7 @@ function McpSection() {
                 {(['stdio', 'streamable-http'] as const).map((k) => <button key={k} className={m.transport === k ? 'active' : ''} onClick={() => upd(i, { transport: k })}>{k === 'stdio' ? t('本机命令') : 'HTTP'}</button>)}
               </div>
               <label className="flex items-center gap-1.5 t-caption ml-auto"><input type="checkbox" checked={m.enabled !== false} onChange={(e) => upd(i, { enabled: e.target.checked })} /> {t('启用')}</label>
-              <button className="btn btn-ghost" onClick={() => set(cur.filter((_, j) => j !== i))}>{t('删除')}</button>
+              <button className="btn btn-ghost !px-2" title={t('删除')} onClick={() => set(cur.filter((_, j) => j !== i))}><Trash2 size={13} /></button>
             </div>
             {m.transport === 'streamable-http'
               ? <input className="field t-mono" placeholder="http://…/mcp" value={m.url ?? ''} onChange={(e) => upd(i, { url: e.target.value })} />
@@ -276,7 +321,7 @@ function McpSection() {
       </div>
       <div className="flex items-center gap-3 mt-3">
         <button className="btn btn-primary" disabled={!dirty} onClick={save}>{t('保存并重启智能体')}</button>
-        <span className="t-caption" style={{ color: 'var(--text-3)' }}>{t('本机命令会在智能体的环境里运行：自带的 uv / npx 都可用；uv tool run 会自动下载对应的 Python 包。')}</span>
+        <InfoDot text={t('本机命令会在智能体的环境里运行：自带的 uv / npx 都可用；uv tool run 会自动下载对应的 Python 包。')} />
       </div>
     </Section>
   );
@@ -290,12 +335,12 @@ function DemosSection() {
   const [msg, setMsg] = useState<string | null>(null);
   const run = async () => {
     setBusy(true);
-    try { const r = await window.biodsh.demosSeed(); setMsg(t('已安装 {n} 个示范项目，正在重启智能体以恢复附带的对话…', { n: String(r.length) })); refreshSessions?.(); void restartDsh(); }
+    try { const r = await window.biodsh.demosSeed(); setMsg(t('已恢复 {n} 个示范项目（数据+说明+产出+对话记录），正在重启智能体…', { n: String(r.length) })); refreshSessions?.(); void restartDsh(); }
     catch (e) { setMsg(String(e).slice(0, 120)); }
     setBusy(false);
   };
   return (
-    <Section title={t('示范项目')} desc={t('软件自带 4 个真实项目：单细胞分析与作图、文献调研、公共数据库抓取、电脑控制与 Zotero。每个项目里有数据、当时的完整对话记录（示范对话.md）和产出，可以照着提问。首次启动已自动装好；误删了可在这里重新安装（不会覆盖你改过的文件）。')}>
+    <Section title={t('示范项目')} desc={t('软件自带 4 个真实项目：单细胞分析与作图、文献调研、公共数据库抓取、电脑控制与 Zotero。每个项目里有数据、说明（README）、当时跑出的产出图表,以及完整的对话记录（在 dsh 上真跑出来的,带步数和图,直接打开就能看全过程）——也可到「分析」页点推荐分析,照着在自己数据上跑一遍。首次启动已自动装好;误删了或想恢复可在这里重装（不覆盖你改过的文件,并重新导入对话）。')}>
       <div className="flex items-center gap-3">
         <button className="btn btn-tint" disabled={busy} onClick={run}><RefreshCw size={13} className={busy ? 'animate-spin' : ''} /> {t('重新安装示范项目')}</button>
         {msg && <span className="t-caption">{msg}</span>}

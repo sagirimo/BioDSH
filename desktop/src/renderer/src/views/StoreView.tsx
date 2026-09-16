@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { DomainIcon, SkillIcon } from '../icons';
-import { Search, ShieldCheck, WifiOff, RotateCcw, X, FolderOpen, Trash2, ExternalLink, Sparkles, Users, Download, ThumbsUp, ThumbsDown, LayoutGrid, Award } from 'lucide-react';
+import { Search, ShieldCheck, WifiOff, RotateCcw, X, FolderOpen, Trash2, ExternalLink, Sparkles, Users, ThumbsUp, ThumbsDown, LayoutGrid, Award } from 'lucide-react';
 import { useApp } from '../store';
 import InstallButton from '../components/InstallButton';
 import Markdown from '../components/Markdown';
@@ -56,17 +56,8 @@ export default function StoreView() {
     return [s.name, s.name_en ?? '', s.summary, s.description ?? '', s.id, s.subcategory ?? '', ...s.tags].some((x) => x.toLowerCase().includes(needle));
   }).sort((a, b) => (b.score ?? -1) - (a.score ?? -1)), [inDomain, sub, q]); // 有评分的排前(按分降序),未评测的保持原序在后
   const shown = list.slice(0, page * PAGE);
-  const [batchBusy, setBatchBusy] = useState(false);
-  const { install: installOne } = useApp();
-  const installAll = async (items: CatalogSkill[]) => {
-    const todo = items.filter((s) => (statuses[s.id]?.state ?? 'not_installed') !== 'installed');
-    if (todo.length === 0 || !window.confirm(t('安装当前列表中的 {n} 个技能？', { n: todo.length }))) return;
-    setBatchBusy(true);
-    try { for (const s of todo) await installOne(s.id); } finally { setBatchBusy(false); }
-  };
   const featuredCommunity = catalog.filter((s) => s.tier === 'community' && s.featured);
   const featured = catalog.filter((s) => s.featured);
-  const installedCount = Object.values(statuses).filter((s) => s.state === 'installed' || s.state === 'update_available').length;
   const communityCount = catalog.filter((s) => s.tier === 'community').length;
 
   return (
@@ -77,7 +68,6 @@ export default function StoreView() {
           <div className="seg no-drag">
             <button className={tier === 'official' ? 'active' : ''} onClick={() => setTier('official')}><span className="inline-flex items-center gap-1"><Sparkles size={12} /> {t('官方精选')}</span></button>
             <button className={tier === 'community' ? 'active' : ''} onClick={() => setTier('community')}><span className="inline-flex items-center gap-1"><Users size={12} /> {t('社区收编')} <span className="opacity-60">{communityCount}</span></span></button>
-            <button className={tier === 'installed' ? 'active' : ''} onClick={() => setTier('installed')}><span className="inline-flex items-center gap-1"><Download size={12} /> {t('已安装')} {installedCount > 0 && <span className="opacity-60">{installedCount}</span>}</span></button>
           </div>
         </div>
         <div className="flex items-center gap-3 no-drag">
@@ -114,29 +104,22 @@ export default function StoreView() {
             {tier === 'official' && domain === 'all' && !q && featured.length > 0 && <Hero skill={featured[0]} onOpen={() => setOpen(featured[0])} />}
             {tier === 'official' && domain === 'all' && !q && featuredCommunity.length > 0 && (
               <section>
-                <div className="flex items-center justify-between mb-2"><div className="t-headline">{t('精选推荐（来自社区，按领域挑选）')} <span className="t-caption">{featuredCommunity.length}</span></div><button className="btn btn-fill !h-[26px]" disabled={batchBusy} onClick={() => installAll(featuredCommunity)}>{t('一键安装精选')}</button></div>
+                <div className="flex items-center justify-between mb-2"><div className="t-headline">{t('精选推荐（来自社区，按领域挑选）')} <span className="t-caption">{featuredCommunity.length}</span></div></div>
                 <section className="grid gap-3.5" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
                   {featuredCommunity.map((s) => <SkillCard key={s.id} skill={s} onOpen={() => setOpen(s)} />)}
                 </section>
               </section>
             )}
 
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex flex-wrap gap-1.5 min-w-0">
-                {subs.length > 1 && domain !== 'all' && (
-                  <>
-                    <button className={`chip ${sub === 'all' ? 'active' : ''}`} onClick={() => setSub('all')}>{t('全部小类')}</button>
-                    {subs.map(([s, n]) => <button key={s} className={`chip ${sub === s ? 'active' : ''}`} onClick={() => setSub(s)}>{s} <span className="opacity-50">{n}</span></button>)}
-                  </>
-                )}
-              </div>
-              {domain === 'all' && tier !== 'installed' && <span className="t-caption">{t('左侧选一个领域，再按小类筛选')}</span>}
-              <span className="flex items-center gap-2 shrink-0">
-                <button className="btn btn-ghost !h-[26px] !px-2" onClick={() => setScoreInfo(true)} title={t('评分说明')}><Award size={13} /> {t('评分说明')}</button>
-                {list.length > 0 && tier !== 'installed' && <button className="btn btn-fill !h-[26px]" disabled={batchBusy} onClick={() => installAll(list)}>{batchBusy ? t('批量安装中…') : t('安装本列表全部（{n}）', { n: list.filter((s) => (statuses[s.id]?.state ?? 'not_installed') !== 'installed').length })}</button>}
-                <span className="t-caption shrink-0">{t('{n} 个', { n: list.length })}{tier === 'community' ? ` · ${t('来自开源社区，未经 BioDSH 评测')}` : tier === 'official' ? ` · ${t('离线、可复现、已评测')}` : ''}</span>
-              </span>
-            </div>
+            {/* 小类：整行横向排列，隐藏滚动条，鼠标拖拽 / 滚轮横向滑动 */}
+            {subs.length > 1 && domain !== 'all' ? (
+              <DragRow>
+                <button className={`chip ${sub === 'all' ? 'active' : ''}`} onClick={() => setSub('all')}>{t('全部小类')}</button>
+                {subs.map(([s, n]) => <button key={s} className={`chip ${sub === s ? 'active' : ''}`} onClick={() => setSub(s)}>{s} <span className="opacity-50">{n}</span></button>)}
+              </DragRow>
+            ) : domain === 'all' && tier !== 'installed' ? (
+              <span className="t-caption">{t('左侧选一个领域，再按小类筛选')}</span>
+            ) : null}
 
             {list.length === 0 ? (
               <div className="py-16 text-center t-body" style={{ color: 'var(--text-2)' }}>{tier === 'installed' ? t('还没有安装任何技能，去「官方精选」或「社区收编」挑一个吧') : t('没有匹配的技能')}</div>
@@ -150,7 +133,13 @@ export default function StoreView() {
                 )}
               </>
             )}
-            <p className="t-caption pb-2" style={{ color: 'var(--text-3)' }}>{t('技能安装到 ~/BioDSH/dsh-home/skills，智能体会自动看到；卸载即删除该文件夹。官方技能的分数来自 BioDSH 评测记录；社区技能的中文标题与简介由模型生成，以来源仓库原文为准。')}</p>
+
+            {/* 页脚：评分说明 + 计数/评测状态，统一沉到最底部 */}
+            <div className="hairline-t pt-3 mt-1 flex items-center flex-wrap gap-x-3 gap-y-2">
+              <button className="btn btn-ghost !h-[26px] !px-2" onClick={() => setScoreInfo(true)} title={t('评分说明')}><Award size={13} /> {t('评分说明')}</button>
+              <span className="t-caption">{t('{n} 个', { n: list.length })}{tier === 'community' ? ` · ${t('来自开源社区，未经 BioDSH 评测')}` : tier === 'official' ? ` · ${t('离线、可复现、已评测')}` : ''}</span>
+              <span className="t-caption ml-auto" style={{ color: 'var(--text-3)' }}>{t('所有技能都已就绪、无需安装：需要时智能体按名称与内容相关性自动匹配调用（只把最相关的少量放进上下文，省时省钱）。官方技能分数来自 BioDSH 评测；社区技能标题/简介由模型生成，以来源仓库原文为准。')}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -159,6 +148,27 @@ export default function StoreView() {
       {scoreInfo && <ScoreInfoModal onClose={() => setScoreInfo(false)} />}
     </div>
   );
+}
+
+// 横向拖拽条：隐藏滚动条，鼠标按住拖动（像手指滑）+ 滚轮横向滚动；拖拽时吞掉点击避免误触。
+function DragRow({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    let down = false, sx = 0, sl = 0, moved = false;
+    const md = (e: PointerEvent) => { down = true; moved = false; sx = e.clientX; sl = el.scrollLeft; };
+    const mm = (e: PointerEvent) => { if (!down) return; const dx = e.clientX - sx; if (Math.abs(dx) > 3) { moved = true; el.classList.add('dragging'); } el.scrollLeft = sl - dx; };
+    const up = () => { down = false; el.classList.remove('dragging'); };
+    const click = (e: MouseEvent) => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } };
+    const wheel = (e: WheelEvent) => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { el.scrollLeft += e.deltaY; e.preventDefault(); } };
+    el.addEventListener('pointerdown', md);
+    window.addEventListener('pointermove', mm);
+    window.addEventListener('pointerup', up);
+    el.addEventListener('click', click, true);
+    el.addEventListener('wheel', wheel, { passive: false });
+    return () => { el.removeEventListener('pointerdown', md); window.removeEventListener('pointermove', mm); window.removeEventListener('pointerup', up); el.removeEventListener('click', click, true); el.removeEventListener('wheel', wheel); };
+  }, []);
+  return <div ref={ref} className="sub-row flex items-center gap-1.5 overflow-x-auto">{children}</div>;
 }
 
 // 评分说明弹窗：讲清五维权重、用到/计划接入的公认 benchmark、以及诚实边界。
@@ -353,7 +363,7 @@ function DetailSheet({ skill, onClose, rating, onRate }: { skill: CatalogSkill; 
               <div>
                 <div className="t-headline mb-2">{t('怎么用')}</div>
                 <ol className="t-body list-decimal pl-5 flex flex-col gap-1" style={{ color: 'var(--text-2)' }}>
-                  <li>{t('点「获取」安装，再确认「分析环境」已就绪。')}</li>
+                  <li>{t('无需安装，先确认「分析环境」已就绪即可。')}</li>
                   <li>{t('回到「对话」，把数据文件放进工作区文件夹。')}</li>
                   <li>{t('用白话告诉智能体你要做什么。智能体会自己选用这个技能并运行。')}</li>
                 </ol>

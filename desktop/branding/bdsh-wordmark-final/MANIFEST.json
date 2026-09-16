@@ -1,0 +1,1369 @@
+{
+  "brand": "BioDSH",
+  "source": "source/reference-wordmark.png",
+  "geometry_authority": "user-approved raster traced to outlined paths",
+  "colors": {
+    "ink": "#0A1428",
+    "white": "#FFFFFF",
+    "blue": "#2C58FC",
+    "cyan": "#00D8F7"
+  },
+  "files": [
+    {
+      "path": "build_brand_kit.py",
+      "bytes": 27184,
+      "sha256": "e61ebdb93cdaaf8076aebb1e22fee90a0fd7be9ddc10e2592afa567de27871ae"
+    },
+    {
+      "path": "dist/android/mipmap-hdpi/ic_launcher.png",
+      "bytes": 5072,
+      "sha256": "9871cf5f5423fbc5bf3c508a29695e8cc81f31d6bd69c8dde19158fc7daeaf96",
+      "width": 72,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-hdpi/ic_launcher_foreground.png",
+      "bytes": 4387,
+      "sha256": "21735bc7afa9ca3e6b959948970b531a73239b3a65de8ba384cff76251a583f4",
+      "width": 162,
+      "height": 162,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-hdpi/ic_launcher_round.png",
+      "bytes": 5072,
+      "sha256": "9871cf5f5423fbc5bf3c508a29695e8cc81f31d6bd69c8dde19158fc7daeaf96",
+      "width": 72,
+      "height": 72,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-mdpi/ic_launcher.png",
+      "bytes": 1993,
+      "sha256": "1ebd2c160fd58bcaa2033c2ccdf164f000923673026e3a57b0526b6aea13e893",
+      "width": 48,
+      "height": 48,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-mdpi/ic_launcher_foreground.png",
+      "bytes": 2965,
+      "sha256": "1d90ac70fbef4def9c8b997d135c0f49e6f890e6071ed35ec7e4bded2db5c173",
+      "width": 108,
+      "height": 108,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-mdpi/ic_launcher_round.png",
+      "bytes": 3092,
+      "sha256": "45345d06acb5a039edb326375c40ebec3eb5a806b9f4541d0d80698aa5b1f62f",
+      "width": 48,
+      "height": 48,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-xhdpi/ic_launcher.png",
+      "bytes": 7178,
+      "sha256": "e29f43d7fec36cd3f5f388f8c7b12971c9f943a2af0bc1c487b6ee28f5be4509",
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-xhdpi/ic_launcher_foreground.png",
+      "bytes": 5801,
+      "sha256": "d92b411424ed2536e53ca1a0490437f4eb99a4ad41a53f2bbf51d0e68ba0941a",
+      "width": 216,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-xhdpi/ic_launcher_round.png",
+      "bytes": 7178,
+      "sha256": "e29f43d7fec36cd3f5f388f8c7b12971c9f943a2af0bc1c487b6ee28f5be4509",
+      "width": 96,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-xxhdpi/ic_launcher.png",
+      "bytes": 10724,
+      "sha256": "dd54c69d0647bcdefa76f8fe44641074166128edd3e50e61cff58528c591ad16",
+      "width": 144,
+      "height": 144,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-xxhdpi/ic_launcher_foreground.png",
+      "bytes": 8972,
+      "sha256": "c9e12c53032e284dcdda034be1a1c867fb8215209d707a8edd9f6c85fdc5045f",
+      "width": 324,
+      "height": 324,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-xxhdpi/ic_launcher_round.png",
+      "bytes": 10724,
+      "sha256": "dd54c69d0647bcdefa76f8fe44641074166128edd3e50e61cff58528c591ad16",
+      "width": 144,
+      "height": 144,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-xxxhdpi/ic_launcher.png",
+      "bytes": 7253,
+      "sha256": "0574a07baf3e2e1fc0acf3f091f76dababa1655636a365e803fc46d05cf47950",
+      "width": 192,
+      "height": 192,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-xxxhdpi/ic_launcher_foreground.png",
+      "bytes": 12473,
+      "sha256": "6a8bb139d5011ec6a5b13638c2cbebf1bd19e0cf1c835fdd7fe73d0c4656371a",
+      "width": 432,
+      "height": 432,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/mipmap-xxxhdpi/ic_launcher_round.png",
+      "bytes": 14436,
+      "sha256": "d53459d43b0c2c5ac86454b1b7655bde0655ef0f019c78cc6f1292d6278db935",
+      "width": 192,
+      "height": 192,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/android/values/ic_launcher_background.xml",
+      "bytes": 125,
+      "sha256": "3a1ae40e9f526e7584c417dfcd47dc18be2a7f0090ff82bd0500669d775caa0e"
+    },
+    {
+      "path": "dist/app-dark/icon-1024.png",
+      "bytes": 44724,
+      "sha256": "2767943087160b3adc643b8ba3374dddc74873c0e3e035b8c014bd5ded9e8c66",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-107.png",
+      "bytes": 4230,
+      "sha256": "b4ce54a76c7c1757193f34979a8a8d5b91f778000f24572c5b117ef4ec84c8fc",
+      "width": 107,
+      "height": 107,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-128.png",
+      "bytes": 4992,
+      "sha256": "7f72fd4edbfb9071bb713222068ed95a5eaba589d88015a0a5bc9a8f82cc673b",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-142.png",
+      "bytes": 5495,
+      "sha256": "2ddcea63061f2fa669a62014341c66791934122cda98893bee2ff94fdd8e0667",
+      "width": 142,
+      "height": 142,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-150.png",
+      "bytes": 5783,
+      "sha256": "5e5804fe926881be7f069f45b715d24bf7c1fdac9c283c37fea048defbd4903e",
+      "width": 150,
+      "height": 150,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-16.png",
+      "bytes": 668,
+      "sha256": "c07461a5f1fe5b49bc0033c616333ffbac537d0b7d44e698075ad10895242589",
+      "width": 16,
+      "height": 16,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-180.png",
+      "bytes": 6992,
+      "sha256": "4fc7b3fb1d40c6dedb368ad03ed477f46c43a3ea62ae280b8849e7cec384209b",
+      "width": 180,
+      "height": 180,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-192.png",
+      "bytes": 7253,
+      "sha256": "0574a07baf3e2e1fc0acf3f091f76dababa1655636a365e803fc46d05cf47950",
+      "width": 192,
+      "height": 192,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-20.png",
+      "bytes": 829,
+      "sha256": "15ff37117a60c20137665e0bdc9ed9b0b0abc1de93f9ed2ee73dc216511ef874",
+      "width": 20,
+      "height": 20,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-24.png",
+      "bytes": 957,
+      "sha256": "0d71b8de3c0feb05bc1edc15ffdd32361cac64b9c7fb2ed9f87ac5704d173f2c",
+      "width": 24,
+      "height": 24,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-256.png",
+      "bytes": 9861,
+      "sha256": "8ba9b650be7897b6c2fe0073c1cd8ae409a7fba6db7c8077c85d54042cd3332b",
+      "width": 256,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-284.png",
+      "bytes": 11085,
+      "sha256": "5cfe3b27e3a309ec91af1918ee53c28198a1a7e27cc8105212d1724470f36063",
+      "width": 284,
+      "height": 284,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-310.png",
+      "bytes": 12106,
+      "sha256": "4b3bdc858a148bdc3de016ad811986972a1bb8031bfee4da3ac48ed54180acd2",
+      "width": 310,
+      "height": 310,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-32.png",
+      "bytes": 1331,
+      "sha256": "04617e801a3d5b6c4d06908e37104d5d146c1ae4f3be88c181fcf984edf62b01",
+      "width": 32,
+      "height": 32,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-40.png",
+      "bytes": 1643,
+      "sha256": "a95215b85970b684da792c1e208516174d850ce5017a25a66b6ba7353845f3a9",
+      "width": 40,
+      "height": 40,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-44.png",
+      "bytes": 1783,
+      "sha256": "b8da365b8f6d117ba16774f72f4c99dee60a8520f30a14624f4ea51d574b0e9d",
+      "width": 44,
+      "height": 44,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-48.png",
+      "bytes": 1993,
+      "sha256": "1ebd2c160fd58bcaa2033c2ccdf164f000923673026e3a57b0526b6aea13e893",
+      "width": 48,
+      "height": 48,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-512.png",
+      "bytes": 20951,
+      "sha256": "c90350d4489f85b427b416bee61078c8eac0942eed0cf5c10cb95ba57bd38abd",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-64.png",
+      "bytes": 2482,
+      "sha256": "0f7f39e0c1d0cf7a41f31922f3109b140241ee15c0cc6114cccb9608f63f5c23",
+      "width": 64,
+      "height": 64,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-71.png",
+      "bytes": 2731,
+      "sha256": "ce93aa3cbd6a331f337139306347bf7cb620ec57574305a28ed82e71aa20c607",
+      "width": 71,
+      "height": 71,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark/icon-89.png",
+      "bytes": 3413,
+      "sha256": "2214744423257d321dca18335f8523201c5a766a0445776979ab0ec03099f0f3",
+      "width": 89,
+      "height": 89,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-dark-square/icon-1024.png",
+      "bytes": 33199,
+      "sha256": "2dc3a651eb5f91296323048c0bd4f5fce0190d592c4115dec483c4a66e292335",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGB"
+    },
+    {
+      "path": "dist/app-dark-square/icon-180.png",
+      "bytes": 5231,
+      "sha256": "234da3a65466ab8443a46915cd39f2f07ccfa159af25f9b976d96d5073cc475b",
+      "width": 180,
+      "height": 180,
+      "mode": "RGB"
+    },
+    {
+      "path": "dist/app-dark-square/icon-192.png",
+      "bytes": 5451,
+      "sha256": "abbe879b7b244c2a58923ca58f2342eb1c20cf048a2723d3c0abc57d19fbcde5",
+      "width": 192,
+      "height": 192,
+      "mode": "RGB"
+    },
+    {
+      "path": "dist/app-dark-square/icon-512.png",
+      "bytes": 15691,
+      "sha256": "2312ed4b8ec5dab0e112ebf90014d9263195f818ec9489faaef8c71291519f5e",
+      "width": 512,
+      "height": 512,
+      "mode": "RGB"
+    },
+    {
+      "path": "dist/app-light/icon-1024.png",
+      "bytes": 41176,
+      "sha256": "62f4bc3481e1d907d6c21079a3f955ad271dfb2cbc799f5a2ab3b73ed766e480",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-107.png",
+      "bytes": 3819,
+      "sha256": "040db60b0881ebcfb508bda9b876df76f5f3cdc32c94df0d7d8c354110874c53",
+      "width": 107,
+      "height": 107,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-128.png",
+      "bytes": 4543,
+      "sha256": "3bfeade41351eb5828b8dd16477538dfa47b067e0902495932b216a2bc24a129",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-142.png",
+      "bytes": 5041,
+      "sha256": "a837e6409dfaedebe42717b03a393550662c1e6e3e909378a9a8acef4ae6785e",
+      "width": 142,
+      "height": 142,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-150.png",
+      "bytes": 5256,
+      "sha256": "44ed1b936f3144e76f1d4513abeb27071607cb0c1d56d19ac654a966c4d18285",
+      "width": 150,
+      "height": 150,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-16.png",
+      "bytes": 598,
+      "sha256": "d95cd0cbbc4b0498a8a7baf80e904b5c165e80f0a33cf1b3b3858084d42faf3f",
+      "width": 16,
+      "height": 16,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-180.png",
+      "bytes": 6350,
+      "sha256": "c06e7cd490d86fc23fe02330d40f002568e20348df06f9c9a18569b30a4e1c79",
+      "width": 180,
+      "height": 180,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-192.png",
+      "bytes": 6639,
+      "sha256": "8de4a6b1d3a2324b5b0b3f60b512546ae710dae36b1db8c1475db3879e42698d",
+      "width": 192,
+      "height": 192,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-20.png",
+      "bytes": 753,
+      "sha256": "6e36ca3a87d5527f8423803636d847b64dd295a7793895922121c336fd394594",
+      "width": 20,
+      "height": 20,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-24.png",
+      "bytes": 873,
+      "sha256": "45e5727058f91dafc1392e1a5d5f2d2b1bc180270bac9a1ab4ec7178a1a1689b",
+      "width": 24,
+      "height": 24,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-256.png",
+      "bytes": 8963,
+      "sha256": "0b4683c40b757fd71f3b8eb5c90adc6d0f555bd2245b59c0f7004fef0b7a2bc8",
+      "width": 256,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-284.png",
+      "bytes": 10177,
+      "sha256": "85d806f2b97fa9615525c19b340837c559e76a6c0046f93d3602ba5be8917268",
+      "width": 284,
+      "height": 284,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-310.png",
+      "bytes": 10985,
+      "sha256": "d621194b56dbe462864e387028141a29874f37f681d9407949d6429d3f2f64db",
+      "width": 310,
+      "height": 310,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-32.png",
+      "bytes": 1198,
+      "sha256": "c3def2efff11c4aa3c8ede528ef1a827c53687951e93b46dda04f0f297abfbb6",
+      "width": 32,
+      "height": 32,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-40.png",
+      "bytes": 1532,
+      "sha256": "66aa1394d44d262bc52e7ce3c1fa19c744634857fed27037e7f1a81cd1f16de5",
+      "width": 40,
+      "height": 40,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-44.png",
+      "bytes": 1664,
+      "sha256": "7782add4f4724869bfc1dfb118ca8d224a9cda5671c766eb7859a5e216a74af8",
+      "width": 44,
+      "height": 44,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-48.png",
+      "bytes": 1859,
+      "sha256": "f605cbcda960d9fd795c8e8beaa1315768c07f7342d14f247375d81ead0e771d",
+      "width": 48,
+      "height": 48,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-512.png",
+      "bytes": 19148,
+      "sha256": "59ff2f4ec8286360714c9ad433c7a71f66ea6a18d940fd599ae3bde9abe29d4d",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-64.png",
+      "bytes": 2344,
+      "sha256": "3b200d66914f5f06657ddb47976c3113b2b848479d9474f78d37d5267087bae5",
+      "width": 64,
+      "height": 64,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-71.png",
+      "bytes": 2544,
+      "sha256": "3b23296bdf666ae5abe69673a4887d8ed75ce5b3854ec928dec0aea6a8900cde",
+      "width": 71,
+      "height": 71,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light/icon-89.png",
+      "bytes": 3122,
+      "sha256": "e3946b747241bd223504f64b7a1e828e12848c714df3636fce248d2f5139c260",
+      "width": 89,
+      "height": 89,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/app-light-square/icon-1024.png",
+      "bytes": 31971,
+      "sha256": "ccbd501ab31ddcce7e5aa28065697e150a5a925deca8f590163415a3d16865c0",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGB"
+    },
+    {
+      "path": "dist/app-light-square/icon-180.png",
+      "bytes": 5047,
+      "sha256": "fcf87969f017c8c1f5cb6e1e21694ab0a70fadf3730d30144435ca50b10dc505",
+      "width": 180,
+      "height": 180,
+      "mode": "RGB"
+    },
+    {
+      "path": "dist/app-light-square/icon-192.png",
+      "bytes": 5309,
+      "sha256": "bde5b3e636bf3a933883a203b352a95fa3f689b99a9ca01ba9a9ee6f391a74a8",
+      "width": 192,
+      "height": 192,
+      "mode": "RGB"
+    },
+    {
+      "path": "dist/app-light-square/icon-512.png",
+      "bytes": 15073,
+      "sha256": "96563de1ab5ffb39988739fdcb3834981d347127a6676da868f775234af202d4",
+      "width": 512,
+      "height": 512,
+      "mode": "RGB"
+    },
+    {
+      "path": "dist/electron/icon-1024.png",
+      "bytes": 44724,
+      "sha256": "2767943087160b3adc643b8ba3374dddc74873c0e3e035b8c014bd5ded9e8c66",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/electron/icon-256.png",
+      "bytes": 9861,
+      "sha256": "8ba9b650be7897b6c2fe0073c1cd8ae409a7fba6db7c8077c85d54042cd3332b",
+      "width": 256,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/electron/icon.ico",
+      "bytes": 21997,
+      "sha256": "e9b00a6295277c368f655566ab0ad9abe98e8054b586d37ac10a1c00ccf3bc56"
+    },
+    {
+      "path": "dist/electron/icon.png",
+      "bytes": 20951,
+      "sha256": "c90350d4489f85b427b416bee61078c8eac0942eed0cf5c10cb95ba57bd38abd",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-20x20@1x.png",
+      "bytes": 912,
+      "sha256": "b1ca39bb95c635240e8f473f07a574ff97814c19f5f61f5ca66218db4fe9a9a5",
+      "width": 20,
+      "height": 20,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-20x20@2x.png",
+      "bytes": 2076,
+      "sha256": "da69ef79ae51eff4bc4bc0429db11ddef83105453370989e74d97eaf744fefe8",
+      "width": 40,
+      "height": 40,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-20x20@3x.png",
+      "bytes": 3369,
+      "sha256": "c310b4c532d0c6e7a43ad05b2a9dcb2b5a7e5787598189be517a5b97000670d4",
+      "width": 60,
+      "height": 60,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-29x29@1x.png",
+      "bytes": 1438,
+      "sha256": "67d5734ead91259a7f1db0effab4eaa103009b156b9b22939d236013e290bd3a",
+      "width": 29,
+      "height": 29,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-29x29@2x.png",
+      "bytes": 3367,
+      "sha256": "065b9619eb68bf306e08ff21f1682ec11f2fbe12672067716bac40bd16a27e54",
+      "width": 58,
+      "height": 58,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-29x29@3x.png",
+      "bytes": 5327,
+      "sha256": "8387a1bdc80412ac120f7506e797adde476335d42449f00ac207b981dd361759",
+      "width": 87,
+      "height": 87,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-40x40@1x.png",
+      "bytes": 2076,
+      "sha256": "da69ef79ae51eff4bc4bc0429db11ddef83105453370989e74d97eaf744fefe8",
+      "width": 40,
+      "height": 40,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-40x40@2x.png",
+      "bytes": 4766,
+      "sha256": "7bb94e7f822c07137788090531b554db7e06c78c6850326309eaec600cf718b3",
+      "width": 80,
+      "height": 80,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-40x40@3x.png",
+      "bytes": 7307,
+      "sha256": "cde95f0eef36a2735fef4dd0237f315ab476480cec5a107a1966b5e5c454e940",
+      "width": 120,
+      "height": 120,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-512@2x.png",
+      "bytes": 37410,
+      "sha256": "cf5b9e1b01057457bd9547b2045583f55b35b6b90e023b74174838ac1edf1371",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-60x60@2x.png",
+      "bytes": 7307,
+      "sha256": "cde95f0eef36a2735fef4dd0237f315ab476480cec5a107a1966b5e5c454e940",
+      "width": 120,
+      "height": 120,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-60x60@3x.png",
+      "bytes": 10974,
+      "sha256": "f60727acc6b6eb336b7f8b1f9cfe5a458ef244a47fac82780d3bb9e77dcd1e27",
+      "width": 180,
+      "height": 180,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-76x76@1x.png",
+      "bytes": 4525,
+      "sha256": "e93d53781ca437663d4441da1768e6d9eb78c14bc7dbcbaf9f3c27ca43b1071e",
+      "width": 76,
+      "height": 76,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-76x76@2x.png",
+      "bytes": 9485,
+      "sha256": "ec020f640bbdc872a9a4746f5850af5ab6f18405ff2558958b70e813ea0942bb",
+      "width": 152,
+      "height": 152,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/ios/AppIcon-83.5x83.5@2x.png",
+      "bytes": 10340,
+      "sha256": "0d030f1d4966a1906e5f45afebb6620f028fce108a1eb5f1ae5ba04c538b10b4",
+      "width": 167,
+      "height": 167,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/macos/BioDSH-light.icns",
+      "bytes": 109719,
+      "sha256": "32cf8ea77bed1a177c2730e2bae5cf99f55922b4597bdb095d40c06377fc8cf3"
+    },
+    {
+      "path": "dist/macos/BioDSH.icns",
+      "bytes": 119730,
+      "sha256": "7f8defa1cccc4b08db9d824371fecf99675b622345420b96cb70fac4058184da"
+    },
+    {
+      "path": "dist/stacked/stacked-on-dark-1024.png",
+      "bytes": 44595,
+      "sha256": "bb698ed100bee5276bd082647907e5b8cacb10df2ec264ad91a1420c742dead9",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/stacked/stacked-on-dark-256.png",
+      "bytes": 9770,
+      "sha256": "82d72df88a73ba583314ec0d189bfd18958bf3699a83a3d44e8ec610a0a8dd5d",
+      "width": 256,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/stacked/stacked-on-dark-512.png",
+      "bytes": 20693,
+      "sha256": "2c65aae062a140a2876ddfe602e3aba63bdf834428099800306d23a39a11ffd4",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/stacked/stacked-on-light-1024.png",
+      "bytes": 51029,
+      "sha256": "a9ebefea425e1f0f2aa826138e10d1f9a40cbf2959c9e5073e7d4e3b1c3ae5f1",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/stacked/stacked-on-light-256.png",
+      "bytes": 11347,
+      "sha256": "0260eb6042d85957783452dc3d2bee18f4bc5b2bea85709ed1adc9b7e6399a41",
+      "width": 256,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/stacked/stacked-on-light-512.png",
+      "bytes": 23919,
+      "sha256": "3e991fc32b92f17a6a0b4407f5dc6bb379e439749d0767a376a2eb3c32b2597f",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/tauri/128x128.png",
+      "bytes": 4992,
+      "sha256": "7f72fd4edbfb9071bb713222068ed95a5eaba589d88015a0a5bc9a8f82cc673b",
+      "width": 128,
+      "height": 128,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/tauri/128x128@2x.png",
+      "bytes": 9861,
+      "sha256": "8ba9b650be7897b6c2fe0073c1cd8ae409a7fba6db7c8077c85d54042cd3332b",
+      "width": 256,
+      "height": 256,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/tauri/32x32.png",
+      "bytes": 1331,
+      "sha256": "04617e801a3d5b6c4d06908e37104d5d146c1ae4f3be88c181fcf984edf62b01",
+      "width": 32,
+      "height": 32,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/tauri/64x64.png",
+      "bytes": 2482,
+      "sha256": "0f7f39e0c1d0cf7a41f31922f3109b140241ee15c0cc6114cccb9608f63f5c23",
+      "width": 64,
+      "height": 64,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/tauri/icon.icns",
+      "bytes": 119730,
+      "sha256": "7f8defa1cccc4b08db9d824371fecf99675b622345420b96cb70fac4058184da"
+    },
+    {
+      "path": "dist/tauri/icon.ico",
+      "bytes": 21997,
+      "sha256": "e9b00a6295277c368f655566ab0ad9abe98e8054b586d37ac10a1c00ccf3bc56"
+    },
+    {
+      "path": "dist/tauri/icon.png",
+      "bytes": 44724,
+      "sha256": "2767943087160b3adc643b8ba3374dddc74873c0e3e035b8c014bd5ded9e8c66",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/web/android-chrome-192.png",
+      "bytes": 7253,
+      "sha256": "0574a07baf3e2e1fc0acf3f091f76dababa1655636a365e803fc46d05cf47950",
+      "width": 192,
+      "height": 192,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/web/android-chrome-512.png",
+      "bytes": 20951,
+      "sha256": "c90350d4489f85b427b416bee61078c8eac0942eed0cf5c10cb95ba57bd38abd",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/web/apple-touch-icon.png",
+      "bytes": 6992,
+      "sha256": "4fc7b3fb1d40c6dedb368ad03ed477f46c43a3ea62ae280b8849e7cec384209b",
+      "width": 180,
+      "height": 180,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/web/favicon-16.png",
+      "bytes": 668,
+      "sha256": "c07461a5f1fe5b49bc0033c616333ffbac537d0b7d44e698075ad10895242589",
+      "width": 16,
+      "height": 16,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/web/favicon-32.png",
+      "bytes": 1331,
+      "sha256": "04617e801a3d5b6c4d06908e37104d5d146c1ae4f3be88c181fcf984edf62b01",
+      "width": 32,
+      "height": 32,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/web/favicon-48.png",
+      "bytes": 1993,
+      "sha256": "1ebd2c160fd58bcaa2033c2ccdf164f000923673026e3a57b0526b6aea13e893",
+      "width": 48,
+      "height": 48,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/web/favicon.ico",
+      "bytes": 21997,
+      "sha256": "e9b00a6295277c368f655566ab0ad9abe98e8054b586d37ac10a1c00ccf3bc56"
+    },
+    {
+      "path": "dist/web/favicon.svg",
+      "bytes": 8255,
+      "sha256": "a1d0e646af4b29bd49506876fd957ba10c5e6848d2280897632ca93e090dd598"
+    },
+    {
+      "path": "dist/web/site.webmanifest",
+      "bytes": 381,
+      "sha256": "991bc0d6a54d25810b3f42714042e26ca8901fd175a5802ec9189621d6203b36"
+    },
+    {
+      "path": "dist/windows/BioDSH-light.ico",
+      "bytes": 20206,
+      "sha256": "3a0586e62974861bc262fd00938da933290622520940ce5cb743c06b6040dabf"
+    },
+    {
+      "path": "dist/windows/BioDSH.ico",
+      "bytes": 21997,
+      "sha256": "e9b00a6295277c368f655566ab0ad9abe98e8054b586d37ac10a1c00ccf3bc56"
+    },
+    {
+      "path": "dist/windows-store/Square107x107Logo.png",
+      "bytes": 4078,
+      "sha256": "368caf652effe16bee684900541ff94b04ee9d9f2ad0f65de6031782308830f5",
+      "width": 107,
+      "height": 107,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/windows-store/Square142x142Logo.png",
+      "bytes": 5417,
+      "sha256": "78f005d42f60a0e19d3115582864b09986cf1f774c191e6a83085a05c137a180",
+      "width": 142,
+      "height": 142,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/windows-store/Square150x150Logo.png",
+      "bytes": 5686,
+      "sha256": "6302c02fe6edb148e0dae5e918f45f1364756c09d4125caac10d24390b82ff9d",
+      "width": 150,
+      "height": 150,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/windows-store/Square284x284Logo.png",
+      "bytes": 11129,
+      "sha256": "8d3ea89877009ee8a0a3ab9a80de9ef46994645e4725d3e93d38957899968840",
+      "width": 284,
+      "height": 284,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/windows-store/Square30x30Logo.png",
+      "bytes": 1777,
+      "sha256": "ddcb2c462c92e3f9d0f83c3362942ed8129e1c8fad68b63d329c5da32a4e2af5",
+      "width": 30,
+      "height": 30,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/windows-store/Square310x310Logo.png",
+      "bytes": 12145,
+      "sha256": "9fd615a2797bdbcef197d61d5308f7a58bc7dfadbac5ac38b5c6f39d05a51070",
+      "width": 310,
+      "height": 310,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/windows-store/Square44x44Logo.png",
+      "bytes": 1747,
+      "sha256": "66acd5cc5af01290f99211087f7dde8090de48b5f45630be2537a2839b4bcdfe",
+      "width": 44,
+      "height": 44,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/windows-store/Square71x71Logo.png",
+      "bytes": 2660,
+      "sha256": "ec8bccf86dbfee14fd561612454d673697b95223ef48b892562f7e9c05e4eb53",
+      "width": 71,
+      "height": 71,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/windows-store/Square89x89Logo.png",
+      "bytes": 3326,
+      "sha256": "f90ea1aad42d493abd084bc6ad4315248da854a64e9dce9d7b65fe42d5decb5c",
+      "width": 89,
+      "height": 89,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/windows-store/StoreLogo.png",
+      "bytes": 3222,
+      "sha256": "769183a9510081dce11b54ac0a806ca2e6766688e4d24674bf13da10a42f45a2",
+      "width": 50,
+      "height": 50,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-black-1024.png",
+      "bytes": 25689,
+      "sha256": "f0a083f58aa1da6f3cbda3d5c34c6ceb852646319c1f57eeba77bd44b8c162d6",
+      "width": 1024,
+      "height": 269,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-black-2048.png",
+      "bytes": 54898,
+      "sha256": "018a0448e8934ceb189efc9f23d172973db92f7302809d06884d6c56e35b5152",
+      "width": 2048,
+      "height": 537,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-black-220.png",
+      "bytes": 5024,
+      "sha256": "88cd576163e5cfeffbfa6c31a94aae8f5ec9638389d7a82576f76bc9473a1a4f",
+      "width": 220,
+      "height": 58,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-black-256.png",
+      "bytes": 5959,
+      "sha256": "2e6e216f1acc6d227b5f97350a863cd9b9573346704ee63981f3c1588ef80eb7",
+      "width": 256,
+      "height": 67,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-black-440.png",
+      "bytes": 10320,
+      "sha256": "3ea1d1459b92505ac0822aaf0274703137e984ad540677eb6cb64525888888d8",
+      "width": 440,
+      "height": 115,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-black-512.png",
+      "bytes": 12519,
+      "sha256": "9a5dcf541f431538722f35747f3b4ed2fbbdd3c3b11dda77a8f45f5022665fb6",
+      "width": 512,
+      "height": 134,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-black-880.png",
+      "bytes": 21936,
+      "sha256": "792141edcb95921da19b0389f911245ec9d1a421d73e0a7213229ecd8254c593",
+      "width": 880,
+      "height": 231,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-white-1024.png",
+      "bytes": 18077,
+      "sha256": "f86944401002baf81b3470b8e88fa60ec9d9e97c229ce8569bca05207af45d38",
+      "width": 1024,
+      "height": 269,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-white-2048.png",
+      "bytes": 39326,
+      "sha256": "a9acd8961515d0a930726246c553743bbe200bdf2f7a1a4363a0cb51c07c6548",
+      "width": 2048,
+      "height": 537,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-white-220.png",
+      "bytes": 3654,
+      "sha256": "6ee17d2f61e1c5049d8b9f6838c83abd3436feb38b43c0c03dfb9aaa4f4baf2e",
+      "width": 220,
+      "height": 58,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-white-256.png",
+      "bytes": 4286,
+      "sha256": "fd113159a24da370382e089e997d3ef55f5ceaf48c79cfe192fe71218640657d",
+      "width": 256,
+      "height": 67,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-white-440.png",
+      "bytes": 7416,
+      "sha256": "93bbd46fb48de81d64bb1e5b67ebb3adf5b6790d21773f5145a8a859f733976a",
+      "width": 440,
+      "height": 115,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-white-512.png",
+      "bytes": 8756,
+      "sha256": "47702779ab2fb3b84787a20cc069ce4f0d44aa822bf41f28016108654c2f9f10",
+      "width": 512,
+      "height": 134,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-mono-white-880.png",
+      "bytes": 15285,
+      "sha256": "af6b8f505345c57f9f0f15ca5f1a3c32e2b60d9a541baeda328b650ce9450e7b",
+      "width": 880,
+      "height": 231,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-dark-1024.png",
+      "bytes": 22727,
+      "sha256": "0ead9998039c1ed195e3ab0a7873df874f4c841dd18821d541e38f39c2a03097",
+      "width": 1024,
+      "height": 269,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-dark-2048.png",
+      "bytes": 48676,
+      "sha256": "6cf53246b759ea7ffd489388b6b0eb508139dcad5f2235e6fadc06fdd50aa3f8",
+      "width": 2048,
+      "height": 537,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-dark-220.png",
+      "bytes": 4547,
+      "sha256": "358e00e222ab2e7b611206ce1d6d69c943e83b60adb183f4b6e1ef552f28066a",
+      "width": 220,
+      "height": 58,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-dark-256.png",
+      "bytes": 5383,
+      "sha256": "f38fbcb8c79124d8337dabe1bdb076fd2b52876df76c1656a6791bded237ba3e",
+      "width": 256,
+      "height": 67,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-dark-440.png",
+      "bytes": 9257,
+      "sha256": "3c3a30822f1a8a08b720d4f4f596bc4d50f99c8f8b34877092883c382947e577",
+      "width": 440,
+      "height": 115,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-dark-512.png",
+      "bytes": 11125,
+      "sha256": "06b7aa1741d2fb5bb82527cca8a758d716c4b8775676e97e37df7acb72060a82",
+      "width": 512,
+      "height": 134,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-dark-880.png",
+      "bytes": 19464,
+      "sha256": "594400cc4c6b3936587849c610bd59ad6afd0cd09dbba0b3e7ee5269937cb314",
+      "width": 880,
+      "height": 231,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-light-1024.png",
+      "bytes": 26248,
+      "sha256": "b45bb4aaaabfb5b10c7148ba8402b2644e66b846553bcce10df64abc68f69ed0",
+      "width": 1024,
+      "height": 269,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-light-2048.png",
+      "bytes": 55620,
+      "sha256": "56d98648d355a3d845f63618e53e1adcbba3fca2a71cd371d62de7eb675f1a84",
+      "width": 2048,
+      "height": 537,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-light-220.png",
+      "bytes": 5192,
+      "sha256": "6f190fb20006cf500efda188aebc03a5e31ea2ec964495511452297d2663fdbf",
+      "width": 220,
+      "height": 58,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-light-256.png",
+      "bytes": 6087,
+      "sha256": "8887163934ab2628582ebe15f060197885f5e59d3ad86709b019050d82947d41",
+      "width": 256,
+      "height": 67,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-light-440.png",
+      "bytes": 10561,
+      "sha256": "d9b6f6a2710a912d84585bdf54cfd4362702dc825fa443411810944a37c7db83",
+      "width": 440,
+      "height": 115,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-light-512.png",
+      "bytes": 12753,
+      "sha256": "398dfddcb3cbc60261a3b8c2981b3e0651e77622533bd2561a56041e98d4bef2",
+      "width": 512,
+      "height": 134,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark/wordmark-on-light-880.png",
+      "bytes": 22220,
+      "sha256": "ffa8a0103ed1045080dee9813fe71ca59a4b4d40108c09732ea884d813bce227",
+      "width": 880,
+      "height": 231,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-mono-black-4x.png",
+      "bytes": 100033,
+      "sha256": "1097e48eb047d1dbae96c32006abc73a9fb2478f05350ab3d05fda3121d4e8d2",
+      "width": 884,
+      "height": 232,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-mono-black-8x.png",
+      "bytes": 286996,
+      "sha256": "5bfe082b2f1325e5b1c4a870dfff904c65ce48db08bf51621831b91e965ef404",
+      "width": 1768,
+      "height": 464,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-mono-black-native.png",
+      "bytes": 6299,
+      "sha256": "2deac77dad80476c828c4470960c294a2cbdce97e86a74691ea6c72047c1b368",
+      "width": 221,
+      "height": 58,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-mono-white-4x.png",
+      "bytes": 57439,
+      "sha256": "bdafbc99127b46edc252ef8335faa8f03d5cb4d9f494284503e96d2d14e7250f",
+      "width": 884,
+      "height": 232,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-mono-white-8x.png",
+      "bytes": 146748,
+      "sha256": "6283bed3dc108bef47e75d6d404b9bff7492cede5377737e7257a2f927e4b0d1",
+      "width": 1768,
+      "height": 464,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-mono-white-native.png",
+      "bytes": 6487,
+      "sha256": "564b1b4a1f08e7a7221be77c31b54c9f5482707c590c4695e70e3482de1a08aa",
+      "width": 221,
+      "height": 58,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-on-dark-4x.png",
+      "bytes": 97912,
+      "sha256": "7abc1ff3d6525708f0e445bb2904ee3684612309d8415dbe9ba1e0f0854bc6cd",
+      "width": 884,
+      "height": 232,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-on-dark-8x.png",
+      "bytes": 276350,
+      "sha256": "b4c0224d3f89bffdafc360c03d199d336d5c06b4892aa4d7ccc72057932c647a",
+      "width": 1768,
+      "height": 464,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-on-dark-native.png",
+      "bytes": 6901,
+      "sha256": "c1b49e23f03eb5839461dc3111526226caec40059ded2b52a095bef64ad11c44",
+      "width": 221,
+      "height": 58,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-on-light-4x.png",
+      "bytes": 113613,
+      "sha256": "508241323dd320baa4a46165ad768e8149ea1f036ac4f9b1e7b80eb6fcc2d6eb",
+      "width": 884,
+      "height": 232,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-on-light-8x.png",
+      "bytes": 333114,
+      "sha256": "4c0690ee3cd3657b697b58c988f892a88eeb838f4956f25ea5346d26270b4f96",
+      "width": 1768,
+      "height": 464,
+      "mode": "RGBA"
+    },
+    {
+      "path": "dist/wordmark-exact/wordmark-on-light-native.png",
+      "bytes": 6891,
+      "sha256": "772207f5d83a5bbbefe8646f4b45b27b006e1e8a0b59800273f8b0e321a998c3",
+      "width": 221,
+      "height": 58,
+      "mode": "RGBA"
+    },
+    {
+      "path": "preview/brand-kit-preview.png",
+      "bytes": 95354,
+      "sha256": "a7b630831fa5c3d23905dfb7141348ae26a7961e407a75401034c1bd0b1b3fcb",
+      "width": 1600,
+      "height": 1180,
+      "mode": "RGB"
+    },
+    {
+      "path": "preview/index.html",
+      "bytes": 2544,
+      "sha256": "0262e86b9fe0aff821fbe618c198fbbb26b0a4ab85cc1cf7f06fb59bc3bf69be"
+    },
+    {
+      "path": "source/fonts/Montserrat-Variable.ttf",
+      "bytes": 744936,
+      "sha256": "0f7b311b2f3279e4eef9b2f968bcdbab6e28f4daeb1f049f4f278a902bcd82f7"
+    },
+    {
+      "path": "source/fonts/OFL.txt",
+      "bytes": 4400,
+      "sha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e"
+    },
+    {
+      "path": "source/reference-wordmark.png",
+      "bytes": 23347,
+      "sha256": "df930cb9799217de863a5c0d60a0d93bd91dd1a48ca2fa7aa3ce8bac0b34a689",
+      "width": 238,
+      "height": 66,
+      "mode": "RGB"
+    },
+    {
+      "path": "svg/android-adaptive-foreground.svg",
+      "bytes": 8197,
+      "sha256": "4f27f8692394e83c7d178d40d44bd466ad182ba23f473202fa6967680326571c"
+    },
+    {
+      "path": "svg/app-icon-dark-rounded.svg",
+      "bytes": 8257,
+      "sha256": "ef92d21e16633f7b96fb1972dd46c831c95970b4d3ce875b7bc1651b050dceb3"
+    },
+    {
+      "path": "svg/app-icon-dark-small.svg",
+      "bytes": 8255,
+      "sha256": "a1d0e646af4b29bd49506876fd957ba10c5e6848d2280897632ca93e090dd598"
+    },
+    {
+      "path": "svg/app-icon-dark-square.svg",
+      "bytes": 8254,
+      "sha256": "88c5aac2d5656022712bab3751044f45568e8b2935a8c210a0163ce47af0a8a3"
+    },
+    {
+      "path": "svg/app-icon-light-rounded.svg",
+      "bytes": 8258,
+      "sha256": "8d18ae59d31d442d54d95aa2c26e4bec06cc69145625880ade0f0cfa45b08879"
+    },
+    {
+      "path": "svg/app-icon-light-small.svg",
+      "bytes": 8256,
+      "sha256": "a8bf89df2547d6a71e824ede695772a288c0c2ed3285f1d1c4b37f2bb9247603"
+    },
+    {
+      "path": "svg/app-icon-light-square.svg",
+      "bytes": 8255,
+      "sha256": "5770cc8d032b324af4f9d56e37985b860ecfd0c7bd22527f9f8961b7cee653ba"
+    },
+    {
+      "path": "svg/stacked-on-dark.svg",
+      "bytes": 8183,
+      "sha256": "449d872f094a1e680b14a67932725c903671ed9418ba1760b4d4fa79c134c5ec"
+    },
+    {
+      "path": "svg/stacked-on-light.svg",
+      "bytes": 8184,
+      "sha256": "41ad0305e77697a274fcaa244d3e11770f1748ee21c9bf51470788a175adb34a"
+    },
+    {
+      "path": "svg/wordmark-mono-black.svg",
+      "bytes": 8313,
+      "sha256": "84a4f7b6ba0de6858f4a826f929cae0e9174a27da2cba17e69124051cef67a90"
+    },
+    {
+      "path": "svg/wordmark-mono-white.svg",
+      "bytes": 8313,
+      "sha256": "98621f15a9e55c42ee26b70ccf893d68f76c8f7ae23380de542f6d21a9114e13"
+    },
+    {
+      "path": "svg/wordmark-on-dark.svg",
+      "bytes": 8310,
+      "sha256": "5950b0cbf6bdfb168afc492498f785c264c34a68ed14cfafd3a421ed525ed608"
+    },
+    {
+      "path": "svg/wordmark-on-light.svg",
+      "bytes": 8311,
+      "sha256": "fe0fc211558762429a33bfcad4dd995eee3be2c5780a794947a7eb178d11c5e3"
+    }
+  ]
+}

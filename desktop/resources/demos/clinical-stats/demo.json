@@ -1,0 +1,8 @@
+{
+  "id": "clinical-stats",
+  "title": "临床表格自动统计与作图",
+  "version": 1,
+  "sessions": [
+    { "id": "session-60e7ae37-70b4-4ec6-af5b-2d6c3c7cd735", "title": "临床表格自动统计与作图", "sourceCwd": "C:\\Users\\MOLIEX-DESKTOP\\BioDSH\\_demobuild\\clinical-stats", "file": ".session/session-60e7ae37-70b4-4ec6-af5b-2d6c3c7cd735.jsonl.zstd" }
+  ]
+}

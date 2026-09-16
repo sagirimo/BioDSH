@@ -10,3 +10,9 @@ resources/community-skills/
 dist-tauri/
 src-tauri/target*/
 src-tauri/gen/
+
+# 本地 embedding：依赖与模型不入库(CI 安装/下载或本地生成)
+resources/embed/node_modules/
+resources/embed/models/
+resources/skills/skill-vectors.bin
+resources/skills/skill-vectors.json

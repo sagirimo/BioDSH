@@ -146,51 +146,50 @@ impl DshManager {
     }
 
     /// 精简模式：关掉一问一答用不到的界面插件；写默认设置；预置工作区。
-    fn ensure_home(paths: &AppPaths, workspace: &str, preset_src: &Path, mcp: &[crate::settings::McpServer]) {
+    fn ensure_home(paths: &AppPaths, workspace: &str, official_skills: &Path, skill_router_plugin: &Path, mcp: &[crate::settings::McpServer]) {
         let home = &paths.dsh_home;
-        // biodsh 预设：复制 standard 组合，仅替换 persona 行 —— 预设层人设会覆盖全局人设，
-        // 所以必须在预设里换，全局 system-prompt 只是兜底。
-        let preset_ok = (|| -> Option<()> {
-            let src = fs::read_to_string(preset_src.join("agent.cordis.yml")).ok()?;
-            let coding = "      You are a coding agent powered by the {{model}} model. Your working directory is {{cwd}}.";
-            if !src.contains(coding) { return None; }
-            let persona_yaml = PERSONA.lines().map(|l| if l.is_empty() { String::new() } else { format!("      {l}") }).collect::<Vec<_>>().join("\n");
-            let composed = format!("# biodsh-preset v1 — 由 BioDSH 桌面版自动生成（每次启动重建，请勿手改）\n{}", src.replace(coding, &persona_yaml));
-            let dir = home.join(".agent-presets").join("biodsh");
-            fs::create_dir_all(&dir).ok()?;
-            fs::write(dir.join("agent.cordis.yml"), composed).ok()?;
-            fs::write(dir.join("preset.yml"), "name: BioDSH 生信助手\ndescription: 面向医生与湿实验科学家的生信分析助手（BioDSH 桌面版默认）。\norder: 0\n").ok()?;
-            Some(())
-        })().is_some();
+        // 正交化(0.3.0):不再手搓 dsh 的 agent-preset —— 它随 dsh 版本改 schema(0.1.5 把 persona 的 text 改成
+        // 必填 prefix),standard 模板还被 0.1.5 删了,是唯一让 session/create 挂掉的耦合点。人设改为只走全局
+        // system-prompt loader 的 persona 字段(0.1.2/0.1.5 都稳定支持,已由 dsh-compat-test 验过 5/5)。
+        // 顺手删掉老版本遗留的 .agent-presets/biodsh(0.1.2 格式,在 0.1.5 下会让 session/create 报 preset invalid)。
+        let _ = fs::remove_dir_all(home.join(".agent-presets").join("biodsh"));
 
         let patch = home.join("cordis.patch.yml");
         let existing = fs::read_to_string(&patch).unwrap_or_default();
         let marker = |v: &str| existing.contains(&format!("# biodsh-minimal {v}"));
-        if !patch.exists() || marker("v1") || marker("v2") || marker("v3") || marker("v4") || marker("v5") {
+        // v7:去掉 agent-presets/default:biodsh(不再用预设);老 marker 一律重建。
+        if !patch.exists() || marker("v1") || marker("v2") || marker("v3") || marker("v4") || marker("v5") || marker("v6") {
+            // cordis.patch 两类条目:① 改已有插件 = 顶层 `- id: X, <覆盖字段>`(dsh-app-boot 按 id 合并);
+            //   ② 加新插件 = `- insert: [ <条目> ]`(缺 insert 的新 id 只会 warn "entry not found" 静默失效)。
+            // 修改类:精简掉多余 UI(disabled)+ 换 BioDSH 人设(system-prompt.persona)+ 官方技能目录(skill-filesystem)。
             let mut body: Vec<String> = MINIMAL_PLUGINS.iter().map(|id| format!("- id: {id}\n  disabled: true")).collect();
             let persona_yaml = PERSONA.lines().map(|l| if l.is_empty() { String::new() } else { format!("      {l}") }).collect::<Vec<_>>().join("\n");
             body.push(format!("- id: system-prompt\n  config:\n    persona: >-\n{persona_yaml}"));
-            if preset_ok {
-                body.push("- id: agent-presets\n  config:\n    default: biodsh".into());
-            }
-            // 外接 MCP 服务：每个服务一个 dsh-mcp-client 实例，模型看到的工具名是 mcp__<name>__<tool>
+            body.push(format!("- id: skill-filesystem\n  config:\n    customSkillDirs: [{}]", yaml_str(&official_skills.to_string_lossy())));
+            // 新增类(insert):技能语义路由插件(0.3.0 正交化,不再打补丁改 dsh)+ 外接 MCP 服务。
+            let mut inserts: Vec<String> = Vec::new();
+            // 用绝对 file:// URL 加载插件(cordis loader 按配置文件所在目录解析裸包名,dsh-home 下找不到 @biodsh;绝对路径最稳)。
+            let plugin_url = format!("file:///{}", skill_router_plugin.display().to_string().replace('\\', "/").trim_start_matches('/'));
+            inserts.push(format!("    - id: biodsh-skill-router\n      name: {}", yaml_str(&plugin_url)));
+            // 每个 MCP 服务一个 dsh-mcp-client 实例(工具名 mcp__<name>__<tool>);字段按 insert 的两层缩进(6/8 空格)。
             for m in mcp.iter().filter(|m| m.enabled != Some(false)) {
                 let name: String = m.name.chars().filter(|c| c.is_ascii_alphanumeric() || *c == '_' || *c == '-').take(32).collect();
                 if name.is_empty() { continue; }
-                let mut y = format!("- id: mcp-{name}\n  name: '@deepseek-ai/dsh-mcp-client'\n  config:\n    serverName: {name}\n");
+                let mut y = format!("    - id: mcp-{name}\n      name: '@deepseek-ai/dsh-mcp-client'\n      config:\n        serverName: {name}\n");
                 if m.transport == "streamable-http" {
                     if m.url.trim().is_empty() { continue; }
-                    y.push_str(&format!("    transport: streamable-http\n    url: {}\n", yaml_str(m.url.trim())));
+                    y.push_str(&format!("        transport: streamable-http\n        url: {}\n", yaml_str(m.url.trim())));
                 } else {
                     if m.command.trim().is_empty() { continue; }
-                    y.push_str(&format!("    transport: stdio\n    command: {}\n", yaml_str(m.command.trim())));
-                    if !m.args.is_empty() { y.push_str(&format!("    args: [{}]\n", m.args.iter().map(|a| yaml_str(a)).collect::<Vec<_>>().join(", "))); }
-                    if !m.env.is_empty() { y.push_str("    env:\n"); for (k, v) in &m.env { y.push_str(&format!("      {k}: {}\n", yaml_str(v))); } }
+                    y.push_str(&format!("        transport: stdio\n        command: {}\n", yaml_str(m.command.trim())));
+                    if !m.args.is_empty() { y.push_str(&format!("        args: [{}]\n", m.args.iter().map(|a| yaml_str(a)).collect::<Vec<_>>().join(", "))); }
+                    if !m.env.is_empty() { y.push_str("        env:\n"); for (k, v) in &m.env { y.push_str(&format!("          {k}: {}\n", yaml_str(v))); } }
                 }
-                y.push_str("    failOnStartupError: false\n");
-                body.push(y.trim_end().to_string());
+                y.push_str("        failOnStartupError: false");
+                inserts.push(y.trim_end().to_string());
             }
-            let _ = fs::write(&patch, format!("# biodsh-minimal v5 — BioDSH 精简模式 + BioDSH 人设 + MCP 接入（删除本文件并重启即可恢复 dsh 默认）\n{}\n", body.join("\n")));
+            body.push(format!("- insert:\n{}", inserts.join("\n")));
+            let _ = fs::write(&patch, format!("# biodsh-minimal v7 — BioDSH 精简模式 + BioDSH 人设(全局 persona) + 技能路由插件 + 技能全量可用 + MCP 接入（删除本文件并重启即可恢复 dsh 默认）\n{}\n", body.join("\n")));
         }
         let settings = home.join("settings.yaml");
         if !settings.exists() {
@@ -203,7 +202,7 @@ impl DshManager {
     /// `extra_env`：额外注入给 dsh 子进程的环境变量（图像生成接口等）；`mcp`：写进 patch 的 MCP 服务。
     pub fn start_with(self: &Arc<Self>, app: &AppHandle, paths: &AppPaths, workspace: &str, offline_key: Option<String>, extra_env: Vec<(String, String)>, mcp: &[crate::settings::McpServer]) -> DshStatus {
         if self.child.lock().unwrap().is_some() { return self.status.lock().unwrap().clone(); }
-        Self::ensure_home(paths, workspace, &crate::paths::resource(app, "dsh/node_modules").join("@deepseek-ai").join("dsh").join("config").join("agent-presets").join("standard"), mcp);
+        Self::ensure_home(paths, workspace, &crate::paths::resource(app, "skills"), &crate::paths::resource(app, "dsh/node_modules").join("@biodsh").join("skill-router").join("index.js"), mcp);
         crate::settings::migrate_credentials(paths);
         ensure_sitecustomize(&paths.bioenv);
         *self.status.lock().unwrap() = DshStatus { state: "starting".into(), ..Default::default() };
@@ -232,6 +231,15 @@ impl DshManager {
             .env("VIRTUAL_ENV", paths.bioenv.join(".venv"))
             .env("PATH", path_env)
             .env("DSH_TELEMETRY_DISABLED", "1")
+            // 技能语义路由：把 2000+ 社区技能挂成 dsh 的 bundled 技能根(无需手动安装即可被发现),
+            // 再由 patch-dsh-skill-router 按最新用户消息排序、只放 top-K 进上下文(见 BIODSH_SKILL_CATALOG_MAX)。
+            .env("DSH_BUNDLED_SKILL_DIR", crate::paths::resource(app, "community-skills"))
+            .env("BIODSH_SKILL_CATALOG_MAX", "40")
+            // 本地 embedding 语义路由：离线加载模型 + 预计算技能向量，给「用户这句话」算向量做余弦排序（skill-router.mjs）。
+            .env("BIODSH_EMBED_ROUTER", crate::paths::resource(app, "embed").join("skill-router.mjs"))
+            .env("BIODSH_SKILL_VECTORS", crate::paths::resource(app, "skills").join("skill-vectors.json"))
+            .env("BIODSH_EMBED_CACHE", crate::paths::resource(app, "embed").join("models"))
+            .env("BIODSH_EMBED_OFFLINE", "1")
             .env_remove("NODE_OPTIONS");
         if let Some(k) = offline_key { if !k.is_empty() { cmd.env("BIODSH_OFFLINE_KEY", k); } else { cmd.env("BIODSH_OFFLINE_KEY", "local"); } }
         for (k, v) in extra_env { if !v.is_empty() { cmd.env(k, v); } }
@@ -258,9 +266,21 @@ impl DshManager {
                 for line in BufReader::new(stream).lines().map_while(Result::ok) {
                     if line.trim().is_empty() { continue; }
                     if let Some(i) = line.find("http://127.0.0.1:") {
-                        let url: String = line[i..].chars().take_while(|c| !c.is_whitespace()).collect();
+                        // 稳健解析：host + 数字端口 + 可选 /path?query(含 0.1.2 的 ?token=)，遇空白即止；
+                        // 两条 URL 粘在一行(快速重启时 stdout 交错)也只取到干净的一条，绝不把 "4307dsh" 当 URL 送进 webview。
+                        let rest = &line[i..];
+                        let b = rest.as_bytes();
+                        let mut end = "http://127.0.0.1:".len();
+                        while end < b.len() && b[end].is_ascii_digit() { end += 1; }
+                        if end < b.len() && b[end] == b'/' { while end < b.len() && !b[end].is_ascii_whitespace() { end += 1; } }
+                        let url = rest[..end].to_string();
                         let mut s = me.status.lock().unwrap();
-                        if s.state == "starting" { s.state = "running".into(); s.url = Some(url); }
+                        if s.state == "starting" && end > "http://127.0.0.1:".len() { s.state = "running".into(); s.url = Some(url); }
+                    }
+                    // 原生模块损坏(常见于升级没替换干净):给出可操作的中文提示,而不是让用户看天书。
+                    if line.contains("Mismatched native Koffi") || line.contains("native module") && line.contains("koffi") {
+                        let mut s = me.status.lock().unwrap();
+                        s.error = Some("运行时文件损坏（多半是升级没替换干净）。请到「更多 → 检查更新」重装,或重新下载安装包覆盖安装；你的项目和历史不会丢。".into());
                     }
                     me.push(&app, &paths, &line);
                 }
@@ -280,7 +300,7 @@ impl DshManager {
                         *guard = None;
                         drop(guard);
                         let ok = code.success();
-                        { let mut s = me.status.lock().unwrap(); s.state = if ok { "stopped".into() } else { "error".into() }; if !ok { s.error = Some(format!("dsh 退出，代码 {code}")); } }
+                        { let mut s = me.status.lock().unwrap(); s.state = if ok { "stopped".into() } else { "error".into() }; if !ok && s.error.is_none() { s.error = Some(format!("dsh 退出，代码 {code}")); } }
                         me.push(&app, &paths, &format!("[dsh exited with {code}]"));
                         break;
                     }

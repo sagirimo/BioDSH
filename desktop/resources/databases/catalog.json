@@ -1,0 +1,967 @@
+{
+  "version": 2,
+  "note": "数据库目录:按研究域分类、每库接真实技能。公共健康队列(老年/营养/国民青少年/重症)对标医豌豆,核心是'提取变量→队列研究';生信库覆盖表达/变异/蛋白/通路/药物/文献。skills 为社区技能 id。",
+  "categories": [
+    {
+      "id": "aging",
+      "name": "老年健康与老龄化队列",
+      "icon": "users",
+      "desc": "国内外老龄化纵向队列,含 Harmonised 协调变量,常用于慢病、认知、衰弱、死亡结局研究。核心工作:按研究问题提取变量、构建分析数据集。",
+      "databases": [
+        {
+          "id": "charls",
+          "name": "CHARLS",
+          "name_en": "China Health and Retirement Longitudinal Study",
+          "url": "https://charls.pku.edu.cn/",
+          "tags": [
+            "中国",
+            "中老年",
+            "纵向"
+          ],
+          "desc": "北大中国健康与养老追踪调查:全国 45 岁以上人群多波随访(健康、认知、经济、社会)。有 Harmonised、原始问卷、复合变量。",
+          "skills": [
+            "charls-reproduce",
+            "rwd-cohort-analysis",
+            "bio-clinical-biostatistics-logistic-regression"
+          ],
+          "examples": [
+            "从 CHARLS 提取抑郁(CESD)、慢病、协变量,做横断面关联并多因素校正",
+            "用 CHARLS 多波数据做认知下降的纵向分析,复现一篇文章"
+          ]
+        },
+        {
+          "id": "clhls",
+          "name": "CLHLS",
+          "name_en": "Chinese Longitudinal Healthy Longevity Survey",
+          "url": "https://opendata.pku.edu.cn/",
+          "tags": [
+            "中国",
+            "高龄",
+            "纵向"
+          ],
+          "desc": "中国老年健康影响因素跟踪调查:横断面+纵向,含社区、体检与生物标志物,长寿研究常用。",
+          "skills": [
+            "rwd-cohort-analysis",
+            "bio-clinical-biostatistics-survival-analysis"
+          ],
+          "examples": [
+            "从 CLHLS 提取衰弱指数相关变量做生存分析",
+            "分析某暴露与全因死亡的关联"
+          ]
+        },
+        {
+          "id": "elsa",
+          "name": "ELSA",
+          "name_en": "English Longitudinal Study of Ageing",
+          "url": "https://www.elsa-project.ac.uk/",
+          "tags": [
+            "英国",
+            "老年",
+            "纵向"
+          ],
+          "desc": "英国老龄化纵向研究:Harmonised、Core、Nurse、营养与临终(EOL)数据。",
+          "skills": [
+            "rwd-cohort-analysis",
+            "bio-clinical-biostatistics-logistic-regression"
+          ],
+          "examples": [
+            "提取 ELSA 协调变量与 HRS 做跨国比较",
+            "分析社会经济因素与健康结局的纵向关系"
+          ]
+        },
+        {
+          "id": "hrs",
+          "name": "HRS",
+          "name_en": "Health and Retirement Study",
+          "url": "https://hrs.isr.umich.edu/",
+          "tags": [
+            "美国",
+            "退休",
+            "纵向"
+          ],
+          "desc": "美国健康与退休研究:Harmonized HRS、RAND、原始波次及专题数据,老龄化研究的标杆队列。",
+          "skills": [
+            "rwd-cohort-analysis",
+            "bio-clinical-biostatistics-survival-analysis"
+          ],
+          "examples": [
+            "从 Harmonized HRS 提取变量做认知轨迹分析",
+            "用 RAND 版本构建慢病与死亡的队列"
+          ]
+        },
+        {
+          "id": "share",
+          "name": "SHARE",
+          "name_en": "Survey of Health, Ageing and Retirement in Europe",
+          "url": "https://share-eric.eu/",
+          "tags": [
+            "欧洲",
+            "多国",
+            "纵向"
+          ],
+          "desc": "欧洲健康、老龄与退休调查:Gateway Harmonized、easySHARE、原始波次与复合变量。",
+          "skills": [
+            "rwd-cohort-analysis",
+            "bio-clinical-biostatistics-logistic-regression"
+          ],
+          "examples": [
+            "用 easySHARE 快速做跨国老年健康比较",
+            "提取变量分析退休对健康的影响"
+          ]
+        },
+        {
+          "id": "klosa",
+          "name": "KLoSA",
+          "name_en": "Korean Longitudinal Study of Ageing",
+          "url": "https://survey.keis.or.kr/",
+          "tags": [
+            "韩国",
+            "老年",
+            "纵向"
+          ],
+          "desc": "韩国老龄化纵向研究:Harmonized KLoSA、原始波次、复合变量与临终数据。",
+          "skills": [
+            "rwd-cohort-analysis"
+          ],
+          "examples": [
+            "提取 KLoSA 变量与 CHARLS/HRS 协调比较"
+          ]
+        },
+        {
+          "id": "lasi",
+          "name": "LASI",
+          "name_en": "Longitudinal Aging Study in India",
+          "url": "https://lasi-india.org/",
+          "tags": [
+            "印度",
+            "老年",
+            "纵向"
+          ],
+          "desc": "印度纵向老龄化研究:Harmonized LASI、LASI-DAD(痴呆)、复合变量与痴呆插补。",
+          "skills": [
+            "rwd-cohort-analysis"
+          ],
+          "examples": [
+            "用 LASI-DAD 分析认知与痴呆相关因素"
+          ]
+        },
+        {
+          "id": "creles",
+          "name": "CRELES",
+          "name_en": "Costa Rican Study on Longevity and Healthy Aging",
+          "url": "https://www.creles.berkeley.edu/",
+          "tags": [
+            "哥斯达黎加",
+            "长寿"
+          ],
+          "desc": "哥斯达黎加健康老龄化研究:Harmonized、原始队列、复合变量、死亡与生物标志物。",
+          "skills": [
+            "rwd-cohort-analysis"
+          ],
+          "examples": [
+            "提取生物标志物与死亡结局做生存分析"
+          ]
+        },
+        {
+          "id": "mhas",
+          "name": "MHAS",
+          "name_en": "Mexican Health and Aging Study",
+          "url": "https://www.mhasweb.org/",
+          "tags": [
+            "墨西哥",
+            "老年"
+          ],
+          "desc": "墨西哥健康与老龄化研究:Harmonized MHAS、原始波次、复合变量、EOL 与 Mex-Cog 认知。",
+          "skills": [
+            "rwd-cohort-analysis"
+          ],
+          "examples": [
+            "用 Mex-Cog 分析认知,提取协变量校正"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nutrition",
+      "name": "膳食营养与国民健康",
+      "icon": "salad",
+      "desc": "国家级健康与营养横断面/纵向调查,含复杂抽样权重。做患病率、营养—疾病关联、可推广到人群的横断面研究。",
+      "databases": [
+        {
+          "id": "nhanes",
+          "name": "NHANES",
+          "name_en": "National Health and Nutrition Examination Survey",
+          "url": "https://www.cdc.gov/nchs/nhanes/",
+          "tags": [
+            "美国",
+            "横断面",
+            "抽样权重"
+          ],
+          "desc": "美国国家健康与营养检查调查:问卷、体检、实验室、营养及抽样权重。用加权分析出可推广到全美人群的结论。",
+          "skills": [
+            "rwd-cohort-analysis",
+            "bio-clinical-biostatistics-logistic-regression",
+            "bio-clinical-biostatistics-effect-measures"
+          ],
+          "examples": [
+            "从 NHANES 提取某暴露与结局变量,用抽样权重做加权 logistic 回归",
+            "算某指标在美国人群的加权患病率并分层"
+          ]
+        },
+        {
+          "id": "knhanes",
+          "name": "KNHANES",
+          "name_en": "Korea National Health and Nutrition Examination Survey",
+          "url": "https://knhanes.kdca.go.kr/",
+          "tags": [
+            "韩国",
+            "横断面",
+            "抽样权重"
+          ],
+          "desc": "韩国国民健康与营养调查:健康问卷、体检、营养及复杂抽样权重。",
+          "skills": [
+            "rwd-cohort-analysis",
+            "bio-clinical-biostatistics-logistic-regression"
+          ],
+          "examples": [
+            "用 KNHANES 加权分析膳食因素与代谢指标",
+            "提取变量做韩国人群横断面研究"
+          ]
+        },
+        {
+          "id": "chns",
+          "name": "CHNS",
+          "name_en": "China Health and Nutrition Survey",
+          "url": "https://www.cpc.unc.edu/projects/china",
+          "tags": [
+            "中国",
+            "人群",
+            "纵向"
+          ],
+          "desc": "中国健康与营养调查:个人、家庭、社区、膳食、体检与血液指标,人群纵向。",
+          "skills": [
+            "rwd-cohort-analysis"
+          ],
+          "examples": [
+            "用 CHNS 分析膳食模式随时间的变化与健康结局"
+          ]
+        },
+        {
+          "id": "nhis",
+          "name": "NHIS",
+          "name_en": "National Health Interview Survey",
+          "url": "https://www.cdc.gov/nchs/nhis/",
+          "tags": [
+            "美国",
+            "横断面",
+            "访谈"
+          ],
+          "desc": "美国国民健康访谈调查:成人、儿童,含副样本与多重插补收入。",
+          "skills": [
+            "rwd-cohort-analysis",
+            "bio-clinical-biostatistics-missing-data"
+          ],
+          "examples": [
+            "用 NHIS 分析某健康行为的人群分布与相关因素"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "adolescent",
+      "name": "青少年与学生健康",
+      "icon": "graduation-cap",
+      "desc": "青少年到成年的健康纵向与学校调查,研究成长、行为、心理与健康结局。",
+      "databases": [
+        {
+          "id": "addhealth",
+          "name": "Add Health",
+          "name_en": "National Longitudinal Study of Adolescent to Adult Health",
+          "url": "https://addhealth.cpc.unc.edu/",
+          "tags": [
+            "美国",
+            "青少年",
+            "纵向"
+          ],
+          "desc": "美国青少年到成年健康纵向研究:Wave I–VI,同伴网络、健康行为、关系生育与生物标志物。",
+          "skills": [
+            "rwd-cohort-analysis",
+            "bio-clinical-biostatistics-logistic-regression"
+          ],
+          "examples": [
+            "用 Add Health 多波数据分析青少年行为对成年健康的影响"
+          ]
+        },
+        {
+          "id": "gshs",
+          "name": "GSHS",
+          "name_en": "Global School-based Student Health Survey",
+          "url": "https://www.who.int/teams/noncommunicable-diseases/surveillance/systems-tools/global-school-based-student-health-survey",
+          "tags": [
+            "全球",
+            "学校",
+            "重复横断面"
+          ],
+          "desc": "WHO 全球学校学生健康调查:165 个调查、问卷原题、复杂抽样及论文变量预设。",
+          "skills": [
+            "rwd-cohort-analysis"
+          ],
+          "examples": [
+            "用 GSHS 做某国青少年健康行为的横断面分析"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "criticalcare",
+      "name": "重症监护数据库",
+      "icon": "activity",
+      "desc": "重症监护电子病历,含生命体征、化验、用药与结局,做脓毒症/AKI/死亡预测等研究。",
+      "databases": [
+        {
+          "id": "mimic",
+          "name": "MIMIC",
+          "name_en": "MIMIC-III / MIMIC-IV",
+          "url": "https://physionet.org/content/mimiciv/",
+          "tags": [
+            "ICU",
+            "电子病历",
+            "脓毒症"
+          ],
+          "desc": "MIT 重症监护医学信息数据库:住院、ICU、检验、用药、监护及临床事件数据。脓毒症/AKI 研究首选。",
+          "skills": [
+            "pyhealth",
+            "ehr-analysis",
+            "bio-clinical-biostatistics-survival-analysis"
+          ],
+          "examples": [
+            "按 Sepsis-3 定义脓毒症队列并比较存活/死亡组",
+            "从 MIMIC 提取 ICU 首日变量做 28 天死亡预测"
+          ]
+        },
+        {
+          "id": "eicu",
+          "name": "eICU",
+          "name_en": "eICU Collaborative Research Database",
+          "url": "https://physionet.org/content/eicu-crd/",
+          "tags": [
+            "ICU",
+            "多中心"
+          ],
+          "desc": "eICU 协作研究数据库:多中心 ICU 诊断、治疗、检验与监护数据,做多中心外部验证。",
+          "skills": [
+            "pyhealth",
+            "ehr-analysis"
+          ],
+          "examples": [
+            "用 eICU 做 MIMIC 模型的多中心外部验证"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bigcohort_cancer",
+      "name": "大型人群队列与肿瘤",
+      "icon": "layers",
+      "desc": "大型多组学人群队列与肿瘤基因组队列,做基因—疾病关联、肿瘤生存与多组学。",
+      "databases": [
+        {
+          "id": "ukbiobank",
+          "name": "UK Biobank",
+          "name_en": "UK Biobank",
+          "url": "https://www.ukbiobank.ac.uk/",
+          "tags": [
+            "大队列",
+            "基因型",
+            "蛋白组"
+          ],
+          "desc": "50 万人的英国前瞻队列:基因型、影像、蛋白组、疾病结局。",
+          "skills": [
+            "ukb-navigator",
+            "ukb-ppp-region-fetch",
+            "gwas-lookup",
+            "rwd-cohort-analysis"
+          ],
+          "examples": [
+            "在 UK Biobank 语义搜索卒中相关表型字段",
+            "查某基因区域在 UKB-PPP 蛋白组的关联"
+          ]
+        },
+        {
+          "id": "tcga",
+          "name": "TCGA",
+          "name_en": "The Cancer Genome Atlas",
+          "url": "https://portal.gdc.cancer.gov/",
+          "tags": [
+            "肿瘤",
+            "多组学",
+            "生存"
+          ],
+          "desc": "癌症基因组图谱:33 种癌型的表达、突变、临床与生存数据。",
+          "skills": [
+            "tcga-bulk-data-preprocessing-with-omicverse",
+            "xena-tcga-gene-query",
+            "cancer-multiomics"
+          ],
+          "examples": [
+            "取某癌型某基因表达做高低分组生存分析",
+            "比较肿瘤与癌旁差异表达并富集"
+          ]
+        },
+        {
+          "id": "cbioportal",
+          "name": "cBioPortal",
+          "name_en": "cBioPortal",
+          "url": "https://www.cbioportal.org/",
+          "tags": [
+            "肿瘤",
+            "突变"
+          ],
+          "desc": "癌症基因组可视化门户:跨研究查基因的突变/拷贝数/表达与临床关联。",
+          "skills": [
+            "query-cbioportal",
+            "cbioportal-database"
+          ],
+          "examples": [
+            "查某基因在多癌种的突变频率与生存关系"
+          ]
+        },
+        {
+          "id": "commpass",
+          "name": "MMRF CoMMpass",
+          "name_en": "MMRF CoMMpass Study (Multiple Myeloma)",
+          "url": "https://research.themmrf.org/",
+          "tags": [
+            "多发性骨髓瘤",
+            "血液肿瘤",
+            "纵向队列",
+            "基因组",
+            "预后/生存"
+          ],
+          "desc": "多发性骨髓瘤(MM)最大的纵向随访队列(MMRF):上千例患者的 RNA-seq / 全外显子 / 全基因组 + 治疗与生存随访,可做分子分型、驱动突变、预后与生存建模。",
+          "skills": [
+            "cancer-multiomics",
+            "bulk-rna-seq-deseq2-analysis-with-omicverse",
+            "bio-clinical-biostatistics-survival-analysis"
+          ],
+          "examples": [
+            "提取高危(如 1q21 扩增 / t(4;14))vs 标危患者,做差异表达并富集通路",
+            "按某基因表达高低分组做总生存(OS)/无进展生存(PFS)分析"
+          ]
+        },
+        {
+          "id": "gtex",
+          "name": "GTEx",
+          "name_en": "Genotype-Tissue Expression",
+          "url": "https://gtexportal.org/",
+          "tags": [
+            "正常组织",
+            "eQTL"
+          ],
+          "desc": "多种正常人体组织的基因表达与 eQTL。",
+          "skills": [
+            "gtex-database"
+          ],
+          "examples": [
+            "查某基因各正常组织表达谱",
+            "看某 SNP 的 eQTL 效应"
+          ]
+        },
+        {
+          "id": "clinicaltrials",
+          "name": "ClinicalTrials",
+          "name_en": "ClinicalTrials.gov",
+          "url": "https://clinicaltrials.gov/",
+          "tags": [
+            "临床试验"
+          ],
+          "desc": "全球临床试验登记库,按疾病/药物/靶点检索。",
+          "skills": [
+            "clinical-trial-finder",
+            "clinicaltrials-landscape",
+            "query-clinicaltrials"
+          ],
+          "examples": [
+            "盘点某靶点在研试验及阶段"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "expression",
+      "name": "表达 / 测序数据",
+      "icon": "dna",
+      "desc": "公开的芯片与高通量测序数据集,检索下载后自己分析。",
+      "databases": [
+        {
+          "id": "geo",
+          "name": "GEO",
+          "name_en": "Gene Expression Omnibus",
+          "url": "https://www.ncbi.nlm.nih.gov/geo/",
+          "tags": [
+            "RNA-seq",
+            "单细胞",
+            "芯片"
+          ],
+          "desc": "NCBI 基因表达数据库:海量公开芯片/测序数据集,用 GSE 编号检索下载。",
+          "skills": [
+            "bio-geo-data",
+            "bio-batch-downloads"
+          ],
+          "examples": [
+            "从 GEO 找并下载某疾病单细胞数据集并整理成可分析格式",
+            "下载 GSE 编号数据并说明样本分组"
+          ]
+        },
+        {
+          "id": "sra",
+          "name": "SRA",
+          "name_en": "Sequence Read Archive",
+          "url": "https://www.ncbi.nlm.nih.gov/sra",
+          "tags": [
+            "原始测序",
+            "FASTQ"
+          ],
+          "desc": "NCBI 原始测序读段库,下载 FASTQ 重新比对/定量。",
+          "skills": [
+            "bio-sra-data",
+            "fastq-analysis-pipeline"
+          ],
+          "examples": [
+            "下载某 SRA 项目 reads 并质控"
+          ]
+        },
+        {
+          "id": "hpa",
+          "name": "Human Protein Atlas",
+          "name_en": "Human Protein Atlas",
+          "url": "https://www.proteinatlas.org/",
+          "tags": [
+            "蛋白表达",
+            "组织"
+          ],
+          "desc": "人类蛋白图谱:基因/蛋白在组织、细胞、亚细胞与病理的表达定位。",
+          "skills": [
+            "biocontext-knowledge-queries"
+          ],
+          "examples": [
+            "查某基因各组织蛋白表达与亚细胞定位"
+          ]
+        },
+        {
+          "id": "ncbidatasets",
+          "name": "NCBI Datasets",
+          "name_en": "NCBI Datasets",
+          "url": "https://www.ncbi.nlm.nih.gov/datasets/",
+          "tags": [
+            "基因组",
+            "序列"
+          ],
+          "desc": "一站式下载基因组、基因、病毒序列与分类信息。",
+          "skills": [
+            "ncbi-datasets",
+            "bio-ncbi-datasets-cli"
+          ],
+          "examples": [
+            "下载某物种参考基因组与注释"
+          ]
+        },
+        {
+          "id": "biomart",
+          "name": "BioMart",
+          "name_en": "Ensembl BioMart",
+          "url": "https://www.ensembl.org/biomart/",
+          "tags": [
+            "ID 转换",
+            "注释"
+          ],
+          "desc": "批量查询基因/转录本注释与跨库 ID 转换。",
+          "skills": [
+            "bio-biomart-queries",
+            "bio-expression-matrix-gene-id-mapping"
+          ],
+          "examples": [
+            "把一列基因 symbol 批量转成 Ensembl/Entrez ID"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "variation",
+      "name": "基因 / 变异",
+      "icon": "git-branch",
+      "desc": "变异注释、人群频率与疾病致病性、GWAS 关联。",
+      "databases": [
+        {
+          "id": "clinvar",
+          "name": "ClinVar",
+          "name_en": "ClinVar",
+          "url": "https://www.ncbi.nlm.nih.gov/clinvar/",
+          "tags": [
+            "致病性"
+          ],
+          "desc": "变异—疾病关系与临床致病性判读的权威库。",
+          "skills": [
+            "bio-clinical-databases-clinvar-lookup",
+            "query-clinvar",
+            "variant-annotation"
+          ],
+          "examples": [
+            "查某基因已知致病变异",
+            "给一个变异做致病性判读"
+          ]
+        },
+        {
+          "id": "gnomad",
+          "name": "gnomAD",
+          "name_en": "Genome Aggregation Database",
+          "url": "https://gnomad.broadinstitute.org/",
+          "tags": [
+            "人群频率"
+          ],
+          "desc": "大规模人群变异频率参考,过滤常见变异必备。",
+          "skills": [
+            "bio-clinical-databases-gnomad-frequencies",
+            "query-gnomad",
+            "gnomad-database"
+          ],
+          "examples": [
+            "查某变异各人群等位基因频率"
+          ]
+        },
+        {
+          "id": "dbsnp",
+          "name": "dbSNP",
+          "name_en": "dbSNP",
+          "url": "https://www.ncbi.nlm.nih.gov/snp/",
+          "tags": [
+            "rsID"
+          ],
+          "desc": "SNP 与小变异的标准标识与注释。",
+          "skills": [
+            "bio-clinical-databases-dbsnp-queries",
+            "query-dbsnp",
+            "dbsnp-database"
+          ],
+          "examples": [
+            "把位点转成 rsID"
+          ]
+        },
+        {
+          "id": "ensembl",
+          "name": "Ensembl",
+          "name_en": "Ensembl",
+          "url": "https://www.ensembl.org/",
+          "tags": [
+            "注释",
+            "VEP"
+          ],
+          "desc": "基因组注释与变异效应预测(VEP)。",
+          "skills": [
+            "bio-ensembl-rest",
+            "vep-annotate",
+            "variant-annotation"
+          ],
+          "examples": [
+            "用 VEP 注释一批变异功能后果"
+          ]
+        },
+        {
+          "id": "gwascatalog",
+          "name": "GWAS Catalog",
+          "name_en": "GWAS Catalog",
+          "url": "https://www.ebi.ac.uk/gwas/",
+          "tags": [
+            "GWAS"
+          ],
+          "desc": "已发表全基因组关联研究的显著位点汇总。",
+          "skills": [
+            "query-gwas-catalog",
+            "gwas-catalog-region-fetch",
+            "gwas-lookup"
+          ],
+          "examples": [
+            "查某性状 GWAS 显著位点"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "protein",
+      "name": "蛋白 / 结构",
+      "icon": "atom",
+      "desc": "蛋白序列、功能注释、三维结构与相互作用。",
+      "databases": [
+        {
+          "id": "uniprot",
+          "name": "UniProt",
+          "name_en": "UniProt",
+          "url": "https://www.uniprot.org/",
+          "tags": [
+            "序列",
+            "功能"
+          ],
+          "desc": "蛋白质序列与功能注释的核心库。",
+          "skills": [
+            "bio-uniprot-access",
+            "query-uniprot",
+            "uniprot-protein-database"
+          ],
+          "examples": [
+            "查某蛋白功能、结构域与亚细胞定位"
+          ]
+        },
+        {
+          "id": "pdb",
+          "name": "PDB",
+          "name_en": "Protein Data Bank",
+          "url": "https://www.rcsb.org/",
+          "tags": [
+            "实验结构"
+          ],
+          "desc": "实验解析的蛋白/核酸三维结构库。",
+          "skills": [
+            "bio-structural-biology-structure-io",
+            "bio-molecular-io"
+          ],
+          "examples": [
+            "下载某蛋白 PDB 结构看结合口袋"
+          ]
+        },
+        {
+          "id": "alphafold",
+          "name": "AlphaFold",
+          "name_en": "AlphaFold DB",
+          "url": "https://alphafold.ebi.ac.uk/",
+          "tags": [
+            "预测结构"
+          ],
+          "desc": "AlphaFold 预测的全蛋白组三维结构。",
+          "skills": [
+            "query-alphafold",
+            "bio-structural-biology-alphafold-predictions"
+          ],
+          "examples": [
+            "取某蛋白 AlphaFold 结构并评估可信度"
+          ]
+        },
+        {
+          "id": "string",
+          "name": "STRING",
+          "name_en": "STRING",
+          "url": "https://string-db.org/",
+          "tags": [
+            "互作网络"
+          ],
+          "desc": "蛋白—蛋白相互作用与功能关联网络。",
+          "skills": [
+            "query-stringdb",
+            "string-protein-interaction-analysis-with-omicver",
+            "bio-interaction-databases"
+          ],
+          "examples": [
+            "给一批基因建 STRING 网络找核心节点"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pathway",
+      "name": "通路 / 功能",
+      "icon": "workflow",
+      "desc": "通路、基因集与功能富集参考。",
+      "databases": [
+        {
+          "id": "kegg",
+          "name": "KEGG",
+          "name_en": "KEGG",
+          "url": "https://www.kegg.jp/",
+          "tags": [
+            "通路"
+          ],
+          "desc": "代谢与信号通路数据库,常用于通路富集。",
+          "skills": [
+            "bio-pathway-kegg-pathways",
+            "pathway-enricher",
+            "functional-enrichment"
+          ],
+          "examples": [
+            "对差异基因做 KEGG 富集并作图"
+          ]
+        },
+        {
+          "id": "reactome",
+          "name": "Reactome",
+          "name_en": "Reactome",
+          "url": "https://reactome.org/",
+          "tags": [
+            "通路"
+          ],
+          "desc": "人工审编的分子通路与反应库。",
+          "skills": [
+            "bio-pathway-reactome",
+            "pathway-enricher"
+          ],
+          "examples": [
+            "用 Reactome 做通路富集"
+          ]
+        },
+        {
+          "id": "msigdb",
+          "name": "MSigDB",
+          "name_en": "MSigDB",
+          "url": "https://www.gsea-msigdb.org/",
+          "tags": [
+            "基因集",
+            "GSEA"
+          ],
+          "desc": "GSEA 官方基因集集合。",
+          "skills": [
+            "bio-pathway-gsea",
+            "gseapy-gene-enrichment"
+          ],
+          "examples": [
+            "用 Hallmark 基因集做 GSEA"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drug",
+      "name": "药物 / 化合物",
+      "icon": "pill",
+      "desc": "化合物、生物活性、药物靶点与不良反应。",
+      "databases": [
+        {
+          "id": "chembl",
+          "name": "ChEMBL",
+          "name_en": "ChEMBL",
+          "url": "https://www.ebi.ac.uk/chembl/",
+          "tags": [
+            "生物活性"
+          ],
+          "desc": "生物活性化合物与靶点数据库。",
+          "skills": [
+            "chembl-database-bioactivity",
+            "query-chembl"
+          ],
+          "examples": [
+            "查某靶点已知活性化合物整理成表"
+          ]
+        },
+        {
+          "id": "pubchem",
+          "name": "PubChem",
+          "name_en": "PubChem",
+          "url": "https://pubchem.ncbi.nlm.nih.gov/",
+          "tags": [
+            "化合物"
+          ],
+          "desc": "化合物结构、性质与生物测定数据库。",
+          "skills": [
+            "query-pubchem",
+            "pubchem-compound-search"
+          ],
+          "examples": [
+            "查某化合物结构与理化性质"
+          ]
+        },
+        {
+          "id": "opentargets",
+          "name": "Open Targets",
+          "name_en": "Open Targets",
+          "url": "https://www.opentargets.org/",
+          "tags": [
+            "靶点",
+            "疾病"
+          ],
+          "desc": "靶点—疾病关联与成药性证据整合平台。",
+          "skills": [
+            "query-opentarget",
+            "opentargets-database"
+          ],
+          "examples": [
+            "查某疾病候选药物靶点及证据强度"
+          ]
+        },
+        {
+          "id": "drugbank",
+          "name": "DrugBank",
+          "name_en": "DrugBank",
+          "url": "https://go.drugbank.com/",
+          "tags": [
+            "药物",
+            "机制"
+          ],
+          "desc": "已上市/在研药物的靶点、机制与相互作用。",
+          "skills": [
+            "drugbank-database-access",
+            "drugbank-search"
+          ],
+          "examples": [
+            "查某药物靶点与作用机制"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "disease_lit",
+      "name": "疾病 / 表型 / 文献",
+      "icon": "book-open",
+      "desc": "疾病—基因关系、表型本体与文献检索。",
+      "databases": [
+        {
+          "id": "monarch",
+          "name": "Monarch",
+          "name_en": "Monarch Initiative",
+          "url": "https://monarchinitiative.org/",
+          "tags": [
+            "表型"
+          ],
+          "desc": "跨物种表型—疾病—基因关联知识库。",
+          "skills": [
+            "query-monarch",
+            "monarch-database"
+          ],
+          "examples": [
+            "查某疾病相关基因与表型"
+          ]
+        },
+        {
+          "id": "pubmed",
+          "name": "PubMed",
+          "name_en": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "tags": [
+            "文献"
+          ],
+          "desc": "生物医学文献检索与摘要。",
+          "skills": [
+            "pubmed-summariser",
+            "lit-synthesizer"
+          ],
+          "examples": [
+            "检索某基因/疾病近期文献并总结"
+          ]
+        },
+        {
+          "id": "europepmc",
+          "name": "Europe PMC",
+          "name_en": "Europe PMC",
+          "url": "https://europepmc.org/",
+          "tags": [
+            "全文"
+          ],
+          "desc": "含全文的开放文献库,可抓取全文精读。",
+          "skills": [
+            "lit-synthesizer",
+            "paper-download"
+          ],
+          "examples": [
+            "找某主题开放获取全文并总结方法与结论"
+          ]
+        }
+      ]
+    }
+  ]
+}

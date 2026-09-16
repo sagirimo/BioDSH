@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980">
+  <rect width="1800" height="980" fill="#070a10"/>
+
+  <defs>
+    <style>
+      .ui { font-family: Montserrat, "DM Sans", "Segoe UI", Arial, sans-serif; }
+      .brand { font-family: Montserrat, "Arial Black", "Segoe UI", Arial, sans-serif; font-weight: 750; }
+      .tile-letter { font-family: Montserrat, "Arial Black", "Segoe UI", Arial, sans-serif; font-weight: 800; }
+    </style>
+  </defs>
+
+  <g class="ui">
+    <text x="70" y="70" fill="#ffffff" font-size="42" font-weight="700">BDSH 四格 · 插件证据栈</text>
+    <text x="70" y="108" fill="#94a3b8" font-size="20">D 的四模块结构 + E 的分层视角 + F 的粗几何字感</text>
+    <rect x="1460" y="57" width="270" height="42" rx="21" fill="#101827" stroke="#29364b"/>
+    <circle cx="1490" cy="78" r="5" fill="#22d3ee"/>
+    <text x="1507" y="85" fill="#d7deea" font-size="16" font-weight="650">B D / S H MONOGRAM</text>
+
+    <g fill="#0d1420" stroke="#253249" stroke-width="2">
+      <rect x="70" y="145" width="520" height="760" rx="30"/>
+      <rect x="640" y="145" width="520" height="760" rx="30"/>
+      <rect x="1210" y="145" width="520" height="760" rx="30"/>
+    </g>
+
+    <!-- Variant A: deep isometric -->
+    <g transform="translate(70 145)">
+      <rect x="28" y="24" width="48" height="32" rx="16" fill="#243553"/>
+      <text x="52" y="46" fill="#ffffff" font-size="18" font-weight="800" text-anchor="middle">A</text>
+      <text x="92" y="48" fill="#ffffff" font-size="25" font-weight="700">深等距四格</text>
+      <text x="28" y="84" fill="#8fa0b8" font-size="16">最接近你说的“E 视角的 D”</text>
+
+      <g transform="translate(60 120)">
+        <!-- evidence layers -->
+        <polygon points="200,150 405,263 200,376 -5,263" fill="#101c34" stroke="#28405f" stroke-width="4"/>
+        <polygon points="200,128 405,241 200,354 -5,241" fill="#16284a" stroke="#34517a" stroke-width="4"/>
+        <polygon points="200,106 405,219 200,332 -5,219" fill="#1d3158" stroke="#4d6bfe" stroke-width="5"/>
+
+        <!-- four top modules: B top, D right, S left, H bottom -->
+        <polygon points="200,102 298,156 200,210 102,156" fill="#f8fafc" stroke="#dbe3ef" stroke-width="3"/>
+        <polygon points="302,158 400,212 302,266 204,212" fill="#4d6bfe" stroke="#7290ff" stroke-width="3"/>
+        <polygon points="98,158 196,212 98,266 0,212" fill="#22d3ee" stroke="#6ee7f2" stroke-width="3"/>
+        <polygon points="200,214 298,268 200,322 102,268" fill="#f8fafc" stroke="#dbe3ef" stroke-width="3"/>
+
+        <!-- upright geometric letters for legibility -->
+        <g class="tile-letter" font-size="58" text-anchor="middle" dominant-baseline="middle">
+          <text x="200" y="158" fill="#0b1526">B</text>
+          <text x="302" y="214" fill="#ffffff">D</text>
+          <text x="98" y="214" fill="#07202a">S</text>
+          <text x="200" y="270" fill="#0b1526">H</text>
+        </g>
+
+        <!-- sparse docking points -->
+        <circle cx="405" cy="219" r="10" fill="#070a10" stroke="#22d3ee" stroke-width="6"/>
+        <path d="M401 219H374" stroke="#22d3ee" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="-5" cy="219" r="8" fill="#22d3ee"/>
+      </g>
+
+      <g transform="translate(52 615)" class="brand">
+        <text x="0" y="52" fill="#ffffff" font-size="56" letter-spacing="-2">Bio</text>
+        <text x="103" y="52" fill="#4d6bfe" font-size="56" letter-spacing="-2">DSH</text>
+        <circle cx="204" cy="31" r="6" fill="#22d3ee"/>
+      </g>
+      <text x="28" y="716" fill="#718199" font-size="15">优势：故事最强、模块感最明显</text>
+      <text x="28" y="742" fill="#718199" font-size="15">代价：32 px 下字母会更挤，需专用简化版</text>
+    </g>
+
+    <!-- Variant B: shallow perspective -->
+    <g transform="translate(640 145)">
+      <rect x="28" y="24" width="48" height="32" rx="16" fill="#4d6bfe"/>
+      <text x="52" y="46" fill="#ffffff" font-size="18" font-weight="800" text-anchor="middle">B</text>
+      <text x="92" y="48" fill="#ffffff" font-size="25" font-weight="700">浅透视四格</text>
+      <text x="28" y="84" fill="#8fa0b8" font-size="16">层级感与字母可读性的平衡方案</text>
+
+      <g transform="translate(70 143)">
+        <!-- offset evidence plates -->
+        <path d="M22 67L374 42L374 328L22 353Z" fill="#101a2d" stroke="#273a57" stroke-width="4"/>
+        <path d="M12 47L364 22L364 308L12 333Z" fill="#162642" stroke="#365176" stroke-width="4"/>
+
+        <!-- shallow perspective tile grid -->
+        <path d="M0 0L174 -12L174 126L0 138Z" fill="#f8fafc" stroke="#dbe3ef" stroke-width="4"/>
+        <path d="M184 -13L358 -25L358 113L184 125Z" fill="#4d6bfe" stroke="#7893ff" stroke-width="4"/>
+        <path d="M0 148L174 136L174 274L0 286Z" fill="#22d3ee" stroke="#71e9f4" stroke-width="4"/>
+        <path d="M184 135L358 123L358 261L184 273Z" fill="#f8fafc" stroke="#dbe3ef" stroke-width="4"/>
+
+        <g class="tile-letter" font-size="80" text-anchor="middle" dominant-baseline="middle">
+          <text x="87" y="64" fill="#0b1526">B</text>
+          <text x="271" y="51" fill="#ffffff">D</text>
+          <text x="87" y="212" fill="#07202a">S</text>
+          <text x="271" y="199" fill="#0b1526">H</text>
+        </g>
+
+        <!-- one auditable route, kept behind letter counters -->
+        <path d="M-10 284H28 M330 -25H382" stroke="#22d3ee" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="-10" cy="284" r="9" fill="#22d3ee"/>
+        <circle cx="382" cy="-25" r="10" fill="#070a10" stroke="#22d3ee" stroke-width="6"/>
+      </g>
+
+      <g transform="translate(52 615)" class="brand">
+        <text x="0" y="52" fill="#ffffff" font-size="56" letter-spacing="-2">Bio</text>
+        <text x="103" y="52" fill="#4d6bfe" font-size="56" letter-spacing="-2">DSH</text>
+        <circle cx="204" cy="31" r="6" fill="#22d3ee"/>
+      </g>
+      <text x="28" y="716" fill="#718199" font-size="15">优势：仍有证据栈深度，BDSH 阅读顺序清楚</text>
+      <text x="28" y="742" fill="#718199" font-size="15">建议：作为主案继续细化</text>
+    </g>
+
+    <!-- Variant C: front-facing stacked -->
+    <g transform="translate(1210 145)">
+      <rect x="28" y="24" width="48" height="32" rx="16" fill="#243553"/>
+      <text x="52" y="46" fill="#ffffff" font-size="18" font-weight="800" text-anchor="middle">C</text>
+      <text x="92" y="48" fill="#ffffff" font-size="25" font-weight="700">正视证据栈</text>
+      <text x="28" y="84" fill="#8fa0b8" font-size="16">最稳的小图标版本，层级退到背后</text>
+
+      <g transform="translate(80 127)">
+        <!-- stacked plates -->
+        <rect x="31" y="39" width="320" height="320" rx="56" fill="#101a2d" stroke="#273a57" stroke-width="4"/>
+        <rect x="18" y="22" width="320" height="320" rx="56" fill="#162642" stroke="#365176" stroke-width="4"/>
+        <rect x="0" y="0" width="320" height="320" rx="56" fill="#1d3158" stroke="#4d6bfe" stroke-width="5"/>
+
+        <!-- four modules with narrow plugin gutters -->
+        <rect x="18" y="18" width="137" height="137" rx="31" fill="#f8fafc"/>
+        <rect x="165" y="18" width="137" height="137" rx="31" fill="#4d6bfe"/>
+        <rect x="18" y="165" width="137" height="137" rx="31" fill="#22d3ee"/>
+        <rect x="165" y="165" width="137" height="137" rx="31" fill="#f8fafc"/>
+
+        <g class="tile-letter" font-size="82" text-anchor="middle" dominant-baseline="middle">
+          <text x="86.5" y="89" fill="#0b1526">B</text>
+          <text x="233.5" y="89" fill="#ffffff">D</text>
+          <text x="86.5" y="236" fill="#07202a">S</text>
+          <text x="233.5" y="236" fill="#0b1526">H</text>
+        </g>
+
+        <!-- plug notch and trace point -->
+        <rect x="145" y="73" width="29" height="27" rx="13" fill="#0d1420"/>
+        <circle cx="160" cy="86.5" r="6" fill="#22d3ee"/>
+        <rect x="145" y="220" width="29" height="27" rx="13" fill="#0d1420"/>
+        <circle cx="160" cy="233.5" r="6" fill="#4d6bfe"/>
+      </g>
+
+      <g transform="translate(52 615)" class="brand">
+        <text x="0" y="52" fill="#ffffff" font-size="56" letter-spacing="-2">Bio</text>
+        <text x="103" y="52" fill="#4d6bfe" font-size="56" letter-spacing="-2">DSH</text>
+        <circle cx="204" cy="31" r="6" fill="#22d3ee"/>
+      </g>
+      <text x="28" y="716" fill="#718199" font-size="15">优势：32–64 px 最清楚，适合桌面与 favicon</text>
+      <text x="28" y="742" fill="#718199" font-size="15">代价：E 的“透视惊喜”最少</text>
+    </g>
+
+    <line x1="70" y1="940" x2="1730" y2="940" stroke="#1b2738"/>
+    <text x="70" y="970" fill="#718199" font-size="16">图标内使用 BDSH 四字母压缩品牌；正式横向字标始终保留完整拼写 BioDSH。</text>
+    <text x="1730" y="970" fill="#4d6bfe" font-size="16" font-weight="700" text-anchor="end">建议主推 B，保留 C 作为小尺寸简化版</text>
+  </g>
+</svg>

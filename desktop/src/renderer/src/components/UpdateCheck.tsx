@@ -19,7 +19,13 @@ export default function UpdateCheck({ currentVersion }: { currentVersion?: strin
       if (!u) { setS({ kind: 'none', version: currentVersion ?? '' }); return; }
       setS({ kind: 'available', version: u.version, notes: u.body ?? undefined });
       (window as unknown as { __biodshUpdate?: unknown }).__biodshUpdate = u;
-    } catch (e) { setS({ kind: 'error', msg: String(e).slice(0, 160) }); }
+    } catch (e) {
+      // 该平台在 latest.json 里没有条目(如某次只发了 Windows)→ tauri 报 "fallback platforms ... were found"。
+      // 这不是错误,当作"该平台暂无更新"处理,别弹红字吓人。
+      const msg = String(e);
+      if (/fallback platforms|platforms` object|no platform/i.test(msg)) { setS({ kind: 'none', version: currentVersion ?? '' }); return; }
+      setS({ kind: 'error', msg: msg.slice(0, 160) });
+    }
   };
   const install = async () => {
     const u = (window as unknown as { __biodshUpdate?: { downloadAndInstall: (cb: (ev: { event: string; data: { contentLength?: number; chunkLength?: number } }) => void) => Promise<void> } }).__biodshUpdate;

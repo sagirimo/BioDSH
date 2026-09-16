@@ -1,7 +1,9 @@
-import { useEffect, useRef } from 'react';
-import { RefreshCw, Play, AlertTriangle } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { RefreshCw, Play, AlertTriangle, Info, X } from 'lucide-react';
 import { useApp } from '../store';
 import { useT } from '../i18n';
+
+const UPGRADE_NOTICE_KEY = 'biodsh.upgrade-notice.v0.2.6';
 
 // 对话页本身不渲染聊天：它只留出一块区域，主进程把 dsh 的网页视图贴在这块区域上。
 export default function ChatView() {
@@ -9,6 +11,12 @@ export default function ChatView() {
   const { t } = useT();
   const overlayOpen = !settings?.onboarded || overlay > 0;
   const areaRef = useRef<HTMLDivElement>(null);
+  // 升级到 0.2.6(内核 dsh 0.1.2)后,升级前的旧对话可能显示异常——一次性告知,只在老用户(已 onboarded)显示一次
+  const [showUpgrade, setShowUpgrade] = useState(false);
+  useEffect(() => {
+    try { if (settings?.onboarded && !localStorage.getItem(UPGRADE_NOTICE_KEY)) setShowUpgrade(true); } catch { /* */ }
+  }, [settings?.onboarded]);
+  const dismissUpgrade = () => { try { localStorage.setItem(UPGRADE_NOTICE_KEY, '1'); } catch { /* */ } setShowUpgrade(false); };
 
   useEffect(() => {
     if (dsh.state === 'stopped') void startDsh();
@@ -46,6 +54,15 @@ export default function ChatView() {
           
         </div>
       </header>
+      {showUpgrade && (
+        <div className="flex items-start gap-2.5 px-4 py-2.5 no-drag" style={{ background: 'var(--accent-soft)', color: 'var(--text)', borderBottom: '1px solid var(--hairline)' }}>
+          <Info size={15} style={{ color: 'var(--accent)', flexShrink: 0, marginTop: 1 }} />
+          <div className="flex-1 t-caption" style={{ lineHeight: 1.5 }}>
+            {t('本次更新升级了内核。升级前的旧对话可能显示不正常(图或步骤),这是正常现象,新对话不受影响。想接着旧项目做,直接在该项目里新开一个对话即可——智能体会根据项目里的数据继续。')}
+          </div>
+          <button className="btn btn-ghost !h-[24px] !px-2" onClick={dismissUpgrade}><X size={13} /> {t('知道了')}</button>
+        </div>
+      )}
       <div ref={areaRef} className="flex-1 min-h-0 relative" style={{ background: 'var(--surface)' }}>
         {dsh.state !== 'running' && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 rise">

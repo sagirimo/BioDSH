@@ -1,15 +1,21 @@
+import { Award } from 'lucide-react';
 import { useApp } from '../store';
 import { useT } from '../i18n';
 import type { CatalogSkill } from '@shared/types';
 
+// 技能全量可用：不再有「安装/打开」。这里展示技能的可信度信号——官方技能显示评分，社区技能标「未评测」。
 export default function InstallButton({ skill, size = 'sm' }: { skill: CatalogSkill; size?: 'sm' | 'lg' }) {
-  const { statuses, busy, install, env, setTab } = useApp();
+  const { setTab } = useApp();
   const { t } = useT();
-  const st = statuses[skill.id]?.state ?? 'not_installed';
-  const cls = size === 'lg' ? 'btn btn-lg' : 'btn';
-  if (busy[skill.id]) return <button className={`${cls} btn-tint`} disabled><span className="ring spin" style={{ ['--p' as string]: 35, width: 14, height: 14 }} /> {t('安装中')}</button>;
-  if (st === 'installed') return <button className={`${cls} btn-fill`} onClick={() => setTab('chat')}>{t('打开')}</button>;
-  if (st === 'update_available') return <button className={`${cls} btn-primary`} onClick={() => install(skill.id)}>{t('更新')}</button>;
-  if (!env.ready) return <button className={`${cls} btn-tint`} onClick={() => install(skill.id)} title={t('安装后需要先准备分析环境')}>{t('获取')}</button>;
-  return <button className={`${cls} btn-tint`} onClick={() => install(skill.id)}>{t('获取')}</button>;
+  const big = size === 'lg';
+  if (typeof skill.score === 'number') {
+    const c = skill.score >= 85 ? 'var(--green)' : skill.score >= 70 ? 'var(--accent)' : 'var(--text-2)';
+    return (
+      <span className="score-chip" style={{ color: c, borderColor: c, fontSize: big ? 15 : 12, padding: big ? '4px 12px' : '2px 9px' }} title={skill.score_source ?? t('BioDSH 评测（五维加权：正确性/鲁棒性/可复现/离线/效率）')}>
+        <Award size={big ? 15 : 12} /> {skill.score}
+        <span style={{ opacity: 0.6, fontWeight: 400 }}>{big ? ' 分' : ''}</span>
+      </span>
+    );
+  }
+  return <button className={big ? 'btn btn-ghost' : 'btn btn-ghost !h-6 !px-2'} style={{ color: 'var(--text-3)' }} onClick={() => setTab('chat')} title={t('社区技能，尚未经 BioDSH 评测；需要时智能体会自动调用')}>{t('未评测')}</button>;
 }

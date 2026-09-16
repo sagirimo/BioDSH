@@ -7,6 +7,7 @@ mod demos;
 mod files;
 mod git;
 mod migrate;
+mod updater;
 mod paths;
 mod pyenv;
 mod settings;
@@ -148,8 +149,15 @@ const DSH_INIT_SCRIPT: &str = r#"(() => {
       holder.insertAdjacentElement('afterend', img);
     });
   };
+  // 隐藏 dsh 冗余的会话顶栏(面包屑+Session日志):我们外壳已有一条对话栏 + 侧栏显示会话,
+  // 两条栏重复、还有截断/对齐问题。精确定位:含面包屑 _crumbs 的那个 _header 才隐藏,不碰消息内的 header。
+  const hideHeader = () => { document.querySelectorAll('[class*="_crumbs"]').forEach((c) => {
+    // 只隐藏真正的会话顶栏:面包屑若出现在某条消息/工具块/markdown 里,别顺着 closest 把整块消息内容也隐掉。
+    if (c.closest('[data-chat-flow-kind]') || c.closest('[class*="_message"]') || c.closest('[class*="_markdown_"]')) return;
+    const h = c.closest('[class*="_header"]'); if (h && !h.closest('[data-chat-flow-kind]') && !h.closest('[class*="_message"]')) h.style.display = 'none';
+  }); };
   let scheduled = false;
-  const schedule = () => { if (scheduled) return; scheduled = true; requestAnimationFrame(() => { scheduled = false; try { regroup(); decorate(); } catch (e) { console.warn('biodsh collapse', e); } }); };
+  const schedule = () => { if (scheduled) return; scheduled = true; requestAnimationFrame(() => { scheduled = false; try { hideHeader(); regroup(); decorate(); } catch (e) { console.warn('biodsh collapse', e); } }); };
   new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-state', 'data-streaming'] });
   schedule();
   };
@@ -193,6 +201,10 @@ fn ensure_dsh_view(app: &AppHandle, state: &AppState, url: &str) {
     let Some(window) = app.get_window("main") else { return };
     let opener = app.clone();
     let builder = tauri::webview::WebviewBuilder::new("dsh", WebviewUrl::External(url.parse().unwrap()))
+        // 关键:关掉 Tauri 自带的拖放拦截。开着时(默认 true)WebView2 会吞掉 dsh 网页里
+        // <input type=file>/文件夹选择的原生对话框 → dsh 那边"新增本地文件夹/附件"的选项框弹不出来。
+        // 关掉后原生选择框恢复,且网页自身的 HTML5 拖放(ondrop)照常可用。
+        .disable_drag_drop_handler()
         .initialization_script(DSH_INIT_SCRIPT)
         .on_navigation(move |u| {
             if u.host_str() == Some("127.0.0.1") || u.scheme() == "about" { return true; }
@@ -308,10 +320,16 @@ async fn dsh_start(app: AppHandle, state: State<'_, AppState>) -> Result<dsh::Ds
         return Ok(state.dsh.status.lock().unwrap().clone());
     }
     let key = if offline { Some(offline_key) } else { None };
-    // 示范对话：启动 dsh 之前把随包的会话日志导入并挂到示范项目下（每个会话只导一次）
+    // 恢复范例对话:把随包的真跑记录(dsh 0.1.2 录制,带步数/图,格式与用户会话一致)导入 dsh-home 并挂到
+    // 对应项目下;同时清掉旧版本遗留的空壳范例会话。必须在 dsh 启动前(启动后 storages 被读进内存)。
     {
-        let (p, res, node, script) = (state.paths.clone(), crate::paths::resource(&app, "demos"), crate::paths::node_binary(&app), crate::paths::resource(&app, "scripts").join("import-session.mjs"));
-        let _ = tauri::async_runtime::spawn_blocking(move || demos::import_sessions(&res, &p, &node, &script)).await;
+        let (p, res, node, script) = (
+            state.paths.clone(),
+            crate::paths::resource(&app, "demos"),
+            crate::paths::node_binary(&app),
+            crate::paths::resource(&app, "scripts").join("import-session.mjs"),
+        );
+        let _ = tauri::async_runtime::spawn_blocking(move || demos::restore_demo_sessions(&res, &p, &node, &script)).await;
     }
     let st = tauri::async_runtime::spawn_blocking(move || d.start_with(&app2, &paths, &ws2, key, extra_env, &mcp)).await.map_err(|e| e.to_string())?;
     if st.state == "running" {
@@ -368,12 +386,13 @@ async fn refdata_install(app: AppHandle, state: State<'_, AppState>, id: String)
 }
 #[tauri::command]
 fn refdata_remove(state: State<'_, AppState>, id: String) -> Vec<refdata::PackStatus> { refdata::remove(&state.paths, &id) }
-/// 设置页「重新安装示范项目」：再复制一遍（不覆盖已有文件）并注册工作区。
+/// 设置页「重新安装示范项目」：再复制一遍数据+成品图表(不覆盖已有文件)并注册 4 个工作区。
+/// 抹掉 .demo-content-v3 marker → 前端随后 restartDsh(),dsh 启动前会重跑 restore_demo_sessions,
+/// 把 4 个范例的真跑对话(带步数/图)重新导入并挂回项目下。
 #[tauri::command]
 async fn demos_seed(app: AppHandle, state: State<'_, AppState>) -> Result<Vec<demos::Demo>, String> {
     let (paths, res) = (state.paths.clone(), crate::paths::resource(&app, "demos"));
-    // 重置示范项目：清掉"对话已导入"标记，前端随后重启智能体，启动前会把附带的对话重新导入并挂回项目
-    let _ = std::fs::remove_dir_all(paths.dsh_home.join(".demo-sessions"));
+    let _ = std::fs::remove_file(paths.dsh_home.join(".demo-content-v4")); // 让下次 dsh 启动重新导入范例对话(并清掉旧范例)
     let url = state.dsh.status.lock().unwrap().url.clone();
     let out = tauri::async_runtime::spawn_blocking(move || demos::seed(&res, &paths, url.as_deref(), &dsh_call)).await.map_err(|e| e.to_string())?;
     let mut s = state.settings.lock().unwrap(); s.demos_seeded = true; s.save(&state.paths);
@@ -384,6 +403,8 @@ async fn dsh_restart(app: AppHandle, state: State<'_, AppState>) -> Result<dsh::
     state.dsh.stop(&app);
     dsh_start(app, state).await
 }
+#[tauri::command]
+fn dsh_stop(app: AppHandle, state: State<'_, AppState>) { state.dsh.stop(&app); }
 #[tauri::command]
 fn dsh_reload(app: AppHandle) { if let Some(v) = app.get_webview("dsh") { let _ = v.eval("location.reload()"); } }
 #[tauri::command]
@@ -433,16 +454,250 @@ async fn git_status(path: String) -> git::GitStatus { tauri::async_runtime::spaw
 async fn git_init(path: String) -> Result<git::GitStatus, String> { tauri::async_runtime::spawn_blocking(move || git::init(&path)).await.map_err(|e| e.to_string())? }
 #[tauri::command]
 async fn git_commit(path: String, message: String) -> Result<git::GitStatus, String> { tauri::async_runtime::spawn_blocking(move || git::commit(&path, &message)).await.map_err(|e| e.to_string())? }
+/// 从 dsh web URL 取「源」(scheme://host:port)，丢掉 path 和 ?token=…。
+/// dsh 0.1.2 起 URL 带 `?token=`，直接 `{url}/api/…` 会拼出坏地址(token 夹在中间)导致 RPC 全挂、项目列不出来。
+fn origin_of(u: &str) -> String {
+    if let Some(p) = u.find("://") {
+        let after = p + 3;
+        let rest = &u[after..];
+        let end = rest.find(['/', '?', '#']).unwrap_or(rest.len());
+        return format!("{}{}", &u[..after], &rest[..end]);
+    }
+    u.trim_end_matches('/').to_string()
+}
+// 项目标题存储：dsh 0.1.2 去掉了 workspace 模型(项目=会话 cwd 分组,无标题字段)。
+// 为兼容旧 app 的 workspace.create/rename/list(给项目起名、加空项目),这里用一个 cwd→标题 的小 JSON 兜住。
+// 存在数据目录里,随升级保留。也充当「已知项目」登记表(没有会话的空项目也能显示)。
+static TITLES_PATH: std::sync::OnceLock<std::path::PathBuf> = std::sync::OnceLock::new();
+fn load_titles() -> serde_json::Map<String, serde_json::Value> {
+    TITLES_PATH.get().and_then(|p| std::fs::read_to_string(p).ok())
+        .and_then(|t| serde_json::from_str::<serde_json::Map<String, serde_json::Value>>(&t).ok()).unwrap_or_default()
+}
+fn save_titles(m: &serde_json::Map<String, serde_json::Value>) {
+    if let Some(p) = TITLES_PATH.get() {
+        if let Some(dir) = p.parent() { let _ = std::fs::create_dir_all(dir); }
+        let _ = std::fs::write(p, serde_json::to_string(m).unwrap_or_default());
+    }
+}
+fn basename(p: &str) -> String { p.rsplit(['\\', '/']).find(|s| !s.is_empty()).unwrap_or(p).to_string() }
+/// 把"我们的 workspaceId(= 文件夹路径)"解析成 dsh 0.1.2 的真实 workspaceId。
+/// dsh 的 `workspace/create` 是幂等的:目录已注册就直接返回,没注册就登记。返回其真实 workspaceId。
+/// 会话必须用真实 workspaceId 创建才会绑进工作区,否则 dsh 显示"选择工作区"、项目用不了。
+fn dsh_workspace_id(url: &str, path: &str) -> Option<String> {
+    dsh_raw(url, "workspace/create", "request", serde_json::json!({ "path": path })).ok()
+        .and_then(|v| v.get("workspace").and_then(|w| w.get("workspaceId")).and_then(|x| x.as_str()).map(String::from))
+}
+/// dsh 0.1.2 的工作区持久化文件(dsh-atomic-write 原子写,读到的始终是合法 JSON)。与标题库同目录。
+fn ws_json_path() -> Option<std::path::PathBuf> { TITLES_PATH.get().and_then(|p| p.parent()).map(|d| d.join("workspace.json")) }
+/// 一次性迁移标记:把老适配(标题库)里的项目登记进 dsh 真实工作区,只做一次。
+fn ws_migrated_marker() -> Option<std::path::PathBuf> { TITLES_PATH.get().and_then(|p| p.parent()).map(|d| d.join(".biodsh-ws-migrated-v2")) }
+fn norm_path(p: &str) -> String { p.trim_end_matches(['\\', '/']).replace('/', "\\").to_lowercase() }
+/// 读 dsh 真实工作区列表(tables.workspaces,按 global.workspaceIds 顺序),重塑成前端 workspace 形状。
+fn read_workspaces() -> Option<(Vec<serde_json::Value>, serde_json::Value)> {
+    use serde_json::json;
+    let doc: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(ws_json_path()?).ok()?).ok()?;
+    let table = doc.pointer("/tables/workspaces")?.as_object()?;
+    let archived = doc.pointer("/global/archivedSessionIds").cloned().unwrap_or_else(|| json!([]));
+    let ids: Vec<String> = doc.pointer("/global/workspaceIds").and_then(|x| x.as_array())
+        .map(|a| a.iter().filter_map(|x| x.as_str().map(String::from)).collect())
+        .unwrap_or_else(|| table.keys().cloned().collect());
+    let items = ids.iter().filter_map(|id| table.get(id).map(|w| json!({
+        "workspaceId": id,
+        "title": w.get("title").cloned().unwrap_or_else(|| json!("")),
+        "path": w.get("path").cloned().unwrap_or_else(|| json!("")),
+        "sessionIds": w.get("sessionIds").cloned().unwrap_or_else(|| json!([])),
+        "updatedAt": w.get("updatedAt").cloned().unwrap_or_else(|| json!("")),
+    }))).collect();
+    Some((items, archived))
+}
+/// 升级迁移(只做一次):把旧版(0.1.1 workspace 模型)里的项目名 + 示范项目名,搬进 0.1.2 的标题库。
+/// 让老用户升级后项目/范例仍显示原来的名字,而不是文件夹名。纯读旧数据、写新库,不动任何会话/项目内容。
+fn migrate_titles(paths: &AppPaths, demos_res: &std::path::Path) {
+    let Some(store) = TITLES_PATH.get() else { return };
+    if store.exists() { return; }
+    let mut m = serde_json::Map::new();
+    // 1) 旧 workspace.json 的用户项目标题(cwd → title)
+    if let Ok(t) = std::fs::read_to_string(paths.dsh_home.join("storages").join("workspace.json")) {
+        if let Ok(doc) = serde_json::from_str::<serde_json::Value>(&t) {
+            if let Some(ws) = doc.pointer("/tables/workspaces").and_then(|x| x.as_object()) {
+                for (_, w) in ws {
+                    if let (Some(p), Some(title)) = (w.get("path").and_then(|x| x.as_str()), w.get("title").and_then(|x| x.as_str())) {
+                        if !title.is_empty() { m.insert(p.to_string(), serde_json::json!(title)); }
+                    }
+                }
+            }
+        }
+    }
+    // 2) 示范项目标题(cwd = ~/BioDSH/demos/<id>)
+    if let Ok(rd) = std::fs::read_dir(demos_res) {
+        for e in rd.flatten().filter(|e| e.path().is_dir()) {
+            let id = e.file_name().to_string_lossy().to_string();
+            if let Some(title) = std::fs::read_to_string(e.path().join("demo.json")).ok()
+                .and_then(|t| serde_json::from_str::<serde_json::Value>(&t).ok())
+                .and_then(|v| v.get("title").and_then(|x| x.as_str()).map(String::from)) {
+                let cwd = paths.root.join("demos").join(&id).to_string_lossy().to_string();
+                m.entry(cwd).or_insert(serde_json::json!(title));
+            }
+        }
+    }
+    if !m.is_empty() { save_titles(&m); }
+}
+
+static DSH_COOKIES: std::sync::OnceLock<std::sync::Mutex<std::collections::HashMap<String, String>>> = std::sync::OnceLock::new();
+fn cookie_cache() -> &'static std::sync::Mutex<std::collections::HashMap<String, String>> {
+    DSH_COOKIES.get_or_init(|| std::sync::Mutex::new(std::collections::HashMap::new()))
+}
+/// dsh 0.1.2 起 /api 需要浏览器会话签名 cookie：GET `/?token=…`(index 交换)拿到 `dsh-auth-*` cookie，后续 /api 带上它。
+/// (0.1.1 无此鉴权层，旧 app 无 cookie 也能调 → 升级后 RPC 全 401、项目列不出来。) 按源缓存；401 时强制重换。
+fn auth_cookie(full_url: &str, force: bool) -> Option<String> {
+    let origin = origin_of(full_url);
+    if !force { if let Some(c) = cookie_cache().lock().unwrap().get(&origin) { return Some(c.clone()); } }
+    // 关键：dsh 0.1.2 的 index `/?token=` 会 303 重定向到干净 URL，Set-Cookie 在那个 303 上。
+    // ureq 默认跟随重定向 → 最终响应没有 cookie（这正是升级后 app RPC 全 401、项目列不出来的直接原因）。
+    // 禁用重定向，从 303/200 本身读 dsh-auth cookie。
+    let agent = ureq::builder().redirects(0).timeout(std::time::Duration::from_secs(10)).build();
+    let resp = match agent.get(full_url).call() {
+        Ok(r) => r,
+        Err(ureq::Error::Status(_, r)) => r,
+        Err(_) => return None,
+    };
+    let cookie = resp.all("set-cookie").into_iter()
+        .find(|sc| sc.starts_with("dsh-auth-"))
+        .map(|sc| sc.split(';').next().unwrap_or(sc).trim().to_string())?;
+    cookie_cache().lock().unwrap().insert(origin, cookie.clone());
+    Some(cookie)
+}
 /// 调 dsh 的 HTTP RPC：POST /api/<method>，信封 {type:'client-request', rpcId, method, payload}
-fn dsh_call(url: &str, method: &str, payload: serde_json::Value) -> Result<serde_json::Value, String> {
-    let body = serde_json::json!({ "type": "client-request", "rpcId": uuid::Uuid::new_v4().to_string(), "method": method, "payload": payload });
-    let resp = ureq::post(&format!("{}/api/{}", url.trim_end_matches('/'), method))
-        .set("Content-Type", "application/json").timeout(std::time::Duration::from_secs(20))
-        .send_json(body).map_err(|e| match e { ureq::Error::Status(c, r) => format!("HTTP {c}: {}", r.into_string().unwrap_or_default()), e => e.to_string() })?;
+/// dsh 0.1.2 原生 RPC：POST /api/<endpoint>，信封 payload={args:{<wire>: args}}，带浏览器会话 cookie。
+fn dsh_raw(url: &str, endpoint: &str, wire: &str, args: serde_json::Value) -> Result<serde_json::Value, String> {
+    let payload = serde_json::json!({ "args": { wire: args } });
+    let body = serde_json::json!({ "type": "client-request", "rpcId": uuid::Uuid::new_v4().to_string(), "method": endpoint, "payload": payload });
+    let ep = format!("{}/api/{}", origin_of(url), endpoint);
+    let post = |cookie: Option<String>| {
+        let mut req = ureq::post(&ep).set("Content-Type", "application/json").timeout(std::time::Duration::from_secs(30));
+        if let Some(c) = cookie { req = req.set("Cookie", &c); }
+        req.send_json(body.clone())
+    };
+    let resp = match post(auth_cookie(url, false)) {
+        Err(ureq::Error::Status(401, _)) => post(auth_cookie(url, true)), // cookie 过期/换端口 → 重换一次
+        other => other,
+    }.map_err(|e| match e { ureq::Error::Status(c, r) => format!("HTTP {c}: {}", r.into_string().unwrap_or_default()), e => e.to_string() })?;
     let v: serde_json::Value = resp.into_json().map_err(|e| e.to_string())?;
     let result = v.get("result").cloned().unwrap_or(serde_json::Value::Null);
     if result.get("ok").and_then(|x| x.as_bool()) == Some(true) { Ok(result.get("value").cloned().unwrap_or(serde_json::Value::Null)) }
     else { Err(result.get("error").map(|e| e.to_string()).unwrap_or_else(|| "rpc failed".into())) }
+}
+/// 兼容层：把 app 旧的 RPC 方法名/数据模型翻译到 dsh 0.1.2 新协议（0.1.2 去掉了 workspace，改成会话+cwd）。
+/// 见记忆 dsh-012-rpc-protocol。renderer 完全不用改。
+fn dsh_call(url: &str, method: &str, payload: serde_json::Value) -> Result<serde_json::Value, String> {
+    use serde_json::json;
+    match method {
+        // 「项目」= dsh 0.1.2 的真实工作区(读 workspace.json:真实 workspaceId + 真实 sessionIds)。
+        // 老适配把项目只写进标题库、没在 dsh 建工作区 → 会话不绑定、点开显示"选择工作区"。这里改成
+        // 直接读 dsh 真实工作区;并做一次性迁移:把标题库里(磁盘存在、dsh 还没登记)的项目注册进 dsh。
+        "workspace.list" => {
+            if let Some(marker) = ws_migrated_marker() {
+                if !marker.exists() {
+                    let existing: std::collections::HashSet<String> = read_workspaces()
+                        .map(|(items, _)| items.iter().filter_map(|it| it.get("path").and_then(|x| x.as_str()).map(norm_path)).collect())
+                        .unwrap_or_default();
+                    // 待登记的项目路径 = 标题库登记的 ∪ 现有会话的 cwd(把老 cwd 模式下的项目也保住,如 desproject)。
+                    let mut paths: std::collections::HashSet<String> = load_titles().keys().cloned().collect();
+                    if let Ok(v) = dsh_raw(url, "session/list", "_request", json!({})) {
+                        if let Some(items) = v.get("items").and_then(|x| x.as_array()) {
+                            for it in items {
+                                if let Some(cwd) = it.get("cwd").and_then(|x| x.as_str()) {
+                                    if !cwd.is_empty() { paths.insert(cwd.to_string()); }
+                                }
+                            }
+                        }
+                    }
+                    for p in &paths {
+                        if std::path::Path::new(p).is_dir() && !existing.contains(&norm_path(p)) {
+                            let _ = dsh_raw(url, "workspace/create", "request", json!({ "path": p }));
+                        }
+                    }
+                    let _ = std::fs::write(&marker, "1");
+                }
+            }
+            match read_workspaces() {
+                Some((items, archived)) => Ok(json!({ "items": items, "archivedSessionIds": archived })),
+                // 读不到 workspace.json(极少数情况)→ 退回会话 cwd 分组,至少能列出来
+                None => {
+                    let v = dsh_raw(url, "session/list", "_request", json!({}))?;
+                    let empty = vec![];
+                    let items = v.get("items").and_then(|x| x.as_array()).unwrap_or(&empty);
+                    let mut map: std::collections::BTreeMap<String, Vec<String>> = Default::default();
+                    for it in items {
+                        let cwd = it.get("cwd").and_then(|x| x.as_str()).unwrap_or("").to_string();
+                        if cwd.is_empty() { continue; }
+                        let sid = it.get("sessionId").and_then(|x| x.as_str()).unwrap_or("").to_string();
+                        map.entry(cwd).or_default().push(sid);
+                    }
+                    let titles = load_titles();
+                    for k in titles.keys() { map.entry(k.clone()).or_default(); }
+                    let ws: Vec<serde_json::Value> = map.into_iter().map(|(cwd, sids)| {
+                        let title = titles.get(&cwd).and_then(|x| x.as_str()).map(String::from).unwrap_or_else(|| basename(&cwd));
+                        json!({ "workspaceId": cwd, "title": title, "path": cwd, "sessionIds": sids, "updatedAt": "" })
+                    }).collect();
+                    Ok(json!({ "items": ws, "archivedSessionIds": [] }))
+                }
+            }
+        }
+        // 0.1.2 的 session/list 条目已与 renderer 的 SessionRow(含 projections.values)对齐 → 原样透传
+        "session.list" => dsh_raw(url, "session/list", "_request", json!({})),
+        // 新对话：workspaceId 通常已是 dsh 真实工作区 id(来自 workspace.list),直接建会话即绑定。
+        // 若传的是文件夹路径(含分隔符,如 demos/默认工作区首建),先解析成真实 workspaceId;都失败才退回 cwd。
+        "session.create" => {
+            let mut a = serde_json::Map::new();
+            if let Some(p) = payload.get("workspaceId").and_then(|x| x.as_str()).filter(|s| !s.is_empty()) {
+                if p.contains(['\\', '/', ':']) {
+                    match dsh_workspace_id(url, p) {
+                        Some(wid) => { a.insert("workspaceId".into(), json!(wid)); }
+                        None => { a.insert("cwd".into(), json!(p)); }
+                    }
+                } else {
+                    a.insert("workspaceId".into(), json!(p));
+                }
+            }
+            dsh_raw(url, "session/create", "request", serde_json::Value::Object(a))
+        }
+        "session.rename" => dsh_raw(url, "session/rename", "request", payload),
+        // dsh 0.1.2 的 session/prompt 必填 requestId(缺了整条被拒 → "数据库/让智能体分析"点了没反应)。
+        // 前端多处发 prompt 没带 requestId,这里统一补上,覆盖所有调用方。
+        "session.prompt" => {
+            let mut p = payload;
+            if p.get("requestId").is_none() {
+                if let Some(o) = p.as_object_mut() { o.insert("requestId".into(), json!(uuid::Uuid::new_v4().to_string())); }
+            }
+            dsh_raw(url, "session/prompt", "request", p)
+        }
+        // 加项目 → dsh 原生 workspace/create{path}(幂等),直接返回真实工作区({workspace:{真实id,...}, created})。
+        // 同时把路径记进标题库(仅作一次性迁移来源;列表已直接读 dsh)。
+        "workspace.create" => {
+            let path = payload.get("path").and_then(|x| x.as_str()).unwrap_or("").to_string();
+            if path.is_empty() { return Ok(json!({ "created": false, "workspace": { "workspaceId": "" } })); }
+            let v = dsh_raw(url, "workspace/create", "request", json!({ "path": path }))?;
+            let mut m = load_titles(); if !m.contains_key(&path) { m.insert(path.clone(), json!(basename(&path))); save_titles(&m); }
+            Ok(v)
+        }
+        // 起名/归档/移除 → workspaceId 已是 dsh 真实 id(来自 workspace.list),直接调原生 API。
+        "workspace.rename" => {
+            if let (Some(id), Some(t)) = (payload.get("workspaceId").and_then(|x| x.as_str()), payload.get("title").and_then(|x| x.as_str())) {
+                let _ = dsh_raw(url, "workspace/rename", "request", json!({ "workspaceId": id, "title": t }));
+            }
+            Ok(json!({ "ok": true }))
+        }
+        "workspace.archiveSession" => dsh_raw(url, "workspace/archiveSession", "request", payload),
+        "workspace.delete" => {
+            if let Some(id) = payload.get("workspaceId").and_then(|x| x.as_str()) {
+                let _ = dsh_raw(url, "workspace/delete", "request", json!({ "workspaceId": id }));
+            }
+            Ok(json!({ "ok": true }))
+        }
+        // 通用兜底：a.b → /api/a/b，args={request: payload}
+        other => dsh_raw(url, &other.replacen('.', "/", 1), "request", payload),
+    }
 }
 fn dsh_url(state: &AppState) -> Result<String, String> { state.dsh.status.lock().unwrap().url.clone().ok_or_else(|| "dsh 未运行".into()) }
 
@@ -467,6 +722,61 @@ async fn dsh_new_session(app: AppHandle, state: State<'_, AppState>, workspace_i
     dsh_open_session(app, id.clone());
     Ok(id)
 }
+
+/// 语义搜索:用包里的 e5 模型把一句查询编码成归一化向量(离线,spawn 一次 node)。
+/// 前端拿到向量后与预计算的数据库/技能向量做余弦排序。模型不可用/出错则返回 Err,前端回退词法。
+#[tauri::command]
+async fn embed_query(app: AppHandle, text: String) -> Result<Vec<f32>, String> {
+    let node = crate::paths::node_binary(&app);
+    let embed_dir = crate::paths::resource(&app, "embed");
+    let script = embed_dir.join("embed-query.mjs");
+    let models = embed_dir.join("models");
+    tauri::async_runtime::spawn_blocking(move || {
+        let mut cmd = std::process::Command::new(&node);
+        cmd.arg(&script).arg(&text).current_dir(&embed_dir)
+            .env("BIODSH_EMBED_OFFLINE", "1").env("BIODSH_EMBED_CACHE", &models)
+            .stdout(std::process::Stdio::piped()).stderr(std::process::Stdio::piped());
+        #[cfg(windows)] { use std::os::windows::process::CommandExt; cmd.creation_flags(0x0800_0000); }
+        let out = cmd.output().map_err(|e| e.to_string())?;
+        if !out.status.success() { return Err(String::from_utf8_lossy(&out.stderr).trim().to_string()); }
+        serde_json::from_slice::<Vec<f32>>(&out.stdout).map_err(|e| format!("向量解析失败: {e}"))
+    }).await.map_err(|e| e.to_string())?
+}
+
+/// 读数据库目录 + 预计算向量(资源文件),供 DatabaseView 渲染与语义搜索。
+#[tauri::command]
+fn db_catalog(app: AppHandle) -> Result<serde_json::Value, String> {
+    let dir = crate::paths::resource(&app, "databases");
+    let cat: serde_json::Value = serde_json::from_str(&std::fs::read_to_string(dir.join("catalog.json")).map_err(|e| e.to_string())?).map_err(|e| e.to_string())?;
+    let vecs: serde_json::Value = std::fs::read_to_string(dir.join("vectors.json")).ok()
+        .and_then(|t| serde_json::from_str(&t).ok()).unwrap_or_else(|| serde_json::json!({}));
+    Ok(serde_json::json!({ "catalog": cat, "vectors": vecs }))
+}
+
+/// 轻量差量更新:查 delta.json(验签+比版本)。有更新返回 Delta,调用方据 fullRequired 决定走轻量还是整包。
+#[tauri::command]
+async fn light_update_check() -> Result<Option<updater::Delta>, String> {
+    let url = "https://github.com/sagirimo/BioDSH/releases/latest/download/delta.json".to_string();
+    let cur = env!("CARGO_PKG_VERSION").to_string();
+    tauri::async_runtime::spawn_blocking(move || updater::check(&url, &cur)).await.map_err(|e| e.to_string())?
+}
+
+/// 轻量差量更新:下载并校验 delta 里的变化文件(落地 .new)→ 停 dsh → 生成替换助手 → 退出重启。
+#[tauri::command]
+async fn light_update_apply(app: AppHandle, state: State<'_, AppState>, delta: updater::Delta) -> Result<(), String> {
+    if delta.full_required { return Err("此更新需要整包安装(fullRequired)".into()); }
+    let exe = std::env::current_exe().map_err(|e| e.to_string())?;
+    let install_dir = exe.parent().ok_or("找不到安装目录")?.to_path_buf();
+    let (idir, d2) = (install_dir.clone(), delta.clone());
+    let staged = tauri::async_runtime::spawn_blocking(move || updater::stage(&idir, &d2)).await.map_err(|e| e.to_string())??;
+    // 停 dsh(免锁 koffi 等原生模块);projection 缓存会在新版本启动时按版本变化自动清理。
+    state.dsh.stop(&app);
+    std::thread::sleep(std::time::Duration::from_millis(500));
+    updater::swap_and_relaunch(&staged, &exe, &install_dir)?;
+    app.exit(0);
+    Ok(())
+}
+
 fn dsh_version(app: &AppHandle) -> String {
     let f = paths::resource(app, "dsh/node_modules").join("@deepseek-ai").join("dsh").join("package.json");
     std::fs::read_to_string(f).ok().and_then(|t| serde_json::from_str::<serde_json::Value>(&t).ok()).and_then(|v| v.get("version").and_then(|x| x.as_str()).map(String::from)).unwrap_or_else(|| "?".into())
@@ -518,7 +828,9 @@ async fn session_export(app: AppHandle, state: State<'_, AppState>, session_id: 
     let target = target.to_string();
     let t2 = target.clone();
     tauri::async_runtime::spawn_blocking(move || -> Result<(), String> {
-        let resp = ureq::get(&format!("{}/api/session.export?sessionId={}&includeDescendants=true", url.trim_end_matches('/'), session_id)).timeout(std::time::Duration::from_secs(120)).call().map_err(|e| e.to_string())?;
+        let mut req = ureq::get(&format!("{}/api/session/export?sessionId={}&includeDescendants=true", origin_of(&url), session_id)).timeout(std::time::Duration::from_secs(120));
+        if let Some(c) = auth_cookie(&url, false) { req = req.set("Cookie", &c); }
+        let resp = req.call().map_err(|e| e.to_string())?;
         let mut bytes = Vec::new();
         std::io::Read::read_to_end(&mut resp.into_reader(), &mut bytes).map_err(|e| e.to_string())?;
         std::fs::write(&t2, bytes).map_err(|e| e.to_string())
@@ -654,6 +966,9 @@ pub fn run() {
                             let _ = std::fs::remove_dir_all(local.join(sub));
                         }
                     }
+                    // dsh 的会话渲染缓存在升级过程中可能损坏/失配（表现为个别会话打不开、提示重启也无效）。
+                    // 它可从原始会话日志重建，版本变化时删掉让它重建；原始记录（sessions/）不受影响。
+                    let _ = std::fs::remove_file(paths.dsh_home.join("storages").join("session_projcache.json"));
                     let _ = std::fs::write(&stamp, &current);
                 }
             }
@@ -662,6 +977,8 @@ pub fn run() {
             let settings = AppSettings::load(&paths);
             // 本地只读图片服务：让对话里能内嵌显示工作区里的图
             let files = files_server::FilesServer::start(vec![paths.root.clone(), std::path::PathBuf::from(&settings.workspace)]);
+            let _ = TITLES_PATH.set(paths.dsh_home.join("storages").join("biodsh-project-titles.json"));
+            migrate_titles(&paths, &crate::paths::resource(&handle, "demos"));
             app.manage(AppState { paths, settings: Mutex::new(settings), dsh: Arc::new(DshManager::new()), pyenv: Arc::new(PyEnvManager::new()), dsh_bounds: Mutex::new((Rect::default(), false)), files });
             build_main_window(&handle)?;
             Ok(())
@@ -676,9 +993,9 @@ pub fn run() {
         })
         .invoke_handler(tauri::generate_handler![
             app_info, settings_get, settings_set, credential_get, credential_set,
-            env_status, env_install, dsh_status, dsh_start, dsh_restart, dsh_reload, dsh_bounds,
+            env_status, env_install, dsh_status, dsh_start, dsh_restart, dsh_stop, dsh_reload, dsh_bounds,
             skills_catalog, skills_statuses, skills_readme, skills_install, skills_uninstall,
-            open_path, open_external, pick_folder, window_control, client_log, deepseek_balance, git_status, git_init, git_commit, dsh_rpc, dsh_open_session, dsh_new_session, check_updates, assistant_ask, session_export, workspace_files, read_workspace_image, ratings_get, ratings_set, session_delete, env_install_extra, migrate_scan, migrate_import, refdata_list, refdata_install, refdata_remove, demos_seed, dsh_set_context
+            open_path, open_external, pick_folder, window_control, client_log, deepseek_balance, git_status, git_init, git_commit, dsh_rpc, dsh_open_session, dsh_new_session, check_updates, assistant_ask, session_export, workspace_files, read_workspace_image, ratings_get, ratings_set, session_delete, env_install_extra, migrate_scan, migrate_import, refdata_list, refdata_install, refdata_remove, demos_seed, dsh_set_context, embed_query, db_catalog, light_update_check, light_update_apply
         ])
         .run(tauri::generate_context!())
         .expect("error while running BioDSH");

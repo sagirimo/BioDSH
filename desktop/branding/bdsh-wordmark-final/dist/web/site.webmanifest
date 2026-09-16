@@ -1,0 +1,19 @@
+{
+  "name": "BioDSH",
+  "short_name": "BioDSH",
+  "display": "standalone",
+  "background_color": "#0A1428",
+  "theme_color": "#0A1428",
+  "icons": [
+    {
+      "src": "android-chrome-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "android-chrome-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
