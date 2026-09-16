@@ -21,6 +21,7 @@ const out = opt('--out', 'src-tauri/target-bundle/release/delta.json');
 const owner = opt('--owner', 'sagirimo');
 const repo = opt('--repo', 'BioDSH');
 const signKey = opt('--sign');        // 传私钥路径则顺带用 tauri signer 签出 <out>.sig(空密码)
+const forceFull = args.includes('--full-required'); // 跨大版本(dsh 运行时/资源变了)强制整包
 if (!version) { console.error('必须 --version'); process.exit(1); }
 
 const sha256 = (p) => createHash('sha256').update(readFileSync(p)).digest('hex');
@@ -37,7 +38,7 @@ const files = [{
 }];
 
 // 若给了上一版清单,比对判断是否需要整包(暂只对比 exe;资源比对留待接入资源清单)
-let fullRequired = false;
+let fullRequired = forceFull;
 if (basePath && existsSync(basePath)) {
   try {
     const base = JSON.parse(readFileSync(basePath, 'utf8'));
