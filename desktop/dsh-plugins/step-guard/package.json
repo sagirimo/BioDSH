@@ -1,0 +1,9 @@
+{
+  "name": "@biodsh/step-guard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "BioDSH convergence guard: nudges the agent to finalize when a turn runs long (steps/seconds), via dsh's official agent/pre-step hook.",
+  "main": "index.js",
+  "exports": "./index.js"
+}

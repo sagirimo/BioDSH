@@ -56,9 +56,9 @@ rmSync(path.join(dir, 'node_modules', '.bin'), { recursive: true, force: true })
 patchGuard(dir);
 patchToolcall(dir);
 patchSse(dir);
-// 技能语义路由:0.3.0 起改为 cordis 插件(官方扩展面),不再打补丁改 dsh 代码。把插件包拷进运行时,
-// 由 cordis.patch.yml(ensure_home 生成)以 `@biodsh/skill-router` 加载。
-for (const p of ['skill-router']) {
+// BioDSH 的 cordis 插件(官方扩展面,不打补丁改 dsh 代码):skill-router=技能语义路由;step-guard=收敛护栏(治跑飞)。
+// 把插件包拷进运行时,由 cordis.patch.yml(ensure_home 生成)以 `@biodsh/<name>` 加载。
+for (const p of ['skill-router', 'step-guard']) {
   const src = path.join(root, 'dsh-plugins', p);
   if (existsSync(src)) {
     const dst = path.join(dir, 'node_modules', '@biodsh', p);

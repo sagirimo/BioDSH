@@ -157,8 +157,8 @@ impl DshManager {
         let patch = home.join("cordis.patch.yml");
         let existing = fs::read_to_string(&patch).unwrap_or_default();
         let marker = |v: &str| existing.contains(&format!("# biodsh-minimal {v}"));
-        // v7:去掉 agent-presets/default:biodsh(不再用预设);老 marker 一律重建。
-        if !patch.exists() || marker("v1") || marker("v2") || marker("v3") || marker("v4") || marker("v5") || marker("v6") {
+        // v7:去掉 agent-presets/default:biodsh(不再用预设);v8:加收敛护栏插件 step-guard;老 marker 一律重建。
+        if !patch.exists() || marker("v1") || marker("v2") || marker("v3") || marker("v4") || marker("v5") || marker("v6") || marker("v7") {
             // cordis.patch 两类条目:① 改已有插件 = 顶层 `- id: X, <覆盖字段>`(dsh-app-boot 按 id 合并);
             //   ② 加新插件 = `- insert: [ <条目> ]`(缺 insert 的新 id 只会 warn "entry not found" 静默失效)。
             // 修改类:精简掉多余 UI(disabled)+ 换 BioDSH 人设(system-prompt.persona)+ 官方技能目录(skill-filesystem)。
@@ -169,8 +169,14 @@ impl DshManager {
             // 新增类(insert):技能语义路由插件(0.3.0 正交化,不再打补丁改 dsh)+ 外接 MCP 服务。
             let mut inserts: Vec<String> = Vec::new();
             // 用绝对 file:// URL 加载插件(cordis loader 按配置文件所在目录解析裸包名,dsh-home 下找不到 @biodsh;绝对路径最稳)。
-            let plugin_url = format!("file:///{}", skill_router_plugin.display().to_string().replace('\\', "/").trim_start_matches('/'));
-            inserts.push(format!("    - id: biodsh-skill-router\n      name: {}", yaml_str(&plugin_url)));
+            let file_url = |p: &Path| format!("file:///{}", p.display().to_string().replace('\\', "/").trim_start_matches('/'));
+            inserts.push(format!("    - id: biodsh-skill-router\n      name: {}", yaml_str(&file_url(skill_router_plugin))));
+            // 收敛护栏(治跑飞,R1 实测:难题超时 8→0、关技能 56%→72%):与 skill-router 同目录 @biodsh/step-guard;
+            // 阈值由 spawn 时的 BIODSH_GUARD_* 环境变量决定(见 start_with)。
+            let step_guard_plugin = skill_router_plugin.parent().and_then(Path::parent).map(|d| d.join("step-guard").join("index.js"));
+            if let Some(p) = step_guard_plugin.filter(|p| p.exists()) {
+                inserts.push(format!("    - id: biodsh-step-guard\n      name: {}", yaml_str(&file_url(&p))));
+            }
             // 每个 MCP 服务一个 dsh-mcp-client 实例(工具名 mcp__<name>__<tool>);字段按 insert 的两层缩进(6/8 空格)。
             for m in mcp.iter().filter(|m| m.enabled != Some(false)) {
                 let name: String = m.name.chars().filter(|c| c.is_ascii_alphanumeric() || *c == '_' || *c == '-').take(32).collect();
@@ -189,7 +195,7 @@ impl DshManager {
                 inserts.push(y.trim_end().to_string());
             }
             body.push(format!("- insert:\n{}", inserts.join("\n")));
-            let _ = fs::write(&patch, format!("# biodsh-minimal v7 — BioDSH 精简模式 + BioDSH 人设(全局 persona) + 技能路由插件 + 技能全量可用 + MCP 接入（删除本文件并重启即可恢复 dsh 默认）\n{}\n", body.join("\n")));
+            let _ = fs::write(&patch, format!("# biodsh-minimal v8 — BioDSH 精简模式 + BioDSH 人设(全局 persona) + 技能路由插件 + 收敛护栏 + 技能全量可用 + MCP 接入（删除本文件并重启即可恢复 dsh 默认）\n{}\n", body.join("\n")));
         }
         let settings = home.join("settings.yaml");
         if !settings.exists() {
@@ -235,6 +241,10 @@ impl DshManager {
             // 再由 patch-dsh-skill-router 按最新用户消息排序、只放 top-K 进上下文(见 BIODSH_SKILL_CATALOG_MAX)。
             .env("DSH_BUNDLED_SKILL_DIR", crate::paths::resource(app, "community-skills"))
             .env("BIODSH_SKILL_CATALOG_MAX", "40")
+            // 收敛护栏(@biodsh/step-guard):本轮用了这么多步/秒就提醒 agent 收尾(软)/立刻作答(硬)。
+            // 阈值来自 R1 实测(v2:难题超时 8→0、多救回 1 题、不误伤自己会收敛的题);产品无 400s 硬墙,时间上限再放宽。
+            .env("BIODSH_GUARD_SOFT_STEPS", "12").env("BIODSH_GUARD_SOFT_SEC", "240")
+            .env("BIODSH_GUARD_HARD_STEPS", "20").env("BIODSH_GUARD_HARD_SEC", "420")
             // 本地 embedding 语义路由：离线加载模型 + 预计算技能向量，给「用户这句话」算向量做余弦排序（skill-router.mjs）。
             .env("BIODSH_EMBED_ROUTER", crate::paths::resource(app, "embed").join("skill-router.mjs"))
             .env("BIODSH_SKILL_VECTORS", crate::paths::resource(app, "skills").join("skill-vectors.json"))
