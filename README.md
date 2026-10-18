@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="http://43.167.193.205"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/wordmark-dark.png"><img src="docs/wordmark-light.png" alt="BioDSH" height="60"></picture></a>
+<a href="http://43.167.193.205/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/brand/png/readme-banner-dark.png"><img src="docs/brand/png/readme-banner-light.png" alt="BioDSH — A workspace for biomedical research" width="100%"></picture></a>
 
 **The bioinformatics agent desktop for clinicians and wet‑lab scientists — built on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).**
 
@@ -16,10 +16,17 @@ BioDSH is a one‑click desktop app that puts a bioinformatics agent in front of
 
 It is a thin, friendly shell around **DeepSeek Harness (`dsh`)**: the agent runtime, the plugin system, and the reproducible session log are all `dsh`. BioDSH adds a clinician‑facing UI, a bioinformatics skill store, a bundled Python analysis environment, and a set of evaluated official skills.
 
-<div align="center">
-<img src="docs/screenshot-store.png" width="49%" alt="Skill store" />
-<img src="docs/screenshot-data.png" width="49%" alt="Data results" />
-</div>
+## The Sky interface · Design preview
+
+The Sky identity is approved. This is a **1.0 interface design preview** being integrated into the app. Catalog entries, counts and states are illustrative, not analysis results. The current public installer remains **0.3.0**.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/brand-showcase/skills-dark-en.png">
+  <img src="docs/brand-showcase/skills-light-en.png" width="100%" alt="BioDSH Skill Hub — interface design preview, illustrative content">
+</picture>
+
+[Interactive showroom](http://43.167.193.205/brand/?lang=en) · [Brand & UI assets](docs/brand/README.md) · [Download the full kit](http://43.167.193.205/assets/biodsh-sky-1.0.0.zip)
+
 
 ## Download
 
@@ -29,7 +36,7 @@ Grab an installer from the [**latest release**](https://github.com/sagirimo/BioD
 | --- | --- | --- |
 | Windows 10/11 | `BioDSH_*_x64-setup.exe` | Double‑click to install. On first run click *More info → Run anyway*. |
 | macOS 12+ (Apple silicon) | `BioDSH_*_aarch64.dmg` | Unsigned — see the macOS note below. |
-| Linux | `BioDSH_*_amd64.deb` | Debian/Ubuntu. |
+| Linux | No 0.3.0 installer | See build-from-source instructions below. |
 
 > **macOS:** BioDSH isn't signed with an Apple Developer certificate, so macOS may say the app is *“damaged and can’t be opened.”* It isn’t — that’s Gatekeeper blocking unsigned apps. Drag BioDSH to **Applications**, then in **Terminal** run:
 >

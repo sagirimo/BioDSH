@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="http://43.167.193.205"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/wordmark-dark.png"><img src="docs/wordmark-light.png" alt="BioDSH" height="60"></picture></a>
+<a href="http://43.167.193.205/zh/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/brand/png/readme-banner-dark.png"><img src="docs/brand/png/readme-banner-light.png" alt="BioDSH — A workspace for biomedical research" width="100%"></picture></a>
 
 **面向医生与湿实验科学家的生信智能体桌面端——构建于 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 之上。**
 
@@ -16,10 +16,17 @@ BioDSH 是一个一键安装的桌面软件，把生信智能体交到不用命�
 
 它是对 **DeepSeek Harness（`dsh`）** 的一层友好封装：智能体运行时、插件系统、可复现的会话日志都来自 `dsh`。BioDSH 在此之上加了面向医生的界面、一个生信技能商店、一套自带的 Python 分析环境，以及若干经过评测的官方技能。
 
-<div align="center">
-<img src="docs/screenshot-store.png" width="49%" alt="技能商店" />
-<img src="docs/screenshot-data.png" width="49%" alt="数据结果" />
-</div>
+## 新版晴蓝界面 · 设计预览
+
+晴蓝品牌已定稿，下面展示的是正在接入开发的 **1.0 界面设计预览**。技能目录、数量和状态是排版示例，不是实际分析结果；当前公开安装包仍为 **0.3.0**。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/brand-showcase/skills-dark-zh.png">
+  <img src="docs/brand-showcase/skills-light-zh.png" width="100%" alt="BioDSH Skill Hub — interface design preview, illustrative content">
+</picture>
+
+[交互素材馆](http://43.167.193.205/brand/?lang=zh) · [品牌与 UI 素材](docs/brand/README.md) · [下载完整素材包](http://43.167.193.205/assets/biodsh-sky-1.0.0.zip)
+
 
 ## 下载
 
@@ -29,7 +36,7 @@ BioDSH 是一个一键安装的桌面软件，把生信智能体交到不用命�
 | --- | --- | --- |
 | Windows 10/11 | `BioDSH_*_x64-setup.exe` | 双击安装。首次运行点「更多信息 → 仍要运行」。 |
 | macOS 12+（Apple 芯片） | `BioDSH_*_aarch64.dmg` | 未签名——见下方 macOS 说明。 |
-| Linux | `BioDSH_*_amd64.deb` | Debian/Ubuntu。 |
+| Linux | 暂无 0.3.0 安装包 | 见下方源码构建说明。 |
 
 > **macOS 用户注意:** BioDSH 没有 Apple 开发者签名,macOS 可能提示 *「已损坏,无法打开」*。**这不是真的损坏**,是 Gatekeeper 拦截未签名应用。把 BioDSH 拖进**「应用程序」**,然后打开**「终端」**运行:
 >
