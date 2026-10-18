@@ -1,0 +1,4 @@
+# Brand manifests hash exact bytes. Keep them stable across Windows/Linux clones.
+docs/brand/** -text
+docs/brand-showcase/** -text
+desktop/site/** -text

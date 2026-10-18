@@ -1,0 +1,23 @@
+/* UI theme follows the existing dsh-aligned shell. Brand artwork retains approved colors. */
+:root {
+  --bds-brand-ink:#0F1115; --bds-brand-blue:#4176E6; --bds-brand-cyan:#7AAAFF;
+  --bds-bg:#FFFFFF; --bds-panel:#F5F6F7; --bds-surface:#FFFFFF; --bds-text:#0F1115;
+  --bds-secondary:#61666B; --bds-line:#CDD2DA; --bds-accent:#4176E6;
+  --bds-selected:#D3E2FF; --bds-selected-ink:#1F3F8F;
+  --bds-illustration-fill:#EDF3FE; --bds-illustration-paper:#FFFFFF; --bds-illustration-accent:#4176E6;
+  --bds-success:#247447; --bds-warning:#95600F; --bds-error:#B52F28; --bds-focus:#2C58FC;
+}
+:root[data-theme="dark"] {
+  --bds-bg:#151517; --bds-panel:#1B1B1C; --bds-surface:#232324; --bds-text:#F9FAFB;
+  --bds-secondary:#ADB2B8; --bds-line:#43454A; --bds-accent:#7AAAFF;
+  --bds-selected:#2E4170; --bds-selected-ink:#D3E2FF;
+  --bds-illustration-fill:#232B3D; --bds-illustration-paper:#232324; --bds-illustration-accent:#7AAAFF;
+  --bds-success:#4CC27A; --bds-warning:#F0B45A; --bds-error:#F0675C; --bds-focus:#7AAAFF;
+  color-scheme:dark;
+}
+.bds-icon-button { width:36px; height:36px; display:inline-grid; place-items:center; border-radius:9px; }
+.bds-icon-button:focus-visible { outline:2px solid var(--bds-focus); outline-offset:3px; }
+.bds-icon-button[aria-current="page"] { background:var(--bds-selected); color:var(--bds-selected-ink); }
+.bds-spin { animation:bds-spin 1.6s linear infinite; }
+@keyframes bds-spin { to { transform:rotate(360deg); } }
+@media (prefers-reduced-motion:reduce) { .bds-spin { animation:none; } }
