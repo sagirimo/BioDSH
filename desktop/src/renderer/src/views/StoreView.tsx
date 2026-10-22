@@ -97,7 +97,7 @@ export default function StoreView() {
                   <div className="t-headline">{t('先准备一次分析环境')}</div>
                   <div className="t-body" style={{ color: 'var(--text-2)' }}>{t('技能要靠 Python 分析软件包才能运行。只需安装一次，大约几分钟。')}</div>
                 </div>
-                <button className="btn btn-primary" onClick={() => setTab('env')}>{t('去安装')}</button>
+                <button className="btn btn-primary" onClick={() => setTab('settings')}>{t('去安装')}</button>
               </div>
             )}
 

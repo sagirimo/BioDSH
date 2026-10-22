@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { AppProvider, useApp } from './store';
 import Sidebar from './components/Sidebar';
+import { Rail } from './components/Chrome';
 import ChatView from './views/ChatView';
-import StoreView from './views/StoreView';
-import DataView from './views/DataView';
+import SkillsView from './views/SkillsView';
+import PipelinesView from './views/PipelinesView';
 import DatabaseView from './views/DatabaseView';
-import EnvView from './views/EnvView';
 import SettingsView from './views/SettingsView';
 import Onboarding from './views/Onboarding';
 import AskPopover from './components/AskPopover';
@@ -30,14 +30,14 @@ function Shell() {
   if (!ready || !settings) return <div className="h-full w-full drag" />;
   return (
     <LangContext.Provider value={resolveLang(settings.language)}>
-    <div className="h-full w-full flex">
-      <Sidebar />
+    <div className="h-full w-full flex" style={{ background: 'var(--bg)' }}>
+      <Rail />
+      {tab === 'chat' && <Sidebar />}
       <main className="flex-1 min-w-0 h-full relative">
         {tab === 'chat' && <ChatView />}
-        {tab === 'data' && <DataView />}
+        {tab === 'skills' && <SkillsView />}
+        {tab === 'pipes' && <PipelinesView />}
         {tab === 'db' && <DatabaseView />}
-        {tab === 'store' && <StoreView />}
-        {tab === 'env' && <EnvView />}
         {tab === 'settings' && <SettingsView />}
       </main>
       {!settings.onboarded && <Onboarding />}

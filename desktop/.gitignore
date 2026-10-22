@@ -5,6 +5,7 @@ resources/bin/
 resources/skills/
 *.log
 dsh-runtime/
+dsh-runtime.*/
 resources/node/
 resources/community-skills/
 dist-tauri/

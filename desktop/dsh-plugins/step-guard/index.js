@@ -34,6 +34,12 @@ export function apply(ctx) {
   // 每个 agent 的当前轮状态:{turn, t0, softDone, hardDone}
   const state = new WeakMap();
   ctx.on('agent/pre-step', async (payload, next) => {
+    // 绝对步数上限(原 patch-dsh-guard 改 dsh 代码实现;现用官方 pre-step 'reject' 决定结束本轮,turn 以 blocked 收尾)
+    const max = Number(process.env.DSH_MAX_STEPS ?? 60) || 0;
+    if (max > 0 && Number(payload?.step) > max) {
+      try { process.stderr.write(`\n[BioDSH] 智能体已连续执行 ${max} 步仍未完成，自动停止以避免无限循环烧费用（DSH_MAX_STEPS 可调）。\n`); } catch {}
+      return { kind: 'reject' };
+    }
     const decision = await next();
     try {
       if (!decision || decision.kind !== 'enter' || !payload || !payload.agent) return decision;

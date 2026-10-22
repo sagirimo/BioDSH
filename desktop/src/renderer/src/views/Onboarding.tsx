@@ -1,87 +1,63 @@
 import { useState } from 'react';
-import { ArrowRight, Check, ExternalLink, Star } from 'lucide-react';
+import { ExternalLink, RotateCcw } from 'lucide-react';
+import { BioIcon } from '../icons';
+import { BioBrand } from '../assets/biodsh-ui/react/BioBrand';
+import { useResolvedTheme } from '../theme';
 import { useApp } from '../store';
-import { Logo } from '../components/Sidebar';
 import { useT } from '../i18n';
 
-// 首次启动的三步引导：欢迎 → 填 API Key → 安装分析环境。全屏居中卡片，可跳过。
+// 首次启动：只问模型密钥。分析环境在后台自动安装（store 启动时触发），这里只显示进度。
+const STEPS: { id: string; label: string }[] = [
+  { id: 'python', label: 'Python 3.12 运行时' },
+  { id: 'venv', label: '独立的分析环境（不影响电脑上别的软件）' },
+  { id: 'packages', label: '分析软件包：scanpy、pandas、statsmodels 等' },
+  { id: 'verify', label: '检查安装结果' },
+];
+const ORDER = ['idle', 'python', 'venv', 'packages', 'verify', 'ready'];
+
 export default function Onboarding() {
   const { updateSettings, saveKey, credential, env, installEnv, setTab } = useApp();
   const { t } = useT();
-  const [step, setStep] = useState(0);
+  const theme = useResolvedTheme();
   const [key, setKey] = useState('');
-  const installing = ['python', 'venv', 'packages', 'verify'].includes(env.step);
-  const finish = async (goStore = true) => { await updateSettings({ onboarded: true }); setTab(goStore ? 'store' : 'chat'); };
+  const idx = env.ready ? ORDER.length : ORDER.indexOf(env.step);
+  const finish = async (tab: 'chat' | 'settings' = 'chat') => { if (key.trim()) await saveKey(key.trim()); await updateSettings({ onboarded: true }); setTab(tab); };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center drag" style={{ background: 'var(--bg)' }}>
-      <div className="card w-[520px] p-10 flex flex-col items-center text-center no-drag rise" key={step}>
-        {step === 0 && (
-          <>
-            <Logo size={72} />
-            <div className="t-largetitle mt-6">{t('欢迎使用 BioDSH')}</div>
-            <p className="t-body mt-3 max-w-[400px]" style={{ color: 'var(--text-2)', fontSize: 14, lineHeight: '21px' }}>
-              {t('用白话让智能体帮你做生信分析。技能商店里的每个技能都在本机离线运行、结果可复现，你的数据不会离开这台电脑。')}
-            </p>
-            <button className="btn btn-primary btn-lg mt-8" onClick={() => setStep(1)}>{t('开始')} <ArrowRight size={15} /></button>
-          </>
-        )}
-        {step === 1 && (
-          <>
-            <div className="t-caption">{t('第 1 步 / 共 3 步')}</div>
-            <div className="t-title1 mt-2">{t('连接模型')}</div>
-            <p className="t-body mt-2" style={{ color: 'var(--text-2)' }}>{t('填入 DeepSeek API Key。之后也可以在「设置」里改。')}</p>
-            <input className="field t-mono mt-6 text-center" type="password" autoFocus placeholder={credential.hasKey ? t('已设置 {masked}', { masked: credential.masked ?? '' }) : 'sk-…'} value={key} onChange={(e) => setKey(e.target.value)} />
-            <button className="btn btn-ghost mt-2" onClick={() => window.biodsh.openExternal('https://platform.deepseek.com/api_keys')}><ExternalLink size={13} /> {t('还没有？去 DeepSeek 开放平台申请')}</button>
-            <div className="flex gap-3 mt-6">
-              <button className="btn btn-fill btn-lg" onClick={() => setStep(2)}>{credential.hasKey ? t('下一步') : t('先跳过')}</button>
-              <button className="btn btn-primary btn-lg" disabled={!key.trim()} onClick={async () => { await saveKey(key); setStep(2); }}>{t('保存并继续')} <ArrowRight size={15} /></button>
-            </div>
-          </>
-        )}
-        {step === 2 && (
-          <>
-            <div className="t-caption">{t('第 2 步 / 共 3 步')}</div>
-            <div className="t-title1 mt-2">{t('准备分析环境')}</div>
-            <p className="t-body mt-2 max-w-[400px]" style={{ color: 'var(--text-2)' }}>
-              {t('技能依赖一套 Python 分析软件包（scanpy 等）。只需安装一次，约需几分钟，期间可以先去逛商店。')}
-            </p>
-            <div className="w-full mt-6 rounded-xl p-4 text-left" style={{ background: 'var(--surface-2)' }}>
-              {env.ready ? (
-                <div className="flex items-center gap-2 t-body"><span className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: 'var(--green)', color: '#fff' }}><Check size={12} strokeWidth={3} /></span>{t('环境已就绪 · Python {v}', { v: env.pythonVersion ?? '' })}</div>
-              ) : installing ? (
-                <>
-                  <div className="t-body">{env.message}</div>
-                  <div className="mt-2 h-[6px] rounded-full overflow-hidden" style={{ background: 'var(--fill)' }}><div className="h-full rounded-full transition-all" style={{ width: `${Math.round(env.progress * 100)}%`, background: 'var(--accent)' }} /></div>
-                </>
-              ) : env.step === 'error' ? (
-                <div className="t-body" style={{ color: 'var(--red)' }}>{env.message}</div>
-              ) : (
-                <div className="t-body" style={{ color: 'var(--text-2)' }}>{t('安装位置：~/BioDSH/bioenv（不影响系统 Python）')}</div>
-              )}
-            </div>
-            <div className="flex gap-3 mt-6">
-              {!env.ready && !installing && <button className="btn btn-primary btn-lg" onClick={() => installEnv()}>{env.step === 'error' ? t('重试安装') : t('开始安装')}</button>}
-              <button className={`btn btn-lg ${env.ready ? 'btn-primary' : 'btn-fill'}`} onClick={() => setStep(3)}>{env.ready ? t('下一步') : t('稍后再装')} <ArrowRight size={15} /></button>
-            </div>
-          </>
-        )}
-        {step === 3 && (
-          <>
-            <div className="t-caption">{t('第 3 步 / 共 3 步')}</div>
-            <div className="t-title1 mt-2">{t('给 BioDSH 点个 Star ⭐')}</div>
-            <p className="t-body mt-2 max-w-[420px]" style={{ color: 'var(--text-2)' }}>
-              {t('BioDSH 完全免费开源。在 GitHub 上点一个 Star，是对我们最大的鼓励，也能让更多同行看到它。')}
-            </p>
-            <div className="w-full mt-5 rounded-xl p-4 text-left t-body" style={{ background: 'var(--surface-2)', color: 'var(--text-2)', lineHeight: '28px' }}>
-              {t('① 点下面的按钮打开 GitHub 页面')}<br />
-              {t('② 点页面右上角那个 ⭐ Star 按钮（需要 GitHub 账号，没有就顺手注册一个）')}<br />
-              {t('③ 回到这里点「完成」')}
-            </div>
-            <button className="btn btn-primary btn-lg mt-6" onClick={() => window.biodsh.openExternal('https://github.com/sagirimo/BioDSH')}><Star size={15} /> {t('去 GitHub 点 Star')}</button>
-            <button className="btn btn-ghost mt-2" onClick={() => finish(true)}>{t('完成，进入软件')}</button>
-          </>
-        )}
+    <div className="onb-wrap drag">
+      <div className="onb-box no-drag rise">
+        <div className="onb-brand"><BioBrand variant="wordmark" theme={theme} size={164} />{!env.ready && <BioIcon name={env.step === 'error' ? 'illustrations-connection-needed' : 'illustrations-env-installing'} size={200} className="onb-art" />}</div>
+        <div className="eyebrow">{t('欢迎使用 BioDSH 1.0')}</div>
+        <h1 className="serif">{t('先填一个模型密钥，其余的我们来准备。')}</h1>
+        <p className="sd-lead">{t('分析环境正在后台安装，不用等它装完。装好后，把数据文件夹加为项目，就可以直接用中文提问。')}</p>
+
+        <div className="card" style={{ padding: '16px 18px' }}>
+          <div className="flex items-baseline justify-between"><span style={{ fontWeight: 500 }}>{t('分析环境')}</span>
+            <span className="mono t-caption">{env.ready ? t('已就绪 · Python {v}', { v: env.pythonVersion ?? '' }) : env.step === 'error' ? t('安装没有成功') : `${Math.round(env.progress * 100)}%`}</span></div>
+          <div className="prog"><i style={{ width: `${env.ready ? 100 : Math.round(env.progress * 100)}%`, background: env.step === 'error' ? 'var(--red)' : undefined }} /></div>
+          <div className="flex flex-col gap-2 mt-3">
+            {STEPS.map((s) => {
+              const i = ORDER.indexOf(s.id); const done = idx > i; const now = idx === i && !env.ready;
+              return (
+                <div key={s.id} className="flex items-center gap-2.5 t-body">
+                  {done ? <BioIcon name="ui-check" size={16} style={{ color: 'var(--green)' }} /> : now ? <span className="spin inline-block w-[14px] h-[14px] rounded-full" style={{ border: '2px solid var(--sunk)', borderTopColor: 'var(--text)' }} /> : <span className="inline-block w-[14px] h-[14px] rounded-full" style={{ boxShadow: 'inset 0 0 0 1.5px var(--line)' }} />}
+                  <span className="flex-1" style={{ color: done || now ? 'var(--text)' : 'var(--text-3)' }}>{t(s.label)}</span>
+                  <span className="mono t-caption">{done ? t('完成') : now ? t('进行中') : t('等待')}</span>
+                </div>
+              );
+            })}
+          </div>
+          {env.step === 'error' && <div className="flex items-center justify-between gap-3 mt-3"><span className="t-caption" style={{ color: 'var(--red)' }}>{env.message}</span><button className="btn btn-line" onClick={() => installEnv()}><RotateCcw size={13} />{t('重试')}</button></div>}
+        </div>
+
+        <div className="flex gap-2 mt-5">
+          <input id="onb-key" className="field mono" type="password" autoFocus placeholder={credential.hasKey ? t('已设置 {masked}', { masked: credential.masked ?? '' }) : t('DeepSeek API Key，以 sk- 开头')} value={key} onChange={(e) => setKey(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter' && (key.trim() || credential.hasKey)) void finish(); }} style={{ height: 40 }} />
+          <button className="btn btn-primary" style={{ height: 40, padding: '0 18px' }} disabled={!key.trim() && !credential.hasKey} onClick={() => finish()}>{t('开始使用')}</button>
+        </div>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3 t-caption">
+          <button className="flex items-center gap-1" style={{ color: 'var(--accent)' }} onClick={() => window.biodsh.openExternal('https://platform.deepseek.com/api_keys')}><ExternalLink size={12} />{t('还没有密钥？去 DeepSeek 开放平台申请')}</button>
+          <button style={{ color: 'var(--text-2)' }} onClick={() => finish('settings')}>{t('改用本地或内网模型')}</button>
+        </div>
       </div>
     </div>
   );

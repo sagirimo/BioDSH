@@ -72,7 +72,10 @@ pub fn install(app: &AppHandle, p: &AppPaths, id: &str) -> SkillStatus {
         let outputs: Vec<String> = skill["outputs"].as_array().map(|a| a.iter().filter_map(|x| x.as_str().map(String::from)).collect()).unwrap_or_default();
 {
         let script = skill["entry"]["script"].as_str().unwrap_or("run.py");
-        if script == "run.py" {
+        if skill["entry"]["type"].as_str() == Some("library") {
+            let module = skill["entry"]["module"].as_str().unwrap_or("");
+            format!("\n\n## Running in BioDSH Desktop\n\nThis skill is a Python library installed at `{dst_s}`: import `{dst_s}/{module}` (add the folder to `sys.path`) or copy the functions you need into the analysis script so it stays self-contained. `python` resolves to the BioDSH analysis environment. Write outputs into a new subfolder of the current workspace and report their paths to the user in plain language.\n")
+        } else if script == "run.py" {
             format!("\n\n## Running in BioDSH Desktop\n\nThe BioDSH Python environment (scanpy, anndata, …) is already first on PATH; `python` resolves to it. Run this skill's script directly:\n\n```bash\npython \"{dst_s}/run.py\" --input <input file> --outdir <output directory> --seed 0\n```\n\nWrite outputs into a fresh directory under the current workspace, then summarize the generated files ({}) for the user in plain language.\n", outputs.join(", "))
         } else {
             format!("\n\n## Running in BioDSH Desktop\n\nThis skill is installed at `{dst_s}`; its script is `{dst_s}/{script}` (run it with `python`, which resolves to the BioDSH analysis environment — see the command lines above). Write any outputs into a new subfolder of the current workspace and report their paths to the user in plain language.\n")

@@ -27,6 +27,16 @@
           "examples": [
             "从 CHARLS 提取抑郁(CESD)、慢病、协变量,做横断面关联并多因素校正",
             "用 CHARLS 多波数据做认知下降的纵向分析,复现一篇文章"
+          ],
+          "desc_en": "China Health and Retirement Longitudinal Study (Peking University): multi-wave follow-up of people aged 45+ nationwide (health, cognition, economics, social). Harmonised, raw questionnaire and derived variables.",
+          "tags_en": [
+            "China",
+            "middle-aged & older",
+            "longitudinal"
+          ],
+          "examples_en": [
+            "Extract depression (CESD), chronic disease and covariates from CHARLS and run a cross-sectional association with multivariable adjustment",
+            "Use multi-wave CHARLS data for a longitudinal analysis of cognitive decline, reproducing a paper"
           ]
         },
         {
@@ -47,6 +57,16 @@
           "examples": [
             "从 CLHLS 提取衰弱指数相关变量做生存分析",
             "分析某暴露与全因死亡的关联"
+          ],
+          "desc_en": "Chinese Longitudinal Healthy Longevity Survey: cross-sectional plus longitudinal, with community, physical exam and biomarker data; widely used in longevity research.",
+          "tags_en": [
+            "China",
+            "oldest-old",
+            "longitudinal"
+          ],
+          "examples_en": [
+            "Extract frailty-index variables from CLHLS for a survival analysis",
+            "Analyse the association between an exposure and all-cause mortality"
           ]
         },
         {
@@ -67,6 +87,16 @@
           "examples": [
             "提取 ELSA 协调变量与 HRS 做跨国比较",
             "分析社会经济因素与健康结局的纵向关系"
+          ],
+          "desc_en": "English Longitudinal Study of Ageing: Harmonised, Core, Nurse, nutrition and end-of-life (EOL) data.",
+          "tags_en": [
+            "UK",
+            "older adults",
+            "longitudinal"
+          ],
+          "examples_en": [
+            "Extract ELSA harmonised variables for a cross-country comparison with HRS",
+            "Analyse the longitudinal relation between socioeconomic factors and health outcomes"
           ]
         },
         {
@@ -87,6 +117,16 @@
           "examples": [
             "从 Harmonized HRS 提取变量做认知轨迹分析",
             "用 RAND 版本构建慢病与死亡的队列"
+          ],
+          "desc_en": "US Health and Retirement Study: Harmonized HRS, RAND, raw waves and topical modules; the benchmark ageing cohort.",
+          "tags_en": [
+            "USA",
+            "retirement",
+            "longitudinal"
+          ],
+          "examples_en": [
+            "Extract variables from Harmonized HRS for a cognitive trajectory analysis",
+            "Build a chronic disease and mortality cohort from the RAND version"
           ]
         },
         {
@@ -107,6 +147,16 @@
           "examples": [
             "用 easySHARE 快速做跨国老年健康比较",
             "提取变量分析退休对健康的影响"
+          ],
+          "desc_en": "Survey of Health, Ageing and Retirement in Europe: Gateway Harmonized, easySHARE, raw waves and derived variables.",
+          "tags_en": [
+            "Europe",
+            "multi-country",
+            "longitudinal"
+          ],
+          "examples_en": [
+            "Use easySHARE for a quick cross-country comparison of older-adult health",
+            "Extract variables to analyse the effect of retirement on health"
           ]
         },
         {
@@ -125,6 +175,15 @@
           ],
           "examples": [
             "提取 KLoSA 变量与 CHARLS/HRS 协调比较"
+          ],
+          "desc_en": "Korean Longitudinal Study of Aging: Harmonized KLoSA, raw waves, derived variables and end-of-life data.",
+          "tags_en": [
+            "Korea",
+            "older adults",
+            "longitudinal"
+          ],
+          "examples_en": [
+            "Extract KLoSA variables for a harmonised comparison with CHARLS/HRS"
           ]
         },
         {
@@ -143,6 +202,15 @@
           ],
           "examples": [
             "用 LASI-DAD 分析认知与痴呆相关因素"
+          ],
+          "desc_en": "Longitudinal Ageing Study in India: Harmonized LASI, LASI-DAD (dementia), derived variables and dementia imputation.",
+          "tags_en": [
+            "India",
+            "older adults",
+            "longitudinal"
+          ],
+          "examples_en": [
+            "Use LASI-DAD to analyse factors related to cognition and dementia"
           ]
         },
         {
@@ -160,6 +228,14 @@
           ],
           "examples": [
             "提取生物标志物与死亡结局做生存分析"
+          ],
+          "desc_en": "Costa Rican Longevity and Healthy Aging Study: Harmonized, raw cohort, derived variables, mortality and biomarkers.",
+          "tags_en": [
+            "Costa Rica",
+            "longevity"
+          ],
+          "examples_en": [
+            "Extract biomarkers and mortality outcomes for a survival analysis"
           ]
         },
         {
@@ -177,9 +253,19 @@
           ],
           "examples": [
             "用 Mex-Cog 分析认知,提取协变量校正"
+          ],
+          "desc_en": "Mexican Health and Aging Study: Harmonized MHAS, raw waves, derived variables, EOL and Mex-Cog cognition.",
+          "tags_en": [
+            "Mexico",
+            "older adults"
+          ],
+          "examples_en": [
+            "Analyse cognition with Mex-Cog, adjusting for extracted covariates"
           ]
         }
-      ]
+      ],
+      "name_en": "Ageing cohorts",
+      "desc_en": "Longitudinal ageing cohorts from China and abroad, with Harmonised variables; used for chronic disease, cognition, frailty and mortality studies. Core work: extract variables for a research question and build an analysis dataset."
     },
     {
       "id": "nutrition",
@@ -206,6 +292,16 @@
           "examples": [
             "从 NHANES 提取某暴露与结局变量,用抽样权重做加权 logistic 回归",
             "算某指标在美国人群的加权患病率并分层"
+          ],
+          "desc_en": "US National Health and Nutrition Examination Survey: questionnaires, exams, labs, nutrition and sampling weights. Weighted analysis gives conclusions representative of the US population.",
+          "tags_en": [
+            "USA",
+            "cross-sectional",
+            "sampling weights"
+          ],
+          "examples_en": [
+            "Extract an exposure and an outcome from NHANES and fit a survey-weighted logistic regression",
+            "Compute the weighted prevalence of an indicator in the US population, stratified"
           ]
         },
         {
@@ -226,6 +322,16 @@
           "examples": [
             "用 KNHANES 加权分析膳食因素与代谢指标",
             "提取变量做韩国人群横断面研究"
+          ],
+          "desc_en": "Korea National Health and Nutrition Examination Survey: health questionnaires, exams, nutrition and complex sampling weights.",
+          "tags_en": [
+            "Korea",
+            "cross-sectional",
+            "sampling weights"
+          ],
+          "examples_en": [
+            "Use weighted KNHANES analysis to relate dietary factors to metabolic markers",
+            "Extract variables for a cross-sectional study of the Korean population"
           ]
         },
         {
@@ -244,6 +350,15 @@
           ],
           "examples": [
             "用 CHNS 分析膳食模式随时间的变化与健康结局"
+          ],
+          "desc_en": "China Health and Nutrition Survey: individual, household, community, diet, exam and blood measures; population longitudinal.",
+          "tags_en": [
+            "China",
+            "population",
+            "longitudinal"
+          ],
+          "examples_en": [
+            "Use CHNS to analyse changes in dietary patterns over time and health outcomes"
           ]
         },
         {
@@ -263,9 +378,20 @@
           ],
           "examples": [
             "用 NHIS 分析某健康行为的人群分布与相关因素"
+          ],
+          "desc_en": "US National Health Interview Survey: adults and children, with supplements and multiply-imputed income.",
+          "tags_en": [
+            "USA",
+            "cross-sectional",
+            "interview"
+          ],
+          "examples_en": [
+            "Use NHIS to analyse the population distribution and correlates of a health behaviour"
           ]
         }
-      ]
+      ],
+      "name_en": "Diet, nutrition and national health",
+      "desc_en": "National health and nutrition surveys (cross-sectional or longitudinal) with complex sampling weights, for prevalence, diet–disease associations and population-representative studies."
     },
     {
       "id": "adolescent",
@@ -290,6 +416,15 @@
           ],
           "examples": [
             "用 Add Health 多波数据分析青少年行为对成年健康的影响"
+          ],
+          "desc_en": "National Longitudinal Study of Adolescent to Adult Health (US): Waves I–VI, peer networks, health behaviours, relationships and fertility, and biomarkers.",
+          "tags_en": [
+            "USA",
+            "adolescents",
+            "longitudinal"
+          ],
+          "examples_en": [
+            "Use multi-wave Add Health data to analyse how adolescent behaviour affects adult health"
           ]
         },
         {
@@ -308,9 +443,20 @@
           ],
           "examples": [
             "用 GSHS 做某国青少年健康行为的横断面分析"
+          ],
+          "desc_en": "WHO Global School-based Student Health Survey: 165 surveys, original questionnaire items, complex sampling and preset variables used in papers.",
+          "tags_en": [
+            "global",
+            "schools",
+            "repeated cross-sectional"
+          ],
+          "examples_en": [
+            "Use GSHS for a cross-sectional analysis of adolescent health behaviours in one country"
           ]
         }
-      ]
+      ],
+      "name_en": "Adolescent and student health",
+      "desc_en": "Longitudinal and school surveys from adolescence to adulthood on growth, behaviour, mental health and health outcomes."
     },
     {
       "id": "criticalcare",
@@ -337,6 +483,16 @@
           "examples": [
             "按 Sepsis-3 定义脓毒症队列并比较存活/死亡组",
             "从 MIMIC 提取 ICU 首日变量做 28 天死亡预测"
+          ],
+          "desc_en": "MIT Medical Information Mart for Intensive Care: admissions, ICU, labs, medications, monitoring and clinical events. First choice for sepsis/AKI research.",
+          "tags_en": [
+            "ICU",
+            "EHR",
+            "sepsis"
+          ],
+          "examples_en": [
+            "Define a Sepsis-3 cohort and compare survivors with non-survivors",
+            "Extract first-day ICU variables from MIMIC for 28-day mortality prediction"
           ]
         },
         {
@@ -355,9 +511,19 @@
           ],
           "examples": [
             "用 eICU 做 MIMIC 模型的多中心外部验证"
+          ],
+          "desc_en": "eICU Collaborative Research Database: multi-centre ICU diagnoses, treatments, labs and monitoring, for multi-centre external validation.",
+          "tags_en": [
+            "ICU",
+            "multi-centre"
+          ],
+          "examples_en": [
+            "Use eICU for multi-centre external validation of a MIMIC model"
           ]
         }
-      ]
+      ],
+      "name_en": "Critical care",
+      "desc_en": "ICU electronic health records with vital signs, labs, medications and outcomes, for sepsis, AKI and mortality prediction studies."
     },
     {
       "id": "bigcohort_cancer",
@@ -385,6 +551,16 @@
           "examples": [
             "在 UK Biobank 语义搜索卒中相关表型字段",
             "查某基因区域在 UKB-PPP 蛋白组的关联"
+          ],
+          "desc_en": "UK prospective cohort of 500,000 people: genotypes, imaging, proteomics and disease outcomes.",
+          "tags_en": [
+            "large cohort",
+            "genotypes",
+            "proteomics"
+          ],
+          "examples_en": [
+            "Semantic search for stroke-related phenotype fields in UK Biobank",
+            "Look up associations of a gene region in the UKB-PPP proteome"
           ]
         },
         {
@@ -406,6 +582,16 @@
           "examples": [
             "取某癌型某基因表达做高低分组生存分析",
             "比较肿瘤与癌旁差异表达并富集"
+          ],
+          "desc_en": "The Cancer Genome Atlas: expression, mutation, clinical and survival data for 33 cancer types.",
+          "tags_en": [
+            "cancer",
+            "multi-omics",
+            "survival"
+          ],
+          "examples_en": [
+            "Split one cancer type by expression of a gene and run a survival analysis",
+            "Compare tumour vs adjacent normal expression and run enrichment"
           ]
         },
         {
@@ -424,6 +610,14 @@
           ],
           "examples": [
             "查某基因在多癌种的突变频率与生存关系"
+          ],
+          "desc_en": "cBioPortal for Cancer Genomics: query mutations, copy number, expression and clinical associations of a gene across studies.",
+          "tags_en": [
+            "cancer",
+            "mutations"
+          ],
+          "examples_en": [
+            "Check a gene's mutation frequency across cancer types and its relation to survival"
           ]
         },
         {
@@ -447,6 +641,18 @@
           "examples": [
             "提取高危(如 1q21 扩增 / t(4;14))vs 标危患者,做差异表达并富集通路",
             "按某基因表达高低分组做总生存(OS)/无进展生存(PFS)分析"
+          ],
+          "desc_en": "The largest longitudinal multiple myeloma (MM) cohort (MMRF CoMMpass): RNA-seq, whole exome and whole genome for over a thousand patients with treatment and survival follow-up, for molecular subtyping, driver mutations, prognosis and survival modelling.",
+          "tags_en": [
+            "multiple myeloma",
+            "haematologic cancer",
+            "longitudinal cohort",
+            "genomics",
+            "prognosis/survival"
+          ],
+          "examples_en": [
+            "Compare high-risk (e.g. 1q21 gain / t(4;14)) with standard-risk patients: differential expression and pathway enrichment",
+            "Split patients by expression of a gene and analyse overall survival (OS) / progression-free survival (PFS)"
           ]
         },
         {
@@ -465,6 +671,15 @@
           "examples": [
             "查某基因各正常组织表达谱",
             "看某 SNP 的 eQTL 效应"
+          ],
+          "desc_en": "Gene expression and eQTLs across many normal human tissues.",
+          "tags_en": [
+            "normal tissue",
+            "eQTL"
+          ],
+          "examples_en": [
+            "Look up a gene's expression profile across normal tissues",
+            "Check the eQTL effect of a SNP"
           ]
         },
         {
@@ -483,9 +698,18 @@
           ],
           "examples": [
             "盘点某靶点在研试验及阶段"
+          ],
+          "desc_en": "Global clinical trial registry, searchable by disease, drug or target.",
+          "tags_en": [
+            "clinical trials"
+          ],
+          "examples_en": [
+            "List ongoing trials for a target and their phases"
           ]
         }
-      ]
+      ],
+      "name_en": "Large cohorts and cancer",
+      "desc_en": "Large multi-omics population cohorts and cancer genomics cohorts, for gene–disease association, cancer survival and multi-omics work."
     },
     {
       "id": "expression",
@@ -511,6 +735,16 @@
           "examples": [
             "从 GEO 找并下载某疾病单细胞数据集并整理成可分析格式",
             "下载 GSE 编号数据并说明样本分组"
+          ],
+          "desc_en": "NCBI Gene Expression Omnibus: a vast collection of public microarray and sequencing datasets, searched and downloaded by GSE accession.",
+          "tags_en": [
+            "RNA-seq",
+            "single-cell",
+            "microarray"
+          ],
+          "examples_en": [
+            "Find and download a single-cell dataset for a disease from GEO and organise it for analysis",
+            "Download a GSE dataset and describe the sample groups"
           ]
         },
         {
@@ -529,6 +763,14 @@
           ],
           "examples": [
             "下载某 SRA 项目 reads 并质控"
+          ],
+          "desc_en": "NCBI Sequence Read Archive of raw reads; download FASTQ to re-align or re-quantify.",
+          "tags_en": [
+            "raw sequencing",
+            "FASTQ"
+          ],
+          "examples_en": [
+            "Download reads for an SRA project and run QC"
           ]
         },
         {
@@ -546,6 +788,14 @@
           ],
           "examples": [
             "查某基因各组织蛋白表达与亚细胞定位"
+          ],
+          "desc_en": "Human Protein Atlas: tissue, cell, subcellular and pathology expression and localisation of genes and proteins.",
+          "tags_en": [
+            "protein expression",
+            "tissues"
+          ],
+          "examples_en": [
+            "Look up a gene's protein expression across tissues and its subcellular location"
           ]
         },
         {
@@ -564,6 +814,14 @@
           ],
           "examples": [
             "下载某物种参考基因组与注释"
+          ],
+          "desc_en": "One-stop download of genomes, genes, viral sequences and taxonomy.",
+          "tags_en": [
+            "genomes",
+            "sequences"
+          ],
+          "examples_en": [
+            "Download the reference genome and annotation for a species"
           ]
         },
         {
@@ -582,9 +840,19 @@
           ],
           "examples": [
             "把一列基因 symbol 批量转成 Ensembl/Entrez ID"
+          ],
+          "desc_en": "Batch queries of gene/transcript annotation and cross-database ID conversion.",
+          "tags_en": [
+            "ID conversion",
+            "annotation"
+          ],
+          "examples_en": [
+            "Convert a column of gene symbols to Ensembl/Entrez IDs in bulk"
           ]
         }
-      ]
+      ],
+      "name_en": "Expression and sequencing data",
+      "desc_en": "Public microarray and high-throughput sequencing datasets to search, download and analyse yourself."
     },
     {
       "id": "variation",
@@ -609,6 +877,14 @@
           "examples": [
             "查某基因已知致病变异",
             "给一个变异做致病性判读"
+          ],
+          "desc_en": "The authoritative database of variant–disease relationships and clinical pathogenicity interpretations.",
+          "tags_en": [
+            "pathogenicity"
+          ],
+          "examples_en": [
+            "List known pathogenic variants in a gene",
+            "Interpret the pathogenicity of a variant"
           ]
         },
         {
@@ -627,6 +903,13 @@
           ],
           "examples": [
             "查某变异各人群等位基因频率"
+          ],
+          "desc_en": "Large-scale population variant frequency reference; essential for filtering common variants.",
+          "tags_en": [
+            "population frequency"
+          ],
+          "examples_en": [
+            "Look up a variant's allele frequency in each population"
           ]
         },
         {
@@ -645,6 +928,13 @@
           ],
           "examples": [
             "把位点转成 rsID"
+          ],
+          "desc_en": "Standard identifiers and annotation for SNPs and small variants.",
+          "tags_en": [
+            "rsID"
+          ],
+          "examples_en": [
+            "Convert positions to rsIDs"
           ]
         },
         {
@@ -664,6 +954,14 @@
           ],
           "examples": [
             "用 VEP 注释一批变异功能后果"
+          ],
+          "desc_en": "Genome annotation and variant effect prediction (VEP).",
+          "tags_en": [
+            "annotation",
+            "VEP"
+          ],
+          "examples_en": [
+            "Annotate the functional consequences of a batch of variants with VEP"
           ]
         },
         {
@@ -682,9 +980,18 @@
           ],
           "examples": [
             "查某性状 GWAS 显著位点"
+          ],
+          "desc_en": "Summary of significant loci from published genome-wide association studies.",
+          "tags_en": [
+            "GWAS"
+          ],
+          "examples_en": [
+            "Find GWAS-significant loci for a trait"
           ]
         }
-      ]
+      ],
+      "name_en": "Genes and variants",
+      "desc_en": "Variant annotation, population frequencies, pathogenicity and GWAS associations."
     },
     {
       "id": "protein",
@@ -709,6 +1016,14 @@
           ],
           "examples": [
             "查某蛋白功能、结构域与亚细胞定位"
+          ],
+          "desc_en": "The core database of protein sequences and functional annotation.",
+          "tags_en": [
+            "sequence",
+            "function"
+          ],
+          "examples_en": [
+            "Look up a protein's function, domains and subcellular location"
           ]
         },
         {
@@ -726,6 +1041,13 @@
           ],
           "examples": [
             "下载某蛋白 PDB 结构看结合口袋"
+          ],
+          "desc_en": "Experimentally determined 3D structures of proteins and nucleic acids.",
+          "tags_en": [
+            "experimental structures"
+          ],
+          "examples_en": [
+            "Download a protein's PDB structure and inspect the binding pocket"
           ]
         },
         {
@@ -743,6 +1065,13 @@
           ],
           "examples": [
             "取某蛋白 AlphaFold 结构并评估可信度"
+          ],
+          "desc_en": "AlphaFold-predicted 3D structures for whole proteomes.",
+          "tags_en": [
+            "predicted structures"
+          ],
+          "examples_en": [
+            "Fetch a protein's AlphaFold structure and assess its confidence"
           ]
         },
         {
@@ -761,9 +1090,18 @@
           ],
           "examples": [
             "给一批基因建 STRING 网络找核心节点"
+          ],
+          "desc_en": "Protein–protein interaction and functional association networks.",
+          "tags_en": [
+            "interaction network"
+          ],
+          "examples_en": [
+            "Build a STRING network for a gene list and find hub nodes"
           ]
         }
-      ]
+      ],
+      "name_en": "Proteins and structures",
+      "desc_en": "Protein sequences, functional annotation, 3D structures and interactions."
     },
     {
       "id": "pathway",
@@ -787,6 +1125,13 @@
           ],
           "examples": [
             "对差异基因做 KEGG 富集并作图"
+          ],
+          "desc_en": "Metabolic and signalling pathway database, commonly used for pathway enrichment.",
+          "tags_en": [
+            "pathways"
+          ],
+          "examples_en": [
+            "Run KEGG enrichment on differential genes and plot it"
           ]
         },
         {
@@ -804,6 +1149,13 @@
           ],
           "examples": [
             "用 Reactome 做通路富集"
+          ],
+          "desc_en": "Curated database of molecular pathways and reactions.",
+          "tags_en": [
+            "pathways"
+          ],
+          "examples_en": [
+            "Run pathway enrichment with Reactome"
           ]
         },
         {
@@ -822,9 +1174,19 @@
           ],
           "examples": [
             "用 Hallmark 基因集做 GSEA"
+          ],
+          "desc_en": "The official GSEA gene set collection.",
+          "tags_en": [
+            "gene sets",
+            "GSEA"
+          ],
+          "examples_en": [
+            "Run GSEA with the Hallmark gene sets"
           ]
         }
-      ]
+      ],
+      "name_en": "Pathways and function",
+      "desc_en": "Pathways, gene sets and functional enrichment references."
     },
     {
       "id": "drug",
@@ -847,6 +1209,13 @@
           ],
           "examples": [
             "查某靶点已知活性化合物整理成表"
+          ],
+          "desc_en": "Database of bioactive compounds and their targets.",
+          "tags_en": [
+            "bioactivity"
+          ],
+          "examples_en": [
+            "Tabulate known active compounds for a target"
           ]
         },
         {
@@ -864,6 +1233,13 @@
           ],
           "examples": [
             "查某化合物结构与理化性质"
+          ],
+          "desc_en": "Compound structures, properties and bioassay data.",
+          "tags_en": [
+            "compounds"
+          ],
+          "examples_en": [
+            "Look up a compound's structure and physicochemical properties"
           ]
         },
         {
@@ -882,6 +1258,14 @@
           ],
           "examples": [
             "查某疾病候选药物靶点及证据强度"
+          ],
+          "desc_en": "Platform integrating target–disease associations and tractability evidence.",
+          "tags_en": [
+            "targets",
+            "diseases"
+          ],
+          "examples_en": [
+            "List candidate drug targets for a disease with evidence strength"
           ]
         },
         {
@@ -900,9 +1284,19 @@
           ],
           "examples": [
             "查某药物靶点与作用机制"
+          ],
+          "desc_en": "Targets, mechanisms and interactions of approved and investigational drugs.",
+          "tags_en": [
+            "drugs",
+            "mechanism"
+          ],
+          "examples_en": [
+            "Look up a drug's targets and mechanism of action"
           ]
         }
-      ]
+      ],
+      "name_en": "Drugs and compounds",
+      "desc_en": "Compounds, bioactivity, drug targets and adverse effects."
     },
     {
       "id": "disease_lit",
@@ -925,6 +1319,13 @@
           ],
           "examples": [
             "查某疾病相关基因与表型"
+          ],
+          "desc_en": "Cross-species phenotype–disease–gene knowledge base.",
+          "tags_en": [
+            "phenotypes"
+          ],
+          "examples_en": [
+            "Find genes and phenotypes related to a disease"
           ]
         },
         {
@@ -942,6 +1343,13 @@
           ],
           "examples": [
             "检索某基因/疾病近期文献并总结"
+          ],
+          "desc_en": "Biomedical literature search and abstracts.",
+          "tags_en": [
+            "literature"
+          ],
+          "examples_en": [
+            "Search recent literature on a gene or disease and summarise it"
           ]
         },
         {
@@ -959,9 +1367,18 @@
           ],
           "examples": [
             "找某主题开放获取全文并总结方法与结论"
+          ],
+          "desc_en": "Open literature database with full text, for in-depth reading.",
+          "tags_en": [
+            "full text"
+          ],
+          "examples_en": [
+            "Find open-access full texts on a topic and summarise methods and conclusions"
           ]
         }
-      ]
+      ],
+      "name_en": "Diseases, phenotypes and literature",
+      "desc_en": "Disease–gene relationships, phenotype ontologies and literature search."
     }
   ]
 }

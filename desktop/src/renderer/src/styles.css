@@ -1,61 +1,71 @@
 @import "tailwindcss";
 
-/* ---- 设计令牌：参照 macOS App Store / SF 体系，克制的单一强调色 ---- */
+/* ---- 设计令牌（1.0）：中性色对齐 dsh 0.2 官方的蓝调灰阶，让外壳与嵌入的 dsh 对话区无缝衔接；
+   BioDSH 浅蓝（取自 dsh 官方蓝色阶）是唯一强调色。衬线标题 + 等宽小标签是 BioDSH 自己的声音。 ---- */
 :root {
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI", Inter, sans-serif;
-  --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, "JetBrains Mono", monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "Source Serif 4", "Noto Serif SC", "Songti SC", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
 
-  --bg: #f5f5f7;
-  --sidebar: rgba(246, 246, 248, 0.86);
+  --bg: #ffffff;
+  --sidebar: #f5f6f7;
   --surface: #ffffff;
-  --surface-2: #f2f2f4;
-  --border: rgba(0, 0, 0, 0.08);
-  --hairline: rgba(0, 0, 0, 0.12);
-  --text: #1d1d1f;
-  --text-2: #6e6e73;
-  --text-3: #aeaeb2;
-  --accent: #0a84ff;
-  --accent-hover: #0071e3;
-  --accent-soft: rgba(10, 132, 255, 0.10);
-  --green: #34c759;
-  --orange: #ff9f0a;
-  --red: #ff453a;
-  --fill: rgba(120, 120, 128, 0.12);
-  --fill-2: rgba(120, 120, 128, 0.20);
-  --shadow-card: 0 1px 2px rgba(0,0,0,.05), 0 0 0 0.5px rgba(0,0,0,.06);
-  --shadow-card-hover: 0 8px 24px rgba(0,0,0,.08), 0 0 0 0.5px rgba(0,0,0,.06);
-  --shadow-sheet: 0 24px 64px rgba(0,0,0,.22), 0 0 0 0.5px rgba(0,0,0,.08);
-  --selection: rgba(10, 132, 255, 0.10);
+  --surface-2: #f5f6f7;
+  --sunk: #edf0f4;
+  --border: rgba(15, 17, 21, 0.08);
+  --hairline: rgba(15, 17, 21, 0.12);
+  --line: #cdd2da;
+  --text: #0f1115;
+  --text-2: #61666b;
+  --text-3: #979da6;
+  --accent: #4176e6;
+  --accent-hover: #3563c9;
+  --accent-soft: #edf3fe;
+  --acc-fill: #d3e2ff;
+  --acc-ink: #1f3f8f;
+  --green: #2f8a55;
+  --orange: #b26b12;
+  --red: #c2392f;
+  --fill: rgba(38, 49, 72, 0.06);
+  --fill-2: rgba(38, 49, 72, 0.10);
+  --shadow-card: 0 0 0 1px var(--line);
+  --shadow-card-hover: 0 0 0 1px var(--text-2), 0 6px 18px -12px rgba(15,17,21,.35);
+  --shadow-sheet: 0 24px 64px rgba(15,17,21,.18), 0 0 0 1px var(--border);
+  --selection: rgba(65, 118, 230, 0.16);
 }
 :root[data-theme="dark"] {
-  --bg: #1c1c1e;
-  --sidebar: rgba(30, 30, 32, 0.82);
-  --surface: #2c2c2e;
-  --surface-2: #232325;
-  --border: rgba(255, 255, 255, 0.09);
-  --hairline: rgba(255, 255, 255, 0.14);
-  --text: #f5f5f7;
-  --text-2: #98989d;
-  --text-3: #636366;
-  --accent: #0a84ff;
-  --accent-hover: #409cff;
-  --accent-soft: rgba(10, 132, 255, 0.18);
-  --green: #30d158;
-  --orange: #ffd60a;
-  --red: #ff453a;
-  --fill: rgba(120, 120, 128, 0.24);
-  --fill-2: rgba(120, 120, 128, 0.36);
-  --shadow-card: 0 0 0 0.5px rgba(255,255,255,.10);
-  --shadow-card-hover: 0 8px 24px rgba(0,0,0,.4), 0 0 0 0.5px rgba(255,255,255,.14);
-  --shadow-sheet: 0 24px 64px rgba(0,0,0,.6), 0 0 0 0.5px rgba(255,255,255,.12);
-  --selection: rgba(10, 132, 255, 0.22);
+  --bg: #151517;
+  --sidebar: #1b1b1c;
+  --surface: #232324;
+  --surface-2: #1b1b1c;
+  --sunk: #2c2c2e;
+  --border: rgba(255, 255, 255, 0.07);
+  --hairline: rgba(255, 255, 255, 0.12);
+  --line: #43454a;
+  --text: #f9fafb;
+  --text-2: #adb2b8;
+  --text-3: #81858c;
+  --accent: #7aaaff;
+  --accent-hover: #9bbcff;
+  --accent-soft: #232b3d;
+  --acc-fill: #2e4170;
+  --acc-ink: #d3e2ff;
+  --green: #4cc27a;
+  --orange: #f0b45a;
+  --red: #f0675c;
+  --fill: rgba(255, 255, 255, 0.06);
+  --fill-2: rgba(255, 255, 255, 0.10);
+  --shadow-card: 0 0 0 1px var(--line);
+  --shadow-card-hover: 0 0 0 1px var(--text-2), 0 6px 18px -12px rgba(0,0,0,.6);
+  --shadow-sheet: 0 24px 64px rgba(0,0,0,.6), 0 0 0 1px var(--hairline);
+  --selection: rgba(122, 170, 255, 0.22);
 }
 
 html, body, #root { height: 100%; margin: 0; }
 body {
   font-family: var(--font-sans);
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 13.5px;
+  line-height: 1.5;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -86,12 +96,12 @@ input, textarea, pre, code, .selectable { user-select: text; cursor: auto; }
 .t-mono { font-family: var(--font-mono); font-size: 12px; }
 
 /* 按钮 */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 600; border: 0; transition: background .15s, transform .05s, opacity .15s; white-space: nowrap; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 30px; padding: 0 13px; border-radius: 9px; font-size: 13px; font-weight: 500; border: 0; transition: background .15s, transform .05s, opacity .15s; white-space: nowrap; }
 .btn:active { transform: scale(0.97); }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { background: var(--accent-hover); }
+.btn-primary { background: var(--acc-fill); color: var(--acc-ink); }
+.btn-primary:hover { filter: brightness(.97); }
 .btn-tint { background: var(--accent-soft); color: var(--accent); }
-.btn-tint:hover { background: rgba(10,132,255,.18); }
+.btn-tint:hover { background: var(--acc-fill); color: var(--acc-ink); }
 .btn-fill { background: var(--fill); color: var(--text); }
 .btn-fill:hover { background: var(--fill-2); }
 .btn-ghost { background: transparent; color: var(--text-2); }
@@ -103,10 +113,12 @@ input, textarea, pre, code, .selectable { user-select: text; cursor: auto; }
 
 /* 卡片、输入框 */
 .card { background: var(--surface); border-radius: 14px; box-shadow: var(--shadow-card); }
+.card-flat { background: var(--surface-2); border-radius: 12px; }
 .card-hover { transition: transform .18s ease, box-shadow .18s ease; }
 .card-hover:hover { transform: translateY(-2px); box-shadow: var(--shadow-card-hover); }
 .field { width: 100%; height: 34px; padding: 0 12px; border-radius: 9px; background: var(--surface); border: 0.5px solid var(--hairline); color: var(--text); font-size: 13px; outline: none; transition: box-shadow .15s, border-color .15s; }
 .field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.field { border-color: var(--line); }
 .field::placeholder { color: var(--text-3); }
 .hairline-b { border-bottom: 0.5px solid var(--border); }
 .hairline-t { border-top: 0.5px solid var(--border); }
@@ -114,8 +126,8 @@ input, textarea, pre, code, .selectable { user-select: text; cursor: auto; }
 /* 侧栏项 */
 .nav-item { display: flex; align-items: center; gap: 9px; height: 30px; padding: 0 10px; border-radius: 8px; color: var(--text); font-size: 13px; transition: background .12s; }
 .nav-item:hover { background: var(--fill); }
-.nav-item.active { background: var(--accent); color: #fff; }
-.nav-item.active svg { color: #fff; }
+.nav-item.active { background: var(--acc-fill); color: var(--acc-ink); }
+.nav-item.active svg { color: var(--acc-ink); }
 .nav-item svg { color: var(--accent); }
 
 /* 分段控件 */
@@ -164,7 +176,7 @@ input, textarea, pre, code, .selectable { user-select: text; cursor: auto; }
 .cat-item.active .cat-count { color: var(--accent); opacity: .8; }
 .chip { height: 26px; padding: 0 11px; border-radius: 999px; font-size: 12px; background: var(--fill); color: var(--text-2); transition: background .12s, color .12s; white-space: nowrap; }
 .chip:hover { background: var(--fill-2); color: var(--text); }
-.chip.active { background: var(--text); color: var(--bg); }
+.chip.active { background: var(--acc-fill); color: var(--acc-ink); }
 .chip { flex: none; }
 /* 技能评分芯片：替代旧的「安装/打开」按钮，直观显示可信度分数 */
 .score-chip { display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; font-weight: 700; font-variant-numeric: tabular-nums; background: transparent; border: 1px solid; line-height: 1.2; white-space: nowrap; }

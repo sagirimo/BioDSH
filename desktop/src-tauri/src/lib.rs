@@ -290,12 +290,12 @@ async fn dsh_start(app: AppHandle, state: State<'_, AppState>) -> Result<dsh::Ds
         dsh::set_theme(&state.paths, &st.theme);
         dsh::set_locale(&state.paths, &st.language);
         let offline = st.mode == "offline";
-        if offline && !st.offline_base_url.trim().is_empty() {
-            dsh::set_llm_override(&state.paths, Some((st.offline_base_url.trim(), st.offline_model.trim())));
-        } else {
-            dsh::set_llm_override(&state.paths, None);
-        }
+        dsh::set_llm_override(&state.paths);
         (offline, st.offline_api_key.clone(), st.remote_dsh_url.trim().to_string())
+    };
+    let offline_route = {
+        let st = state.settings.lock().unwrap();
+        (offline && !st.offline_base_url.trim().is_empty()).then(|| (st.offline_base_url.trim().to_string(), st.offline_model.trim().to_string(), st.offline_api_key.clone()))
     };
     let (extra_env, mcp, seed_demos) = {
         let st = state.settings.lock().unwrap();
@@ -306,6 +306,7 @@ async fn dsh_start(app: AppHandle, state: State<'_, AppState>) -> Result<dsh::Ds
             ("BIODSH_IMAGE_MODEL".to_string(), st.image_model.clone()),
             ("BIODSH_REFDATA".to_string(), refdata::dir(&state.paths).to_string_lossy().to_string()),
         ];
+        // 技能精选默认跟随智能体当前的模型路由(dsh-biodsh),离线模式无需另配。
         (env, st.mcp_servers.clone(), !st.demos_seeded)
     };
     // 离线模式 + 配置了远程服务器：不在本机启动，直接连服务器上的 dsh
@@ -329,7 +330,11 @@ async fn dsh_start(app: AppHandle, state: State<'_, AppState>) -> Result<dsh::Ds
             crate::paths::node_binary(&app),
             crate::paths::resource(&app, "scripts").join("import-session.mjs"),
         );
-        let _ = tauri::async_runtime::spawn_blocking(move || demos::restore_demo_sessions(&res, &p, &node, &script)).await;
+        // 1.0:随包范例对话是用 dsh 0.1.2 录制的(session.v3),dsh 0.2 读不出(侧栏只能显示成只读空壳)。
+        // 在 0.2 下重新录制之前,不再导入范例(也不复制范例数据),避免用户看到打不开的旧任务。
+        if DEMOS_RECORDED_ON_CURRENT_DSH {
+            let _ = tauri::async_runtime::spawn_blocking(move || demos::restore_demo_sessions(&res, &p, &node, &script)).await;
+        } else { let _ = (res, p, node, script); }
     }
     let st = tauri::async_runtime::spawn_blocking(move || d.start_with(&app2, &paths, &ws2, key, extra_env, &mcp)).await.map_err(|e| e.to_string())?;
     if st.state == "running" {
@@ -362,6 +367,9 @@ async fn dsh_start(app: AppHandle, state: State<'_, AppState>) -> Result<dsh::Ds
                 let _ = tauri::async_runtime::spawn_blocking(move || demos::seed(&res, &paths4, Some(&u4), &dsh_call)).await;
                 let mut s = state.settings.lock().unwrap(); s.demos_seeded = true; s.save(&state.paths);
             }
+            // 离线路由按当前模式增删（走官方 settings API，只动 biodsh-offline 这一条，用户在「模型来源」里存的其他来源保留）
+            let (u6, off) = (u.clone(), offline_route.clone());
+            let _ = tauri::async_runtime::spawn_blocking(move || sync_offline_route(&u6, off)).await;
             let u = u.clone(); let st2 = state.inner(); ensure_dsh_view(&app, st2, &u);
         }
     }
@@ -570,7 +578,11 @@ fn auth_cookie(full_url: &str, force: bool) -> Option<String> {
 /// 调 dsh 的 HTTP RPC：POST /api/<method>，信封 {type:'client-request', rpcId, method, payload}
 /// dsh 0.1.2 原生 RPC：POST /api/<endpoint>，信封 payload={args:{<wire>: args}}，带浏览器会话 cookie。
 fn dsh_raw(url: &str, endpoint: &str, wire: &str, args: serde_json::Value) -> Result<serde_json::Value, String> {
-    let payload = serde_json::json!({ "args": { wire: args } });
+    dsh_args(url, endpoint, serde_json::json!({ wire: args }))
+}
+/// 按端点声明的参数名直接传 args（dsh 0.2 的 settings/credentials/llm 端点是多参数，如 {ns, ops, expectedRevision}）。
+fn dsh_args(url: &str, endpoint: &str, args: serde_json::Value) -> Result<serde_json::Value, String> {
+    let payload = serde_json::json!({ "args": args });
     let body = serde_json::json!({ "type": "client-request", "rpcId": uuid::Uuid::new_v4().to_string(), "method": endpoint, "payload": payload });
     let ep = format!("{}/api/{}", origin_of(url), endpoint);
     let post = |cookie: Option<String>| {
@@ -695,8 +707,40 @@ fn dsh_call(url: &str, method: &str, payload: serde_json::Value) -> Result<serde
             }
             Ok(json!({ "ok": true }))
         }
+        // 官方多参数端点：raw:<endpoint>，payload 就是 args 本身（模型来源设置用 settings/*、credentials/*、llm/*）
+        other if other.starts_with("raw:") => dsh_args(url, &other[4..], payload),
         // 通用兜底：a.b → /api/a/b，args={request: payload}
         other => dsh_raw(url, &other.replacen('.', "/", 1), "request", payload),
+    }
+}
+/// 离线模式 = llm-pi-ai 里一条 biodsh-offline 路由 + 默认模型指向它；在线模式删掉这条并把默认模型改回 DeepSeek。
+/// 写入走 dsh 官方 settings/mutate 与 credentials/set（与 dsh「模型」设置页同一条路径），密钥只进凭据库不进 YAML。
+fn sync_offline_route(url: &str, offline: Option<(String, String, String)>) {
+    use serde_json::json;
+    let Ok(desc) = dsh_args(url, "settings/describe", json!({})) else { return };
+    let ns = |name: &str| desc.get("namespaces").and_then(|v| v.as_array()).and_then(|a| a.iter().find(|n| n.get("ns").and_then(|x| x.as_str()) == Some(name)).cloned());
+    let rev = |n: &Option<serde_json::Value>| n.as_ref().and_then(|v| v.get("revision")).cloned().unwrap_or(serde_json::Value::Null);
+    let (pi, adm) = (ns("llm-pi-ai"), ns("agent-default-model"));
+    let has_route = pi.as_ref().and_then(|v| v.pointer(&format!("/user/providers/{}", dsh::OFFLINE_PROVIDER))).is_some();
+    let default_is_offline = adm.as_ref().and_then(|v| v.pointer("/value/provider")).and_then(|x| x.as_str()) == Some(dsh::OFFLINE_PROVIDER);
+    match offline {
+        Some((base, model, key)) => {
+            let mut route = json!({ "displayName": "本地/内网模型", "api": "openai-completions", "baseURL": base, "apiKeyEnv": "BIODSH_OFFLINE_KEY" });
+            if !model.is_empty() { route["models"] = json!([{ "id": model, "name": model }]); }
+            let _ = dsh_args(url, "credentials/set", json!({ "ref": "BIODSH_OFFLINE_KEY", "value": if key.trim().is_empty() { "local".to_string() } else { key.trim().to_string() } }));
+            let _ = dsh_args(url, "settings/mutate", json!({ "ns": "llm-pi-ai", "ops": [{ "op": "set", "path": ["providers", dsh::OFFLINE_PROVIDER], "value": route }], "expectedRevision": rev(&pi) }));
+            if !model.is_empty() {
+                let _ = dsh_args(url, "settings/mutate", json!({ "ns": "agent-default-model", "ops": [
+                    { "op": "set", "path": ["provider"], "value": dsh::OFFLINE_PROVIDER }, { "op": "set", "path": ["model"], "value": model }, { "op": "unset", "path": ["reasoningEffort"] }], "expectedRevision": rev(&adm) }));
+            }
+        }
+        None => {
+            if has_route { let _ = dsh_args(url, "settings/mutate", json!({ "ns": "llm-pi-ai", "ops": [{ "op": "unset", "path": ["providers", dsh::OFFLINE_PROVIDER] }], "expectedRevision": rev(&pi) })); }
+            if default_is_offline {
+                let _ = dsh_args(url, "settings/mutate", json!({ "ns": "agent-default-model", "ops": [
+                    { "op": "set", "path": ["provider"], "value": "deepseek-official" }, { "op": "set", "path": ["model"], "value": dsh::DEFAULT_ONLINE_MODEL }, { "op": "set", "path": ["reasoningEffort"], "value": "high" }], "expectedRevision": rev(&adm) }));
+            }
+        }
     }
 }
 fn dsh_url(state: &AppState) -> Result<String, String> { state.dsh.status.lock().unwrap().url.clone().ok_or_else(|| "dsh 未运行".into()) }
@@ -842,6 +886,55 @@ async fn workspace_files(state: State<'_, AppState>, path: Option<String>) -> Re
     if let (Some(f), Some(p)) = (state.files.as_ref(), path.as_ref()) { f.add_root(std::path::PathBuf::from(p)); }
     let ws = path.filter(|p| !p.trim().is_empty()).unwrap_or_else(|| workspace_of(&state));
     Ok(tauri::async_runtime::spawn_blocking(move || files::list(&ws)).await.map_err(|e| e.to_string())?)
+}
+/// 随包范例对话是否由当前打包的 dsh 版本录制(0.2 重新录制后改为 true)。
+const DEMOS_RECORDED_ON_CURRENT_DSH: bool = false;
+
+/// 流水线：扫描各项目文件夹下的 pipelines/<名称>/pipeline.json（由 pipeline-builder 技能写出），原样返回 JSON 与位置。
+/// 解析失败的文件也返回（带 error），界面上提示而不是静默丢掉。
+#[tauri::command]
+async fn pipelines_list(paths: Vec<String>) -> Vec<serde_json::Value> {
+    tauri::async_runtime::spawn_blocking(move || {
+        let mut out = Vec::new();
+        for root in paths {
+            let dir = std::path::Path::new(&root).join("pipelines");
+            let Ok(rd) = std::fs::read_dir(&dir) else { continue };
+            for e in rd.flatten() {
+                let f = e.path().join("pipeline.json");
+                if !f.is_file() { continue; }
+                let modified = f.metadata().ok().and_then(|m| m.modified().ok()).and_then(|t| t.duration_since(std::time::UNIX_EPOCH).ok()).map(|d| d.as_secs()).unwrap_or(0);
+                let (data, error) = match std::fs::read_to_string(&f).map_err(|e| e.to_string()).and_then(|t| serde_json::from_str::<serde_json::Value>(&t).map_err(|e| e.to_string())) {
+                    Ok(v) => (v, serde_json::Value::Null),
+                    Err(err) => (serde_json::Value::Null, serde_json::Value::String(err)),
+                };
+                out.push(serde_json::json!({ "project": root, "dir": e.path().to_string_lossy(), "id": e.file_name().to_string_lossy(), "modified": modified, "data": data, "error": error }));
+            }
+        }
+        out
+    }).await.unwrap_or_default()
+}
+/// 「学习已有流程」：让用户选一个脚本 / 笔记本 / Snakefile / 方法文本，复制进项目的 pipelines/_sources/，返回相对路径交给智能体阅读。
+/// 复制而不是直接引用原路径：智能体只在项目目录里读写，原文件也不会被改动。
+#[tauri::command]
+async fn workflow_source_import(app: AppHandle, project: String) -> Result<Option<String>, String> {
+    let (tx, rx) = std::sync::mpsc::channel();
+    app.dialog().file().pick_file(move |p| { let _ = tx.send(p); });
+    let picked = tauri::async_runtime::spawn_blocking(move || rx.recv().ok().flatten()).await.map_err(|e| e.to_string())?;
+    let Some(picked) = picked else { return Ok(None) };
+    let src = picked.into_path().map_err(|e| e.to_string())?;
+    tauri::async_runtime::spawn_blocking(move || {
+        let meta = std::fs::metadata(&src).map_err(|e| e.to_string())?;
+        if meta.len() > 20 * 1024 * 1024 { return Err("file larger than 20 MB".to_string()); }
+        let dir = std::path::Path::new(&project).join("pipelines").join("_sources");
+        std::fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
+        let name = src.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_else(|| "source.txt".into());
+        let (stem, ext) = match name.rfind('.') { Some(i) if i > 0 => (name[..i].to_string(), name[i..].to_string()), _ => (name.clone(), String::new()) };
+        let mut dest = dir.join(&name);
+        let mut n = 2;
+        while dest.exists() { dest = dir.join(format!("{stem}-{n}{ext}")); n += 1; }
+        std::fs::copy(&src, &dest).map_err(|e| e.to_string())?;
+        Ok(Some(format!("pipelines/_sources/{}", dest.file_name().unwrap().to_string_lossy())))
+    }).await.map_err(|e| e.to_string())?
 }
 #[tauri::command]
 async fn read_workspace_image(state: State<'_, AppState>, rel: String, path: Option<String>) -> Result<String, String> {
@@ -995,7 +1088,7 @@ pub fn run() {
             app_info, settings_get, settings_set, credential_get, credential_set,
             env_status, env_install, dsh_status, dsh_start, dsh_restart, dsh_stop, dsh_reload, dsh_bounds,
             skills_catalog, skills_statuses, skills_readme, skills_install, skills_uninstall,
-            open_path, open_external, pick_folder, window_control, client_log, deepseek_balance, git_status, git_init, git_commit, dsh_rpc, dsh_open_session, dsh_new_session, check_updates, assistant_ask, session_export, workspace_files, read_workspace_image, ratings_get, ratings_set, session_delete, env_install_extra, migrate_scan, migrate_import, refdata_list, refdata_install, refdata_remove, demos_seed, dsh_set_context, embed_query, db_catalog, light_update_check, light_update_apply
+            open_path, open_external, pick_folder, window_control, client_log, deepseek_balance, git_status, git_init, git_commit, dsh_rpc, dsh_open_session, dsh_new_session, check_updates, assistant_ask, session_export, workspace_files, pipelines_list, workflow_source_import, read_workspace_image, ratings_get, ratings_set, session_delete, env_install_extra, migrate_scan, migrate_import, refdata_list, refdata_install, refdata_remove, demos_seed, dsh_set_context, embed_query, db_catalog, light_update_check, light_update_apply
         ])
         .run(tauri::generate_context!())
         .expect("error while running BioDSH");
