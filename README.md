@@ -1,138 +1,104 @@
 <div align="center">
 
-<a href="http://43.167.193.205/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/brand/png/readme-banner-dark.png"><img src="docs/brand/png/readme-banner-light.png" alt="BioDSH — A workspace for biomedical research" width="100%"></picture></a>
+# BioDSH
 
-**The bioinformatics agent desktop for clinicians and wet‑lab scientists — built on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).**
+**A bioinformatics agent for clinicians and wet-lab scientists. Describe the analysis in plain language and get the result, with no coding.**
 
-Everything is a plugin. Every analysis is a sentence.
+[中文](README.zh.md) · [Download](#download) · [dsh plugin](#use-it-inside-deepseek-harness) · [Results](#results)
 
-[中文说明](README.zh.md) · [Website](http://43.167.193.205) · [Download](https://github.com/sagirimo/BioDSH/releases/latest) · [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+[![release](https://img.shields.io/github/v/release/sagirimo/BioDSH?include_prereleases&label=release)](https://github.com/sagirimo/BioDSH/releases)
+[![npm](https://img.shields.io/npm/v/dsh-biodsh?label=dsh-biodsh)](https://www.npmjs.com/package/dsh-biodsh)
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 </div>
 
----
+You add your data (single-cell `h5ad`, count matrices, clinical tables, gene lists…) and ask a question such as *"Do responders and non-responders differ in CD8A expression?"* The agent loads the data, picks the right method, writes and runs the code, and reports the conclusion along with the figures, the tables and every step it took.
 
-BioDSH is a one‑click desktop app that puts a bioinformatics agent in front of people who don't use a terminal. Drop in your data, say what you want in plain language, and read the conclusion. It runs locally, never modifies your original files, and can run fully offline inside a hospital or lab intranet.
+BioDSH runs on your own computer and is built on [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness). It comes in two forms: a one-click **desktop app** and a **dsh plugin** (`dsh-biodsh`).
 
-It is a thin, friendly shell around **DeepSeek Harness (`dsh`)**: the agent runtime, the plugin system, and the reproducible session log are all `dsh`. BioDSH adds a clinician‑facing UI, a bioinformatics skill store, a bundled Python analysis environment, and a set of evaluated official skills.
+## Why BioDSH
 
-## The Sky interface · Design preview
-
-The Sky interface ships in the **[1.0.0 Preview](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v1.0.0-preview.1)** (Windows). The screenshot below is a design render: catalog entries, counts and states are illustrative, not analysis results. The stable channel and auto‑update stay on **0.3.0** until 1.0 is final.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/brand-showcase/skills-dark-en.png">
-  <img src="docs/brand-showcase/skills-light-en.png" width="100%" alt="BioDSH Skill Hub — interface design preview, illustrative content">
-</picture>
-
-[Interactive showroom](http://43.167.193.205/brand/?lang=en) · [Brand & UI assets](docs/brand/README.md) · [Download the full kit](http://43.167.193.205/assets/biodsh-sky-1.0.0.zip)
-
+- **Plain language in, conclusions out.** You don't need to write code or set up an environment. A Python analysis environment (scanpy, anndata, pandas, statsmodels, matplotlib…) installs itself on first launch.
+- **Validated methods instead of improvised code.** It ships 17 official analysis skills: single-cell QC, clustering, annotation and treatment response; bulk RNA-seq with limma-voom; Kaplan–Meier and Cox survival; regression with robust standard errors; ANOVA designs; and more. The statistics skills were checked against R on tens of thousands of cases (for example, 101,587 survival comparisons with zero mismatches).
+- **The right skill picked automatically.** For each request, a model selects the one or two relevant skills from the 17 official skills and a library of 2,000+ community skills, and loads only those. The context stays small and cheap.
+- **Low cost.** BioDSH runs on DeepSeek models. On our analysis tasks its accuracy is on par with Claude Code (Sonnet/Haiku) at about 3–13× lower cost per task (see [Results](#results)).
+- **Long analyses always finish.** A convergence guard keeps the agent from running in circles. It first asks the agent to wrap up, then asks for a final answer, so you always get a result.
+- **Your data stays safe.** Original files are never modified, and every analysis writes into a new folder. In offline mode BioDSH talks only to a model on your own machine or intranet and makes no outbound requests, which suits hospitals and labs.
+- **Every result can be traced.** Every step goes into an append-only session log that you can review, export or hand to a reviewer.
+- **Reusable workflows.** You can save a finished analysis as a workflow and rerun it on new data. BioDSH can also build a workflow from an existing script, notebook or methods paragraph.
+- **Your choice of model.** BioDSH works with DeepSeek's official API, any OpenAI-compatible endpoint, or a local or intranet model, and you can configure several of them side by side.
 
 ## Download
 
-> **Try 1.0.0 Preview** — the new Sky interface, project/task tree, skill hub, pipelines and model sources, on DeepSeek Harness 0.2.1. Windows installer: [**BioDSH 1.0.0 Preview 1**](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v1.0.0-preview.1). It is a pre‑release: 0.3.0 users are not auto‑updated to it, and it installs over 0.3.0 in place (back up important projects first). Please report problems in [Issues](https://github.com/sagirimo/BioDSH/issues).
-
-Stable installers are in the [**latest release**](https://github.com/sagirimo/BioDSH/releases/latest):
-
-| Platform | File | Notes |
+| Version | Platform | Get it |
 | --- | --- | --- |
-| Windows 10/11 | `BioDSH_*_x64-setup.exe` | Double‑click to install. On first run click *More info → Run anyway*. |
-| macOS 12+ (Apple silicon) | `BioDSH_*_aarch64.dmg` | Unsigned — see the macOS note below. |
-| Linux | No 0.3.0 installer | See build-from-source instructions below. |
+| **1.0.0 Preview 1** (new) | Windows 10/11 | [`BioDSH_1.0.0_x64-setup.exe`](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v1.0.0-preview.1) |
+| 0.3.0 (stable) | Windows, macOS (Apple silicon) | [Latest release](https://github.com/sagirimo/BioDSH/releases/latest) |
 
-> **macOS:** BioDSH isn't signed with an Apple Developer certificate, so macOS may say the app is *“damaged and can’t be opened.”* It isn’t — that’s Gatekeeper blocking unsigned apps. Drag BioDSH to **Applications**, then in **Terminal** run:
->
-> ```bash
-> sudo xattr -cr /Applications/BioDSH.app
-> ```
->
-> Enter your login password (it stays hidden) and open BioDSH again. You only need to do this once per install.
+- **1.0.0 Preview** is a pre-release. Installed 0.3.0 apps are not auto-updated to it. It installs over 0.3.0, and conversations made with 0.3.0 may not open in 1.0, so back up projects you care about first. macOS and Linux builds will come with 1.0 final.
+- **Windows:** on first run, click *More info → Run anyway*. The installer is not code-signed.
+- **macOS:** the app is not notarized, so macOS may report it as "damaged". Move it to Applications and run `sudo xattr -cr /Applications/BioDSH.app` once.
 
-The app checks for new releases in the background and offers a one‑click **download → verify signature → install → restart**. Nothing is sent anywhere; the update feed is just this repo's `latest.json`.
+The stable app checks for updates in the background and installs them with one click. Updates are signature-verified, and the app sends no data when it checks.
 
-## What it does
+## Use it inside DeepSeek Harness
 
-- **Everything is a plugin.** The best open‑source bioinformatics skills — 2,000+ community skills organised into 10 domains — plus a handful of evaluated, offline, reproducible official skills. Install one with a click.
-- **Every analysis is traceable.** Everything the model sees goes into an append‑only session log. In the chat, intermediate steps fold into a single line and expand on demand; conversations export for an advisor or reviewer.
-- **Four real example projects** ship with the app: single‑cell analysis & plots, literature review, public‑database retrieval, and desktop control with Zotero.
-- **No coding.** A one‑click Python environment (scanpy, anndata, pandas, matplotlib) is bundled; skills that need it install it once.
-- **Desktop control.** The agent can drive other apps (Excel, Prism, SPSS…) with real mouse and keyboard, with a clear "BioDSH is controlling the computer" banner on screen.
-- **Data safety & offline.** Original files are never modified; each analysis writes into a new subfolder. Fully‑offline mode talks to a local or intranet model and makes no outbound requests.
-
-## How it works
-
-```
-┌────────────────────────────────────────────┐
-│  BioDSH (Tauri desktop shell)               │
-│  • clinician‑facing UI (React)              │
-│  • skill store · data view · environment    │
-│  • bundled Python + official skills         │
-│  ┌──────────────────────────────────────┐  │
-│  │  DeepSeek Harness (dsh)               │  │
-│  │  agent runtime · plugins · session log │  │
-│  └──────────────────────────────────────┘  │
-└────────────────────────────────────────────┘
-```
-
-A "skill" is a `dsh` plugin: a folder with a `SKILL.md` (instructions the agent follows) and optional scripts. The official skills live in [`biodsh-core/skills/`](biodsh-core/skills); the desktop app is in [`desktop/`](desktop).
-
-## Use with vanilla DeepSeek Harness
-
-### As a dsh plugin (npm: `dsh-biodsh`)
-
-[![npm](https://img.shields.io/npm/v/dsh-biodsh)](https://www.npmjs.com/package/dsh-biodsh)
-
-The whole BioDSH agent — persona, 17 validated skills, the 2,000+ skill library, automatic skill selection and the convergence guard — as one dsh bundle. It adds a **BioDSH** agent preset and leaves your other presets alone. Requires dsh 0.2.1+ and pnpm on `PATH`.
+If you already use dsh, you can install the BioDSH agent as a plugin without the desktop app:
 
 ```bash
 dsh plugin --profile web add dsh-biodsh
 ```
 
-Or in the dsh web UI: **Plugins → Install → `dsh-biodsh`**. Restart dsh and pick **BioDSH** in the preset menu. Details: [`packages/dsh-biodsh`](packages/dsh-biodsh).
+You can also install it from the dsh web UI: **Plugins → Install → `dsh-biodsh`**. Restart dsh, then pick **BioDSH** in the agent preset menu. Your other presets are left unchanged. The plugin requires dsh 0.2.1+ and pnpm. For details, see [`packages/dsh-biodsh`](packages/dsh-biodsh).
 
-### Skills only
+If you only want the skills, the official skills are plain dsh `SKILL.md` folders. `./scripts/install-into-dsh.sh <your-project>/.agents/skills` copies them in (use `install-into-dsh.ps1` on Windows).
 
-BioDSH's official skills are ordinary dsh-native `SKILL.md` skills, so plain `dsh` picks them up automatically — no BioDSH app required. dsh scans a few skill folders; the simplest is a per-project `.agents/skills/`:
+## Results
 
-```bash
-git clone https://github.com/sagirimo/BioDSH
-cd BioDSH
-# copy the skills into your dsh project (or run it from inside that project for ./.agents/skills)
-./scripts/install-into-dsh.sh /path/to/your/dsh-project/.agents/skills
-#   --global  installs into ~/.agents/skills instead
-```
+These are rough numbers from our development benchmarks. A full write-up is in preparation.
 
-On Windows use `scripts/install-into-dsh.ps1`. Start `dsh` from that workspace and the BioDSH skills are available. (The scRNA / plotting skills expect a Python env with scanpy, anndata, pandas and matplotlib on PATH.)
+**Each layer adds accuracy.** We ran 74 BixBench open-answer analysis questions with deterministic grading, using the same DeepSeek model in every configuration:
+
+| Configuration | Correct |
+| --- | --- |
+| Chat only (the model answers without running anything) | 6/74 (8%) |
+| BioDSH without skills | 38/74 (51%) |
+| BioDSH with skills | 46/74 (62%) |
+
+**Comparison with coding agents.** We used 38 data-analysis tasks graded by replaying each answer against a reference, with the same task text for every agent:
+
+| Agent | Correct | Cost per task |
+| --- | --- | --- |
+| **BioDSH** (DeepSeek V4 Flash) | 35/38 (mean of 2 runs) | ≈ $0.02–0.05 |
+| Claude Code · Opus | 37/38 | ≈ $0.32 |
+| Claude Code · Sonnet | 35/38 | ≈ $0.13 |
+| Claude Code · Haiku | 34/38 | — |
+| Codex · Astra / Sol / Luna | 37 / 37 / 30 | ≈ $0.44 (Astra) |
+
+The convergence guard turned 8 timeouts into 0 on the hardest questions. Programmatic tool calling (the default **BioDSH (PTC)** preset) cut the median number of steps from 23 to 16 at the same accuracy.
+
+Caveats: these are single or double runs, and individual runs vary by about ±2 tasks. The 38-task set is our own. A run on the full public BixBench (205 questions) and BioMed-AQA is in progress.
 
 ## Build from source
 
-Prerequisites: **Node.js 22+**, **Rust (stable)**, and the platform Tauri prerequisites (on Linux: `libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf`).
+You need Node.js 22+, stable Rust and the [Tauri prerequisites](https://tauri.app/start/prerequisites/).
 
 ```bash
 cd desktop
-npm ci                        # install dependencies
-node scripts/stage-dsh.mjs    # stage the dsh runtime
-node scripts/sync-skills.mjs  # official skills → resources + store catalog
-npm run tauri dev             # run the app
-# or a full installer build:
-npm run tauri build
+npm ci
+node scripts/stage-dsh.mjs     # dsh runtime + the dsh-biodsh bundle
+node scripts/sync-skills.mjs   # official skills → resources
+npm run tauri dev              # or: npm run tauri build
 ```
 
-The release recipe is at [`docs/release.workflow.yml`](docs/release.workflow.yml) — copy it to `.github/workflows/release.yml`, then push a tag such as `desktop-tauri-v0.2.1` to build installers for all platforms and publish a release with `latest.json`. Auto‑update signing needs two repository secrets, documented at the top of that file.
-
-## Repository layout
-
-| Path | What |
+| Path | Contents |
 | --- | --- |
-| `desktop/` | The Tauri desktop app — React UI (`src/`), Rust backend (`src-tauri/`), build scripts (`scripts/`), store catalog (`store/`). |
-| `biodsh-core/skills/` | The evaluated official skills shipped with the app. |
-| `packages/dsh-biodsh/` | The `dsh-biodsh` npm bundle for vanilla dsh (BioDSH preset, skill selection, convergence guard). |
-| `desktop/resources/` | Bundled resources: the analysis‑environment spec, example‑project sessions, helper scripts. |
+| `desktop/` | The desktop app: React UI (`src/`), Rust backend (`src-tauri/`) and build scripts. |
+| `packages/dsh-biodsh/` | The `dsh-biodsh` plugin: BioDSH presets, skill selection and the convergence guard. |
+| `biodsh-core/skills/` | Official skills. |
 
 ## License
 
-[MIT](LICENSE) for BioDSH's own code. Bundled and downloaded components — DeepSeek Harness, community skills, the Python toolchain and packages — keep their own licenses.
+[MIT](LICENSE) for BioDSH's own code. Bundled components (DeepSeek Harness, community skills, Python packages) keep their own licenses.
 
-## Acknowledgements
-
-Built on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). BioDSH is an independent project and is not affiliated with or endorsed by DeepSeek.
+BioDSH is an independent project built on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). It is not affiliated with or endorsed by DeepSeek.

@@ -1,138 +1,104 @@
 <div align="center">
 
-<a href="http://43.167.193.205/zh/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/brand/png/readme-banner-dark.png"><img src="docs/brand/png/readme-banner-light.png" alt="BioDSH — A workspace for biomedical research" width="100%"></picture></a>
+# BioDSH
 
-**面向医生与湿实验科学家的生信智能体桌面端——构建于 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 之上。**
+**给医生和湿实验科研人员的生信分析智能体：用一句话描述分析，直接拿结论，不用写代码。**
 
-一切皆插件，分析只需一句话。
+[English](README.md) · [下载](#下载) · [dsh 插件](#在-deepseek-harness-里用) · [实验结果](#实验结果)
 
-[English](README.md) · [官网](http://43.167.193.205) · [下载](https://github.com/sagirimo/BioDSH/releases/latest) · [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+[![release](https://img.shields.io/github/v/release/sagirimo/BioDSH?include_prereleases&label=release)](https://github.com/sagirimo/BioDSH/releases)
+[![npm](https://img.shields.io/npm/v/dsh-biodsh?label=dsh-biodsh)](https://www.npmjs.com/package/dsh-biodsh)
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 </div>
 
----
+把数据（单细胞 `h5ad`、表达矩阵、临床表格、基因列表……）放进来，问一句「响应组和非响应组的 CD8A 表达有没有差异？」。智能体会读数据、选方法、写代码并运行，最后给出结论，同时附上图、表和每一步的完整记录。
 
-BioDSH 是一个一键安装的桌面软件，把生信智能体交到不用命令行的人手里。把数据拖进去，用大白话说你想干什么，直接读结论。全程在本地运行，不改动你的原始文件，也可以在医院/实验室内网里完全离线运行。
+BioDSH 在你自己的电脑上运行，基于 [DeepSeek Harness（dsh）](https://github.com/deepseek-ai/deepseek-harness)。它有两种形态：一键安装的**桌面版**，以及 **dsh 插件**（`dsh-biodsh`）。
 
-它是对 **DeepSeek Harness（`dsh`）** 的一层友好封装：智能体运行时、插件系统、可复现的会话日志都来自 `dsh`。BioDSH 在此之上加了面向医生的界面、一个生信技能商店、一套自带的 Python 分析环境，以及若干经过评测的官方技能。
+## 优势
 
-## 新版晴蓝界面 · 设计预览
-
-晴蓝界面已随 **[1.0.0 预览版](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v1.0.0-preview.1)**（Windows）发布。下图是设计渲染稿：目录条目、数量与状态仅作示意，不是分析结果。1.0 正式版之前，稳定通道与自动更新仍停留在 **0.3.0**。
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/brand-showcase/skills-dark-zh.png">
-  <img src="docs/brand-showcase/skills-light-zh.png" width="100%" alt="BioDSH Skill Hub — interface design preview, illustrative content">
-</picture>
-
-[交互素材馆](http://43.167.193.205/brand/?lang=zh) · [品牌与 UI 素材](docs/brand/README.md) · [下载完整素材包](http://43.167.193.205/assets/biodsh-sky-1.0.0.zip)
-
+- **一句话进，结论出。** 不用写代码，也不用配环境。首次启动会自动装好 Python 分析环境（scanpy、anndata、pandas、statsmodels、matplotlib 等）。
+- **用验证过的方法，而不是现编代码。** 内置 17 个官方分析技能：单细胞质控、聚类、注释、治疗响应，bulk RNA-seq limma-voom，KM/Cox 生存分析，稳健标准误回归，方差分析设计等。统计类技能逐项和 R 对照过，每个都有上万次比对（例如生存分析 101,587 次比对、零差异）。
+- **自动挑技能。** 每次提问时，由模型从 17 个官方技能和 2000+ 社区技能中挑出最合适的一两个加载。上下文保持精简，也更省钱。
+- **便宜。** 基于 DeepSeek 模型。在我们的分析题上，准确率和 Claude Code（Sonnet/Haiku）相当，每题成本低 3–13 倍（见[实验结果](#实验结果)）。
+- **长任务一定有结果。** 收敛护栏防止智能体原地打转：先提醒它收尾，再要求直接作答，不会跑一晚上没有结果。
+- **数据安全。** 原始文件从不改动，每次分析都写进一个新文件夹。离线模式只连本机或内网的模型，不发起任何外网请求，适合医院和实验室内网。
+- **结果可追溯。** 每一步都写进只追加的会话日志，可以回看、导出，交给导师或审稿人。
+- **可复用的工作流。** 做完的分析可以存成工作流，换一批数据一键重跑；也可以从已有的脚本、notebook 或方法学段落生成工作流。
+- **模型随你选。** 支持 DeepSeek 官方 API、任意 OpenAI 兼容接口、本地或内网模型，可以同时配置多个。
 
 ## 下载
 
-> **试用 1.0.0 预览版**——新的晴蓝界面、项目/任务树、技能中心、流程与模型来源，基于 DeepSeek Harness 0.2.1。Windows 安装包：[**BioDSH 1.0.0 Preview 1**](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v1.0.0-preview.1)。这是预发布版：0.3.0 用户不会被自动更新过去；它会原地覆盖安装 0.3.0（重要项目请先备份）。问题请提到 [Issues](https://github.com/sagirimo/BioDSH/issues)。
-
-稳定版安装包在 [**最新发行版**](https://github.com/sagirimo/BioDSH/releases/latest)：
-
-| 平台 | 文件 | 说明 |
+| 版本 | 平台 | 下载 |
 | --- | --- | --- |
-| Windows 10/11 | `BioDSH_*_x64-setup.exe` | 双击安装。首次运行点「更多信息 → 仍要运行」。 |
-| macOS 12+（Apple 芯片） | `BioDSH_*_aarch64.dmg` | 未签名——见下方 macOS 说明。 |
-| Linux | 暂无 0.3.0 安装包 | 见下方源码构建说明。 |
+| **1.0.0 预览版**（新） | Windows 10/11 | [`BioDSH_1.0.0_x64-setup.exe`](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v1.0.0-preview.1) |
+| 0.3.0（稳定版） | Windows、macOS（Apple 芯片） | [最新发行版](https://github.com/sagirimo/BioDSH/releases/latest) |
 
-> **macOS 用户注意:** BioDSH 没有 Apple 开发者签名,macOS 可能提示 *「已损坏,无法打开」*。**这不是真的损坏**,是 Gatekeeper 拦截未签名应用。把 BioDSH 拖进**「应用程序」**,然后打开**「终端」**运行:
->
-> ```bash
-> sudo xattr -cr /Applications/BioDSH.app
-> ```
->
-> 输入开机密码(不显示,直接回车)后再打开 BioDSH 即可。每次安装只需做一次。
+- **1.0.0 预览版**是预发布版，已装的 0.3.0 不会被自动更新过去。它会覆盖安装 0.3.0，而 0.3.0 里的旧对话在 1.0 里可能打不开，重要项目请先备份。macOS 和 Linux 安装包随 1.0 正式版提供。
+- **Windows**：安装包没有代码签名，首次运行时点「更多信息 → 仍要运行」。
+- **macOS**：应用没有经过公证，系统可能提示「已损坏」。把它拖进「应用程序」后，在终端运行一次 `sudo xattr -cr /Applications/BioDSH.app` 即可。
 
-软件会在后台检查新版本，发现后提供一键 **下载 → 校验签名 → 安装 → 重启**。不上传任何东西；更新源就是本仓库的 `latest.json`。
+稳定版会在后台检查更新，一键安装。更新包会校验签名，检查更新时不上传任何数据。
 
-## 能做什么
+## 在 DeepSeek Harness 里用
 
-- **一切皆插件。** 收编了开源社区里最好的生信技能——2,000+ 社区技能按 10 个领域整理——外加几个评测过、可离线、可复现的官方技能。想要的能力，点一下就装上。
-- **每一次分析都有迹可循。** 模型看到的一切都写进只追加的会话日志。对话里中间步骤折成一行、可逐级展开；对话可导出给导师或审稿人。
-- **四个真实示范项目** 随软件自带：单细胞分析与作图、文献调研、公共数据库抓取、电脑控制与 Zotero。
-- **不用编程。** 自带一键 Python 分析环境（scanpy、anndata、pandas、matplotlib）；需要它的技能装一次即可。
-- **电脑控制。** 智能体能用真实的鼠标键盘操作其它软件（Excel、Prism、SPSS……），屏幕上有醒目的「BioDSH 正在控制电脑」提示。
-- **数据安全与离线。** 原始文件从不改动，每次分析写进一个新子文件夹。纯离线模式只连本地或内网的模型接口，不发起任何外网请求。
-
-## 工作原理
-
-```
-┌────────────────────────────────────────────┐
-│  BioDSH（Tauri 桌面外壳）                    │
-│  • 面向医生的界面（React）                   │
-│  • 技能商店 · 数据页 · 分析环境              │
-│  • 自带 Python + 官方技能                    │
-│  ┌──────────────────────────────────────┐  │
-│  │  DeepSeek Harness（dsh）              │  │
-│  │  智能体运行时 · 插件 · 会话日志         │  │
-│  └──────────────────────────────────────┘  │
-└────────────────────────────────────────────┘
-```
-
-一个「技能」就是一个 `dsh` 插件：一个包含 `SKILL.md`（给智能体看的说明）和可选脚本的文件夹。官方技能在 [`biodsh-core/skills/`](biodsh-core/skills)，桌面 App 在 [`desktop/`](desktop)。
-
-## 配合原版 DeepSeek Harness 使用
-
-### 作为 dsh 插件安装（npm：`dsh-biodsh`）
-
-[![npm](https://img.shields.io/npm/v/dsh-biodsh)](https://www.npmjs.com/package/dsh-biodsh)
-
-完整的 BioDSH 智能体——人设、17 个经过验证的技能、2000+ 技能库、自动技能精选和收敛护栏——打成一个 dsh bundle。它新增一个 **BioDSH** 智能体预设，不动你原有的预设。需要 dsh 0.2.1+，且 `PATH` 里有 pnpm。
+如果你已经在用 dsh，可以不装桌面版，直接把 BioDSH 智能体装成插件：
 
 ```bash
 dsh plugin --profile web add dsh-biodsh
 ```
 
-或在 dsh 网页：**插件 → 安装 → `dsh-biodsh`**。重启 dsh 后在预设菜单选 **BioDSH**。详见 [`packages/dsh-biodsh`](packages/dsh-biodsh)。
+也可以在 dsh 网页里装：**插件 → 安装 → `dsh-biodsh`**。装好后重启 dsh，在智能体预设菜单里选 **BioDSH**，你原有的预设不受影响。插件需要 dsh 0.2.1 及以上，且装有 pnpm。详见 [`packages/dsh-biodsh`](packages/dsh-biodsh)。
 
-### 只装技能
+如果只想要技能：官方技能是标准的 dsh `SKILL.md` 文件夹，运行 `./scripts/install-into-dsh.sh <你的项目>/.agents/skills` 即可复制进去（Windows 用 `install-into-dsh.ps1`）。
 
-BioDSH 的官方技能就是标准的 dsh 原生 `SKILL.md` 技能——不需要 BioDSH 这个 App，原版 `dsh` 会自动识别。dsh 会扫描若干技能目录，最简单的是项目内的 `.agents/skills/`：
+## 实验结果
 
-```bash
-git clone https://github.com/sagirimo/BioDSH
-cd BioDSH
-# 把技能复制进你的 dsh 项目（或在该项目里直接跑，写入 ./.agents/skills）
-./scripts/install-into-dsh.sh /你的/dsh项目/.agents/skills
-#   加 --global 则装到 ~/.agents/skills
-```
+以下是我们开发阶段测得的粗略数字，完整报告整理中。
 
-Windows 用 `scripts/install-into-dsh.ps1`。之后从这个工作区启动 `dsh`，BioDSH 的技能就能用了。（单细胞/作图类技能需要 PATH 上有带 scanpy、anndata、pandas、matplotlib 的 Python 环境。）
+**逐层叠加带来的提升**：74 道 BixBench 开放作答分析题，确定性判分，所有配置使用同一个 DeepSeek 模型。
+
+| 配置 | 答对 |
+| --- | --- |
+| 纯聊天（模型直接回答，不运行任何代码） | 6/74（8%） |
+| BioDSH 不带技能 | 38/74（51%） |
+| BioDSH 带技能 | 46/74（62%） |
+
+**和编程智能体对比**：38 道数据分析题，用参考答案回放判分，所有智能体拿到的题面完全相同。
+
+| 智能体 | 答对 | 每题成本 |
+| --- | --- | --- |
+| **BioDSH**（DeepSeek V4 Flash） | 35/38（2 次平均） | 约 $0.02–0.05 |
+| Claude Code · Opus | 37/38 | 约 $0.32 |
+| Claude Code · Sonnet | 35/38 | 约 $0.13 |
+| Claude Code · Haiku | 34/38 | — |
+| Codex · Astra / Sol / Luna | 37 / 37 / 30 | 约 $0.44（Astra） |
+
+在最难的几道题上，收敛护栏把 8 次超时降到 0 次。程序化工具调用（默认预设 **BioDSH (PTC)**）把步数中位数从 23 降到 16，准确率不变。
+
+说明：以上是 1–2 次运行的结果，单次之间会有 ±2 题左右的波动；38 题题库是我们自建的。在公开数据集上的测试（BixBench 全量 205 题、BioMed-AQA）正在进行中。
 
 ## 从源码构建
 
-前置：**Node.js 22+**、**Rust（stable）**，以及各平台的 Tauri 依赖（Linux 上：`libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf`）。
+需要 Node.js 22+、Rust（stable）以及 [Tauri 依赖](https://tauri.app/start/prerequisites/)。
 
 ```bash
 cd desktop
-npm ci                        # 安装依赖
-node scripts/stage-dsh.mjs    # 准备 dsh 运行时
-node scripts/sync-skills.mjs  # 官方技能 → resources + 商店目录
-npm run tauri dev             # 运行
-# 或完整打安装包：
-npm run tauri build
+npm ci
+node scripts/stage-dsh.mjs     # dsh 运行时 + dsh-biodsh 插件
+node scripts/sync-skills.mjs   # 官方技能 → resources
+npm run tauri dev              # 或 npm run tauri build
 ```
-
-发布配方在 [`docs/release.workflow.yml`](docs/release.workflow.yml)——把它复制到 `.github/workflows/release.yml`，再打一个形如 `desktop-tauri-v0.2.1` 的 tag，即可为所有平台构建安装包并发布带 `latest.json` 的发行版。自动更新签名需要两个仓库 Secret，见该文件顶部注释。
-
-## 目录结构
 
 | 路径 | 内容 |
 | --- | --- |
-| `desktop/` | Tauri 桌面 App——React 界面（`src/`）、Rust 后端（`src-tauri/`）、构建脚本（`scripts/`）、商店目录（`store/`）。 |
-| `biodsh-core/skills/` | 随软件发布、经过评测的官方技能。 |
-| `packages/dsh-biodsh/` | 给原版 dsh 用的 `dsh-biodsh` npm 包（BioDSH 预设、技能精选、收敛护栏）。 |
-| `desktop/resources/` | 打包进软件的资源：分析环境规格、示范项目会话、辅助脚本。 |
+| `desktop/` | 桌面版：React 界面（`src/`）、Rust 后端（`src-tauri/`）和构建脚本。 |
+| `packages/dsh-biodsh/` | `dsh-biodsh` 插件：BioDSH 预设、技能精选和收敛护栏。 |
+| `biodsh-core/skills/` | 官方技能。 |
 
 ## 许可
 
-BioDSH 自身代码采用 [MIT](LICENSE)。打包及下载的组件——DeepSeek Harness、社区技能、Python 工具链与依赖包——各自保留其许可。
+BioDSH 自身代码采用 [MIT](LICENSE) 许可。随附组件（DeepSeek Harness、社区技能、Python 包）沿用各自的许可。
 
-## 致谢
-
-构建于 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。BioDSH 是独立项目，与 DeepSeek 无隶属关系，也未获其背书。
+BioDSH 是基于 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的独立项目，与 DeepSeek 没有隶属或背书关系。
