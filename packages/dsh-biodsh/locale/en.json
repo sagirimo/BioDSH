@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "BioDSH",
+    "description": "Adds a BioDSH agent preset for bioinformatics: BioDSH skills, a searchable 2000+ skill library, automatic skill selection and a convergence guard"
+  }
+}

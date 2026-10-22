@@ -5,6 +5,11 @@ import { ExternalLink, FolderOpen, KeyRound } from 'lucide-react';
 import { useApp } from '../store';
 import type { McpServer } from '@shared/types';
 import { useT } from '../i18n';
+import { TopBar } from '../components/Chrome';
+import ModelSources from '../components/ModelSources';
+import { BioBrand } from '../assets/biodsh-ui/react/BioBrand';
+import { BioIcon } from '../icons';
+import { useResolvedTheme } from '../theme';
 
 // OpenAI 兼容的模型提供商预设：选一个自动填「接口地址 + 模型名」，也可手填。
 // dsh 引擎走 chat/completions 协议，这些都是兼容端点；Anthropic 原生协议暂不支持。
@@ -18,8 +23,10 @@ const PROVIDERS: { id: string; label: string; base: string; model: string }[] = 
 ];
 
 export default function SettingsView() {
-  const { settings, updateSettings, credential, saveKey, info, restartDsh } = useApp();
+  const { settings, updateSettings, credential, saveKey, info, restartDsh, env, installEnv } = useApp();
+  const envBusy = ['python', 'venv', 'packages', 'verify'].includes(env.step);
   const { t } = useT();
+  const theme = useResolvedTheme();
   const [key, setKey] = useState('');
   const offline = settings?.mode === 'offline';
   const [draft, setDraft] = useState<{ offlineBaseUrl?: string; offlineModel?: string; offlineApiKey?: string; remoteDshUrl?: string }>({});
@@ -33,11 +40,17 @@ export default function SettingsView() {
   const submit = async () => { await saveKey(key); setKey(''); setSaved(true); };
   return (
     <div className="h-full flex flex-col">
-      <header className="drag h-[52px] flex items-center justify-between pl-5 hairline-b" style={{ background: 'var(--bg)' }}>
-        <span className="t-title2">{t('设置')}</span>
-      </header>
+      <TopBar><span className="cur">{t('设置')}</span></TopBar>
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-[720px] mx-auto px-8 py-8 flex flex-col gap-6">
+          <Section title={t('分析环境')} desc={t('Python 与分析软件包装在 ~/BioDSH/bioenv，不影响电脑上别的软件。首次启动时自动安装。')}>
+            <div className="flex items-center gap-3">
+              <BioIcon name={env.ready ? 'ui-check' : env.step === 'error' ? 'ui-warning' : 'ui-pending'} size={16} className={envBusy ? 'bds-spin' : undefined} style={{ color: env.ready ? 'var(--green)' : env.step === 'error' ? 'var(--red)' : 'var(--orange)' }} />
+              <span className="t-body flex-1" style={{ color: env.step === 'error' ? 'var(--red)' : 'var(--text)' }}>{env.ready ? t('已就绪 · Python {v} · scanpy {s}', { v: env.pythonVersion ?? '', s: env.packages?.scanpy ?? '' }) : envBusy ? `${env.message} · ${Math.round(env.progress * 100)}%` : env.step === 'error' ? env.message : t('尚未安装')}</span>
+              {!envBusy && <button className="btn btn-line" onClick={() => installEnv()}>{env.ready ? t('修复 / 重新安装') : env.step === 'error' ? t('重试') : t('安装')}</button>}
+            </div>
+            {envBusy && <div className="prog"><i style={{ width: `${Math.round(env.progress * 100)}%` }} /></div>}
+          </Section>
           <Section title={t('运行模式')} desc={t('在线模式走 DeepSeek 云端接口；纯离线模式面向医院/内网：连本地或内网的模型接口，软件不发起任何外网请求（余额、更新检查等联网功能自动关闭）。')}>
             <div className="seg">
               {(['online', 'offline'] as const).map((k) => <button key={k} className={(settings.mode ?? 'online') === k ? 'active' : ''} onClick={async () => { await updateSettings({ mode: k }); void restartDsh(); }}>{t({ online: '在线模式', offline: '纯离线模式' }[k])}</button>)}
@@ -66,6 +79,10 @@ export default function SettingsView() {
                 <div className="flex items-center gap-2 pt-0.5"><button className="btn btn-primary" disabled={Object.keys(draft).length === 0} onClick={saveOffline}>{t('保存并重启智能体')}</button><InfoDot text={t('以上均为 OpenAI 兼容接口；BioDSH 引擎(dsh)走 chat/completions 协议。Claude/Anthropic 原生协议暂不支持；非 DeepSeek 模型在 dsh 上的效果不保证。')} /></div>
               </div>
             )}
+          </Section>
+
+          <Section title={t('模型来源')} desc={t('保存多个模型接口（中转站、各家云服务、课题组自建服务），选一个作为新任务的默认模型；对话框里的模型选择器也能临时切换。')}>
+            <ModelSources />
           </Section>
 
           <Section title={t('模型 API Key')} desc={t('DeepSeek 的密钥。保存在本机 dsh-home/.credentials.yaml，只用于调用模型。')}>
@@ -110,11 +127,11 @@ export default function SettingsView() {
 
           <ImageSection />
           <McpSection />
-          <DemosSection />
+          {/* 示范项目在 dsh 0.2 下重新录制前暂停提供（旧录制 0.2 读不出） */}
 
           <Section title={t('关于')}>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" style={{ background: 'var(--accent-soft)', color: 'var(--accent)' }}><Sparkles size={24} /></div>
+              <BioBrand variant="app" theme={theme} size={48} />
               <div className="min-w-0">
                 <div className="t-title2">BioDSH Desktop <span className="t-caption" style={{ fontWeight: 400 }}>v{info?.version ?? ''}</span></div>
                 <div className="t-caption mt-0.5">{t('面向医生与湿实验科学家的一体化生信助手 · DeepSeek Harness 内核 v{dsh}', { dsh: dshVersion })}</div>

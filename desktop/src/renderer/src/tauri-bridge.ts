@@ -35,6 +35,8 @@ export function installTauriBridge() {
     gitCommit: (path: string, message: string) => invoke('git_commit', { path, message }),
     deepseekBalance: () => invoke('deepseek_balance'),
     workspaceFiles: (path?: string) => invoke('workspace_files', { path: path ?? null }),
+    pipelinesList: (paths: string[]) => invoke('pipelines_list', { paths }),
+    workflowSourceImport: (project: string) => invoke('workflow_source_import', { project }),
     migrateScan: () => invoke('migrate_scan'),
     migrateImport: (sourceId: string) => invoke('migrate_import', { sourceId }),
     sessionDelete: (sessionId: string) => invoke('session_delete', { sessionId }),

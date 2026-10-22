@@ -18,7 +18,7 @@ BioDSH 是一个一键安装的桌面软件，把生信智能体交到不用命�
 
 ## 新版晴蓝界面 · 设计预览
 
-晴蓝品牌已定稿，下面展示的是正在接入开发的 **1.0 界面设计预览**。技能目录、数量和状态是排版示例，不是实际分析结果；当前公开安装包仍为 **0.3.0**。
+晴蓝界面已随 **[1.0.0 预览版](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v1.0.0-preview.1)**（Windows）发布。下图是设计渲染稿：目录条目、数量与状态仅作示意，不是分析结果。1.0 正式版之前，稳定通道与自动更新仍停留在 **0.3.0**。
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/brand-showcase/skills-dark-zh.png">
@@ -30,7 +30,9 @@ BioDSH 是一个一键安装的桌面软件，把生信智能体交到不用命�
 
 ## 下载
 
-到 [**最新发行版**](https://github.com/sagirimo/BioDSH/releases/latest) 拿安装包：
+> **试用 1.0.0 预览版**——新的晴蓝界面、项目/任务树、技能中心、流程与模型来源，基于 DeepSeek Harness 0.2.1。Windows 安装包：[**BioDSH 1.0.0 Preview 1**](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v1.0.0-preview.1)。这是预发布版：0.3.0 用户不会被自动更新过去；它会原地覆盖安装 0.3.0（重要项目请先备份）。问题请提到 [Issues](https://github.com/sagirimo/BioDSH/issues)。
+
+稳定版安装包在 [**最新发行版**](https://github.com/sagirimo/BioDSH/releases/latest)：
 
 | 平台 | 文件 | 说明 |
 | --- | --- | --- |
@@ -76,6 +78,20 @@ BioDSH 是一个一键安装的桌面软件，把生信智能体交到不用命�
 
 ## 配合原版 DeepSeek Harness 使用
 
+### 作为 dsh 插件安装（npm：`dsh-biodsh`）
+
+[![npm](https://img.shields.io/npm/v/dsh-biodsh)](https://www.npmjs.com/package/dsh-biodsh)
+
+完整的 BioDSH 智能体——人设、17 个经过验证的技能、2000+ 技能库、自动技能精选和收敛护栏——打成一个 dsh bundle。它新增一个 **BioDSH** 智能体预设，不动你原有的预设。需要 dsh 0.2.1+，且 `PATH` 里有 pnpm。
+
+```bash
+dsh plugin --profile web add dsh-biodsh
+```
+
+或在 dsh 网页：**插件 → 安装 → `dsh-biodsh`**。重启 dsh 后在预设菜单选 **BioDSH**。详见 [`packages/dsh-biodsh`](packages/dsh-biodsh)。
+
+### 只装技能
+
 BioDSH 的官方技能就是标准的 dsh 原生 `SKILL.md` 技能——不需要 BioDSH 这个 App，原版 `dsh` 会自动识别。dsh 会扫描若干技能目录，最简单的是项目内的 `.agents/skills/`：
 
 ```bash
@@ -110,6 +126,7 @@ npm run tauri build
 | --- | --- |
 | `desktop/` | Tauri 桌面 App——React 界面（`src/`）、Rust 后端（`src-tauri/`）、构建脚本（`scripts/`）、商店目录（`store/`）。 |
 | `biodsh-core/skills/` | 随软件发布、经过评测的官方技能。 |
+| `packages/dsh-biodsh/` | 给原版 dsh 用的 `dsh-biodsh` npm 包（BioDSH 预设、技能精选、收敛护栏）。 |
 | `desktop/resources/` | 打包进软件的资源：分析环境规格、示范项目会话、辅助脚本。 |
 
 ## 许可

@@ -1,7 +1,10 @@
-import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
 import type { AppSettings, CatalogSkill, CredentialStatus, DshStatus, EnvStatus, SkillStatus } from '@shared/types';
 
-export type Tab = 'chat' | 'data' | 'db' | 'store' | 'env' | 'settings';
+export type Tab = 'chat' | 'skills' | 'pipes' | 'db' | 'settings';
+
+/** 当前打开的任务（dsh 会话）在外壳标题栏上要显示的信息，由项目树维护。 */
+export interface TaskMeta { sessionId: string; title: string; project: string; projectPath: string; running: boolean; blank: boolean }
 
 interface AppState {
   ready: boolean;
@@ -20,6 +23,10 @@ interface AppState {
   popOverlay: () => void;
   currentSession: string | null;
   setCurrentSession: (id: string | null) => void;
+  taskMeta: TaskMeta | null;
+  setTaskMeta: (m: TaskMeta | null) => void;
+  skillDetail: string | null;
+  openSkill: (id: string | null) => void;
   refresh: () => Promise<void>;
   updateSettings: (p: Partial<AppSettings>) => Promise<void>;
   saveKey: (k: string) => Promise<void>;
@@ -51,7 +58,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const pushOverlay = useCallback(() => setOverlay((n) => n + 1), []);
   const popOverlay = useCallback(() => setOverlay((n) => Math.max(0, n - 1)), []);
   const [currentSession, setCurrentSession] = useState<string | null>(null);
+  const [taskMeta, setTaskMeta] = useState<TaskMeta | null>(null);
+  const [skillDetail, setSkillDetail] = useState<string | null>(null);
+  const openSkill = useCallback((id: string | null) => { setSkillDetail(id); if (id) setTab('skills'); }, []);
 
+  const autoEnvTried = useRef(false);
   const toMap = (arr: SkillStatus[]) => Object.fromEntries(arr.map((s) => [s.id, s]));
 
   const refresh = useCallback(async () => {
@@ -60,6 +71,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     ]);
     setInfo(i); setSettings(s); setCredential(c); setEnv(e); setDsh(d); setCatalog(cat); setStatuses(toMap(st));
     setReady(true);
+    // 1.0：分析环境不再单独成页，第一次启动（或环境缺失）时在后台自动安装；出错时设置页和引导页提供重试。
+    if (!autoEnvTried.current && !e.ready && e.step === 'idle') { autoEnvTried.current = true; void api.envInstall().then(setEnv).catch(() => undefined); }
   }, []);
 
   useEffect(() => {
@@ -69,7 +82,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       else if (ev.type === 'dsh') setDsh(ev.status);
       else if (ev.type === 'skills') setStatuses(toMap(ev.statuses));
     });
-    window.biodsh.onDebugTab((t) => { if (t.startsWith('onboard')) { void api.setSettings({ onboarded: false }).then(setSettings); } else { void api.setSettings({ onboarded: true }).then(setSettings); if (t === 'community') { try { localStorage.setItem('biodsh.storeTier', 'community'); } catch { /* */ } setTab('store'); setTimeout(() => window.dispatchEvent(new CustomEvent('biodsh:tier', { detail: 'community' })), 300); } else setTab(t as Tab); } });
+    window.biodsh.onDebugTab((t) => { if (t.startsWith('onboard')) { void api.setSettings({ onboarded: false }).then(setSettings); } else { void api.setSettings({ onboarded: true }).then(setSettings); setTab((['chat', 'skills', 'pipes', 'db', 'settings'].includes(t) ? t : t === 'store' || t === 'community' ? 'skills' : 'chat') as Tab); } });
     return off;
   }, [refresh]);
 
@@ -89,7 +102,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <Ctx.Provider value={{ ready, info, settings, credential, env, dsh, catalog, statuses, busy, tab, setTab, overlay, pushOverlay, popOverlay, currentSession, setCurrentSession, refresh, updateSettings, saveKey, installEnv, startDsh, restartDsh, install, uninstall }}>
+    <Ctx.Provider value={{ ready, info, settings, credential, env, dsh, catalog, statuses, busy, tab, setTab, overlay, pushOverlay, popOverlay, currentSession, setCurrentSession, taskMeta, setTaskMeta, skillDetail, openSkill, refresh, updateSettings, saveKey, installEnv, startDsh, restartDsh, install, uninstall }}>
       {children}
     </Ctx.Provider>
   );

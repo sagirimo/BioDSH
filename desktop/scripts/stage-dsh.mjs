@@ -3,9 +3,6 @@
 import { mkdirSync, writeFileSync, readFileSync, rmSync, existsSync, readdirSync, statSync, cpSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import path from 'node:path';
-import { patchGuard } from './patch-dsh-guard.mjs';
-import { patchToolcall } from './patch-dsh-toolcall.mjs';
-import { patchSse } from './patch-dsh-sse.mjs';
 import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -53,18 +50,16 @@ if (missing.length) {
 }
 // .bin 里全是符号链接，运行时用不到；在 WSL 装出来的链接会让 Windows 侧 7-Zip 打包失败。
 rmSync(path.join(dir, 'node_modules', '.bin'), { recursive: true, force: true });
-patchGuard(dir);
-patchToolcall(dir);
-patchSse(dir);
-// BioDSH 的 cordis 插件(官方扩展面,不打补丁改 dsh 代码):skill-router=技能语义路由;step-guard=收敛护栏(治跑飞)。
-// 把插件包拷进运行时,由 cordis.patch.yml(ensure_home 生成)以 `@biodsh/<name>` 加载。
-for (const p of ['skill-router', 'step-guard']) {
-  const src = path.join(root, 'dsh-plugins', p);
-  if (existsSync(src)) {
-    const dst = path.join(dir, 'node_modules', '@biodsh', p);
-    rmSync(dst, { recursive: true, force: true });
-    cpSync(src, dst, { recursive: true });
-    console.log(`[stage-dsh] 已装 BioDSH 插件 @biodsh/${p}`);
-  }
+// BioDSH 的智能体能力全部在 dsh-biodsh bundle 里(packages/dsh-biodsh,和官方 dsh 用户装的是同一个包):BioDSH 预设
+// (人设 + 技能目录 + 技能精选 + 收敛护栏 + 技能库工具)和设置行 `biodsh`。按本次随附的 dsh 版本重新生成预设,
+// 不带技能(桌面版通过 biodsh 设置指向 resources/skills 与 resources/community-skills),放到运行时里作为模板,
+// ensure_home 每次启动把它复制进 profile 的 node_modules 并启用。
+const bundleSrc = path.join(root, '..', 'packages', 'dsh-biodsh');
+execSync(`"${process.execPath}" scripts/build.mjs --dsh "${dir}" --no-skills`, { cwd: bundleSrc, stdio: 'inherit' });
+const bundleDst = path.join(dir, 'node_modules', '@biodsh', 'dsh-biodsh');
+rmSync(path.join(dir, 'node_modules', '@biodsh'), { recursive: true, force: true });
+for (const f of ['lib', 'locale', 'cordis.patch.yml', 'package.json', 'icon.svg', 'README.md', 'LICENSE']) {
+  cpSync(path.join(bundleSrc, f), path.join(bundleDst, f), { recursive: true });
 }
+console.log(`[stage-dsh] dsh-biodsh bundle -> ${path.relative(root, bundleDst)}`);
 console.log('ok');

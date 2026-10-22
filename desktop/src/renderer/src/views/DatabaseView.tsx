@@ -1,18 +1,21 @@
 // 数据库:按域分类分层浏览(不再平铺)+ 智能搜索(即时词法 + 回车语义向量,用包里的 e5 模型)。
 // 每个库接真实技能;点示例问题或「让智能体抓取」→ 发给当前对话,智能体按对应技能的流程成体系地做。
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ChevronDown, ChevronRight, Search, Sparkles, ExternalLink, Loader2, Database as DbIcon } from 'lucide-react';
+import { ChevronDown, ChevronRight, Sparkles, ExternalLink } from 'lucide-react';
+import { BioIcon } from '../icons';
 import { useT } from '../i18n';
+import { TopBar } from '../components/Chrome';
 import { useApp } from '../store';
 
-interface Db { id: string; name: string; name_en?: string; url?: string; tags?: string[]; desc: string; skills?: string[]; examples?: string[]; _cat?: string; _catName?: string }
-interface Cat { id: string; name: string; icon?: string; desc?: string; databases: Db[] }
+interface Db { id: string; name: string; name_en?: string; url?: string; tags?: string[]; tags_en?: string[]; desc: string; desc_en?: string; skills?: string[]; examples?: string[]; examples_en?: string[]; _cat?: string; _catName?: string }
+interface Cat { id: string; name: string; name_en?: string; icon?: string; desc?: string; desc_en?: string; databases: Db[] }
 interface Vectors { dim: number; ids: string[]; vecs: number[][] }
 
 function cosine(a: number[], b: number[]) { let d = 0, na = 0, nb = 0; for (let i = 0; i < a.length; i++) { d += a[i] * b[i]; na += a[i] * a[i]; nb += b[i] * b[i]; } return d / (Math.sqrt(na) * Math.sqrt(nb) || 1); }
 
 export default function DatabaseView() {
-  const { t } = useT();
+  const { t, lang } = useT();
+  const en = lang === 'en';
   const { dsh, currentSession, setTab } = useApp();
   const [cats, setCats] = useState<Cat[]>([]);
   const [vectors, setVectors] = useState<Vectors | null>(null);
@@ -36,7 +39,7 @@ export default function DatabaseView() {
   // 即时词法过滤(边打边筛)
   const lexHits = useMemo(() => {
     const s = q.trim().toLowerCase(); if (!s) return null;
-    return allDbs.current.filter((d) => [d.name, d.name_en, d.desc, (d.tags || []).join(' '), (d.examples || []).join(' '), d._catName].join(' ').toLowerCase().includes(s)).map((d) => d.id);
+    return allDbs.current.filter((d) => [d.name, d.name_en, d.desc, d.desc_en, (d.tags || []).join(' '), (d.tags_en || []).join(' '), (d.examples || []).join(' '), (d.examples_en || []).join(' '), d._catName].join(' ').toLowerCase().includes(s)).map((d) => d.id);
   }, [q, cats]);
 
   // 回车 → 语义向量搜索(包里的 e5 模型),失败自动回退词法
@@ -72,32 +75,33 @@ export default function DatabaseView() {
       <div className="db-card-head">
         <div className="min-w-0">
           <div className="flex items-center gap-2"><span className="t-body" style={{ fontWeight: 650 }}>{d.name}</span>{d.name_en && d.name_en !== d.name && <span className="t-caption" style={{ color: 'var(--text-3)' }}>{d.name_en}</span>}</div>
-          <p className="t-caption" style={{ color: 'var(--text-2)', margin: '3px 0 0' }}>{d.desc}</p>
+          <p className="t-caption" style={{ color: 'var(--text-2)', margin: '3px 0 0' }}>{en ? d.desc_en ?? d.desc : d.desc}</p>
         </div>
         <button className="btn btn-tint shrink-0" onClick={() => go(d, defaultPrompt(d))}><Sparkles size={13} /> {t('让智能体抓取')}</button>
       </div>
       <div className="db-tags">
-        {(d.tags || []).map((tg) => <span key={tg} className="db-tag">{tg}</span>)}
+        {((en ? d.tags_en : d.tags) ?? d.tags ?? []).map((tg) => <span key={tg} className="db-tag">{tg}</span>)}
         {d.url && <a className="db-tag db-tag-link" href={d.url} target="_blank" rel="noreferrer">{t('官网')} <ExternalLink size={9} /></a>}
       </div>
       {(d.examples || []).length > 0 && <div className="db-examples">
-        {(d.examples || []).map((ex, i) => <button key={i} className="db-example" title={t('点一下就让智能体去做')} onClick={() => go(d, t('用「{db}」数据库:{ex}。请用对应技能按流程完成,结果存到工作区新子文件夹并记录来源。', { db: d.name, ex }))}>{ex}</button>)}
+        {((en ? d.examples_en : d.examples) ?? d.examples ?? []).map((ex, i) => <button key={i} className="db-example" title={t('点一下就让智能体去做')} onClick={() => go(d, t('用「{db}」数据库:{ex}。请用对应技能按流程完成,结果存到工作区新子文件夹并记录来源。', { db: d.name, ex }))}>{ex}</button>)}
       </div>}
     </div>
   );
 
   return (
     <div className="h-full flex flex-col">
+      <TopBar><span className="cur">{t('数据库')}</span></TopBar>
       <div className="view-head">
-        <DbIcon size={16} style={{ color: 'var(--accent)' }} /><span className="t-title2">{t('数据库')}</span>
+        <BioIcon name="ui-database" size={18} style={{ color: 'var(--accent)' }} /><span className="serif" style={{ fontSize: 20 }}>{t('数据库')}</span>
         <span className="t-caption" style={{ color: 'var(--text-3)', marginLeft: 6 }}>{t('公共生信数据库,按需让智能体去查、下载、整理——不用记网址和 API')}</span>
       </div>
       <div className="db-search">
-        <Search size={14} style={{ color: 'var(--text-3)' }} />
+        <BioIcon name="ui-search" size={15} style={{ color: 'var(--text-3)' }} />
         <input className="db-search-input" value={q} placeholder={t('搜数据库(如:单细胞、卒中队列、蛋白结构、药物靶点…)——回车用语义搜索')}
           onChange={(e) => { setQ(e.target.value); setRanked(null); }}
           onKeyDown={(e) => { if (e.key === 'Enter') void semanticSearch(); }} />
-        {searching ? <Loader2 size={14} className="spin" style={{ color: 'var(--accent)' }} /> : q2 && <button className="db-clear" onClick={() => { setQ(''); setRanked(null); }}>×</button>}
+        {searching ? <BioIcon name="ui-refresh" size={15} className="bds-spin" label={t('搜索中')} style={{ color: 'var(--accent)' }} /> : q2 && <button className="db-clear" onClick={() => { setQ(''); setRanked(null); }}>×</button>}
       </div>
 
       <div className="flex-1 overflow-y-auto px-3 pb-4">
@@ -107,17 +111,18 @@ export default function DatabaseView() {
           <div className="pt-2">
             <div className="t-caption pb-2" style={{ color: 'var(--text-3)' }}>{ranked ? t('语义匹配结果') : t('匹配结果')}{resultIds ? t('（{n} 个）', { n: resultIds.length }) : ''}{!ranked && vectors && <span> · <button className="db-inline-link" onClick={() => void semanticSearch()}>{t('用语义搜索')}</button></span>}</div>
             {(resultIds || []).map((id) => { const d = byId(id); return d ? DbCard(d) : null; })}
-            {resultIds && resultIds.length === 0 && <div className="t-caption py-6 text-center" style={{ color: 'var(--text-3)' }}>{t('没找到匹配的数据库,换个说法试试;或直接让智能体去查')}</div>}
+            {resultIds && resultIds.length === 0 && <div className="empty empty-art"><BioIcon name="illustrations-no-search-results" size={180} /><span>{t('没找到匹配的数据库,换个说法试试;或直接让智能体去查')}</span></div>}
           </div>
         ) : (
           <div className="pt-1">
+            {cats.length === 0 && notice && <div className="empty empty-art"><BioIcon name="illustrations-connection-needed" size={200} /><span>{t('数据库目录没能加载。重启 BioDSH 后再试；仍不行请到设置页检查安装。')}</span></div>}
             {cats.map((c) => { const open = !collapsed[c.id]; return (
               <div key={c.id} className="db-cat">
                 <button className="db-cat-head" onClick={() => setCollapsed((s) => ({ ...s, [c.id]: open }))}>
                   {open ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-                  <span className="t-body" style={{ fontWeight: 650 }}>{c.name}</span>
+                  <span className="t-body" style={{ fontWeight: 650 }}>{en ? c.name_en ?? c.name : c.name}</span>
                   <span className="t-caption" style={{ color: 'var(--text-3)' }}>{c.databases.length}</span>
-                  {c.desc && <span className="t-caption db-cat-desc">{c.desc}</span>}
+                  {c.desc && <span className="t-caption db-cat-desc">{en ? c.desc_en ?? c.desc : c.desc}</span>}
                 </button>
                 {open && <div className="db-cat-body">{c.databases.map(DbCard)}</div>}
               </div>

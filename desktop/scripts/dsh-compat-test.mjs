@@ -14,8 +14,10 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(here, '..');
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i >= 0 ? process.argv[i + 1] : d; };
 
-const dshBin = path.join(root, 'dsh-runtime', 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js');
-const dshVer = JSON.parse(readFileSync(path.join(root, 'dsh-runtime', 'node_modules', '@deepseek-ai', 'dsh', 'package.json'), 'utf8')).version;
+// --runtime <dir>: 指向另一个 dsh-runtime(含 node_modules/@deepseek-ai/dsh),用于升级前试装新版本。
+const runtime = arg('--runtime') || path.join(root, 'dsh-runtime');
+const dshBin = path.join(runtime, 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js');
+const dshVer = JSON.parse(readFileSync(path.join(runtime, 'node_modules', '@deepseek-ai', 'dsh', 'package.json'), 'utf8')).version;
 const home = arg('--home') || mkdtempSync(path.join(tmpdir(), 'dsh-compat-'));
 const ws = path.join(home, 'workspace'); mkdirSync(ws, { recursive: true });
 const patch = arg('--patch');
@@ -69,6 +71,7 @@ async function main() {
   console.log(`\n# ${results.filter(r => r.ok).length}/${results.length} passed`);
 }
 main().catch(e => { console.error('HARNESS ERROR:', e.message); }).finally(() => {
+  if (process.env.BIODSH_COMPAT_FULLLOG) console.log('--- full dsh log ---\n' + out);
   if (process.env.BIODSH_ROUTER_DEBUG) { const lines = out.split('\n').filter(l => /skill-router|@biodsh|biodsh|plugin|cannot find|resolve|MODULE_NOT_FOUND|Error/i.test(l)); if (lines.length) console.log('--- dsh log (plugin-related) ---\n' + lines.join('\n')); }
   try { child.kill(); } catch {}
   if (!arg('--home')) { try { rmSync(home, { recursive: true, force: true }); } catch {} }

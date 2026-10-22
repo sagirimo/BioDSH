@@ -66,28 +66,64 @@ fn sys_locale_is_zh() -> bool {
     true
 }
 
-/// 离线模式：把内网/本地模型接口写进 dsh 的 llm-deepseek 设置段；在线模式移除该段（回到 DeepSeek 官方）。
-pub fn set_llm_override(paths: &AppPaths, offline: Option<(&str, &str)>) {
+/// 离线模式的 pi-ai 路由名(settings.yaml 的 llm-pi-ai.providers 键,也是 agent-default-model.provider)。
+pub const OFFLINE_PROVIDER: &str = "biodsh-offline";
+
+/// 1.0 起模型路由(离线路由、用户自己添加的模型来源)都通过 dsh 官方 settings API 在启动后写入(见 lib.rs sync_offline_route),
+/// 不再经 settings.yaml 整段覆盖 llm-pi-ai(那样会把用户存的其他来源一起冲掉)。这里只清理旧版本写进 settings.yaml 的
+/// llm-deepseek / llm-pi-ai / 离线 agent-default-model 段，防止它们在下次导入时覆盖用户设置。
+pub fn set_llm_override(paths: &AppPaths) {
     let f = paths.dsh_home.join("settings.yaml");
-    let txt = fs::read_to_string(&f).unwrap_or_default();
+    let Ok(txt) = fs::read_to_string(&f) else { return };
     let mut out: Vec<String> = Vec::new();
-    let mut skip = false;
+    let (mut section, mut buf): (String, Vec<String>) = (String::new(), Vec::new());
+    let flush = |section: &str, buf: &mut Vec<String>, out: &mut Vec<String>| {
+        let drop = section == "llm-deepseek" || section == "llm-pi-ai"
+            || (section == "agent-default-model" && buf.iter().any(|l| l.trim() == format!("provider: {OFFLINE_PROVIDER}")));
+        if !drop { out.append(buf); } else { buf.clear(); }
+    };
     for line in txt.lines() {
-        if line.starts_with("llm-deepseek:") { skip = true; continue; }
-        if skip { if line.starts_with(' ') || line.starts_with('\t') || line.trim().is_empty() { continue; } skip = false; }
-        out.push(line.to_string());
+        let top = !line.starts_with(' ') && !line.starts_with('\t') && !line.trim().is_empty();
+        if top { flush(&section, &mut buf, &mut out); section = line.split(':').next().unwrap_or("").trim().to_string(); }
+        buf.push(line.to_string());
     }
-    if let Some((base, model)) = offline {
-        out.push("llm-deepseek:".into());
-        out.push(format!("  baseURL: {base}"));
-        out.push("  apiKeyEnv: BIODSH_OFFLINE_KEY".into());
-        if !model.is_empty() {
-            out.push("  models:".into());
-            out.push(format!("    - id: {model}"));
-            out.push(format!("      name: {model}"));
-        }
-    }
+    flush(&section, &mut buf, &mut out);
     let _ = fs::write(&f, out.join("\n") + "\n");
+}
+
+/// 在线默认模型:DeepSeek-V4.1-Flash(接口 id deepseek-flash),当前 DeepSeek 最新主力,强于 V4-Pro 且更便宜。
+pub const DEFAULT_ONLINE_MODEL: &str = "deepseek-flash";
+
+/// 把随包的 dsh-biodsh(不含技能,几十 KB)复制进 profile 的 node_modules,并在 profile 的 bundles 列表里启用,
+/// 布局与官方插件管理器(pnpm)安装后相同,预设里的 `dsh-biodsh/...` 模块名按 profile 解析。
+fn install_bundle(home: &Path, template: &Path) {
+    let profile = home.join("profiles").join("web");
+    let dst = profile.join("node_modules").join("dsh-biodsh");
+    if template.join("package.json").exists() {
+        let _ = fs::remove_dir_all(&dst);
+        let _ = copy_dir(template, &dst);
+    }
+    let pj = profile.join("package.json");
+    let mut v: serde_json::Value = fs::read_to_string(&pj).ok().and_then(|t| serde_json::from_str(&t).ok())
+        .unwrap_or_else(|| serde_json::json!({ "name": "dsh-profile-web", "private": true, "dependencies": {},
+            "dsh": { "profile": { "bundles": ["@deepseek-ai/dsh-base", "@deepseek-ai/dsh-web-app"] } } }));
+    let bundles = v.pointer_mut("/dsh/profile/bundles").and_then(|b| b.as_array_mut());
+    match bundles {
+        Some(list) => { if !list.iter().any(|b| b == "dsh-biodsh") { list.push(serde_json::json!("dsh-biodsh")); } }
+        None => { v["dsh"] = serde_json::json!({ "profile": { "bundles": ["@deepseek-ai/dsh-base", "@deepseek-ai/dsh-web-app", "dsh-biodsh"] } }); }
+    }
+    let _ = fs::create_dir_all(&profile);
+    let _ = fs::write(&pj, serde_json::to_string_pretty(&v).unwrap_or_default() + "\n");
+}
+
+fn copy_dir(src: &Path, dst: &Path) -> std::io::Result<()> {
+    fs::create_dir_all(dst)?;
+    for e in fs::read_dir(src)? {
+        let e = e?;
+        let to = dst.join(e.file_name());
+        if e.file_type()?.is_dir() { copy_dir(&e.path(), &to)?; } else { fs::copy(e.path(), to)?; }
+    }
+    Ok(())
 }
 
 /// YAML 单引号字符串（单引号翻倍转义）
@@ -113,13 +149,13 @@ pub struct DshManager {
     child: Mutex<Option<Child>>,
 }
 
-const PERSONA: &str = "You are BioDSH (中文名同样叫 BioDSH), the built-in bioinformatics assistant of the BioDSH desktop app, powered by the {{model}} model. Your users are doctors and wet-lab scientists with NO programming or bioinformatics background. Your working directory (their project folder) is {{cwd}}.\n\nIdentity: when greeted or asked who you are / what you can do, introduce yourself as BioDSH 生信助手 and give 3 concrete examples they can ask, e.g. 「帮我看看这份单细胞数据的质量」「比较有效和无效病人的细胞组成差异」「解读这个结果文件夹」. Never call yourself a generic coding agent.\n\nYou also know the BioDSH app itself and answer how-to questions about it:\n- 左侧栏「数据」: files in the workspace grouped by type; each file has a 让智能体分析 button; finished analyses appear as result cards with figure thumbnails and a 让智能体解读 button.\n- 「技能商店」: official skills (evaluated, offline, reproducible: single-cell QC/clustering/annotation/treatment-response, plus 电脑控制 desktop-control, AI 科研插图 image-generate, Zotero 联动 zotero-connect, SPSS/R/Prism/Excel 格式桥接 data-format-bridge) and 2,000+ community skills in Chinese categories; click 获取 to install; rate installed skills 👍/👎 in the detail page.
-- 「数据库」: 19 public databases with a 让智能体抓取 button, and 本地参考包 (MSigDB gene sets, GO, NCBI gene_info, STRING) downloaded to the folder in env BIODSH_REFDATA (see its README.md) — prefer these local files for enrichment / ID mapping when present.
-- 示范项目: 4 real example projects (示范 · 单细胞分析与作图 / 文献调研 / 公共数据库抓取 / 电脑控制与 Zotero) appear in the left project list; each folder has 示范对话.md with the full conversation to imitate.
-- 「更多 → 图像生成」 sets the image provider used by image-generate; 「更多 → MCP 接入」 attaches external MCP tool servers (their tools are named mcp__<server>__<tool>).\n- 「分析环境」: one-click Python environment (scanpy etc.); skills need it installed once.\n- 「更多」(settings): DeepSeek API key, workspace folder, 在线/纯离线模式 (offline mode uses a local/intranet model endpoint or a lab Linux dsh server), language 中文/English, theme, version & update check.\n- Right-click anywhere in the app: a \"问一下\" popup explains what things are; right-click a chat in the left sidebar to pin/rename/archive/export; right-click a project for git 版本快照.\n- Data safety: everything runs locally; original data files are never modified; each analysis writes into a new subfolder.\nIf asked about an app detail you are not sure of, say so and point to the closest page instead of inventing UI.\n\nHow you work on analyses:\n- Reply in the language the user writes in. Plain language first, technical detail second; briefly explain any format/tool/statistic you mention.\n- Installed skills are listed for you; when a task matches one, use it and follow its SKILL.md. `python` on PATH is the BioDSH analysis environment (scanpy, anndata, pandas, matplotlib); `uv pip install <pkg>` adds extras.\n- Keep original data untouched; write outputs to a new subfolder and tell the user its name.\n- Whenever you produce or mention an image file (png/jpg/svg) for the user, ALSO show it inline: the env var BIODSH_FILES_URL (read it with `$env:BIODSH_FILES_URL` in pwsh or `echo $BIODSH_FILES_URL`) is a local read-only image server; write `![说明](<BIODSH_FILES_URL>/<absolute file path, forward slashes, spaces as %20>)` right after the file name in your reply, one per figure. Never invent a URL if the variable is empty — just name the file.\n- When a decision is needed (thresholds, which group is control), ask one clear question instead of guessing.";
+// 桌面版专属说明,作为 dsh-biodsh 的 `appContext` 设置注入(人设本身在 bundle 里,dsh 用户和桌面版共用一份)。
+// 不用 {{…}} 模板变量:该段按字面注入。
+const APP_CONTEXT: &str = "You are running inside the BioDSH desktop app. Your users see these pages and you can explain them:\n- 「项目」: left tree of projects (each a data folder) and their tasks (conversations). Below it, the project's files split into 数据 and 结果. The task title bar has 审阅结论 (an independent review of your conclusions) and 存为工作流 (turn this task into a reproducible workflow).\n- 「技能」: every BioDSH and community skill with its details; all are enabled, and fitting ones are picked for each message automatically.\n- 「工作流」: saved reproducible workflows (pipelines/<id>/pipeline.json) with steps, parameters, validation checks and run history; 学习已有流程 copies a script/notebook/methods file into pipelines/_sources/ for you to learn from.\n- 「数据库」: public databases with a 让智能体抓取 button, and local reference packs (MSigDB, GO, NCBI gene_info, STRING) in the folder named by env BIODSH_REFDATA — prefer these local files for enrichment and ID mapping when present.\n- 「设置」: model API key and model sources, online / offline (local or intranet model) mode, MCP servers, image generation, language, theme. The analysis environment installs itself on first start.\n`python` on PATH is the BioDSH analysis environment (scanpy, anndata, pandas, statsmodels, matplotlib); `uv pip install <pkg>` adds packages.\nWhenever you produce or mention an image file (png/jpg/svg), also show it inline: env var BIODSH_FILES_URL (read with `$env:BIODSH_FILES_URL` in pwsh or `echo $BIODSH_FILES_URL`) is a local read-only image server; write `![说明](<BIODSH_FILES_URL>/<absolute path, forward slashes, spaces as %20>)` after the file name, one per figure. If the variable is empty, just name the file.\nIf you are unsure about an app detail, say so and point to the closest page instead of inventing UI.";
 
+// 1.0:只关掉被 BioDSH 外壳替代或面向开发者的面板(dsh 自带侧栏、品牌、插件/预设编辑、cordis 检查器等);
+// 交付文件、计划、后台任务、目标、子智能体、工作流与执行轨迹这些对科研有用的面板保留。
 const MINIMAL_PLUGINS: &[&str] = &[
-    "ui-workflow-run", "ui-deliverables", "ui-jobs", "ui-goal", "ui-plan", "ui-trajectory", "ui-subagent",
     "ui-settings-plugin-inventory", "ui-settings-plugins", "ui-cordis", "ui-brand-official", "ui-message-feedback",
     "ui-reference", "ui-agent-preset", "ui-sidebar",
 ];
@@ -145,61 +181,50 @@ impl DshManager {
         self.emit(app);
     }
 
-    /// 精简模式：关掉一问一答用不到的界面插件；写默认设置；预置工作区。
-    fn ensure_home(paths: &AppPaths, workspace: &str, official_skills: &Path, skill_router_plugin: &Path, mcp: &[crate::settings::McpServer]) {
+    /// 每次启动重建 BioDSH 对 dsh 的全部配置(都归应用所有,确定性生成):
+    /// ① profile 里启用 dsh-biodsh bundle(BioDSH 预设 + `biodsh` 设置行,与官方 dsh 用户安装的是同一个包);
+    /// ② home 补丁:精简界面、默认预设 biodsh-ptc、`biodsh` 设置(技能目录指向安装包资源、桌面说明)、自动审查、MCP。
+    /// 不再覆盖 standard 预设,也不再挂散装插件。删除 cordis.patch.yml 与 profiles/web/node_modules/dsh-biodsh 后重启即恢复。
+    fn ensure_home(paths: &AppPaths, official_skills: &Path, library_skills: &Path, bundle_template: &Path, mcp: &[crate::settings::McpServer]) {
         let home = &paths.dsh_home;
-        // 正交化(0.3.0):不再手搓 dsh 的 agent-preset —— 它随 dsh 版本改 schema(0.1.5 把 persona 的 text 改成
-        // 必填 prefix),standard 模板还被 0.1.5 删了,是唯一让 session/create 挂掉的耦合点。人设改为只走全局
-        // system-prompt loader 的 persona 字段(0.1.2/0.1.5 都稳定支持,已由 dsh-compat-test 验过 5/5)。
-        // 顺手删掉老版本遗留的 .agent-presets/biodsh(0.1.2 格式,在 0.1.5 下会让 session/create 报 preset invalid)。
-        let _ = fs::remove_dir_all(home.join(".agent-presets").join("biodsh"));
+        let _ = fs::remove_dir_all(home.join(".agent-presets").join("biodsh")); // 0.1.2 遗留
+        install_bundle(home, bundle_template);
 
-        let patch = home.join("cordis.patch.yml");
-        let existing = fs::read_to_string(&patch).unwrap_or_default();
-        let marker = |v: &str| existing.contains(&format!("# biodsh-minimal {v}"));
-        // v7:去掉 agent-presets/default:biodsh(不再用预设);v8:加收敛护栏插件 step-guard;老 marker 一律重建。
-        if !patch.exists() || marker("v1") || marker("v2") || marker("v3") || marker("v4") || marker("v5") || marker("v6") || marker("v7") {
-            // cordis.patch 两类条目:① 改已有插件 = 顶层 `- id: X, <覆盖字段>`(dsh-app-boot 按 id 合并);
-            //   ② 加新插件 = `- insert: [ <条目> ]`(缺 insert 的新 id 只会 warn "entry not found" 静默失效)。
-            // 修改类:精简掉多余 UI(disabled)+ 换 BioDSH 人设(system-prompt.persona)+ 官方技能目录(skill-filesystem)。
-            let mut body: Vec<String> = MINIMAL_PLUGINS.iter().map(|id| format!("- id: {id}\n  disabled: true")).collect();
-            let persona_yaml = PERSONA.lines().map(|l| if l.is_empty() { String::new() } else { format!("      {l}") }).collect::<Vec<_>>().join("\n");
-            body.push(format!("- id: system-prompt\n  config:\n    persona: >-\n{persona_yaml}"));
-            body.push(format!("- id: skill-filesystem\n  config:\n    customSkillDirs: [{}]", yaml_str(&official_skills.to_string_lossy())));
-            // 新增类(insert):技能语义路由插件(0.3.0 正交化,不再打补丁改 dsh)+ 外接 MCP 服务。
-            let mut inserts: Vec<String> = Vec::new();
-            // 用绝对 file:// URL 加载插件(cordis loader 按配置文件所在目录解析裸包名,dsh-home 下找不到 @biodsh;绝对路径最稳)。
-            let file_url = |p: &Path| format!("file:///{}", p.display().to_string().replace('\\', "/").trim_start_matches('/'));
-            inserts.push(format!("    - id: biodsh-skill-router\n      name: {}", yaml_str(&file_url(skill_router_plugin))));
-            // 收敛护栏(治跑飞,R1 实测:难题超时 8→0、关技能 56%→72%):与 skill-router 同目录 @biodsh/step-guard;
-            // 阈值由 spawn 时的 BIODSH_GUARD_* 环境变量决定(见 start_with)。
-            let step_guard_plugin = skill_router_plugin.parent().and_then(Path::parent).map(|d| d.join("step-guard").join("index.js"));
-            if let Some(p) = step_guard_plugin.filter(|p| p.exists()) {
-                inserts.push(format!("    - id: biodsh-step-guard\n      name: {}", yaml_str(&file_url(&p))));
+        let mut body: Vec<String> = MINIMAL_PLUGINS.iter().map(|id| format!("- id: {id}\n  disabled: true")).collect();
+        // 补丁对已有条目的 config 是整体替换:agent-preset-registry 只有 default 一个必填字段;biodsh 行是我们自己的。
+        // 默认用 PTC 版(程序化工具调用,同 dsh 自带 ptc 预设):开发循环 15 题步数中位 23→16、耗时 129→97 s,正确率不变。
+        body.push("- id: agent-preset-registry\n  config:\n    default: biodsh-ptc".into());
+        let json = |v: &str| serde_json::to_string(v).unwrap_or_else(|_| "\"\"".into());
+        body.push(format!("- id: biodsh\n  config:\n    officialSkillsDir: {}\n    librarySkillsDir: {}\n    appContext: {}",
+            json(&official_skills.to_string_lossy()), json(&library_skills.to_string_lossy()), json(APP_CONTEXT)));
+        let mut inserts: Vec<String> = Vec::new();
+        // 官方「自动审查」(dsh 随附、默认关):权限菜单多一个选项,每次工具调用前由当前模型评估风险,
+        // 项目内普通操作直接放行,删除既有文件/对外写入等仍请用户确认。官方设计不允许设为默认,需用户在会话里选择。
+        inserts.push("    - id: auto-review\n      name: '@deepseek-ai/dsh-experimental-auto-review'".into());
+        // 每个 MCP 服务一个 dsh-mcp-client 实例(工具名 mcp__<name>__<tool>);字段按 insert 的两层缩进(6/8 空格)。
+        for m in mcp.iter().filter(|m| m.enabled != Some(false)) {
+            let name: String = m.name.chars().filter(|c| c.is_ascii_alphanumeric() || *c == '_' || *c == '-').take(32).collect();
+            if name.is_empty() { continue; }
+            let mut y = format!("    - id: mcp-{name}\n      name: '@deepseek-ai/dsh-mcp-client'\n      config:\n        serverName: {name}\n");
+            if m.transport == "streamable-http" {
+                if m.url.trim().is_empty() { continue; }
+                y.push_str(&format!("        transport: streamable-http\n        url: {}\n", yaml_str(m.url.trim())));
+            } else {
+                if m.command.trim().is_empty() { continue; }
+                y.push_str(&format!("        transport: stdio\n        command: {}\n", yaml_str(m.command.trim())));
+                if !m.args.is_empty() { y.push_str(&format!("        args: [{}]\n", m.args.iter().map(|a| yaml_str(a)).collect::<Vec<_>>().join(", "))); }
+                if !m.env.is_empty() { y.push_str("        env:\n"); for (k, v) in &m.env { y.push_str(&format!("          {k}: {}\n", yaml_str(v))); } }
             }
-            // 每个 MCP 服务一个 dsh-mcp-client 实例(工具名 mcp__<name>__<tool>);字段按 insert 的两层缩进(6/8 空格)。
-            for m in mcp.iter().filter(|m| m.enabled != Some(false)) {
-                let name: String = m.name.chars().filter(|c| c.is_ascii_alphanumeric() || *c == '_' || *c == '-').take(32).collect();
-                if name.is_empty() { continue; }
-                let mut y = format!("    - id: mcp-{name}\n      name: '@deepseek-ai/dsh-mcp-client'\n      config:\n        serverName: {name}\n");
-                if m.transport == "streamable-http" {
-                    if m.url.trim().is_empty() { continue; }
-                    y.push_str(&format!("        transport: streamable-http\n        url: {}\n", yaml_str(m.url.trim())));
-                } else {
-                    if m.command.trim().is_empty() { continue; }
-                    y.push_str(&format!("        transport: stdio\n        command: {}\n", yaml_str(m.command.trim())));
-                    if !m.args.is_empty() { y.push_str(&format!("        args: [{}]\n", m.args.iter().map(|a| yaml_str(a)).collect::<Vec<_>>().join(", "))); }
-                    if !m.env.is_empty() { y.push_str("        env:\n"); for (k, v) in &m.env { y.push_str(&format!("          {k}: {}\n", yaml_str(v))); } }
-                }
-                y.push_str("        failOnStartupError: false");
-                inserts.push(y.trim_end().to_string());
-            }
-            body.push(format!("- insert:\n{}", inserts.join("\n")));
-            let _ = fs::write(&patch, format!("# biodsh-minimal v8 — BioDSH 精简模式 + BioDSH 人设(全局 persona) + 技能路由插件 + 收敛护栏 + 技能全量可用 + MCP 接入（删除本文件并重启即可恢复 dsh 默认）\n{}\n", body.join("\n")));
+            y.push_str("        failOnStartupError: false");
+            inserts.push(y.trim_end().to_string());
         }
+        body.push(format!("- insert:\n{}", inserts.join("\n")));
+        let _ = fs::write(home.join("cordis.patch.yml"), format!("# biodsh-minimal v13 — 由 BioDSH 每次启动重新生成:精简界面 + dsh-biodsh PTC 预设设为默认 + biodsh 设置 + 自动审查 + MCP\n{}\n", body.join("\n")));
+
         let settings = home.join("settings.yaml");
-        if !settings.exists() {
-            let _ = fs::write(&settings, "ui-onboarding:\n  welcomeNoticeVersion: 2026-08-13.1\nlocale:\n  preference: zh\nui-theme:\n  preference: system\n");
+        // 首次启动才写默认值。dsh 0.2 每次启动会把 settings.yaml 改名为 .imported,所以有 .imported 也说明不是首次。
+        if !settings.exists() && !home.join("settings.yaml.imported").exists() {
+            let _ = fs::write(&settings, format!("ui-onboarding:\n  welcomeNoticeVersion: 2026-08-13.1\nlocale:\n  preference: zh\nui-theme:\n  preference: system\nagent-default-model:\n  provider: deepseek-official\n  model: {DEFAULT_ONLINE_MODEL}\n  reasoningEffort: high\n"));
         }
     }
 
@@ -208,7 +233,7 @@ impl DshManager {
     /// `extra_env`：额外注入给 dsh 子进程的环境变量（图像生成接口等）；`mcp`：写进 patch 的 MCP 服务。
     pub fn start_with(self: &Arc<Self>, app: &AppHandle, paths: &AppPaths, workspace: &str, offline_key: Option<String>, extra_env: Vec<(String, String)>, mcp: &[crate::settings::McpServer]) -> DshStatus {
         if self.child.lock().unwrap().is_some() { return self.status.lock().unwrap().clone(); }
-        Self::ensure_home(paths, workspace, &crate::paths::resource(app, "skills"), &crate::paths::resource(app, "dsh/node_modules").join("@biodsh").join("skill-router").join("index.js"), mcp);
+        Self::ensure_home(paths, &crate::paths::resource(app, "skills"), &crate::paths::resource(app, "community-skills"), &crate::paths::resource(app, "dsh/node_modules").join("@biodsh").join("dsh-biodsh"), mcp);
         crate::settings::migrate_credentials(paths);
         ensure_sitecustomize(&paths.bioenv);
         *self.status.lock().unwrap() = DshStatus { state: "starting".into(), ..Default::default() };
@@ -237,19 +262,8 @@ impl DshManager {
             .env("VIRTUAL_ENV", paths.bioenv.join(".venv"))
             .env("PATH", path_env)
             .env("DSH_TELEMETRY_DISABLED", "1")
-            // 技能语义路由：把 2000+ 社区技能挂成 dsh 的 bundled 技能根(无需手动安装即可被发现),
-            // 再由 patch-dsh-skill-router 按最新用户消息排序、只放 top-K 进上下文(见 BIODSH_SKILL_CATALOG_MAX)。
-            .env("DSH_BUNDLED_SKILL_DIR", crate::paths::resource(app, "community-skills"))
-            .env("BIODSH_SKILL_CATALOG_MAX", "40")
-            // 收敛护栏(@biodsh/step-guard):本轮用了这么多步/秒就提醒 agent 收尾(软)/立刻作答(硬)。
-            // 阈值来自 R1 实测(v2:难题超时 8→0、多救回 1 题、不误伤自己会收敛的题);产品无 400s 硬墙,时间上限再放宽。
-            .env("BIODSH_GUARD_SOFT_STEPS", "12").env("BIODSH_GUARD_SOFT_SEC", "240")
-            .env("BIODSH_GUARD_HARD_STEPS", "20").env("BIODSH_GUARD_HARD_SEC", "420")
-            // 本地 embedding 语义路由：离线加载模型 + 预计算技能向量，给「用户这句话」算向量做余弦排序（skill-router.mjs）。
-            .env("BIODSH_EMBED_ROUTER", crate::paths::resource(app, "embed").join("skill-router.mjs"))
-            .env("BIODSH_SKILL_VECTORS", crate::paths::resource(app, "skills").join("skill-vectors.json"))
-            .env("BIODSH_EMBED_CACHE", crate::paths::resource(app, "embed").join("models"))
-            .env("BIODSH_EMBED_OFFLINE", "1")
+            // 技能、技能精选与收敛护栏都由 dsh-biodsh bundle 提供并通过 `biodsh` 设置配置(见 ensure_home);不要再设
+            // DSH_BUNDLED_SKILL_DIR,否则 2000+ 社区技能会经 skill-filesystem 进入会话目录。
             .env_remove("NODE_OPTIONS");
         if let Some(k) = offline_key { if !k.is_empty() { cmd.env("BIODSH_OFFLINE_KEY", k); } else { cmd.env("BIODSH_OFFLINE_KEY", "local"); } }
         for (k, v) in extra_env { if !v.is_empty() { cmd.env(k, v); } }

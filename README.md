@@ -18,7 +18,7 @@ It is a thin, friendly shell around **DeepSeek Harness (`dsh`)**: the agent runt
 
 ## The Sky interface · Design preview
 
-The Sky identity is approved. This is a **1.0 interface design preview** being integrated into the app. Catalog entries, counts and states are illustrative, not analysis results. The current public installer remains **0.3.0**.
+The Sky interface ships in the **[1.0.0 Preview](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v1.0.0-preview.1)** (Windows). The screenshot below is a design render: catalog entries, counts and states are illustrative, not analysis results. The stable channel and auto‑update stay on **0.3.0** until 1.0 is final.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/brand-showcase/skills-dark-en.png">
@@ -30,7 +30,9 @@ The Sky identity is approved. This is a **1.0 interface design preview** being i
 
 ## Download
 
-Grab an installer from the [**latest release**](https://github.com/sagirimo/BioDSH/releases/latest):
+> **Try 1.0.0 Preview** — the new Sky interface, project/task tree, skill hub, pipelines and model sources, on DeepSeek Harness 0.2.1. Windows installer: [**BioDSH 1.0.0 Preview 1**](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v1.0.0-preview.1). It is a pre‑release: 0.3.0 users are not auto‑updated to it, and it installs over 0.3.0 in place (back up important projects first). Please report problems in [Issues](https://github.com/sagirimo/BioDSH/issues).
+
+Stable installers are in the [**latest release**](https://github.com/sagirimo/BioDSH/releases/latest):
 
 | Platform | File | Notes |
 | --- | --- | --- |
@@ -76,6 +78,20 @@ A "skill" is a `dsh` plugin: a folder with a `SKILL.md` (instructions the agent 
 
 ## Use with vanilla DeepSeek Harness
 
+### As a dsh plugin (npm: `dsh-biodsh`)
+
+[![npm](https://img.shields.io/npm/v/dsh-biodsh)](https://www.npmjs.com/package/dsh-biodsh)
+
+The whole BioDSH agent — persona, 17 validated skills, the 2,000+ skill library, automatic skill selection and the convergence guard — as one dsh bundle. It adds a **BioDSH** agent preset and leaves your other presets alone. Requires dsh 0.2.1+ and pnpm on `PATH`.
+
+```bash
+dsh plugin --profile web add dsh-biodsh
+```
+
+Or in the dsh web UI: **Plugins → Install → `dsh-biodsh`**. Restart dsh and pick **BioDSH** in the preset menu. Details: [`packages/dsh-biodsh`](packages/dsh-biodsh).
+
+### Skills only
+
 BioDSH's official skills are ordinary dsh-native `SKILL.md` skills, so plain `dsh` picks them up automatically — no BioDSH app required. dsh scans a few skill folders; the simplest is a per-project `.agents/skills/`:
 
 ```bash
@@ -110,6 +126,7 @@ The release recipe is at [`docs/release.workflow.yml`](docs/release.workflow.yml
 | --- | --- |
 | `desktop/` | The Tauri desktop app — React UI (`src/`), Rust backend (`src-tauri/`), build scripts (`scripts/`), store catalog (`store/`). |
 | `biodsh-core/skills/` | The evaluated official skills shipped with the app. |
+| `packages/dsh-biodsh/` | The `dsh-biodsh` npm bundle for vanilla dsh (BioDSH preset, skill selection, convergence guard). |
 | `desktop/resources/` | Bundled resources: the analysis‑environment spec, example‑project sessions, helper scripts. |
 
 ## License

@@ -90,9 +90,17 @@ export function apply(ctx) {
       const snap = await orig(opts);
       if (process.env.BIODSH_ROUTER_DEBUG) { try { process.stderr.write(`[biodsh-router] snapshot called: skills=${snap?.skills?.length} max=${MAX()}\n`); } catch {} }
       try {
+        if (opts.__biodshFull) return snap; // skill-select 读全库目录用的旁路
         if (!Array.isArray(snap?.skills) || snap.skills.length <= MAX()) return snap;
         const q = (opts.scope && perAgentQuery.get(opts.scope)) || lastQuery || '';
-        const skills = await rankCap(snap.skills, q, MAX());
+        let skills = await rankCap(snap.skills, q, MAX());
+        // skill-select 选中的技能排在目录最前(不在 top-K 里的也补进来,总数仍为 K)
+        const sel = (opts.scope && globalThis.__biodshSkillSelect?.get?.(opts.scope)) || [];
+        if (sel.length) {
+          const names = sel.map((x) => x.name);
+          const front = names.map((n) => snap.skills.find((s) => s.name === n)).filter(Boolean);
+          skills = [...front, ...skills.filter((s) => !names.includes(s.name))].slice(0, MAX());
+        }
         if (process.env.BIODSH_ROUTER_DEBUG && skills.length !== snap.skills.length) {
           try { process.stderr.write(`[biodsh-router] capped ${snap.skills.length}->${skills.length} (max ${MAX()}) q="${String(q).slice(0, 40)}"\n`); } catch {}
         }

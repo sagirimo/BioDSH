@@ -1,34 +1,40 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import wordmarkLight from '../assets/wordmark-light.png';
-import wordmarkDark from '../assets/wordmark-dark.png';
-import { SquarePen, Plus, Cpu, Store, Settings, Minus, Square, X, Folder, FolderPlus, GitBranch, GitCommitHorizontal, ChevronRight, ChevronDown, Wallet, MessageSquare, RefreshCw, Pin, Pencil, Archive, Share2, Trash2, FolderOpen, Sparkles, Loader2 } from 'lucide-react';
-import { useApp, type Tab } from '../store';
-import { Database, Globe } from 'lucide-react';
+import { Plus, ChevronDown, ChevronRight, Pin, Pencil, Archive, Share2, Trash2, FolderOpen, Sparkles, GitBranch, GitCommitHorizontal, X } from 'lucide-react';
+import { BioIcon, fileIconFor } from '../icons';
+import { useApp } from '../store';
 import ContextMenu, { type MenuState } from './ContextMenu';
 import { useT } from '../i18n';
 
+// 项目-任务树：项目 = dsh 工作区（一个文件夹），任务 = 该工作区里的一个 dsh 会话。
 interface Workspace { workspaceId: string; path: string; title: string; sessionIds: string[]; updatedAt: string }
-interface SessionRow { sessionId: string; updatedAt: number; running: boolean; blank: boolean; cwd?: string; projections?: { values: Record<string, unknown> } }
+interface SessionRow { sessionId: string; updatedAt: number; running: boolean; blank: boolean; cwd?: string; agentAvailable?: boolean; projections?: { values: Record<string, unknown> } }
 interface GitInfo { available: boolean; isRepo: boolean; branch?: string; dirty: number; lastCommit?: string }
 interface Balance { total?: string; granted?: string; topped?: string; currency?: string; error?: string }
+interface FileEntry { name: string; rel: string; size: number; modified: number; kind: string }
 
 function sessionTitle(s: SessionRow): string {
   const t = s.projections?.values?.title;
-  return typeof t === 'string' && t.trim() ? t : (s.blank ? '新对话' : '未命名对话');
+  if (typeof t === 'string' && t.trim()) return t;
+  // 旧版 dsh 录制的会话 0.2 读不出投影（没有标题），标出来而不是显示成未命名
+  if (!s.projections && s.agentAvailable === false) return '旧版任务（只读）';
+  return s.blank ? '新任务' : '未命名任务';
 }
 function sessionTokens(s: SessionRow): number {
   const u = s.projections?.values?.tokenUsage as { uncachedInputTokens?: number; outputTokens?: number; cacheReadTokens?: number } | undefined;
   return u ? (u.uncachedInputTokens ?? 0) + (u.outputTokens ?? 0) + (u.cacheReadTokens ?? 0) : 0;
 }
 const fmtTokens = (n: number) => (n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${(n / 1e3).toFixed(1)}k` : String(n));
+const fmtSize = (n: number) => (n >= 1 << 30 ? `${(n / (1 << 30)).toFixed(1)} GB` : n >= 1 << 20 ? `${(n / (1 << 20)).toFixed(1)} MB` : n >= 1024 ? `${Math.round(n / 1024)} KB` : `${n} B`);
+const fmtDay = (ms: number) => { const d = new Date(ms); return `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`; };
 const loadPins = (): string[] => { try { return JSON.parse(localStorage.getItem('biodsh.pins') ?? '[]'); } catch { return []; } };
+// 生成物：图片、或放在常见输出目录里的文件
+const isResult = (f: FileEntry) => f.kind === 'image' || /^(results?|outputs?|figures?|figs|plots|submission|reports?)\//i.test(f.rel);
 
 export default function Sidebar() {
-  const { tab, setTab, env, dsh, info, settings, currentSession: current, setCurrentSession: setCurrent } = useApp();
+  const { tab, setTab, dsh, settings, currentSession: current, setCurrentSession: setCurrent, setTaskMeta } = useApp();
   const offline = settings?.mode === 'offline';
   const { t, lang } = useT();
   const api = window.biodsh;
-  const isMac = info?.platform === 'darwin';
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
   const [sessions, setSessions] = useState<Record<string, SessionRow>>({});
   const [archived, setArchived] = useState<Set<string>>(new Set());
@@ -41,6 +47,9 @@ export default function Sidebar() {
   const [notice, setNotice] = useState<string | null>(null);
   const [menu, setMenu] = useState<MenuState | null>(null);
   const [usageOpen, setUsageOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [files, setFiles] = useState<FileEntry[]>([]);
+  const [fileTab, setFileTab] = useState<'data' | 'results'>('data');
 
   const toast = (m: string) => { setNotice(m); setTimeout(() => setNotice(null), 4000); };
   const savePins = (p: string[]) => { setPins(p); try { localStorage.setItem('biodsh.pins', JSON.stringify(p)); } catch { /* */ } };
@@ -73,9 +82,30 @@ export default function Sidebar() {
     load(); const timer = setInterval(load, 60_000); return () => { alive = false; clearInterval(timer); };
   }, [lang]);
 
+  // 启动后还没选中任务时，跟随 dsh 打开的最近一个任务，标题栏才有路径和名称
+  useEffect(() => {
+    if (current) return;
+    const recent = Object.values(sessions).filter((s) => !archived.has(s.sessionId) && workspaces.some((w) => w.sessionIds.includes(s.sessionId))).sort((a, b) => b.updatedAt - a.updatedAt)[0];
+    if (recent) setCurrent(recent.sessionId);
+  }, [sessions, workspaces, archived, current]);
+  const currentWs = useMemo(() => workspaces.find((w) => current && w.sessionIds.includes(current)) ?? workspaces[0], [workspaces, current]);
+  // 标题栏要显示的当前任务信息
+  useEffect(() => {
+    const s = current ? sessions[current] : undefined;
+    const w = workspaces.find((x) => current && x.sessionIds.includes(current));
+    setTaskMeta(s && w ? { sessionId: s.sessionId, title: t(sessionTitle(s)), project: w.title || w.path.split(/[\\/]/).pop() || '', projectPath: w.path, running: s.running, blank: s.blank } : null);
+  }, [current, sessions, workspaces, lang]);
+  // 当前项目的文件
+  useEffect(() => {
+    if (!currentWs) { setFiles([]); return; }
+    let alive = true;
+    const load = () => (api.workspaceFiles(currentWs.path) as Promise<FileEntry[]>).then((f) => alive && setFiles(f.sort((a, b) => b.modified - a.modified))).catch(() => alive && setFiles([]));
+    void load(); const timer = setInterval(load, 15_000); return () => { alive = false; clearInterval(timer); };
+  }, [currentWs?.path]);
+
   const openSession = (id: string) => { setCurrent(id); setTab('chat'); void api.dshOpenSession(id); };
   const newSession = async (workspaceId?: string) => {
-    const ws = workspaceId ?? workspaces[0]?.workspaceId; if (!ws || busy) return;
+    const ws = workspaceId ?? currentWs?.workspaceId; if (!ws || busy) return;
     const w = workspaces.find((x) => x.workspaceId === ws);
     const blank = w?.sessionIds.map((id) => sessions[id]).filter((s): s is SessionRow => !!s && s.blank && !archived.has(s.sessionId)).sort((a, b) => b.updatedAt - a.updatedAt)[0];
     if (blank) { openSession(blank.sessionId); return; }
@@ -104,20 +134,20 @@ export default function Sidebar() {
     const pinned = pins.includes(s.sessionId);
     setMenu({ x: e.clientX, y: e.clientY, items: [
       { label: pinned ? t('取消置顶') : t('置顶'), icon: <Pin size={13} />, onClick: () => savePins(pinned ? pins.filter((p) => p !== s.sessionId) : [s.sessionId, ...pins]) },
-      { label: t('重命名'), icon: <Pencil size={13} />, onClick: () => { const v = window.prompt(t('新的对话名称'), t(sessionTitle(s))); if (v && v.trim()) void rpc('session.rename', { sessionId: s.sessionId, title: v.trim() }, t('已重命名')); } },
-      { label: t('分享（导出对话记录）'), icon: <Share2 size={13} />, onClick: () => { void (api.sessionExport(s.sessionId) as Promise<string | null>).then((p) => p && toast(t('已导出到 {path}', { path: p }))).catch((err: unknown) => toast(t('导出失败：{msg}', { msg: String(err).slice(0, 80) }))); } },
+      { label: t('重命名'), icon: <Pencil size={13} />, onClick: () => { const v = window.prompt(t('新的任务名称'), t(sessionTitle(s))); if (v && v.trim()) void rpc('session.rename', { sessionId: s.sessionId, title: v.trim() }, t('已重命名')); } },
+      { label: t('分享（导出任务记录）'), icon: <Share2 size={13} />, onClick: () => { void (api.sessionExport(s.sessionId) as Promise<string | null>).then((p) => p && toast(t('已导出到 {path}', { path: p }))).catch((err: unknown) => toast(t('导出失败：{msg}', { msg: String(err).slice(0, 80) }))); } },
       'sep',
       { label: t('归档'), icon: <Archive size={13} />, onClick: () => { void rpc('workspace.archiveSession', { sessionId: s.sessionId }, t('已归档')); if (current === s.sessionId) setCurrent(null); } },
-      { label: t('永久删除'), icon: <Trash2 size={13} />, danger: true, onClick: () => { if (window.confirm(t('永久删除对话「{title}」？记录文件会从磁盘删除，无法恢复。', { title: t(sessionTitle(s)) }))) { void (api.sessionDelete(s.sessionId) as Promise<number>).then(() => { if (current === s.sessionId) setCurrent(null); return refresh(); }).then(() => toast(t('已永久删除'))).catch((err: unknown) => toast(`${t('删除失败')}: ${String(err).slice(0, 80)}`)); } } },
+      { label: t('永久删除'), icon: <Trash2 size={13} />, danger: true, onClick: () => { if (window.confirm(t('永久删除任务「{title}」？记录文件会从磁盘删除，无法恢复。', { title: t(sessionTitle(s)) }))) { void (api.sessionDelete(s.sessionId) as Promise<number>).then(() => { if (current === s.sessionId) setCurrent(null); return refresh(); }).then(() => toast(t('已永久删除'))).catch((err: unknown) => toast(`${t('删除失败')}: ${String(err).slice(0, 80)}`)); } } },
       'sep',
-      { label: t('问一下：这个对话是什么？'), icon: <Sparkles size={13} />, onClick: () => ask(e.clientX, e.clientY, t('项目「{project}」里的对话「{session}」', { project: w.title, session: t(sessionTitle(s)) }), t('这个对话是关于什么的？')) },
+      { label: t('问一下：这个任务是什么？'), icon: <Sparkles size={13} />, onClick: () => ask(e.clientX, e.clientY, t('项目「{project}」里的任务「{session}」', { project: w.title, session: t(sessionTitle(s)) }), t('这个任务是关于什么的？')) },
     ] });
   };
   const projectMenu = (e: React.MouseEvent, w: Workspace) => {
     e.preventDefault(); e.stopPropagation();
     const g = git[w.workspaceId];
     setMenu({ x: e.clientX, y: e.clientY, items: [
-      { label: t('新对话'), icon: <Plus size={13} />, onClick: () => { void newSession(w.workspaceId); } },
+      { label: t('新建任务'), icon: <Plus size={13} />, onClick: () => { void newSession(w.workspaceId); } },
       { label: t('重命名项目'), icon: <Pencil size={13} />, onClick: () => { const v = window.prompt(t('项目名称'), w.title); if (v && v.trim()) void rpc('workspace.rename', { workspaceId: w.workspaceId, title: v.trim() }, t('已重命名')); } },
       { label: t('打开文件夹'), icon: <FolderOpen size={13} />, onClick: () => { void api.openPath(w.path); } },
       'sep',
@@ -125,19 +155,20 @@ export default function Sidebar() {
         ? { label: g.dirty ? t('保存版本快照（{n} 处改动）', { n: g.dirty }) : t('保存版本快照（没有改动）'), icon: <GitCommitHorizontal size={13} />, disabled: !g.dirty, onClick: () => { void gitAction(w, 'commit'); } }
         : { label: t('开启版本控制（git）'), icon: <GitBranch size={13} />, onClick: () => { void gitAction(w, 'init'); } }, 'sep' as const] : []),
       { label: t('从列表移除（不删文件）'), icon: <Trash2 size={13} />, danger: true, onClick: () => { if (window.confirm(t('把项目「{project}」从列表移除？文件夹和文件都不会删除。', { project: w.title }))) void rpc('workspace.delete', { workspaceId: w.workspaceId }, t('已移除')); } },
-      'sep',
-      { label: t('问一下：版本控制是什么？'), icon: <Sparkles size={13} />, onClick: () => ask(e.clientX, e.clientY, t('项目的版本控制（git）：分支、快照、改动数'), t('版本控制、分支、快照是什么意思？我需要用吗？')) },
     ] });
   };
 
+  const q = query.trim().toLowerCase();
   const grouped = useMemo(() => workspaces.map((w) => {
     const rows = w.sessionIds.map((id) => sessions[id]).filter((s): s is SessionRow => !!s && !archived.has(s.sessionId)).sort((a, b) => b.updatedAt - a.updatedAt);
     let blankSeen = false;
     const dedup = rows.filter((s) => { if (!s.blank) return true; if (blankSeen) return false; blankSeen = true; return true; });
-    return { w, rows: [...dedup.filter((s) => pins.includes(s.sessionId)), ...dedup.filter((s) => !pins.includes(s.sessionId))] };
-  }), [workspaces, sessions, archived, pins]);
+    const ordered = [...dedup.filter((s) => pins.includes(s.sessionId)), ...dedup.filter((s) => !pins.includes(s.sessionId))];
+    const name = (w.title || w.path).toLowerCase();
+    const hit = !q || name.includes(q);
+    return { w, rows: hit ? ordered : ordered.filter((s) => t(sessionTitle(s)).toLowerCase().includes(q)), hit };
+  }).filter((g) => g.hit || g.rows.length > 0), [workspaces, sessions, archived, pins, q, lang]);
 
-  // 用量统计（token）：本对话 / 本项目 / 全部
   const usage = useMemo(() => {
     const all = Object.values(sessions).reduce((n, s) => n + sessionTokens(s), 0);
     const cur = current && sessions[current] ? sessionTokens(sessions[current]) : 0;
@@ -146,79 +177,78 @@ export default function Sidebar() {
     return { all, cur, proj, projName: w?.title };
   }, [sessions, workspaces, current]);
 
-  const nav = (id: Tab, label: string, Icon: typeof Cpu, right?: React.ReactNode) => (
-    <button className={`nav-item no-drag text-left ${tab === id ? 'active' : ''}`} onClick={() => setTab(id)}><Icon size={16} strokeWidth={2} /><span className="flex-1">{label}</span>{right}</button>
-  );
-  const envDot = env.step === 'error' ? 'var(--red)' : (env.ready || env.step === 'idle') ? null : 'var(--orange)';
+  const shownFiles = files.filter((f) => (fileTab === 'results' ? isResult(f) : !isResult(f)) && (!q || f.rel.toLowerCase().includes(q))).slice(0, 60);
 
   return (
-    <aside className="w-[264px] shrink-0 h-full flex flex-col relative" style={{ background: 'var(--sidebar)', borderRight: '0.5px solid var(--border)', backdropFilter: 'blur(20px)' }}>
-      <div className={`drag h-[52px] flex items-center ${isMac ? 'pl-[84px]' : 'pl-4'} pr-3`}>
-        <div className="flex items-center"><img className="bio-logo-light" src={wordmarkLight} alt="BioDSH" style={{ height: 20 }} draggable={false} /><img className="bio-logo-dark" src={wordmarkDark} alt="BioDSH" style={{ height: 20 }} draggable={false} /></div>
-        <div className="flex-1" />
-        {!isMac && <div className="no-drag"><WindowControls compact /></div>}
+    <aside className="tree" aria-label={t('项目与任务')}>
+      <div className="tree-head drag">
+        <div className="tree-title">
+          <div className="min-w-0"><div className="eyebrow">{t('工作区')}</div><div className="serif truncate">{t('我的研究')}</div></div>
+          <div className="flex no-drag">
+            <button className="icon-btn" title={t('新建项目（选一个文件夹）')} aria-label={t('新建项目（选一个文件夹）')} onClick={addProject}><BioIcon name="ui-new-project" size={17} /></button>
+            <button className="icon-btn" title={t('刷新')} aria-label={t('刷新')} onClick={() => refresh(true)}><BioIcon name="ui-refresh" size={16} className={refreshing ? 'bds-spin' : undefined} /></button>
+          </div>
+        </div>
+        <label className="tree-search no-drag"><BioIcon name="ui-search" size={15} /><input id="tree-search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder={t('搜索项目、任务和文件')} />{query && <button onClick={() => setQuery('')} aria-label={t('清除')}><X size={13} /></button>}</label>
       </div>
 
-      <nav className="px-3 flex flex-col gap-[2px]">
-        <button className="nav-item no-drag text-left" onClick={() => newSession()} disabled={busy || dsh.state !== 'running'}><SquarePen size={16} strokeWidth={2} /><span className="flex-1">{t('新对话')}</span></button>
-        {nav('data', t('分析'), Database)}
-        {nav('db', t('数据库'), Globe)}
-        {nav('env', t('分析环境'), Cpu, envDot ? <span className="inline-block w-[7px] h-[7px] rounded-full" style={{ background: envDot }} /> : undefined)}
-        {nav('store', t('技能商店'), Store)}
-        {nav('settings', t('更多'), Settings)}
-      </nav>
-
-      <div className="flex-1 min-h-0 overflow-y-auto px-3 mt-3">
-        <div className="flex items-center justify-between px-2 pb-1">
-          <span className="t-caption" style={{ color: 'var(--text-3)' }}>{t('项目')}</span>
-          <span className="flex items-center gap-0.5">
-            <button className="p-1 rounded-md hover:bg-[var(--fill)]" title={t('新建项目（选一个文件夹）')} onClick={addProject}><FolderPlus size={13} style={{ color: 'var(--text-2)' }} /></button>
-            <button className="p-1 rounded-md hover:bg-[var(--fill)]" title={t('刷新')} onClick={() => refresh(true)}>{refreshing ? <Loader2 size={13} className="spin" style={{ color: 'var(--accent)' }} /> : <RefreshCw size={13} style={{ color: 'var(--text-2)' }} />}</button>
-          </span>
-        </div>
-        {dsh.state !== 'running' && <div className="t-caption px-2 py-2">{dsh.state === 'starting' ? t('智能体启动中…') : t('智能体未运行')}</div>}
+      <div className="tree-body">
+        <div className="tree-sec"><span>{t('项目')}</span><span className="acts"><button onClick={addProject}><BioIcon name="ui-new-project" size={14} />{t('新建项目')}</button></span></div>
+        {dsh.state !== 'running' && <div className="empty">{dsh.state === 'starting' ? t('智能体启动中…') : t('智能体未运行')}</div>}
         {grouped.map(({ w, rows }) => {
-          const g = git[w.workspaceId]; const open = !collapsed[w.workspaceId];
+          const g = git[w.workspaceId]; const open = !collapsed[w.workspaceId] || !!q;
           return (
-            <div key={w.workspaceId} className="mb-1">
-              <div className="group flex items-center gap-1.5 h-[30px] px-2 rounded-lg hover:bg-[var(--fill)] cursor-default" onContextMenu={(e) => projectMenu(e, w)} onDoubleClick={() => newSession(w.workspaceId)}>
-                <button className="p-0.5" onClick={() => setCollapsed((c) => ({ ...c, [w.workspaceId]: open }))}>{open ? <ChevronDown size={12} /> : <ChevronRight size={12} />}</button>
-                <Folder size={14} style={{ color: 'var(--accent)' }} />
-                <span className="t-body truncate flex-1" title={w.path}>{w.title || w.path.split(/[\\/]/).pop()}</span>
-                {g?.isRepo && <span className="badge !h-[18px] !px-1.5 !text-[10px]" title={`${t('版本控制已开启 · 分支 {branch}', { branch: g.branch ?? '' })}${g.dirty ? ` · ${t('{n} 处改动未保存快照', { n: g.dirty })}` : ` · ${t('没有未保存的改动')}`}${g.lastCommit ? `\n${t('最近快照：{commit}', { commit: g.lastCommit })}` : ''}`}><GitBranch size={10} /> {g.branch}{g.dirty ? ` · ${g.dirty}` : ''}</span>}
-                <button className="hidden group-hover:block p-1 rounded-md hover:bg-[var(--fill-2)]" title={t('在此项目新对话')} onClick={() => newSession(w.workspaceId)}><Plus size={13} /></button>
+            <div key={w.workspaceId} className="proj">
+              <div className="proj-row" role="button" tabIndex={0} onClick={() => setCollapsed((c) => ({ ...c, [w.workspaceId]: open }))} onContextMenu={(e) => projectMenu(e, w)} title={w.path}>
+                {open ? <ChevronDown size={13} style={{ color: 'var(--text-3)' }} /> : <ChevronRight size={13} style={{ color: 'var(--text-3)' }} />}
+                <span className="name">{w.title || w.path.split(/[\\/]/).pop()}</span>
+                {g?.isRepo && <span className="tag-mini" title={t('版本控制已开启 · 分支 {branch}', { branch: g.branch ?? '' })}><GitBranch size={9} className="inline" /> {g.dirty || ''}</span>}
+                <button className="icon-btn add" title={t('在此项目新建任务')} aria-label={t('在此项目新建任务')} onClick={(e) => { e.stopPropagation(); void newSession(w.workspaceId); }}><BioIcon name="ui-new-task" size={15} /></button>
+                <span className="count">{rows.length}</span>
               </div>
-              {open && rows.map((s) => {
-                const active = current === s.sessionId && tab === 'chat';
-                return (
-                  <button key={s.sessionId} className="w-full text-left flex items-center gap-2 h-[28px] pl-8 pr-2 rounded-lg" style={{ background: active ? 'var(--accent-soft)' : undefined, color: active ? 'var(--accent)' : undefined }} onClick={() => openSession(s.sessionId)} onContextMenu={(e) => sessionMenu(e, s, w)} onMouseEnter={(e) => { if (!active) (e.currentTarget as HTMLElement).style.background = 'var(--fill)'; }} onMouseLeave={(e) => { if (!active) (e.currentTarget as HTMLElement).style.background = ''; }}>
-                    {pins.includes(s.sessionId) ? <Pin size={11} style={{ color: 'var(--orange)' }} /> : <MessageSquare size={12} style={{ color: s.running ? 'var(--green)' : active ? 'var(--accent)' : 'var(--text-3)' }} />}
-                    <span className="t-body truncate flex-1" style={{ fontSize: 12.5, fontWeight: active ? 600 : 400 }}>{t(sessionTitle(s))}</span>
-                    {sessionTokens(s) > 0 && <span className="t-caption" style={{ color: active ? 'var(--accent)' : 'var(--text-3)' }}>{fmtTokens(sessionTokens(s))}</span>}
-                  </button>
-                );
-              })}
-              {open && rows.length === 0 && <div className="t-caption pl-8 py-1" style={{ color: 'var(--text-3)' }}>{t('还没有对话')}</div>}
+              {open && (
+                <div className="tasks">
+                  {rows.map((s) => {
+                    const active = current === s.sessionId && tab === 'chat';
+                    return (
+                      <button key={s.sessionId} className={`task ${active ? 'active' : ''}`} onClick={() => openSession(s.sessionId)} onContextMenu={(e) => sessionMenu(e, s, w)} title={sessionTokens(s) ? `${fmtTokens(sessionTokens(s))} tokens` : undefined}>
+                        {pins.includes(s.sessionId) ? <Pin size={10} style={{ color: 'var(--orange)' }} /> : <span className={`sdot ${s.running ? 'run' : s.blank ? 'blank' : 'done'}`} />}
+                        <span className="t">{t(sessionTitle(s))}</span>
+                        <span className="d">{s.running ? t('运行中') : fmtDay(s.updatedAt)}</span>
+                      </button>
+                    );
+                  })}
+                  <button className="newtask" onClick={() => newSession(w.workspaceId)} disabled={busy}><BioIcon name="ui-new-task" size={13} />{t('新建任务')}</button>
+                </div>
+              )}
             </div>
           );
         })}
-        {dsh.state === 'running' && workspaces.length === 0 && <div className="t-caption px-2 py-2">{t('还没有项目，点上面的')} <FolderPlus size={11} className="inline" /> {t('选一个文件夹')}</div>}
+        {dsh.state === 'running' && workspaces.length === 0 && <div className="empty empty-art"><BioIcon name="illustrations-empty-projects" size={180} /><span>{t('还没有项目。点「新建项目」选一个放数据的文件夹。')}</span></div>}
       </div>
 
-      <div className="px-3 pb-3 pt-2 hairline-t flex flex-col gap-1.5 relative">
-        <button className="flex items-center gap-2 px-2 h-[30px] rounded-lg text-left hover:brightness-95" style={{ background: 'var(--fill)' }} onClick={() => setUsageOpen((v) => !v)} title={t('点击查看用量明细')}>
-          <Wallet size={14} style={{ color: 'var(--accent)' }} />
-          <span className="t-body flex-1">{offline ? t('纯离线模式') : balance?.total != null ? t('余额 {amount}', { amount: `${balance.currency === 'CNY' ? '¥' : '$'}${Number(balance.total).toFixed(2)}` }) : balance?.error ?? t('查询余额…')}</span>
-          <span className="t-caption">{offline ? t('本地/内网') : 'DeepSeek'}</span>
-        </button>
-        {usageOpen && <UsagePanel balance={balance} usage={usage} onClose={() => setUsageOpen(false)} />}
-        <div className="flex items-center justify-between px-2">
-          <span className="t-caption flex items-center gap-1.5"><span className="inline-block w-[6px] h-[6px] rounded-full" style={{ background: dsh.state === 'running' ? 'var(--green)' : dsh.state === 'starting' ? 'var(--orange)' : 'var(--text-3)' }} />{dsh.state === 'running' ? t('智能体运行中') : dsh.state === 'starting' ? t('启动中') : dsh.state === 'error' ? t('智能体出错') : t('未启动')}</span>
-          <button className="p-1 rounded-md hover:bg-[var(--fill)]" title={t('设置')} onClick={() => setTab('settings')}><Settings size={13} style={{ color: 'var(--text-2)' }} /></button>
+      {currentWs && (
+        <div className="tree-files">
+          <div className="tree-sec"><span className="truncate">{t('项目文件')}</span><span className="acts"><button onClick={() => void api.openPath(currentWs.path)}><BioIcon name="ui-folder-open" size={14} />{t('打开')}</button></span></div>
+          <div className="tabs-mini"><button className={fileTab === 'data' ? 'on' : ''} onClick={() => setFileTab('data')}>{t('数据')}</button><button className={fileTab === 'results' ? 'on' : ''} onClick={() => setFileTab('results')}>{t('结果')}</button></div>
+          <div className="list">
+            {shownFiles.map((f) => (
+              <button key={f.rel} className="frow" title={f.rel} onClick={() => void api.openPath(`${currentWs.path}/${f.rel}`)}><BioIcon name={fileIconFor(f.kind, f.name)} size={16} style={{ color: 'var(--text-3)' }} /><span className="t">{f.name}</span><span className="s">{fmtSize(f.size)}</span></button>
+            ))}
+            {shownFiles.length === 0 && <div className="empty empty-art small">{fileTab === 'results' && !q && <BioIcon name="illustrations-empty-results" size={132} />}<span>{fileTab === 'data' ? t('把数据文件放进项目文件夹即可') : t('还没有生成结果')}</span></div>}
+          </div>
         </div>
-      </div>
+      )}
 
-      {notice && <div className="absolute left-3 right-3 bottom-[76px] z-[65] px-3 py-2 rounded-lg t-caption rise" style={{ background: 'var(--text)', color: 'var(--bg)' }}>{notice}</div>}
+      <div className="tree-foot">
+        <button className="foot-chip" onClick={() => setUsageOpen((v) => !v)} title={t('点击查看用量明细')}>
+          <BioIcon name={offline ? 'ui-offline' : 'ui-balance'} size={16} />
+          <span className="flex-1 truncate">{offline ? t('本地/内网模型') : balance?.total != null ? t('余额 {amount}', { amount: `${balance.currency === 'CNY' ? '¥' : '$'}${Number(balance.total).toFixed(2)}` }) : balance?.error ?? t('查询余额…')}</span>
+          <span className="sdot" style={{ background: dsh.state === 'running' ? 'var(--green)' : dsh.state === 'starting' ? 'var(--orange)' : 'var(--text-3)' }} title={dsh.state === 'running' ? t('智能体运行中') : t('智能体未运行')} />
+        </button>
+      </div>
+      {usageOpen && <UsagePanel balance={balance} usage={usage} onClose={() => setUsageOpen(false)} />}
+      {notice && <div className="absolute left-3 right-3 bottom-[56px] z-[65] px-3 py-2 rounded-lg t-caption rise" style={{ background: 'var(--text)', color: 'var(--bg)' }}>{notice}</div>}
       {menu && <ContextMenu menu={menu} onClose={() => setMenu(null)} />}
     </aside>
   );
@@ -230,38 +260,16 @@ function UsagePanel({ balance, usage, onClose }: { balance: Balance | null; usag
   useEffect(() => { pushOverlay(); return () => popOverlay(); }, [pushOverlay, popOverlay]);
   useEffect(() => { const k = (e: KeyboardEvent) => e.key === 'Escape' && onClose(); window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k); }, [onClose]);
   const sym = balance?.currency === 'CNY' ? '¥' : '$';
-  const row = (l: string, v: string, sub?: string) => <div className="flex items-baseline justify-between gap-3"><span className="t-body" style={{ color: 'var(--text-2)' }}>{l}</span><span className="t-body text-right"><span className="t-mono">{v}</span>{sub && <span className="t-caption ml-1">{sub}</span>}</span></div>;
+  const row = (l: string, v: string) => <div className="flex items-baseline justify-between gap-3"><span className="t-body" style={{ color: 'var(--text-2)' }}>{l}</span><span className="mono tnum" style={{ fontSize: 12 }}>{v}</span></div>;
   return (
-    <div className="absolute left-3 right-3 bottom-[76px] z-[66] card p-3 flex flex-col gap-2 rise" style={{ boxShadow: 'var(--shadow-sheet)' }}>
-      <div className="flex items-center justify-between"><span className="t-headline">{t('用量与额度')}</span><button className="p-1 rounded-md hover:bg-[var(--fill)]" onClick={onClose}><X size={12} /></button></div>
-      <div className="t-caption" style={{ color: 'var(--text-3)' }}>{t('DeepSeek 账户')}</div>
+    <div className="absolute left-3 right-3 bottom-[56px] z-[66] card p-3.5 flex flex-col gap-2 rise" style={{ boxShadow: 'var(--shadow-sheet)' }}>
+      <div className="flex items-center justify-between"><span className="serif" style={{ fontSize: 15 }}>{t('用量与额度')}</span><button className="icon-btn" onClick={onClose}><X size={13} /></button></div>
+      <div className="eyebrow">{t('DeepSeek 账户')}</div>
       {balance?.total != null ? <>{row(t('可用余额'), `${sym}${Number(balance.total).toFixed(2)}`)}{balance.granted != null && row(t('赠送'), `${sym}${Number(balance.granted).toFixed(2)}`)}{balance.topped != null && row(t('充值'), `${sym}${Number(balance.topped).toFixed(2)}`)}</> : <div className="t-body">{balance?.error ?? t('查询中…')}</div>}
-      <div className="t-caption mt-1" style={{ color: 'var(--text-3)' }}>{t('Token 用量（含缓存命中）')}</div>
-      {row(t('本对话'), fmtTokens(usage.cur))}
+      <div className="eyebrow mt-1">{t('Token 用量（含缓存命中）')}</div>
+      {row(t('本任务'), fmtTokens(usage.cur))}
       {row(usage.projName ? t('本项目「{project}」', { project: usage.projName }) : t('本项目'), fmtTokens(usage.proj))}
-      {row(t('全部对话'), fmtTokens(usage.all))}
-      <div className="t-caption" style={{ color: 'var(--text-3)' }}>{t('费用按 DeepSeek 官网价目计算，余额每分钟刷新。')}</div>
+      {row(t('全部任务'), fmtTokens(usage.all))}
     </div>
-  );
-}
-
-export function WindowControls({ compact = false }: { compact?: boolean }) {
-  const { info } = useApp();
-  if (info?.platform === 'darwin') return null;
-  const size = compact ? 'w-[30px] h-[30px]' : 'w-[46px] h-[44px]';
-  const b = (a: 'minimize' | 'maximize' | 'close', I: typeof Minus) => (
-    <button className={`no-drag ${size} flex items-center justify-center rounded-md hover:bg-[var(--fill)]`} onClick={() => window.biodsh.windowControl(a)}><I size={13} strokeWidth={1.5} /></button>
-  );
-  return <div className="flex" style={{ color: 'var(--text-2)' }}>{b('minimize', Minus)}{b('maximize', Square)}{b('close', X)}</div>;
-}
-
-export function Logo({ size = 22 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 44 44" fill="none">
-      <rect x="2" y="2" width="40" height="40" rx="11" fill="url(#g)" />
-      <path d="M14 12c0 10 16 10 16 20M30 12c0 10-16 10-16 20" stroke="#fff" strokeWidth="3" strokeLinecap="round" />
-      <path d="M16 17h12M16 27h12" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" opacity=".85" />
-      <defs><linearGradient id="g" x1="2" y1="2" x2="42" y2="42"><stop stopColor="#0a84ff" /><stop offset="1" stopColor="#5e5ce6" /></linearGradient></defs>
-    </svg>
   );
 }

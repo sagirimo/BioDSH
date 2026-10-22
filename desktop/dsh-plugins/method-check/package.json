@@ -1,0 +1,9 @@
+{
+  "name": "@biodsh/method-check",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "BioDSH method check: before running code, restate the task, list method/parameter choice points with the chosen option, compute the main alternative when the answer depends on it, and tag the final answer with a confidence level. Injected once per turn via dsh's agent/pre-step hook.",
+  "main": "index.js",
+  "exports": "./index.js"
+}

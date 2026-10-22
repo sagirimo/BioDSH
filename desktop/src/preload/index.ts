@@ -31,6 +31,13 @@ const api = {
   gitCommit: (path: string, message: string) => ipcRenderer.invoke('git:commit', path, message),
   deepseekBalance: () => ipcRenderer.invoke('deepseek:balance'),
   workspaceFiles: (path?: string) => ipcRenderer.invoke('files:list', path),
+  pipelinesList: (paths: string[]) => ipcRenderer.invoke('pipelines:list', paths),
+  workflowSourceImport: (project: string) => ipcRenderer.invoke('workflow:sourceImport', project),
+  // 以下仅 Tauri 版实现（tauri-bridge.ts），Electron 版不提供
+  dbCatalog: () => ipcRenderer.invoke('db:catalog'),
+  embedQuery: (text: string) => ipcRenderer.invoke('embed:query', text),
+  lightUpdateCheck: () => ipcRenderer.invoke('update:lightCheck'),
+  lightUpdateApply: (delta: unknown) => ipcRenderer.invoke('update:lightApply', delta),
   migrateScan: () => ipcRenderer.invoke('migrate:scan'),
   migrateImport: (sourceId: string) => ipcRenderer.invoke('migrate:import', sourceId),
   sessionDelete: (sessionId: string) => ipcRenderer.invoke('dsh:deleteSession', sessionId),

@@ -1,7 +1,7 @@
 {
   "name": "biodsh-desktop",
   "productName": "BioDSH",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "BioDSH Desktop — DeepSeek Harness + 生信技能商店",
   "author": "BioDSH",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "patch:skill": "node scripts/patch-dsh-skill-router.mjs"
   },
   "devDependencies": {
-    "@deepseek-ai/dsh": "0.1.5-rc.1",
+    "@deepseek-ai/dsh": "0.2.1-rc.2",
     "@tailwindcss/vite": "^4.0.0",
     "@tauri-apps/api": "^2.11.1",
     "@tauri-apps/cli": "^2.11.4",
@@ -51,5 +51,10 @@
   },
   "optionalDependencies": {
     "@tauri-apps/cli-win32-x64-msvc": "^2.11.4"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource/noto-serif-sc": "^5.2.8",
+    "@fontsource/source-serif-4": "^5.2.9"
   }
 }

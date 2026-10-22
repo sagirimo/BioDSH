@@ -1,0 +1,57 @@
+{
+  "name": "dsh-biodsh",
+  "version": "1.0.0-preview.1",
+  "description": "BioDSH for DeepSeek Harness: a bioinformatics agent preset with BioDSH skills, a 2000+ skill library, automatic skill selection and a convergence guard",
+  "icon": "./icon.svg",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagirimo/BioDSH.git",
+    "directory": "packages/dsh-biodsh"
+  },
+  "homepage": "https://github.com/sagirimo/BioDSH",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-bundle",
+    "deepseek",
+    "deepseek-harness",
+    "ai-agent",
+    "bundle",
+    "bioinformatics",
+    "single-cell",
+    "scrna-seq",
+    "biomedical",
+    "skills"
+  ],
+  "exports": {
+    "./context": "./lib/context.js",
+    "./settings": "./lib/settings.js",
+    "./skills": "./lib/skills.js",
+    "./select": "./lib/select.js",
+    "./guard": "./lib/guard.js",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "icon.svg",
+    "locale/*.json",
+    "lib/*.js",
+    "cordis.patch.yml",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {},
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "dshTarget": "0.2.1-rc.2"
+}

@@ -310,5 +310,125 @@
       "RMSD/RMSF 稳定性",
       "B-factor 相关性"
     ]
+  },
+  "pipeline-builder": {
+    "title": "工作流构建与学习",
+    "summary": "把已完成的任务，或别人写好的脚本、笔记本、方法说明，整理成可复现的工作流：确认步骤和参数，选验证项，做一次干净复现，之后可换数据重跑。",
+    "category": "workflow",
+    "icon": "⚙️",
+    "tags": [
+      "工作流",
+      "可复现",
+      "工作流"
+    ],
+    "featured": true
+  },
+  "bulk-rnaseq-limma-voom": {
+    "title": "Bulk RNA-seq 差异表达（limma-voom）",
+    "summary": "不依赖 R，用 Python 做 limma-voom 差异表达：TMM 文库校正、voom 精度权重、经验贝叶斯调节 t 检验、BH 校正；支持协变量和 RSEM 分数计数。已逐项对照 R limma 3.68 / edgeR 4.10 验证，结果一致到 1e-10。",
+    "category": "analysis",
+    "icon": "📊",
+    "tags": [
+      "转录组",
+      "差异表达",
+      "limma",
+      "voom"
+    ],
+    "featured": false,
+    "version": "1.0.0",
+    "evidence": {
+      "tests": "R limma 3.68.5 / edgeR 4.10.6 对照：权重 1e-13、t 1e-10",
+      "offline": true,
+      "reproducible": true
+    },
+    "scores": {
+      "correctness": 100,
+      "reproducibility": 100,
+      "offline": 100
+    },
+    "score_source": "对照 R limma/edgeR 逐项数值验证(VALIDATION.md)",
+    "domain_zh": "转录组与表达",
+    "subcategory": "差异表达"
+  },
+  "regression-robust-se": {
+    "title": "回归稳健标准误（HC / 聚类 CR）",
+    "summary": "不依赖 R/statsmodels：OLS/WLS 与 logistic、Poisson 回归的 HC0–HC3 稳健标准误、聚类 CR0/CR1/CR1S/CR2，Wald 检验与 bread/meat 分解。对照 R sandwich、clubSandwich、lmtest 逐项验证，最大相对误差 3.6e-9。",
+    "category": "analysis",
+    "icon": "📐",
+    "tags": [
+      "回归",
+      "稳健标准误",
+      "聚类",
+      "sandwich"
+    ],
+    "featured": false,
+    "version": "1.0.0",
+    "evidence": {
+      "tests": "R sandwich 3.1.3 / clubSandwich 0.7.0 对照：94,821 项，最大相对误差 3.6e-9",
+      "offline": true,
+      "reproducible": true
+    },
+    "scores": {
+      "correctness": 100,
+      "reproducibility": 100,
+      "offline": 100
+    },
+    "score_source": "对照 R 逐项数值验证(VALIDATION.md)",
+    "domain_zh": "数据与工具",
+    "subcategory": "统计建模"
+  },
+  "anova-designs": {
+    "title": "ANOVA 设计（裂区 / 区组 / 混合模型）",
+    "summary": "不依赖 R：I/II/III 型平方和、随机区组与裂区的多误差层 ANOVA（等价 aov + Error()）、重复测量、单随机截距 REML、估计边际均值。对照 R aov、car、nlme、emmeans 验证 16,159 项。",
+    "category": "analysis",
+    "icon": "🧮",
+    "tags": [
+      "ANOVA",
+      "裂区",
+      "重复测量",
+      "REML"
+    ],
+    "featured": false,
+    "version": "1.0.0",
+    "evidence": {
+      "tests": "R car / nlme 3.1.169 / emmeans 对照：16,159 项；nlme 625 项差异为其优化器未完全收敛（已记录）",
+      "offline": true,
+      "reproducible": true
+    },
+    "scores": {
+      "correctness": 100,
+      "reproducibility": 100,
+      "offline": 100
+    },
+    "score_source": "对照 R 逐项数值验证(VALIDATION.md)",
+    "domain_zh": "数据与工具",
+    "subcategory": "统计建模"
+  },
+  "survival-km-cox": {
+    "title": "生存分析（KM / log-rank / Cox / RMST）",
+    "summary": "不依赖 R：Kaplan–Meier（Greenwood 置信区间）、分层 log-rank、Breslow/Efron Cox（分层、聚类稳健方差）、基线风险与个体生存曲线、RMST 组间差。对照 R survival、survRM2 逐项验证，101,587 个数值零失败。",
+    "category": "analysis",
+    "icon": "⏳",
+    "tags": [
+      "生存分析",
+      "Cox",
+      "Kaplan-Meier",
+      "RMST"
+    ],
+    "featured": false,
+    "version": "1.0.0",
+    "evidence": {
+      "tests": "R survival 3.8.6 / survRM2 1.0.4 对照：101,587 项零失败，最大相对误差 4.6e-12",
+      "offline": true,
+      "reproducible": true
+    },
+    "scores": {
+      "correctness": 100,
+      "reproducibility": 100,
+      "offline": 100
+    },
+    "score_source": "对照 R 逐项数值验证(VALIDATION.md)",
+    "domain_zh": "临床与医学",
+    "subcategory": "生存分析"
   }
 }

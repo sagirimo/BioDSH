@@ -1,0 +1,8 @@
+{
+  "name": "@biodsh/skill-select",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "description": "BioDSH 技能精选 —— 便宜模型对照全库目录选技能并按官方 /name 形态注入(cordis 插件,ctx.llm + ctx.skills + agent/pre-step)"
+}

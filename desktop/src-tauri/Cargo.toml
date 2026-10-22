@@ -1,6 +1,6 @@
 [package]
 name = "biodsh-desktop"
-version = "0.3.0"
+version = "1.0.0"
 description = "BioDSH Desktop — DeepSeek Harness + 生信技能商店（Tauri 版）"
 edition = "2021"
 default-run = "biodsh-desktop"
