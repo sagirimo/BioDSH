@@ -1,6 +1,6 @@
 <div align="center">
 
-# BioDSH
+<a href="http://43.167.193.205/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/brand/png/readme-banner-dark.png"><img src="docs/brand/png/readme-banner-light.png" alt="BioDSH" width="100%"></picture></a>
 
 **给医生和湿实验科研人员的生信分析智能体：用一句话描述分析，直接拿结论，不用写代码。**
 
@@ -15,6 +15,13 @@
 把数据（单细胞 `h5ad`、表达矩阵、临床表格、基因列表……）放进来，问一句「响应组和非响应组的 CD8A 表达有没有差异？」。智能体会读数据、选方法、写代码并运行，最后给出结论，同时附上图、表和每一步的完整记录。
 
 BioDSH 在你自己的电脑上运行，基于 [DeepSeek Harness（dsh）](https://github.com/deepseek-ai/deepseek-harness)。它有两种形态：一键安装的**桌面版**，以及 **dsh 插件**（`dsh-biodsh`）。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/brand-showcase/skills-dark-zh.png">
+  <img src="docs/brand-showcase/skills-light-zh.png" width="100%" alt="BioDSH 1.0 技能中心预览">
+</picture>
+
+<sub>BioDSH 1.0 技能中心（预览图，目录条目与数量仅作示意）。[交互预览](http://43.167.193.205/brand/?lang=zh)</sub>
 
 ## 优势
 

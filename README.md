@@ -1,6 +1,6 @@
 <div align="center">
 
-# BioDSH
+<a href="http://43.167.193.205/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/brand/png/readme-banner-dark.png"><img src="docs/brand/png/readme-banner-light.png" alt="BioDSH" width="100%"></picture></a>
 
 **A bioinformatics agent for clinicians and wet-lab scientists. Describe the analysis in plain language and get the result, with no coding.**
 
@@ -15,6 +15,13 @@
 You add your data (single-cell `h5ad`, count matrices, clinical tables, gene lists…) and ask a question such as *"Do responders and non-responders differ in CD8A expression?"* The agent loads the data, picks the right method, writes and runs the code, and reports the conclusion along with the figures, the tables and every step it took.
 
 BioDSH runs on your own computer and is built on [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness). It comes in two forms: a one-click **desktop app** and a **dsh plugin** (`dsh-biodsh`).
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/brand-showcase/skills-dark-en.png">
+  <img src="docs/brand-showcase/skills-light-en.png" width="100%" alt="BioDSH 1.0 skill hub preview">
+</picture>
+
+<sub>BioDSH 1.0 skill hub (preview; catalog entries and counts are illustrative). [Interactive preview](http://43.167.193.205/brand/?lang=en)</sub>
 
 ## Why BioDSH
 
