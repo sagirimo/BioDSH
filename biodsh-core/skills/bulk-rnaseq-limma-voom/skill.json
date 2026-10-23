@@ -1,0 +1,17 @@
+{
+  "id": "bulk-rnaseq-limma-voom",
+  "name": "Bulk RNA-seq limma-voom (Python)",
+  "domain": "bulk-rnaseq",
+  "description": "limma-voom differential expression (TMM, voom weights, moderated t, empirical Bayes) in numpy/scipy, validated against R limma 3.68 / edgeR 4.10.",
+  "entry": {
+    "type": "library",
+    "module": "limma_py.py"
+  },
+  "inputs": [
+    {"name": "counts", "format": "genes x samples count matrix (integer or fractional)", "required": true},
+    {"name": "samples", "format": "sample table with the design variables", "required": true}
+  ],
+  "outputs": ["per-gene coefficients, moderated t, p, BH q", "prior df and variance"],
+  "offline": true,
+  "mutates_input": false
+}

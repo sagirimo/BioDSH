@@ -1,0 +1,26 @@
+{
+  "id": "regression-robust-se",
+  "name": "Regression with robust standard errors (Python)",
+  "domain": "statistics",
+  "description": "OLS/WLS and canonical logistic/Poisson IRLS, HC0-HC3 and one-way CR0/CR1/CR1S/CR2 covariance, explicit Wald/t/normal tests and bread/meat; validated against R sandwich 3.1.3, clubSandwich 0.7.0 and lmtest 0.9.40.",
+  "entry": {
+    "type": "library",
+    "module": "robust_se.py"
+  },
+  "inputs": [
+    {"name": "X", "format": "finite full-rank n x p design matrix; include intercept explicitly", "required": true},
+    {"name": "y", "format": "aligned finite response vector", "required": true},
+    {"name": "weights", "format": "positive precision/prior weights", "required": false},
+    {"name": "offset", "format": "aligned linear predictor offset", "required": false},
+    {"name": "cluster", "format": "one-way nonmissing cluster labels for retained rows", "required": false},
+    {"name": "target", "format": "positive diagonal working variance vector for CR2", "required": false}
+  ],
+  "outputs": [
+    "coefficients, fitted values, residuals, information, leverage, model covariance",
+    "HC/CR covariance, normalized bread/meat, adjusted scores and CR2 adjustment matrices",
+    "coefficient tests and confidence intervals with explicit df",
+    "linear-contrast Wald chi-square/F tests with explicit df"
+  ],
+  "offline": true,
+  "mutates_input": false
+}

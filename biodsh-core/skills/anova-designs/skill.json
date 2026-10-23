@@ -1,0 +1,14 @@
+{
+  "id": "anova-designs",
+  "name": "ANOVA designs and random-intercept REML (Python)",
+  "domain": "statistics",
+  "description": "I/II/III sums of squares, block/split-plot/repeated-measures error strata, single random-intercept REML, and equal-weight marginal means in numpy/scipy/pandas; validated against R stats, car 3.1-5, nlme 3.1-169 and emmeans 2.0.4, with numerical optimization differences documented.",
+  "entry": {"type": "library", "module": "anova_py.py"},
+  "inputs": [
+    {"name": "data", "format": "observation-level table with response, categorical factors and experimental-unit IDs", "required": true},
+    {"name": "design", "format": "factorial design metadata or a full-rank numeric model matrix with explicit factor levels", "required": true}
+  ],
+  "outputs": ["per-stratum and Type I/II/III SS, df, MS, F, p and denominators", "OLS/REML coefficients, covariance, variance components and diagnostics", "equal-weight marginal means, covariance, SE and confidence intervals"],
+  "offline": true,
+  "mutates_input": false
+}

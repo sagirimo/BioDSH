@@ -1,0 +1,46 @@
+{
+  "id": "survival-km-cox",
+  "name": "Right-censored survival analysis (Python)",
+  "domain": "survival",
+  "description": "Kaplan–Meier, stratified log-rank, Breslow/Efron Cox with cluster-robust covariance, baseline survival and RMST, in numpy/scipy/pandas; numerically validated against R survival 3.8.6 and survRM2 1.0.4.",
+  "entry": {
+    "type": "library",
+    "module": "survival_py.py"
+  },
+  "inputs": [
+    {
+      "name": "time",
+      "format": "finite nonnegative follow-up vector",
+      "required": true
+    },
+    {
+      "name": "status",
+      "format": "0=censored, 1=event vector",
+      "required": true
+    },
+    {
+      "name": "design",
+      "format": "n x p fixed-covariate matrix without intercept, for Cox",
+      "required": false
+    },
+    {
+      "name": "groups_strata_clusters",
+      "format": "aligned optional grouping vectors",
+      "required": false
+    },
+    {
+      "name": "tau",
+      "format": "common time horizon for RMST or administrative censoring",
+      "required": false
+    }
+  ],
+  "outputs": [
+    "KM estimates, Greenwood variance and confidence intervals",
+    "log-rank scores, covariance, chi-square, df and p",
+    "Cox coefficients, model/cluster covariance, observed information and tests",
+    "baseline cumulative hazards and individual survival",
+    "RMST estimates, variances and group difference"
+  ],
+  "offline": true,
+  "mutates_input": false
+}
