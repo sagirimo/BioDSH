@@ -1,0 +1,23 @@
+{
+  "id": "pipeline-builder",
+  "name": "Workflow builder (task or existing procedure to reproducible workflow)",
+  "domain": "workflow",
+  "description": "Guided conversion of a completed task, or an existing script/notebook/methods text, into a reproducible workflow with user-chosen validation checks.",
+  "entry": {
+    "type": "instructions"
+  },
+  "inputs": [
+    {
+      "name": "task",
+      "format": "当前已完成的任务，或 pipelines/_sources/ 下的流程文件",
+      "required": true
+    }
+  ],
+  "outputs": [
+    "pipelines/<id>/pipeline.json",
+    "pipelines/<id>/steps/*.py",
+    "pipelines/<id>/run.py"
+  ],
+  "offline": true,
+  "mutates_input": false
+}
