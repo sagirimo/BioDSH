@@ -4,7 +4,10 @@
 // /name invocation (<skill_content>, source kind skill-invocation), so the agent does not have to decide to load them.
 // Background (2026-10 audits): embedding routing recalled 16% of the skills an oracle judged high-fit, and models almost
 // never called the skill tool on their own. Any failure (no credentials, timeout, unparsable answer) falls back silently.
+import fs from 'node:fs';
+import path from 'node:path';
 import { setting } from './settings.js';
+import { selectorPolicy, workspaceRoot } from './task_policy.js';
 
 export const name = 'biodsh-skill-select';
 export const inject = ['skills', 'llm'];
@@ -83,11 +86,13 @@ export function apply(ctx) {
     const to = setTimeout(() => ac.abort(new Error('selector timeout')), TIMEOUT_MS);
     const onAbort = () => ac.abort(outer.reason);
     outer?.addEventListener?.('abort', onAbort, { once: true });
+    let usage=null, failure=null;
     try {
       const { system, known } = await catalog(agent, ac.signal);
       let text = '';
       for await (const chunk of ctx.llm.stream({ ...r, system, maxTokens: 6000, signal: ac.signal,
         messages: [{ role: 'user', content: [{ type: 'text', text: 'USER REQUEST:\n' + query.slice(0, 3000) }] }] })) {
+        if (chunk.type === 'usage') usage=chunk.usage;
         if (chunk.type === 'text-delta') text += chunk.text;
         else if (chunk.type === 'finish' && (chunk.reason?.kind === 'error' || chunk.reason?.kind === 'aborted')) {
           throw new Error(`${chunk.reason.failure?.code || chunk.reason.kind}: ${chunk.reason.failure?.message || ''}`);
@@ -95,7 +100,17 @@ export function apply(ctx) {
       }
       dbg(`route ${r.provider}/${r.model}`);
       return parseSelection(text, known);
-    } finally { clearTimeout(to); outer?.removeEventListener?.('abort', onAbort); }
+    } catch (e) { failure=String(e?.message || e); throw e; }
+    finally {
+      clearTimeout(to); outer?.removeEventListener?.('abort', onAbort);
+      // Benchmark accounting only (env set by the evaluation runner); never writes into a user's folder otherwise.
+      const root=process.env.BIODSH_USAGE_FILE ? workspaceRoot(ctx,agent) : null;
+      if (root) {
+        const file=path.join(root,'.biodsh-selector-usage.json');
+        const previous=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8')):{requests:[]};
+        previous.requests.push({usage,failure});fs.writeFileSync(file,JSON.stringify(previous,null,2));
+      }
+    }
   }
 
   ctx.on('agent/pre-step', async (payload, next) => {
@@ -104,12 +119,15 @@ export function apply(ctx) {
     try {
       const query = payload?.agent ? humanText(payload.messages) : '';
       if (query) {
+        const policy=selectorPolicy({enabled:get('selectEnabled'),adaptive:get('selectAdaptive'),root:workspaceRoot(ctx,payload.agent),query});
+        dbg('policy '+policy.reason);
+        if (!policy.enabled) return next();
         const t0 = Date.now();
         picked = await select(payload.agent, query, payload.signal);
         dbg(`picked ${JSON.stringify(picked)} in ${Date.now() - t0}ms`);
       }
     } catch (e) {
-      if (payload?.signal?.aborted) throw e;
+      if (payload?.signal?.aborted || /\b(?:402|429)\b|insufficient.balance|rate.limit/i.test(String(e?.message || e))) throw e;
       dbg('fallback: ' + (e?.message || e));
     }
     const decision = await next();

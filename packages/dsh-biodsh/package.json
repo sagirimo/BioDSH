@@ -1,6 +1,6 @@
 {
   "name": "dsh-biodsh",
-  "version": "1.0.0-preview.1",
+  "version": "1.0.0",
   "description": "BioDSH for DeepSeek Harness: a bioinformatics agent preset with BioDSH skills, a 2000+ skill library, automatic skill selection and a convergence guard",
   "icon": "./icon.svg",
   "license": "MIT",
@@ -33,12 +33,16 @@
     "./guard": "./lib/guard.js",
     "./package.json": "./package.json",
     "./cordis.patch.yml": "./cordis.patch.yml",
-    "./locale/*.json": "./locale/*.json"
+    "./locale/*.json": "./locale/*.json",
+    "./delivery": "./lib/delivery.js",
+    "./persona": "./lib/persona.js"
   },
   "files": [
     "icon.svg",
     "locale/*.json",
     "lib/*.js",
+    "lib/*.py",
+    "lib/*.md",
     "cordis.patch.yml",
     "skills",
     "README.md",

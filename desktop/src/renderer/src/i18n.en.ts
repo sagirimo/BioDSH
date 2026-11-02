@@ -1,5 +1,15 @@
 // 中文 → 英文词典。键就是源码里的中文原文（含 {var} 占位符）。由 i18n 代理生成并维护，人工可改。
 export const EN: Record<string, string> = {
+  // ---- BioDSH-MAGI ----
+  'BioDSH-MAGI 复核（实验性）': 'BioDSH-MAGI review (experimental)',
+  '实验性功能，默认关闭。开启后，带输出规范的分析任务如果出现风险信号（交付检查要返修、与原始数据核对失败、步数或时间过长），会另开一位分析员在独立目录里从原始数据重做一遍，再由裁决员对照两份结果、用可执行的核查逐格核对后交付。在我们的评测里它只救回了少数题，而这类任务的时间和费用约翻倍，因为同一个模型两次往往错在同一处。自适应只在有风险时复核；每次都复核最贵；关闭则只做一遍。原来的结果保存在 .biodsh-magi 文件夹里。': 'Experimental, off by default. When on, an analysis task with an output specification that shows a risk signal (the delivery check needed repairs, a check against the raw data failed, or the run took many steps or long) is redone by a second analyst from the raw data in a separate folder, and an arbiter compares both results and delivers only after executable, cell-by-cell checks. In our evaluation it rescued only a few tasks while roughly doubling time and cost for such tasks, because two runs of the same model often fail in the same place. Adaptive reviews only risky runs; Always reviews every such task and costs most; Off runs once. The original result is kept in the .biodsh-magi folder.',
+  '自适应': 'Adaptive',
+  '每次都复核': 'Always review',
+  '关闭（默认）': 'Off (default)',
+  '已保存，下一个任务生效': 'Saved; applies to the next task',
+  '智能体启动后才能设置。': 'Available once the agent is running.',
+  '当前智能体版本不支持 MAGI。': 'This agent version does not support MAGI.',
+  '读取失败：{msg}': 'Failed to load: {msg}',
   // ---- 图像生成 / MCP / 示范项目 / 本地参考包 ----
   '图像生成': 'Image generation',
   '给「AI 科研插图生成」技能用：机制示意图、图形摘要、封面图。任选一家 OpenAI 兼容的图像接口，填地址、模型名和密钥；不填就不启用（数据图表不需要它，智能体用 matplotlib 画）。': 'Used by the "AI scientific illustration" skill: mechanism schematics, graphical abstracts, cover art. Pick any OpenAI-compatible image API and enter its URL, model and key; leave empty to disable (data plots do not need it — the agent draws them with matplotlib).',
@@ -670,8 +680,6 @@ export const EN: Record<string, string> = {
   "也可以手动填写，多个用逗号分隔": "Or type model names, separated by commas",
   "已有同名来源，请换个名称": "A source with this name exists; choose another name",
   "密钥只保存在本机 dsh 凭据库，不写进配置文件。": "Keys are stored only in the local dsh credential store, never in config files.",
-  "硅基流动 SiliconFlow": "SiliconFlow",
-  "通义千问 DashScope": "Qwen (DashScope)",
   "Ollama（本机）": "Ollama (this computer)",
   "vLLM / 自建服务": "vLLM / self-hosted",
   "任务已停止运行；结论是否正确请用「审阅结论」核对": "The task has stopped running; use \"Review conclusions\" to check whether its conclusions hold",

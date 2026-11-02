@@ -178,6 +178,23 @@ def main():
         taken_ids.add(sid); c['id'] = sid; kept.append(c)
     print('after dedupe', len(kept))
 
+    # Admission scan BEFORE deleting or copying any existing product skills.
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('skill_contamination_scan', ROOT / 'scripts/skill_contamination_scan.py')
+    scan = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(scan)
+    reviewed_path = os.environ.get('SKILL_REVIEWED_BINARY_MANIFEST')
+    reviewed = json.loads(Path(reviewed_path).read_text()) if reviewed_path else {}
+    blockers = []
+    for candidate in kept:
+        _, candidate_files = dir_size_ok(candidate['dir'])
+        hits, _ = scan.scan_paths(candidate_files, reviewed=reviewed)
+        blockers.extend(h for h in hits if h['level'] in ('A', 'B', 'U'))
+    if blockers:
+        for h in blockers:
+            print(f"admission blocked: {h['file']}:{h['line']} {h['level']} {h['pattern']}", file=sys.stderr)
+        raise SystemExit(1)
+
     # 复制 + 写索引
     if OUT_SKILLS.exists():
         shutil.rmtree(OUT_SKILLS)

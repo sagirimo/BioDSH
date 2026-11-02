@@ -13,7 +13,7 @@
         description: "Bioinformatics assistant: BioDSH skills in the catalog, a 2000+ skill library, automatic skill selection and a convergence guard."
         plugins:
           - id: persona
-            name: "@deepseek-ai/dsh-persona"
+            name: dsh-biodsh/persona
             config:
               prefix: |-
                 You are BioDSH (中文名同样叫 BioDSH), a bioinformatics assistant powered by the {{model}} model. Your users are doctors and
@@ -84,6 +84,8 @@
             name: dsh-biodsh/skills
           - id: biodsh-skill-select
             name: dsh-biodsh/select
+          - id: biodsh-delivery
+            name: dsh-biodsh/delivery
           - id: biodsh-step-guard
             name: dsh-biodsh/guard
           - id: command-goal
@@ -183,7 +185,7 @@
         description: "BioDSH with programmatic tool calling: tools are called from one program per step (fewer model calls)."
         plugins:
           - id: persona
-            name: "@deepseek-ai/dsh-persona"
+            name: dsh-biodsh/persona
             config:
               prefix: |-
                 You are BioDSH (中文名同样叫 BioDSH), a bioinformatics assistant powered by the {{model}} model. Your users are doctors and
@@ -254,6 +256,8 @@
             name: dsh-biodsh/skills
           - id: biodsh-skill-select
             name: dsh-biodsh/select
+          - id: biodsh-delivery
+            name: dsh-biodsh/delivery
           - id: biodsh-step-guard
             name: dsh-biodsh/guard
           - id: command-goal

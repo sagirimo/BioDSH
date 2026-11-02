@@ -31,6 +31,8 @@ const dshBin = path.join(runtime, 'node_modules', '@deepseek-ai', 'dsh', 'lib', 
 const dshVer = JSON.parse(readFileSync(path.join(runtime, 'node_modules', '@deepseek-ai', 'dsh', 'package.json'), 'utf8')).version;
 const home = mkdtempSync(path.join(tmpdir(), 'dsh-e2e-'));
 const ws = path.join(home, 'workspace'); mkdirSync(ws, { recursive: true });
+// --spec:工作区里放一份输出合同,走“有书面规范”的短人设分支(lib/persona.js)
+if (argv.includes('--spec')) writeFileSync(path.join(ws, 'TABLE_CONTRACT.json'), '{"tables": []}');
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const results = [];
 const rec = (name, ok, detail) => { results.push({ name, ok }); console.log(`${ok ? 'PASS' : 'FAIL'}  ${name}${detail ? '  — ' + detail : ''}`); };

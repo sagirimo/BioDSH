@@ -6,27 +6,43 @@
 // `biodsh:` section in settings.yaml, and needs no knowledge of the preset. Fields are volatile, so changes apply
 // to the next step without restarting dsh. The preset rows read it through ctx.get('biodsh'); without this row they
 // use their own defaults.
+import { registerRequestMeter } from './request_meter.js';
 import { hostImport } from './host.js';
 
 const { Service } = await hostImport('@deepseek-ai/cordis');
 const { default: z } = await hostImport('@deepseek-ai/schemastery');
 
 export const DEFAULTS = {
-  selectEnabled: true, selectProvider: '', selectModel: '', selectMaxInject: 2,
-  guardEnabled: true, guardSoftSteps: 40, guardSoftSeconds: 480, guardHardSteps: 60, guardHardSeconds: 780, guardMaxSteps: 80,
+  coverageReviewEnabled: false,
+  semanticEnabled: true,
+  selectEnabled: true, selectAdaptive: true,
+  deliveryEnabled: true, reconcileChecks: false, magiMode: 'off', magiSteps: 60, magiSeconds: 900, deliveryMaxRepairs: 3, deliveryReplaySeconds: 120, deliveryPython: '', deliveryPythonArgs: [], selectProvider: '', selectModel: '', selectMaxInject: 2,
+  guardEnabled: true, guardSoftSteps: 60, guardSoftSeconds: 900, guardHardSteps: 80, guardHardSeconds: 1100, guardMaxSteps: 90,  // v18 (evaluated) thresholds
   library: true, librarySearchLimit: 8, officialSkillsDir: '', librarySkillsDir: '', appContext: '', debug: false,
 };
 
 export default class BioDSHSettings extends Service {
   static Config = z.object({
+    coverageReviewEnabled: z.boolean().default(false).volatile().description('Require independent public-contract coverage review before accepting scientific outputs.'),
     selectEnabled: z.boolean().default(DEFAULTS.selectEnabled).volatile().description('Pick and inject fitting skills for each new message.'),
+    selectAdaptive: z.boolean().default(true).volatile(),
+    deliveryEnabled: z.boolean().default(true).volatile(),
+    magiMode: z.union([z.const('off'), z.const('adaptive'), z.const('always')]).default('off').volatile().description('Experimental, off by default. BioDSH-MAGI (Multi-Analyst Gated Inspection) for tasks with a public output contract: off = single analyst; adaptive = a blind replicator and an arbiter with executable checks only when the analyst run shows risk; always = review every such task.'),
+    magiSteps: z.natural().default(60).volatile().description('MAGI adaptive: review a run that used at least this many steps.'),
+    magiSeconds: z.natural().default(900).volatile().description('MAGI adaptive: review a run that took at least this many seconds.'),
+    reconcileChecks: z.boolean().default(false).volatile().description('Require submission/reconcile_checks.py to pass on the clean replay (v17 reconciliation).'),
+    semanticEnabled: z.boolean().default(true).volatile().description('Experimental partial checks derived from original public inputs.'),
+    deliveryMaxRepairs: z.natural().default(3).volatile(),
+    deliveryReplaySeconds: z.natural().default(120).volatile(),
+    deliveryPython: z.string().default('').volatile(),
+    deliveryPythonArgs: z.array(z.string()).default([]).volatile(),
     selectProvider: z.string().default('').volatile().description('Provider route for skill selection; empty uses the agent\'s route, else the default model.'),
     selectModel: z.string().default('').volatile().description('Model for skill selection; empty follows the same rule.'),
     selectMaxInject: z.natural().default(DEFAULTS.selectMaxInject).volatile().description('High-fit skills injected per message.'),
     guardEnabled: z.boolean().default(DEFAULTS.guardEnabled).volatile(),
     guardSoftSteps: z.natural().default(DEFAULTS.guardSoftSteps).volatile().description('Ask to wrap up after this many steps in one turn.'),
     guardSoftSeconds: z.natural().default(DEFAULTS.guardSoftSeconds).volatile().description('…or after this many seconds.'),
-    guardHardSteps: z.natural().default(DEFAULTS.guardHardSteps).volatile().description('Ask for a final answer without tools after this many steps.'),
+    guardHardSteps: z.natural().default(DEFAULTS.guardHardSteps).volatile().description('Prioritize saved code and verification after this many steps.'),
     guardHardSeconds: z.natural().default(DEFAULTS.guardHardSeconds).volatile().description('…or after this many seconds.'),
     guardMaxSteps: z.natural().default(DEFAULTS.guardMaxSteps).volatile().description('End the turn after this many steps (0: no cap).'),
     library: z.boolean().default(DEFAULTS.library).description('Register the 2000+ skill library and the skill_library tool (restart to apply).'),
@@ -40,6 +56,7 @@ export default class BioDSHSettings extends Service {
   constructor(ctx, config) {
     super(ctx, 'biodsh');
     this.config = config;
+    registerRequestMeter(ctx);
   }
 
   /** Current value of one setting (volatile fields are references read on every call). */

@@ -7,6 +7,7 @@ import type { McpServer } from '@shared/types';
 import { useT } from '../i18n';
 import { TopBar } from '../components/Chrome';
 import ModelSources from '../components/ModelSources';
+import MagiMode from '../components/MagiMode';
 import { BioBrand } from '../assets/biodsh-ui/react/BioBrand';
 import { BioIcon } from '../icons';
 import { useResolvedTheme } from '../theme';
@@ -83,6 +84,10 @@ export default function SettingsView() {
 
           <Section title={t('模型来源')} desc={t('保存多个模型接口（中转站、各家云服务、课题组自建服务），选一个作为新任务的默认模型；对话框里的模型选择器也能临时切换。')}>
             <ModelSources />
+          </Section>
+
+          <Section title={t('BioDSH-MAGI 复核（实验性）')} desc={t('实验性功能，默认关闭。开启后，带输出规范的分析任务如果出现风险信号（交付检查要返修、与原始数据核对失败、步数或时间过长），会另开一位分析员在独立目录里从原始数据重做一遍，再由裁决员对照两份结果、用可执行的核查逐格核对后交付。在我们的评测里它只救回了少数题，而这类任务的时间和费用约翻倍，因为同一个模型两次往往错在同一处。自适应只在有风险时复核；每次都复核最贵；关闭则只做一遍。原来的结果保存在 .biodsh-magi 文件夹里。')}>
+            <MagiMode />
           </Section>
 
           <Section title={t('模型 API Key')} desc={t('DeepSeek 的密钥。保存在本机 dsh-home/.credentials.yaml，只用于调用模型。')}>

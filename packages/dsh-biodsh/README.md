@@ -8,11 +8,13 @@ The BioDSH preset is the standard preset of your dsh release plus:
 
 | Part | What it does |
 |---|---|
-| BioDSH persona | Answers for doctors and wet-lab scientists, in the user's language; keeps raw data untouched; reports what was actually computed. |
+| BioDSH persona | Answers for doctors and wet-lab scientists, in the user's language; keeps raw data untouched; reports what was actually computed. When the working folder contains a machine-readable output specification (`TABLE_CONTRACT.json`, `CLAIMS.json`, …), a one-line persona and a specification-first instruction replace it. |
 | BioDSH skills | 17 validated BioDSH workflows in the session skill catalog: single-cell QC, clustering, annotation and treatment response; bulk RNA-seq limma-voom; survival (KM, Cox), regression with robust SEs and ANOVA designs, each checked against R; workflow building, and more. |
 | Skill library | 2000+ community bioinformatics, clinical and data skills. Kept out of the catalog so it stays small and cacheable; the model searches it with the `skill_library` tool, and you can still run any of them with `/name`. |
 | Skill selection | On each new message, a model reads the whole catalog (BioDSH skills and library) and injects the one or two skills that fit the request, in the same form as `/name`. |
-| Convergence guard | In a long turn, asks the agent to wrap up (480 s, or 40 steps) and then to answer without tools (780 s, or 60 steps); ends a turn past 80 steps. |
+| Convergence guard | In a long turn, asks the agent to save its code and finish the needed checks (900 s, or 60 steps), then to report honestly what is unfinished (1100 s, or 80 steps); ends a turn past 90 steps. It never asks the agent to guess. |
+| Delivery gate | For tasks that come with a public output specification (table contract, claims), checks the saved outputs against it, checks declared columns against the original inputs, and replays the analysis script in a clean folder before the turn may end; on failure it returns the concrete errors for repair. |
+| BioDSH-MAGI | **Experimental, off by default.** **Multi-Analyst Gated Inspection.** When an analysis with an output specification shows a risk signal (the delivery gate needed repairs, a source check failed, or the run was long), a second analyst redoes it from the original inputs in a separate folder without seeing the first result, and an arbiter compares both and delivers only after its own executable, cell-by-cell checks pass the delivery gate. Modes: `off` (default), `adaptive`, `always`. In our evaluation it rescued only a few tasks while roughly doubling time and cost. The first analyst's result is kept under `.biodsh-magi/`. |
 
 ## Install
 
@@ -48,11 +50,14 @@ biodsh:
   selectProvider: deepseek-official   # skill selection model; empty = same route as the agent
   selectModel: deepseek-flash
   selectMaxInject: 2
-  guardSoftSeconds: 480               # ask to wrap up (time is the main signal; steps are a backstop)
-  guardSoftSteps: 40
-  guardHardSeconds: 780               # ask for a final answer without tools
-  guardHardSteps: 60
-  guardMaxSteps: 80                   # end the turn (0 = no cap)
+  guardSoftSeconds: 900               # save code, finish needed checks (time is the main signal; steps are a backstop)
+  guardSoftSteps: 60
+  guardHardSeconds: 1100              # report what is unfinished; no guessing
+  guardHardSteps: 80
+  guardMaxSteps: 90                   # end the turn (0 = no cap)
+  magiMode: off                       # BioDSH-MAGI (experimental): off | adaptive | always
+  magiSteps: 60                       # adaptive: review runs with at least this many steps
+  magiSeconds: 900                    # ...or this many seconds
   library: true                       # 2000+ skill library and the skill_library tool (restart to apply)
 ```
 
@@ -72,11 +77,13 @@ BioDSH code and skills: MIT. Skills under `skills/library` come from community r
 
 BioDSH 预设 = 你当前 dsh 版本的标准预设，再加上：
 
-- **BioDSH 人设**：面向医生和湿实验科学家，跟随用户语言作答，不改原始数据，如实报告实际算了什么。
+- **BioDSH 人设**：面向医生和湿实验科学家，跟随用户语言作答，不改原始数据，如实报告实际算了什么。工作目录里有机器可读的输出规范（`TABLE_CONTRACT.json`、`CLAIMS.json` 等）时，换成一句话人设和“按规范工作”的说明。
 - **BioDSH 官方技能**：17 个经过验证的流程（单细胞质控/聚类/注释/治疗响应、bulk RNA-seq limma-voom、生存分析 KM/Cox、稳健标准误回归、方差分析设计等，统计类均与 R 逐项对照），出现在会话技能目录里。
 - **技能库**：2000+ 社区技能，不放进目录（目录保持小而稳定，利于缓存）。模型用 `skill_library` 工具检索，你也可以用 `/技能名` 直接调用。
 - **技能精选**：每条新消息，用模型对照全部技能选出最合适的一两个，以 `/name` 同样的形式注入。
-- **收敛护栏**：长任务到 480 秒（或 40 步）先提醒收尾，780 秒（或 60 步）要求直接作答；超过 80 步停止本轮。
+- **收敛护栏**：长任务到 900 秒（或 60 步）提醒先保存代码、做完必要核验；1100 秒（或 80 步）要求如实报告未完成的部分；超过 90 步停止本轮。不会要求它猜答案。
+- **交付检查**：带输出规范（表格合同、结论声明）的任务，在结束前核对输出结构、把声明的列对照原始数据，并在干净目录重放分析脚本；不通过就把具体错误交回去修。
+- **BioDSH-MAGI 复核**（实验性功能，默认关闭；Multi-Analyst Gated Inspection，多分析员门控核查）：带输出规范的分析如果出现风险信号（交付检查要返修、与原始数据核对失败、运行过长），会另开一位分析员在独立目录里从原始数据重做一遍，看不到第一份结果；再由裁决员对照两份结果，写出可执行的逐格核查并通过交付检查后才交付。三档：`off` 关闭（默认）、`adaptive` 自适应、`always` 每次都复核。评测中它只救回少数题，时间和费用约翻倍。第一份结果保存在 `.biodsh-magi/` 里。
 
 设置：在 `~/.dsh/settings.yaml` 写 `biodsh:` 一段（字段见上方英文说明），或在设置页修改，大多数改动下一步就生效。
 

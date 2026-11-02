@@ -1,7 +1,7 @@
 {
  "meta": {
   "model": "deepseek-chat",
-  "count": 2174,
+  "count": 2164,
   "taxonomy": {
    "单细胞与空间": [
     "单细胞预处理与质控",
@@ -11533,19 +11533,6 @@
    ],
    "level": "专家"
   },
-  "bio-db-benchmark-qa": {
-   "id": "bio-db-benchmark-qa",
-   "title_zh": "生物数据库问答考试作答",
-   "summary_zh": "针对生物信息学数据库问答考试（如 LABBench2、MESINESP），自动调用公共数据库 API 检索答案并输出结构化结果，适合应对 benchmark 测试。",
-   "domain": "数据与工具",
-   "subcategory": "公共数据库查询",
-   "tags_zh": [
-    "数据库",
-    "问答",
-    "benchmark"
-   ],
-   "level": "进阶"
-  },
   "bioinformatics-html-report": {
    "id": "bioinformatics-html-report",
    "title_zh": "生成交互式 HTML 生信报告",
@@ -13039,38 +13026,10 @@
    ],
    "level": "专家"
   },
-  "mesh-decs-semantic-indexing": {
-   "id": "mesh-decs-semantic-indexing",
-   "title_zh": "MeSH/DeCS 语义索引提取",
-   "summary_zh": "从生物医学文献中提取 MeSH/DeCS 受控词表标签，用于语义索引任务或基准测试，需使用官方数据库记录而非摘要推断。",
-   "domain": "数据与工具",
-   "subcategory": "公共数据库查询",
-   "tags_zh": [
-    "语义索引",
-    "MeSH",
-    "DeCS",
-    "文献标注"
-   ],
-   "level": "进阶"
-  },
-  "mesh-decs-tag-extraction": {
-   "id": "mesh-decs-tag-extraction",
-   "title_zh": "MeSH/DeCS 标签提取",
-   "summary_zh": "从文献中提取 MeSH/DeCS 标签，用于语义索引或基准测试，需注意包含人口学限定词、使用官方记录而非摘要推断。",
-   "domain": "数据与工具",
-   "subcategory": "公共数据库查询",
-   "tags_zh": [
-    "MeSH",
-    "DeCS",
-    "标签提取",
-    "文献索引"
-   ],
-   "level": "进阶"
-  },
   "mesh-semantic-indexing": {
    "id": "mesh-semantic-indexing",
    "title_zh": "MeSH 语义索引生成",
-   "summary_zh": "使用 NCBI E-utilities 为生物医学文章生成和验证 MeSH 语义索引标签，适用于输出主要主题或回答基准问题。",
+   "summary_zh": "Generate and verify MeSH/DeCS semantic indexing labels for biomedical articles using NCBI E-utilities. Use when asked to output MeSH major topics for PMIDs, annotate literature with controlled vocabulary.",
    "domain": "数据与工具",
    "subcategory": "公共数据库查询",
    "tags_zh": [
@@ -13169,19 +13128,6 @@
     "蛋白质",
     "二聚化",
     "建模"
-   ],
-   "level": "进阶"
-  },
-  "molecular-cloning-design": {
-   "id": "molecular-cloning-design",
-   "title_zh": "分子克隆策略设计",
-   "summary_zh": "设计完整的质粒工程克隆策略，包括 Gibson、Golden Gate 等，涵盖引物设计、插入片段拆分和突变引入。",
-   "domain": "数据与工具",
-   "subcategory": "实验设计与湿实验",
-   "tags_zh": [
-    "分子克隆",
-    "质粒构建",
-    "引物设计"
    ],
    "level": "进阶"
   },
@@ -13783,23 +13729,10 @@
    ],
    "level": "入门"
   },
-  "pubmed-mesh-annotation": {
-   "id": "pubmed-mesh-annotation",
-   "title_zh": "文献 MeSH 标签标注",
-   "summary_zh": "为文献标题和摘要自动标注 MeSH 主题词，用于文献分类和知识库构建。",
-   "domain": "数据与工具",
-   "subcategory": "文献检索与阅读",
-   "tags_zh": [
-    "MeSH",
-    "文献标注",
-    "语义索引"
-   ],
-   "level": "进阶"
-  },
   "pubmed-mesh-indexing": {
    "id": "pubmed-mesh-indexing",
    "title_zh": "获取官方 MeSH 标签",
-   "summary_zh": "从 PubMed 官方接口获取文献的 MeSH 主题词和 DeCS 编码，支持多语言。",
+   "summary_zh": "从 NCBI E-utilities 检索官方 MeSH 标签与 DeCS 编码。使用场景：为文献输出 MeSH 主要标签、西班牙语文献输出 DeCS 编码、查询 MeSH 树号构建知识特征。触发词：'MeSH' / 'DeCS' / '语义索引' / '主要标签' / 'mesh tags' / 'MESINESP' / 'DeCS 编码'。",
    "domain": "数据与工具",
    "subcategory": "文献检索与阅读",
    "tags_zh": [
@@ -16042,19 +15975,6 @@
     "变异注释"
    ],
    "level": "入门"
-  },
-  "depmap-crispr-essentiality": {
-   "id": "depmap-crispr-essentiality",
-   "title_zh": "DepMap CRISPR 基因依赖性分析",
-   "summary_zh": "分析癌细胞系中基因敲除后的生存影响，找出关键依赖基因，适合药物靶点发现。",
-   "domain": "基因组与变异",
-   "subcategory": "基因编辑与 CRISPR",
-   "tags_zh": [
-    "基因依赖",
-    "CRISPR",
-    "药物靶点"
-   ],
-   "level": "进阶"
   },
   "ena-database": {
    "id": "ena-database",
@@ -27191,7 +27111,7 @@
   "tooluniverse-epigenomics": {
    "id": "tooluniverse-epigenomics",
    "title_zh": "表观组学数据处理分析",
-   "summary_zh": "处理甲基化芯片、ChIP-seq、ATAC-seq 等表观数据，进行差异分析、峰识别和多组学整合。",
+   "summary_zh": "Production-ready genomics and epigenomics data processing for analysis questions. Handles methylation array analysis (CpG filtering, differential methylation, age-related CpG detection, chromosome-level density), ChIP-seq peak analysis (peak calling, motif enrichment, coverage stats), ATAC-seq chromatin accessibility, multi-omics integration (expression + methylation correlation), and genome-wide statistics. Pure Python computation (pandas, scipy, numpy, pysam, statsmodels) plus ToolUniverse ann",
    "domain": "表观与调控",
    "subcategory": "DNA 甲基化",
    "tags_zh": [
@@ -27217,7 +27137,7 @@
   "tooluniverse-gene-enrichment": {
    "id": "tooluniverse-gene-enrichment",
    "title_zh": "基因富集与通路分析",
-   "summary_zh": "对基因列表进行 GO、KEGG 等通路富集分析，支持多种物种和数据库，帮助理解基因功能。",
+   "summary_zh": "Perform comprehensive gene enrichment and pathway analysis using gseapy (ORA and GSEA), PANTHER, STRING, Reactome, and 40+ ToolUniverse tools. Supports GO enrichment (BP, MF, CC), KEGG, Reactome, WikiPathways, MSigDB Hallmark, and 220+ Enrichr libraries. Handles multiple ID types (gene symbols, Ensembl, Entrez, UniProt), multiple organisms (human, mouse, rat, fly, worm, yeast), customizable backgrounds, and multiple testing correction (BH, Bonferroni). Use when users ask about gene enrichment, p",
    "domain": "转录组与表达",
    "subcategory": "共表达与网络",
    "tags_zh": [
@@ -27289,19 +27209,6 @@
     "基因发现",
     "风险基因",
     "靶点评估"
-   ],
-   "level": "进阶"
-  },
-  "tooluniverse-image-analysis": {
-   "id": "tooluniverse-image-analysis",
-   "title_zh": "显微镜图像定量分析",
-   "summary_zh": "处理显微镜图像数据，测量细胞数量、面积、荧光强度等，并进行统计检验，适合菌落计数和细胞分析。",
-   "domain": "代谢与其他组学",
-   "subcategory": "影像与显微",
-   "tags_zh": [
-    "图像分析",
-    "细胞计数",
-    "荧光定量"
    ],
    "level": "进阶"
   },
@@ -27438,7 +27345,7 @@
   "tooluniverse-phylogenetics": {
    "id": "tooluniverse-phylogenetics",
    "title_zh": "系统发育与进化分析",
-   "summary_zh": "处理序列比对，构建进化树，计算进化速率、树长等指标，用于研究物种或基因的进化关系，适合比较基因组和进化生物学研究。",
+   "summary_zh": "Production-ready phylogenetics and sequence analysis skill for alignment processing, tree analysis, and evolutionary metrics. Computes treeness, RCV, treeness/RCV, parsimony informative sites, evolutionary rate, DVMC, tree length, alignment gap statistics, GC content, and bootstrap support using PhyKIT, Biopython, and DendroPy. Performs NJ/UPGMA/parsimony tree construction, Robinson-Foulds distance, Mann-Whitney U tests, and batch analysis across gene families. Integrates with ToolUniverse for s",
    "domain": "基因组与变异",
    "subcategory": "比较与进化基因组",
    "tags_zh": [
@@ -27555,7 +27462,7 @@
   "tooluniverse-rnaseq-deseq2": {
    "id": "tooluniverse-rnaseq-deseq2",
    "title_zh": "RNA-seq 差异表达分析",
-   "summary_zh": "比较不同条件下基因表达差异，找出显著变化的基因，支持多因素设计和批次校正，结果可进一步做功能富集。",
+   "summary_zh": "Production-ready RNA-seq differential expression analysis using PyDESeq2. Performs DESeq2 normalization, dispersion estimation, Wald testing, LFC shrinkage, and result filtering. Handles multi-factor designs, multiple contrasts, batch effects, and integrates with gene enrichment (gseapy) and ToolUniverse annotation tools (UniProt, Ensembl, OpenTargets). Supports CSV/TSV/H5AD input formats and any organism. Use when analyzing RNA-seq count matrices, identifying DEGs, performing differential expre",
    "domain": "转录组与表达",
    "subcategory": "差异表达",
    "tags_zh": [
@@ -27577,19 +27484,6 @@
     "ENA"
    ],
    "level": "入门"
-  },
-  "tooluniverse-single-cell": {
-   "id": "tooluniverse-single-cell",
-   "title_zh": "单细胞转录组数据分析",
-   "summary_zh": "处理单细胞测序数据，包括质量控制、聚类、细胞类型注释、差异表达和细胞通讯分析，揭示细胞异质性。",
-   "domain": "单细胞与空间",
-   "subcategory": "单细胞预处理与质控",
-   "tags_zh": [
-    "单细胞",
-    "聚类",
-    "细胞注释"
-   ],
-   "level": "进阶"
   },
   "tooluniverse-spatial-omics-analysis": {
    "id": "tooluniverse-spatial-omics-analysis",
@@ -27614,19 +27508,6 @@
     "空间转录组",
     "组织图谱",
     "聚类"
-   ],
-   "level": "进阶"
-  },
-  "tooluniverse-statistical-modeling": {
-   "id": "tooluniverse-statistical-modeling",
-   "title_zh": "生物医学统计建模与生存分析",
-   "summary_zh": "对生物医学数据进行回归分析、生存分析等，计算风险比、置信区间等，用于探究影响因素和预后。",
-   "domain": "数据与工具",
-   "subcategory": "统计与机器学习",
-   "tags_zh": [
-    "统计建模",
-    "回归",
-    "生存分析"
    ],
    "level": "进阶"
   },
@@ -27672,7 +27553,7 @@
   "tooluniverse-variant-analysis": {
    "id": "tooluniverse-variant-analysis",
    "title_zh": "VCF变异注释与突变分析",
-   "summary_zh": "处理VCF文件，注释变异类型（点突变、结构变异等），过滤低质量位点，并解读变异对基因功能的影响。",
+   "summary_zh": "Production-ready VCF processing, variant annotation, mutation analysis, and structural variant (SV/CNV) interpretation for bioinformatics questions. Parses VCF files (streaming, large files), classifies mutation types (missense, nonsense, synonymous, frameshift, splice, intronic, intergenic) and structural variants (deletions, duplications, inversions, translocations), applies VAF/depth/quality/consequence filters, annotates with ClinVar/dbSNP/gnomAD/CADD via ToolUniverse, interprets SV/CNV clin",
    "domain": "基因组与变异",
    "subcategory": "变异检测与注释",
    "tags_zh": [
@@ -27734,19 +27615,6 @@
     "资格判定"
    ],
    "level": "进阶"
-  },
-  "trialgpt-matching": {
-   "id": "trialgpt-matching",
-   "title_zh": "临床试验匹配推荐",
-   "summary_zh": "根据患者信息快速匹配可能适合的临床试验，生成候选试验列表，帮助医生和患者找到潜在的治疗机会。",
-   "domain": "临床与医学",
-   "subcategory": "临床数据与电子病历",
-   "tags_zh": [
-    "临床试验",
-    "匹配推荐",
-    "患者招募"
-   ],
-   "level": "入门"
   },
   "tumor-clonal-evolution-agent": {
    "id": "tumor-clonal-evolution-agent",

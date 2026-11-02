@@ -1,6 +1,6 @@
 {
  "meta": {
-  "count": 2174,
+  "count": 2164,
   "sources": [
    "OmicVerse",
    "ClawBio",
@@ -16160,24 +16160,6 @@
    "size": 9555
   },
   {
-   "id": "bio-db-benchmark-qa",
-   "name": "Bio Db Benchmark Qa",
-   "description": "作答生物信息学数据库问答 benchmark 考试（LABBench2 dbqa2、MESINESP DeCS、MeSH 语义索引、以及任何\"题目给出问题→用真实公共数据库 API 检索→输出结构化答案→对照密封答案评分\"的测试）。触发词：benchmarker、密封答案、考试题、TaskA/TaskB/TaskC、dbqa2、MESINESP、MeSH 标签、DeCS 编码、LABBench2。",
-   "category": "database",
-   "tags": [],
-   "version": "1.0.0",
-   "author": "",
-   "origin": {
-    "repo": "MemOmics-Agent",
-    "url": "https://github.com/MemOmics/MemOmics-Agent",
-    "path": "hermes_home/skills/bioinformatics/bio-db-benchmark-qa",
-    "license": "MIT"
-   },
-   "has_scripts": false,
-   "files": 4,
-   "size": 17581
-  },
-  {
    "id": "bioinformatics-html-report",
    "name": "Bioinformatics Html Report",
    "description": "A zero-dependency Python toolkit for generating publication-quality interactive HTML reports from bioinformatics analysis outputs",
@@ -18271,45 +18253,9 @@
    "size": 95293
   },
   {
-   "id": "mesh-decs-semantic-indexing",
-   "name": "Mesh Decs Semantic Indexing",
-   "description": "Extract MeSH/DeCS semantic indexing labels from biomedical literature (English PubMed MeSH major labels, Spanish/LILACS DeCS codes). Encodes benchmark-gold behavior: full descriptor lists including demographic qualifiers, DeCS numeric-ID output format (NOT MeSH tree numbers), official-record retrieval over abstract inference.",
-   "category": "database",
-   "tags": [],
-   "version": "1.0.0",
-   "author": "",
-   "origin": {
-    "repo": "MemOmics-Agent",
-    "url": "https://github.com/MemOmics/MemOmics-Agent",
-    "path": "hermes_home/skills/bioinformatics/mesh-decs-semantic-indexing",
-    "license": "MIT"
-   },
-   "has_scripts": true,
-   "files": 5,
-   "size": 13510
-  },
-  {
-   "id": "mesh-decs-tag-extraction",
-   "name": "Mesh Decs Tag Extraction",
-   "description": "从文献（title/abstract/PMID）提取 MeSH/DeCS 受控词表标签，用于语义索引类任务与 benchmarker 试卷（TaskA 语义索引 / MESINESP 多语言检索）。触发词：语义索引、MeSH标签、MeSH主要标签、DeCS编码、meshMajor、decsCodes、benchmarker、试卷作答、paper to tags、PubMed索引、多语言检索。核心经验（2026-08 三轮实测）：gold 答案 = 官方索引记录，含人口学限定词（Humans/Female/Male/Age组），必须用 NCBI efetch 拉全部 DescriptorName（勿只按 MajorTopicYN=Y 过滤）、排除 PublicationType、DeCS 题输出数字 ID 而非树号、从摘要推断的词与官方标引差异巨大。",
-   "category": "database",
-   "tags": [],
-   "version": "1.0.0",
-   "author": "",
-   "origin": {
-    "repo": "MemOmics-Agent",
-    "url": "https://github.com/MemOmics/MemOmics-Agent",
-    "path": "hermes_home/skills/bioinformatics/mesh-decs-tag-extraction",
-    "license": "MIT"
-   },
-   "has_scripts": true,
-   "files": 5,
-   "size": 14898
-  },
-  {
    "id": "mesh-semantic-indexing",
    "name": "Mesh Semantic Indexing",
-   "description": "Generate and verify MeSH/DeCS semantic indexing labels for biomedical articles using NCBI E-utilities. Use when asked to output MeSH major topics for PMIDs, annotate literature with controlled vocabulary, or answer semantic-indexing benchmark questions (BioASQ Task A / MESINESP style).",
+   "description": "Generate and verify MeSH/DeCS semantic indexing labels for biomedical articles using NCBI E-utilities. Use when asked to output MeSH major topics for PMIDs, annotate literature with controlled vocabulary.",
    "category": "database",
    "tags": [],
    "version": "1.0.0",
@@ -18449,24 +18395,6 @@
    "has_scripts": true,
    "files": 3,
    "size": 7029
-  },
-  {
-   "id": "molecular-cloning-design",
-   "name": "Molecular Cloning Design",
-   "description": "Design complete cloning strategies for plasmid engineering (Gibson, Golden Gate, restriction-ligation) including backbone linearization, primer/overhang design, long-insert splitting, mutation introduction, and verification. Covers lentiviral, bacterial, yeast, and IVT expression backbones and Addgene plasmid swaps. Also the playbook for LABBench2 cloning-style exam questions.",
-   "category": "drug",
-   "tags": [],
-   "version": "1.0.0",
-   "author": "",
-   "origin": {
-    "repo": "MemOmics-Agent",
-    "url": "https://github.com/MemOmics/MemOmics-Agent",
-    "path": "hermes_home/skills/bioinformatics/molecular-cloning-design",
-    "license": "MIT"
-   },
-   "has_scripts": false,
-   "files": 3,
-   "size": 12245
   },
   {
    "id": "multi-omics-integration-memomics",
@@ -19307,27 +19235,9 @@
    "size": 21514
   },
   {
-   "id": "pubmed-mesh-annotation",
-   "name": "Pubmed Mesh Annotation",
-   "description": "MeSH 语义索引/文献 MeSH 标签标注：给定文献 title+abstract（或 PMID），从 PubMed 官方索引输出 MeSH 主要标签。适用于语义索引 benchmark（如 试卷1_语义索引TaskA）、文献打标、知识库构建的 MeSH 词表获取。",
-   "category": "database",
-   "tags": [],
-   "version": "1.0.0",
-   "author": "MemOmics",
-   "origin": {
-    "repo": "MemOmics-Agent",
-    "url": "https://github.com/MemOmics/MemOmics-Agent",
-    "path": "hermes_home/skills/bioinformatics/pubmed-mesh-annotation",
-    "license": "MIT"
-   },
-   "has_scripts": true,
-   "files": 3,
-   "size": 8673
-  },
-  {
    "id": "pubmed-mesh-indexing",
    "name": "Pubmed Mesh Indexing",
-   "description": "从 NCBI E-utilities 检索官方 MeSH 标签与 DeCS 编码。使用场景：为文献输出 MeSH 主要标签（语义索引 benchmark）、西班牙语文献输出 DeCS 编码（MESINESP 式多语言检索）、查询 MeSH 树号构建知识特征。触发词：\"MeSH\" / \"DeCS\" / \"语义索引\" / \"主要标签\" / \"mesh tags\" / \"MESINESP\" / \"DeCS 编码\"。",
+   "description": "从 NCBI E-utilities 检索官方 MeSH 标签与 DeCS 编码。使用场景：为文献输出 MeSH 主要标签、西班牙语文献输出 DeCS 编码、查询 MeSH 树号构建知识特征。触发词：'MeSH' / 'DeCS' / '语义索引' / '主要标签' / 'mesh tags' / 'MESINESP' / 'DeCS 编码'。",
    "category": "database",
    "tags": [],
    "version": "1.0.0",
@@ -22503,24 +22413,6 @@
    "has_scripts": false,
    "files": 1,
    "size": 29143
-  },
-  {
-   "id": "depmap-crispr-essentiality",
-   "name": "Depmap Crispr Essentiality",
-   "description": "DepMap CRISPR gene effect (Chronos) analysis: sign convention for essentiality, per-gene NaN-safe Spearman correlation, data loading/alignment. For general NaN-safe correlation see nan-safe-correlation; for quality filtering see degenerate-input-filtering.",
-   "category": "genomics",
-   "tags": [],
-   "version": "1.0.0",
-   "author": "",
-   "origin": {
-    "repo": "SciAgent-Skills",
-    "url": "https://github.com/SciAgent/SciAgent-Skills",
-    "path": "skills/genomics-bioinformatics/databases/depmap-crispr-essentiality",
-    "license": "CC-BY-4.0"
-   },
-   "has_scripts": false,
-   "files": 1,
-   "size": 14938
   },
   {
    "id": "ena-database",
@@ -38098,7 +37990,7 @@
   {
    "id": "tooluniverse-epigenomics",
    "name": "Tooluniverse Epigenomics",
-   "description": "Production-ready genomics and epigenomics data processing for BixBench questions. Handles methylation array analysis (CpG filtering, differential methylation, age-related CpG detection, chromosome-level density), ChIP-seq peak analysis (peak calling, motif enrichment, coverage stats), ATAC-seq chromatin accessibility, multi-omics integration (expression + methylation correlation), and genome-wide statistics. Pure Python computation (pandas, scipy, numpy, pysam, statsmodels) plus ToolUniverse ann",
+   "description": "Production-ready genomics and epigenomics data processing for analysis questions. Handles methylation array analysis (CpG filtering, differential methylation, age-related CpG detection, chromosome-level density), ChIP-seq peak analysis (peak calling, motif enrichment, coverage stats), ATAC-seq chromatin accessibility, multi-omics integration (expression + methylation correlation), and genome-wide statistics. Pure Python computation (pandas, scipy, numpy, pysam, statsmodels) plus ToolUniverse ann",
    "category": "epigenomics",
    "tags": [],
    "version": "1.0.0",
@@ -38238,24 +38130,6 @@
    "has_scripts": true,
    "files": 7,
    "size": 65225
-  },
-  {
-   "id": "tooluniverse-image-analysis",
-   "name": "Tooluniverse Image Analysis",
-   "description": "Production-ready microscopy image analysis and quantitative imaging data skill for colony morphometry, cell counting, fluorescence quantification, and statistical analysis of imaging-derived measurements. Processes ImageJ/CellProfiler output (area, circularity, intensity, cell counts), performs Dunnett's test, Cohen's d effect size, power analysis, Shapiro-Wilk normality tests, two-way ANOVA, polynomial regression, natural spline regression with confidence intervals, and comparative morphometry.",
-   "category": "imaging",
-   "tags": [],
-   "version": "1.0.0",
-   "author": "",
-   "origin": {
-    "repo": "awesome-bio-agent-skills",
-    "url": "https://github.com/awesome-bio-agent-skills",
-    "path": "skills/openclaw/tooluniverse-image-analysis",
-    "license": "CC0-1.0"
-   },
-   "has_scripts": true,
-   "files": 14,
-   "size": 205662
   },
   {
    "id": "tooluniverse-immune-repertoire-analysis",
@@ -38636,24 +38510,6 @@
    "size": 15535
   },
   {
-   "id": "tooluniverse-single-cell",
-   "name": "Tooluniverse Single Cell",
-   "description": "Production-ready single-cell and expression matrix analysis using scanpy, anndata, and scipy. Performs scRNA-seq QC, normalization, PCA, UMAP, Leiden/Louvain clustering, differential expression (Wilcoxon, t-test, DESeq2), cell type annotation, per-cell-type statistical analysis, gene-expression correlation, batch correction (Harmony), trajectory inference, and cell-cell communication analysis. NEW: Analyzes ligand-receptor interactions between cell types using OmniPath (CellPhoneDB, CellChatDB),",
-   "category": "single-cell",
-   "tags": [],
-   "version": "1.0.0",
-   "author": "",
-   "origin": {
-    "repo": "awesome-bio-agent-skills",
-    "url": "https://github.com/awesome-bio-agent-skills",
-    "path": "skills/openclaw/tooluniverse-single-cell",
-    "license": "CC0-1.0"
-   },
-   "has_scripts": true,
-   "files": 17,
-   "size": 246463
-  },
-  {
    "id": "tooluniverse-spatial-omics-analysis",
    "name": "Tooluniverse Spatial Omics Analysis",
    "description": "Computational analysis framework for spatial multi-omics data integration. Given spatially variable genes (SVGs), spatial domain annotations, tissue type, and disease context from spatial transcriptomics/proteomics experiments (10x Visium, MERFISH, DBiTplus, SLIDE-seq, etc.), performs comprehensive biological interpretation including pathway enrichment, cell-cell interaction inference, druggable target identification, immune microenvironment characterization, and multi-modal integration. Produce",
@@ -38688,24 +38544,6 @@
    "has_scripts": false,
    "files": 1,
    "size": 23982
-  },
-  {
-   "id": "tooluniverse-statistical-modeling",
-   "name": "Tooluniverse Statistical Modeling",
-   "description": "Perform statistical modeling and regression analysis on biomedical datasets. Supports linear regression, logistic regression (binary/ordinal/multinomial), mixed-effects models, Cox proportional hazards survival analysis, Kaplan-Meier estimation, and comprehensive model diagnostics. Extracts odds ratios, hazard ratios, confidence intervals, p-values, and effect sizes. Designed to solve BixBench statistical reasoning questions involving clinical/experimental data. Use when asked to fit regression ",
-   "category": "statistics",
-   "tags": [],
-   "version": "1.0.0",
-   "author": "",
-   "origin": {
-    "repo": "awesome-bio-agent-skills",
-    "url": "https://github.com/awesome-bio-agent-skills",
-    "path": "skills/openclaw/tooluniverse-statistical-modeling",
-    "license": "CC0-1.0"
-   },
-   "has_scripts": true,
-   "files": 15,
-   "size": 216982
   },
   {
    "id": "tooluniverse-structural-variant-analysis",
@@ -38850,24 +38688,6 @@
    "has_scripts": false,
    "files": 3,
    "size": 9072
-  },
-  {
-   "id": "trialgpt-matching",
-   "name": "Trialgpt Matching",
-   "description": "Trial shortlist",
-   "category": "clinical",
-   "tags": [],
-   "version": "1.0.0",
-   "author": "",
-   "origin": {
-    "repo": "awesome-bio-agent-skills",
-    "url": "https://github.com/awesome-bio-agent-skills",
-    "path": "skills/openclaw/trialgpt-matching",
-    "license": "MIT"
-   },
-   "has_scripts": true,
-   "files": 19,
-   "size": 718890
   },
   {
    "id": "tumor-clonal-evolution-agent",

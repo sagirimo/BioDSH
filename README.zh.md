@@ -39,10 +39,10 @@ BioDSH 在你自己的电脑上运行，基于 [DeepSeek Harness（dsh）](https
 
 | 版本 | 平台 | 下载 |
 | --- | --- | --- |
-| **1.0.0 预览版**（新） | Windows 10/11 | [`BioDSH_1.0.0_x64-setup.exe`](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v1.0.0-preview.1) |
-| 0.3.0（稳定版） | Windows、macOS（Apple 芯片） | [最新发行版](https://github.com/sagirimo/BioDSH/releases/latest) |
+| **1.0.0**（最新） | Windows 10/11 | [`BioDSH_1.0.0_x64-setup.exe`](https://github.com/sagirimo/BioDSH/releases/latest) |
+| 0.3.0 | macOS（Apple 芯片）、Windows | [0.3.0 发行版](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v0.3.0) |
 
-- **1.0.0 预览版**是预发布版，已装的 0.3.0 不会被自动更新过去。它会覆盖安装 0.3.0，而 0.3.0 里的旧对话在 1.0 里可能打不开，重要项目请先备份。macOS 和 Linux 安装包随 1.0 正式版提供。
+- **从 0.3.0 升级**：已装的 0.3.0 不会被自动更新到 1.0，准备好后直接覆盖安装 1.0.0 即可。你的项目、文件和对话都不会被删除，但 0.3.0 录的旧对话在 1.0 里可能打不开。1.0 的 macOS 版随后提供，在那之前 macOS 用户请继续用 0.3.0。
 - **Windows**：安装包没有代码签名，首次运行时点「更多信息 → 仍要运行」。
 - **macOS**：应用没有经过公证，系统可能提示「已损坏」。把它拖进「应用程序」后，在终端运行一次 `sudo xattr -cr /Applications/BioDSH.app` 即可。
 

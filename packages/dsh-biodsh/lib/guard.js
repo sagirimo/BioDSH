@@ -1,29 +1,32 @@
-// BioDSH convergence guard. Long analyses tend to keep exploring until a wall clock ends them (R1: every one of 8
-// failures was a timeout, none a wrong answer). Within one turn, at the soft threshold the agent is asked to wrap up
-// from what it already has; at the hard threshold, to answer now without tools. Each level fires once per turn. Past
-// guardMaxSteps the step is rejected so a runaway turn ends instead of burning tokens.
-// Time is the primary signal: a fast model takes ~7 s per step, so step counts tuned on slower models cut verification
-// short (2026-10-19 loop: every pilot run hit a 20-step nudge at ~140 s). Step thresholds remain as a backstop.
-// Reminders carry their own source kind with form "notice", like the official repeat-tool-reminder, so transcripts show
-// them as harness notices rather than as something the user typed. Settings: Host row `biodsh` (lib/settings.js).
+// Verification-first convergence notices; thresholds remain configurable.
 import { setting } from './settings.js';
+import { workspaceRoot } from './task_policy.js';
+import { roleOf } from './magi.js';
+
+// The MAGI arbiter reconciles two finished candidates: v18 evaluated it with a tighter budget (45/800 s, 60/1000 s, max 70).
+const ARBITER = { guardSoftSteps: 45, guardSoftSeconds: 800, guardHardSteps: 60, guardHardSeconds: 1000, guardMaxSteps: 70 };
 
 export const name = 'biodsh-step-guard';
 
 const SOURCE = 'biodsh-step-guard';
-const SOFT = (step, sec) => `本轮你已经用了 ${step} 步、约 ${sec} 秒。请停止继续探索或尝试新方法/新包，基于目前已经得到的结果，在接下来最多 2 步内给出最终答案。`
-  + '如果无法精确计算，就给出你最有把握的近似值并说明依据；题目若要求固定格式（如最后一行 ANSWER: …），务必按格式输出。';
-const HARD = (step, sec) => `已用 ${step} 步、约 ${sec} 秒，时间快到了。现在就直接给出最终结论，不要再调用任何工具；`
-  + '按题目要求的格式输出最终答案（拿不准就给最佳估计并注明不确定）。';
+const SOFT = (step, sec) => `本轮已用 ${step} 步、约 ${sec} 秒。优先保存完整代码，集中处理必要核验和已发现的问题，跑完核验再收尾。`
+  + '遵循公开方法和输出规范；不能用近似值满足精确合同。开放问答按要求输出末行 ANSWER，数值科学计数使用 ASCII e，保留题面要求的比例或百分比。';
+const HARD = (step, sec) => `本轮已用 ${step} 步、约 ${sec} 秒，剩余预算有限。先保存代码和已有结果，优先完成关键核验。`
+  + '无法在预算内完成时如实报告未完成的部分与失败检查；不要猜数、跳过合同或宣称尚未完成的验证通过。';
 
 export function apply(ctx) {
-  const get = (k) => setting(ctx, k);
+  const base = (k) => setting(ctx, k);
+  const get = base;
+  const roles = new WeakMap();
   const dbg = (s) => { if (get('debug') || process.env.BIODSH_GUARD_DEBUG) { try { process.stderr.write(`[biodsh-guard] ${s}\n`); } catch {} } };
   const state = new WeakMap(); // agent -> { turn, t0, soft, hard }
   const notice = (text, summary) => ({ id: globalThis.crypto.randomUUID(), role: 'user', content: [{ type: 'text', text }],
     source: { kind: SOURCE, form: 'notice', summary } });
 
   ctx.on('agent/pre-step', async (payload, next) => {
+    if (payload?.agent && !roles.has(payload.agent)) roles.set(payload.agent, roleOf(workspaceRoot(ctx, payload.agent) || '.'));
+    const role = payload?.agent ? roles.get(payload.agent) : null;
+    const get = (k) => (role === 'arbiter' && k in ARBITER) ? ARBITER[k] : base(k);
     if (!get('guardEnabled')) return next();
     const step = Number(payload?.step) || 0;
     const max = get('guardMaxSteps');

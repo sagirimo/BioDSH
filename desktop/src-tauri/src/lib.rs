@@ -400,7 +400,7 @@ fn refdata_remove(state: State<'_, AppState>, id: String) -> Vec<refdata::PackSt
 #[tauri::command]
 async fn demos_seed(app: AppHandle, state: State<'_, AppState>) -> Result<Vec<demos::Demo>, String> {
     let (paths, res) = (state.paths.clone(), crate::paths::resource(&app, "demos"));
-    let _ = std::fs::remove_file(paths.dsh_home.join(".demo-content-v4")); // 让下次 dsh 启动重新导入范例对话(并清掉旧范例)
+    let _ = std::fs::remove_file(paths.dsh_home.join(".demo-content-v4")); // 让下次 dsh 启动重新导入范例对话(只导入,不删除任何已有对话)
     let url = state.dsh.status.lock().unwrap().url.clone();
     let out = tauri::async_runtime::spawn_blocking(move || demos::seed(&res, &paths, url.as_deref(), &dsh_call)).await.map_err(|e| e.to_string())?;
     let mut s = state.settings.lock().unwrap(); s.demos_seeded = true; s.save(&state.paths);

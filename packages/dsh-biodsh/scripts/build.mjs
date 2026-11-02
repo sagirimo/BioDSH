@@ -71,9 +71,13 @@ if (!standard) throw new Error(`no preset-standard in ${src}`);
 const plugins = standard.config.plugins.map((p) => ({ ...p, ...(p.config && !Array.isArray(p.config) ? { config: { ...p.config } } : {}) }));
 const at = (id) => { const i = plugins.findIndex((p) => p.id === id); if (i < 0) throw new Error(`standard preset has no ${id}`); return i; };
 plugins[at('persona')].config = { ...(plugins[at('persona')].config || {}), prefix: PERSONA };
+// The BioDSH persona row picks a one-line persona when the folder ships a written specification (lib/persona.js).
+plugins[at('persona')].name = 'dsh-biodsh/persona';
 plugins.splice(at('tool-skill') + 1, 0,
   { id: 'biodsh-skills', name: 'dsh-biodsh/skills' },
   { id: 'biodsh-skill-select', name: 'dsh-biodsh/select' },
+  // Delivery gate + BioDSH-MAGI (lib/delivery.js, lib/magi.js), before the guard as in the v18 evaluated configuration.
+  { id: 'biodsh-delivery', name: 'dsh-biodsh/delivery' },
   { id: 'biodsh-step-guard', name: 'dsh-biodsh/guard' });
 plugins.splice(at('persona') + 1, 0, { id: 'biodsh-context', name: 'dsh-biodsh/context' });
 const preset = { id: 'preset-biodsh', name: '@deepseek-ai/dsh-agent-preset', config: {
