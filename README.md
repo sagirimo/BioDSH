@@ -40,9 +40,9 @@ BioDSH runs on your own computer and is built on [DeepSeek Harness (dsh)](https:
 | Version | Platform | Get it |
 | --- | --- | --- |
 | **1.0.0** (latest) | Windows 10/11 | [`BioDSH_1.0.0_x64-setup.exe`](https://github.com/sagirimo/BioDSH/releases/latest) |
-| 0.3.0 | macOS (Apple silicon), Windows | [0.3.0 release](https://github.com/sagirimo/BioDSH/releases/tag/desktop-tauri-v0.3.0) |
+| **1.0.0** (latest) | macOS 12+ (Apple silicon) | [`BioDSH_1.0.0_aarch64.dmg`](https://github.com/sagirimo/BioDSH/releases/latest) |
 
-- **Upgrading from 0.3.0:** installed 0.3.0 apps are not auto-updated to 1.0; install 1.0.0 over it when you are ready. Your projects, files and conversations are never deleted, but conversations recorded with 0.3.0 may not open in 1.0. The macOS build of 1.0 will follow; until then, macOS users stay on 0.3.0.
+- **Upgrading from 0.3.0:** installed 0.3.0 apps are not auto-updated to 1.0; install 1.0.0 over it when you are ready. Your projects, files and conversations are never deleted, but conversations recorded with 0.3.0 may not open in 1.0.
 - **Windows:** on first run, click *More info → Run anyway*. The installer is not code-signed.
 - **macOS:** the app is not notarized, so macOS may report it as "damaged". Move it to Applications and run `sudo xattr -cr /Applications/BioDSH.app` once.
 
