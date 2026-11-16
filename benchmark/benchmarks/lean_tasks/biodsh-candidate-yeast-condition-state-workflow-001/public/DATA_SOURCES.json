@@ -1,0 +1,27 @@
+{
+ "source_url": "https://bioconductor.org/packages/mixOmics/",
+ "input_files_sha256": {
+  "inputs/condition.csv": "00771864b9df89bb32765a2f24de59f9ab34a438067b62d66831de2043a96f06",
+  "inputs/condition_attributes.rds": "a11a9c50bd4bb28cf57a99f8eb4330528f907f06ace95d4547090918a84b13b6",
+  "inputs/data.csv": "95d369894df7a745e5e61b4353225739caa2d24223913487100cdd2af3db92c1",
+  "inputs/data_attributes.rds": "17ee43c8899ea224d27b3498469161ebd2707bb55709d22bb9b01111555f6602",
+  "inputs/design.json": "0135f8ca162c614cd2b6539b4390fdd91ac34c9ef084467be812999c4ee5c1f4",
+  "inputs/design_cell_census.csv": "8ca3f94f3d10d8779df1ddca1de3975d289d55fcdfd970baf498febdaee04950",
+  "inputs/kind.txt": "c2d70004ca8797ad4bd8c671e8326200ebecc1f5b5b9ee0ba92ae26b3649cfda",
+  "inputs/metabolite_metadata.csv": "d55c21d0362886306da673e11adeeea8227ce8482336678ef8e8d442130e29e3",
+  "inputs/metabolite_values.csv": "c36271f0c8e239f43ebf506a8216ec68633c3b2ab70a58a663b0c5b032aa1f4e",
+  "inputs/native_attributes.rds": "cc183cc8bc151bd55efecc44f72d997374bc6d0f69f465e46a1a92826b8d5298",
+  "inputs/native_attributes.txt": "69f24d4f398e9149327dcae6048736fee498dd245a6c0cb9e024b2e08a6d93f3",
+  "inputs/native_object.rds": "7596ff70c15fe1baebf31d1b2e49de010c70699c29d65aed38827c2c121953d0",
+  "inputs/native_structure.txt": "7622bffa17d9c48f6cdc3f01d69617b159380b913554bb9e190854e9eaab8d14",
+  "inputs/original_yeast.rda": "89363334417983e5e00dab439b730067f1c9f3f940c321fdee12a6ecddcd68bc",
+  "inputs/sample_metadata.csv": "d412ff4c3d2195473887e17b9e30d658553d115adba3a793b0b85addf95d93ee",
+  "inputs/sample_scale_metadata.csv": "7428af1e097b9e1f169aae3ce0edc04b3af742407795fe8d278254a3b5fd49e7",
+  "inputs/strain.cond.csv": "97fdf3e4a2fbafe15fd6a65378a11851058e75d5af3ed1e4c40ae464b2787b11",
+  "inputs/strain.cond_attributes.rds": "2e5f4eccd1cd367112646814b271b934abe2100f2de98b958a2ec9f39aeee48d",
+  "inputs/strain.csv": "ac72bbbe0407df5e7575f8a1bdf348b5cf4f206979f61fe6c44dbf97b463703b",
+  "inputs/strain_attributes.rds": "4fec564389c2189a7b31007576c20ce45a99e13ad6c87145f50a4b3df8a4a472",
+  "inputs/table_schema.csv": "7f189b7c0ab2c129a81cd85014677fcbe890b14d2429d2c07a78cc6c5adddaf0"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

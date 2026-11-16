@@ -1,0 +1,810 @@
+{
+  "tables": {
+    "input_object_audit.csv": {
+      "columns": [
+        "object",
+        "sites",
+        "fields",
+        "role"
+      ],
+      "key": [
+        "object"
+      ],
+      "types": {
+        "object": "text",
+        "sites": "float",
+        "fields": "float",
+        "role": "text"
+      },
+      "tolerance": {
+        "sites": [
+          1e-06,
+          1e-08
+        ],
+        "fields": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "source_abundance.csv": {
+      "columns": [
+        "row_id",
+        "site_id",
+        "species",
+        "raw_value"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "site_id": "text",
+        "species": "text",
+        "raw_value": "float"
+      },
+      "tolerance": {
+        "raw_value": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "source_environment.csv": {
+      "columns": [
+        "row_id",
+        "site_id",
+        "variable",
+        "raw_value",
+        "native_class",
+        "native_ordered",
+        "declared_model_variable"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "site_id": "text",
+        "variable": "text",
+        "raw_value": "text",
+        "native_class": "text",
+        "native_ordered": "float",
+        "declared_model_variable": "float"
+      },
+      "tolerance": {
+        "native_ordered": [
+          1e-06,
+          1e-08
+        ],
+        "declared_model_variable": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "source_auxiliary.csv": {
+      "columns": [
+        "row_id",
+        "object",
+        "site_id",
+        "variable",
+        "value"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "object": "text",
+        "site_id": "text",
+        "variable": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "site_audit.csv": {
+      "columns": [
+        "site_id",
+        "raw_total",
+        "nonzero_species",
+        "relative_sum",
+        "Hellinger_squared_sum",
+        "Shannon",
+        "inverse_Simpson"
+      ],
+      "key": [
+        "site_id"
+      ],
+      "types": {
+        "site_id": "text",
+        "raw_total": "float",
+        "nonzero_species": "float",
+        "relative_sum": "float",
+        "Hellinger_squared_sum": "float",
+        "Shannon": "float",
+        "inverse_Simpson": "float"
+      },
+      "tolerance": {
+        "raw_total": [
+          1e-06,
+          1e-08
+        ],
+        "nonzero_species": [
+          1e-06,
+          1e-08
+        ],
+        "relative_sum": [
+          1e-06,
+          1e-08
+        ],
+        "Hellinger_squared_sum": [
+          1e-06,
+          1e-08
+        ],
+        "Shannon": [
+          1e-06,
+          1e-08
+        ],
+        "inverse_Simpson": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "species_audit.csv": {
+      "columns": [
+        "species",
+        "source_position",
+        "raw_total",
+        "nonzero_sites"
+      ],
+      "key": [
+        "species"
+      ],
+      "types": {
+        "species": "text",
+        "source_position": "float",
+        "raw_total": "float",
+        "nonzero_sites": "float"
+      },
+      "tolerance": {
+        "source_position": [
+          1e-06,
+          1e-08
+        ],
+        "raw_total": [
+          1e-06,
+          1e-08
+        ],
+        "nonzero_sites": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "community_transforms.csv": {
+      "columns": [
+        "row_id",
+        "site_id",
+        "species",
+        "relative",
+        "Hellinger",
+        "centered_Hellinger"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "site_id": "text",
+        "species": "text",
+        "relative": "float",
+        "Hellinger": "float",
+        "centered_Hellinger": "float"
+      },
+      "tolerance": {
+        "relative": [
+          1e-06,
+          1e-08
+        ],
+        "Hellinger": [
+          1e-06,
+          1e-08
+        ],
+        "centered_Hellinger": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "environment_encoding.csv": {
+      "columns": [
+        "row_id",
+        "site_id",
+        "covariate",
+        "source_variable",
+        "encoding",
+        "source_value",
+        "encoded_value",
+        "mean",
+        "population_sd",
+        "standardized"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "site_id": "text",
+        "covariate": "text",
+        "source_variable": "text",
+        "encoding": "text",
+        "source_value": "text",
+        "encoded_value": "float",
+        "mean": "float",
+        "population_sd": "float",
+        "standardized": "float"
+      },
+      "tolerance": {
+        "encoded_value": [
+          1e-06,
+          1e-08
+        ],
+        "mean": [
+          1e-06,
+          1e-08
+        ],
+        "population_sd": [
+          1e-06,
+          1e-08
+        ],
+        "standardized": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "environment_design.csv": {
+      "columns": [
+        "site_id",
+        "SubsDens",
+        "WatrCont",
+        "Substrate=Sphagn2",
+        "Substrate=Sphagn3",
+        "Substrate=Sphagn4",
+        "Substrate=Litter",
+        "Substrate=Barepeat",
+        "Substrate=Interface",
+        "Shrub=Few",
+        "Shrub=Many",
+        "Topo=Hummock"
+      ],
+      "key": [
+        "site_id"
+      ],
+      "types": {
+        "site_id": "text",
+        "SubsDens": "float",
+        "WatrCont": "float",
+        "Substrate=Sphagn2": "float",
+        "Substrate=Sphagn3": "float",
+        "Substrate=Sphagn4": "float",
+        "Substrate=Litter": "float",
+        "Substrate=Barepeat": "float",
+        "Substrate=Interface": "float",
+        "Shrub=Few": "float",
+        "Shrub=Many": "float",
+        "Topo=Hummock": "float"
+      },
+      "tolerance": {
+        "SubsDens": [
+          1e-06,
+          1e-08
+        ],
+        "WatrCont": [
+          1e-06,
+          1e-08
+        ],
+        "Substrate=Sphagn2": [
+          1e-06,
+          1e-08
+        ],
+        "Substrate=Sphagn3": [
+          1e-06,
+          1e-08
+        ],
+        "Substrate=Sphagn4": [
+          1e-06,
+          1e-08
+        ],
+        "Substrate=Litter": [
+          1e-06,
+          1e-08
+        ],
+        "Substrate=Barepeat": [
+          1e-06,
+          1e-08
+        ],
+        "Substrate=Interface": [
+          1e-06,
+          1e-08
+        ],
+        "Shrub=Few": [
+          1e-06,
+          1e-08
+        ],
+        "Shrub=Many": [
+          1e-06,
+          1e-08
+        ],
+        "Topo=Hummock": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "design_information.csv": {
+      "columns": [
+        "row_id",
+        "covariate1",
+        "covariate2",
+        "crossproduct"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "covariate1": "text",
+        "covariate2": "text",
+        "crossproduct": "float"
+      },
+      "tolerance": {
+        "crossproduct": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "rda_coefficients.csv": {
+      "columns": [
+        "row_id",
+        "covariate",
+        "species",
+        "coefficient"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "covariate": "text",
+        "species": "text",
+        "coefficient": "float"
+      },
+      "tolerance": {
+        "coefficient": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "rda_fitted_residuals.csv": {
+      "columns": [
+        "row_id",
+        "site_id",
+        "species",
+        "centered_response",
+        "fitted",
+        "residual"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "site_id": "text",
+        "species": "text",
+        "centered_response": "float",
+        "fitted": "float",
+        "residual": "float"
+      },
+      "tolerance": {
+        "centered_response": [
+          1e-06,
+          1e-08
+        ],
+        "fitted": [
+          1e-06,
+          1e-08
+        ],
+        "residual": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "rda_species_summary.csv": {
+      "columns": [
+        "species",
+        "mean_Hellinger",
+        "total_SS",
+        "constrained_SS",
+        "residual_SS"
+      ],
+      "key": [
+        "species"
+      ],
+      "types": {
+        "species": "text",
+        "mean_Hellinger": "float",
+        "total_SS": "float",
+        "constrained_SS": "float",
+        "residual_SS": "float"
+      },
+      "tolerance": {
+        "mean_Hellinger": [
+          1e-06,
+          1e-08
+        ],
+        "total_SS": [
+          1e-06,
+          1e-08
+        ],
+        "constrained_SS": [
+          1e-06,
+          1e-08
+        ],
+        "residual_SS": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "rda_summary.csv": {
+      "columns": [
+        "analysis",
+        "sites",
+        "species",
+        "covariates",
+        "rank",
+        "residual_df",
+        "total_SS",
+        "constrained_SS",
+        "residual_SS",
+        "R_squared",
+        "pseudo_F",
+        "permutations",
+        "permutation_p"
+      ],
+      "key": [
+        "analysis"
+      ],
+      "types": {
+        "analysis": "text",
+        "sites": "float",
+        "species": "float",
+        "covariates": "float",
+        "rank": "float",
+        "residual_df": "float",
+        "total_SS": "float",
+        "constrained_SS": "float",
+        "residual_SS": "float",
+        "R_squared": "float",
+        "pseudo_F": "float",
+        "permutations": "float",
+        "permutation_p": "float"
+      },
+      "tolerance": {
+        "sites": [
+          1e-06,
+          1e-08
+        ],
+        "species": [
+          1e-06,
+          1e-08
+        ],
+        "covariates": [
+          1e-06,
+          1e-08
+        ],
+        "rank": [
+          1e-06,
+          1e-08
+        ],
+        "residual_df": [
+          1e-06,
+          1e-08
+        ],
+        "total_SS": [
+          1e-06,
+          1e-08
+        ],
+        "constrained_SS": [
+          1e-06,
+          1e-08
+        ],
+        "residual_SS": [
+          1e-06,
+          1e-08
+        ],
+        "R_squared": [
+          1e-06,
+          1e-08
+        ],
+        "pseudo_F": [
+          1e-06,
+          1e-08
+        ],
+        "permutations": [
+          1e-06,
+          1e-08
+        ],
+        "permutation_p": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "permutation_statistics.csv": {
+      "columns": [
+        "permutation_id",
+        "constrained_SS",
+        "residual_SS",
+        "pseudo_F"
+      ],
+      "key": [
+        "permutation_id"
+      ],
+      "types": {
+        "permutation_id": "text",
+        "constrained_SS": "float",
+        "residual_SS": "float",
+        "pseudo_F": "float"
+      },
+      "tolerance": {
+        "constrained_SS": [
+          1e-06,
+          1e-08
+        ],
+        "residual_SS": [
+          1e-06,
+          1e-08
+        ],
+        "pseudo_F": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "rda_site_gram.csv": {
+      "columns": [
+        "pair_id",
+        "site1",
+        "site2",
+        "response_gram",
+        "fitted_gram",
+        "residual_gram"
+      ],
+      "key": [
+        "pair_id"
+      ],
+      "types": {
+        "pair_id": "text",
+        "site1": "text",
+        "site2": "text",
+        "response_gram": "float",
+        "fitted_gram": "float",
+        "residual_gram": "float"
+      },
+      "tolerance": {
+        "response_gram": [
+          1e-06,
+          1e-08
+        ],
+        "fitted_gram": [
+          1e-06,
+          1e-08
+        ],
+        "residual_gram": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "rda_spectrum.csv": {
+      "columns": [
+        "axis",
+        "squared_singular_value",
+        "positive_above_1e_10"
+      ],
+      "key": [
+        "axis"
+      ],
+      "types": {
+        "axis": "text",
+        "squared_singular_value": "float",
+        "positive_above_1e_10": "float"
+      },
+      "tolerance": {
+        "squared_singular_value": [
+          1e-06,
+          1e-08
+        ],
+        "positive_above_1e_10": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "covariate_sensitivity.csv": {
+      "columns": [
+        "omitted_variable",
+        "removed_columns",
+        "covariates",
+        "rank",
+        "residual_df",
+        "constrained_SS",
+        "residual_SS",
+        "R_squared",
+        "pseudo_F",
+        "R_squared_change_from_full"
+      ],
+      "key": [
+        "omitted_variable"
+      ],
+      "types": {
+        "omitted_variable": "text",
+        "removed_columns": "float",
+        "covariates": "float",
+        "rank": "float",
+        "residual_df": "float",
+        "constrained_SS": "float",
+        "residual_SS": "float",
+        "R_squared": "float",
+        "pseudo_F": "float",
+        "R_squared_change_from_full": "float"
+      },
+      "tolerance": {
+        "removed_columns": [
+          1e-06,
+          1e-08
+        ],
+        "covariates": [
+          1e-06,
+          1e-08
+        ],
+        "rank": [
+          1e-06,
+          1e-08
+        ],
+        "residual_df": [
+          1e-06,
+          1e-08
+        ],
+        "constrained_SS": [
+          1e-06,
+          1e-08
+        ],
+        "residual_SS": [
+          1e-06,
+          1e-08
+        ],
+        "R_squared": [
+          1e-06,
+          1e-08
+        ],
+        "pseudo_F": [
+          1e-06,
+          1e-08
+        ],
+        "R_squared_change_from_full": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "sensitivity_coefficients.csv": {
+      "columns": [
+        "row_id",
+        "omitted_variable",
+        "covariate",
+        "species",
+        "coefficient"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "omitted_variable": "text",
+        "covariate": "text",
+        "species": "text",
+        "coefficient": "float"
+      },
+      "tolerance": {
+        "coefficient": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "sensitivity_fitted_residuals.csv": {
+      "columns": [
+        "row_id",
+        "omitted_variable",
+        "site_id",
+        "species",
+        "fitted",
+        "residual"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "omitted_variable": "text",
+        "site_id": "text",
+        "species": "text",
+        "fitted": "float",
+        "residual": "float"
+      },
+      "tolerance": {
+        "fitted": [
+          1e-06,
+          1e-08
+        ],
+        "residual": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "float",
+        "scope": "text"
+      },
+      "tolerance": {
+        "supported_by_inputs": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "terminal_summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

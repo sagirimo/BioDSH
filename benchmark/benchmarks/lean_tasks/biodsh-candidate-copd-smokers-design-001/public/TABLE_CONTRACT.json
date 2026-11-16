@@ -1,0 +1,225 @@
+{
+  "tables": {
+    "all_gene_stats.csv": {
+      "columns": [
+        "gene_id",
+        "adjusted_beta",
+        "adjusted_se",
+        "adjusted_t_stat",
+        "adjusted_pvalue",
+        "adjusted_padj",
+        "adjusted_estimable",
+        "adjusted_selected",
+        "unadjusted_beta",
+        "unadjusted_se",
+        "unadjusted_t_stat",
+        "unadjusted_pvalue",
+        "unadjusted_padj",
+        "unadjusted_estimable",
+        "unadjusted_selected"
+      ],
+      "key": [
+        "gene_id"
+      ],
+      "types": {
+        "gene_id": "text",
+        "adjusted_beta": "float",
+        "adjusted_se": "float",
+        "adjusted_t_stat": "float",
+        "adjusted_pvalue": "float",
+        "adjusted_padj": "float",
+        "adjusted_estimable": "int",
+        "adjusted_selected": "int",
+        "unadjusted_beta": "float",
+        "unadjusted_se": "float",
+        "unadjusted_t_stat": "float",
+        "unadjusted_pvalue": "float",
+        "unadjusted_padj": "float",
+        "unadjusted_estimable": "int",
+        "unadjusted_selected": "int"
+      },
+      "tolerance": {
+        "adjusted_beta": [
+          1e-06,
+          1e-10
+        ],
+        "adjusted_se": [
+          1e-06,
+          1e-10
+        ],
+        "adjusted_t_stat": [
+          1e-06,
+          1e-10
+        ],
+        "adjusted_pvalue": [
+          1e-06,
+          1e-10
+        ],
+        "adjusted_padj": [
+          1e-06,
+          1e-10
+        ],
+        "unadjusted_beta": [
+          1e-06,
+          1e-10
+        ],
+        "unadjusted_se": [
+          1e-06,
+          1e-10
+        ],
+        "unadjusted_t_stat": [
+          1e-06,
+          1e-10
+        ],
+        "unadjusted_pvalue": [
+          1e-06,
+          1e-10
+        ],
+        "unadjusted_padj": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "cohort_audit.csv": {
+      "columns": [
+        "sample_id",
+        "title",
+        "source_name",
+        "included",
+        "exclusion_reason",
+        "group",
+        "case",
+        "raw_endpoint",
+        "baseline_rhythm",
+        "age_years",
+        "male",
+        "cardiopathy",
+        "smoking_status",
+        "pack_years",
+        "origin",
+        "site",
+        "pair_id",
+        "upstream_age",
+        "upstream_male",
+        "upstream_trait",
+        "recovered_raw_age",
+        "recovered_raw_sex"
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "types": {
+        "sample_id": "text",
+        "title": "text",
+        "source_name": "text",
+        "included": "int",
+        "exclusion_reason": "text",
+        "group": "text",
+        "case": "int",
+        "raw_endpoint": "text",
+        "baseline_rhythm": "text",
+        "age_years": "float",
+        "male": "int",
+        "cardiopathy": "text",
+        "smoking_status": "text",
+        "pack_years": "float",
+        "origin": "text",
+        "site": "text",
+        "pair_id": "text",
+        "upstream_age": "float",
+        "upstream_male": "float",
+        "upstream_trait": "float",
+        "recovered_raw_age": "int",
+        "recovered_raw_sex": "int"
+      },
+      "tolerance": {
+        "age_years": [
+          1e-06,
+          1e-10
+        ],
+        "pack_years": [
+          1e-06,
+          1e-10
+        ],
+        "upstream_age": [
+          1e-06,
+          1e-10
+        ],
+        "upstream_male": [
+          1e-06,
+          1e-10
+        ],
+        "upstream_trait": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "design_audit.csv": {
+      "columns": [
+        "sample_id",
+        "intercept",
+        "case",
+        "age_years",
+        "male",
+        "pack_years"
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "types": {
+        "sample_id": "text",
+        "intercept": "float",
+        "case": "int",
+        "age_years": "float",
+        "male": "int",
+        "pack_years": "float"
+      },
+      "tolerance": {
+        "intercept": [
+          1e-06,
+          1e-10
+        ],
+        "age_years": [
+          1e-06,
+          1e-10
+        ],
+        "pack_years": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "variables_available",
+        "estimable_here",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "variables_available": "int",
+        "estimable_here": "int",
+        "scope": "text"
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "int"
+      }
+    }
+  }
+}

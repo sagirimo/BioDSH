@@ -1,0 +1,140 @@
+{
+  "task_id": "biodsh-candidate-orthodont-growth-cr1-workflow-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "根据 analysis_alignment.csv 的指定记录报告 response",
+      "binding": {
+        "table": "analysis_alignment.csv",
+        "keys": {
+          "row_id": "source_000001"
+        },
+        "column": "response"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "根据 complete_trajectories.csv 的指定记录报告 response",
+      "binding": {
+        "table": "complete_trajectories.csv",
+        "keys": {
+          "group": "F01",
+          "visit_order": "1"
+        },
+        "column": "response"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "根据 all_fit_membership_masks.csv 的指定记录报告 used",
+      "binding": {
+        "table": "all_fit_membership_masks.csv",
+        "keys": {
+          "fit_id": "full",
+          "row_id": "source_000001"
+        },
+        "column": "used"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "根据 all_coefficients_stationarity.csv 的指定记录报告 coefficient",
+      "binding": {
+        "table": "all_coefficients_stationarity.csv",
+        "keys": {
+          "fit_id": "full",
+          "term": "intercept:F01"
+        },
+        "column": "coefficient"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "根据 all_fit_rank_RSS_df_CR1.csv 的指定记录报告 RSS",
+      "binding": {
+        "table": "all_fit_rank_RSS_df_CR1.csv",
+        "keys": {
+          "fit_id": "full"
+        },
+        "column": "RSS"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "根据 all_category_slope_contrasts.csv 的指定记录报告 slope_difference",
+      "binding": {
+        "table": "all_category_slope_contrasts.csv",
+        "keys": {
+          "fit_id": "full",
+          "category_a": "Female",
+          "category_b": "Male"
+        },
+        "column": "slope_difference"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "指定估计相对零的方向如何（严格小于零选below_threshold）？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "all_coefficients_stationarity.csv",
+          "keys": {
+            "fit_id": "full",
+            "term": "intercept:F01"
+          },
+          "column": "coefficient"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "本题的独立推断/计算单位应如何理解？",
+      "options": [
+        "按原设计：Subject，重复年龄观测嵌套于Subject",
+        "每个输出表单元都是独立生物学重复",
+        "每次敏感性重算都是独立新研究"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "给定方法的拟合与敏感性分析支持何种结论？",
+      "options": [
+        "限于原研究及声明模型的关联或描述，不能自行推成因果/外部验证",
+        "数值拟合通过即证明生物因果效应",
+        "删除重算自动提供隐藏外部验证"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/nlme/html/Alfalfa.html",
+ "input_files_sha256": {
+  "inputs/PUBLIC_OUTPUT_NAMING_AND_TYPES.json": "9b7f4ef0e50421fdfb5018d470e578dc6e4481a78036aecb8da67c4cbf7ec03e",
+  "inputs/contrast_definitions.csv": "ac9e5e85dcd48962287753343d38b4ea26d3201c89fe63882e2dd67e884a56b0",
+  "inputs/design.json": "f91b71b039137eb30621305e0deb9b07aec20b32ae7d86d27da31ec50db93ee6",
+  "inputs/kind.txt": "799fbfa1f0b7661f6f8456fe83543bd7bb6566343ef35be9bc6b974ebe0fc5f3",
+  "inputs/layout.csv": "3b3d40acf38867dc7f34ebf1ec6a8243ca89bba1adb46e7f493f34c86a462850",
+  "inputs/native_attributes.rds": "8ffcccc007747e4b83a4f573a6ee2b725402d57e9bbd2a0460e3bb1fce45fb7e",
+  "inputs/native_attributes.txt": "1a30088bb86da89426e130c4616d7e1a53927c81c95de2329f3fea08e672b281",
+  "inputs/native_census.csv": "601794632ab5b9e77a2fec62c12c208e26f226a61ee5d2d9a1eb6447c7241b04",
+  "inputs/native_complete_design_cell_census.csv": "b8b54aca5450155b6a81700b306ddbee3abb4a01a44f1aac2ea9b81a8708864b",
+  "inputs/native_factor_levels.csv": "cdf91c22bab00eaf5af71d38d0022f9742d1419922ebdbd6ff11be8e2294763f",
+  "inputs/native_field_census.csv": "77dcf8f9757f1fb06c9dd9382ad92742d0e510008e1df8c5709125537a9878bc",
+  "inputs/native_object.rds": "1ee39c4d022b01773b85b27cb0d908034d07457af361d8a15fb4d9288f469ff1",
+  "inputs/native_records.csv": "c1db00720288c99fabec28f8a187f7d9079272dd232aee9f110524331e3fdf7e",
+  "inputs/native_row_identity.csv": "4a177aeba788da8fd920aaa84cc05be561e5e394f9f326fda19c2c63e94d94a4",
+  "inputs/native_structure.txt": "2767afeee9a58be1b25f26ab2029f30115d47780b88cc187d95a4e079f2190b8",
+  "inputs/original_Alfalfa.rda": "6115cc5d30a13ba2e05438c3779d5663c44b1f2eddc86e8642d0b66d4fc209cc",
+  "inputs/table_schema.csv": "04a044f3e2893e6c970f3094c1871f5bfc5a321c13fc0c6d0cdd773127daac49",
+  "inputs/yields.csv": "1f5ccc487e3d0720a604dd9c7f94d3f3c3aeb87e402d9460581790ee1d22a852"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-cebsdb-ecg-triggered-scg-proxy-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "b001合格QRS候选数？",
+      "binding": {
+        "table": "ensemble_summary.csv",
+        "key_column": "id",
+        "key": "b001|all",
+        "column": "n_beats"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "b001触发平均峰延迟代理？",
+      "binding": {
+        "table": "ensemble_summary.csv",
+        "key_column": "id",
+        "key": "b001|all",
+        "column": "ensemble_delay_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "b001均值峰mV？",
+      "binding": {
+        "table": "ensemble_summary.csv",
+        "key_column": "id",
+        "key": "b001|all",
+        "column": "ensemble_peak_mV"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "b002峰延迟代理？",
+      "binding": {
+        "table": "ensemble_summary.csv",
+        "key_column": "id",
+        "key": "b002|all",
+        "column": "ensemble_delay_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "b002平均波形RMS？",
+      "binding": {
+        "table": "ensemble_summary.csv",
+        "key_column": "id",
+        "key": "b002|all",
+        "column": "ensemble_rms_mV"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "b001前后窗延迟差？",
+      "binding": {
+        "table": "window_sensitivity.csv",
+        "key_column": "id",
+        "key": "b001",
+        "column": "late_minus_early_delay_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "b001候选数是否>50？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "ensemble_summary.csv",
+          "key_column": "id",
+          "key": "b001|all",
+          "column": "n_beats"
+        },
+        "op": "gt",
+        "threshold": 50,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "b002平均峰是否早于100ms？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "ensemble_summary.csv",
+          "key_column": "id",
+          "key": "b002|all",
+          "column": "ensemble_delay_ms"
+        },
+        "op": "lt",
+        "threshold": 100,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "SCG峰延迟的解释？",
+      "options": [
+        "是指定滤波和搜索窗下的同步信号代理，不能自动认作瓣膜事件或人群效应",
+        "就是人工验证的主动脉瓣开放时间",
+        "每个搏动都是独立受试者"
+      ]
+    }
+  ]
+}

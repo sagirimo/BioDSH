@@ -1,0 +1,173 @@
+{
+  "tables": {
+    "fit.csv": {
+      "columns": [
+        "id",
+        "n",
+        "intercept_ms",
+        "cos_coef_ms",
+        "sin_coef_ms",
+        "amplitude_ms",
+        "peak_phase_rad",
+        "r_squared"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "intercept_ms": "float",
+        "cos_coef_ms": "float",
+        "sin_coef_ms": "float",
+        "amplitude_ms": "float",
+        "peak_phase_rad": "float",
+        "r_squared": "float"
+      },
+      "tolerance": {
+        "intercept_ms": [
+          1e-05,
+          1e-08
+        ],
+        "cos_coef_ms": [
+          1e-05,
+          1e-08
+        ],
+        "sin_coef_ms": [
+          1e-05,
+          1e-08
+        ],
+        "amplitude_ms": [
+          1e-05,
+          1e-08
+        ],
+        "peak_phase_rad": [
+          1e-05,
+          1e-08
+        ],
+        "r_squared": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "intervals.csv": {
+      "columns": [
+        "id",
+        "start_sample",
+        "end_sample",
+        "mid_sample",
+        "RR_ms",
+        "resp_phase_rad",
+        "fitted_RR_ms"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "start_sample": "int",
+        "end_sample": "int",
+        "mid_sample": "int",
+        "RR_ms": "int",
+        "resp_phase_rad": "float",
+        "fitted_RR_ms": "float"
+      },
+      "tolerance": {
+        "resp_phase_rad": [
+          1e-05,
+          1e-08
+        ],
+        "fitted_RR_ms": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "peaks.csv": {
+      "columns": [
+        "id",
+        "time_s",
+        "detrended_amplitude"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "time_s": "float",
+        "detrended_amplitude": "float"
+      },
+      "tolerance": {
+        "time_s": [
+          1e-05,
+          1e-08
+        ],
+        "detrended_amplitude": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "surrogates.csv": {
+      "columns": [
+        "id",
+        "shift_samples",
+        "r_squared"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "shift_samples": "int",
+        "r_squared": "float"
+      },
+      "tolerance": {
+        "r_squared": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "surrogate_summary.csv": {
+      "columns": [
+        "id",
+        "surrogates",
+        "observed_r_squared",
+        "mean_shift_r_squared",
+        "shift_95pct",
+        "p_value"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "surrogates": "int",
+        "observed_r_squared": "float",
+        "mean_shift_r_squared": "float",
+        "shift_95pct": "float",
+        "p_value": "float"
+      },
+      "tolerance": {
+        "observed_r_squared": [
+          1e-05,
+          1e-08
+        ],
+        "mean_shift_r_squared": [
+          1e-05,
+          1e-08
+        ],
+        "shift_95pct": [
+          1e-05,
+          1e-08
+        ],
+        "p_value": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

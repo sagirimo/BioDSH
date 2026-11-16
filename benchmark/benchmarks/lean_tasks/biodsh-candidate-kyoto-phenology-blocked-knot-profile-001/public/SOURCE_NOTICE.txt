@@ -1,0 +1,2 @@
+Aono & Kazui2008 Int J Climatol28:905–914 DOI10.1002/joc.1594；Aono & Saito2010 Int J Biometeorol54:211–219 DOI10.1007/s00484-009-0272-x；NOAA/WDS档案Aono,Y.;Saito,S.;Kazui,K.(2019-03-23), DOI10.25921/1xy4-ht08，访问2026-10-15。输入为官方档案原文，使用1851–2005开花DOY，不读取由该物候重建的温度，不使用任何预测竞赛数据或切分。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

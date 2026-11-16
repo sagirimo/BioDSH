@@ -1,0 +1,8 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE65525",
+ "input_files_sha256": {
+  "inputs/GSM1599497_ES_d2_LIFminus.csv.bz2": "9a8b495f1e5093cd0520dd6f9b55348810574e6276d3483e2d3b3700b20bac6f",
+  "inputs/GSM1599498_ES_d4_LIFminus.csv.bz2": "893b5f864e48cda7ee012ab1e603b1124883dd17c1cc6d27c52e3dd84f0f4a09"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

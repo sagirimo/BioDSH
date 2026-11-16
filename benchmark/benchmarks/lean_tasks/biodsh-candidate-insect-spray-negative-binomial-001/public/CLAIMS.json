@@ -1,0 +1,127 @@
+{
+  "revision": "round7_lean_v1",
+  "task_id": "biodsh-candidate-insect-spray-negative-binomial-001",
+  "claims": [
+    {
+      "id": "C1",
+      "type": "number",
+      "question": "共同负二项size k？",
+      "binding": {
+        "table": "dispersion.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "k"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C2",
+      "type": "number",
+      "question": "共同NB2离散参数alpha？",
+      "binding": {
+        "table": "dispersion.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "alpha"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C3",
+      "type": "number",
+      "question": "相对分组Poisson模型的似然比？",
+      "binding": {
+        "table": "dispersion.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "lr_vs_poisson"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C4",
+      "type": "number",
+      "question": "喷剂C的单位计数均值？",
+      "binding": {
+        "table": "group_summary.csv",
+        "key_column": "id",
+        "key": "C",
+        "column": "mean_count"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C5",
+      "type": "number",
+      "question": "喷剂C相对A的计数率比？",
+      "binding": {
+        "table": "contrasts.csv",
+        "key_column": "id",
+        "key": "C_vs_A",
+        "column": "rate_ratio"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C6",
+      "type": "number",
+      "question": "C/A计数率比Wald区间上界？",
+      "binding": {
+        "table": "contrasts.csv",
+        "key_column": "id",
+        "key": "C_vs_A",
+        "column": "ci_high"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C7",
+      "type": "derived",
+      "question": "C/A的BH调整p是否低于0.05？",
+      "options": [
+        "低于0.05",
+        "不低于0.05"
+      ],
+      "rule": {
+        "binding": {
+          "table": "contrasts.csv",
+          "key_column": "id",
+          "key": "C_vs_A",
+          "column": "q"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "低于0.05",
+          "false": "不低于0.05"
+        }
+      }
+    },
+    {
+      "id": "C8",
+      "type": "choice",
+      "question": "共同离散参数的作用是什么？",
+      "options": [
+        "允许条件方差超过均值",
+        "把每只昆虫当成独立田间重复",
+        "保证所有喷剂计数均值相同"
+      ]
+    },
+    {
+      "id": "C9",
+      "type": "choice",
+      "question": "零计数单位应怎样处理？",
+      "options": [
+        "作为观察到的零保留",
+        "当作缺失删除",
+        "每个零自动补一只昆虫"
+      ]
+    }
+  ]
+}

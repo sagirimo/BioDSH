@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.10xgenomics.com/datasets/1-k-1-1-mixture-of-fresh-frozen-human-hek-293-t-and-mouse-nih-3-t-3-cells-2-standard-2-1-0",
+ "input_files_sha256": {
+  "inputs/gem_classification.csv": "928346e4ab933ec741f34c0cb5917d7f92b32bfc0dcb04456caeb52d09df01e1"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

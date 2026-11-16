@@ -1,0 +1,5 @@
+Nestorowa S, Hamey FK, Pijuan Sala B, et al. A single-cell resolution map of mouse hematopoietic stem and progenitor cell differentiation. Blood 2016;128:e20–e31. DOI:10.1182/blood-2016-05-716480.
+GEO GSE81682; original data https://ftp.ncbi.nlm.nih.gov/geo/series/GSE81nnn/GSE81682/suppl/GSE81682_HTSeq_counts.txt.gz (retrieved2026-10-16, original30,236,635bytes kept in lean_data/r9_nestorowa).
+Minimal processing: retain all46175 original gene/ERCC/HTSeq rows and first192 original cell columns, preserve integer values and IDs, rename first header ID to gene_id, gzip TSV. No expression filtering, imputation, rescaling, label assignment or precomputed results. selection.csv maps each provided cell to its1-based source cell-column position.
+Smart-seq2 HTSeq read counts are not UMI counts. Original data contains1920 columns, including pre-QC libraries; this task applies its explicitly stated subset QC. Local research with attribution under the project decision; no redistribution rights are asserted beyond source terms.
+仅限本地科研使用、保留署名；本任务包不得对外再分发。分析协议由本项目新编，不采用其他 agent benchmark 的题目或切分。

@@ -1,0 +1,228 @@
+{
+  "tables": {
+    "cells.csv": {
+      "columns": [
+        "id",
+        "cluster",
+        "PC1",
+        "PC2",
+        "PC3",
+        "PC4",
+        "PC5"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "cluster": "int",
+        "PC1": "float",
+        "PC2": "float",
+        "PC3": "float",
+        "PC4": "float",
+        "PC5": "float"
+      },
+      "tolerance": {
+        "PC1": [
+          1e-05,
+          1e-08
+        ],
+        "PC2": [
+          1e-05,
+          1e-08
+        ],
+        "PC3": [
+          1e-05,
+          1e-08
+        ],
+        "PC4": [
+          1e-05,
+          1e-08
+        ],
+        "PC5": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "cluster_summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "within_SSE",
+        "PC1",
+        "PC2",
+        "PC3",
+        "PC4",
+        "PC5"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "within_SSE": "float",
+        "PC1": "float",
+        "PC2": "float",
+        "PC3": "float",
+        "PC4": "float",
+        "PC5": "float"
+      },
+      "tolerance": {
+        "within_SSE": [
+          1e-05,
+          1e-08
+        ],
+        "PC1": [
+          1e-05,
+          1e-08
+        ],
+        "PC2": [
+          1e-05,
+          1e-08
+        ],
+        "PC3": [
+          1e-05,
+          1e-08
+        ],
+        "PC4": [
+          1e-05,
+          1e-08
+        ],
+        "PC5": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "descriptive_markers.csv": {
+      "columns": [
+        "id",
+        "cluster",
+        "gene",
+        "mean_log_difference"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "cluster": "int",
+        "gene": "text",
+        "mean_log_difference": "float"
+      },
+      "tolerance": {
+        "mean_log_difference": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "gene_loadings.csv": {
+      "columns": [
+        "id",
+        "mean",
+        "variance",
+        "PC1",
+        "PC2",
+        "PC3",
+        "PC4",
+        "PC5"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "mean": "float",
+        "variance": "float",
+        "PC1": "float",
+        "PC2": "float",
+        "PC3": "float",
+        "PC4": "float",
+        "PC5": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-05,
+          1e-08
+        ],
+        "variance": [
+          1e-05,
+          1e-08
+        ],
+        "PC1": [
+          1e-05,
+          1e-08
+        ],
+        "PC2": [
+          1e-05,
+          1e-08
+        ],
+        "PC3": [
+          1e-05,
+          1e-08
+        ],
+        "PC4": [
+          1e-05,
+          1e-08
+        ],
+        "PC5": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "pca_variance.csv": {
+      "columns": [
+        "id",
+        "eigenvalue",
+        "fraction"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "eigenvalue": "float",
+        "fraction": "float"
+      },
+      "tolerance": {
+        "eigenvalue": [
+          1e-05,
+          1e-08
+        ],
+        "fraction": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "ward_merges.csv": {
+      "columns": [
+        "id",
+        "delta_SSE",
+        "merged_size",
+        "left_first_cell",
+        "right_first_cell"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "delta_SSE": "float",
+        "merged_size": "int",
+        "left_first_cell": "text",
+        "right_first_cell": "text"
+      },
+      "tolerance": {
+        "delta_SSE": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

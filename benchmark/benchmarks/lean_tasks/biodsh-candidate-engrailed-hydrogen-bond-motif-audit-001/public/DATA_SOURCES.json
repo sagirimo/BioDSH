@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.rcsb.org/structure/1ENH",
+ "input_files_sha256": {
+  "inputs/1ENH.pdb": "9d4774cb36cefbc2b44cec83a72622d31e5e5a1a8ca0bd8cc1c6be98a5deeb0a"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

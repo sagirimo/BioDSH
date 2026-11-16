@@ -1,0 +1,1861 @@
+{
+  "tables": {
+    "source_observations.csv": {
+      "columns": [
+        "row_id",
+        "native_row_number",
+        "Subject",
+        "Wt",
+        "Dose",
+        "Time",
+        "conc"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "native_row_number": "int",
+        "Subject": "text",
+        "Wt": "float",
+        "Dose": "float",
+        "Time": "float",
+        "conc": "float"
+      },
+      "tolerance": {
+        "Wt": [
+          1e-06,
+          1e-08
+        ],
+        "Dose": [
+          1e-06,
+          1e-08
+        ],
+        "Time": [
+          1e-06,
+          1e-08
+        ],
+        "conc": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 132,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "set_ref": "set_1"
+            }
+          ]
+        }
+      }
+    },
+    "source_subject_order.csv": {
+      "columns": [
+        "subject",
+        "native_order",
+        "ordering_basis"
+      ],
+      "key": [
+        "subject"
+      ],
+      "types": {
+        "subject": "text",
+        "native_order": "int",
+        "ordering_basis": "text"
+      },
+      "tolerance": {},
+      "row_set": {
+        "key": [
+          "subject"
+        ],
+        "row_count": 12,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                12
+              ],
+              "prefix": "",
+              "suffix": "",
+              "zero_pad": 0
+            }
+          ]
+        }
+      }
+    },
+    "subject_audit.csv": {
+      "columns": [
+        "subject",
+        "observations",
+        "Wt",
+        "Dose_per_kg",
+        "dose_mg",
+        "measured_C0",
+        "Cmax",
+        "source_Tmax",
+        "working_Tmax",
+        "positive_post_peak"
+      ],
+      "key": [
+        "subject"
+      ],
+      "types": {
+        "subject": "text",
+        "observations": "int",
+        "Wt": "float",
+        "Dose_per_kg": "float",
+        "dose_mg": "float",
+        "measured_C0": "float",
+        "Cmax": "float",
+        "source_Tmax": "float",
+        "working_Tmax": "float",
+        "positive_post_peak": "int"
+      },
+      "tolerance": {
+        "Wt": [
+          1e-06,
+          1e-08
+        ],
+        "Dose_per_kg": [
+          1e-06,
+          1e-08
+        ],
+        "dose_mg": [
+          1e-06,
+          1e-08
+        ],
+        "measured_C0": [
+          1e-06,
+          1e-08
+        ],
+        "Cmax": [
+          1e-06,
+          1e-08
+        ],
+        "source_Tmax": [
+          1e-06,
+          1e-08
+        ],
+        "working_Tmax": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "subject"
+        ],
+        "row_count": 12,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                12
+              ],
+              "prefix": "",
+              "suffix": "",
+              "zero_pad": 0
+            }
+          ]
+        }
+      }
+    },
+    "curve_points.csv": {
+      "columns": [
+        "row_id",
+        "subject",
+        "point_number",
+        "source_Time",
+        "working_Time",
+        "conc",
+        "dose_mg",
+        "dose_normalized_conc",
+        "cumulative_AUC",
+        "cumulative_AUMC"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "subject": "text",
+        "point_number": "int",
+        "source_Time": "float",
+        "working_Time": "float",
+        "conc": "float",
+        "dose_mg": "float",
+        "dose_normalized_conc": "float",
+        "cumulative_AUC": "float",
+        "cumulative_AUMC": "float"
+      },
+      "tolerance": {
+        "source_Time": [
+          1e-06,
+          1e-08
+        ],
+        "working_Time": [
+          1e-06,
+          1e-08
+        ],
+        "conc": [
+          1e-06,
+          1e-08
+        ],
+        "dose_mg": [
+          1e-06,
+          1e-08
+        ],
+        "dose_normalized_conc": [
+          1e-06,
+          1e-08
+        ],
+        "cumulative_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "cumulative_AUMC": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 132,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "set_ref": "set_1"
+            }
+          ]
+        }
+      }
+    },
+    "interval_integrals.csv": {
+      "columns": [
+        "row_id",
+        "subject",
+        "left_observation",
+        "right_observation",
+        "interval_number",
+        "left_time",
+        "right_time",
+        "delta_time",
+        "left_conc",
+        "right_conc",
+        "log_down",
+        "AUC",
+        "AUMC"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "subject": "text",
+        "left_observation": "text",
+        "right_observation": "text",
+        "interval_number": "int",
+        "left_time": "float",
+        "right_time": "float",
+        "delta_time": "float",
+        "left_conc": "float",
+        "right_conc": "float",
+        "log_down": "int",
+        "AUC": "float",
+        "AUMC": "float"
+      },
+      "tolerance": {
+        "left_time": [
+          1e-06,
+          1e-08
+        ],
+        "right_time": [
+          1e-06,
+          1e-08
+        ],
+        "delta_time": [
+          1e-06,
+          1e-08
+        ],
+        "left_conc": [
+          1e-06,
+          1e-08
+        ],
+        "right_conc": [
+          1e-06,
+          1e-08
+        ],
+        "AUC": [
+          1e-06,
+          1e-08
+        ],
+        "AUMC": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 120,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                12
+              ],
+              "prefix": "",
+              "suffix": "",
+              "zero_pad": 0
+            },
+            [
+              "interval01",
+              "interval02",
+              "interval03",
+              "interval04",
+              "interval05",
+              "interval06",
+              "interval07",
+              "interval08",
+              "interval09",
+              "interval10"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "terminal_fits.csv": {
+      "columns": [
+        "row_id",
+        "subject",
+        "window",
+        "points",
+        "rank",
+        "df",
+        "first_time",
+        "last_time",
+        "intercept",
+        "slope",
+        "slope_SE",
+        "valid_slope_variance",
+        "slope_t",
+        "slope_p",
+        "residual_SS",
+        "R_squared",
+        "lambda_z",
+        "positive_lambda"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "subject": "text",
+        "window": "int",
+        "points": "int",
+        "rank": "int",
+        "df": "int",
+        "first_time": "float",
+        "last_time": "float",
+        "intercept": "float",
+        "slope": "float",
+        "slope_SE": "float",
+        "valid_slope_variance": "int",
+        "slope_t": "float",
+        "slope_p": "float",
+        "residual_SS": "float",
+        "R_squared": "float",
+        "lambda_z": "float",
+        "positive_lambda": "int"
+      },
+      "tolerance": {
+        "first_time": [
+          1e-06,
+          1e-08
+        ],
+        "last_time": [
+          1e-06,
+          1e-08
+        ],
+        "intercept": [
+          1e-06,
+          1e-08
+        ],
+        "slope": [
+          1e-06,
+          1e-08
+        ],
+        "slope_SE": [
+          1e-06,
+          1e-08
+        ],
+        "slope_t": [
+          1e-06,
+          1e-08
+        ],
+        "slope_p": [
+          1e-06,
+          1e-08
+        ],
+        "residual_SS": [
+          1e-06,
+          1e-08
+        ],
+        "R_squared": [
+          1e-06,
+          1e-08
+        ],
+        "lambda_z": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 36,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                12
+              ],
+              "prefix": "",
+              "suffix": "",
+              "zero_pad": 0
+            },
+            [
+              "window3",
+              "window4",
+              "window5"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "terminal_fit_points.csv": {
+      "columns": [
+        "row_id",
+        "subject",
+        "window",
+        "source_observation",
+        "working_time",
+        "conc",
+        "log_conc",
+        "fitted_log",
+        "residual_log"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "subject": "text",
+        "window": "int",
+        "source_observation": "text",
+        "working_time": "float",
+        "conc": "float",
+        "log_conc": "float",
+        "fitted_log": "float",
+        "residual_log": "float"
+      },
+      "tolerance": {
+        "working_time": [
+          1e-06,
+          1e-08
+        ],
+        "conc": [
+          1e-06,
+          1e-08
+        ],
+        "log_conc": [
+          1e-06,
+          1e-08
+        ],
+        "fitted_log": [
+          1e-06,
+          1e-08
+        ],
+        "residual_log": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 144,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "6"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation064",
+                          "observation065",
+                          "observation066"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            63,
+                            66
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            62,
+                            66
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "7"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation075",
+                          "observation076",
+                          "observation077"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            74,
+                            77
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            73,
+                            77
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "8"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation086",
+                          "observation087",
+                          "observation088"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            85,
+                            88
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            84,
+                            88
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "11"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation119",
+                          "observation120",
+                          "observation121"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            118,
+                            121
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            117,
+                            121
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "3"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation031",
+                          "observation032",
+                          "observation033"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            30,
+                            33
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            29,
+                            33
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "2"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation020",
+                          "observation021",
+                          "observation022"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            19,
+                            22
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            18,
+                            22
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "4"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation042",
+                          "observation043",
+                          "observation044"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            41,
+                            44
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            40,
+                            44
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "9"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation097",
+                          "observation098",
+                          "observation099"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            96,
+                            99
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            95,
+                            99
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "12"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation130",
+                          "observation131",
+                          "observation132"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            129,
+                            132
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            128,
+                            132
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "10"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation108",
+                          "observation109",
+                          "observation110"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            107,
+                            110
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            106,
+                            110
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "1"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation009",
+                          "observation010",
+                          "observation011"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            8,
+                            11
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            7,
+                            11
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "5"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "window3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "observation053",
+                          "observation054",
+                          "observation055"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            52,
+                            55
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "window5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            51,
+                            55
+                          ],
+                          "prefix": "observation",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "exposure_parameters.csv": {
+      "columns": [
+        "row_id",
+        "subject",
+        "window",
+        "dose_mg",
+        "AUC_last",
+        "AUMC_last",
+        "lambda_z",
+        "observed_Clast",
+        "final_time",
+        "tail_AUC",
+        "tail_AUMC",
+        "AUC_inf",
+        "AUMC_inf",
+        "half_life",
+        "MRT_oral",
+        "CL_over_F",
+        "Vz_over_F",
+        "dose_normalized_AUC_inf",
+        "extrapolated_fraction",
+        "valid_extrapolation"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "subject": "text",
+        "window": "int",
+        "dose_mg": "float",
+        "AUC_last": "float",
+        "AUMC_last": "float",
+        "lambda_z": "float",
+        "observed_Clast": "float",
+        "final_time": "float",
+        "tail_AUC": "float",
+        "tail_AUMC": "float",
+        "AUC_inf": "float",
+        "AUMC_inf": "float",
+        "half_life": "float",
+        "MRT_oral": "float",
+        "CL_over_F": "float",
+        "Vz_over_F": "float",
+        "dose_normalized_AUC_inf": "float",
+        "extrapolated_fraction": "float",
+        "valid_extrapolation": "int"
+      },
+      "tolerance": {
+        "dose_mg": [
+          1e-06,
+          1e-08
+        ],
+        "AUC_last": [
+          1e-06,
+          1e-08
+        ],
+        "AUMC_last": [
+          1e-06,
+          1e-08
+        ],
+        "lambda_z": [
+          1e-06,
+          1e-08
+        ],
+        "observed_Clast": [
+          1e-06,
+          1e-08
+        ],
+        "final_time": [
+          1e-06,
+          1e-08
+        ],
+        "tail_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "tail_AUMC": [
+          1e-06,
+          1e-08
+        ],
+        "AUC_inf": [
+          1e-06,
+          1e-08
+        ],
+        "AUMC_inf": [
+          1e-06,
+          1e-08
+        ],
+        "half_life": [
+          1e-06,
+          1e-08
+        ],
+        "MRT_oral": [
+          1e-06,
+          1e-08
+        ],
+        "CL_over_F": [
+          1e-06,
+          1e-08
+        ],
+        "Vz_over_F": [
+          1e-06,
+          1e-08
+        ],
+        "dose_normalized_AUC_inf": [
+          1e-06,
+          1e-08
+        ],
+        "extrapolated_fraction": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 36,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                12
+              ],
+              "prefix": "",
+              "suffix": "",
+              "zero_pad": 0
+            },
+            [
+              "window3",
+              "window4",
+              "window5"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "window_sensitivity.csv": {
+      "columns": [
+        "row_id",
+        "subject",
+        "window",
+        "lambda_delta_from4",
+        "AUCinf_delta_from4",
+        "half_life_delta_from4",
+        "CL_delta_from4",
+        "Vz_delta_from4"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "subject": "text",
+        "window": "int",
+        "lambda_delta_from4": "float",
+        "AUCinf_delta_from4": "float",
+        "half_life_delta_from4": "float",
+        "CL_delta_from4": "float",
+        "Vz_delta_from4": "float"
+      },
+      "tolerance": {
+        "lambda_delta_from4": [
+          1e-06,
+          1e-08
+        ],
+        "AUCinf_delta_from4": [
+          1e-06,
+          1e-08
+        ],
+        "half_life_delta_from4": [
+          1e-06,
+          1e-08
+        ],
+        "CL_delta_from4": [
+          1e-06,
+          1e-08
+        ],
+        "Vz_delta_from4": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 36,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                12
+              ],
+              "prefix": "",
+              "suffix": "",
+              "zero_pad": 0
+            },
+            [
+              "window3",
+              "window4",
+              "window5"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "cohort_summary.csv": {
+      "columns": [
+        "row_id",
+        "window",
+        "metric",
+        "people",
+        "df",
+        "mean",
+        "SD",
+        "SE",
+        "CI_lower",
+        "CI_upper"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "window": "int",
+        "metric": "text",
+        "people": "int",
+        "df": "int",
+        "mean": "float",
+        "SD": "float",
+        "SE": "float",
+        "CI_lower": "float",
+        "CI_upper": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-06,
+          1e-08
+        ],
+        "SD": [
+          1e-06,
+          1e-08
+        ],
+        "SE": [
+          1e-06,
+          1e-08
+        ],
+        "CI_lower": [
+          1e-06,
+          1e-08
+        ],
+        "CI_upper": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 21,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "window3",
+              "window4",
+              "window5"
+            ],
+            [
+              "AUC_inf",
+              "CL_over_F",
+              "MRT_oral",
+              "Vz_over_F",
+              "dose_normalized_AUC_inf",
+              "half_life",
+              "lambda_z"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "cohort_leave_person_out.csv": {
+      "columns": [
+        "row_id",
+        "held_subject",
+        "window",
+        "metric",
+        "training_people",
+        "df",
+        "mean",
+        "SD",
+        "SE",
+        "CI_lower",
+        "CI_upper",
+        "mean_change"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "held_subject": "text",
+        "window": "int",
+        "metric": "text",
+        "training_people": "int",
+        "df": "int",
+        "mean": "float",
+        "SD": "float",
+        "SE": "float",
+        "CI_lower": "float",
+        "CI_upper": "float",
+        "mean_change": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-06,
+          1e-08
+        ],
+        "SD": [
+          1e-06,
+          1e-08
+        ],
+        "SE": [
+          1e-06,
+          1e-08
+        ],
+        "CI_lower": [
+          1e-06,
+          1e-08
+        ],
+        "CI_upper": [
+          1e-06,
+          1e-08
+        ],
+        "mean_change": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 252,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                12
+              ],
+              "prefix": "",
+              "suffix": "",
+              "zero_pad": 0
+            },
+            [
+              "window3",
+              "window4",
+              "window5"
+            ],
+            [
+              "AUC_inf",
+              "CL_over_F",
+              "MRT_oral",
+              "Vz_over_F",
+              "dose_normalized_AUC_inf",
+              "half_life",
+              "lambda_z"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "int",
+        "scope": "text"
+      },
+      "tolerance": {},
+      "row_set": {
+        "key": [
+          "claim_id"
+        ],
+        "row_count": 5,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "clinical_or_causal_validation",
+              "declared_complete_workflow",
+              "external_hidden_prediction",
+              "original_provider_pipeline_reproduced",
+              "whole_source_units_and_identity"
+            ]
+          ]
+        }
+      }
+    },
+    "terminal_summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "metric"
+        ],
+        "row_count": 16,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "set_ref": "set_2"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "row_set_definitions": {
+    "set_1": [
+      "observation001",
+      "observation002",
+      "observation003",
+      "observation004",
+      "observation005",
+      "observation006",
+      "observation007",
+      "observation008",
+      "observation009",
+      "observation010",
+      "observation011",
+      "observation012",
+      "observation013",
+      "observation014",
+      "observation015",
+      "observation016",
+      "observation017",
+      "observation018",
+      "observation019",
+      "observation020",
+      "observation021",
+      "observation022",
+      "observation023",
+      "observation024",
+      "observation025",
+      "observation026",
+      "observation027",
+      "observation028",
+      "observation029",
+      "observation030",
+      "observation031",
+      "observation032",
+      "observation033",
+      "observation034",
+      "observation035",
+      "observation036",
+      "observation037",
+      "observation038",
+      "observation039",
+      "observation040",
+      "observation041",
+      "observation042",
+      "observation043",
+      "observation044",
+      "observation045",
+      "observation046",
+      "observation047",
+      "observation048",
+      "observation049",
+      "observation050",
+      "observation051",
+      "observation052",
+      "observation053",
+      "observation054",
+      "observation055",
+      "observation056",
+      "observation057",
+      "observation058",
+      "observation059",
+      "observation060",
+      "observation061",
+      "observation062",
+      "observation063",
+      "observation064",
+      "observation065",
+      "observation066",
+      "observation067",
+      "observation068",
+      "observation069",
+      "observation070",
+      "observation071",
+      "observation072",
+      "observation073",
+      "observation074",
+      "observation075",
+      "observation076",
+      "observation077",
+      "observation078",
+      "observation079",
+      "observation080",
+      "observation081",
+      "observation082",
+      "observation083",
+      "observation084",
+      "observation085",
+      "observation086",
+      "observation087",
+      "observation088",
+      "observation089",
+      "observation090",
+      "observation091",
+      "observation092",
+      "observation093",
+      "observation094",
+      "observation095",
+      "observation096",
+      "observation097",
+      "observation098",
+      "observation099",
+      "observation100",
+      "observation101",
+      "observation102",
+      "observation103",
+      "observation104",
+      "observation105",
+      "observation106",
+      "observation107",
+      "observation108",
+      "observation109",
+      "observation110",
+      "observation111",
+      "observation112",
+      "observation113",
+      "observation114",
+      "observation115",
+      "observation116",
+      "observation117",
+      "observation118",
+      "observation119",
+      "observation120",
+      "observation121",
+      "observation122",
+      "observation123",
+      "observation124",
+      "observation125",
+      "observation126",
+      "observation127",
+      "observation128",
+      "observation129",
+      "observation130",
+      "observation131",
+      "observation132"
+    ],
+    "set_2": [
+      "clinical_dosing_validated",
+      "mean_primary_CL_over_F",
+      "mean_primary_Vz_over_F",
+      "mean_primary_half_life",
+      "measured_C0_retained",
+      "observations",
+      "original_PK_pipeline_reproduced",
+      "person_deletion_summaries",
+      "positive_primary_lambda",
+      "primary_window",
+      "subjects",
+      "tail_windows",
+      "terminal_points",
+      "terminal_refits",
+      "total_primary_AUCinf",
+      "within_person_intervals"
+    ]
+  }
+}

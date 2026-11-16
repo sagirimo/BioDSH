@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.rcsb.org/structure/1CRN",
+ "input_files_sha256": {
+  "inputs/1CRN.pdb": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

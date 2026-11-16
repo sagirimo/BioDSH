@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.rcsb.org/structure/1L2Y",
+ "input_files_sha256": {
+  "inputs/1L2Y.pdb": "5d1bbb545a312dfff1ae1e64b6d8addecb2f561ddc4011aeb5bee9d1dfcd4438"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

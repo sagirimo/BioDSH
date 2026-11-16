@@ -1,0 +1,5450 @@
+{
+  "tables": {
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "int",
+        "scope": "text"
+      },
+      "tolerance": {},
+      "row_set": {
+        "key": [
+          "claim_id"
+        ],
+        "row_count": 6,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "clinical_or_causal_validation",
+              "declared_connected_scientific_workflow",
+              "hidden_external_prediction",
+              "original_provider_pipeline",
+              "physical_compartment_or_clearance",
+              "whole_public_provider_example"
+            ]
+          ]
+        }
+      }
+    },
+    "subject_order.csv": {
+      "columns": [
+        "subject_id",
+        "native_order_index",
+        "ordered_factor",
+        "observations",
+        "source_Cmax",
+        "dose_available",
+        "zero_time_observed"
+      ],
+      "key": [
+        "subject_id"
+      ],
+      "types": {
+        "subject_id": "text",
+        "native_order_index": "int",
+        "ordered_factor": "int",
+        "observations": "int",
+        "source_Cmax": "float",
+        "dose_available": "int",
+        "zero_time_observed": "int"
+      },
+      "tolerance": {
+        "source_Cmax": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "subject_id"
+        ],
+        "row_count": 6,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                6
+              ],
+              "prefix": "",
+              "suffix": "",
+              "zero_pad": 0
+            }
+          ]
+        }
+      }
+    },
+    "source_observations.csv": {
+      "columns": [
+        "source_id",
+        "source_row",
+        "native_row_label",
+        "subject_id",
+        "native_order_index",
+        "visit_index",
+        "source_hour",
+        "working_hour",
+        "conc"
+      ],
+      "key": [
+        "source_id"
+      ],
+      "types": {
+        "source_id": "text",
+        "source_row": "int",
+        "native_row_label": "text",
+        "subject_id": "text",
+        "native_order_index": "int",
+        "visit_index": "int",
+        "source_hour": "float",
+        "working_hour": "float",
+        "conc": "float"
+      },
+      "tolerance": {
+        "source_hour": [
+          1e-06,
+          1e-08
+        ],
+        "working_hour": [
+          1e-06,
+          1e-08
+        ],
+        "conc": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "source_id"
+        ],
+        "row_count": 66,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                66
+              ],
+              "prefix": "s",
+              "suffix": "",
+              "zero_pad": 3
+            }
+          ]
+        }
+      }
+    },
+    "curve_intervals.csv": {
+      "columns": [
+        "interval_id",
+        "subject_id",
+        "left_source_id",
+        "right_source_id",
+        "left_hour",
+        "right_hour",
+        "working_delta_hour",
+        "left_conc",
+        "right_conc",
+        "trapezoid_area",
+        "cumulative_area"
+      ],
+      "key": [
+        "interval_id"
+      ],
+      "types": {
+        "interval_id": "text",
+        "subject_id": "text",
+        "left_source_id": "text",
+        "right_source_id": "text",
+        "left_hour": "float",
+        "right_hour": "float",
+        "working_delta_hour": "float",
+        "left_conc": "float",
+        "right_conc": "float",
+        "trapezoid_area": "float",
+        "cumulative_area": "float"
+      },
+      "tolerance": {
+        "left_hour": [
+          1e-06,
+          1e-08
+        ],
+        "right_hour": [
+          1e-06,
+          1e-08
+        ],
+        "working_delta_hour": [
+          1e-06,
+          1e-08
+        ],
+        "left_conc": [
+          1e-06,
+          1e-08
+        ],
+        "right_conc": [
+          1e-06,
+          1e-08
+        ],
+        "trapezoid_area": [
+          1e-06,
+          1e-08
+        ],
+        "cumulative_area": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "interval_id"
+        ],
+        "row_count": 60,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                6
+              ],
+              "prefix": "person",
+              "suffix": "",
+              "zero_pad": 0
+            },
+            [
+              "i01",
+              "i02",
+              "i03",
+              "i04",
+              "i05",
+              "i06",
+              "i07",
+              "i08",
+              "i09",
+              "i10"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "interval_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "observed_summary.csv": {
+      "columns": [
+        "subject_id",
+        "observations",
+        "first_hour",
+        "last_hour",
+        "working_first_hour",
+        "working_last_hour",
+        "covered_hours",
+        "observed_AUC",
+        "time_average_conc"
+      ],
+      "key": [
+        "subject_id"
+      ],
+      "types": {
+        "subject_id": "text",
+        "observations": "int",
+        "first_hour": "float",
+        "last_hour": "float",
+        "working_first_hour": "float",
+        "working_last_hour": "float",
+        "covered_hours": "float",
+        "observed_AUC": "float",
+        "time_average_conc": "float"
+      },
+      "tolerance": {
+        "first_hour": [
+          1e-06,
+          1e-08
+        ],
+        "last_hour": [
+          1e-06,
+          1e-08
+        ],
+        "working_first_hour": [
+          1e-06,
+          1e-08
+        ],
+        "working_last_hour": [
+          1e-06,
+          1e-08
+        ],
+        "covered_hours": [
+          1e-06,
+          1e-08
+        ],
+        "observed_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "time_average_conc": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "subject_id"
+        ],
+        "row_count": 6,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                6
+              ],
+              "prefix": "",
+              "suffix": "",
+              "zero_pad": 0
+            }
+          ]
+        }
+      }
+    },
+    "rate_dictionary.csv": {
+      "columns": [
+        "candidate_id",
+        "model",
+        "rate_fast",
+        "rate_slow",
+        "basis_columns",
+        "rate_values_selected_not_continuously_fitted"
+      ],
+      "key": [
+        "candidate_id"
+      ],
+      "types": {
+        "candidate_id": "text",
+        "model": "text",
+        "rate_fast": "float",
+        "rate_slow": "float",
+        "basis_columns": "int",
+        "rate_values_selected_not_continuously_fitted": "int"
+      },
+      "tolerance": {
+        "rate_fast": [
+          1e-06,
+          1e-08
+        ],
+        "rate_slow": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "candidate_id"
+        ],
+        "row_count": 98,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "set_ref": "set_1"
+            }
+          ]
+        }
+      }
+    },
+    "candidate_trials.csv": {
+      "columns": [
+        "row_id",
+        "fit_id",
+        "stage",
+        "subject_id",
+        "held_source_id",
+        "model",
+        "candidate_id",
+        "A_fast",
+        "A_slow",
+        "objective_SSE",
+        "raw_SSE",
+        "active_amplitudes",
+        "selected"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "fit_id": "text",
+        "stage": "text",
+        "subject_id": "text",
+        "held_source_id": "text",
+        "model": "text",
+        "candidate_id": "text",
+        "A_fast": "float",
+        "A_slow": "float",
+        "objective_SSE": "float",
+        "raw_SSE": "float",
+        "active_amplitudes": "int",
+        "selected": "int"
+      },
+      "tolerance": {
+        "A_fast": [
+          1e-06,
+          1e-08
+        ],
+        "A_slow": [
+          1e-06,
+          1e-08
+        ],
+        "objective_SSE": [
+          1e-06,
+          1e-08
+        ],
+        "raw_SSE": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 7056,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "deleted"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": {
+                            "integer_range": [
+                              1,
+                              11
+                            ],
+                            "prefix": "s",
+                            "suffix": "",
+                            "zero_pad": 3
+                          },
+                          "then": {
+                            "branches": [
+                              {
+                                "values": [
+                                  "bi"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        80
+                                      ],
+                                      "prefix": "b",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "values": [
+                                  "mono"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        18
+                                      ],
+                                      "prefix": "m",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": {
+                            "integer_range": [
+                              12,
+                              22
+                            ],
+                            "prefix": "s",
+                            "suffix": "",
+                            "zero_pad": 3
+                          },
+                          "then": {
+                            "branches": [
+                              {
+                                "values": [
+                                  "bi"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        80
+                                      ],
+                                      "prefix": "b",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "values": [
+                                  "mono"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        18
+                                      ],
+                                      "prefix": "m",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": {
+                            "integer_range": [
+                              23,
+                              33
+                            ],
+                            "prefix": "s",
+                            "suffix": "",
+                            "zero_pad": 3
+                          },
+                          "then": {
+                            "branches": [
+                              {
+                                "values": [
+                                  "bi"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        80
+                                      ],
+                                      "prefix": "b",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "values": [
+                                  "mono"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        18
+                                      ],
+                                      "prefix": "m",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": {
+                            "integer_range": [
+                              34,
+                              44
+                            ],
+                            "prefix": "s",
+                            "suffix": "",
+                            "zero_pad": 3
+                          },
+                          "then": {
+                            "branches": [
+                              {
+                                "values": [
+                                  "bi"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        80
+                                      ],
+                                      "prefix": "b",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "values": [
+                                  "mono"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        18
+                                      ],
+                                      "prefix": "m",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": {
+                            "integer_range": [
+                              45,
+                              55
+                            ],
+                            "prefix": "s",
+                            "suffix": "",
+                            "zero_pad": 3
+                          },
+                          "then": {
+                            "branches": [
+                              {
+                                "values": [
+                                  "bi"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        80
+                                      ],
+                                      "prefix": "b",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "values": [
+                                  "mono"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        18
+                                      ],
+                                      "prefix": "m",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": {
+                            "integer_range": [
+                              56,
+                              66
+                            ],
+                            "prefix": "s",
+                            "suffix": "",
+                            "zero_pad": 3
+                          },
+                          "then": {
+                            "branches": [
+                              {
+                                "values": [
+                                  "bi"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        80
+                                      ],
+                                      "prefix": "b",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "values": [
+                                  "mono"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        18
+                                      ],
+                                      "prefix": "m",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "full"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": {
+                      "integer_range": [
+                        1,
+                        6
+                      ],
+                      "prefix": "person",
+                      "suffix": "",
+                      "zero_pad": 0
+                    },
+                    "then": {
+                      "branches": [
+                        {
+                          "values": [
+                            "none"
+                          ],
+                          "then": {
+                            "branches": [
+                              {
+                                "values": [
+                                  "bi"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        80
+                                      ],
+                                      "prefix": "b",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "values": [
+                                  "mono"
+                                ],
+                                "then": {
+                                  "cartesian": [
+                                    {
+                                      "integer_range": [
+                                        1,
+                                        18
+                                      ],
+                                      "prefix": "m",
+                                      "suffix": "",
+                                      "zero_pad": 3
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "model_audit.csv": {
+      "columns": [
+        "fit_id",
+        "stage",
+        "subject_id",
+        "held_source_id",
+        "model",
+        "candidate_id",
+        "fit_observations",
+        "active_amplitudes",
+        "residual_df",
+        "objective_SSE",
+        "raw_SSE",
+        "MSE",
+        "raw_TSS",
+        "raw_R_squared",
+        "all_candidates_evaluated"
+      ],
+      "key": [
+        "fit_id"
+      ],
+      "types": {
+        "fit_id": "text",
+        "stage": "text",
+        "subject_id": "text",
+        "held_source_id": "text",
+        "model": "text",
+        "candidate_id": "text",
+        "fit_observations": "int",
+        "active_amplitudes": "int",
+        "residual_df": "int",
+        "objective_SSE": "float",
+        "raw_SSE": "float",
+        "MSE": "float",
+        "raw_TSS": "float",
+        "raw_R_squared": "float",
+        "all_candidates_evaluated": "int"
+      },
+      "tolerance": {
+        "objective_SSE": [
+          1e-06,
+          1e-08
+        ],
+        "raw_SSE": [
+          1e-06,
+          1e-08
+        ],
+        "MSE": [
+          1e-06,
+          1e-08
+        ],
+        "raw_TSS": [
+          1e-06,
+          1e-08
+        ],
+        "raw_R_squared": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "fit_id"
+        ],
+        "row_count": 144,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "deleted"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            11
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            12,
+                            22
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            23,
+                            33
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            34,
+                            44
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            45,
+                            55
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            56,
+                            66
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "full"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "integer_range": [
+                      1,
+                      6
+                    ],
+                    "prefix": "person",
+                    "suffix": "",
+                    "zero_pad": 0
+                  },
+                  [
+                    "none"
+                  ],
+                  [
+                    "bi",
+                    "mono"
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "fit_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "model_parameters.csv": {
+      "columns": [
+        "row_id",
+        "fit_id",
+        "component",
+        "selected_rate",
+        "amplitude",
+        "conditional_SE",
+        "active_amplitude",
+        "component_in_model"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "fit_id": "text",
+        "component": "text",
+        "selected_rate": "float",
+        "amplitude": "float",
+        "conditional_SE": "float",
+        "active_amplitude": "int",
+        "component_in_model": "int"
+      },
+      "tolerance": {
+        "selected_rate": [
+          1e-06,
+          1e-08
+        ],
+        "amplitude": [
+          1e-06,
+          1e-08
+        ],
+        "conditional_SE": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 288,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "deleted"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            11
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            12,
+                            22
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            23,
+                            33
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            34,
+                            44
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            45,
+                            55
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            56,
+                            66
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "full"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "integer_range": [
+                      1,
+                      6
+                    ],
+                    "prefix": "person",
+                    "suffix": "",
+                    "zero_pad": 0
+                  },
+                  [
+                    "none"
+                  ],
+                  [
+                    "bi",
+                    "mono"
+                  ],
+                  [
+                    "fast",
+                    "slow"
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "model_covariance.csv": {
+      "columns": [
+        "row_id",
+        "fit_id",
+        "component1",
+        "component2",
+        "conditional_covariance"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "fit_id": "text",
+        "component1": "text",
+        "component2": "text",
+        "conditional_covariance": "float"
+      },
+      "tolerance": {
+        "conditional_covariance": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 576,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "deleted"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            11
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            12,
+                            22
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            23,
+                            33
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            34,
+                            44
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            45,
+                            55
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            56,
+                            66
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "full"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "integer_range": [
+                      1,
+                      6
+                    ],
+                    "prefix": "person",
+                    "suffix": "",
+                    "zero_pad": 0
+                  },
+                  [
+                    "none"
+                  ],
+                  [
+                    "bi",
+                    "mono"
+                  ],
+                  [
+                    "fast",
+                    "slow"
+                  ],
+                  [
+                    "fast",
+                    "slow"
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "fit_rows.csv": {
+      "columns": [
+        "row_id",
+        "fit_id",
+        "source_id",
+        "source_hour",
+        "working_hour",
+        "conc",
+        "weight",
+        "basis_fast",
+        "basis_slow",
+        "fitted_fast",
+        "fitted_slow",
+        "fitted",
+        "residual",
+        "conditional_mean_SE",
+        "leverage"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "fit_id": "text",
+        "source_id": "text",
+        "source_hour": "float",
+        "working_hour": "float",
+        "conc": "float",
+        "weight": "float",
+        "basis_fast": "float",
+        "basis_slow": "float",
+        "fitted_fast": "float",
+        "fitted_slow": "float",
+        "fitted": "float",
+        "residual": "float",
+        "conditional_mean_SE": "float",
+        "leverage": "float"
+      },
+      "tolerance": {
+        "source_hour": [
+          1e-06,
+          1e-08
+        ],
+        "working_hour": [
+          1e-06,
+          1e-08
+        ],
+        "conc": [
+          1e-06,
+          1e-08
+        ],
+        "weight": [
+          1e-06,
+          1e-08
+        ],
+        "basis_fast": [
+          1e-06,
+          1e-08
+        ],
+        "basis_slow": [
+          1e-06,
+          1e-08
+        ],
+        "fitted_fast": [
+          1e-06,
+          1e-08
+        ],
+        "fitted_slow": [
+          1e-06,
+          1e-08
+        ],
+        "fitted": [
+          1e-06,
+          1e-08
+        ],
+        "residual": [
+          1e-06,
+          1e-08
+        ],
+        "conditional_mean_SE": [
+          1e-06,
+          1e-08
+        ],
+        "leverage": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 1452,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "deleted"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": [
+                            "s001"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  2,
+                                  11
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s002"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s001",
+                                "s003",
+                                "s004",
+                                "s005",
+                                "s006",
+                                "s007",
+                                "s008",
+                                "s009",
+                                "s010",
+                                "s011"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s003"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s001",
+                                "s002",
+                                "s004",
+                                "s005",
+                                "s006",
+                                "s007",
+                                "s008",
+                                "s009",
+                                "s010",
+                                "s011"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s004"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s001",
+                                "s002",
+                                "s003",
+                                "s005",
+                                "s006",
+                                "s007",
+                                "s008",
+                                "s009",
+                                "s010",
+                                "s011"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s005"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s001",
+                                "s002",
+                                "s003",
+                                "s004",
+                                "s006",
+                                "s007",
+                                "s008",
+                                "s009",
+                                "s010",
+                                "s011"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s006"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s001",
+                                "s002",
+                                "s003",
+                                "s004",
+                                "s005",
+                                "s007",
+                                "s008",
+                                "s009",
+                                "s010",
+                                "s011"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s007"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s001",
+                                "s002",
+                                "s003",
+                                "s004",
+                                "s005",
+                                "s006",
+                                "s008",
+                                "s009",
+                                "s010",
+                                "s011"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s008"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s001",
+                                "s002",
+                                "s003",
+                                "s004",
+                                "s005",
+                                "s006",
+                                "s007",
+                                "s009",
+                                "s010",
+                                "s011"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s009"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s001",
+                                "s002",
+                                "s003",
+                                "s004",
+                                "s005",
+                                "s006",
+                                "s007",
+                                "s008",
+                                "s010",
+                                "s011"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s010"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s001",
+                                "s002",
+                                "s003",
+                                "s004",
+                                "s005",
+                                "s006",
+                                "s007",
+                                "s008",
+                                "s009",
+                                "s011"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s011"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  1,
+                                  10
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": [
+                            "s012"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  13,
+                                  22
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s013"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s012",
+                                "s014",
+                                "s015",
+                                "s016",
+                                "s017",
+                                "s018",
+                                "s019",
+                                "s020",
+                                "s021",
+                                "s022"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s014"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s012",
+                                "s013",
+                                "s015",
+                                "s016",
+                                "s017",
+                                "s018",
+                                "s019",
+                                "s020",
+                                "s021",
+                                "s022"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s015"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s012",
+                                "s013",
+                                "s014",
+                                "s016",
+                                "s017",
+                                "s018",
+                                "s019",
+                                "s020",
+                                "s021",
+                                "s022"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s016"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s012",
+                                "s013",
+                                "s014",
+                                "s015",
+                                "s017",
+                                "s018",
+                                "s019",
+                                "s020",
+                                "s021",
+                                "s022"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s017"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s012",
+                                "s013",
+                                "s014",
+                                "s015",
+                                "s016",
+                                "s018",
+                                "s019",
+                                "s020",
+                                "s021",
+                                "s022"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s018"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s012",
+                                "s013",
+                                "s014",
+                                "s015",
+                                "s016",
+                                "s017",
+                                "s019",
+                                "s020",
+                                "s021",
+                                "s022"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s019"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s012",
+                                "s013",
+                                "s014",
+                                "s015",
+                                "s016",
+                                "s017",
+                                "s018",
+                                "s020",
+                                "s021",
+                                "s022"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s020"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s012",
+                                "s013",
+                                "s014",
+                                "s015",
+                                "s016",
+                                "s017",
+                                "s018",
+                                "s019",
+                                "s021",
+                                "s022"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s021"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s012",
+                                "s013",
+                                "s014",
+                                "s015",
+                                "s016",
+                                "s017",
+                                "s018",
+                                "s019",
+                                "s020",
+                                "s022"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s022"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  12,
+                                  21
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": [
+                            "s023"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  24,
+                                  33
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s024"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s023",
+                                "s025",
+                                "s026",
+                                "s027",
+                                "s028",
+                                "s029",
+                                "s030",
+                                "s031",
+                                "s032",
+                                "s033"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s025"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s023",
+                                "s024",
+                                "s026",
+                                "s027",
+                                "s028",
+                                "s029",
+                                "s030",
+                                "s031",
+                                "s032",
+                                "s033"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s026"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s023",
+                                "s024",
+                                "s025",
+                                "s027",
+                                "s028",
+                                "s029",
+                                "s030",
+                                "s031",
+                                "s032",
+                                "s033"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s027"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s023",
+                                "s024",
+                                "s025",
+                                "s026",
+                                "s028",
+                                "s029",
+                                "s030",
+                                "s031",
+                                "s032",
+                                "s033"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s028"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s023",
+                                "s024",
+                                "s025",
+                                "s026",
+                                "s027",
+                                "s029",
+                                "s030",
+                                "s031",
+                                "s032",
+                                "s033"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s029"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s023",
+                                "s024",
+                                "s025",
+                                "s026",
+                                "s027",
+                                "s028",
+                                "s030",
+                                "s031",
+                                "s032",
+                                "s033"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s030"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s023",
+                                "s024",
+                                "s025",
+                                "s026",
+                                "s027",
+                                "s028",
+                                "s029",
+                                "s031",
+                                "s032",
+                                "s033"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s031"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s023",
+                                "s024",
+                                "s025",
+                                "s026",
+                                "s027",
+                                "s028",
+                                "s029",
+                                "s030",
+                                "s032",
+                                "s033"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s032"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s023",
+                                "s024",
+                                "s025",
+                                "s026",
+                                "s027",
+                                "s028",
+                                "s029",
+                                "s030",
+                                "s031",
+                                "s033"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s033"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  23,
+                                  32
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": [
+                            "s034"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  35,
+                                  44
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s035"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s034",
+                                "s036",
+                                "s037",
+                                "s038",
+                                "s039",
+                                "s040",
+                                "s041",
+                                "s042",
+                                "s043",
+                                "s044"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s036"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s034",
+                                "s035",
+                                "s037",
+                                "s038",
+                                "s039",
+                                "s040",
+                                "s041",
+                                "s042",
+                                "s043",
+                                "s044"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s037"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s034",
+                                "s035",
+                                "s036",
+                                "s038",
+                                "s039",
+                                "s040",
+                                "s041",
+                                "s042",
+                                "s043",
+                                "s044"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s038"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s034",
+                                "s035",
+                                "s036",
+                                "s037",
+                                "s039",
+                                "s040",
+                                "s041",
+                                "s042",
+                                "s043",
+                                "s044"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s039"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s034",
+                                "s035",
+                                "s036",
+                                "s037",
+                                "s038",
+                                "s040",
+                                "s041",
+                                "s042",
+                                "s043",
+                                "s044"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s040"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s034",
+                                "s035",
+                                "s036",
+                                "s037",
+                                "s038",
+                                "s039",
+                                "s041",
+                                "s042",
+                                "s043",
+                                "s044"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s041"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s034",
+                                "s035",
+                                "s036",
+                                "s037",
+                                "s038",
+                                "s039",
+                                "s040",
+                                "s042",
+                                "s043",
+                                "s044"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s042"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s034",
+                                "s035",
+                                "s036",
+                                "s037",
+                                "s038",
+                                "s039",
+                                "s040",
+                                "s041",
+                                "s043",
+                                "s044"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s043"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s034",
+                                "s035",
+                                "s036",
+                                "s037",
+                                "s038",
+                                "s039",
+                                "s040",
+                                "s041",
+                                "s042",
+                                "s044"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s044"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  34,
+                                  43
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": [
+                            "s045"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  46,
+                                  55
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s046"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s045",
+                                "s047",
+                                "s048",
+                                "s049",
+                                "s050",
+                                "s051",
+                                "s052",
+                                "s053",
+                                "s054",
+                                "s055"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s047"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s045",
+                                "s046",
+                                "s048",
+                                "s049",
+                                "s050",
+                                "s051",
+                                "s052",
+                                "s053",
+                                "s054",
+                                "s055"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s048"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s045",
+                                "s046",
+                                "s047",
+                                "s049",
+                                "s050",
+                                "s051",
+                                "s052",
+                                "s053",
+                                "s054",
+                                "s055"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s049"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s045",
+                                "s046",
+                                "s047",
+                                "s048",
+                                "s050",
+                                "s051",
+                                "s052",
+                                "s053",
+                                "s054",
+                                "s055"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s050"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s045",
+                                "s046",
+                                "s047",
+                                "s048",
+                                "s049",
+                                "s051",
+                                "s052",
+                                "s053",
+                                "s054",
+                                "s055"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s051"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s045",
+                                "s046",
+                                "s047",
+                                "s048",
+                                "s049",
+                                "s050",
+                                "s052",
+                                "s053",
+                                "s054",
+                                "s055"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s052"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s045",
+                                "s046",
+                                "s047",
+                                "s048",
+                                "s049",
+                                "s050",
+                                "s051",
+                                "s053",
+                                "s054",
+                                "s055"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s053"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s045",
+                                "s046",
+                                "s047",
+                                "s048",
+                                "s049",
+                                "s050",
+                                "s051",
+                                "s052",
+                                "s054",
+                                "s055"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s054"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s045",
+                                "s046",
+                                "s047",
+                                "s048",
+                                "s049",
+                                "s050",
+                                "s051",
+                                "s052",
+                                "s053",
+                                "s055"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s055"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  45,
+                                  54
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "branches": [
+                        {
+                          "values": [
+                            "s056"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  57,
+                                  66
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s057"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s056",
+                                "s058",
+                                "s059",
+                                "s060",
+                                "s061",
+                                "s062",
+                                "s063",
+                                "s064",
+                                "s065",
+                                "s066"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s058"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s056",
+                                "s057",
+                                "s059",
+                                "s060",
+                                "s061",
+                                "s062",
+                                "s063",
+                                "s064",
+                                "s065",
+                                "s066"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s059"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s056",
+                                "s057",
+                                "s058",
+                                "s060",
+                                "s061",
+                                "s062",
+                                "s063",
+                                "s064",
+                                "s065",
+                                "s066"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s060"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s056",
+                                "s057",
+                                "s058",
+                                "s059",
+                                "s061",
+                                "s062",
+                                "s063",
+                                "s064",
+                                "s065",
+                                "s066"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s061"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s056",
+                                "s057",
+                                "s058",
+                                "s059",
+                                "s060",
+                                "s062",
+                                "s063",
+                                "s064",
+                                "s065",
+                                "s066"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s062"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s056",
+                                "s057",
+                                "s058",
+                                "s059",
+                                "s060",
+                                "s061",
+                                "s063",
+                                "s064",
+                                "s065",
+                                "s066"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s063"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s056",
+                                "s057",
+                                "s058",
+                                "s059",
+                                "s060",
+                                "s061",
+                                "s062",
+                                "s064",
+                                "s065",
+                                "s066"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s064"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s056",
+                                "s057",
+                                "s058",
+                                "s059",
+                                "s060",
+                                "s061",
+                                "s062",
+                                "s063",
+                                "s065",
+                                "s066"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s065"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              [
+                                "s056",
+                                "s057",
+                                "s058",
+                                "s059",
+                                "s060",
+                                "s061",
+                                "s062",
+                                "s063",
+                                "s064",
+                                "s066"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "values": [
+                            "s066"
+                          ],
+                          "then": {
+                            "cartesian": [
+                              [
+                                "bi",
+                                "mono"
+                              ],
+                              {
+                                "integer_range": [
+                                  56,
+                                  65
+                                ],
+                                "prefix": "s",
+                                "suffix": "",
+                                "zero_pad": 3
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "full"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "none"
+                        ],
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "integer_range": [
+                            1,
+                            11
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "none"
+                        ],
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "integer_range": [
+                            12,
+                            22
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "none"
+                        ],
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "integer_range": [
+                            23,
+                            33
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "none"
+                        ],
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "integer_range": [
+                            34,
+                            44
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "none"
+                        ],
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "integer_range": [
+                            45,
+                            55
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "none"
+                        ],
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "integer_range": [
+                            56,
+                            66
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "prediction_grid.csv": {
+      "columns": [
+        "row_id",
+        "fit_id",
+        "grid_id",
+        "hour",
+        "fitted_fast",
+        "fitted_slow",
+        "fitted",
+        "conditional_mean_SE",
+        "derivative",
+        "conditional_derivative_SE"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "fit_id": "text",
+        "grid_id": "text",
+        "hour": "float",
+        "fitted_fast": "float",
+        "fitted_slow": "float",
+        "fitted": "float",
+        "conditional_mean_SE": "float",
+        "derivative": "float",
+        "conditional_derivative_SE": "float"
+      },
+      "tolerance": {
+        "hour": [
+          1e-06,
+          1e-08
+        ],
+        "fitted_fast": [
+          1e-06,
+          1e-08
+        ],
+        "fitted_slow": [
+          1e-06,
+          1e-08
+        ],
+        "fitted": [
+          1e-06,
+          1e-08
+        ],
+        "conditional_mean_SE": [
+          1e-06,
+          1e-08
+        ],
+        "derivative": [
+          1e-06,
+          1e-08
+        ],
+        "conditional_derivative_SE": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 2016,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "deleted"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            11
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            12,
+                            22
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            23,
+                            33
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            34,
+                            44
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            45,
+                            55
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            56,
+                            66
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "full"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "integer_range": [
+                      1,
+                      6
+                    ],
+                    "prefix": "person",
+                    "suffix": "",
+                    "zero_pad": 0
+                  },
+                  [
+                    "none"
+                  ],
+                  [
+                    "bi",
+                    "mono"
+                  ],
+                  {
+                    "set_ref": "set_2"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "component_integrals.csv": {
+      "columns": [
+        "row_id",
+        "fit_id",
+        "component",
+        "selected_rate",
+        "amplitude",
+        "active_amplitude",
+        "component_in_model",
+        "dictionary_half_time_hour",
+        "AUC_0_first",
+        "AUC_first_last",
+        "AUC_last_infinity",
+        "AUC_0_infinity",
+        "AUMC_0_infinity"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "fit_id": "text",
+        "component": "text",
+        "selected_rate": "float",
+        "amplitude": "float",
+        "active_amplitude": "int",
+        "component_in_model": "int",
+        "dictionary_half_time_hour": "float",
+        "AUC_0_first": "float",
+        "AUC_first_last": "float",
+        "AUC_last_infinity": "float",
+        "AUC_0_infinity": "float",
+        "AUMC_0_infinity": "float"
+      },
+      "tolerance": {
+        "selected_rate": [
+          1e-06,
+          1e-08
+        ],
+        "amplitude": [
+          1e-06,
+          1e-08
+        ],
+        "dictionary_half_time_hour": [
+          1e-06,
+          1e-08
+        ],
+        "AUC_0_first": [
+          1e-06,
+          1e-08
+        ],
+        "AUC_first_last": [
+          1e-06,
+          1e-08
+        ],
+        "AUC_last_infinity": [
+          1e-06,
+          1e-08
+        ],
+        "AUC_0_infinity": [
+          1e-06,
+          1e-08
+        ],
+        "AUMC_0_infinity": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 288,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "deleted"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            11
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            12,
+                            22
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            23,
+                            33
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            34,
+                            44
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            45,
+                            55
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            56,
+                            66
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        [
+                          "fast",
+                          "slow"
+                        ]
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "full"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "integer_range": [
+                      1,
+                      6
+                    ],
+                    "prefix": "person",
+                    "suffix": "",
+                    "zero_pad": 0
+                  },
+                  [
+                    "none"
+                  ],
+                  [
+                    "bi",
+                    "mono"
+                  ],
+                  [
+                    "fast",
+                    "slow"
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "model_summary.csv": {
+      "columns": [
+        "fit_id",
+        "stage",
+        "subject_id",
+        "held_source_id",
+        "model",
+        "C0",
+        "model_AUC_0_infinity",
+        "model_AUC_first_last",
+        "model_tail_AUC",
+        "model_tail_fraction",
+        "model_AUMC_0_infinity",
+        "model_mean_time",
+        "conditional_AUC_SE",
+        "initial_unsampled_area"
+      ],
+      "key": [
+        "fit_id"
+      ],
+      "types": {
+        "fit_id": "text",
+        "stage": "text",
+        "subject_id": "text",
+        "held_source_id": "text",
+        "model": "text",
+        "C0": "float",
+        "model_AUC_0_infinity": "float",
+        "model_AUC_first_last": "float",
+        "model_tail_AUC": "float",
+        "model_tail_fraction": "float",
+        "model_AUMC_0_infinity": "float",
+        "model_mean_time": "float",
+        "conditional_AUC_SE": "float",
+        "initial_unsampled_area": "float"
+      },
+      "tolerance": {
+        "C0": [
+          1e-06,
+          1e-08
+        ],
+        "model_AUC_0_infinity": [
+          1e-06,
+          1e-08
+        ],
+        "model_AUC_first_last": [
+          1e-06,
+          1e-08
+        ],
+        "model_tail_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "model_tail_fraction": [
+          1e-06,
+          1e-08
+        ],
+        "model_AUMC_0_infinity": [
+          1e-06,
+          1e-08
+        ],
+        "model_mean_time": [
+          1e-06,
+          1e-08
+        ],
+        "conditional_AUC_SE": [
+          1e-06,
+          1e-08
+        ],
+        "initial_unsampled_area": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "fit_id"
+        ],
+        "row_count": 144,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "deleted"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            11
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            12,
+                            22
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            23,
+                            33
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            34,
+                            44
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            45,
+                            55
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            56,
+                            66
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "full"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "integer_range": [
+                      1,
+                      6
+                    ],
+                    "prefix": "person",
+                    "suffix": "",
+                    "zero_pad": 0
+                  },
+                  [
+                    "none"
+                  ],
+                  [
+                    "bi",
+                    "mono"
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "fit_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "model_comparison.csv": {
+      "columns": [
+        "comparison_id",
+        "stage",
+        "subject_id",
+        "held_source_id",
+        "mono_candidate",
+        "bi_candidate",
+        "mono_raw_SSE",
+        "bi_raw_SSE",
+        "raw_SSE_difference",
+        "mono_C0",
+        "bi_C0",
+        "C0_difference",
+        "mono_AUC",
+        "bi_AUC",
+        "AUC_difference"
+      ],
+      "key": [
+        "comparison_id"
+      ],
+      "types": {
+        "comparison_id": "text",
+        "stage": "text",
+        "subject_id": "text",
+        "held_source_id": "text",
+        "mono_candidate": "text",
+        "bi_candidate": "text",
+        "mono_raw_SSE": "float",
+        "bi_raw_SSE": "float",
+        "raw_SSE_difference": "float",
+        "mono_C0": "float",
+        "bi_C0": "float",
+        "C0_difference": "float",
+        "mono_AUC": "float",
+        "bi_AUC": "float",
+        "AUC_difference": "float"
+      },
+      "tolerance": {
+        "mono_raw_SSE": [
+          1e-06,
+          1e-08
+        ],
+        "bi_raw_SSE": [
+          1e-06,
+          1e-08
+        ],
+        "raw_SSE_difference": [
+          1e-06,
+          1e-08
+        ],
+        "mono_C0": [
+          1e-06,
+          1e-08
+        ],
+        "bi_C0": [
+          1e-06,
+          1e-08
+        ],
+        "C0_difference": [
+          1e-06,
+          1e-08
+        ],
+        "mono_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "bi_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "AUC_difference": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "comparison_id"
+        ],
+        "row_count": 72,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "deleted"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            11
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            12,
+                            22
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            23,
+                            33
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            34,
+                            44
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            45,
+                            55
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            56,
+                            66
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "full"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "integer_range": [
+                      1,
+                      6
+                    ],
+                    "prefix": "person",
+                    "suffix": "",
+                    "zero_pad": 0
+                  },
+                  [
+                    "none"
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "comparison_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "deletion_comparison.csv": {
+      "columns": [
+        "row_id",
+        "fit_id",
+        "subject_id",
+        "held_source_id",
+        "model",
+        "full_candidate",
+        "leave_candidate",
+        "candidate_changed",
+        "held_hour",
+        "held_conc",
+        "held_fitted",
+        "held_residual",
+        "AUC_difference",
+        "C0_difference"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "fit_id": "text",
+        "subject_id": "text",
+        "held_source_id": "text",
+        "model": "text",
+        "full_candidate": "text",
+        "leave_candidate": "text",
+        "candidate_changed": "int",
+        "held_hour": "float",
+        "held_conc": "float",
+        "held_fitted": "float",
+        "held_residual": "float",
+        "AUC_difference": "float",
+        "C0_difference": "float"
+      },
+      "tolerance": {
+        "held_hour": [
+          1e-06,
+          1e-08
+        ],
+        "held_conc": [
+          1e-06,
+          1e-08
+        ],
+        "held_fitted": [
+          1e-06,
+          1e-08
+        ],
+        "held_residual": [
+          1e-06,
+          1e-08
+        ],
+        "AUC_difference": [
+          1e-06,
+          1e-08
+        ],
+        "C0_difference": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 132,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "deleted"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            11
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            12,
+                            22
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            23,
+                            33
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            34,
+                            44
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            45,
+                            55
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            56,
+                            66
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ]
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "deletion_grid_differences.csv": {
+      "columns": [
+        "row_id",
+        "fit_id",
+        "grid_id",
+        "hour",
+        "leave_fitted",
+        "full_fitted",
+        "fitted_difference",
+        "leave_derivative",
+        "full_derivative",
+        "derivative_difference"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "fit_id": "text",
+        "grid_id": "text",
+        "hour": "float",
+        "leave_fitted": "float",
+        "full_fitted": "float",
+        "fitted_difference": "float",
+        "leave_derivative": "float",
+        "full_derivative": "float",
+        "derivative_difference": "float"
+      },
+      "tolerance": {
+        "hour": [
+          1e-06,
+          1e-08
+        ],
+        "leave_fitted": [
+          1e-06,
+          1e-08
+        ],
+        "full_fitted": [
+          1e-06,
+          1e-08
+        ],
+        "fitted_difference": [
+          1e-06,
+          1e-08
+        ],
+        "leave_derivative": [
+          1e-06,
+          1e-08
+        ],
+        "full_derivative": [
+          1e-06,
+          1e-08
+        ],
+        "derivative_difference": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 1848,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "deleted"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "person1"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            11
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person2"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            12,
+                            22
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person3"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            23,
+                            33
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person4"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            34,
+                            44
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person5"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            45,
+                            55
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "person6"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            56,
+                            66
+                          ],
+                          "prefix": "s",
+                          "suffix": "",
+                          "zero_pad": 3
+                        },
+                        [
+                          "bi",
+                          "mono"
+                        ],
+                        {
+                          "set_ref": "set_2"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "influence_summary.csv": {
+      "columns": [
+        "row_id",
+        "subject_id",
+        "model",
+        "refits",
+        "candidate_changes",
+        "leaveout_PRESS",
+        "max_abs_held_residual",
+        "max_abs_AUC_difference",
+        "max_abs_C0_difference",
+        "max_abs_grid_difference"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "subject_id": "text",
+        "model": "text",
+        "refits": "int",
+        "candidate_changes": "int",
+        "leaveout_PRESS": "float",
+        "max_abs_held_residual": "float",
+        "max_abs_AUC_difference": "float",
+        "max_abs_C0_difference": "float",
+        "max_abs_grid_difference": "float"
+      },
+      "tolerance": {
+        "leaveout_PRESS": [
+          1e-06,
+          1e-08
+        ],
+        "max_abs_held_residual": [
+          1e-06,
+          1e-08
+        ],
+        "max_abs_AUC_difference": [
+          1e-06,
+          1e-08
+        ],
+        "max_abs_C0_difference": [
+          1e-06,
+          1e-08
+        ],
+        "max_abs_grid_difference": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 12,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "person1|bi",
+              "person1|mono",
+              "person2|bi",
+              "person2|mono",
+              "person3|bi",
+              "person3|mono",
+              "person4|bi",
+              "person4|mono",
+              "person5|bi",
+              "person5|mono",
+              "person6|bi",
+              "person6|mono"
+            ]
+          ]
+        }
+      }
+    },
+    "cohort_summary.csv": {
+      "columns": [
+        "model",
+        "subjects",
+        "mean_observed_AUC",
+        "mean_model_AUC",
+        "SD_model_AUC",
+        "mean_model_C0",
+        "mean_model_tail_fraction",
+        "total_raw_SSE",
+        "total_leaveout_PRESS"
+      ],
+      "key": [
+        "model"
+      ],
+      "types": {
+        "model": "text",
+        "subjects": "int",
+        "mean_observed_AUC": "float",
+        "mean_model_AUC": "float",
+        "SD_model_AUC": "float",
+        "mean_model_C0": "float",
+        "mean_model_tail_fraction": "float",
+        "total_raw_SSE": "float",
+        "total_leaveout_PRESS": "float"
+      },
+      "tolerance": {
+        "mean_observed_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "mean_model_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "SD_model_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "mean_model_C0": [
+          1e-06,
+          1e-08
+        ],
+        "mean_model_tail_fraction": [
+          1e-06,
+          1e-08
+        ],
+        "total_raw_SSE": [
+          1e-06,
+          1e-08
+        ],
+        "total_leaveout_PRESS": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "model"
+        ],
+        "row_count": 2,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "bi",
+              "mono"
+            ]
+          ]
+        }
+      }
+    },
+    "cohort_leave_subject.csv": {
+      "columns": [
+        "row_id",
+        "model",
+        "held_subject_id",
+        "retained_subjects",
+        "mean_model_AUC",
+        "mean_model_C0",
+        "mean_model_tail_fraction",
+        "mean_AUC_difference_from_full"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "model": "text",
+        "held_subject_id": "text",
+        "retained_subjects": "int",
+        "mean_model_AUC": "float",
+        "mean_model_C0": "float",
+        "mean_model_tail_fraction": "float",
+        "mean_AUC_difference_from_full": "float"
+      },
+      "tolerance": {
+        "mean_model_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "mean_model_C0": [
+          1e-06,
+          1e-08
+        ],
+        "mean_model_tail_fraction": [
+          1e-06,
+          1e-08
+        ],
+        "mean_AUC_difference_from_full": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 12,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "bi|person1",
+              "bi|person2",
+              "bi|person3",
+              "bi|person4",
+              "bi|person5",
+              "bi|person6",
+              "mono|person1",
+              "mono|person2",
+              "mono|person3",
+              "mono|person4",
+              "mono|person5",
+              "mono|person6"
+            ]
+          ]
+        }
+      }
+    },
+    "terminal_summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "metric"
+        ],
+        "row_count": 26,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "set_ref": "set_3"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "row_set_definitions": {
+    "set_1": [
+      "b001",
+      "b002",
+      "b003",
+      "b004",
+      "b005",
+      "b006",
+      "b007",
+      "b008",
+      "b009",
+      "b010",
+      "b011",
+      "b012",
+      "b013",
+      "b014",
+      "b015",
+      "b016",
+      "b017",
+      "b018",
+      "b019",
+      "b020",
+      "b021",
+      "b022",
+      "b023",
+      "b024",
+      "b025",
+      "b026",
+      "b027",
+      "b028",
+      "b029",
+      "b030",
+      "b031",
+      "b032",
+      "b033",
+      "b034",
+      "b035",
+      "b036",
+      "b037",
+      "b038",
+      "b039",
+      "b040",
+      "b041",
+      "b042",
+      "b043",
+      "b044",
+      "b045",
+      "b046",
+      "b047",
+      "b048",
+      "b049",
+      "b050",
+      "b051",
+      "b052",
+      "b053",
+      "b054",
+      "b055",
+      "b056",
+      "b057",
+      "b058",
+      "b059",
+      "b060",
+      "b061",
+      "b062",
+      "b063",
+      "b064",
+      "b065",
+      "b066",
+      "b067",
+      "b068",
+      "b069",
+      "b070",
+      "b071",
+      "b072",
+      "b073",
+      "b074",
+      "b075",
+      "b076",
+      "b077",
+      "b078",
+      "b079",
+      "b080",
+      "m001",
+      "m002",
+      "m003",
+      "m004",
+      "m005",
+      "m006",
+      "m007",
+      "m008",
+      "m009",
+      "m010",
+      "m011",
+      "m012",
+      "m013",
+      "m014",
+      "m015",
+      "m016",
+      "m017",
+      "m018"
+    ],
+    "set_2": [
+      "g00",
+      "g01",
+      "g02",
+      "g03",
+      "g04",
+      "g05",
+      "g06",
+      "g07",
+      "g08",
+      "g09",
+      "g10",
+      "g11",
+      "g12",
+      "g13"
+    ],
+    "set_3": [
+      "bi_deletion_candidate_changes",
+      "candidate_fits_evaluated",
+      "causal_validation",
+      "clinical_validation",
+      "deletion_selected_models",
+      "dictionary_bi_candidates",
+      "dictionary_mono_candidates",
+      "dose_available",
+      "full_selected_models",
+      "grid_prediction_rows",
+      "mean_bi_C0",
+      "mean_bi_model_AUC",
+      "mean_bi_tail_fraction",
+      "mean_mono_model_AUC",
+      "mono_deletion_candidate_changes",
+      "observed_intervals",
+      "original_continuous_NLS_reproduced",
+      "source_records",
+      "source_subjects",
+      "source_unique_timepoints",
+      "total_bi_leaveout_PRESS",
+      "total_bi_raw_SSE",
+      "total_mono_leaveout_PRESS",
+      "total_mono_raw_SSE",
+      "total_observed_AUC",
+      "zero_time_samples"
+    ]
+  }
+}

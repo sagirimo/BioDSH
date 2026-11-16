@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-crambin-backbone-torsions-001",
+  "claims": [
+    {
+      "id": "n",
+      "type": "number",
+      "question": "具备完整phi/psi的残基数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "alpha",
+      "type": "number",
+      "question": "alpha矩形区内残基数。",
+      "binding": {
+        "table": "regions.csv",
+        "key_column": "id",
+        "key": "alpha",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "beta",
+      "type": "number",
+      "question": "beta矩形区内残基数。",
+      "binding": {
+        "table": "regions.csv",
+        "key_column": "id",
+        "key": "beta",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "phi10",
+      "type": "number",
+      "question": "第10位残基的phi（度）。",
+      "binding": {
+        "table": "dihedrals.csv",
+        "key_column": "id",
+        "key": "A:10",
+        "column": "phi_deg"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "psi10",
+      "type": "number",
+      "question": "第10位残基的psi（度）。",
+      "binding": {
+        "table": "dihedrals.csv",
+        "key_column": "id",
+        "key": "A:10",
+        "column": "psi_deg"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "longest",
+      "type": "number",
+      "question": "最长连续alpha区段的长度。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "longest_alpha_run"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "alpha_majority",
+      "type": "derived",
+      "question": "alpha区残基是否超过可分析残基的一半？",
+      "options": [
+        "more_than_half",
+        "at_most_half"
+      ],
+      "rule": {
+        "binding": {
+          "table": "summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "alpha_fraction"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "more_than_half",
+          "false": "at_most_half"
+        }
+      }
+    },
+    {
+      "id": "robustness",
+      "type": "derived",
+      "question": "收紧alpha矩形后是否最多20%的残基重分类？",
+      "options": [
+        "at_most_20pct_change",
+        "more_than_20pct_change"
+      ],
+      "rule": {
+        "binding": {
+          "table": "sensitivity.csv",
+          "key_column": "id",
+          "key": "tight_alpha",
+          "column": "fraction_reclassified"
+        },
+        "op": "le",
+        "threshold": 0.2,
+        "outcomes": {
+          "true": "at_most_20pct_change",
+          "false": "more_than_20pct_change"
+        }
+      }
+    },
+    {
+      "id": "meaning",
+      "type": "choice",
+      "question": "本题二面角矩形分类的边界是？",
+      "options": [
+        "geometric_regions_not_DSSP_or_experimental_secondary_structure_labels",
+        "full_DSSP_hydrogen_bond_assignment",
+        "clinical_pathogenicity_of_residues"
+      ]
+    }
+  ]
+}

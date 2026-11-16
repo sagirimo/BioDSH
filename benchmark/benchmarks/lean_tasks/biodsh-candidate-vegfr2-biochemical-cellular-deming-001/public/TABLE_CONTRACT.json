@@ -1,0 +1,247 @@
+{
+  "tables": {
+    "agreement.csv": {
+      "columns": [
+        "id",
+        "n",
+        "mean_bias",
+        "sd_difference",
+        "loa_low",
+        "loa_high",
+        "loa_width",
+        "proportional_bias_slope"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "mean_bias": "float",
+        "sd_difference": "float",
+        "loa_low": "float",
+        "loa_high": "float",
+        "loa_width": "float",
+        "proportional_bias_slope": "float"
+      },
+      "tolerance": {
+        "mean_bias": [
+          1e-05,
+          1e-08
+        ],
+        "sd_difference": [
+          1e-05,
+          1e-08
+        ],
+        "loa_low": [
+          1e-05,
+          1e-08
+        ],
+        "loa_high": [
+          1e-05,
+          1e-08
+        ],
+        "loa_width": [
+          1e-05,
+          1e-08
+        ],
+        "proportional_bias_slope": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "bootstrap_statistics.csv": {
+      "columns": [
+        "id",
+        "intercept",
+        "slope",
+        "mean_bias"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "intercept": "float",
+        "slope": "float",
+        "mean_bias": "float"
+      },
+      "tolerance": {
+        "intercept": [
+          1e-05,
+          1e-08
+        ],
+        "slope": [
+          1e-05,
+          1e-08
+        ],
+        "mean_bias": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "bootstrap_summary.csv": {
+      "columns": [
+        "id",
+        "lower",
+        "upper",
+        "bootstrap_mean"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "lower": "float",
+        "upper": "float",
+        "bootstrap_mean": "float"
+      },
+      "tolerance": {
+        "lower": [
+          1e-05,
+          1e-08
+        ],
+        "upper": [
+          1e-05,
+          1e-08
+        ],
+        "bootstrap_mean": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "compound_influence.csv": {
+      "columns": [
+        "id",
+        "deleted_intercept",
+        "deleted_slope",
+        "slope_change",
+        "bias_change"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "deleted_intercept": "float",
+        "deleted_slope": "float",
+        "slope_change": "float",
+        "bias_change": "float"
+      },
+      "tolerance": {
+        "deleted_intercept": [
+          1e-05,
+          1e-08
+        ],
+        "deleted_slope": [
+          1e-05,
+          1e-08
+        ],
+        "slope_change": [
+          1e-05,
+          1e-08
+        ],
+        "bias_change": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "deming.csv": {
+      "columns": [
+        "id",
+        "intercept",
+        "slope",
+        "orthogonal_rmse"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "intercept": "float",
+        "slope": "float",
+        "orthogonal_rmse": "float"
+      },
+      "tolerance": {
+        "intercept": [
+          1e-05,
+          1e-08
+        ],
+        "slope": [
+          1e-05,
+          1e-08
+        ],
+        "orthogonal_rmse": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "eligible_measurements.csv": {
+      "columns": [
+        "id",
+        "molecule",
+        "context",
+        "IC50_nM",
+        "pIC50"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "molecule": "text",
+        "context": "text",
+        "IC50_nM": "int",
+        "pIC50": "float"
+      },
+      "tolerance": {
+        "pIC50": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "paired_potency.csv": {
+      "columns": [
+        "id",
+        "x_biochemical",
+        "y_cellular",
+        "pair_mean",
+        "difference"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "x_biochemical": "float",
+        "y_cellular": "float",
+        "pair_mean": "float",
+        "difference": "float"
+      },
+      "tolerance": {
+        "x_biochemical": [
+          1e-05,
+          1e-08
+        ],
+        "y_cellular": [
+          1e-05,
+          1e-08
+        ],
+        "pair_mean": [
+          1e-05,
+          1e-08
+        ],
+        "difference": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

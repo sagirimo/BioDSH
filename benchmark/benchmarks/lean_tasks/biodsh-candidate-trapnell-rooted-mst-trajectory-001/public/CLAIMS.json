@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-trapnell-rooted-mst-trajectory-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "保留细胞数？",
+      "binding": {
+        "table": "trajectory_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "cells"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "PC1解释比例？",
+      "binding": {
+        "table": "trajectory_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "PC1_fraction"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "采样时间与树伪时间秩相关？",
+      "binding": {
+        "table": "trajectory_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "time_rank_correlation"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "树总长？",
+      "binding": {
+        "table": "trajectory_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "total_length"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "72小时伪时间中位数？",
+      "binding": {
+        "table": "time_summary.csv",
+        "key_column": "id",
+        "key": "72",
+        "column": "median_pseudotime"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "树叶子数？",
+      "binding": {
+        "table": "trajectory_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "leaves"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "时间秩相关是否为正？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "trajectory_summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "time_rank_correlation"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "72小时中位伪时间是否超过0.5？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "time_summary.csv",
+          "key_column": "id",
+          "key": "72",
+          "column": "median_pseudotime"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "如何解释树伪时间？",
+      "options": [
+        "root_dependent_expression_geometry_not_elapsed_time_or_lineage_proof",
+        "each_branch_is_a_confirmed_lineage",
+        "pseudotime_equals_hours_divided_by_72"
+      ]
+    }
+  ]
+}

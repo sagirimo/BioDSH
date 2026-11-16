@@ -1,0 +1,4 @@
+原始研究：Boyartchuk VL et al. (2001), Multigenic control of Listeria monocytogenes susceptibility in mice, Nature Genetics 27:259–260. DOI:10.1038/85812; PMID:11242105。
+公开作者整理数据：https://rqtl.org/sampledata/ 与 https://rqtl.org/sampledata/listeria.csv 。直接下载，未取用任何 benchmark 任务或切分。R/qtl 页面明确归于上述原始 F2 研究；A/H/B 为两亲本纯合/杂合/另一亲本纯合，C 为非A的部分信息，-缺失。亲本为 BALB/cByJ 与 C57BL/6ByJ；本题不根据字母推断亲本方向，也不使用生存表型。
+公开获取用于本地科研；不推定网页数据具有额外再分发许可。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

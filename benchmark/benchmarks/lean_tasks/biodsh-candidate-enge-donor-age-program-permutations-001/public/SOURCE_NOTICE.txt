@@ -1,0 +1,7 @@
+Enge M et al. Single-Cell Analysis of Human Pancreas Reveals Transcriptional Signatures of Aging and Somatic Mutation Patterns. Cell 2017;171:321–330.e14. DOI:10.1016/j.cell.2017.09.004.
+GEO GSE81547；https://ftp.ncbi.nlm.nih.gov/geo/series/GSE81nnn/GSE81547/matrix/GSE81547_series_matrix.txt.gz
+获取URL对cells.csv每行： https://ftp.ncbi.nlm.nih.gov/geo/samples/<gsm去后三位>nnn/<gsm>/suppl/<file>
+96个原始read-count附件不改动；cells.csv从原始样本元数据抽取alpha、每供体按GSM升序前12个，供体按年龄顺序命名D1…D8。论文最年轻供体为1个月，GEO标签为1；仅用年龄顺序。
+age_permutations.csv是出题方预生成的999行完整年龄置换，作为固定实验方案输入，不含答案。
+2026-10-16获取；NCBI GEO公共科研数据。
+仅限本地科研使用、保留署名；本任务包不得对外再分发。分析协议由本项目新编，不采用其他 agent benchmark 的题目或切分。

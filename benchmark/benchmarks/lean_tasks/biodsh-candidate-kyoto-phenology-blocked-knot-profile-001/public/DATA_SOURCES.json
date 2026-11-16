@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.ncei.noaa.gov/pub/data/paleo/historical/phenology/japan/kyoto2010flower.txt",
+ "input_files_sha256": {
+  "inputs/kyoto2010flower.txt": "dfb6a8f8ccc06af77fccaf80a07efd3265ac542daaa5e8c1f5c72c7d8f8516ae"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

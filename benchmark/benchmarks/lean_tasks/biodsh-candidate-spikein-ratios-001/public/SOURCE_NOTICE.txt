@@ -1,0 +1,12 @@
+存量原题 biodsh-candidate-spikein-ratios-001 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-spikein-ratios-001
+source: "microbiome_benchmark_data"
+source_registry_id: "microbiome_benchmark_data"
+source_family: "microbiome_benchmark_data"
+source_case: "Stammler2016_patient_SCML_paired_day14"
+source_revision: "ed900aa65c5c5000f27d41236eb51fada07d72e7"
+family_keys: ["PMID:27329048", "Study:Stammler2016:SCML", "ENA:ERR1193483-ERR1193499"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+
+来源登记条目：{"id": "microbiome_benchmark_data", "family": "microbiome_benchmark_data", "type": "method_data_benchmark", "name": "MicrobiomeBenchmarkData", "reported_size": "Collection of independently described microbiome datasets; no catalog row counted as an agent task", "url": "https://github.com/waldronlab/MicrobiomeBenchmarkData", "data_url": "https://zenodo.org/records/6911027", "value": "实验设计、spike-in、组成偏差与完整患者级分析；区分实验金标准和临床应用", "candidate_domains": ["D06"], "availability": "Pinned repository and three full Stammler source files acquired with publisher MD5 checks", "priority": "P0", "pinned_revision": "ed900aa65c5c5000f27d41236eb51fada07d72e7", "data_license": "CC-BY-4.0", "caveat": "17样本来自5患者，只有3个完整pre/d14对；source目录维度错误，实际4036OTU×17；未重现36小鼠稀释实验", "current_qualified_fixed_contract_count": 3}
+原输入引用 method_reference: "https://doi.org/10.1186/s40168-016-0175-0"

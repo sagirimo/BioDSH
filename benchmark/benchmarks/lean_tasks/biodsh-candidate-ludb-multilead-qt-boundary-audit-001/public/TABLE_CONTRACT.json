@@ -1,0 +1,157 @@
+{
+  "tables": {
+    "aligned_intervals.csv": {
+      "columns": [
+        "id",
+        "record",
+        "beat",
+        "lead",
+        "R_offset_ms",
+        "RR_s",
+        "QT_ms",
+        "QTcB_ms",
+        "QTcF_ms"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "record": "int",
+        "beat": "int",
+        "lead": "text",
+        "R_offset_ms": "int",
+        "RR_s": "float",
+        "QT_ms": "int",
+        "QTcB_ms": "float",
+        "QTcF_ms": "float"
+      },
+      "tolerance": {
+        "RR_s": [
+          1e-05,
+          1e-08
+        ],
+        "QTcB_ms": [
+          1e-05,
+          1e-08
+        ],
+        "QTcF_ms": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "beat_consensus.csv": {
+      "columns": [
+        "id",
+        "record",
+        "n_leads",
+        "median_QT_ms",
+        "QT_range_ms",
+        "QT_IQR_ms",
+        "median_QTcB_ms",
+        "median_QTcF_ms",
+        "median_minus_II_ms"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "record": "int",
+        "n_leads": "int",
+        "median_QT_ms": "int",
+        "QT_range_ms": "int",
+        "QT_IQR_ms": "float",
+        "median_QTcB_ms": "float",
+        "median_QTcF_ms": "float",
+        "median_minus_II_ms": "int"
+      },
+      "tolerance": {
+        "QT_IQR_ms": [
+          1e-05,
+          1e-08
+        ],
+        "median_QTcB_ms": [
+          1e-05,
+          1e-08
+        ],
+        "median_QTcF_ms": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "record_summary.csv": {
+      "columns": [
+        "id",
+        "n_beats",
+        "median_QT_ms",
+        "median_QTcB_ms",
+        "median_QTcF_ms",
+        "median_QT_range_ms",
+        "median_QT_IQR_ms",
+        "mean_median_minus_II_ms"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_beats": "int",
+        "median_QT_ms": "float",
+        "median_QTcB_ms": "float",
+        "median_QTcF_ms": "float",
+        "median_QT_range_ms": "int",
+        "median_QT_IQR_ms": "float",
+        "mean_median_minus_II_ms": "float"
+      },
+      "tolerance": {
+        "median_QT_ms": [
+          1e-05,
+          1e-08
+        ],
+        "median_QTcB_ms": [
+          1e-05,
+          1e-08
+        ],
+        "median_QTcF_ms": [
+          1e-05,
+          1e-08
+        ],
+        "median_QT_IQR_ms": [
+          1e-05,
+          1e-08
+        ],
+        "mean_median_minus_II_ms": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "waves.csv": {
+      "columns": [
+        "id",
+        "record",
+        "lead",
+        "wave",
+        "onset",
+        "peak",
+        "offset"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "record": "int",
+        "lead": "text",
+        "wave": "text",
+        "onset": "int",
+        "peak": "int",
+        "offset": "int"
+      },
+      "tolerance": {}
+    }
+  }
+}

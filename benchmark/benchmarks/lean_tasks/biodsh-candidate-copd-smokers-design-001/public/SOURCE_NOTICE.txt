@@ -1,0 +1,12 @@
+存量原题 biodsh-candidate-copd-smokers-design-001 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-copd-smokers-design-001
+source: "genotex"
+source_registry_id: "genotex"
+source_family: "genotex"
+source_case: "GSE21359_copd_raw_design_expression_adaptation"
+source_revision: "9d50c9020256e8c943e02b6c0ad843017cd76cf8"
+accession: "GSE21359"
+source_publications: []
+source_terms: "GenoTEX metadata/code terms and underlying GEO study terms reviewed separately"
+family_keys: ["GEO:GSE21359", "GSE:GSE21359"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。

@@ -1,0 +1,313 @@
+{
+  "tables": {
+    "condition_comparisons.csv": {
+      "columns": [
+        "feature",
+        "intervention_subjects",
+        "control_subjects",
+        "difference_intervention_minus_control",
+        "welch_t",
+        "welch_df",
+        "p_two_sided",
+        "ci95_low",
+        "ci95_high"
+      ],
+      "key": [
+        "feature"
+      ],
+      "types": {
+        "feature": "text",
+        "intervention_subjects": "int",
+        "control_subjects": "int",
+        "difference_intervention_minus_control": "float",
+        "welch_t": "float",
+        "welch_df": "float",
+        "p_two_sided": "float",
+        "ci95_low": "float",
+        "ci95_high": "float"
+      },
+      "tolerance": {
+        "difference_intervention_minus_control": [
+          1e-07,
+          1e-08
+        ],
+        "welch_t": [
+          1e-07,
+          1e-08
+        ],
+        "welch_df": [
+          1e-07,
+          1e-08
+        ],
+        "p_two_sided": [
+          1e-07,
+          1e-08
+        ],
+        "ci95_low": [
+          1e-07,
+          1e-08
+        ],
+        "ci95_high": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "condition_features.csv": {
+      "columns": [
+        "row_id",
+        "condition",
+        "feature",
+        "subjects",
+        "mean",
+        "sample_sd",
+        "standard_error"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "condition": "text",
+        "feature": "text",
+        "subjects": "int",
+        "mean": "float",
+        "sample_sd": "float",
+        "standard_error": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-07,
+          1e-08
+        ],
+        "sample_sd": [
+          1e-07,
+          1e-08
+        ],
+        "standard_error": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "condition_metadata_audit.csv": {
+      "columns": [
+        "subject",
+        "condition",
+        "has_measurements",
+        "measurement_samples"
+      ],
+      "key": [
+        "subject"
+      ],
+      "types": {
+        "subject": "text",
+        "condition": "text",
+        "has_measurements": "int",
+        "measurement_samples": "int"
+      }
+    },
+    "condition_trajectory.csv": {
+      "columns": [
+        "row_id",
+        "condition",
+        "sample",
+        "time_min",
+        "subjects",
+        "mean",
+        "sample_sd",
+        "standard_error"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "condition": "text",
+        "sample": "int",
+        "time_min": "int",
+        "subjects": "int",
+        "mean": "float",
+        "sample_sd": "float",
+        "standard_error": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-07,
+          1e-08
+        ],
+        "sample_sd": [
+          1e-07,
+          1e-08
+        ],
+        "standard_error": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "int",
+        "scope": "text"
+      }
+    },
+    "saliva_long.csv": {
+      "columns": [
+        "measurement_id",
+        "subject",
+        "condition",
+        "sample",
+        "time_min",
+        "cortisol_nmol_l",
+        "used_in_features"
+      ],
+      "key": [
+        "measurement_id"
+      ],
+      "types": {
+        "measurement_id": "text",
+        "subject": "text",
+        "condition": "text",
+        "sample": "int",
+        "time_min": "int",
+        "cortisol_nmol_l": "float",
+        "used_in_features": "int"
+      },
+      "tolerance": {
+        "cortisol_nmol_l": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "subject_audit.csv": {
+      "columns": [
+        "subject",
+        "condition",
+        "input_samples",
+        "analysis_samples",
+        "baseline_sample",
+        "baseline_time_min"
+      ],
+      "key": [
+        "subject"
+      ],
+      "types": {
+        "subject": "text",
+        "condition": "text",
+        "input_samples": "int",
+        "analysis_samples": "int",
+        "baseline_sample": "int",
+        "baseline_time_min": "int"
+      }
+    },
+    "subject_features.csv": {
+      "columns": [
+        "subject",
+        "condition",
+        "mean",
+        "sample_sd",
+        "argmax_sample",
+        "argmin_sample",
+        "skew_unbiased",
+        "kurtosis_excess_unbiased",
+        "auc_g",
+        "auc_i",
+        "baseline",
+        "maximum",
+        "rise",
+        "slope_1_to_4"
+      ],
+      "key": [
+        "subject"
+      ],
+      "types": {
+        "subject": "text",
+        "condition": "text",
+        "mean": "float",
+        "sample_sd": "float",
+        "argmax_sample": "int",
+        "argmin_sample": "int",
+        "skew_unbiased": "float",
+        "kurtosis_excess_unbiased": "float",
+        "auc_g": "float",
+        "auc_i": "float",
+        "baseline": "float",
+        "maximum": "float",
+        "rise": "float",
+        "slope_1_to_4": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-07,
+          1e-08
+        ],
+        "sample_sd": [
+          1e-07,
+          1e-08
+        ],
+        "skew_unbiased": [
+          1e-07,
+          1e-08
+        ],
+        "kurtosis_excess_unbiased": [
+          1e-07,
+          1e-08
+        ],
+        "auc_g": [
+          1e-07,
+          1e-08
+        ],
+        "auc_i": [
+          1e-07,
+          1e-08
+        ],
+        "baseline": [
+          1e-07,
+          1e-08
+        ],
+        "maximum": [
+          1e-07,
+          1e-08
+        ],
+        "rise": [
+          1e-07,
+          1e-08
+        ],
+        "slope_1_to_4": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-10
+        ]
+      }
+    }
+  }
+}

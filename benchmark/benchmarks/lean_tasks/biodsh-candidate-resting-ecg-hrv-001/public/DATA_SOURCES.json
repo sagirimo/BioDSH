@@ -1,0 +1,8 @@
+{
+ "source_url": "https://github.com/OSU-NLP-Group/ScienceAgentBench",
+ "input_files_sha256": {
+  "inputs/bio_resting_5min_100hz.csv": "6a33ff8ae229f608354563044ff4a4d1c4e927c817e9269a4dec6173abefc385",
+  "inputs/design.json": "68e2fe9459216f064650c05f9e199841c842280772be12d07ee89b2f82132d8c"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

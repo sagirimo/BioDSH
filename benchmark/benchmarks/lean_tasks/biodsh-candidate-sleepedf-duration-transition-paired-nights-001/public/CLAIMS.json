@@ -1,0 +1,130 @@
+{
+  "revision": "round6_lean_v1",
+  "task_id": "biodsh-candidate-sleepedf-duration-transition-paired-nights-001",
+  "claims": [
+    {
+      "id": "n_subjects",
+      "type": "number",
+      "question": "成对夜晚的受试者数。",
+      "binding": {
+        "table": "paired_inference.csv",
+        "key_column": "id",
+        "key": "entropy",
+        "column": "n_subjects"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "night1_entropy",
+      "type": "number",
+      "question": "第一夜各受试者转移熵的等权均值。",
+      "binding": {
+        "table": "night_summary.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "mean_entropy"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "night2_entropy",
+      "type": "number",
+      "question": "第二夜各受试者转移熵的等权均值。",
+      "binding": {
+        "table": "night_summary.csv",
+        "key_column": "id",
+        "key": "2",
+        "column": "mean_entropy"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "delta_entropy",
+      "type": "number",
+      "question": "第二夜减第一夜的熵差均值。",
+      "binding": {
+        "table": "paired_inference.csv",
+        "key_column": "id",
+        "key": "entropy",
+        "column": "mean_delta"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "entropy_p",
+      "type": "number",
+      "question": "熵差的给定完整符号方案双侧p。",
+      "binding": {
+        "table": "paired_inference.csv",
+        "key_column": "id",
+        "key": "entropy",
+        "column": "exact_p"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "n3_delta",
+      "type": "number",
+      "question": "第二夜减第一夜N3占全部睡眠epoch比例的均值。",
+      "binding": {
+        "table": "paired_inference.csv",
+        "key_column": "id",
+        "key": "n3_fraction",
+        "column": "mean_delta"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "wake_delta",
+      "type": "number",
+      "question": "每睡眠小时觉醒次数的第二夜减第一夜均值。",
+      "binding": {
+        "table": "paired_inference.csv",
+        "key_column": "id",
+        "key": "awakenings_per_sleep_hour",
+        "column": "mean_delta"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "entropy_evidence",
+      "type": "derived",
+      "question": "熵差在0.05水平是否有证据？",
+      "options": [
+        "night_difference_at_005",
+        "no_night_difference_at_005"
+      ],
+      "rule": {
+        "binding": {
+          "table": "paired_inference.csv",
+          "key_column": "id",
+          "key": "entropy",
+          "column": "exact_p"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "night_difference_at_005",
+          "false": "no_night_difference_at_005"
+        }
+      }
+    },
+    {
+      "id": "unit",
+      "type": "choice",
+      "question": "夜晚比较的可独立交换单位是？",
+      "options": [
+        "subject_level_paired_difference",
+        "individual_30_second_epochs",
+        "annotation_records_ignoring_duration"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+ "source_url": "https://microbiome.github.io/tutorials/Data.html",
+ "input_files_sha256": {
+  "inputs/design.json": "e560b7a455d72fac1b03c96115235a74573052244060c14afe13d1dfb2bbc717",
+  "inputs/dietswap.rda": "1d40f07dc0c8c0f2f56cadadddbb44882a5915456a202ed74309edce3b9ed573",
+  "inputs/evidence_input.csv": "eeb1c958eb472b20d7d46e67a4deb7060eed4744e5951f6e275fcfef83fe1152",
+  "inputs/kind.txt": "aa1ef97c9b34dba57a84dadc834ec4f7b7811e39f334dbcc282df0de9dbe076f",
+  "inputs/sample_metadata.csv": "821c99d7b1c8c9e595fd10bec13613c8ef9271de29e93ba2b8541f7fadaa3adb",
+  "inputs/signal.csv": "5cc2c2861fbacb10487b80573cf4d3740f2f082355c6bf6a49d2f00aec3130db",
+  "inputs/table_schema.csv": "ffef7aa424f41ce518a3838b96b4a4700aad0019e79c730199d08c4e37eea649",
+  "inputs/taxonomy.csv": "7382abcb6052d6d8cc50b1d6f58a55190a1040a4625f47a56235ad77bd6f57fb"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,15 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "vegan_published_ecology",
+  "source_case": "Borcard1989_mite_complete_70cores_35species_all4objects",
+  "original_parent_source_case": "Study:Borcard1989_mite70_soil_cores",
+  "page": "https://vegandevs.github.io/vegan/reference/mite.html",
+  "source_terms": "Exact native inputs/delivery/attribution review pending; package code license not automatically original study data permission",
+  "limitations": [
+    "Two source cases share one workflow template, not two wholly distinct methods or proven independent study families",
+    "Unrestricted permutations do not certify spatial exchangeability or environmental causality",
+    "Source native PCNM values supplied and audited, not reconstructed or used as a spatial adjustment",
+    "Scientific computation correctness is not actual agent performance or expert explanation grading"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

@@ -1,0 +1,4 @@
+Moertel CG et al. Fluorouracil plus levamisole as effective adjuvant therapy after resection of stage III colon carcinoma: a final report. Ann Intern Med 1995;122:321–326. DOI:10.7326/0003-4819-122-5-199503010-00001; PMID:7847642. Earlier main report DOI:10.1056/NEJM199002083220602.
+survival作者维护数据说明 https://raw.githubusercontent.com/therneau/survival/master/man/colon.Rd；数据为该包colon原始公开患者表的CSV镜像 https://vincentarelbundock.github.io/Rdatasets/csv/survival/colon.csv 。未取任何benchmark题目或切分。R文档某些镜像的年份/分期有排版错误，引用按PubMed核正；本题不使用已知存在冲突的nodes/node4。
+包survival为LGPL>=2；临床表仅按项目授权作本地科研，不声称获得独立再分发授权。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

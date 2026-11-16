@@ -1,0 +1,260 @@
+{
+  "tables": {
+    "bouts.csv": {
+      "columns": [
+        "id",
+        "record",
+        "stage",
+        "duration_minutes",
+        "boundary_censored"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "record": "text",
+        "stage": "text",
+        "duration_minutes": "float",
+        "boundary_censored": "int"
+      },
+      "tolerance": {
+        "duration_minutes": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "epochs.csv": {
+      "columns": [
+        "id",
+        "record",
+        "subject",
+        "night",
+        "onset_seconds",
+        "stage"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "record": "text",
+        "subject": "int",
+        "night": "int",
+        "onset_seconds": "int",
+        "stage": "text"
+      },
+      "tolerance": {}
+    },
+    "night_summary.csv": {
+      "columns": [
+        "id",
+        "n_subjects",
+        "mean_entropy",
+        "mean_n3_fraction",
+        "mean_awakenings_per_sleep_hour"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_subjects": "int",
+        "mean_entropy": "float",
+        "mean_n3_fraction": "float",
+        "mean_awakenings_per_sleep_hour": "float"
+      },
+      "tolerance": {
+        "mean_entropy": [
+          1e-05,
+          1e-08
+        ],
+        "mean_n3_fraction": [
+          1e-05,
+          1e-08
+        ],
+        "mean_awakenings_per_sleep_hour": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "paired_differences.csv": {
+      "columns": [
+        "id",
+        "subject",
+        "metric",
+        "night2_minus_night1"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "subject": "int",
+        "metric": "text",
+        "night2_minus_night1": "float"
+      },
+      "tolerance": {
+        "night2_minus_night1": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "paired_inference.csv": {
+      "columns": [
+        "id",
+        "n_subjects",
+        "mean_delta",
+        "median_delta",
+        "exact_p"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_subjects": "int",
+        "mean_delta": "float",
+        "median_delta": "float",
+        "exact_p": "float"
+      },
+      "tolerance": {
+        "mean_delta": [
+          1e-05,
+          1e-08
+        ],
+        "median_delta": [
+          1e-05,
+          1e-08
+        ],
+        "exact_p": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "record_summary.csv": {
+      "columns": [
+        "id",
+        "subject",
+        "night",
+        "period_epochs",
+        "valid_epochs",
+        "sleep_epochs",
+        "entropy",
+        "n3_fraction",
+        "wakeups",
+        "awakenings_per_sleep_hour"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "subject": "int",
+        "night": "int",
+        "period_epochs": "int",
+        "valid_epochs": "int",
+        "sleep_epochs": "int",
+        "entropy": "float",
+        "n3_fraction": "float",
+        "wakeups": "int",
+        "awakenings_per_sleep_hour": "float"
+      },
+      "tolerance": {
+        "entropy": [
+          1e-05,
+          1e-08
+        ],
+        "n3_fraction": [
+          1e-05,
+          1e-08
+        ],
+        "awakenings_per_sleep_hour": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "sign_statistics.csv": {
+      "columns": [
+        "id",
+        "metric",
+        "pattern",
+        "mean_signed_delta"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "metric": "text",
+        "pattern": "int",
+        "mean_signed_delta": "float"
+      },
+      "tolerance": {
+        "mean_signed_delta": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "stage_occupancy.csv": {
+      "columns": [
+        "id",
+        "record",
+        "stage",
+        "epochs",
+        "fraction_valid"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "record": "text",
+        "stage": "text",
+        "epochs": "int",
+        "fraction_valid": "float"
+      },
+      "tolerance": {
+        "fraction_valid": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "transitions.csv": {
+      "columns": [
+        "id",
+        "record",
+        "from_stage",
+        "to_stage",
+        "n",
+        "row_total",
+        "probability"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "record": "text",
+        "from_stage": "text",
+        "to_stage": "text",
+        "n": "int",
+        "row_total": "int",
+        "probability": "float"
+      },
+      "tolerance": {
+        "probability": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

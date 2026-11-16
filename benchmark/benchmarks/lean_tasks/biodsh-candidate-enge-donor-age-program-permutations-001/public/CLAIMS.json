@@ -1,0 +1,152 @@
+{
+  "revision": "round9_lean_v1",
+  "task_id": "biodsh-candidate-enge-donor-age-program-permutations-001",
+  "claims": [
+    {
+      "id": "stress_rho",
+      "type": "number",
+      "question": "供体平均stress分数与年龄顺序的Spearman相关。",
+      "binding": {
+        "table": "age_association.csv",
+        "key_column": "program",
+        "key": "stress",
+        "column": "spearman_rho"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "offtype_p",
+      "type": "number",
+      "question": "offtype_hormone的双侧给定置换p值。",
+      "binding": {
+        "table": "age_association.csv",
+        "key_column": "program",
+        "key": "offtype_hormone",
+        "column": "permutation_p"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "identity_rho",
+      "type": "number",
+      "question": "identity与供体年龄顺序的相关。",
+      "binding": {
+        "table": "age_association.csv",
+        "key_column": "program",
+        "key": "identity",
+        "column": "spearman_rho"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "stress_loo_min",
+      "type": "number",
+      "question": "stress逐一删供体后的最小相关。",
+      "binding": {
+        "table": "age_association.csv",
+        "key_column": "program",
+        "key": "stress",
+        "column": "loo_min_rho"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "stress_loo_max",
+      "type": "number",
+      "question": "stress逐一删供体后的最大相关。",
+      "binding": {
+        "table": "age_association.csv",
+        "key_column": "program",
+        "key": "stress",
+        "column": "loo_max_rho"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "offtype_rho",
+      "type": "number",
+      "question": "offtype_hormone与年龄顺序相关。",
+      "binding": {
+        "table": "age_association.csv",
+        "key_column": "program",
+        "key": "offtype_hormone",
+        "column": "spearman_rho"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "stress_positive",
+      "type": "derived",
+      "question": "stress与年龄的秩关联是否为正？",
+      "options": [
+        "positive_rank_association",
+        "nonpositive_rank_association",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "age_association.csv",
+          "key_column": "program",
+          "key": "stress",
+          "column": "spearman_rho"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "positive_rank_association",
+          "false": "nonpositive_rank_association"
+        }
+      }
+    },
+    {
+      "id": "offtype_not_significant",
+      "type": "derived",
+      "question": "给定置换p是否大于0.05？",
+      "options": [
+        "p_above_0_05_no_rejection",
+        "p_at_most_0_05",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "age_association.csv",
+          "key_column": "program",
+          "key": "offtype_hormone",
+          "column": "permutation_p"
+        },
+        "op": "gt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "p_above_0_05_no_rejection",
+          "false": "p_at_most_0_05"
+        }
+      }
+    },
+    {
+      "id": "sampling_unit",
+      "type": "choice",
+      "question": "年龄关联的独立证据单位是什么？",
+      "options": [
+        "donor_conditional_on_sampling",
+        "all_96_cells_independent",
+        "each_gene_independent_donor"
+      ]
+    },
+    {
+      "id": "offtype_interpretation",
+      "type": "choice",
+      "question": "异型激素分数增高可以直接证明转分化吗？",
+      "options": [
+        "no_contamination_and_state_changes_are_alternatives",
+        "yes_proves_alpha_to_beta_conversion",
+        "yes_proves_mutation_causality"
+      ]
+    }
+  ]
+}

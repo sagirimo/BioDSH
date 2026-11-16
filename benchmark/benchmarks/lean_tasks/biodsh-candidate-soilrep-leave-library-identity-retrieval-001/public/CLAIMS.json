@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-soilrep-leave-library-identity-retrieval-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "读数池化土样等权准确率？",
+      "binding": {
+        "table": "retrieval_summary.csv",
+        "key_column": "id",
+        "key": "read_pool",
+        "column": "soil_weighted_accuracy"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "文库等权准确率？",
+      "binding": {
+        "table": "retrieval_summary.csv",
+        "key_column": "id",
+        "key": "equal_library",
+        "column": "soil_weighted_accuracy"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "读数池化MRR？",
+      "binding": {
+        "table": "retrieval_summary.csv",
+        "key_column": "id",
+        "key": "read_pool",
+        "column": "soil_weighted_mrr"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "文库等权MRR？",
+      "binding": {
+        "table": "retrieval_summary.csv",
+        "key_column": "id",
+        "key": "equal_library",
+        "column": "soil_weighted_mrr"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "读数池化真实参考平均距离？",
+      "binding": {
+        "table": "retrieval_summary.csv",
+        "key_column": "id",
+        "key": "read_pool",
+        "column": "mean_true_distance"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "文库等权平均检索间距？",
+      "binding": {
+        "table": "retrieval_summary.csv",
+        "key_column": "id",
+        "key": "equal_library",
+        "column": "mean_margin"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "读数池化准确率是否>.5？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "retrieval_summary.csv",
+          "key_column": "id",
+          "key": "read_pool",
+          "column": "soil_weighted_accuracy"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "文库等权平均间距是否为正？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "retrieval_summary.csv",
+          "key_column": "id",
+          "key": "equal_library",
+          "column": "mean_margin"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "正确分析单位和解释？",
+      "options": [
+        "土样是生物单位，文库为技术重复；检索反映内部一致性",
+        "56文库是56独立土样",
+        "这给出新土样治疗效应"
+      ]
+    }
+  ]
+}

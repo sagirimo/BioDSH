@@ -1,0 +1,12 @@
+存量原题 biodsh-candidate-family-snv-clinvar-002 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-family-snv-clinvar-002
+source: "bioagent_bench"
+source_registry_id: "bioagent_bench"
+source_family: "bioagent_bench"
+source_case: "cystic_fibrosis_family_SNV_missingness_20250521_adaptation"
+source_revision: "6d098b602b8a8fdc33a9d25e410a502be7ed9ce0"
+source_terms: "BioAgent/SnpEff example data/underlying sequencing terms and ClinVar attribution reviewed separately"
+family_keys: ["Pedigree:CEPH1463", "Study:CompleteGenomicsDiversityPanel:CEPH1463", "SimulatedDiseaseSpike:SnpEffProtocols:CF", "Person:NA12877", "Person:NA12878", "Person:NA12879", "Person:NA12880", "Person:NA12881", "Person:NA12882", "Person:NA12883", "Person:NA12884", "Person:NA12885", "Person:NA12886", "Person:NA12887", "Person:NA12888", "Person:NA12889", "Person:NA12890", "Person:NA12891", "Person:NA12892", "Person:NA12893"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+
+来源登记条目：{"id": "bioagent_bench", "family": "bioagent_bench", "type": "task_collection", "name": "BioAgent Bench", "reported_size": "10 curated end-to-end workflows", "url": "https://github.com/bioagent-bench/bioagent-bench", "value": "RNA-seq、变异、宏基因组流程与扰动", "candidate_domains": ["D01", "D02", "D06"], "availability": "公开仓库；逐流程复现待做", "priority": "P0", "caveat": "流程和扰动不算独立数据集；不要混同另一同名单细胞评测", "current_qualified_fixed_contract_count": 6}

@@ -1,0 +1,134 @@
+{
+  "task_id": "biodsh-candidate-genehop-rs1278530438-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "全部组装/等位基因定位行数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "placement_rows"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "完整转录本后果记录数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "transcript_consequence_rows"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "保留独立分母的频率行数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "frequency_rows"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "正确GeneID连接后的基因数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "distinct_genes"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "未任意筛选的全部GO证据行数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "GO_annotation_rows"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "不同GO术语数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "distinct_GO_terms"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "冻结快照是否没有任何GO注释？整数行数小于0.5即为没有注释",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "terminal_summary.csv",
+          "keys": {
+            "metric": "GO_annotation_rows"
+          },
+          "column": "value"
+        },
+        "op": "lt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "变异关联到一个含GO注释的基因能推出什么？",
+      "options": [
+        "source_annotation_link_not_variant_functional_causality",
+        "variant_is_pathogenic",
+        "GO_annotation_is_variant_effect_experiment"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "冻结快照中无某类证据应如何解释？",
+      "options": [
+        "not_available_in_snapshot_not_absence_of_biological_function",
+        "gene_has_no_biological_function",
+        "all_external_databases_are_empty"
+      ]
+    }
+  ]
+}

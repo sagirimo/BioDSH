@@ -1,0 +1,7 @@
+Komarova SV, Smith RJ, Dixon SJ, Sims SM, Wahl LM. Mathematical model predicts a critical role for osteoclast autocrine regulation in the control of bone remodeling. Bone 2003;33:206–215. DOI:10.1016/S8756-3282(03)00157-1; PMID:14499354.
+BioModels BIOMD0000000148 / MODEL6029826395, curated model; SBML retains original annotations and attribution.
+Retrieved 2026-10-16: https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000148?filename=BIOMD0000000148_url.xml
+Original SBML bytes unchanged, renamed BIOMD0000000148.xml. scenarios.csv is a newly authored deterministic parameter protocol, not measured data. Subsystem equations follow reactions R1–R4; source annotations note correction of a printed steady-state formula.
+BioModels reference: Le Novère N et al. Nucleic Acids Res. 2006;34:D689–D691. DOI:10.1093/nar/gkj092.
+Terms reference retained in SBML: https://www.ebi.ac.uk/biomodels/legal.html
+仅限本地科研使用、保留署名；本任务包不得对外再分发。分析协议由本项目新编，不采用其他 agent benchmark 的题目或切分。

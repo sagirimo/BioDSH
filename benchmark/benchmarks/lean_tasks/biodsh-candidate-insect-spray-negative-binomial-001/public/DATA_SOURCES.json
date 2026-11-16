@@ -1,0 +1,7 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/InsectSprays.html",
+ "input_files_sha256": {
+  "inputs/counts.csv": "3a9f7e6856a277940aa7950f9d473949c14c1bbdf7b1cc6d170d8d6b830878bf"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

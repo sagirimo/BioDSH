@@ -1,0 +1,9 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60361",
+ "input_files_sha256": {
+  "inputs/cell_metadata.csv": "caed140d6645657b4950d052cf8c09bffad4134add1dd165bf57eee0e2ad5f9f",
+  "inputs/marker_sets.csv": "6911dfb33895eff45fdfefee7fb72887c9af42a6c024280e9253d3668f1897b1",
+  "inputs/panel_counts.csv": "81316756e6ff78f743bb5af00b4896f01dc610662ddf83b8edcad8b18a08f8de"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,21 @@
+{
+ "source_url": "https://bioconductor.posit.co/packages/3.22/data/experiment/html/zebrafishRNASeq.html",
+ "input_files_sha256": {
+  "inputs/PUBLIC_OUTPUT_NAMING_AND_TYPES.json": "d8cbce45802fd2d911fb398ab609ac67a2ceb02c4d76a30609fd8aced3865326",
+  "inputs/R_session_info.txt": "3ec585c08159a3f3858e18acef6b47b3eb08ea622adb03c8dcedf3d9ac021be6",
+  "inputs/counts.csv": "49ebad1713de8607e73b0ce80f1baba79e63da75717172a3c75f2cbc343d15ab",
+  "inputs/design.json": "d38418d159b38d6451a96446fc4d1431738a16184b619e9d7ada10e948e29797",
+  "inputs/kind.txt": "d0894d25d3f9762f439060a77304d469c75f23394ea19029dcbcdd9607896b68",
+  "inputs/native_attributes.txt": "1bc1d0cc4676accb1f2e931fe53402db0f76fab50d225cddffd1125d0f43412a",
+  "inputs/native_census.csv": "03f95b17ef23016f1d74be8d619b23cf9fcf59532c78b08fdce398b59c284ad7",
+  "inputs/native_counts.csv": "4c9968cf25b56b59f6de8c017d81d84acec359567125e3e33c54cd9598f0ca66",
+  "inputs/native_features.csv": "62ed6ebc6bf5b0c3b348c47cf363235e107f70079ae2b3cbe7cc15f0eaec3c77",
+  "inputs/native_object_structure.txt": "ea0f8fb278d986ea1a344696af012f5b82d70942e4196114c1cb48d2c0717cb6",
+  "inputs/native_samples.csv": "7f19c086466f813f59627993feecb4b4f9621af07e9fa85b70396007a91d8c90",
+  "inputs/native_zfGenes.rds": "7f323952580ad926a31dec956136d14f5d5965b221592a4a914bd4cf02922bbe",
+  "inputs/original_zfGenes.rda": "3783a5d6a5e6be57a4a26a7dc2e97550c2a261d257671912aacfde6f6dc43dd1",
+  "inputs/samples.csv": "5f95e10256548b71b8baeeeadb9caf237ec1af77f09798d17b1a6487ee5e15be",
+  "inputs/table_schema.csv": "b7a48b048e7de908254766f94182c8f51df1bc6cbbcaacfdcbaee43da55a48b0"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

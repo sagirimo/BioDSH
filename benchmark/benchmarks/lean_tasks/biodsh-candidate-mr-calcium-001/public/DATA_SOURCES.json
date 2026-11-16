@@ -1,0 +1,9 @@
+{
+ "source_url": "",
+ "input_files_sha256": {
+  "inputs/LD_matrix.json": "ea318ed78f5ea9d2624159821a0909e64e15edbd03e46e2748eef44e8ec17d57",
+  "inputs/associations.csv": "612733020418d052df94e2e5ea95853dfe2d9250be7c52c2d8cadc29a3da1158",
+  "inputs/design.json": "1c0cc0c3581c9b55ee3a1b0857466baec50276c1f748e65f11ee8d7bd18ac4fd"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,15 @@
+{
+ "source_url": "https://www.nature.com/articles/s41592-022-01431-4",
+ "input_files_sha256": {
+  "inputs/agitated_blackwell_7.profile": "cd088e08b99376479d1dca1e639190bab482e40469ee4d4ab5ea22eeb385fa28",
+  "inputs/cranky_wozniak_13.profile": "aa26cc4ccbb4d720a2e4b2939c56e3a39d8b4cd8dc8b3715e5eb4eec9bbcf1ac",
+  "inputs/design.json": "a846f3c37c815c6f2e6a0c98411fb074383e0eb01bb300c6bd4a48c6d9c0de43",
+  "inputs/evil_darwin_13.profile": "717636d360b3c28e932d1aef3ea5c3ce526449387504e42efcfd35add532f7c7",
+  "inputs/focused_archimedes_13.profile": "659a47e08255b28ea69786be5a5d4a1f9dbdb72449108c7f73fafacf2dfa1c38",
+  "inputs/furious_elion_13.profile": "9642c7d5974eb3c8864ec32f6c8c96d91797cec699d47e1d517f563676e21039",
+  "inputs/gold.profile": "2034f9491e0d9dd53146611d22003da00a2a60a8a0933bba18bff0dbfd5fcf5b",
+  "inputs/grave_wright_13.profile": "08ffffe06799deebf5190b656a0d80cf258362a5af93cdf5ad15b107e1c04089",
+  "inputs/jolly_pasteur_3.profile": "76e60cf75243f22161dce29db2e555708bc1444272186772d04ab04433040144"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

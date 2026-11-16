@@ -1,0 +1,262 @@
+{
+  "tables": {
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "int",
+        "scope": "text"
+      }
+    },
+    "metric_rankings.csv": {
+      "columns": [
+        "ranking_id",
+        "rank",
+        "metric",
+        "method_id",
+        "value",
+        "ordinal_rank"
+      ],
+      "key": [
+        "ranking_id"
+      ],
+      "types": {
+        "ranking_id": "text",
+        "rank": "text",
+        "metric": "text",
+        "method_id": "text",
+        "value": "float",
+        "ordinal_rank": "int"
+      },
+      "tolerance": {
+        "value": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "profile_audit.csv": {
+      "columns": [
+        "profile_id",
+        "source_file",
+        "sample_id",
+        "parsed_rows",
+        "zero_rows",
+        "other_rank_rows",
+        "other_rank_mass_percentage",
+        "comment_rows",
+        "missing_path_rows",
+        "source_program",
+        "version"
+      ],
+      "key": [
+        "profile_id"
+      ],
+      "types": {
+        "profile_id": "text",
+        "source_file": "text",
+        "sample_id": "text",
+        "parsed_rows": "int",
+        "zero_rows": "int",
+        "other_rank_rows": "int",
+        "other_rank_mass_percentage": "float",
+        "comment_rows": "int",
+        "missing_path_rows": "int",
+        "source_program": "text",
+        "version": "text"
+      },
+      "tolerance": {
+        "other_rank_mass_percentage": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "rank_metrics.csv": {
+      "columns": [
+        "metric_id",
+        "method_id",
+        "rank",
+        "gold_taxa",
+        "predicted_taxa",
+        "TP",
+        "FP",
+        "FN",
+        "precision",
+        "recall",
+        "F1",
+        "Jaccard",
+        "gold_mass_percentage",
+        "predicted_mass_percentage",
+        "raw_L1_percentage_points",
+        "normalized_L1",
+        "raw_Bray_Curtis",
+        "normalized_Bray_Curtis",
+        "gold_Shannon",
+        "predicted_Shannon",
+        "gold_evenness",
+        "predicted_evenness"
+      ],
+      "key": [
+        "metric_id"
+      ],
+      "types": {
+        "metric_id": "text",
+        "method_id": "text",
+        "rank": "text",
+        "gold_taxa": "int",
+        "predicted_taxa": "int",
+        "TP": "int",
+        "FP": "int",
+        "FN": "int",
+        "precision": "float",
+        "recall": "float",
+        "F1": "float",
+        "Jaccard": "float",
+        "gold_mass_percentage": "float",
+        "predicted_mass_percentage": "float",
+        "raw_L1_percentage_points": "float",
+        "normalized_L1": "float",
+        "raw_Bray_Curtis": "float",
+        "normalized_Bray_Curtis": "float",
+        "gold_Shannon": "float",
+        "predicted_Shannon": "float",
+        "gold_evenness": "float",
+        "predicted_evenness": "float"
+      },
+      "tolerance": {
+        "precision": [
+          1e-08,
+          1e-08
+        ],
+        "recall": [
+          1e-08,
+          1e-08
+        ],
+        "F1": [
+          1e-08,
+          1e-08
+        ],
+        "Jaccard": [
+          1e-08,
+          1e-08
+        ],
+        "gold_mass_percentage": [
+          1e-08,
+          1e-08
+        ],
+        "predicted_mass_percentage": [
+          1e-08,
+          1e-08
+        ],
+        "raw_L1_percentage_points": [
+          1e-08,
+          1e-08
+        ],
+        "normalized_L1": [
+          1e-08,
+          1e-08
+        ],
+        "raw_Bray_Curtis": [
+          1e-08,
+          1e-08
+        ],
+        "normalized_Bray_Curtis": [
+          1e-08,
+          1e-08
+        ],
+        "gold_Shannon": [
+          1e-08,
+          1e-08
+        ],
+        "predicted_Shannon": [
+          1e-08,
+          1e-08
+        ],
+        "gold_evenness": [
+          1e-08,
+          1e-08
+        ],
+        "predicted_evenness": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "int"
+      }
+    },
+    "taxon_errors.csv": {
+      "columns": [
+        "error_id",
+        "method_id",
+        "rank",
+        "taxid",
+        "gold_percentage",
+        "predicted_percentage",
+        "gold_conditional_fraction",
+        "predicted_conditional_fraction",
+        "raw_absolute_error_percentage_points",
+        "conditional_absolute_error"
+      ],
+      "key": [
+        "error_id"
+      ],
+      "types": {
+        "error_id": "text",
+        "method_id": "text",
+        "rank": "text",
+        "taxid": "text",
+        "gold_percentage": "float",
+        "predicted_percentage": "float",
+        "gold_conditional_fraction": "float",
+        "predicted_conditional_fraction": "float",
+        "raw_absolute_error_percentage_points": "float",
+        "conditional_absolute_error": "float"
+      },
+      "tolerance": {
+        "gold_percentage": [
+          1e-08,
+          1e-08
+        ],
+        "predicted_percentage": [
+          1e-08,
+          1e-08
+        ],
+        "gold_conditional_fraction": [
+          1e-08,
+          1e-08
+        ],
+        "predicted_conditional_fraction": [
+          1e-08,
+          1e-08
+        ],
+        "raw_absolute_error_percentage_points": [
+          1e-08,
+          1e-08
+        ],
+        "conditional_absolute_error": [
+          1e-08,
+          1e-08
+        ]
+      }
+    }
+  }
+}

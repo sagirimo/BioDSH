@@ -1,0 +1,130 @@
+{
+  "tables": {
+    "association.csv": {
+      "columns": [
+        "id",
+        "partial_rho",
+        "t",
+        "p_value",
+        "q_value"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "partial_rho": "float",
+        "t": "float",
+        "p_value": "float",
+        "q_value": "float"
+      },
+      "tolerance": {
+        "partial_rho": [
+          1e-05,
+          1e-08
+        ],
+        "t": [
+          1e-05,
+          1e-08
+        ],
+        "p_value": [
+          1e-05,
+          1e-08
+        ],
+        "q_value": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "influence.csv": {
+      "columns": [
+        "id",
+        "min_loo_rho",
+        "max_loo_rho",
+        "max_abs_delta_rho",
+        "worst_gsm",
+        "sign_changes"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "min_loo_rho": "float",
+        "max_loo_rho": "float",
+        "max_abs_delta_rho": "float",
+        "worst_gsm": "text",
+        "sign_changes": "int"
+      },
+      "tolerance": {
+        "min_loo_rho": [
+          1e-05,
+          1e-08
+        ],
+        "max_loo_rho": [
+          1e-05,
+          1e-08
+        ],
+        "max_abs_delta_rho": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "participants.csv": {
+      "columns": [
+        "id",
+        "mmse",
+        "age",
+        "male",
+        "pmi"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "mmse": "int",
+        "age": "int",
+        "male": "int",
+        "pmi": "float"
+      },
+      "tolerance": {
+        "pmi": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "features",
+        "test_df",
+        "q_lt_005",
+        "median_max_influence",
+        "sign_stable_discoveries"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "features": "int",
+        "test_df": "int",
+        "q_lt_005": "int",
+        "median_max_influence": "float",
+        "sign_stable_discoveries": "int"
+      },
+      "tolerance": {
+        "median_max_influence": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

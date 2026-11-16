@@ -1,0 +1,116 @@
+{
+  "tables": {
+    "beat_scg_features.csv": {
+      "columns": [
+        "id",
+        "r_time_s",
+        "scg_delay_ms",
+        "scg_peak_mV"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "r_time_s": "float",
+        "scg_delay_ms": "int",
+        "scg_peak_mV": "float"
+      },
+      "tolerance": {
+        "r_time_s": [
+          1e-05,
+          1e-08
+        ],
+        "scg_peak_mV": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "ensemble_summary.csv": {
+      "columns": [
+        "id",
+        "n_beats",
+        "mean_beat_delay_ms",
+        "median_beat_delay_ms",
+        "ensemble_delay_ms",
+        "ensemble_peak_mV",
+        "ensemble_rms_mV"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_beats": "int",
+        "mean_beat_delay_ms": "float",
+        "median_beat_delay_ms": "int",
+        "ensemble_delay_ms": "int",
+        "ensemble_peak_mV": "float",
+        "ensemble_rms_mV": "float"
+      },
+      "tolerance": {
+        "mean_beat_delay_ms": [
+          1e-05,
+          1e-08
+        ],
+        "ensemble_peak_mV": [
+          1e-05,
+          1e-08
+        ],
+        "ensemble_rms_mV": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "triggered_waveforms.csv": {
+      "columns": [
+        "id",
+        "relative_ms",
+        "mean_mV",
+        "sd_mV"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "relative_ms": "int",
+        "mean_mV": "float",
+        "sd_mV": "float"
+      },
+      "tolerance": {
+        "mean_mV": [
+          1e-05,
+          1e-08
+        ],
+        "sd_mV": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "window_sensitivity.csv": {
+      "columns": [
+        "id",
+        "late_minus_early_delay_ms",
+        "late_minus_early_peak_mV"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "late_minus_early_delay_ms": "int",
+        "late_minus_early_peak_mV": "float"
+      },
+      "tolerance": {
+        "late_minus_early_peak_mV": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

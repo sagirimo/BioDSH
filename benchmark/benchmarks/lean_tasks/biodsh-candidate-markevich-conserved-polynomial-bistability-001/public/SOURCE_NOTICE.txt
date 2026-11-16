@@ -1,0 +1,2 @@
+Markevich NI,Hoek JB,Kholodenko BN2004 Signaling switches and bistability arising from multisite phosphorylation in protein kinase cascades. J Cell Biol164:353–359 DOI10.1083/jcb.200308060 PMID14744999。公开BioModels BIOMD0000000027有序Michaelis–Menten双磷酸化模型，完整原始XML来自https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000027?filename=BIOMD0000000027_url.xml。原文图3说明参数浓度nM、催化率s^-1。本题不使用Kholodenko2000三层负反馈模型，不使用benchmark切分。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

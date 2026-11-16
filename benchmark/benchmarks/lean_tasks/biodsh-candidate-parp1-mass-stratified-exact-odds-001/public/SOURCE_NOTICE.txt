@@ -1,0 +1,2 @@
+来源：Ren J, Quan X, Liu Y, Li J, Zhang X, Li Z, Zhang X. 2022. Synthesis and in vitro biological evaluation of 3-ethyl-1,5-naphthyridin-2(1H)-one derivatives as potent PARP-1 selective inhibitors and PARP-1 DNA trappers. DOI10.1016/j.bmcl.2022.129046，PMID36343904。ChEMBL文献CHEMBL5150037，测定CHEMBL5152892。下载 https://www.ebi.ac.uk/chembl/api/data/activity.json?document_chembl_id=CHEMBL5150037&limit=1000 与molecule API。JSON原样交付；ChEMBL CC BY-SA 3.0；仅本地研究，不外发。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

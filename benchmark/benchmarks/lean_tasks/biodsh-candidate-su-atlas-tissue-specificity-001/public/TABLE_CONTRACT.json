@@ -1,0 +1,135 @@
+{
+  "tables": {
+    "selected_samples.csv": {
+      "columns": [
+        "id",
+        "tissue",
+        "replicate"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "tissue": "text",
+        "replicate": "int"
+      },
+      "tolerance": {}
+    },
+    "sensitivity.csv": {
+      "columns": [
+        "id",
+        "median_delta_tau",
+        "changed_top_tissue",
+        "specific_reproducible"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "median_delta_tau": "float",
+        "changed_top_tissue": "int",
+        "specific_reproducible": "int"
+      },
+      "tolerance": {
+        "median_delta_tau": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "specificity.csv": {
+      "columns": [
+        "id",
+        "tau",
+        "normalized_entropy",
+        "top_tissue",
+        "max_share",
+        "reproducible_winner",
+        "tau_floor100"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "tau": "float",
+        "normalized_entropy": "float",
+        "top_tissue": "text",
+        "max_share": "float",
+        "reproducible_winner": "int",
+        "tau_floor100": "float"
+      },
+      "tolerance": {
+        "tau": [
+          1e-05,
+          1e-08
+        ],
+        "normalized_entropy": [
+          1e-05,
+          1e-08
+        ],
+        "max_share": [
+          1e-05,
+          1e-08
+        ],
+        "tau_floor100": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "id",
+        "features",
+        "tissues",
+        "median_tau",
+        "median_entropy",
+        "reproducible_winner",
+        "specific_reproducible"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "features": "int",
+        "tissues": "int",
+        "median_tau": "float",
+        "median_entropy": "float",
+        "reproducible_winner": "int",
+        "specific_reproducible": "int"
+      },
+      "tolerance": {
+        "median_tau": [
+          1e-05,
+          1e-08
+        ],
+        "median_entropy": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "tissue_summary.csv": {
+      "columns": [
+        "id",
+        "top_probes",
+        "specific_reproducible",
+        "reproducible_top"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "top_probes": "int",
+        "specific_reproducible": "int",
+        "reproducible_top": "int"
+      },
+      "tolerance": {}
+    }
+  }
+}

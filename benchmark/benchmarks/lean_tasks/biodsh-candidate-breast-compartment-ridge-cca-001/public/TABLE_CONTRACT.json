@@ -1,0 +1,150 @@
+{
+  "tables": {
+    "coefficients.csv": {
+      "columns": [
+        "id",
+        "side",
+        "probe",
+        "weight"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "side": "text",
+        "probe": "text",
+        "weight": "float"
+      },
+      "tolerance": {
+        "weight": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "loo_scores.csv": {
+      "columns": [
+        "id",
+        "epithelium_score",
+        "stroma_score"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "epithelium_score": "float",
+        "stroma_score": "float"
+      },
+      "tolerance": {
+        "epithelium_score": [
+          1e-05,
+          1e-08
+        ],
+        "stroma_score": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "patient_scores.csv": {
+      "columns": [
+        "id",
+        "epithelium_score",
+        "stroma_score"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "epithelium_score": "float",
+        "stroma_score": "float"
+      },
+      "tolerance": {
+        "epithelium_score": [
+          1e-05,
+          1e-08
+        ],
+        "stroma_score": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "preprocessing.csv": {
+      "columns": [
+        "id",
+        "side",
+        "probe",
+        "mean",
+        "sd"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "side": "text",
+        "probe": "text",
+        "mean": "float",
+        "sd": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-05,
+          1e-08
+        ],
+        "sd": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "ridge_singular",
+        "in_sample_r",
+        "loo_r",
+        "loo_rmse"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "ridge_singular": "float",
+        "in_sample_r": "float",
+        "loo_r": "float",
+        "loo_rmse": "float"
+      },
+      "tolerance": {
+        "ridge_singular": [
+          1e-05,
+          1e-08
+        ],
+        "in_sample_r": [
+          1e-05,
+          1e-08
+        ],
+        "loo_r": [
+          1e-05,
+          1e-08
+        ],
+        "loo_rmse": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  },
+  "comparison_rule": "abs(candidate-reference) <= abs_tol + rel_tol*abs(reference); tolerance=[rel_tol,abs_tol]",
+  "missing": "NA; 按题面规则过滤或处理，不将缺失当0",
+  "ordering": "主键字符串精确比较；行顺序不计，列名按合同；并列按题面规则",
+  "randomness": "无随机步骤，或严格读取预生成方案输入",
+  "equivalent_implementations": "允许符合定义及容差的科学等价实现，不要求参考代码写法"
+}

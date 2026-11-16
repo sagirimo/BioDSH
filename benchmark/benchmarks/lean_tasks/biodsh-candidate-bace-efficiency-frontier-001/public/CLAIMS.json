@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v2_budget",
+  "task_id": "biodsh-candidate-bace-efficiency-frontier-001",
+  "claims": [
+    {
+      "id": "median_le",
+      "type": "number",
+      "question": "重原子效率中位数？",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "median_LE"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "median_lle",
+      "type": "number",
+      "question": "LLE中位数？",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "median_LLE"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "front",
+      "type": "number",
+      "question": "非支配第一层大小？",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "front_size"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "core",
+      "type": "number",
+      "question": "所有权重下共同入选分子数？",
+      "binding": {
+        "table": "robustness.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "core_count"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "min_overlap",
+      "type": "number",
+      "question": "各权重与等权预算名单的最小Jaccard？",
+      "binding": {
+        "table": "robustness.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "min_jaccard"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "le_only_lle",
+      "type": "number",
+      "question": "只偏重LE时三名候选的平均LLE？",
+      "binding": {
+        "table": "sensitivity.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "mean_LLE"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "core_exists",
+      "type": "derived",
+      "question": "是否至少两名分子始终入选？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "robustness.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "core_count"
+        },
+        "op": "gt",
+        "threshold": 1,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "unstable_list",
+      "type": "derived",
+      "question": "是否存在Jaccard低于0.9的名单？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "robustness.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "min_jaccard"
+        },
+        "op": "lt",
+        "threshold": 0.9,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "meaning",
+      "type": "choice",
+      "question": "预算名单怎样解释？",
+      "options": [
+        "context_dependent_prioritization_heuristics",
+        "measured_binding_free_energy",
+        "guaranteed_oral_bioavailability"
+      ]
+    }
+  ]
+}

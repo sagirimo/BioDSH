@@ -1,0 +1,10 @@
+{
+ "source_url": "https://cran.r-project.org/web/packages/vegan/index.html",
+ "input_files_sha256": {
+  "inputs/community.csv": "27e3b269273ea523a20dcd08594fe83978e60a648b05082711c9b6e2112b3113",
+  "inputs/design.json": "8f25df4f9a771cf4e038087e67610a7922da98b5f594ffba41f0501cc93a98ef",
+  "inputs/environment.csv": "a60e5cf2c3977f64613f8fb22b28b453d5341e364977e5b58abd2e972e517e3b",
+  "inputs/permutations.csv": "4b2016cce46dc68bc83152f838b33330d8bc7087c4c22d02cfabbbdc3eeb7112"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

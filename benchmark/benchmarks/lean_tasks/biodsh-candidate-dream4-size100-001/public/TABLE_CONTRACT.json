@@ -1,0 +1,723 @@
+{
+  "tables": {
+    "bonus_index_audit.csv": {
+      "columns": [
+        "pair_id",
+        "network_id",
+        "source_pair_row",
+        "regulator1",
+        "regulator2"
+      ],
+      "key": [
+        "pair_id"
+      ],
+      "types": {
+        "pair_id": "text",
+        "network_id": "text",
+        "source_pair_row": "int",
+        "regulator1": "text",
+        "regulator2": "text"
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "int",
+        "scope": "text"
+      }
+    },
+    "gene_audit.csv": {
+      "columns": [
+        "gene_id",
+        "network_id",
+        "gene",
+        "wildtype",
+        "knockout_self",
+        "knockdown_self",
+        "multifactorial_supplied",
+        "multifactorial_mean",
+        "multifactorial_sd_ddof1"
+      ],
+      "key": [
+        "gene_id"
+      ],
+      "types": {
+        "gene_id": "text",
+        "network_id": "text",
+        "gene": "text",
+        "wildtype": "float",
+        "knockout_self": "float",
+        "knockdown_self": "float",
+        "multifactorial_supplied": "int",
+        "multifactorial_mean": "float",
+        "multifactorial_sd_ddof1": "float"
+      },
+      "tolerance": {
+        "wildtype": [
+          1e-08,
+          1e-08
+        ],
+        "knockout_self": [
+          1e-08,
+          1e-08
+        ],
+        "knockdown_self": [
+          1e-08,
+          1e-08
+        ],
+        "multifactorial_mean": [
+          1e-08,
+          1e-08
+        ],
+        "multifactorial_sd_ddof1": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "network1_scores.csv": {
+      "columns": [
+        "edge_id",
+        "score"
+      ],
+      "key": [
+        "edge_id"
+      ],
+      "types": {
+        "edge_id": "text",
+        "score": "float"
+      },
+      "tolerance": {
+        "score": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "network2_scores.csv": {
+      "columns": [
+        "edge_id",
+        "score"
+      ],
+      "key": [
+        "edge_id"
+      ],
+      "types": {
+        "edge_id": "text",
+        "score": "float"
+      },
+      "tolerance": {
+        "score": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "network3_scores.csv": {
+      "columns": [
+        "edge_id",
+        "score"
+      ],
+      "key": [
+        "edge_id"
+      ],
+      "types": {
+        "edge_id": "text",
+        "score": "float"
+      },
+      "tolerance": {
+        "score": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "network4_scores.csv": {
+      "columns": [
+        "edge_id",
+        "score"
+      ],
+      "key": [
+        "edge_id"
+      ],
+      "types": {
+        "edge_id": "text",
+        "score": "float"
+      },
+      "tolerance": {
+        "score": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "network5_scores.csv": {
+      "columns": [
+        "edge_id",
+        "score"
+      ],
+      "key": [
+        "edge_id"
+      ],
+      "types": {
+        "edge_id": "text",
+        "score": "float"
+      },
+      "tolerance": {
+        "score": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "perturbation_effects_network1.csv": {
+      "columns": [
+        "effect_id",
+        "network_id",
+        "assay",
+        "regulator",
+        "target",
+        "wildtype",
+        "perturbed",
+        "delta",
+        "absolute_delta",
+        "log2_ratio_pseudocount1e_minus6"
+      ],
+      "key": [
+        "effect_id"
+      ],
+      "types": {
+        "effect_id": "text",
+        "network_id": "text",
+        "assay": "text",
+        "regulator": "text",
+        "target": "text",
+        "wildtype": "float",
+        "perturbed": "float",
+        "delta": "float",
+        "absolute_delta": "float",
+        "log2_ratio_pseudocount1e_minus6": "float"
+      },
+      "tolerance": {
+        "wildtype": [
+          1e-08,
+          1e-08
+        ],
+        "perturbed": [
+          1e-08,
+          1e-08
+        ],
+        "delta": [
+          1e-08,
+          1e-08
+        ],
+        "absolute_delta": [
+          1e-08,
+          1e-08
+        ],
+        "log2_ratio_pseudocount1e_minus6": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "perturbation_effects_network2.csv": {
+      "columns": [
+        "effect_id",
+        "network_id",
+        "assay",
+        "regulator",
+        "target",
+        "wildtype",
+        "perturbed",
+        "delta",
+        "absolute_delta",
+        "log2_ratio_pseudocount1e_minus6"
+      ],
+      "key": [
+        "effect_id"
+      ],
+      "types": {
+        "effect_id": "text",
+        "network_id": "text",
+        "assay": "text",
+        "regulator": "text",
+        "target": "text",
+        "wildtype": "float",
+        "perturbed": "float",
+        "delta": "float",
+        "absolute_delta": "float",
+        "log2_ratio_pseudocount1e_minus6": "float"
+      },
+      "tolerance": {
+        "wildtype": [
+          1e-08,
+          1e-08
+        ],
+        "perturbed": [
+          1e-08,
+          1e-08
+        ],
+        "delta": [
+          1e-08,
+          1e-08
+        ],
+        "absolute_delta": [
+          1e-08,
+          1e-08
+        ],
+        "log2_ratio_pseudocount1e_minus6": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "perturbation_effects_network3.csv": {
+      "columns": [
+        "effect_id",
+        "network_id",
+        "assay",
+        "regulator",
+        "target",
+        "wildtype",
+        "perturbed",
+        "delta",
+        "absolute_delta",
+        "log2_ratio_pseudocount1e_minus6"
+      ],
+      "key": [
+        "effect_id"
+      ],
+      "types": {
+        "effect_id": "text",
+        "network_id": "text",
+        "assay": "text",
+        "regulator": "text",
+        "target": "text",
+        "wildtype": "float",
+        "perturbed": "float",
+        "delta": "float",
+        "absolute_delta": "float",
+        "log2_ratio_pseudocount1e_minus6": "float"
+      },
+      "tolerance": {
+        "wildtype": [
+          1e-08,
+          1e-08
+        ],
+        "perturbed": [
+          1e-08,
+          1e-08
+        ],
+        "delta": [
+          1e-08,
+          1e-08
+        ],
+        "absolute_delta": [
+          1e-08,
+          1e-08
+        ],
+        "log2_ratio_pseudocount1e_minus6": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "perturbation_effects_network4.csv": {
+      "columns": [
+        "effect_id",
+        "network_id",
+        "assay",
+        "regulator",
+        "target",
+        "wildtype",
+        "perturbed",
+        "delta",
+        "absolute_delta",
+        "log2_ratio_pseudocount1e_minus6"
+      ],
+      "key": [
+        "effect_id"
+      ],
+      "types": {
+        "effect_id": "text",
+        "network_id": "text",
+        "assay": "text",
+        "regulator": "text",
+        "target": "text",
+        "wildtype": "float",
+        "perturbed": "float",
+        "delta": "float",
+        "absolute_delta": "float",
+        "log2_ratio_pseudocount1e_minus6": "float"
+      },
+      "tolerance": {
+        "wildtype": [
+          1e-08,
+          1e-08
+        ],
+        "perturbed": [
+          1e-08,
+          1e-08
+        ],
+        "delta": [
+          1e-08,
+          1e-08
+        ],
+        "absolute_delta": [
+          1e-08,
+          1e-08
+        ],
+        "log2_ratio_pseudocount1e_minus6": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "perturbation_effects_network5.csv": {
+      "columns": [
+        "effect_id",
+        "network_id",
+        "assay",
+        "regulator",
+        "target",
+        "wildtype",
+        "perturbed",
+        "delta",
+        "absolute_delta",
+        "log2_ratio_pseudocount1e_minus6"
+      ],
+      "key": [
+        "effect_id"
+      ],
+      "types": {
+        "effect_id": "text",
+        "network_id": "text",
+        "assay": "text",
+        "regulator": "text",
+        "target": "text",
+        "wildtype": "float",
+        "perturbed": "float",
+        "delta": "float",
+        "absolute_delta": "float",
+        "log2_ratio_pseudocount1e_minus6": "float"
+      },
+      "tolerance": {
+        "wildtype": [
+          1e-08,
+          1e-08
+        ],
+        "perturbed": [
+          1e-08,
+          1e-08
+        ],
+        "delta": [
+          1e-08,
+          1e-08
+        ],
+        "absolute_delta": [
+          1e-08,
+          1e-08
+        ],
+        "log2_ratio_pseudocount1e_minus6": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "timeseries_summary.csv": {
+      "columns": [
+        "trajectory_id",
+        "network_id",
+        "series_id",
+        "gene",
+        "timepoints",
+        "baseline",
+        "at500",
+        "at1000",
+        "minimum",
+        "maximum",
+        "peak_absolute_change_time",
+        "integral_0to1000",
+        "integral_0to500",
+        "integral_500to1000"
+      ],
+      "key": [
+        "trajectory_id"
+      ],
+      "types": {
+        "trajectory_id": "text",
+        "network_id": "text",
+        "series_id": "text",
+        "gene": "text",
+        "timepoints": "int",
+        "baseline": "float",
+        "at500": "float",
+        "at1000": "float",
+        "minimum": "float",
+        "maximum": "float",
+        "peak_absolute_change_time": "float",
+        "integral_0to1000": "float",
+        "integral_0to500": "float",
+        "integral_500to1000": "float"
+      },
+      "tolerance": {
+        "baseline": [
+          1e-08,
+          1e-08
+        ],
+        "at500": [
+          1e-08,
+          1e-08
+        ],
+        "at1000": [
+          1e-08,
+          1e-08
+        ],
+        "minimum": [
+          1e-08,
+          1e-08
+        ],
+        "maximum": [
+          1e-08,
+          1e-08
+        ],
+        "peak_absolute_change_time": [
+          1e-08,
+          1e-08
+        ],
+        "integral_0to1000": [
+          1e-08,
+          1e-08
+        ],
+        "integral_0to500": [
+          1e-08,
+          1e-08
+        ],
+        "integral_500to1000": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "training_audit.csv": {
+      "columns": [
+        "file_id",
+        "network_id",
+        "assay",
+        "rows",
+        "columns",
+        "genes",
+        "time_series",
+        "minimum",
+        "maximum"
+      ],
+      "key": [
+        "file_id"
+      ],
+      "types": {
+        "file_id": "text",
+        "network_id": "text",
+        "assay": "text",
+        "rows": "int",
+        "columns": "int",
+        "genes": "int",
+        "time_series": "int",
+        "minimum": "float",
+        "maximum": "float"
+      },
+      "tolerance": {
+        "minimum": [
+          1e-08,
+          1e-08
+        ],
+        "maximum": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "trajectory_values_network1.csv": {
+      "columns": [
+        "point_id",
+        "network_id",
+        "series_id",
+        "gene",
+        "time",
+        "expression"
+      ],
+      "key": [
+        "point_id"
+      ],
+      "types": {
+        "point_id": "text",
+        "network_id": "text",
+        "series_id": "text",
+        "gene": "text",
+        "time": "float",
+        "expression": "float"
+      },
+      "tolerance": {
+        "time": [
+          1e-08,
+          1e-08
+        ],
+        "expression": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "trajectory_values_network2.csv": {
+      "columns": [
+        "point_id",
+        "network_id",
+        "series_id",
+        "gene",
+        "time",
+        "expression"
+      ],
+      "key": [
+        "point_id"
+      ],
+      "types": {
+        "point_id": "text",
+        "network_id": "text",
+        "series_id": "text",
+        "gene": "text",
+        "time": "float",
+        "expression": "float"
+      },
+      "tolerance": {
+        "time": [
+          1e-08,
+          1e-08
+        ],
+        "expression": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "trajectory_values_network3.csv": {
+      "columns": [
+        "point_id",
+        "network_id",
+        "series_id",
+        "gene",
+        "time",
+        "expression"
+      ],
+      "key": [
+        "point_id"
+      ],
+      "types": {
+        "point_id": "text",
+        "network_id": "text",
+        "series_id": "text",
+        "gene": "text",
+        "time": "float",
+        "expression": "float"
+      },
+      "tolerance": {
+        "time": [
+          1e-08,
+          1e-08
+        ],
+        "expression": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "trajectory_values_network4.csv": {
+      "columns": [
+        "point_id",
+        "network_id",
+        "series_id",
+        "gene",
+        "time",
+        "expression"
+      ],
+      "key": [
+        "point_id"
+      ],
+      "types": {
+        "point_id": "text",
+        "network_id": "text",
+        "series_id": "text",
+        "gene": "text",
+        "time": "float",
+        "expression": "float"
+      },
+      "tolerance": {
+        "time": [
+          1e-08,
+          1e-08
+        ],
+        "expression": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "trajectory_values_network5.csv": {
+      "columns": [
+        "point_id",
+        "network_id",
+        "series_id",
+        "gene",
+        "time",
+        "expression"
+      ],
+      "key": [
+        "point_id"
+      ],
+      "types": {
+        "point_id": "text",
+        "network_id": "text",
+        "series_id": "text",
+        "gene": "text",
+        "time": "float",
+        "expression": "float"
+      },
+      "tolerance": {
+        "time": [
+          1e-08,
+          1e-08
+        ],
+        "expression": [
+          1e-08,
+          1e-08
+        ]
+      }
+    }
+  }
+}

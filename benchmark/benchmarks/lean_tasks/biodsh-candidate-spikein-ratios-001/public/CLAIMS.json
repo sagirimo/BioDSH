@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-spikein-ratios-001",
+  "claims": [
+    {
+      "id": "samples",
+      "type": "number",
+      "question": "输入样本数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "samples",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "complete_pre_day14_pairs",
+      "type": "number",
+      "question": "完整同患者pre/d14配对数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "complete_pre_day14_pairs",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "patients_excluded_from_pre_day14_pairs",
+      "type": "number",
+      "question": "缺完整配对的患者数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "patients_excluded_from_pre_day14_pairs",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "first_size_factor",
+      "type": "number",
+      "question": "样本MID26的S.ruber校准因子。",
+      "binding": {
+        "table": "sample_audit.csv",
+        "key_column": "sample_id",
+        "key": "MID26",
+        "column": "size_factor"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "enterococcus_SCML",
+      "type": "number",
+      "question": "患者Patient1的Enterococcus校准log2配对比。",
+      "binding": {
+        "table": "paired_ratios.csv",
+        "key_column": "record_id",
+        "key": "Patient1|genus_50c5c5dc34fbdd2b",
+        "column": "log2_SCML_ratio"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "enterococcus_relative",
+      "type": "number",
+      "question": "该患者Enterococcus相对丰度log2配对比。",
+      "binding": {
+        "table": "paired_ratios.csv",
+        "key_column": "record_id",
+        "key": "Patient1|genus_50c5c5dc34fbdd2b",
+        "column": "log2_relative_ratio"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "SCML_direction",
+      "type": "derived",
+      "question": "该患者Enterococcus的SCML比值方向？",
+      "options": [
+        "d14_higher_than_pre_on_SCML_scale",
+        "d14_not_higher_on_SCML_scale",
+        "causal_treatment_increase"
+      ],
+      "rule": {
+        "binding": {
+          "table": "paired_ratios.csv",
+          "key_column": "record_id",
+          "key": "Patient1|genus_50c5c5dc34fbdd2b",
+          "column": "log2_SCML_ratio"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "d14_higher_than_pre_on_SCML_scale",
+          "false": "d14_not_higher_on_SCML_scale"
+        }
+      }
+    },
+    {
+      "id": "normalization_difference",
+      "type": "derived",
+      "question": "该患者SCML log2比是否大于相对丰度log2比？",
+      "options": [
+        "SCML_ratio_greater",
+        "SCML_ratio_not_greater",
+        "both_are_absolute_cells_per_gram"
+      ],
+      "rule": {
+        "binding": {
+          "table": "paired_ratios.csv",
+          "key_column": "record_id",
+          "key": "Patient1|genus_50c5c5dc34fbdd2b",
+          "column": "difference"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "SCML_ratio_greater",
+          "false": "SCML_ratio_not_greater"
+        }
+      }
+    },
+    {
+      "id": "calibration_scope",
+      "type": "choice",
+      "question": "S.ruber校准量可直接声明什么？",
+      "options": [
+        "relative_spike_calibrated_reads_not_validated_cells_per_gram",
+        "absolute_cells_per_gram",
+        "cross_taxon_absolute_cell_ratios"
+      ]
+    },
+    {
+      "id": "paired_unit",
+      "type": "choice",
+      "question": "配对比值的统计单位？",
+      "options": [
+        "same_patient_complete_pre_d14_pair",
+        "each_OTU_is_an_independent_patient",
+        "all_sample_rows_are_independent"
+      ]
+    }
+  ]
+}

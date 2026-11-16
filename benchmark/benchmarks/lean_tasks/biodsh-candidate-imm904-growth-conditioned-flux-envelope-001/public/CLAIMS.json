@@ -1,0 +1,152 @@
+{
+  "revision": "round9_lean_v1",
+  "task_id": "biodsh-candidate-imm904-growth-conditioned-flux-envelope-001",
+  "claims": [
+    {
+      "id": "low_oxygen_growth",
+      "type": "number",
+      "question": "葡萄糖上限10、氧气上限2时的最大生物量通量。",
+      "binding": {
+        "table": "growth.csv",
+        "key_column": "condition",
+        "key": "g10_o2",
+        "column": "max_growth"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-06
+    },
+    {
+      "id": "high_oxygen_growth",
+      "type": "number",
+      "question": "葡萄糖上限10、氧气上限20时的最大生物量通量。",
+      "binding": {
+        "table": "growth.csv",
+        "key_column": "condition",
+        "key": "g10_o20",
+        "column": "max_growth"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-06
+    },
+    {
+      "id": "low_glucose_economy",
+      "type": "number",
+      "question": "g2_o2达到90%最优生长所需的最小葡萄糖摄取。",
+      "binding": {
+        "table": "glucose_economy.csv",
+        "key_column": "condition",
+        "key": "g2_o2",
+        "column": "minimum_uptake"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-06
+    },
+    {
+      "id": "low_oxygen_yield",
+      "type": "number",
+      "question": "g10_o2条件下的目标生长/最小葡萄糖摄取。",
+      "binding": {
+        "table": "glucose_economy.csv",
+        "key_column": "condition",
+        "key": "g10_o2",
+        "column": "growth_per_glucose"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-06
+    },
+    {
+      "id": "ethanol_min",
+      "type": "number",
+      "question": "g10_o2的最省葡萄糖约束下乙醇最小外排通量。",
+      "binding": {
+        "table": "flux_envelope.csv",
+        "key_column": "envelope_id",
+        "key": "g10_o2__EX_etoh_e",
+        "column": "min_flux"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-06
+    },
+    {
+      "id": "co2_range",
+      "type": "number",
+      "question": "g10_o20下CO2通量范围宽度。",
+      "binding": {
+        "table": "flux_envelope.csv",
+        "key_column": "envelope_id",
+        "key": "g10_o20__EX_co2_e",
+        "column": "width"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-06
+    },
+    {
+      "id": "ethanol_required",
+      "type": "derived",
+      "question": "g10_o2乙醇最小外排是否超过0.1 mmol/gDW/h？",
+      "options": [
+        "above_0_1",
+        "at_most_0_1",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "flux_envelope.csv",
+          "key_column": "envelope_id",
+          "key": "g10_o2__EX_etoh_e",
+          "column": "min_flux"
+        },
+        "op": "gt",
+        "threshold": 0.1,
+        "outcomes": {
+          "true": "above_0_1",
+          "false": "at_most_0_1"
+        }
+      }
+    },
+    {
+      "id": "low_cap_fraction",
+      "type": "derived",
+      "question": "g2_o2最小葡萄糖摄取是否超过其上限的95%？",
+      "options": [
+        "above_95pct",
+        "at_most_95pct",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "glucose_economy.csv",
+          "key_column": "condition",
+          "key": "g2_o2",
+          "column": "cap_fraction"
+        },
+        "op": "gt",
+        "threshold": 0.95,
+        "outcomes": {
+          "true": "above_95pct",
+          "false": "at_most_95pct"
+        }
+      }
+    },
+    {
+      "id": "range_meaning",
+      "type": "choice",
+      "question": "通量包络最恰当的解释是？",
+      "options": [
+        "coordinatewise_extrema_not_jointly_attainable_vector",
+        "confidence_intervals_from_biological_replicates",
+        "all_endpoints_form_one_feasible_flux_vector"
+      ]
+    },
+    {
+      "id": "growth_meaning",
+      "type": "choice",
+      "question": "这里的max_growth是什么？",
+      "options": [
+        "model_bound_conditional_optimum",
+        "measured_culture_growth",
+        "unconditional_species_growth_rate"
+      ]
+    }
+  ]
+}

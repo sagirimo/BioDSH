@@ -1,0 +1,160 @@
+{
+  "tables": {
+    "dose_summary.csv": {
+      "columns": [
+        "id",
+        "n_protocols",
+        "switched_count",
+        "mean_final_V",
+        "max_convergence",
+        "mean_pulse_auc"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_protocols": "int",
+        "switched_count": "int",
+        "mean_final_V": "float",
+        "max_convergence": "float",
+        "mean_pulse_auc": "float"
+      },
+      "tolerance": {
+        "mean_final_V": [
+          1e-05,
+          1e-08
+        ],
+        "max_convergence": [
+          1e-05,
+          1e-08
+        ],
+        "mean_pulse_auc": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "pulse_outcomes.csv": {
+      "columns": [
+        "id",
+        "dose_uM",
+        "duration",
+        "pulse_end_U",
+        "pulse_end_V",
+        "pulse_V_auc",
+        "wash100_V",
+        "wash200_V",
+        "wash_convergence",
+        "switched"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "dose_uM": "int",
+        "duration": "float",
+        "pulse_end_U": "float",
+        "pulse_end_V": "float",
+        "pulse_V_auc": "float",
+        "wash100_V": "float",
+        "wash200_V": "float",
+        "wash_convergence": "float",
+        "switched": "int"
+      },
+      "tolerance": {
+        "duration": [
+          1e-05,
+          1e-08
+        ],
+        "pulse_end_U": [
+          1e-05,
+          1e-08
+        ],
+        "pulse_end_V": [
+          1e-05,
+          1e-08
+        ],
+        "pulse_V_auc": [
+          1e-05,
+          1e-08
+        ],
+        "wash100_V": [
+          1e-05,
+          1e-08
+        ],
+        "wash200_V": [
+          1e-05,
+          1e-08
+        ],
+        "wash_convergence": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "pulse_trajectories.csv": {
+      "columns": [
+        "id",
+        "phase_time",
+        "U",
+        "V"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "phase_time": "float",
+        "U": "float",
+        "V": "float"
+      },
+      "tolerance": {
+        "phase_time": [
+          1e-05,
+          1e-08
+        ],
+        "U": [
+          1e-05,
+          1e-08
+        ],
+        "V": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "zero_inducer_anchors.csv": {
+      "columns": [
+        "id",
+        "U",
+        "V",
+        "residual"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "U": "float",
+        "V": "float",
+        "residual": "float"
+      },
+      "tolerance": {
+        "U": [
+          1e-05,
+          1e-08
+        ],
+        "V": [
+          1e-05,
+          1e-08
+        ],
+        "residual": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "task_id": "biodsh-candidate-seqfish-neighborhood-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "通过QC的观测数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "included_observations"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "分层图无向union边总数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "undirected_union_edges"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "指定细胞在union图上的度数",
+      "binding": {
+        "table": "cell_graph_audit.csv",
+        "keys": {
+          "cell_id": "embryo1_Pos0_cell100_z2"
+        },
+        "column": "union_degree"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "指定section与基因的Moran I",
+      "binding": {
+        "table": "gene_spatial_statistics.csv",
+        "keys": {
+          "row_id": "embryo1_z2||Abcc4"
+        },
+        "column": "moran_I"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "指定注释对的观测双向边计数",
+      "binding": {
+        "table": "neighborhood_tests.csv",
+        "keys": {
+          "pair_id": "embryo1_z2||Allantois||Allantois"
+        },
+        "column": "observed_directed_edges"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "指定注释对在本层全部配对BH中的q值",
+      "binding": {
+        "table": "neighborhood_tests.csv",
+        "keys": {
+          "pair_id": "embryo1_z2||Allantois||Allantois"
+        },
+        "column": "padj"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "指定注释对的BH q是否小于0.05？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "neighborhood_tests.csv",
+          "keys": {
+            "pair_id": "embryo1_z2||Allantois||Allantois"
+          },
+          "column": "padj"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "两个z层可否视为两个独立胚胎？",
+      "options": [
+        "no_one_embryo_with_two_technical_layers",
+        "yes_each_z_is_independent_animal",
+        "yes_if_cell_IDs_differ"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "Moran I的零假设p值在这里如何报告？",
+      "options": [
+        "not_computed_only_coefficient_and_random_label_expectation",
+        "use_neighborhood_pair_p_as_gene_p",
+        "every_positive_I_is_significant"
+      ]
+    }
+  ]
+}

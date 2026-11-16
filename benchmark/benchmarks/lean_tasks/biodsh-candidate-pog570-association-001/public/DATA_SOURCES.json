@@ -1,0 +1,10 @@
+{
+ "source_url": "https://huggingface.co/datasets/zifeng-ai/BioDSA-1K",
+ "input_files_sha256": {
+  "inputs/data_clinical_patient.txt": "68eea1c2782f3bae844e5f01a102d97083f580d34330cd5f5e62cfa76bb0d2a3",
+  "inputs/data_clinical_sample.txt": "1ff24eb0bee60cf1f6c4d8faa83eb7e94e353707b6946035941662450722d6ea",
+  "inputs/design.json": "2e2a401489afde4c1c42d4920c9313e8bca693f830b52ed73f540da3233e39f8",
+  "inputs/meta_study.txt": "3e1751533cebbb8d8377f55c91437a188573a115ed7f1af0f02853fa3f463137"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

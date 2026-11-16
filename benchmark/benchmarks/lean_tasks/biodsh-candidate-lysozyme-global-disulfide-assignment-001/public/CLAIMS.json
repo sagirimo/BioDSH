@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-lysozyme-global-disulfide-assignment-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "最优匹配分数？",
+      "binding": {
+        "table": "assignment_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "best_score"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "次优与最优差？",
+      "binding": {
+        "table": "assignment_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "second_gap"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "最优键平均长度？",
+      "binding": {
+        "table": "assignment_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "mean_distance_A"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "最大长度偏离？",
+      "binding": {
+        "table": "assignment_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "max_deviation_A"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "与SSBOND一致的键数？",
+      "binding": {
+        "table": "assignment_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "annotated_matches"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "最小禁键代价差？",
+      "binding": {
+        "table": "assignment_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "minimum_exclusion_gap"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "平均键长是否<2.5Å？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "assignment_summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "mean_distance_A"
+        },
+        "op": "lt",
+        "threshold": 2.5,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "次优差是否>1Å²？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "assignment_summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "second_gap"
+        },
+        "op": "gt",
+        "threshold": 1,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "配对代价如何解释？",
+      "options": [
+        "是给定结构的几何诊断，不是自由能或独立生化证据",
+        "就是断裂自由能",
+        "SSBOND提供独立实验验证"
+      ]
+    }
+  ]
+}

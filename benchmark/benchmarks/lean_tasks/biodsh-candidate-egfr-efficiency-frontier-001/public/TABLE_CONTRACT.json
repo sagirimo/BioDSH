@@ -1,0 +1,124 @@
+{
+  "tables": {
+    "efficiency.csv": {
+      "columns": [
+        "id",
+        "LE",
+        "LLE",
+        "violations",
+        "pareto_layer",
+        "selected"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "LE": "float",
+        "LLE": "float",
+        "violations": "int",
+        "pareto_layer": "int",
+        "selected": "int"
+      },
+      "tolerance": {
+        "LE": [
+          1e-05,
+          1e-08
+        ],
+        "LLE": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "joined.csv": {
+      "columns": [
+        "id",
+        "pIC50",
+        "MW",
+        "alogp",
+        "heavy_atoms",
+        "hba",
+        "hbd"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "pIC50": "float",
+        "MW": "float",
+        "alogp": "float",
+        "heavy_atoms": "int",
+        "hba": "int",
+        "hbd": "int"
+      },
+      "tolerance": {
+        "pIC50": [
+          1e-05,
+          1e-08
+        ],
+        "MW": [
+          1e-05,
+          1e-08
+        ],
+        "alogp": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "sensitivity.csv": {
+      "columns": [
+        "id",
+        "LE_cutoff",
+        "selected"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "LE_cutoff": "float",
+        "selected": "int"
+      },
+      "tolerance": {
+        "LE_cutoff": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "median_LE",
+        "median_LLE",
+        "front_size",
+        "selected"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "median_LE": "float",
+        "median_LLE": "float",
+        "front_size": "int",
+        "selected": "int"
+      },
+      "tolerance": {
+        "median_LE": [
+          1e-05,
+          1e-08
+        ],
+        "median_LLE": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

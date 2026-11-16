@@ -1,0 +1,8 @@
+{
+ "source_url": "https://www.ebi.ac.uk/biomodels/BIOMD0000000148",
+ "input_files_sha256": {
+  "inputs/BIOMD0000000148.xml": "23e55584e5a0fad33b47538e2b4b53ab0dc83e964fe129f9a43eb41533a0806e",
+  "inputs/scenarios.csv": "58d6271010f7ad4c0ecfacd892e4ee86ede270ec11f2cc892cede573d681740e"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

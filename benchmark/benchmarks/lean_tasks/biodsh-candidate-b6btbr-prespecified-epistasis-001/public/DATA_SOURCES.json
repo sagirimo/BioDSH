@@ -1,0 +1,10 @@
+{
+ "source_url": "https://github.com/rqtl/qtl2data/tree/main/B6BTBR",
+ "input_files_sha256": {
+  "inputs/b6btbr_covar.csv": "739eb36778a66916901af16b1ebbedadff5f0810b4541530fe624ea6782f94f6",
+  "inputs/b6btbr_geno.csv": "47682873a93a3b9fa5f3fe05e66161958f58d207529dc2d96781c843eb726a8f",
+  "inputs/b6btbr_gmap.csv": "324bca1599f3e98ec0739ef57b2d75c6e57a3e3ef0a58f2f2e2e04ca9acc6980",
+  "inputs/b6btbr_pheno.csv": "336b7caf86596a26e768c99375d27fb24b99a246044b02f77696570d62ccd65e"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,172 @@
+{
+  "revision": "scanb_lean_v1",
+  "task_id": "biodsh-candidate-scanb-biomarker-survival-001",
+  "claims": [
+    {
+      "id": "patients",
+      "type": "number",
+      "question": "分析患者数。",
+      "binding": {
+        "table": "cohort_summary.csv",
+        "key_column": "metric",
+        "key": "patients",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "replicate_samples",
+      "type": "number",
+      "question": "识别出的技术重复文库数。",
+      "binding": {
+        "table": "cohort_summary.csv",
+        "key_column": "metric",
+        "key": "replicate_samples",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "ER_kappa",
+      "type": "number",
+      "question": "ER 病理与 RNA 判定的 Cohen kappa。",
+      "binding": {
+        "table": "biomarker_agreement.csv",
+        "key_column": "marker",
+        "key": "ER",
+        "column": "kappa"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-09
+    },
+    {
+      "id": "HER2_percent_agreement",
+      "type": "number",
+      "question": "HER2 一致率。",
+      "binding": {
+        "table": "biomarker_agreement.csv",
+        "key_column": "marker",
+        "key": "HER2",
+        "column": "percent_agreement"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-09
+    },
+    {
+      "id": "HR_er_rna_negative",
+      "type": "number",
+      "question": "病理ER阳性患者中 RNA ER 阴性的调整后风险比。",
+      "binding": {
+        "table": "cox_coefficients.csv",
+        "key_column": "term",
+        "key": "er_rna_negative",
+        "column": "hazard_ratio"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "HR_nhg_G3",
+      "type": "number",
+      "question": "NHG G3 相对 G1 的调整后风险比。",
+      "binding": {
+        "table": "cox_coefficients.csv",
+        "key_column": "term",
+        "key": "nhg_G3",
+        "column": "hazard_ratio"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ER_agreement_level",
+      "type": "derived",
+      "question": "按你的 ER kappa（Landis-Koch 0.61 分界），一致性水平为？",
+      "options": [
+        "substantial_or_better_kappa_at_least_0_61",
+        "below_substantial_kappa_under_0_61",
+        "perfect_agreement"
+      ],
+      "rule": {
+        "binding": {
+          "table": "biomarker_agreement.csv",
+          "key_column": "marker",
+          "key": "ER",
+          "column": "kappa"
+        },
+        "op": "ge",
+        "threshold": 0.61,
+        "outcomes": {
+          "true": "substantial_or_better_kappa_at_least_0_61",
+          "false": "below_substantial_kappa_under_0_61"
+        }
+      }
+    },
+    {
+      "id": "er_rna_negative_alpha_0_05",
+      "type": "derived",
+      "question": "按你的 er_rna_negative p 值，在 alpha=0.05 下？",
+      "options": [
+        "evidence_of_different_adjusted_OS_hazard_vs_RNA_ER_positive",
+        "no_evidence_at_alpha_0_05_which_does_not_prove_equal_hazard",
+        "proves_RNA_discordance_causes_worse_survival"
+      ],
+      "rule": {
+        "binding": {
+          "table": "cox_coefficients.csv",
+          "key_column": "term",
+          "key": "er_rna_negative",
+          "column": "p_value"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "evidence_of_different_adjusted_OS_hazard_vs_RNA_ER_positive",
+          "false": "no_evidence_at_alpha_0_05_which_does_not_prove_equal_hazard"
+        }
+      }
+    },
+    {
+      "id": "unit_of_analysis",
+      "type": "choice",
+      "question": "一致性与生存分析的单位是？",
+      "options": [
+        "patient_after_excluding_technical_replicate_libraries",
+        "sequencing_library_including_replicates",
+        "GEO_platform_series"
+      ]
+    },
+    {
+      "id": "kappa_meaning",
+      "type": "choice",
+      "question": "kappa 衡量什么？",
+      "options": [
+        "chance_corrected_agreement_between_pathology_and_RNA_calls",
+        "correlation_of_continuous_expression",
+        "accuracy_of_RNA_against_true_receptor_status"
+      ]
+    },
+    {
+      "id": "HR_meaning",
+      "type": "choice",
+      "question": "er_rna_negative 的风险比表示？",
+      "options": [
+        "covariate_adjusted_association_not_causal_effect_of_discordance",
+        "causal_effect_of_RNA_discordance_on_death",
+        "unadjusted_ratio_of_death_proportions"
+      ]
+    },
+    {
+      "id": "cox_ties",
+      "type": "choice",
+      "question": "Cox 模型的同时事件处理方法？",
+      "options": [
+        "breslow",
+        "efron",
+        "exact"
+      ]
+    }
+  ]
+}

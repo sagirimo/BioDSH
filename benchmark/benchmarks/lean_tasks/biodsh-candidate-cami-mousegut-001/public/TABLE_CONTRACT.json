@@ -1,0 +1,346 @@
+{
+  "tables": {
+    "alpha_diversity.csv": {
+      "columns": [
+        "diversity_id",
+        "sample_id",
+        "rank",
+        "source_rows",
+        "positive_taxa",
+        "raw_mass_percentage",
+        "Shannon",
+        "Simpson",
+        "inverse_Simpson",
+        "effective_species",
+        "evenness"
+      ],
+      "key": [
+        "diversity_id"
+      ],
+      "types": {
+        "diversity_id": "text",
+        "sample_id": "text",
+        "rank": "text",
+        "source_rows": "int",
+        "positive_taxa": "int",
+        "raw_mass_percentage": "float",
+        "Shannon": "float",
+        "Simpson": "float",
+        "inverse_Simpson": "float",
+        "effective_species": "float",
+        "evenness": "float"
+      },
+      "tolerance": {
+        "raw_mass_percentage": [
+          1e-08,
+          1e-08
+        ],
+        "Shannon": [
+          1e-08,
+          1e-08
+        ],
+        "Simpson": [
+          1e-08,
+          1e-08
+        ],
+        "inverse_Simpson": [
+          1e-08,
+          1e-08
+        ],
+        "effective_species": [
+          1e-08,
+          1e-08
+        ],
+        "evenness": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "beta_distances.csv": {
+      "columns": [
+        "pair_rank_id",
+        "sample_a",
+        "sample_b",
+        "rank",
+        "raw_Bray_Curtis",
+        "conditional_Bray_Curtis",
+        "JSD_base2"
+      ],
+      "key": [
+        "pair_rank_id"
+      ],
+      "types": {
+        "pair_rank_id": "text",
+        "sample_a": "text",
+        "sample_b": "text",
+        "rank": "text",
+        "raw_Bray_Curtis": "float",
+        "conditional_Bray_Curtis": "float",
+        "JSD_base2": "float"
+      },
+      "tolerance": {
+        "raw_Bray_Curtis": [
+          1e-08,
+          1e-08
+        ],
+        "conditional_Bray_Curtis": [
+          1e-08,
+          1e-08
+        ],
+        "JSD_base2": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "int",
+        "scope": "text"
+      }
+    },
+    "normalized_profiles.csv": {
+      "columns": [
+        "profile_taxon_id",
+        "sample_id",
+        "rank",
+        "taxid",
+        "percentage",
+        "conditional_fraction",
+        "positive"
+      ],
+      "key": [
+        "profile_taxon_id"
+      ],
+      "types": {
+        "profile_taxon_id": "text",
+        "sample_id": "text",
+        "rank": "text",
+        "taxid": "text",
+        "percentage": "float",
+        "conditional_fraction": "float",
+        "positive": "int"
+      },
+      "tolerance": {
+        "percentage": [
+          1e-08,
+          1e-08
+        ],
+        "conditional_fraction": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "pcoa_coordinates.csv": {
+      "columns": [
+        "sample_id",
+        "PCoA1",
+        "PCoA2",
+        "PCoA3"
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "types": {
+        "sample_id": "text",
+        "PCoA1": "float",
+        "PCoA2": "float",
+        "PCoA3": "float"
+      },
+      "tolerance": {
+        "PCoA1": [
+          1e-06,
+          2e-07
+        ],
+        "PCoA2": [
+          1e-06,
+          2e-07
+        ],
+        "PCoA3": [
+          1e-06,
+          2e-07
+        ]
+      }
+    },
+    "pcoa_eigenvalues.csv": {
+      "columns": [
+        "axis_id",
+        "eigenvalue",
+        "positive",
+        "negative",
+        "positive_inertia_fraction"
+      ],
+      "key": [
+        "axis_id"
+      ],
+      "types": {
+        "axis_id": "text",
+        "eigenvalue": "float",
+        "positive": "int",
+        "negative": "int",
+        "positive_inertia_fraction": "float"
+      },
+      "tolerance": {
+        "eigenvalue": [
+          1e-06,
+          2e-07
+        ],
+        "positive_inertia_fraction": [
+          1e-06,
+          2e-07
+        ]
+      }
+    },
+    "profile_audit.csv": {
+      "columns": [
+        "profile_id",
+        "source_file",
+        "sample_id",
+        "parsed_rows",
+        "zero_rows",
+        "other_rank_rows",
+        "other_rank_mass_percentage",
+        "comment_rows",
+        "missing_path_rows",
+        "source_program",
+        "version"
+      ],
+      "key": [
+        "profile_id"
+      ],
+      "types": {
+        "profile_id": "text",
+        "source_file": "text",
+        "sample_id": "text",
+        "parsed_rows": "int",
+        "zero_rows": "int",
+        "other_rank_rows": "int",
+        "other_rank_mass_percentage": "int",
+        "comment_rows": "int",
+        "missing_path_rows": "int",
+        "source_program": "text",
+        "version": "text"
+      }
+    },
+    "rank_cohort_summary.csv": {
+      "columns": [
+        "rank",
+        "samples",
+        "unique_taxa",
+        "core_taxa_at_0_8",
+        "mean_mass_percentage",
+        "minimum_mass_percentage",
+        "maximum_mass_percentage",
+        "mean_Shannon",
+        "mean_beta_conditional_Bray_Curtis"
+      ],
+      "key": [
+        "rank"
+      ],
+      "types": {
+        "rank": "text",
+        "samples": "int",
+        "unique_taxa": "int",
+        "core_taxa_at_0_8": "int",
+        "mean_mass_percentage": "float",
+        "minimum_mass_percentage": "float",
+        "maximum_mass_percentage": "float",
+        "mean_Shannon": "float",
+        "mean_beta_conditional_Bray_Curtis": "float"
+      },
+      "tolerance": {
+        "mean_mass_percentage": [
+          1e-08,
+          1e-08
+        ],
+        "minimum_mass_percentage": [
+          1e-08,
+          1e-08
+        ],
+        "maximum_mass_percentage": [
+          1e-08,
+          1e-08
+        ],
+        "mean_Shannon": [
+          1e-08,
+          1e-08
+        ],
+        "mean_beta_conditional_Bray_Curtis": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "int"
+      }
+    },
+    "taxon_summary.csv": {
+      "columns": [
+        "rank_taxon_id",
+        "rank",
+        "taxid",
+        "samples",
+        "present_samples",
+        "prevalence",
+        "mean_conditional_fraction",
+        "min_conditional_fraction",
+        "max_conditional_fraction",
+        "core_at_0_8"
+      ],
+      "key": [
+        "rank_taxon_id"
+      ],
+      "types": {
+        "rank_taxon_id": "text",
+        "rank": "text",
+        "taxid": "text",
+        "samples": "int",
+        "present_samples": "int",
+        "prevalence": "float",
+        "mean_conditional_fraction": "float",
+        "min_conditional_fraction": "float",
+        "max_conditional_fraction": "float",
+        "core_at_0_8": "int"
+      },
+      "tolerance": {
+        "prevalence": [
+          1e-08,
+          1e-08
+        ],
+        "mean_conditional_fraction": [
+          1e-08,
+          1e-08
+        ],
+        "min_conditional_fraction": [
+          1e-08,
+          1e-08
+        ],
+        "max_conditional_fraction": [
+          1e-08,
+          1e-08
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Puromycin.html",
+ "input_files_sha256": {
+  "inputs/PUBLIC_OUTPUT_CONVENTIONS_V2.json": "40a5acd07aca161281bdc9e8cae8b26e36a2da698ee704ee8571c0dae43827c8",
+  "inputs/Puromycin.R": "87a14de98652c3f861d4477752d3293c7943045d6492b59c1d5c0939932feab8",
+  "inputs/design.json": "6a2352aab5fa08b689e375369c6fcedbe067cfc8ef0c7b1e0ae5d2db571825e1",
+  "inputs/evidence_input.csv": "ad3893d636f3fa1056c977de1e54cf1e499a0d47d18d4d24caa28c67d4bed201",
+  "inputs/kind.txt": "02d524a22f557d5d49ce2e38870c921af903af9b56b874ce9d309b25679ca7bb",
+  "inputs/native_attributes.dput.txt": "7212057b8dae5844322d57674cae64ab8f2547a25dbc87d18822ebc3cb0fd36c",
+  "inputs/native_factor_levels.csv": "a949bdccc1033aa93ebbb5916d6fa2167ad177e4e63d96fcd0104c08eeb607c5",
+  "inputs/native_field_dictionary.csv": "987420ebb0a3bc2c0da9cb579a8d2cdab6f72cda81f5a7f88cf1c85da2dcdb64",
+  "inputs/native_records.csv": "d0ff210a609f5f6f80d1d1d83c12b12477da5462e00ee246855cb3d46db1ead2",
+  "inputs/prediction_grid_input.csv": "754a075fa4be90bf1eb536e23e7120ae048afee4aafc30da5ed48b3566f1c98b",
+  "inputs/table_schema.csv": "002058b164696b452cfad080b4807d2e0bd8fbc91976c790eb0990c9af9fdcdc",
+  "inputs/whole_native.rds": "3e6dab5b07d6591f2195fcb2619d5c34771dce330395ab3f42dc02fe87319abf"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

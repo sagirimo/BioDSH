@@ -1,0 +1,8 @@
+{
+ "source_url": "https://www.pollenlab.org/datasets",
+ "input_files_sha256": {
+  "inputs/cell_folds.csv": "76bd39a2ce383956d9f48718e8f80353c193956f264290743eeb00f0abfc21ab",
+  "inputs/expression.tsv.gz": "5f0d6a9d094147c8b6758c4c5e10fd05812bcebaab19b7d6065c27808db38708"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

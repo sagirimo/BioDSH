@@ -1,0 +1,16 @@
+{
+ "source_url": "https://lme4.github.io/lme4/reference/sleepstudy.html",
+ "input_files_sha256": {
+  "inputs/OUTPUT_FIELD_CONVENTIONS_V2.json": "294e2238210752576a70f7e15acfb2aee919deb1937a19f7107809e121e7b00b",
+  "inputs/design.json": "2d3c52ffdc46eda079e607461df1e647d205e6444b01b90ed731bfc4a443fc51",
+  "inputs/evidence_input.csv": "c803cba701abba578dd60fe2e2a9e299c4b0b85e68e536133bf091b93d948080",
+  "inputs/kind.txt": "c69fbd83855ef6d9f58cd90df6a44c7226e4bc68cc691e0f536cb54a287b0ac8",
+  "inputs/native_attributes.dput.txt": "484b151957a89c9eabe69600523cc2d6c5f7ac84b19df4783ef127ce495fab6c",
+  "inputs/native_field_dictionary.csv": "cb94a8b94a08a2b93f50463cbbec05407c789a49cabdff4fa284f3b6a7f36b30",
+  "inputs/records.csv": "ac74d31096e7c2237a18fa472f95e956c67f8aa40f0cb391ae8ee724dd6db51a",
+  "inputs/sleepstudy.rda": "65acebb1584c681b0181906744864de8388c7e6ef6052733db7991e18e82a621",
+  "inputs/subject_levels.csv": "b731d1ac320b012ce767da2e55b79fada5b0040cbc777e2a89dcc6d9bd3550f9",
+  "inputs/table_schema.csv": "1f753c5c5344b97b1d4ff620ef2c907669bc31e8b5b2ce103e1da0e36a9ff03b"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

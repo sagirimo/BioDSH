@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-family-snv-clinvar-002",
+  "claims": [
+    {
+      "id": "input_records",
+      "type": "number",
+      "question": "审计的VCF源记录数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "input_records",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "informative_trios",
+      "type": "number",
+      "question": "可判定的记录×三联体次数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "informative_trios",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "Mendel_errors",
+      "type": "number",
+      "question": "检测到的孟德尔不相容次数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "Mendel_errors",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "observed_compatible_records",
+      "type": "number",
+      "question": "在可观察GT上符合继承条件的候选记录数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "observed_compatible_records",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "clinvar_exact_match_records",
+      "type": "number",
+      "question": "精确等位匹配ClinVar的记录数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "clinvar_exact_match_records",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "final_unique_alleles",
+      "type": "number",
+      "question": "最终保留的唯一等位基因数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "final_unique_alleles",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "complete_evidence",
+      "type": "derived",
+      "question": "最终候选中是否有完整家系GT支持的证据？",
+      "options": [
+        "some_complete_family_evidence",
+        "no_complete_family_evidence_partial_only",
+        "all_missing_GT_are_reference"
+      ],
+      "rule": {
+        "binding": {
+          "table": "summary.csv",
+          "key_column": "metric",
+          "key": "final_strict_complete_evidence_records",
+          "column": "value"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "some_complete_family_evidence",
+          "false": "no_complete_family_evidence_partial_only"
+        }
+      }
+    },
+    {
+      "id": "candidate_presence",
+      "type": "derived",
+      "question": "是否得到至少一个最终兼容等位候选（不是临床诊断）？",
+      "options": [
+        "at_least_one_compatible_candidate",
+        "no_final_candidate",
+        "causal_diagnosis_proven"
+      ],
+      "rule": {
+        "binding": {
+          "table": "summary.csv",
+          "key_column": "metric",
+          "key": "final_unique_alleles",
+          "column": "value"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "at_least_one_compatible_candidate",
+          "false": "no_final_candidate"
+        }
+      }
+    },
+    {
+      "id": "missing_GT",
+      "type": "choice",
+      "question": "未检测到不相容但存在GT缺失应如何表述？",
+      "options": [
+        "compatible_in_observed_data_with_incomplete_evidence",
+        "proven_complete_family_segregation",
+        "missing_genotypes_are_homozygous_reference"
+      ]
+    },
+    {
+      "id": "annotation_scope",
+      "type": "choice",
+      "question": "ClinVar匹配在本题提供什么？",
+      "options": [
+        "external_allele_annotation_for_simulated_phenotype_audit",
+        "new_variant_calling",
+        "clinical_causal_diagnosis_of_this_family"
+      ]
+    }
+  ]
+}

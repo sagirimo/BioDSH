@@ -64,6 +64,8 @@ dsh plugin --profile web add dsh-biodsh
 
 以下数字来自我们的预印本（*arXiv 链接待补*）。基准是自建的 BioDSH-Bench-120：120 道分析题、10 个子领域；评分时重放智能体交上来的脚本，对照公开的表格合同判分，不用大模型当裁判。所有智能体都在同样的读隔离沙箱里运行，每个配置跑一次。
 
+题目、评分器、隔离脚本、污染扫描器和逐题结果都在 [`benchmark/`](benchmark/) 目录；加密的参考答案附在 [`bench-120-v1.0`](https://github.com/sagirimo/BioDSH/releases/tag/bench-120-v1.0) 发布页。
+
 **同一个模型、不同的智能体：打平。** 所有智能体都用 DeepSeek V4 Flash：
 
 | 智能体（DeepSeek V4 Flash） | 答对 / 120 |

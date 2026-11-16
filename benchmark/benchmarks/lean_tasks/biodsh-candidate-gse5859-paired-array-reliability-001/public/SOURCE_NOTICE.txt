@@ -1,0 +1,2 @@
+Spielman RS et al.2007 Common genetic variants account for differences in gene expression among ethnic groups. Nature Genetics39:226–231 DOI10.1038/ng1955 PMID17206142。原始GEO GSE5859，完整公开处理后series matrix：https://ftp.ncbi.nlm.nih.gov/geo/series/GSE5nnn/GSE5859/matrix/GSE5859_series_matrix.txt.gz。本文题仅使用标题明确对应的42个细胞系成对重复阵列，不使用民族/人群分组，不推断群体表达差异；其他阵列仍保留原文件但不入分析。MAS5处理依GEO上传说明；本题未调用R教学子集或benchmark任务。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

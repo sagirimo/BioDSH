@@ -64,6 +64,8 @@ If you only want the skills, the official skills are plain dsh `SKILL.md` folder
 
 From our preprint (*arXiv link coming*). The benchmark is BioDSH-Bench-120: 120 analysis tasks in 10 subdomains, graded by replaying each submitted script against a public table contract, with no LLM judge. Every agent runs in the same read-isolated sandbox, one run per configuration.
 
+The tasks, the grader, the isolation scripts, the contamination scanner and per-task results are in [`benchmark/`](benchmark/); the encrypted reference answers are attached to the [`bench-120-v1.0`](https://github.com/sagirimo/BioDSH/releases/tag/bench-120-v1.0) release.
+
 **Same model, different agent: a tie.** With every agent on DeepSeek V4 Flash:
 
 | Agent (DeepSeek V4 Flash) | Correct / 120 |

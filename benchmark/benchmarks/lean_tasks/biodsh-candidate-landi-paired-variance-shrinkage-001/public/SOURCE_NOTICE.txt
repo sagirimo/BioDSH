@@ -1,0 +1,4 @@
+Landi MT et al. Gene expression signature of cigarette smoking and its role in lung adenocarcinoma development and survival. PLoS ONE 2008. DOI:10.1371/journal.pone.0001651. GEO:GSE10072.
+原始公开NCBI GEO series matrix：https://ftp.ncbi.nlm.nih.gov/geo/series/GSE10nnn/GSE10072/matrix/GSE10072_series_matrix.txt.gz
+NCBI GEO公共数据用于本地科研，保留提交者署名；未主张独立取得再分发许可。仅使用上传者的处理后表达，不复用其他benchmark设计。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

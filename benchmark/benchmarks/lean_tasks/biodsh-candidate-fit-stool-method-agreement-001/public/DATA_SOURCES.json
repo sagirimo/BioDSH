@@ -1,0 +1,10 @@
+{
+ "source_url": "https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-016-0205-y",
+ "input_files_sha256": {
+  "inputs/bootstrap_draws.csv": "23100c022223c4e78c27ad1e364d6a7e1ea354b934a351e2252c7a2378066af0",
+  "inputs/fit.final.tx.1.cons.taxonomy": "eb01d426be6427957729b9d8dc0d540a1ff22011cda0feed5fc378f7043419d3",
+  "inputs/fit.final.tx.shared": "bc13399786815fb23b6bd625d2d9b3950466fbc99ab2a2af349a6ece8243185e",
+  "inputs/metadata.tsv": "db3298d7a0ce5a451ee07d8440db52d502466cc33dd2ab8ea71870d44885aafd"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

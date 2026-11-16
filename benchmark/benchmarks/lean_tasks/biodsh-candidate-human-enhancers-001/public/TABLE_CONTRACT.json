@@ -1,0 +1,111 @@
+{
+  "tables": {
+    "dataset_audit.csv": {
+      "columns": [
+        "sequence_id",
+        "source_split",
+        "length",
+        "N_bases",
+        "GC_fraction",
+        "ACGT_only",
+        "canonical_sha256",
+        "assigned_split",
+        "representative_id",
+        "component_id",
+        "exclusion_reason"
+      ],
+      "key": [
+        "sequence_id"
+      ],
+      "types": {
+        "sequence_id": "text",
+        "source_split": "text",
+        "length": "int",
+        "N_bases": "int",
+        "GC_fraction": "float",
+        "ACGT_only": "int",
+        "canonical_sha256": "text",
+        "assigned_split": "text",
+        "representative_id": "text",
+        "component_id": "text",
+        "exclusion_reason": "text"
+      },
+      "tolerance": {
+        "GC_fraction": [
+          1e-10,
+          1e-08
+        ]
+      }
+    },
+    "fit_trials.csv": {
+      "columns": [
+        "C",
+        "valid_AUROC"
+      ],
+      "key": [
+        "C"
+      ],
+      "types": {
+        "C": "text",
+        "valid_AUROC": "float"
+      },
+      "tolerance": {
+        "valid_AUROC": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "int"
+      }
+    },
+    "test_predictions.csv": {
+      "columns": [
+        "sequence_id",
+        "p_positive"
+      ],
+      "key": [
+        "sequence_id"
+      ],
+      "types": {
+        "sequence_id": "text",
+        "p_positive": "float"
+      },
+      "tolerance": {
+        "p_positive": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "valid_predictions.csv": {
+      "columns": [
+        "sequence_id",
+        "p_positive"
+      ],
+      "key": [
+        "sequence_id"
+      ],
+      "types": {
+        "sequence_id": "text",
+        "p_positive": "float"
+      },
+      "tolerance": {
+        "p_positive": [
+          1e-06,
+          1e-10
+        ]
+      }
+    }
+  }
+}

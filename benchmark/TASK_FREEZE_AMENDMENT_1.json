@@ -1,0 +1,13 @@
+{
+ "amends": "benchmarks/formal_experiment/TASK_FREEZE.json",
+ "date": "2026-10-19",
+ "before_any_formal_run": true,
+ "file": "scripts/grade_agent_lean.py",
+ "sha256_before": "9ec1aebf0b5c9a592cf86179b1ce29d72d52897431dcaf21d2ffe92f2ce7d153",
+ "sha256_after": "a376554d8768292bcedcfb36fa6b761a13873342c9d3d0b294cebf15de2391fb",
+ "reason": "Tasks with a task-bound resource profile require a task card in the replay sandbox (benchmark_namespace_executor checks its task_id); grade_agent_lean.py did not write it, so grading crashed instead of returning a verdict. Found on a development task (rnaseq-clinical-fractional-001); affects frozen tasks family-snv-clinvar-002 and trapnell-rooted-mst-trajectory-001. Fix writes {task_id} only, so no metadata is exposed to submitted code. Task set, task files and all other evaluator files unchanged.",
+ "affected_frozen_tasks": [
+  "biodsh-candidate-family-snv-clinvar-002",
+  "biodsh-candidate-trapnell-rooted-mst-trajectory-001"
+ ]
+}

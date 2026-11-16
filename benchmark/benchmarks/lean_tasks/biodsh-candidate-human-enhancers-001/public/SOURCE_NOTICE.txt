@@ -1,0 +1,12 @@
+存量原题 biodsh-candidate-human-enhancers-001 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-human-enhancers-001
+source: "genomic_benchmarks"
+source_registry_id: "genomic_benchmarks"
+source_family: "genomic_benchmarks"
+source_case: "human_enhancers_cohn_complete_workflow_adaptation"
+source_revision: "605d8539830e16c85abe7826990958303ffc5e1c_Zenodo16605299"
+source_terms: "Zenodo CC-BY4.0; retain attribution; original studies/coordinates linked; public packaging audit pending"
+family_keys: ["Genome:Ensembl97:GRCh38", "GenomicBenchmarks:human_enhancers_cohn:version0", "Zenodo:16605299"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+
+数据包：Genomic Benchmarks, Zenodo 16605299, doi:10.5281/zenodo.16605299；原human_enhancers_cohn提供方归属及版本见上。

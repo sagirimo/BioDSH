@@ -1,0 +1,712 @@
+{
+  "tables": {
+    "censoring.csv": {
+      "columns": [
+        "row_id",
+        "scenario",
+        "patient_id",
+        "source_time",
+        "source_event",
+        "analysis_time",
+        "analysis_event",
+        "administratively_censored"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scenario": "text",
+        "patient_id": "text",
+        "source_time": "float",
+        "source_event": "int",
+        "analysis_time": "float",
+        "analysis_event": "int",
+        "administratively_censored": "int"
+      },
+      "tolerance": {
+        "source_time": [
+          1e-05,
+          1e-08
+        ],
+        "analysis_time": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "cox_risksets.csv": {
+      "columns": [
+        "row_id",
+        "scenario",
+        "model",
+        "time",
+        "at_risk",
+        "deaths",
+        "sum_exp_lp",
+        "event_lp_sum",
+        "mean_age10",
+        "mean_marker",
+        "I_age_age",
+        "I_age_marker",
+        "I_marker_marker",
+        "loglik_contribution",
+        "hazard_increment",
+        "baseline_cumulative_hazard"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scenario": "text",
+        "model": "text",
+        "time": "float",
+        "at_risk": "int",
+        "deaths": "int",
+        "sum_exp_lp": "float",
+        "event_lp_sum": "float",
+        "mean_age10": "float",
+        "mean_marker": "float",
+        "I_age_age": "float",
+        "I_age_marker": "float",
+        "I_marker_marker": "float",
+        "loglik_contribution": "float",
+        "hazard_increment": "float",
+        "baseline_cumulative_hazard": "float"
+      },
+      "tolerance": {
+        "time": [
+          1e-05,
+          1e-08
+        ],
+        "sum_exp_lp": [
+          1e-05,
+          1e-08
+        ],
+        "event_lp_sum": [
+          1e-05,
+          1e-08
+        ],
+        "mean_age10": [
+          1e-05,
+          1e-08
+        ],
+        "mean_marker": [
+          1e-05,
+          1e-08
+        ],
+        "I_age_age": [
+          1e-05,
+          1e-08
+        ],
+        "I_age_marker": [
+          1e-05,
+          1e-08
+        ],
+        "I_marker_marker": [
+          1e-05,
+          1e-08
+        ],
+        "loglik_contribution": [
+          1e-05,
+          1e-08
+        ],
+        "hazard_increment": [
+          1e-05,
+          1e-08
+        ],
+        "baseline_cumulative_hazard": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "estimable_here",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "int",
+        "estimable_here": "int",
+        "scope": "text"
+      }
+    },
+    "field_audit.csv": {
+      "columns": [
+        "row_id",
+        "level",
+        "field",
+        "rows",
+        "missing",
+        "nonmissing",
+        "distinct_nonmissing",
+        "finite_numeric"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "level": "text",
+        "field": "text",
+        "rows": "int",
+        "missing": "int",
+        "nonmissing": "int",
+        "distinct_nonmissing": "int",
+        "finite_numeric": "int"
+      }
+    },
+    "km_risksets.csv": {
+      "columns": [
+        "row_id",
+        "scenario",
+        "group",
+        "time",
+        "at_risk",
+        "deaths",
+        "censors",
+        "survival",
+        "NA_cumulative_hazard"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scenario": "text",
+        "group": "text",
+        "time": "float",
+        "at_risk": "int",
+        "deaths": "int",
+        "censors": "int",
+        "survival": "float",
+        "NA_cumulative_hazard": "float"
+      },
+      "tolerance": {
+        "time": [
+          1e-05,
+          1e-08
+        ],
+        "survival": [
+          1e-05,
+          1e-08
+        ],
+        "NA_cumulative_hazard": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "km_summary.csv": {
+      "columns": [
+        "row_id",
+        "scenario",
+        "group",
+        "patients",
+        "events",
+        "last_time",
+        "S12",
+        "S60",
+        "RMST60",
+        "median"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scenario": "text",
+        "group": "text",
+        "patients": "int",
+        "events": "int",
+        "last_time": "float",
+        "S12": "float",
+        "S60": "float",
+        "RMST60": "float",
+        "median": "float"
+      },
+      "tolerance": {
+        "last_time": [
+          1e-05,
+          1e-08
+        ],
+        "S12": [
+          1e-05,
+          1e-08
+        ],
+        "S60": [
+          1e-05,
+          1e-08
+        ],
+        "RMST60": [
+          1e-05,
+          1e-08
+        ],
+        "median": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "logrank_risksets.csv": {
+      "columns": [
+        "row_id",
+        "scenario",
+        "time",
+        "at_risk",
+        "old_at_risk",
+        "deaths",
+        "old_deaths",
+        "old_expected",
+        "variance",
+        "score_contribution"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scenario": "text",
+        "time": "float",
+        "at_risk": "int",
+        "old_at_risk": "int",
+        "deaths": "int",
+        "old_deaths": "int",
+        "old_expected": "float",
+        "variance": "float",
+        "score_contribution": "float"
+      },
+      "tolerance": {
+        "time": [
+          1e-05,
+          1e-08
+        ],
+        "old_expected": [
+          1e-05,
+          1e-08
+        ],
+        "variance": [
+          1e-05,
+          1e-08
+        ],
+        "score_contribution": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "logrank_summary.csv": {
+      "columns": [
+        "scenario",
+        "score",
+        "variance",
+        "chi_square",
+        "p_value"
+      ],
+      "key": [
+        "scenario"
+      ],
+      "types": {
+        "scenario": "text",
+        "score": "float",
+        "variance": "float",
+        "chi_square": "float",
+        "p_value": "float"
+      },
+      "tolerance": {
+        "score": [
+          1e-05,
+          1e-08
+        ],
+        "variance": [
+          1e-05,
+          1e-08
+        ],
+        "chi_square": [
+          1e-05,
+          1e-08
+        ],
+        "p_value": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "missing_patterns.csv": {
+      "columns": [
+        "pattern",
+        "patients"
+      ],
+      "key": [
+        "pattern"
+      ],
+      "types": {
+        "pattern": "text",
+        "patients": "int"
+      }
+    },
+    "model_audit.csv": {
+      "columns": [
+        "row_id",
+        "scenario",
+        "model",
+        "patients",
+        "events",
+        "parameters",
+        "loglik_null",
+        "loglik",
+        "AIC",
+        "score_max_abs"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scenario": "text",
+        "model": "text",
+        "patients": "int",
+        "events": "int",
+        "parameters": "int",
+        "loglik_null": "float",
+        "loglik": "float",
+        "AIC": "float",
+        "score_max_abs": "float"
+      },
+      "tolerance": {
+        "loglik_null": [
+          1e-05,
+          1e-08
+        ],
+        "loglik": [
+          1e-05,
+          1e-08
+        ],
+        "AIC": [
+          1e-05,
+          1e-08
+        ],
+        "score_max_abs": [
+          1e-05,
+          1e-06
+        ]
+      }
+    },
+    "model_coefficients.csv": {
+      "columns": [
+        "row_id",
+        "scenario",
+        "model",
+        "term",
+        "coefficient",
+        "hazard_ratio",
+        "SE",
+        "z",
+        "p_value"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scenario": "text",
+        "model": "text",
+        "term": "text",
+        "coefficient": "float",
+        "hazard_ratio": "float",
+        "SE": "float",
+        "z": "float",
+        "p_value": "float"
+      },
+      "tolerance": {
+        "coefficient": [
+          1e-05,
+          1e-08
+        ],
+        "hazard_ratio": [
+          1e-05,
+          1e-08
+        ],
+        "SE": [
+          1e-05,
+          1e-08
+        ],
+        "z": [
+          1e-05,
+          1e-08
+        ],
+        "p_value": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "model_design.csv": {
+      "columns": [
+        "row_id",
+        "scenario",
+        "model",
+        "patient_id",
+        "time",
+        "event",
+        "age10",
+        "marker",
+        "marker_in_model"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scenario": "text",
+        "model": "text",
+        "patient_id": "text",
+        "time": "float",
+        "event": "int",
+        "age10": "float",
+        "marker": "float",
+        "marker_in_model": "int"
+      },
+      "tolerance": {
+        "time": [
+          1e-05,
+          1e-08
+        ],
+        "age10": [
+          1e-05,
+          1e-08
+        ],
+        "marker": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "model_information.csv": {
+      "columns": [
+        "row_id",
+        "scenario",
+        "model",
+        "term1",
+        "term2",
+        "information",
+        "variance"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scenario": "text",
+        "model": "text",
+        "term1": "text",
+        "term2": "text",
+        "information": "float",
+        "variance": "float"
+      },
+      "tolerance": {
+        "information": [
+          1e-05,
+          1e-08
+        ],
+        "variance": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "patient_audit.csv": {
+      "columns": [
+        "patient_id",
+        "source_row",
+        "sample_id",
+        "sample_count",
+        "OS_status",
+        "OS_months",
+        "source_event",
+        "outcome_eligible",
+        "age",
+        "age_missing",
+        "marker",
+        "marker_missing",
+        "old_age_group"
+      ],
+      "key": [
+        "patient_id"
+      ],
+      "types": {
+        "patient_id": "text",
+        "source_row": "int",
+        "sample_id": "text",
+        "sample_count": "int",
+        "OS_status": "text",
+        "OS_months": "float",
+        "source_event": "int",
+        "outcome_eligible": "int",
+        "age": "float",
+        "age_missing": "int",
+        "marker": "float",
+        "marker_missing": "int",
+        "old_age_group": "int"
+      },
+      "tolerance": {
+        "OS_months": [
+          1e-05,
+          1e-08
+        ],
+        "age": [
+          1e-05,
+          1e-08
+        ],
+        "marker": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "patient_predictions.csv": {
+      "columns": [
+        "row_id",
+        "scenario",
+        "model",
+        "patient_id",
+        "time",
+        "event",
+        "linear_predictor",
+        "relative_hazard",
+        "S12",
+        "S60",
+        "martingale_residual"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scenario": "text",
+        "model": "text",
+        "patient_id": "text",
+        "time": "float",
+        "event": "int",
+        "linear_predictor": "float",
+        "relative_hazard": "float",
+        "S12": "float",
+        "S60": "float",
+        "martingale_residual": "float"
+      },
+      "tolerance": {
+        "time": [
+          1e-05,
+          1e-08
+        ],
+        "linear_predictor": [
+          1e-05,
+          1e-08
+        ],
+        "relative_hazard": [
+          1e-05,
+          1e-08
+        ],
+        "S12": [
+          1e-05,
+          1e-08
+        ],
+        "S60": [
+          1e-05,
+          1e-08
+        ],
+        "martingale_residual": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "sensitivity.csv": {
+      "columns": [
+        "row_id",
+        "model",
+        "term",
+        "original_coefficient",
+        "capped_coefficient",
+        "coefficient_change",
+        "original_events",
+        "capped_events"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "model": "text",
+        "term": "text",
+        "original_coefficient": "float",
+        "capped_coefficient": "float",
+        "coefficient_change": "float",
+        "original_events": "int",
+        "capped_events": "int"
+      },
+      "tolerance": {
+        "original_coefficient": [
+          1e-05,
+          1e-08
+        ],
+        "capped_coefficient": [
+          1e-05,
+          1e-08
+        ],
+        "coefficient_change": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "source_cells.csv": {
+      "columns": [
+        "row_id",
+        "level",
+        "subject_id",
+        "field",
+        "raw_value",
+        "source_row"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "level": "text",
+        "subject_id": "text",
+        "field": "text",
+        "raw_value": "text",
+        "source_row": "int"
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-10
+        ]
+      }
+    }
+  }
+}

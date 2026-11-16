@@ -1,0 +1,1841 @@
+{
+  "tables": {
+    "source_genotypes.csv": {
+      "columns": [
+        "line_id",
+        "marker",
+        "native_code",
+        "working_dosage",
+        "missing"
+      ],
+      "key": [
+        "line_id",
+        "marker"
+      ],
+      "types": {
+        "line_id": "text",
+        "marker": "text",
+        "native_code": "float",
+        "working_dosage": "float",
+        "missing": "float"
+      },
+      "tolerance": {
+        "native_code": [
+          1e-06,
+          1e-08
+        ],
+        "working_dosage": [
+          1e-06,
+          1e-08
+        ],
+        "missing": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "line_id",
+          "marker"
+        ],
+        "row_count": 1914,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "line_id": [
+            "1",
+            "2",
+            "5",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "17",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "33",
+            "34",
+            "35",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "51",
+            "52",
+            "53",
+            "55",
+            "56",
+            "57",
+            "59",
+            "60",
+            "61",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "79",
+            "81",
+            "82",
+            "83",
+            "84"
+          ],
+          "marker": [
+            "61A1",
+            "64C1",
+            "64D1",
+            "66A1",
+            "67C4",
+            "67F1",
+            "68A1",
+            "68C1",
+            "68E1",
+            "69A1",
+            "70A1",
+            "75C1",
+            "85E1",
+            "85F1dis",
+            "85F4",
+            "87A1",
+            "87B1",
+            "88B1-4dis",
+            "88E1",
+            "89D1",
+            "92E1",
+            "93F1",
+            "94B1",
+            "95A1",
+            "96B5",
+            "96F5",
+            "99F1",
+            "100C2",
+            "100F1"
+          ]
+        }
+      }
+    },
+    "source_phenotypes.csv": {
+      "columns": [
+        "line_id",
+        "trait",
+        "native_mean",
+        "native_SD",
+        "working_mean"
+      ],
+      "key": [
+        "line_id",
+        "trait"
+      ],
+      "types": {
+        "line_id": "text",
+        "trait": "text",
+        "native_mean": "float",
+        "native_SD": "float",
+        "working_mean": "float"
+      },
+      "tolerance": {
+        "native_mean": [
+          1e-06,
+          1e-08
+        ],
+        "native_SD": [
+          1e-06,
+          1e-08
+        ],
+        "working_mean": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "line_id",
+          "trait"
+        ],
+        "row_count": 264,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "line_id": [
+            "1",
+            "2",
+            "5",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "17",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "33",
+            "34",
+            "35",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "51",
+            "52",
+            "53",
+            "55",
+            "56",
+            "57",
+            "59",
+            "60",
+            "61",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "79",
+            "81",
+            "82",
+            "83",
+            "84"
+          ],
+          "trait": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale"
+          ]
+        }
+      }
+    },
+    "marker_audit.csv": {
+      "columns": [
+        "marker",
+        "position_cM",
+        "called",
+        "missing",
+        "code1",
+        "code2",
+        "high_fraction"
+      ],
+      "key": [
+        "marker"
+      ],
+      "types": {
+        "marker": "text",
+        "position_cM": "float",
+        "called": "float",
+        "missing": "float",
+        "code1": "float",
+        "code2": "float",
+        "high_fraction": "float"
+      },
+      "tolerance": {
+        "position_cM": [
+          1e-06,
+          1e-08
+        ],
+        "called": [
+          1e-06,
+          1e-08
+        ],
+        "missing": [
+          1e-06,
+          1e-08
+        ],
+        "code1": [
+          1e-06,
+          1e-08
+        ],
+        "code2": [
+          1e-06,
+          1e-08
+        ],
+        "high_fraction": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "marker"
+        ],
+        "row_count": 29,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "marker": [
+            "61A1",
+            "64C1",
+            "64D1",
+            "66A1",
+            "67C4",
+            "67F1",
+            "68A1",
+            "68C1",
+            "68E1",
+            "69A1",
+            "70A1",
+            "75C1",
+            "85E1",
+            "85F1dis",
+            "85F4",
+            "87A1",
+            "87B1",
+            "88B1-4dis",
+            "88E1",
+            "89D1",
+            "92E1",
+            "93F1",
+            "94B1",
+            "95A1",
+            "96B5",
+            "96F5",
+            "99F1",
+            "100C2",
+            "100F1"
+          ]
+        }
+      }
+    },
+    "line_traits.csv": {
+      "columns": [
+        "line_id",
+        "outcome",
+        "value"
+      ],
+      "key": [
+        "line_id",
+        "outcome"
+      ],
+      "types": {
+        "line_id": "text",
+        "outcome": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "line_id",
+          "outcome"
+        ],
+        "row_count": 396,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "line_id": [
+            "1",
+            "2",
+            "5",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "17",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "33",
+            "34",
+            "35",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "51",
+            "52",
+            "53",
+            "55",
+            "56",
+            "57",
+            "59",
+            "60",
+            "61",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "79",
+            "81",
+            "82",
+            "83",
+            "84"
+          ],
+          "outcome": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale",
+            "SB_male_minus_female",
+            "AB_male_minus_female"
+          ]
+        }
+      }
+    },
+    "trait_moments.csv": {
+      "columns": [
+        "outcome",
+        "n",
+        "mean",
+        "SD",
+        "minimum",
+        "maximum"
+      ],
+      "key": [
+        "outcome"
+      ],
+      "types": {
+        "outcome": "text",
+        "n": "float",
+        "mean": "float",
+        "SD": "float",
+        "minimum": "float",
+        "maximum": "float"
+      },
+      "tolerance": {
+        "n": [
+          1e-06,
+          1e-08
+        ],
+        "mean": [
+          1e-06,
+          1e-08
+        ],
+        "SD": [
+          1e-06,
+          1e-08
+        ],
+        "minimum": [
+          1e-06,
+          1e-08
+        ],
+        "maximum": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "outcome"
+        ],
+        "row_count": 6,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "outcome": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale",
+            "SB_male_minus_female",
+            "AB_male_minus_female"
+          ]
+        }
+      }
+    },
+    "trait_covariance.csv": {
+      "columns": [
+        "outcome_a",
+        "outcome_b",
+        "covariance",
+        "correlation"
+      ],
+      "key": [
+        "outcome_a",
+        "outcome_b"
+      ],
+      "types": {
+        "outcome_a": "text",
+        "outcome_b": "text",
+        "covariance": "float",
+        "correlation": "float"
+      },
+      "tolerance": {
+        "covariance": [
+          1e-06,
+          1e-08
+        ],
+        "correlation": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "outcome_a",
+          "outcome_b"
+        ],
+        "row_count": 36,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "outcome_a": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale",
+            "SB_male_minus_female",
+            "AB_male_minus_female"
+          ],
+          "outcome_b": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale",
+            "SB_male_minus_female",
+            "AB_male_minus_female"
+          ]
+        }
+      }
+    },
+    "marker_models.csv": {
+      "columns": [
+        "outcome",
+        "marker",
+        "n",
+        "intercept",
+        "beta",
+        "RSS_null",
+        "RSS_full",
+        "SE_beta",
+        "LOD",
+        "R2"
+      ],
+      "key": [
+        "outcome",
+        "marker"
+      ],
+      "types": {
+        "outcome": "text",
+        "marker": "text",
+        "n": "float",
+        "intercept": "float",
+        "beta": "float",
+        "RSS_null": "float",
+        "RSS_full": "float",
+        "SE_beta": "float",
+        "LOD": "float",
+        "R2": "float"
+      },
+      "tolerance": {
+        "n": [
+          1e-06,
+          1e-08
+        ],
+        "intercept": [
+          1e-06,
+          1e-08
+        ],
+        "beta": [
+          1e-06,
+          1e-08
+        ],
+        "RSS_null": [
+          1e-06,
+          1e-08
+        ],
+        "RSS_full": [
+          1e-06,
+          1e-08
+        ],
+        "SE_beta": [
+          1e-06,
+          1e-08
+        ],
+        "LOD": [
+          1e-06,
+          1e-08
+        ],
+        "R2": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "outcome",
+          "marker"
+        ],
+        "row_count": 174,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "outcome": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale",
+            "SB_male_minus_female",
+            "AB_male_minus_female"
+          ],
+          "marker": [
+            "61A1",
+            "64C1",
+            "64D1",
+            "66A1",
+            "67C4",
+            "67F1",
+            "68A1",
+            "68C1",
+            "68E1",
+            "69A1",
+            "70A1",
+            "75C1",
+            "85E1",
+            "85F1dis",
+            "85F4",
+            "87A1",
+            "87B1",
+            "88B1-4dis",
+            "88E1",
+            "89D1",
+            "92E1",
+            "93F1",
+            "94B1",
+            "95A1",
+            "96B5",
+            "96F5",
+            "99F1",
+            "100C2",
+            "100F1"
+          ]
+        }
+      }
+    },
+    "joint_models.csv": {
+      "columns": [
+        "marker",
+        "n",
+        "logdet_null",
+        "logdet_full",
+        "Wilks",
+        "LOD"
+      ],
+      "key": [
+        "marker"
+      ],
+      "types": {
+        "marker": "text",
+        "n": "float",
+        "logdet_null": "float",
+        "logdet_full": "float",
+        "Wilks": "float",
+        "LOD": "float"
+      },
+      "tolerance": {
+        "n": [
+          1e-06,
+          1e-08
+        ],
+        "logdet_null": [
+          1e-06,
+          1e-08
+        ],
+        "logdet_full": [
+          1e-06,
+          1e-08
+        ],
+        "Wilks": [
+          1e-06,
+          1e-08
+        ],
+        "LOD": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "marker"
+        ],
+        "row_count": 29,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "marker": [
+            "61A1",
+            "64C1",
+            "64D1",
+            "66A1",
+            "67C4",
+            "67F1",
+            "68A1",
+            "68C1",
+            "68E1",
+            "69A1",
+            "70A1",
+            "75C1",
+            "85E1",
+            "85F1dis",
+            "85F4",
+            "87A1",
+            "87B1",
+            "88B1-4dis",
+            "88E1",
+            "89D1",
+            "92E1",
+            "93F1",
+            "94B1",
+            "95A1",
+            "96B5",
+            "96F5",
+            "99F1",
+            "100C2",
+            "100F1"
+          ]
+        }
+      }
+    },
+    "joint_coefficients.csv": {
+      "columns": [
+        "marker",
+        "trait",
+        "intercept",
+        "beta"
+      ],
+      "key": [
+        "marker",
+        "trait"
+      ],
+      "types": {
+        "marker": "text",
+        "trait": "text",
+        "intercept": "float",
+        "beta": "float"
+      },
+      "tolerance": {
+        "intercept": [
+          1e-06,
+          1e-08
+        ],
+        "beta": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "marker",
+          "trait"
+        ],
+        "row_count": 116,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "marker": [
+            "61A1",
+            "64C1",
+            "64D1",
+            "66A1",
+            "67C4",
+            "67F1",
+            "68A1",
+            "68C1",
+            "68E1",
+            "69A1",
+            "70A1",
+            "75C1",
+            "85E1",
+            "85F1dis",
+            "85F4",
+            "87A1",
+            "87B1",
+            "88B1-4dis",
+            "88E1",
+            "89D1",
+            "92E1",
+            "93F1",
+            "94B1",
+            "95A1",
+            "96B5",
+            "96F5",
+            "99F1",
+            "100C2",
+            "100F1"
+          ],
+          "trait": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale"
+          ]
+        }
+      }
+    },
+    "joint_residual_scatter.csv": {
+      "columns": [
+        "marker",
+        "trait_a",
+        "trait_b",
+        "null_scatter",
+        "full_scatter"
+      ],
+      "key": [
+        "marker",
+        "trait_a",
+        "trait_b"
+      ],
+      "types": {
+        "marker": "text",
+        "trait_a": "text",
+        "trait_b": "text",
+        "null_scatter": "float",
+        "full_scatter": "float"
+      },
+      "tolerance": {
+        "null_scatter": [
+          1e-06,
+          1e-08
+        ],
+        "full_scatter": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "marker",
+          "trait_a",
+          "trait_b"
+        ],
+        "row_count": 464,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "marker": [
+            "61A1",
+            "64C1",
+            "64D1",
+            "66A1",
+            "67C4",
+            "67F1",
+            "68A1",
+            "68C1",
+            "68E1",
+            "69A1",
+            "70A1",
+            "75C1",
+            "85E1",
+            "85F1dis",
+            "85F4",
+            "87A1",
+            "87B1",
+            "88B1-4dis",
+            "88E1",
+            "89D1",
+            "92E1",
+            "93F1",
+            "94B1",
+            "95A1",
+            "96B5",
+            "96F5",
+            "99F1",
+            "100C2",
+            "100F1"
+          ],
+          "trait_a": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale"
+          ],
+          "trait_b": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale"
+          ]
+        }
+      }
+    },
+    "permutation_maxima.csv": {
+      "columns": [
+        "permutation_id",
+        "model",
+        "maximum_LOD"
+      ],
+      "key": [
+        "permutation_id",
+        "model"
+      ],
+      "types": {
+        "permutation_id": "text",
+        "model": "text",
+        "maximum_LOD": "float"
+      },
+      "tolerance": {
+        "maximum_LOD": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "permutation_id",
+          "model"
+        ],
+        "row_count": 1393,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "permutation_id": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100",
+            "101",
+            "102",
+            "103",
+            "104",
+            "105",
+            "106",
+            "107",
+            "108",
+            "109",
+            "110",
+            "111",
+            "112",
+            "113",
+            "114",
+            "115",
+            "116",
+            "117",
+            "118",
+            "119",
+            "120",
+            "121",
+            "122",
+            "123",
+            "124",
+            "125",
+            "126",
+            "127",
+            "128",
+            "129",
+            "130",
+            "131",
+            "132",
+            "133",
+            "134",
+            "135",
+            "136",
+            "137",
+            "138",
+            "139",
+            "140",
+            "141",
+            "142",
+            "143",
+            "144",
+            "145",
+            "146",
+            "147",
+            "148",
+            "149",
+            "150",
+            "151",
+            "152",
+            "153",
+            "154",
+            "155",
+            "156",
+            "157",
+            "158",
+            "159",
+            "160",
+            "161",
+            "162",
+            "163",
+            "164",
+            "165",
+            "166",
+            "167",
+            "168",
+            "169",
+            "170",
+            "171",
+            "172",
+            "173",
+            "174",
+            "175",
+            "176",
+            "177",
+            "178",
+            "179",
+            "180",
+            "181",
+            "182",
+            "183",
+            "184",
+            "185",
+            "186",
+            "187",
+            "188",
+            "189",
+            "190",
+            "191",
+            "192",
+            "193",
+            "194",
+            "195",
+            "196",
+            "197",
+            "198",
+            "199"
+          ],
+          "model": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale",
+            "SB_male_minus_female",
+            "AB_male_minus_female",
+            "joint_four_means"
+          ]
+        }
+      }
+    },
+    "calibrated_scans.csv": {
+      "columns": [
+        "model",
+        "marker",
+        "LOD",
+        "null_max_ge",
+        "empirical_p_max"
+      ],
+      "key": [
+        "model",
+        "marker"
+      ],
+      "types": {
+        "model": "text",
+        "marker": "text",
+        "LOD": "float",
+        "null_max_ge": "float",
+        "empirical_p_max": "float"
+      },
+      "tolerance": {
+        "LOD": [
+          1e-06,
+          1e-08
+        ],
+        "null_max_ge": [
+          1e-06,
+          1e-08
+        ],
+        "empirical_p_max": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "model",
+          "marker"
+        ],
+        "row_count": 203,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "model": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale",
+            "SB_male_minus_female",
+            "AB_male_minus_female",
+            "joint_four_means"
+          ],
+          "marker": [
+            "61A1",
+            "64C1",
+            "64D1",
+            "66A1",
+            "67C4",
+            "67F1",
+            "68A1",
+            "68C1",
+            "68E1",
+            "69A1",
+            "70A1",
+            "75C1",
+            "85E1",
+            "85F1dis",
+            "85F4",
+            "87A1",
+            "87B1",
+            "88B1-4dis",
+            "88E1",
+            "89D1",
+            "92E1",
+            "93F1",
+            "94B1",
+            "95A1",
+            "96B5",
+            "96F5",
+            "99F1",
+            "100C2",
+            "100F1"
+          ]
+        }
+      }
+    },
+    "peaks.csv": {
+      "columns": [
+        "model",
+        "marker",
+        "position_cM",
+        "LOD",
+        "null_max_ge",
+        "empirical_p_max"
+      ],
+      "key": [
+        "model"
+      ],
+      "types": {
+        "model": "text",
+        "marker": "text",
+        "position_cM": "float",
+        "LOD": "float",
+        "null_max_ge": "float",
+        "empirical_p_max": "float"
+      },
+      "tolerance": {
+        "position_cM": [
+          1e-06,
+          1e-08
+        ],
+        "LOD": [
+          1e-06,
+          1e-08
+        ],
+        "null_max_ge": [
+          1e-06,
+          1e-08
+        ],
+        "empirical_p_max": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "model"
+        ],
+        "row_count": 7,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "model": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale",
+            "SB_male_minus_female",
+            "AB_male_minus_female",
+            "joint_four_means"
+          ]
+        }
+      }
+    },
+    "deleted_scalar_scans.csv": {
+      "columns": [
+        "dropped_line",
+        "outcome",
+        "marker",
+        "n",
+        "beta",
+        "LOD"
+      ],
+      "key": [
+        "dropped_line",
+        "outcome",
+        "marker"
+      ],
+      "types": {
+        "dropped_line": "text",
+        "outcome": "text",
+        "marker": "text",
+        "n": "float",
+        "beta": "float",
+        "LOD": "float"
+      },
+      "tolerance": {
+        "n": [
+          1e-06,
+          1e-08
+        ],
+        "beta": [
+          1e-06,
+          1e-08
+        ],
+        "LOD": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "dropped_line",
+          "outcome",
+          "marker"
+        ],
+        "row_count": 11484,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "dropped_line": [
+            "1",
+            "2",
+            "5",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "17",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "33",
+            "34",
+            "35",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "51",
+            "52",
+            "53",
+            "55",
+            "56",
+            "57",
+            "59",
+            "60",
+            "61",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "79",
+            "81",
+            "82",
+            "83",
+            "84"
+          ],
+          "outcome": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale",
+            "SB_male_minus_female",
+            "AB_male_minus_female"
+          ],
+          "marker": [
+            "61A1",
+            "64C1",
+            "64D1",
+            "66A1",
+            "67C4",
+            "67F1",
+            "68A1",
+            "68C1",
+            "68E1",
+            "69A1",
+            "70A1",
+            "75C1",
+            "85E1",
+            "85F1dis",
+            "85F4",
+            "87A1",
+            "87B1",
+            "88B1-4dis",
+            "88E1",
+            "89D1",
+            "92E1",
+            "93F1",
+            "94B1",
+            "95A1",
+            "96B5",
+            "96F5",
+            "99F1",
+            "100C2",
+            "100F1"
+          ]
+        }
+      }
+    },
+    "deleted_joint_scans.csv": {
+      "columns": [
+        "dropped_line",
+        "marker",
+        "n",
+        "logdet_null",
+        "logdet_full",
+        "Wilks",
+        "LOD"
+      ],
+      "key": [
+        "dropped_line",
+        "marker"
+      ],
+      "types": {
+        "dropped_line": "text",
+        "marker": "text",
+        "n": "float",
+        "logdet_null": "float",
+        "logdet_full": "float",
+        "Wilks": "float",
+        "LOD": "float"
+      },
+      "tolerance": {
+        "n": [
+          1e-06,
+          1e-08
+        ],
+        "logdet_null": [
+          1e-06,
+          1e-08
+        ],
+        "logdet_full": [
+          1e-06,
+          1e-08
+        ],
+        "Wilks": [
+          1e-06,
+          1e-08
+        ],
+        "LOD": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "dropped_line",
+          "marker"
+        ],
+        "row_count": 1914,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "dropped_line": [
+            "1",
+            "2",
+            "5",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "17",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "33",
+            "34",
+            "35",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "51",
+            "52",
+            "53",
+            "55",
+            "56",
+            "57",
+            "59",
+            "60",
+            "61",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "79",
+            "81",
+            "82",
+            "83",
+            "84"
+          ],
+          "marker": [
+            "61A1",
+            "64C1",
+            "64D1",
+            "66A1",
+            "67C4",
+            "67F1",
+            "68A1",
+            "68C1",
+            "68E1",
+            "69A1",
+            "70A1",
+            "75C1",
+            "85E1",
+            "85F1dis",
+            "85F4",
+            "87A1",
+            "87B1",
+            "88B1-4dis",
+            "88E1",
+            "89D1",
+            "92E1",
+            "93F1",
+            "94B1",
+            "95A1",
+            "96B5",
+            "96F5",
+            "99F1",
+            "100C2",
+            "100F1"
+          ]
+        }
+      }
+    },
+    "deleted_peaks.csv": {
+      "columns": [
+        "dropped_line",
+        "model",
+        "marker",
+        "position_cM",
+        "LOD",
+        "LOD_at_original_peak",
+        "maximum_LOD_delta"
+      ],
+      "key": [
+        "dropped_line",
+        "model"
+      ],
+      "types": {
+        "dropped_line": "text",
+        "model": "text",
+        "marker": "text",
+        "position_cM": "float",
+        "LOD": "float",
+        "LOD_at_original_peak": "float",
+        "maximum_LOD_delta": "float"
+      },
+      "tolerance": {
+        "position_cM": [
+          1e-06,
+          1e-08
+        ],
+        "LOD": [
+          1e-06,
+          1e-08
+        ],
+        "LOD_at_original_peak": [
+          1e-06,
+          1e-08
+        ],
+        "maximum_LOD_delta": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "dropped_line",
+          "model"
+        ],
+        "row_count": 462,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "dropped_line": [
+            "1",
+            "2",
+            "5",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "17",
+            "20",
+            "21",
+            "22",
+            "23",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "33",
+            "34",
+            "35",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "51",
+            "52",
+            "53",
+            "55",
+            "56",
+            "57",
+            "59",
+            "60",
+            "61",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "79",
+            "81",
+            "82",
+            "83",
+            "84"
+          ],
+          "model": [
+            "SBmale",
+            "SBfemale",
+            "ABmale",
+            "ABfemale",
+            "SB_male_minus_female",
+            "AB_male_minus_female",
+            "joint_four_means"
+          ]
+        }
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "check",
+        "value"
+      ],
+      "key": [
+        "check"
+      ],
+      "types": {
+        "check": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "check"
+        ],
+        "row_count": 9,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "check": [
+            "lines",
+            "markers",
+            "missing_genotypes",
+            "source_phenotype_measurements",
+            "univariate_marker_fits",
+            "joint_marker_fits",
+            "null_permutations",
+            "whole_line_deletions",
+            "joint_same_peak_deletions"
+          ]
+        }
+      }
+    },
+    "terminal_summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "metric"
+        ],
+        "row_count": 18,
+        "rule": "原 design.answer_fields 中全部数值终点各一行。",
+        "domains": {
+          "metric": [
+            "lines",
+            "markers",
+            "missing_genotypes",
+            "source_phenotype_measurements",
+            "univariate_marker_fits",
+            "joint_marker_fits",
+            "null_permutations",
+            "whole_line_deletions",
+            "joint_same_peak_deletions",
+            "maximum_LOD_SBmale",
+            "maximum_LOD_SBfemale",
+            "maximum_LOD_ABmale",
+            "maximum_LOD_ABfemale",
+            "maximum_LOD_SB_male_minus_female",
+            "maximum_LOD_AB_male_minus_female",
+            "maximum_joint_LOD",
+            "joint_empirical_p_max",
+            "maximum_abs_deleted_SBfemale_beta_delta"
+          ]
+        }
+      }
+    }
+  }
+}

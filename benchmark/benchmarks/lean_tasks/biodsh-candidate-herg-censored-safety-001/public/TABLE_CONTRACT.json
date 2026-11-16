@@ -1,0 +1,147 @@
+{
+  "tables": {
+    "fit.csv": {
+      "columns": [
+        "id",
+        "n",
+        "right_censored",
+        "mu",
+        "sigma",
+        "log_likelihood"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "right_censored": "int",
+        "mu": "float",
+        "sigma": "float",
+        "log_likelihood": "float"
+      },
+      "tolerance": {
+        "mu": [
+          1e-05,
+          1e-08
+        ],
+        "sigma": [
+          1e-05,
+          1e-08
+        ],
+        "log_likelihood": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "observations.csv": {
+      "columns": [
+        "id",
+        "IC50_or_limit_nM",
+        "log10_value",
+        "exact"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "IC50_or_limit_nM": "float",
+        "log10_value": "float",
+        "exact": "int"
+      },
+      "tolerance": {
+        "IC50_or_limit_nM": [
+          1e-05,
+          1e-08
+        ],
+        "log10_value": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "quantiles.csv": {
+      "columns": [
+        "id",
+        "log10_IC50",
+        "IC50_nM"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "log10_IC50": "float",
+        "IC50_nM": "float"
+      },
+      "tolerance": {
+        "log10_IC50": [
+          1e-05,
+          1e-08
+        ],
+        "IC50_nM": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "sensitivity.csv": {
+      "columns": [
+        "id",
+        "censored_median_nM",
+        "complete_case_median_nM",
+        "median_ratio",
+        "delta_mu"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "censored_median_nM": "float",
+        "complete_case_median_nM": "float",
+        "median_ratio": "float",
+        "delta_mu": "float"
+      },
+      "tolerance": {
+        "censored_median_nM": [
+          1e-05,
+          1e-08
+        ],
+        "complete_case_median_nM": [
+          1e-05,
+          1e-08
+        ],
+        "median_ratio": [
+          1e-05,
+          1e-08
+        ],
+        "delta_mu": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "thresholds.csv": {
+      "columns": [
+        "id",
+        "probability_IC50_le_threshold"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "probability_IC50_le_threshold": "float"
+      },
+      "tolerance": {
+        "probability_IC50_le_threshold": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

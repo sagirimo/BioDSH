@@ -1,0 +1,153 @@
+{
+  "revision": "round6_lean_v1",
+  "task_id": "biodsh-candidate-vegfr2-biochemical-cellular-deming-001",
+  "claims": [
+    {
+      "id": "n_pairs",
+      "type": "number",
+      "question": "完整配对分子数。",
+      "binding": {
+        "table": "agreement.csv",
+        "key_column": "id",
+        "key": "paired",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "mean_bias",
+      "type": "number",
+      "question": "细胞减生化pIC50均值差。",
+      "binding": {
+        "table": "agreement.csv",
+        "key_column": "id",
+        "key": "paired",
+        "column": "mean_bias"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "loa_low",
+      "type": "number",
+      "question": "描述性一致限下限。",
+      "binding": {
+        "table": "agreement.csv",
+        "key_column": "id",
+        "key": "paired",
+        "column": "loa_low"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "loa_high",
+      "type": "number",
+      "question": "描述性一致限上限。",
+      "binding": {
+        "table": "agreement.csv",
+        "key_column": "id",
+        "key": "paired",
+        "column": "loa_high"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "deming_slope",
+      "type": "number",
+      "question": "lambda=1的Deming斜率。",
+      "binding": {
+        "table": "deming.csv",
+        "key_column": "id",
+        "key": "1.0",
+        "column": "slope"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "slope_ci_low",
+      "type": "number",
+      "question": "给定配对bootstrap的斜率2.5%分位数。",
+      "binding": {
+        "table": "bootstrap_summary.csv",
+        "key_column": "id",
+        "key": "slope",
+        "column": "lower"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "slope_ci_high",
+      "type": "number",
+      "question": "给定配对bootstrap的斜率97.5%分位数。",
+      "binding": {
+        "table": "bootstrap_summary.csv",
+        "key_column": "id",
+        "key": "slope",
+        "column": "upper"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "bias_direction",
+      "type": "derived",
+      "question": "细胞pIC50是否平均更低？",
+      "options": [
+        "cellular_potency_lower_on_average",
+        "cellular_potency_not_lower_on_average"
+      ],
+      "rule": {
+        "binding": {
+          "table": "agreement.csv",
+          "key_column": "id",
+          "key": "paired",
+          "column": "mean_bias"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "cellular_potency_lower_on_average",
+          "false": "cellular_potency_not_lower_on_average"
+        }
+      }
+    },
+    {
+      "id": "dispersion_large",
+      "type": "derived",
+      "question": "一致限跨度是否超过2个log10单位？",
+      "options": [
+        "agreement_span_exceeds_100fold",
+        "agreement_span_at_most_100fold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "agreement.csv",
+          "key_column": "id",
+          "key": "paired",
+          "column": "loa_width"
+        },
+        "op": "gt",
+        "threshold": 2,
+        "outcomes": {
+          "true": "agreement_span_exceeds_100fold",
+          "false": "agreement_span_at_most_100fold"
+        }
+      }
+    },
+    {
+      "id": "interpretation",
+      "type": "choice",
+      "question": "应如何解释两测定的Deming关系？",
+      "options": [
+        "assay_context_relation_given_error_ratio_not_interchangeability_proof",
+        "correlation_proves_cellular_target_engagement",
+        "lambda_one_estimated_from_no_replicates"
+      ]
+    }
+  ]
+}

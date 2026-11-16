@@ -1,0 +1,145 @@
+{
+  "tables": {
+    "distance_bins.csv": {
+      "columns": [
+        "id",
+        "n_pairs",
+        "mean"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_pairs": "int",
+        "mean": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "mantel_summary.csv": {
+      "columns": [
+        "id",
+        "mean",
+        "mantel_r",
+        "p_two_sided"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "mean": "float",
+        "mantel_r": "float",
+        "p_two_sided": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-05,
+          1e-08
+        ],
+        "mantel_r": [
+          1e-05,
+          1e-08
+        ],
+        "p_two_sided": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "pair_components.csv": {
+      "columns": [
+        "id",
+        "distance_m",
+        "shared",
+        "only_left",
+        "only_right",
+        "sorensen",
+        "turnover",
+        "nestedness"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "distance_m": "float",
+        "shared": "int",
+        "only_left": "int",
+        "only_right": "int",
+        "sorensen": "float",
+        "turnover": "float",
+        "nestedness": "float"
+      },
+      "tolerance": {
+        "distance_m": [
+          1e-05,
+          1e-08
+        ],
+        "sorensen": [
+          1e-05,
+          1e-08
+        ],
+        "turnover": [
+          1e-05,
+          1e-08
+        ],
+        "nestedness": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "permutation_statistics.csv": {
+      "columns": [
+        "id",
+        "r"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "r": "float"
+      },
+      "tolerance": {
+        "r": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "plot_qc.csv": {
+      "columns": [
+        "id",
+        "richness",
+        "east",
+        "north"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "richness": "int",
+        "east": "float",
+        "north": "float"
+      },
+      "tolerance": {
+        "east": [
+          1e-05,
+          1e-08
+        ],
+        "north": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+ "source_url": "https://vegandevs.github.io/vegan/reference/mite.html",
+ "input_files_sha256": {
+  "inputs/community.csv": "41de02c2a2d4105d64c0061299ae1c62b25f03d08ea252d6d0d6eb9a09761d35",
+  "inputs/design.json": "a9f05890b239dd8f6e8055c44a74f6eff4756e5f7f04a4890fa7f3744e1eb464",
+  "inputs/environment.csv": "6ebde522ad7b7045438a6dbd8828413b961d759fe9387ee847390f0aa6f3f9ce",
+  "inputs/environment_fields.csv": "7e4ff8f78f81cd69193fadb604459b260866cd3b07c5790607e95111f440af6c",
+  "inputs/evidence_input.csv": "9874dae14e5eacd43c7ca54ffe2c6c2a0e548c7c9d717192c68821b198281a65",
+  "inputs/mite.env.rda": "a6dea903a01176852ca601af1ab1815c11a3be9f8737dee9051ed23919a74eec",
+  "inputs/mite.pcnm.csv": "461501795fe956333fe378322de1b1fefdf2cf8e9bf40d036e2587e3d2b3c3b1",
+  "inputs/mite.pcnm.rda": "72925040c79513cc363f3a60e11cb8fa8cc8ff211c6d37c52317f7282ffbf735",
+  "inputs/mite.rda": "072aabb3f03ee7a364ce8ac4b9e3a022cbac087dedb48b785ffd4ec36433e361",
+  "inputs/mite.xy.csv": "758b3e183dec677920d7a43898ca64f7cc85571637f3578fbb1caa2ca25d8f34",
+  "inputs/mite.xy.rda": "cebc7313c978b6aaf62350fcdc2a9cb8e76949e0a7fe51b142f865de55cf6329",
+  "inputs/model_covariates.csv": "cf68df624e241953612d07f97e57f9795b883ea7dc73e65afd2862c69aecf080",
+  "inputs/permutations.csv": "d6688e31420485a56973ced10a467461fe433d01d7f9f6b3c0e601e5ee486d67",
+  "inputs/table_schema.csv": "d53378ee8f63f3daf9861b6834a0be9fb12eaa679c4f0aa6e389ba31475d84b2"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

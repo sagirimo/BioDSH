@@ -1,0 +1,2 @@
+Clarke ND, Kissinger CR, Desjarlais J, Gilliland GL, Pabo CO (1994). Structural studies of the engrailed homeodomain. Protein Sci3:1779–1787. DOI10.1002/pro.5560031018. PDB1ENH DOI10.2210/pdb1ENH/pdb，原始坐标 https://files.rcsb.org/download/1ENH.pdb；RCSB公开结构数据，署名保留。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

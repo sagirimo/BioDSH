@@ -1,0 +1,152 @@
+{
+  "revision": "round2_lean_v1",
+  "task_id": "biodsh-candidate-fit-stool-method-agreement-001",
+  "claims": [
+    {
+      "id": "n",
+      "type": "number",
+      "question": "完整配对人数",
+      "binding": {
+        "table": "cohort_summary.csv",
+        "key_column": "metric",
+        "key": "pairs",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "bias",
+      "type": "number",
+      "question": "Faecalibacterium的FIT减粪便平均差",
+      "binding": {
+        "table": "agreement.csv",
+        "key_column": "genus",
+        "key": "Faecalibacterium",
+        "column": "bias"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ccc",
+      "type": "number",
+      "question": "Faecalibacterium一致性相关系数",
+      "binding": {
+        "table": "agreement.csv",
+        "key_column": "genus",
+        "key": "Faecalibacterium",
+        "column": "ccc"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "loa",
+      "type": "number",
+      "question": "Faecalibacterium一致性上限",
+      "binding": {
+        "table": "agreement.csv",
+        "key_column": "genus",
+        "key": "Faecalibacterium",
+        "column": "loa_high"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "slope",
+      "type": "number",
+      "question": "Faecalibacterium比例偏倚斜率",
+      "binding": {
+        "table": "proportional_bias.csv",
+        "key_column": "genus",
+        "key": "Faecalibacterium",
+        "column": "slope"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "bias_ci",
+      "type": "number",
+      "question": "Faecalibacterium配对bootstrap偏倚下界",
+      "binding": {
+        "table": "bootstrap_bias.csv",
+        "key_column": "genus",
+        "key": "Faecalibacterium",
+        "column": "ci_low"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "bias_direction",
+      "type": "derived",
+      "question": "目标菌方法偏倚方向",
+      "options": [
+        "FIT_higher",
+        "FIT_not_higher",
+        "proves_causation"
+      ],
+      "rule": {
+        "binding": {
+          "table": "agreement.csv",
+          "key_column": "genus",
+          "key": "Faecalibacterium",
+          "column": "bias"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "FIT_higher",
+          "false": "FIT_not_higher"
+        }
+      }
+    },
+    {
+      "id": "proportional",
+      "type": "derived",
+      "question": "比例偏倚未校正证据",
+      "options": [
+        "nominal_proportional_bias",
+        "not_detected_not_equivalence",
+        "proves_causation"
+      ],
+      "rule": {
+        "binding": {
+          "table": "proportional_bias.csv",
+          "key_column": "genus",
+          "key": "Faecalibacterium",
+          "column": "p_value"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "nominal_proportional_bias",
+          "false": "not_detected_not_equivalence"
+        }
+      }
+    },
+    {
+      "id": "loa_scope",
+      "type": "choice",
+      "question": "Bland–Altman界限是什么",
+      "options": [
+        "spread_of_individual_method_differences",
+        "confidence_interval_for_mean_bias",
+        "clinical_equivalence_margin"
+      ]
+    },
+    {
+      "id": "ccc_scope",
+      "type": "choice",
+      "question": "CCC与Pearson相关的区别",
+      "options": [
+        "penalizes_location_and_scale_disagreement",
+        "invariant_to_any_additive_bias",
+        "proves_equal_cancer_detection_accuracy"
+      ]
+    }
+  ]
+}

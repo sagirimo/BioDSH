@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.rcsb.org/structure/4HHB",
+ "input_files_sha256": {
+  "inputs/4HHB.pdb": "abf382e0fd84b53bd4c08b373d37c0d7fe9fbe1a9a9c3851b2f5f2fbbe627101"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

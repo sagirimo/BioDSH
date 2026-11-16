@@ -1,0 +1,12 @@
+存量原题 biodsh-candidate-dream4-size100-001 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-dream4-size100-001
+source: "dream4"
+source_registry_id: "dream4"
+source_family: "dream4"
+source_case: "DREAM4_InSilico_Size100_all5_whole_workflow_adaptation"
+source_revision: "DREAM4_official_complete_archive_SHA256_bdb9207f146a6afcb2d2c299bf1146cc9d5d74728a106cb74149d68806b00dd9"
+source_terms: "official_research_resource_citations_required_data_redistribution_review_pending"
+family_keys: ["DREAM4_in_silico_all_subchallenges", "GNW_generator", "DREAM4_subchallenge:Size100"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+
+来源登记条目：{"id": "dream4", "family": "dream4", "type": "method_data_benchmark", "name": "DREAM4 GNW in-silico network challenge", "url": "https://gnw.sourceforge.net/dreamchallenge.html", "candidate_domains": ["D08"], "value": "Whole original cases for newly constructed multi-step agent workflows; source rows not separate tasks", "availability": "Complete pinned payload and schema verified; scientific reference/qualification pending", "priority": "P1", "caveat": "Public upstream data not hidden/pretraining-independent; original challenge or causal findings not automatically reproduced", "current_qualified_fixed_contract_count": 2, "intake_report": "report/sprint_2026-09-28/stage46_network_mr_rnaseq_intake/initial_RNA_MR_whole_schema_review.json"}

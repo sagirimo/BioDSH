@@ -1,0 +1,4 @@
+GSE10846: Lenz G, Wright G, Dave SS, et al. Stromal gene signatures in large-B-cell lymphomas. N Engl J Med. 2008;359(22):2313-2323. doi:10.1056/NEJMoa0802885. PMID:19038878. LLMPP consortium.
+Data: NCBI GEO series matrix (GPL570) obtained unmodified from https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE10846.
+Use: bounded local research use with attribution under the NCBI GEO public-data policy (project decision 2026-10-15); benchmark redistribution not authorized by this notice; study-specific terms not separately verified.
+BioDSH-authored protocol (IPI reconstruction, fixed 5-probe score, CHOP->R-CHOP transport); not a reproduction of the paper's stromal-signature analyses.

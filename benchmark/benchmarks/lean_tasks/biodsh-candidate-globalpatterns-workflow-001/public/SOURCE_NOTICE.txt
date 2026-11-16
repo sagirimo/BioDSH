@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "phyloseq_published_communities",
+  "source_case": "GlobalPatterns_complete_packaged_object",
+  "original_parent_source_case": "PMCID:PMC3063599",
+  "page": "https://bioconductor.org/packages/release/bioc/html/phyloseq.html",
+  "source_terms": "Exact source/input terms and attribution review pending; package/code license not generalized to original study",
+  "limitations": [
+    "全提供OTU组成、分类源注释及样本标签的数学距离/排序描述；源26样本不扩大为原论文28样本，没有独立供者/新分类器验证或确认性p值。",
+    "Not free model performance or independent biological gold",
+    "Family/exact delivery review pending; no pretraining independence claim"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

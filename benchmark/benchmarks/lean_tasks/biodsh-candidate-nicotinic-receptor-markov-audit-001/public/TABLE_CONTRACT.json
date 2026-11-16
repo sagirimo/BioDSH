@@ -1,0 +1,222 @@
+{
+  "tables": {
+    "cycle_audit.csv": {
+      "columns": [
+        "id",
+        "ligand_factor",
+        "cycle",
+        "log_cycle_ratio"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "ligand_factor": "float",
+        "cycle": "text",
+        "log_cycle_ratio": "float"
+      },
+      "tolerance": {
+        "ligand_factor": [
+          1e-05,
+          1e-08
+        ],
+        "log_cycle_ratio": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "edge_flux.csv": {
+      "columns": [
+        "id",
+        "ligand_factor",
+        "reaction",
+        "forward_flux",
+        "reverse_flux",
+        "net_flux"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "ligand_factor": "float",
+        "reaction": "text",
+        "forward_flux": "float",
+        "reverse_flux": "float",
+        "net_flux": "float"
+      },
+      "tolerance": {
+        "ligand_factor": [
+          1e-05,
+          1e-08
+        ],
+        "forward_flux": [
+          1e-05,
+          1e-08
+        ],
+        "reverse_flux": [
+          1e-05,
+          1e-08
+        ],
+        "net_flux": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "first_passage.csv": {
+      "columns": [
+        "id",
+        "ligand_factor",
+        "start_state",
+        "mean_seconds",
+        "SD_seconds"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "ligand_factor": "float",
+        "start_state": "text",
+        "mean_seconds": "float",
+        "SD_seconds": "float"
+      },
+      "tolerance": {
+        "ligand_factor": [
+          1e-05,
+          1e-08
+        ],
+        "mean_seconds": [
+          1e-05,
+          1e-08
+        ],
+        "SD_seconds": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "model_summary.csv": {
+      "columns": [
+        "id",
+        "active_probability",
+        "desensitized_probability",
+        "mean_bound_ligands",
+        "max_abs_cycle_affinity",
+        "sum_abs_edge_current",
+        "stationarity_residual",
+        "mean_B_to_active"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "active_probability": "float",
+        "desensitized_probability": "float",
+        "mean_bound_ligands": "float",
+        "max_abs_cycle_affinity": "float",
+        "sum_abs_edge_current": "float",
+        "stationarity_residual": "float",
+        "mean_B_to_active": "float"
+      },
+      "tolerance": {
+        "active_probability": [
+          1e-05,
+          1e-08
+        ],
+        "desensitized_probability": [
+          1e-05,
+          1e-08
+        ],
+        "mean_bound_ligands": [
+          1e-05,
+          1e-08
+        ],
+        "max_abs_cycle_affinity": [
+          1e-05,
+          1e-08
+        ],
+        "sum_abs_edge_current": [
+          1e-05,
+          1e-08
+        ],
+        "stationarity_residual": [
+          1e-05,
+          1e-08
+        ],
+        "mean_B_to_active": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "stationary_occupancy.csv": {
+      "columns": [
+        "id",
+        "ligand_factor",
+        "state",
+        "probability"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "ligand_factor": "float",
+        "state": "text",
+        "probability": "float"
+      },
+      "tolerance": {
+        "ligand_factor": [
+          1e-05,
+          1e-08
+        ],
+        "probability": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "transition_rates.csv": {
+      "columns": [
+        "id",
+        "ligand_factor",
+        "reaction",
+        "source",
+        "target",
+        "forward_per_s",
+        "reverse_per_s"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "ligand_factor": "float",
+        "reaction": "text",
+        "source": "text",
+        "target": "text",
+        "forward_per_s": "float",
+        "reverse_per_s": "float"
+      },
+      "tolerance": {
+        "ligand_factor": [
+          1e-05,
+          1e-08
+        ],
+        "forward_per_s": [
+          1e-05,
+          1e-08
+        ],
+        "reverse_per_s": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

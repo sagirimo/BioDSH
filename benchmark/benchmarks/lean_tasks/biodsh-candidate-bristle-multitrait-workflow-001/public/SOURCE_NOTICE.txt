@@ -1,0 +1,13 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "rqtl_published_crosses",
+  "source_case": "bristle3_whole66lines29markers8measurements_original_Line",
+  "original_parent_source_case": "Study:Long1995:bristle3_recombinant_isogenic_lines",
+  "page": "https://rqtl.org/manual/qtl-manual.pdf",
+  "source_terms": "qtl1.74GPL-3/source manual/CITATION retained;known actual history/family/exact delivered-input gate pending",
+  "limitations": [
+    "All66chromosome3 recombinant isogenic lines,29markers,eight line-level mean/SD phenotypes. Actual native genotype codes/class/trait names to census first. No invented individual fly/sample sizes, SD-to-SE conversion, founder-independent replicas or original interval-QTL/candidate-gene causal replication.",
+    "Original bc/cross class is native storage convention;Line is identifier,SDnotSE,no fly-count weights. Observed marker/exchangeability/model assumptions not causal or original interval-QTL validation. Public named data may occur in pretraining."
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

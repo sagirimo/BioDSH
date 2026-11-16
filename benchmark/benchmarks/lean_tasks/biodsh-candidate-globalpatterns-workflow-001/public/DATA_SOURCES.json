@@ -1,0 +1,10 @@
+{
+ "source_url": "https://bioconductor.org/packages/release/bioc/html/phyloseq.html",
+ "input_files_sha256": {
+  "inputs/community.csv": "c476ff4bbb136c5f3f43fa81094c6e53898c234388b2b8a9973329e53dbe9df3",
+  "inputs/design.json": "1416e72f3a885feaf7f84364c1d24c56bd76abca7257663a16e5c727ff907892",
+  "inputs/sample_metadata.csv": "3efdb7b418190f30e09831193a8378f30bf05fcfefba8fd12f5a8f30c02c6541",
+  "inputs/taxonomy.csv": "d26434c61bee4fbeb9182d6ef1cebbff478d62be8ad0473b8a42ea5fa073a4fe"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

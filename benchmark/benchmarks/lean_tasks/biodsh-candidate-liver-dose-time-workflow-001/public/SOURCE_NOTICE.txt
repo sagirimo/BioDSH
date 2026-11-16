@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "mixomics_published_multiomics",
+  "source_case": "liver_toxicity_complete_native",
+  "original_parent_source_case": "Study:Bushel2007:acetaminophen64rats",
+  "page": "https://bioconductor.org/packages/mixOmics/",
+  "source_terms": "Pinned mixOmics archive retained; exact delivered-input terms/attribution and actual source/history/family review pending.",
+  "limitations": [
+    "Descriptive, panel-conditional associations. Supplier ANOVA-selected genes prohibit unselected-discovery/unbiased-prediction claims. Terminal rats at different times are different entities. Cage independence/randomization/causality not established.",
+    "21 arrays and 44,896,230 acceptance cells are output coverage, not independent tasks or capability kinds.",
+    "Source/family/history/public delivery and expert explanation semantics remain pending; curator qualification is not agent accuracy."
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

@@ -1,0 +1,2 @@
+来源：Ambs、Boersma、Reimers，GEO GSE5847，PMID17999412；RMA log2表达；获取URL https://ftp.ncbi.nlm.nih.gov/geo/series/GSE5nnn/GSE5847/matrix/GSE5847_series_matrix.txt.gz。原始压缩表保存在lean_data/r7_gse5847；交付仅抽取固定探针列，值未变换。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

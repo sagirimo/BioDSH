@@ -1,0 +1,9 @@
+{
+ "source_url": "https://github.com/OSU-NLP-Group/ScienceAgentBench",
+ "input_files_sha256": {
+  "inputs/condition_list.csv": "27c1d35d590ecbacef9998e642e67c280b52854bc006a8d33b8138993ed4e3aa",
+  "inputs/cortisol_sample.csv": "9167dc6504ff149760cce9f3e95825c945d94149e262f4d6af6eac98aae7e0ee",
+  "inputs/design.json": "a885f6ba0af5532920e81b56c7c02ff6b06eaf1f61399576289d1f9b40a2815f"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

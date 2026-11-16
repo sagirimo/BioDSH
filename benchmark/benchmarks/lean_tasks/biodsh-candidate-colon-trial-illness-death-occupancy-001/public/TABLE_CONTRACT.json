@@ -1,0 +1,190 @@
+{
+  "tables": {
+    "arm_contrasts.csv": {
+      "columns": [
+        "id",
+        "delta_time0",
+        "delta_time1",
+        "delta_time2"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "delta_time0": "float",
+        "delta_time1": "float",
+        "delta_time2": "float"
+      },
+      "tolerance": {
+        "delta_time0": [
+          1e-05,
+          1e-08
+        ],
+        "delta_time1": [
+          1e-05,
+          1e-08
+        ],
+        "delta_time2": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "patient_paths.csv": {
+      "columns": [
+        "id",
+        "arm",
+        "end_days",
+        "death",
+        "recurrence_days"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "arm": "text",
+        "end_days": "int",
+        "death": "int",
+        "recurrence_days": "int"
+      },
+      "tolerance": {}
+    },
+    "state_horizons.csv": {
+      "columns": [
+        "id",
+        "arm",
+        "days",
+        "p0",
+        "p1",
+        "p2",
+        "rm_time0",
+        "rm_time1",
+        "rm_time2"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "arm": "text",
+        "days": "int",
+        "p0": "float",
+        "p1": "float",
+        "p2": "float",
+        "rm_time0": "float",
+        "rm_time1": "float",
+        "rm_time2": "float"
+      },
+      "tolerance": {
+        "p0": [
+          1e-05,
+          1e-08
+        ],
+        "p1": [
+          1e-05,
+          1e-08
+        ],
+        "p2": [
+          1e-05,
+          1e-08
+        ],
+        "rm_time0": [
+          1e-05,
+          1e-08
+        ],
+        "rm_time1": [
+          1e-05,
+          1e-08
+        ],
+        "rm_time2": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "state_summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "recurrences_1825",
+        "deaths_1825",
+        "rm_time0",
+        "rm_time1",
+        "rm_time2"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "recurrences_1825": "int",
+        "deaths_1825": "int",
+        "rm_time0": "float",
+        "rm_time1": "float",
+        "rm_time2": "float"
+      },
+      "tolerance": {
+        "rm_time0": [
+          1e-05,
+          1e-08
+        ],
+        "rm_time1": [
+          1e-05,
+          1e-08
+        ],
+        "rm_time2": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "transition_steps.csv": {
+      "columns": [
+        "id",
+        "arm",
+        "days",
+        "risk0",
+        "risk1",
+        "d01",
+        "d02",
+        "d12",
+        "p0",
+        "p1",
+        "p2"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "arm": "text",
+        "days": "int",
+        "risk0": "int",
+        "risk1": "int",
+        "d01": "int",
+        "d02": "int",
+        "d12": "int",
+        "p0": "float",
+        "p1": "float",
+        "p2": "float"
+      },
+      "tolerance": {
+        "p0": [
+          1e-05,
+          1e-08
+        ],
+        "p1": [
+          1e-05,
+          1e-08
+        ],
+        "p2": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

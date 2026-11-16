@@ -1,0 +1,15 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "bioconductor_rnaseq_examples",
+  "source_case": "GSE56761_complete_native_7039genes36libraries",
+  "original_parent_source_case": "GEO:GSE56761",
+  "page": "https://bioconductor.org/packages/release/data/experiment/vignettes/fission/inst/doc/fission.html",
+  "source_terms": "Bounded local use only under retained upstream notice; see source_usage_evidence for exact conditions.",
+  "limitations": [
+    "Computational workflow correctness not actual agent performance or causal validation",
+    "Declared conditional model not original standard source pipeline",
+    "Curator-only reference is not agent exposure; detailed actual history/family/input delivery still pending",
+    "Bounded source review completed; historical exposure outside screened records and model pretraining remain unknown. Interpretation grading requires repair."
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

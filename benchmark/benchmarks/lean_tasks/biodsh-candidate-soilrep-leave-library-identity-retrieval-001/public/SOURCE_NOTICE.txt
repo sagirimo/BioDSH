@@ -1,0 +1,2 @@
+Zhou J et al.2011 Reproducibility and quantitation of amplicon sequencing-based detection. ISME J5:1303–1313 DOI10.1038/ismej.2011.11。phyloseq官方说明soilrep原始计数和土样信息由原作者直接提供，用于公开示例；56文库×16825 OTU，24独立土样。数据https://raw.githubusercontent.com/joey711/phyloseq/master/data/soilrep.RData；prepare.py保留R对象行名、列名并导出，不根据行序猜测metadata身份，不读取任何benchmark任务。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

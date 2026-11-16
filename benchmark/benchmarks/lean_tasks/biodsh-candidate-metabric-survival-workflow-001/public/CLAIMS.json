@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-metabric-survival-workflow-001",
+  "claims": [
+    {
+      "id": "OS_eligible_patients",
+      "type": "number",
+      "question": "OS可分析患者数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "OS_eligible_patients",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "matched_marker_patients",
+      "type": "number",
+      "question": "年龄和NPI均可用的患者数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "matched_marker_patients",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "primary_age_HR",
+      "type": "number",
+      "question": "原始情景年龄每10岁HR。",
+      "binding": {
+        "table": "model_coefficients.csv",
+        "key_column": "row_id",
+        "key": "original|age_primary|age10",
+        "column": "hazard_ratio"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "adjusted_NPI_HR",
+      "type": "number",
+      "question": "调整年龄后NPI每单位HR。",
+      "binding": {
+        "table": "model_coefficients.csv",
+        "key_column": "row_id",
+        "key": "original|marker_adjusted|marker",
+        "column": "hazard_ratio"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "all_RMST60",
+      "type": "number",
+      "question": "全队列至60月RMST。",
+      "binding": {
+        "table": "km_summary.csv",
+        "key_column": "row_id",
+        "key": "original|all",
+        "column": "RMST60"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "NPI_p",
+      "type": "number",
+      "question": "年龄调整后NPI双侧Wald p值。",
+      "binding": {
+        "table": "model_coefficients.csv",
+        "key_column": "row_id",
+        "key": "original|marker_adjusted|marker",
+        "column": "p_value"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "NPI_direction",
+      "type": "derived",
+      "question": "NPI每单位HR是否大于1？",
+      "options": [
+        "higher_NPI_associated_higher_hazard",
+        "higher_NPI_not_higher_hazard",
+        "causal_NPI_effect_proven"
+      ],
+      "rule": {
+        "binding": {
+          "table": "model_coefficients.csv",
+          "key_column": "row_id",
+          "key": "original|marker_adjusted|marker",
+          "column": "hazard_ratio"
+        },
+        "op": "gt",
+        "threshold": 1,
+        "outcomes": {
+          "true": "higher_NPI_associated_higher_hazard",
+          "false": "higher_NPI_not_higher_hazard"
+        }
+      }
+    },
+    {
+      "id": "NPI_evidence",
+      "type": "derived",
+      "question": "NPI按alpha=0.05有无调整后关联证据？",
+      "options": [
+        "adjusted_NPI_association_evidence",
+        "no_evidence_not_equivalence",
+        "individual_death_probability_identified"
+      ],
+      "rule": {
+        "binding": {
+          "table": "model_coefficients.csv",
+          "key_column": "row_id",
+          "key": "original|marker_adjusted|marker",
+          "column": "p_value"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "adjusted_NPI_association_evidence",
+          "false": "no_evidence_not_equivalence"
+        }
+      }
+    },
+    {
+      "id": "matched_comparison",
+      "type": "choice",
+      "question": "marker_matched模型使用什么队列？",
+      "options": [
+        "same_complete_age_marker_patients_as_adjusted_model",
+        "all_OS_patients_regardless_of_NPI",
+        "only_deceased_patients"
+      ]
+    },
+    {
+      "id": "RMST_meaning",
+      "type": "choice",
+      "question": "RMST60应如何解释？",
+      "options": [
+        "area_under_KM_survival_curve_up_to_60_months",
+        "median_followup_time",
+        "unrestricted_population_mean_survival"
+      ]
+    }
+  ]
+}

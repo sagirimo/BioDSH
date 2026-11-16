@@ -1,0 +1,10 @@
+{
+ "source_url": "https://rqtl.org/manual/qtl-manual.pdf",
+ "input_files_sha256": {
+  "inputs/design.json": "eff435182c6849952c2bf26a564a22970bcf7f8028fdfd717291d384d8f78597",
+  "inputs/genotypes.csv": "57e944054b63384c77c671875e0eb7dd540233780ded841747dac8150b20adbf",
+  "inputs/marker_map.csv": "5d098fc04f68dc00c732cf0e59622cd806deec9ff337d6076b97093ae4acefe1",
+  "inputs/phenotypes.csv": "fd7bec8e4957ab9aaf576b099e056c413ae3244c893e38ebe50c1a1da0eccfcd"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,219 @@
+{
+  "tables": {
+    "bilateral_summary.csv": {
+      "columns": [
+        "id",
+        "stride_asym_pct",
+        "impulse_asym_pct",
+        "abs_impulse_asym_pct",
+        "duty_diff_pp"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "stride_asym_pct": "float",
+        "impulse_asym_pct": "float",
+        "abs_impulse_asym_pct": "float",
+        "duty_diff_pp": "float"
+      },
+      "tolerance": {
+        "stride_asym_pct": [
+          1e-05,
+          1e-08
+        ],
+        "impulse_asym_pct": [
+          1e-05,
+          1e-08
+        ],
+        "abs_impulse_asym_pct": [
+          1e-05,
+          1e-08
+        ],
+        "duty_diff_pp": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "foot_summary.csv": {
+      "columns": [
+        "id",
+        "n_stances",
+        "n_strides",
+        "mean_stride_s",
+        "stride_cv_pct",
+        "mean_duty",
+        "mean_impulse_Ns",
+        "cadence_per_min"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_stances": "int",
+        "n_strides": "int",
+        "mean_stride_s": "float",
+        "stride_cv_pct": "float",
+        "mean_duty": "float",
+        "mean_impulse_Ns": "float",
+        "cadence_per_min": "float"
+      },
+      "tolerance": {
+        "mean_stride_s": [
+          1e-05,
+          1e-08
+        ],
+        "stride_cv_pct": [
+          1e-05,
+          1e-08
+        ],
+        "mean_duty": [
+          1e-05,
+          1e-08
+        ],
+        "mean_impulse_Ns": [
+          1e-05,
+          1e-08
+        ],
+        "cadence_per_min": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "stance_events.csv": {
+      "columns": [
+        "id",
+        "start_row",
+        "end_row",
+        "start_s",
+        "end_s",
+        "stance_s",
+        "impulse_Ns",
+        "peak_N"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "start_row": "int",
+        "end_row": "int",
+        "start_s": "float",
+        "end_s": "float",
+        "stance_s": "float",
+        "impulse_Ns": "float",
+        "peak_N": "float"
+      },
+      "tolerance": {
+        "start_s": [
+          1e-05,
+          1e-08
+        ],
+        "end_s": [
+          1e-05,
+          1e-08
+        ],
+        "stance_s": [
+          1e-05,
+          1e-08
+        ],
+        "impulse_Ns": [
+          1e-05,
+          1e-08
+        ],
+        "peak_N": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "stride_events.csv": {
+      "columns": [
+        "id",
+        "next_start_row",
+        "stride_s",
+        "stance_s",
+        "swing_s",
+        "duty",
+        "impulse_Ns"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "next_start_row": "int",
+        "stride_s": "float",
+        "stance_s": "float",
+        "swing_s": "float",
+        "duty": "float",
+        "impulse_Ns": "float"
+      },
+      "tolerance": {
+        "stride_s": [
+          1e-05,
+          1e-08
+        ],
+        "stance_s": [
+          1e-05,
+          1e-08
+        ],
+        "swing_s": [
+          1e-05,
+          1e-08
+        ],
+        "duty": [
+          1e-05,
+          1e-08
+        ],
+        "impulse_Ns": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "threshold_sensitivity.csv": {
+      "columns": [
+        "id",
+        "delta_n_strides",
+        "delta_mean_stride_s",
+        "delta_mean_duty",
+        "delta_mean_impulse_Ns",
+        "delta_cadence_per_min"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "delta_n_strides": "int",
+        "delta_mean_stride_s": "float",
+        "delta_mean_duty": "float",
+        "delta_mean_impulse_Ns": "float",
+        "delta_cadence_per_min": "float"
+      },
+      "tolerance": {
+        "delta_mean_stride_s": [
+          1e-05,
+          1e-08
+        ],
+        "delta_mean_duty": [
+          1e-05,
+          1e-08
+        ],
+        "delta_mean_impulse_Ns": [
+          1e-05,
+          1e-08
+        ],
+        "delta_cadence_per_min": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

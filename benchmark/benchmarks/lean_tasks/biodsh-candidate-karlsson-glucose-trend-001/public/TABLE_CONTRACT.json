@@ -1,0 +1,236 @@
+{
+  "tables": {
+    "analysis_units.csv": {
+      "columns": [
+        "sample_id",
+        "subject_id",
+        "exposure",
+        "visits",
+        "age",
+        "BMI",
+        "focal_clr",
+        "shannon"
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "types": {
+        "sample_id": "text",
+        "subject_id": "text",
+        "exposure": "int",
+        "visits": "int",
+        "age": "int",
+        "BMI": "float",
+        "focal_clr": "float",
+        "shannon": "float"
+      },
+      "tolerance": {
+        "BMI": [
+          1e-06,
+          1e-08
+        ],
+        "focal_clr": [
+          1e-06,
+          1e-08
+        ],
+        "shannon": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "association.csv": {
+      "columns": [
+        "taxon",
+        "n",
+        "df",
+        "coef",
+        "se",
+        "t",
+        "p_value",
+        "q_value"
+      ],
+      "key": [
+        "taxon"
+      ],
+      "types": {
+        "taxon": "text",
+        "n": "int",
+        "df": "int",
+        "coef": "float",
+        "se": "float",
+        "t": "float",
+        "p_value": "float",
+        "q_value": "float"
+      },
+      "tolerance": {
+        "coef": [
+          1e-06,
+          1e-08
+        ],
+        "se": [
+          1e-06,
+          1e-08
+        ],
+        "t": [
+          1e-06,
+          1e-08
+        ],
+        "p_value": [
+          1e-06,
+          1e-08
+        ],
+        "q_value": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "cohort_summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "int"
+      },
+      "tolerance": {}
+    },
+    "design.csv": {
+      "columns": [
+        "sample_id",
+        "intercept",
+        "exposure",
+        "age",
+        "BMI"
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "types": {
+        "sample_id": "text",
+        "intercept": "float",
+        "exposure": "float",
+        "age": "float",
+        "BMI": "float"
+      },
+      "tolerance": {
+        "intercept": [
+          1e-06,
+          1e-08
+        ],
+        "exposure": [
+          1e-06,
+          1e-08
+        ],
+        "age": [
+          1e-06,
+          1e-08
+        ],
+        "BMI": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "feature_qc.csv": {
+      "columns": [
+        "taxon",
+        "prevalence",
+        "retained"
+      ],
+      "key": [
+        "taxon"
+      ],
+      "types": {
+        "taxon": "text",
+        "prevalence": "float",
+        "retained": "int"
+      },
+      "tolerance": {
+        "prevalence": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "group_summary.csv": {
+      "columns": [
+        "exposure",
+        "n",
+        "mean_shannon",
+        "mean_focal_clr"
+      ],
+      "key": [
+        "exposure"
+      ],
+      "types": {
+        "exposure": "int",
+        "n": "int",
+        "mean_shannon": "float",
+        "mean_focal_clr": "float"
+      },
+      "tolerance": {
+        "mean_shannon": [
+          1e-06,
+          1e-08
+        ],
+        "mean_focal_clr": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "sensitivity.csv": {
+      "columns": [
+        "taxon",
+        "n",
+        "df",
+        "coef",
+        "se",
+        "t",
+        "p_value",
+        "q_value"
+      ],
+      "key": [
+        "taxon"
+      ],
+      "types": {
+        "taxon": "text",
+        "n": "int",
+        "df": "int",
+        "coef": "float",
+        "se": "float",
+        "t": "float",
+        "p_value": "float",
+        "q_value": "float"
+      },
+      "tolerance": {
+        "coef": [
+          1e-06,
+          1e-08
+        ],
+        "se": [
+          1e-06,
+          1e-08
+        ],
+        "t": [
+          1e-06,
+          1e-08
+        ],
+        "p_value": [
+          1e-06,
+          1e-08
+        ],
+        "q_value": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

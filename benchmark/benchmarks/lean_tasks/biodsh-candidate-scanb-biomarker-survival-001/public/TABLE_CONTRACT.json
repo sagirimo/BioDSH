@@ -1,0 +1,177 @@
+{
+ "tables": {
+  "cohort_summary.csv": {
+   "columns": [
+    "metric",
+    "value"
+   ],
+   "key": [
+    "metric"
+   ],
+   "types": {
+    "metric": "text",
+    "value": "int"
+   }
+  },
+  "patients.csv": {
+   "columns": [
+    "patient_id",
+    "gsm",
+    "platform",
+    "age",
+    "tumor_size_mm",
+    "node_status",
+    "nhg",
+    "er_path",
+    "pgr_path",
+    "her2_path",
+    "er_rna",
+    "pgr_rna",
+    "her2_rna",
+    "pam50",
+    "os_days",
+    "os_event"
+   ],
+   "key": [
+    "patient_id"
+   ],
+   "types": {
+    "age": "int",
+    "tumor_size_mm": "int",
+    "er_path": "int",
+    "pgr_path": "int",
+    "her2_path": "int",
+    "er_rna": "int",
+    "pgr_rna": "int",
+    "her2_rna": "int",
+    "os_days": "int",
+    "os_event": "int"
+   }
+  },
+  "replicate_audit.csv": {
+   "columns": [
+    "replicate_title",
+    "replicate_gsm",
+    "replicate_platform",
+    "base_title",
+    "base_gsm",
+    "base_platform",
+    "clinical_fields_identical"
+   ],
+   "key": [
+    "replicate_title"
+   ],
+   "types": {
+    "clinical_fields_identical": "int"
+   }
+  },
+  "biomarker_agreement.csv": {
+   "columns": [
+    "marker",
+    "evaluable",
+    "path1_rna1",
+    "path1_rna0",
+    "path0_rna1",
+    "path0_rna0",
+    "percent_agreement",
+    "kappa"
+   ],
+   "key": [
+    "marker"
+   ],
+   "types": {
+    "evaluable": "int",
+    "path1_rna1": "int",
+    "path1_rna0": "int",
+    "path0_rna1": "int",
+    "path0_rna0": "int",
+    "percent_agreement": "float",
+    "kappa": "float"
+   },
+   "tolerance": {
+    "percent_agreement": [
+     1e-09,
+     1e-12
+    ],
+    "kappa": [
+     1e-09,
+     1e-12
+    ]
+   }
+  },
+  "er_group_summary.csv": {
+   "columns": [
+    "er_group",
+    "patients",
+    "os_events"
+   ],
+   "key": [
+    "er_group"
+   ],
+   "types": {
+    "patients": "int",
+    "os_events": "int"
+   }
+  },
+  "cox_coefficients.csv": {
+   "columns": [
+    "term",
+    "coef",
+    "se",
+    "hazard_ratio",
+    "z",
+    "p_value"
+   ],
+   "key": [
+    "term"
+   ],
+   "types": {
+    "coef": "float",
+    "se": "float",
+    "hazard_ratio": "float",
+    "z": "float",
+    "p_value": "float"
+   },
+   "tolerance": {
+    "coef": [
+     1e-05,
+     1e-08
+    ],
+    "se": [
+     1e-05,
+     1e-08
+    ],
+    "hazard_ratio": [
+     1e-05,
+     1e-08
+    ],
+    "z": [
+     1e-05,
+     1e-08
+    ],
+    "p_value": [
+     0.0001,
+     1e-12
+    ]
+   }
+  },
+  "cox_summary.csv": {
+   "columns": [
+    "metric",
+    "value"
+   ],
+   "key": [
+    "metric"
+   ],
+   "types": {
+    "value": "float"
+   },
+   "tolerance": {
+    "value": [
+     1e-07,
+     1e-06
+    ]
+   }
+  }
+ }
+}

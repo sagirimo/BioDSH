@@ -1,0 +1,12 @@
+存量原题 biodsh-candidate-cami-mousegut-001 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-cami-mousegut-001
+source: "cami"
+source_registry_id: "cami"
+source_family: "cami"
+source_case: "CAMI_II_mouse_gut_all64_whole_workflow_adaptation"
+source_revision: "OPAL_98120c326eef08e391899e4bd3a362e0e6558b4a"
+source_terms: "OPAL_code_Apache2.0_does_not_automatically_license_CAMI_data_public_delivery_review_pending"
+family_keys: ["CAMIChallenge:II_mouse_gut_64", "Constraint:existing_atomic_group:OPAL_CAMI_low_mousegut", "OPALPaper:PMID30832730"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+
+来源登记条目：{"id": "cami", "family": "cami", "type": "method_data_benchmark", "name": "CAMI", "reported_size": "Metagenomics datasets and method evaluation challenges", "url": "https://www.nature.com/articles/s41592-022-01431-4", "value": "宏基因组组装、分箱、分类谱及可核验参考", "candidate_domains": ["D06", "D10"], "availability": "论文和数据入口；体量与硬件需求需筛选", "priority": "P1", "caveat": "选择小型可重跑子任务并说明改编；不直接把 reads 数当题量", "current_qualified_fixed_contract_count": 2}

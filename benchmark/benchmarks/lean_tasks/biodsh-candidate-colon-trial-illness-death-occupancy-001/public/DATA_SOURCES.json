@@ -1,0 +1,7 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/survival/html/colon.html",
+ "input_files_sha256": {
+  "inputs/colon.csv": "6f3472a64f696e3195daa198f054180c3e4c66408f7fb8c548c6f4c7b8f898ee"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

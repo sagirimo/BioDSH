@@ -1,0 +1,148 @@
+{
+  "tables": {
+    "donors.csv": {
+      "columns": [
+        "id",
+        "resname",
+        "hx",
+        "hy",
+        "hz"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "resname": "text",
+        "hx": "float",
+        "hy": "float",
+        "hz": "float"
+      },
+      "tolerance": {
+        "hx": [
+          1e-05,
+          1e-08
+        ],
+        "hy": [
+          1e-05,
+          1e-08
+        ],
+        "hz": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "motif_summary.csv": {
+      "columns": [
+        "id",
+        "n_donors",
+        "n_bonds",
+        "i4_bonds",
+        "supported_residues",
+        "longest_supported_run",
+        "mean_NO_A"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_donors": "int",
+        "n_bonds": "int",
+        "i4_bonds": "int",
+        "supported_residues": "int",
+        "longest_supported_run": "int",
+        "mean_NO_A": "float"
+      },
+      "tolerance": {
+        "mean_NO_A": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "pair_geometry.csv": {
+      "columns": [
+        "id",
+        "acceptor",
+        "donor",
+        "NO_A",
+        "HO_A",
+        "angle_deg",
+        "base",
+        "strict"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "acceptor": "int",
+        "donor": "int",
+        "NO_A": "float",
+        "HO_A": "float",
+        "angle_deg": "float",
+        "base": "int",
+        "strict": "int"
+      },
+      "tolerance": {
+        "NO_A": [
+          1e-05,
+          1e-08
+        ],
+        "HO_A": [
+          1e-05,
+          1e-08
+        ],
+        "angle_deg": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "residue_support.csv": {
+      "columns": [
+        "id",
+        "residue",
+        "supported",
+        "acceptor_bonds",
+        "donor_bonds"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "residue": "int",
+        "supported": "int",
+        "acceptor_bonds": "int",
+        "donor_bonds": "int"
+      },
+      "tolerance": {}
+    },
+    "sensitivity.csv": {
+      "columns": [
+        "id",
+        "delta_bonds",
+        "delta_supported",
+        "retained_bond_fraction"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "delta_bonds": "int",
+        "delta_supported": "int",
+        "retained_bond_fraction": "float"
+      },
+      "tolerance": {
+        "retained_bond_fraction": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

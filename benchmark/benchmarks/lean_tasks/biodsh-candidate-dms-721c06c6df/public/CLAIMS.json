@@ -1,0 +1,152 @@
+{
+ "revision": "legacy_lean_v1_20261015",
+ "task_id": "biodsh-candidate-dms-721c06c6df",
+ "claims": [
+  {
+   "id": "variants",
+   "type": "number",
+   "question": "核对的变异数。",
+   "binding": {
+    "table": "summary.csv",
+    "key_column": "metric",
+    "key": "variants",
+    "column": "value"
+   },
+   "rel_tol": 0,
+   "abs_tol": 0
+  },
+  {
+   "id": "train_sites",
+   "type": "number",
+   "question": "训练残基位点数。",
+   "binding": {
+    "table": "summary.csv",
+    "key_column": "metric",
+    "key": "train_sites",
+    "column": "value"
+   },
+   "rel_tol": 0,
+   "abs_tol": 0
+  },
+  {
+   "id": "test_sites",
+   "type": "number",
+   "question": "持出测试残基位点数。",
+   "binding": {
+    "table": "summary.csv",
+    "key_column": "metric",
+    "key": "test_sites",
+    "column": "value"
+   },
+   "rel_tol": 0,
+   "abs_tol": 0
+  },
+  {
+   "id": "alpha1_spearman",
+   "type": "number",
+   "question": "alpha=1的验证Spearman。",
+   "binding": {
+    "table": "fit_trials.csv",
+    "key_column": "alpha",
+    "key": "1.0",
+    "column": "valid_spearman"
+   },
+   "rel_tol": 1e-06,
+   "abs_tol": 1e-10
+  },
+  {
+   "id": "alpha100_spearman",
+   "type": "number",
+   "question": "alpha=100的验证Spearman。",
+   "binding": {
+    "table": "fit_trials.csv",
+    "key_column": "alpha",
+    "key": "100.0",
+    "column": "valid_spearman"
+   },
+   "rel_tol": 1e-06,
+   "abs_tol": 1e-10
+  },
+  {
+   "id": "validation_prediction",
+   "type": "number",
+   "question": "变异R2S的处理后实验分数预测。",
+   "binding": {
+    "table": "valid_predictions.csv",
+    "key_column": "mutation_id",
+    "key": "R2S",
+    "column": "predicted_DMS_score"
+   },
+   "rel_tol": 1e-06,
+   "abs_tol": 1e-10
+  },
+  {
+   "id": "alpha1_direction",
+   "type": "derived",
+   "question": "alpha=1的验证排序相关方向？",
+   "options": [
+    "positive_rank_association",
+    "nonpositive_rank_association",
+    "clinical_pathogenicity_established"
+   ],
+   "rule": {
+    "binding": {
+     "table": "fit_trials.csv",
+     "key_column": "alpha",
+     "key": "1.0",
+     "column": "valid_spearman"
+    },
+    "op": "gt",
+    "threshold": 0,
+    "outcomes": {
+     "true": "positive_rank_association",
+     "false": "nonpositive_rank_association"
+    }
+   }
+  },
+  {
+   "id": "site_leakage",
+   "type": "derived",
+   "question": "既定分组是否出现残基位点跨组？",
+   "options": [
+    "no_site_overlap_in_supplied_split",
+    "site_overlap_present",
+    "all_variants_are_independent_proteins"
+   ],
+   "rule": {
+    "binding": {
+     "table": "summary.csv",
+     "key_column": "metric",
+     "key": "cross_split_site_overlap",
+     "column": "value"
+    },
+    "op": "lt",
+    "threshold": 0.5,
+    "outcomes": {
+     "true": "no_site_overlap_in_supplied_split",
+     "false": "site_overlap_present"
+    }
+   }
+  },
+  {
+   "id": "assay_scope",
+   "type": "choice",
+   "question": "实验分数预测支持什么范围？",
+   "options": [
+    "this_assay_heldout_residue_sites",
+    "clinical_pathogenicity",
+    "unseen_protein_transfer"
+   ]
+  },
+  {
+   "id": "ridge_intercept",
+   "type": "choice",
+   "question": "为何岭回归中截距不惩罚？",
+   "options": [
+    "global_score_offset_is_not_shrunk_as_a_sequence_effect",
+    "intercept_must_equal_zero",
+    "validation_mean_is_used_as_intercept"
+   ]
+  }
+ ]
+}

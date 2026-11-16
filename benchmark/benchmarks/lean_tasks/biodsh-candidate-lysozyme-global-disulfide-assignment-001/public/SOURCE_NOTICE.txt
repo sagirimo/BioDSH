@@ -1,0 +1,2 @@
+Diamond R.1974 Real-space refinement of the structure of hen egg-white lysozyme. J Mol Biol82:371–391 DOI10.1016/0022-2836(74)90598-1 PMID4856347。PDB1LYZ DOI10.2210/pdb1LYZ/pdb，X-ray2.00Å，链A鸡卵清溶菌酶。原始PDB从https://files.rcsb.org/download/1LYZ.pdb公开获取，保留完整记录；不使用ProteinGym或benchmark，未使用既有crambin/Trpcage/hemoglobin/ubiquitin蛋白。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

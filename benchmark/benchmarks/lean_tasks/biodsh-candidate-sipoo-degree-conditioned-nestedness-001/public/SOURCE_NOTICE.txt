@@ -1,0 +1,2 @@
+Simberloff D & Martin JL (1991). Nestedness of insular avifaunas: simple summary statistics masking complex species patterns. Ornis Fennica68:178–192, Appendix3。原期刊PDF https://ornisfennica.journal.fi/article/download/133331/81877/292497；未查到该历史论文DOI，不编造。数据使用vegan作者维护的录入表https://raw.githubusercontent.com/vegandevs/vegan/master/data/sipoo.rda，说明https://raw.githubusercontent.com/vegandevs/vegan/master/man/sipoo.Rd。rdata导出CSV保留全部值，未利用其他benchmark；预先生成199次逐列置换输入，参考只读取方案。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

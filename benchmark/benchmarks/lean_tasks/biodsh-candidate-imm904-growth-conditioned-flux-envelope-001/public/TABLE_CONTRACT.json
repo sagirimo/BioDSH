@@ -1,0 +1,114 @@
+{
+  "tables": {
+    "effective_bounds.csv": {
+      "columns": [
+        "bound_id",
+        "condition",
+        "reaction",
+        "lower_bound",
+        "upper_bound"
+      ],
+      "key": [
+        "bound_id"
+      ],
+      "types": {
+        "bound_id": "text",
+        "condition": "text",
+        "reaction": "text",
+        "lower_bound": "int",
+        "upper_bound": "int"
+      }
+    },
+    "flux_envelope.csv": {
+      "columns": [
+        "envelope_id",
+        "condition",
+        "reaction",
+        "min_flux",
+        "max_flux",
+        "width"
+      ],
+      "key": [
+        "envelope_id"
+      ],
+      "types": {
+        "envelope_id": "text",
+        "condition": "text",
+        "reaction": "text",
+        "min_flux": "float",
+        "max_flux": "float",
+        "width": "float"
+      },
+      "tolerance": {
+        "min_flux": [
+          1e-05,
+          1e-06
+        ],
+        "max_flux": [
+          1e-05,
+          1e-06
+        ],
+        "width": [
+          1e-05,
+          1e-06
+        ]
+      }
+    },
+    "glucose_economy.csv": {
+      "columns": [
+        "condition",
+        "minimum_uptake",
+        "growth_per_glucose",
+        "cap_fraction"
+      ],
+      "key": [
+        "condition"
+      ],
+      "types": {
+        "condition": "text",
+        "minimum_uptake": "float",
+        "growth_per_glucose": "float",
+        "cap_fraction": "float"
+      },
+      "tolerance": {
+        "minimum_uptake": [
+          1e-05,
+          1e-06
+        ],
+        "growth_per_glucose": [
+          1e-05,
+          1e-06
+        ],
+        "cap_fraction": [
+          1e-05,
+          1e-06
+        ]
+      }
+    },
+    "growth.csv": {
+      "columns": [
+        "condition",
+        "max_growth",
+        "target_growth"
+      ],
+      "key": [
+        "condition"
+      ],
+      "types": {
+        "condition": "text",
+        "max_growth": "float",
+        "target_growth": "float"
+      },
+      "tolerance": {
+        "max_growth": [
+          1e-05,
+          1e-06
+        ],
+        "target_growth": [
+          1e-05,
+          1e-06
+        ]
+      }
+    }
+  }
+}

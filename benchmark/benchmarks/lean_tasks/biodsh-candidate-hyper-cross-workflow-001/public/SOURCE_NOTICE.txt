@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "rqtl_published_crosses",
+  "source_case": "hyper_complete_provided_backcross",
+  "original_parent_source_case": "PMID:11161799",
+  "page": "https://rqtl.org/manual/qtl-manual.pdf",
+  "source_terms": "Source package/code GPL3 does not automatically establish exact study data delivery rights; task-specific review pending",
+  "limitations": [
+    "250 provided backcross mice,174 source markers including4 X and null D14Mit48; generated sample IDs preserve native row positions, not biological IDs. Documented selective genotyping (phenotype extremes/recombinants); no unconditional significance or unweighted population-effect validity claim.",
+    "No latent-genotype experimental ground truth; library validation is computational only",
+    "Family/exact delivery review pending; no pretraining independence claim"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

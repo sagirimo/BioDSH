@@ -1,0 +1,9 @@
+{
+ "source_url": "https://github.com/bioagent-bench/bioagent-bench",
+ "input_files_sha256": {
+  "inputs/clinvar_all_input_chromosomes_20250521.vcf.gz": "9c39ebbcdec840647ee7d38e5533657f98333248f3b60069551d3b8d2aee9341",
+  "inputs/family_description.txt": "9a04169c3d798ddc9f4a2afeb335dbdd826f8f0227f64a37cccdb8d701009c24",
+  "inputs/family_variants.vcf.gz": "859396f1d07077c30f2a723fc3521316592f0947b12b2fb3c714b8ec5026e7ac"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

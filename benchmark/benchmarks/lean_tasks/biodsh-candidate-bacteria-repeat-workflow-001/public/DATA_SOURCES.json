@@ -1,0 +1,17 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/bacteria.html",
+ "input_files_sha256": {
+  "inputs/PUBLIC_OUTPUT_NAMING_AND_TYPES.json": "e7f5d5fb7b6da22f6c85de4f1de98701fbc4405035ce29946e32d3d7fb27077e",
+  "inputs/design.json": "714fb2a6a473ab8f1ca0673c3ac54c44dbbaaafd32b92ef0ca21c2d10950152b",
+  "inputs/kind.txt": "73815683d2fd34ec887e10201fd84a8bbdbd96ebabec7b84d699cdf8708ba2ad",
+  "inputs/native_attributes.dput.txt": "82aa38c131c7f8f55cbf81151aaa681b2c30b2d6cf4ab550736acf6e3d717cb0",
+  "inputs/native_factor_levels.csv": "5c8b43fe9cff23381455c45be3e14dc9be3eb4973a86342eb11315621486de33",
+  "inputs/native_field_dictionary.csv": "e20dd348f100e54fd4a482a6b5b3d3fc040095701b584cdbd3754579a8cb00a6",
+  "inputs/native_records.csv": "9cfb175ab5fb48fd03c1f1b00d26f331338341102f0e28771a5b90e5353781b9",
+  "inputs/original_bacteria.rda": "f14fe5e4fe4a4b65a34a4e43cfde98ad9c547e04d5889fe26b8247ee72cb637e",
+  "inputs/source_records.csv": "3e3e196754c06fbac55ab51415ea07c84aeed4c1107694c4a47d905f62dd8528",
+  "inputs/table_schema.csv": "f7c7f177912dfc55018af335e50b4d166ebe761c784cd6c67d6a720298fa0159",
+  "inputs/whole_native.rds": "1011150aa64d091fa5f0c34de26f0e9a8e8beb0065fc658eb2793e463790c975"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

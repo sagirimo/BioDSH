@@ -1,0 +1,7 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/lynx.html",
+ "input_files_sha256": {
+  "inputs/lynx.csv": "0766d4043eb8a20ac83afefff1c78063beff3891571c59e8e38d72503ca86cf1"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,180 @@
+{
+  "tables": {
+    "library_qc.csv": {
+      "columns": [
+        "id",
+        "soil",
+        "n_reads",
+        "n_otus",
+        "eligible"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "soil": "text",
+        "n_reads": "int",
+        "n_otus": "int",
+        "eligible": "int"
+      },
+      "tolerance": {}
+    },
+    "query_retrieval.csv": {
+      "columns": [
+        "id",
+        "method",
+        "soil",
+        "true_rank",
+        "top1",
+        "reciprocal_rank",
+        "true_distance",
+        "nearest_other_distance",
+        "margin"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "method": "text",
+        "soil": "text",
+        "true_rank": "int",
+        "top1": "int",
+        "reciprocal_rank": "float",
+        "true_distance": "float",
+        "nearest_other_distance": "float",
+        "margin": "float"
+      },
+      "tolerance": {
+        "reciprocal_rank": [
+          1e-05,
+          1e-08
+        ],
+        "true_distance": [
+          1e-05,
+          1e-08
+        ],
+        "nearest_other_distance": [
+          1e-05,
+          1e-08
+        ],
+        "margin": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "reference_distances.csv": {
+      "columns": [
+        "id",
+        "bray_curtis",
+        "n_reference"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "bray_curtis": "float",
+        "n_reference": "int"
+      },
+      "tolerance": {
+        "bray_curtis": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "retrieval_summary.csv": {
+      "columns": [
+        "id",
+        "n_soils",
+        "n_queries",
+        "soil_weighted_accuracy",
+        "soil_weighted_mrr",
+        "mean_true_distance",
+        "mean_margin",
+        "library_weighted_accuracy"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_soils": "int",
+        "n_queries": "int",
+        "soil_weighted_accuracy": "float",
+        "soil_weighted_mrr": "float",
+        "mean_true_distance": "float",
+        "mean_margin": "float",
+        "library_weighted_accuracy": "float"
+      },
+      "tolerance": {
+        "soil_weighted_accuracy": [
+          1e-05,
+          1e-08
+        ],
+        "soil_weighted_mrr": [
+          1e-05,
+          1e-08
+        ],
+        "mean_true_distance": [
+          1e-05,
+          1e-08
+        ],
+        "mean_margin": [
+          1e-05,
+          1e-08
+        ],
+        "library_weighted_accuracy": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "soil_retrieval.csv": {
+      "columns": [
+        "id",
+        "method",
+        "soil",
+        "n_queries",
+        "accuracy",
+        "mrr",
+        "mean_true_distance",
+        "mean_margin"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "method": "text",
+        "soil": "text",
+        "n_queries": "int",
+        "accuracy": "float",
+        "mrr": "float",
+        "mean_true_distance": "float",
+        "mean_margin": "float"
+      },
+      "tolerance": {
+        "accuracy": [
+          1e-05,
+          1e-08
+        ],
+        "mrr": [
+          1e-05,
+          1e-08
+        ],
+        "mean_true_distance": [
+          1e-05,
+          1e-08
+        ],
+        "mean_margin": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

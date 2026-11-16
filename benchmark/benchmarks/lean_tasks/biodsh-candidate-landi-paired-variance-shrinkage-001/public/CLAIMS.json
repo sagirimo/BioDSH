@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-landi-paired-variance-shrinkage-001",
+  "claims": [
+    {
+      "id": "pairs",
+      "type": "number",
+      "question": "完整患者配对数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "moderated",
+        "column": "pairs"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "features",
+      "type": "number",
+      "question": "分析探针数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "moderated",
+        "column": "features"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "prior_variance",
+      "type": "number",
+      "question": "经验估计的先验尺度。",
+      "binding": {
+        "table": "prior.csv",
+        "key_column": "id",
+        "key": "main",
+        "column": "s0_squared"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ttk_effect",
+      "type": "number",
+      "question": "TTK探针的肿瘤−正常表达差。",
+      "binding": {
+        "table": "differential.csv",
+        "key_column": "id",
+        "key": "204822_at",
+        "column": "mean_difference"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ttk_t",
+      "type": "number",
+      "question": "TTK探针的收缩t统计量。",
+      "binding": {
+        "table": "differential.csv",
+        "key_column": "id",
+        "key": "204822_at",
+        "column": "moderated_t"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "discoveries",
+      "type": "number",
+      "question": "收缩检验BH q<0.05的探针数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "moderated",
+        "column": "q_lt_005"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ttk_evidence",
+      "type": "derived",
+      "question": "TTK探针是否通过BH 0.05？",
+      "options": [
+        "supported",
+        "not_supported"
+      ],
+      "rule": {
+        "binding": {
+          "table": "differential.csv",
+          "key_column": "id",
+          "key": "204822_at",
+          "column": "q_value"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "supported",
+          "false": "not_supported"
+        }
+      }
+    },
+    {
+      "id": "ttk_direction",
+      "type": "derived",
+      "question": "TTK探针肿瘤表达是否更高？",
+      "options": [
+        "tumor_higher",
+        "tumor_not_higher"
+      ],
+      "rule": {
+        "binding": {
+          "table": "differential.csv",
+          "key_column": "id",
+          "key": "204822_at",
+          "column": "mean_difference"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "tumor_higher",
+          "false": "tumor_not_higher"
+        }
+      }
+    },
+    {
+      "id": "meaning",
+      "type": "choice",
+      "question": "本题方差收缩的合理解释是？",
+      "options": [
+        "shares_variance_information_across_probes_without_adding_patients",
+        "creates_four_extra_independent_patients",
+        "guarantees_each_discovery_is_true"
+      ]
+    }
+  ]
+}

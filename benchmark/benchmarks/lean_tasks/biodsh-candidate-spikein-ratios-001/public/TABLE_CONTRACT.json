@@ -1,0 +1,192 @@
+{
+  "tables": {
+    "calibrated_counts.csv": {
+      "columns": [
+        "record_id",
+        "otu_id",
+        "sample_id",
+        "raw_reads",
+        "calibrated_reads"
+      ],
+      "key": [
+        "record_id"
+      ],
+      "types": {
+        "record_id": "text",
+        "otu_id": "text",
+        "sample_id": "text",
+        "raw_reads": "int",
+        "calibrated_reads": "float"
+      },
+      "tolerance": {
+        "calibrated_reads": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "genus_abundance.csv": {
+      "columns": [
+        "record_id",
+        "lineage_id",
+        "lineage",
+        "genus",
+        "sample_id",
+        "raw_reads",
+        "relative",
+        "calibrated_reads"
+      ],
+      "key": [
+        "record_id"
+      ],
+      "types": {
+        "record_id": "text",
+        "lineage_id": "text",
+        "lineage": "text",
+        "genus": "text",
+        "sample_id": "text",
+        "raw_reads": "int",
+        "relative": "float",
+        "calibrated_reads": "float"
+      },
+      "tolerance": {
+        "relative": [
+          1e-08,
+          1e-08
+        ],
+        "calibrated_reads": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "otu_audit.csv": {
+      "columns": [
+        "otu_id",
+        "is_spike",
+        "total_reads",
+        "positive_samples",
+        "lineage_id"
+      ],
+      "key": [
+        "otu_id"
+      ],
+      "types": {
+        "otu_id": "text",
+        "is_spike": "int",
+        "total_reads": "int",
+        "positive_samples": "int",
+        "lineage_id": "text"
+      }
+    },
+    "paired_ratios.csv": {
+      "columns": [
+        "record_id",
+        "subject_id",
+        "lineage_id",
+        "pre_sample",
+        "d14_sample",
+        "pre_reads",
+        "d14_reads",
+        "log2_relative_ratio",
+        "log2_SCML_ratio",
+        "difference"
+      ],
+      "key": [
+        "record_id"
+      ],
+      "types": {
+        "record_id": "text",
+        "subject_id": "text",
+        "lineage_id": "text",
+        "pre_sample": "text",
+        "d14_sample": "text",
+        "pre_reads": "int",
+        "d14_reads": "int",
+        "log2_relative_ratio": "float",
+        "log2_SCML_ratio": "float",
+        "difference": "float"
+      },
+      "tolerance": {
+        "log2_relative_ratio": [
+          1e-08,
+          1e-08
+        ],
+        "log2_SCML_ratio": [
+          1e-08,
+          1e-08
+        ],
+        "difference": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "sample_audit.csv": {
+      "columns": [
+        "sample_id",
+        "subject_id",
+        "condition",
+        "library_size",
+        "native_reads",
+        "s_reads",
+        "r_reads",
+        "a_reads",
+        "size_factor",
+        "native_calibrated",
+        "enterococcus_reads",
+        "enterococcus_relative",
+        "enterococcus_calibrated"
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "types": {
+        "sample_id": "text",
+        "subject_id": "text",
+        "condition": "text",
+        "library_size": "int",
+        "native_reads": "int",
+        "s_reads": "int",
+        "r_reads": "int",
+        "a_reads": "int",
+        "size_factor": "float",
+        "native_calibrated": "float",
+        "enterococcus_reads": "int",
+        "enterococcus_relative": "float",
+        "enterococcus_calibrated": "float"
+      },
+      "tolerance": {
+        "size_factor": [
+          1e-08,
+          1e-08
+        ],
+        "native_calibrated": [
+          1e-08,
+          1e-08
+        ],
+        "enterococcus_relative": [
+          1e-08,
+          1e-08
+        ],
+        "enterococcus_calibrated": [
+          1e-08,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "int"
+      }
+    }
+  }
+}

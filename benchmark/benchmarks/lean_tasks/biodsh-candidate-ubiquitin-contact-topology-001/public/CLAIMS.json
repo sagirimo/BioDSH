@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-ubiquitin-contact-topology-001",
+  "claims": [
+    {
+      "id": "edges",
+      "type": "number",
+      "question": "8Å非局部接触数。",
+      "binding": {
+        "table": "network_summary.csv",
+        "key_column": "id",
+        "key": "8",
+        "column": "edges"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "components",
+      "type": "number",
+      "question": "8Å图连通分量数，含孤点。",
+      "binding": {
+        "table": "network_summary.csv",
+        "key_column": "id",
+        "key": "8",
+        "column": "components"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "efficiency",
+      "type": "number",
+      "question": "8Å图全局效率。",
+      "binding": {
+        "table": "network_summary.csv",
+        "key_column": "id",
+        "key": "8",
+        "column": "global_efficiency"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "clustering",
+      "type": "number",
+      "question": "局部聚类系数的残基平均。",
+      "binding": {
+        "table": "network_summary.csv",
+        "key_column": "id",
+        "key": "8",
+        "column": "mean_clustering"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "edges7",
+      "type": "number",
+      "question": "7Å敏感性图接触数。",
+      "binding": {
+        "table": "network_summary.csv",
+        "key_column": "id",
+        "key": "7",
+        "column": "edges"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "degree48",
+      "type": "number",
+      "question": "Lys48的8Å接触度。",
+      "binding": {
+        "table": "residues.csv",
+        "key_column": "id",
+        "key": "A:48",
+        "column": "degree"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "connected",
+      "type": "derived",
+      "question": "接触图是否连通？",
+      "options": [
+        "single_component",
+        "multiple_components"
+      ],
+      "rule": {
+        "binding": {
+          "table": "network_summary.csv",
+          "key_column": "id",
+          "key": "8",
+          "column": "components"
+        },
+        "op": "le",
+        "threshold": 1,
+        "outcomes": {
+          "true": "single_component",
+          "false": "multiple_components"
+        }
+      }
+    },
+    {
+      "id": "threshold_effect",
+      "type": "derived",
+      "question": "7Å阈值是否保留至少80%的8Å边？",
+      "options": [
+        "retains_at_least_80pct",
+        "retains_less_than_80pct"
+      ],
+      "rule": {
+        "binding": {
+          "table": "sensitivity.csv",
+          "key_column": "id",
+          "key": "7_vs_8",
+          "column": "edge_retention"
+        },
+        "op": "ge",
+        "threshold": 0.8,
+        "outcomes": {
+          "true": "retains_at_least_80pct",
+          "false": "retains_less_than_80pct"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "该接触图的合理解释是？",
+      "options": [
+        "static_Calpha_proximity_not_dynamic_interaction_strength",
+        "direct_measurement_of_binding_energy",
+        "all_edges_are_covalent_bonds"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "tables": {
+    "measurement_audit.csv": {
+      "columns": [
+        "id",
+        "molecule",
+        "target",
+        "organism",
+        "Ki_nM",
+        "pKi"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "molecule": "text",
+        "target": "text",
+        "organism": "text",
+        "Ki_nM": "float",
+        "pKi": "float"
+      },
+      "tolerance": {
+        "Ki_nM": [
+          1e-05,
+          1e-08
+        ],
+        "pKi": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "molecules.csv": {
+      "columns": [
+        "id",
+        "CA1",
+        "CA2",
+        "CA4",
+        "delta_CA1",
+        "delta_CA4",
+        "selected"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "CA1": "float",
+        "CA2": "float",
+        "CA4": "float",
+        "delta_CA1": "float",
+        "delta_CA4": "float",
+        "selected": "int"
+      },
+      "tolerance": {
+        "CA1": [
+          1e-05,
+          1e-08
+        ],
+        "CA2": [
+          1e-05,
+          1e-08
+        ],
+        "CA4": [
+          1e-05,
+          1e-08
+        ],
+        "delta_CA1": [
+          1e-05,
+          1e-08
+        ],
+        "delta_CA4": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "prioritization.csv": {
+      "columns": [
+        "id",
+        "n",
+        "selected",
+        "median_CA2_pKi",
+        "median_delta_CA1",
+        "median_delta_CA4"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "selected": "int",
+        "median_CA2_pKi": "float",
+        "median_delta_CA1": "float",
+        "median_delta_CA4": "float"
+      },
+      "tolerance": {
+        "median_CA2_pKi": [
+          1e-05,
+          1e-08
+        ],
+        "median_delta_CA1": [
+          1e-05,
+          1e-08
+        ],
+        "median_delta_CA4": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "mean_delta_pKi",
+        "se",
+        "ci_low",
+        "ci_high",
+        "t",
+        "p_value",
+        "q_value"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "mean_delta_pKi": "float",
+        "se": "float",
+        "ci_low": "float",
+        "ci_high": "float",
+        "t": "float",
+        "p_value": "float",
+        "q_value": "float"
+      },
+      "tolerance": {
+        "mean_delta_pKi": [
+          1e-05,
+          1e-08
+        ],
+        "se": [
+          1e-05,
+          1e-08
+        ],
+        "ci_low": [
+          1e-05,
+          1e-08
+        ],
+        "ci_high": [
+          1e-05,
+          1e-08
+        ],
+        "t": [
+          1e-05,
+          1e-08
+        ],
+        "p_value": [
+          1e-05,
+          1e-08
+        ],
+        "q_value": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

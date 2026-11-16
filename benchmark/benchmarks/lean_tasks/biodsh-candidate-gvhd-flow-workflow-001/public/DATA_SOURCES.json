@@ -1,0 +1,17 @@
+{
+ "source_url": "https://bioconductor.org/packages/release/bioc/manuals/flowCore/man/flowCore.pdf",
+ "input_files_sha256": {
+  "inputs/GvHD.rda": "af174018aee7fe1f794de435caadd2f28dc5ddcda05455adcccb48f99998a38f",
+  "inputs/OUTPUT_FIELD_CONVENTIONS_V2.json": "791ce44aaf48792b1c1c36ff93778497914262f831a5d039ff884fa8753e1de4",
+  "inputs/descriptions.csv": "7a6420466883861c1572fde741646a732dff2f284976f54eb04d300caf0accbe",
+  "inputs/design.json": "c2c81a37b8a597cf82f3ae35646e813b9c1ac7dfd3b1985bae2da03610477863",
+  "inputs/events.csv": "8aa3f6ada958a30e8875050a1577743e3799ac8f365bcbcd1fc41515ac891d41",
+  "inputs/evidence_input.csv": "d61865114501a1d8281f8aae3359da0a57f79e0cc8fd1211104b5360e0a454be",
+  "inputs/kind.txt": "b6288202d89084f58bdfd4b823a844fd915cb7506fd6bf3977c332ff8ec7bf6d",
+  "inputs/parameters.csv": "f84d0bf092e3be9a00eef1c7501df11845da495f6d8ea1b54e9e10a377013153",
+  "inputs/pheno_fields.csv": "762af8995d7a42722256b0d2347218879104d63810ab49964432fc621bdac80c",
+  "inputs/sample_metadata.csv": "4e6e09cc9c3c7ed7a6bf6dd6f04a690b9934da6fbe1a9d56509e7ccefc67ac1d",
+  "inputs/table_schema.csv": "0b3758dace60b1c32857a70bff715dcf6c7b0e49f3a1ecd2021be8c03ae6e65c"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

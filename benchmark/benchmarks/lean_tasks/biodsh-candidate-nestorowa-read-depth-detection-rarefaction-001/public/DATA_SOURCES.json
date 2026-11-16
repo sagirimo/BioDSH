@@ -1,0 +1,8 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE81682",
+ "input_files_sha256": {
+  "inputs/counts_first192.tsv.gz": "52f724d24491aefbbcba2ab896a023ba9c229b9c444780c0c1f196cbe4f3bbea",
+  "inputs/selection.csv": "f1403cae72b4a60afafc529a360cd5c98be26274da01bad3996ae61b2b8c22bb"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

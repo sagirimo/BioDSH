@@ -1,0 +1,14 @@
+{
+ "source_url": "https://www.stat.ethz.ch/R-manual/R-devel/library/datasets/html/Theoph.html",
+ "input_files_sha256": {
+  "inputs/PUBLIC_OUTPUT_CONVENTIONS_V2.json": "12fc0ee7fe42e7c8b277f6ba828395c21155e597613d1f59126121e58672c8f8",
+  "inputs/Theoph.rds": "f28a6c3bff19bf95e9d94d6676661b31ff779375e8877128390249e3da6c788b",
+  "inputs/design.json": "983e04f69ffd592d80de0a4afcdcd72ae2f0ee50b07b24b69c17f34adab531e0",
+  "inputs/evidence_input.csv": "a324dec187d6aa7795d09c94d5cea2f3ff3b0cf553815d79321b4fbd2e5cadc9",
+  "inputs/kind.txt": "1693c7f4c0e6f34964409f178c759c8f39b8f1526d3c8accaa2114e197a7b3d0",
+  "inputs/observations.csv": "9a40e64c59f10bda3c2367fbc92e49a9a99879acfe97f66d89b62ee3f6f12bc3",
+  "inputs/subject_order.csv": "0c4e70f44b8b8e29f93926c3808d1a3e23e0f839787c976dd4e2bd653ed1ee75",
+  "inputs/table_schema.csv": "60b6c78e3f0d74a61e8e5a31c3d58b9587937cd6104ec01cd1fb16c3b281e1d2"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

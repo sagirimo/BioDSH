@@ -1,0 +1,4 @@
+Marisa L et al. Gene Expression Classification of Colon Cancer into Molecular Subtypes: Characterization, Validation, and Prognostic Value. PLoS Med 2013;10:e1001453. DOI:10.1371/journal.pmed.1001453. PMID:23700391. French CIT, GSE39582 (parent GSE40967).
+下载：https://ftp.ncbi.nlm.nih.gov/geo/series/GSE39nnn/GSE39582/matrix/GSE39582_series_matrix.txt.gz
+输入仅逐字提取!Sample_元数据行；不预做筛选、landmark、分期标准化或生存计算。完整下载及转换脚本记录在lean_data/GSE39582与round2_tools/geo_fetch.py。
+用途：按用户2026-10-15决定，仅本地科研，保留原作者和数据整理者署名，不对外再分发。本题为独立编写的分析协议，不是其他 agent benchmark 现成题目。

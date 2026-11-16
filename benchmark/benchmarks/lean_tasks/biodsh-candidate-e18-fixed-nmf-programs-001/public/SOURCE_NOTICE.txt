@@ -1,0 +1,5 @@
+10x Genomics, 1k Brain Cells from an E18 Mouse (v3 chemistry), 2018-11-19; Cell Ranger 3.0.0.
+https://www.10xgenomics.com/datasets/1-k-brain-cells-from-an-e-18-mouse-v-3-chemistry-3-standard-3-0-0
+官方原始对象：https://s3-us-west-2.amazonaws.com/10x.files/samples/cell-exp/3.0.0/neuron_1k_v3/neuron_1k_v3_filtered_feature_bc_matrix.tar.gz
+许可CC BY 4.0。公开技术数据页未列独立论文DOI，引用原始数据页。counts.npz仅无损编码整数矩阵，完整保留31053×1301矩阵；转换程序prepare.py在原始下载目录。原站说明neuron_1k_v2/neuron_10k_v3使用同批细胞，本题将三者作为同源标识排重。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

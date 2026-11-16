@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-cami-mousegut-001",
+  "claims": [
+    {
+      "id": "source_samples",
+      "type": "number",
+      "question": "模拟群落数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "source_samples",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "zero_source_rows",
+      "type": "number",
+      "question": "显式零丰度源行数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "zero_source_rows",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "species_Shannon",
+      "type": "number",
+      "question": "物种层级平均Shannon。",
+      "binding": {
+        "table": "rank_cohort_summary.csv",
+        "key_column": "rank",
+        "key": "species",
+        "column": "mean_Shannon"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "species_Bray",
+      "type": "number",
+      "question": "物种层级全部样本对平均条件Bray-Curtis。",
+      "binding": {
+        "table": "rank_cohort_summary.csv",
+        "key_column": "rank",
+        "key": "species",
+        "column": "mean_beta_conditional_Bray_Curtis"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "axis1_inertia",
+      "type": "number",
+      "question": "PCoA首轴占正惯性的比例。",
+      "binding": {
+        "table": "pcoa_eigenvalues.csv",
+        "key_column": "axis_id",
+        "key": "axis01",
+        "column": "positive_inertia_fraction"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 2e-07
+    },
+    {
+      "id": "sample0_axis1",
+      "type": "number",
+      "question": "样本0的PCoA1坐标。",
+      "binding": {
+        "table": "pcoa_coordinates.csv",
+        "key_column": "sample_id",
+        "key": "0",
+        "column": "PCoA1"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 2e-07
+    },
+    {
+      "id": "non_euclidean",
+      "type": "derived",
+      "question": "物种Bray-Curtis的PCoA是否存在显著负特征值（<-1e-12）？",
+      "options": [
+        "negative_axes_present_non_euclidean_component",
+        "no_negative_axes_at_threshold",
+        "three_axes_preserve_all_distances_exactly"
+      ],
+      "rule": {
+        "binding": {
+          "table": "summary.csv",
+          "key_column": "metric",
+          "key": "species_pcoa_negative_axes",
+          "column": "value"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "negative_axes_present_non_euclidean_component",
+          "false": "no_negative_axes_at_threshold"
+        }
+      }
+    },
+    {
+      "id": "species_core",
+      "type": "derived",
+      "question": "物种层级是否有prevalence≥0.8的核心taxon？",
+      "options": [
+        "core_taxa_present",
+        "no_core_taxa_at_threshold",
+        "all_species_present_in_every_sample"
+      ],
+      "rule": {
+        "binding": {
+          "table": "rank_cohort_summary.csv",
+          "key_column": "rank",
+          "key": "species",
+          "column": "core_taxa_at_0_8"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "core_taxa_present",
+          "false": "no_core_taxa_at_threshold"
+        }
+      }
+    },
+    {
+      "id": "zero_rows",
+      "type": "choice",
+      "question": "源显式零丰度行应如何处理？",
+      "options": [
+        "retain_as_zero_abundance_not_presence",
+        "drop_sample_as_missing",
+        "count_taxon_as_detected"
+      ]
+    },
+    {
+      "id": "sample_scope",
+      "type": "choice",
+      "question": "64个profile代表什么？",
+      "options": [
+        "simulated_communities_from_one_source_cohort",
+        "64_independent_animal_studies",
+        "new_read_profiler_accuracy_validation"
+      ]
+    }
+  ]
+}

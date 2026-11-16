@@ -1,0 +1,16 @@
+存量原题 biodsh-candidate-luad-paired-design-001 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-luad-paired-design-001
+source: "genotex"
+source_registry_id: "genotex"
+source_family: "genotex"
+source_case: "GSE248830_luad_raw_design_expression_adaptation"
+source_revision: "9d50c9020256e8c943e02b6c0ad843017cd76cf8"
+accession: "GSE248830"
+source_publications: []
+source_terms: "GenoTEX metadata/code terms and underlying GEO study terms reviewed separately"
+family_keys: ["GEO:GSE248830", "GSE:GSE248830"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+
+来源登记条目：{"id": "genotex", "family": "genotex", "type": "task_collection", "name": "GenoTEX", "url": "https://github.com/Liu-Hy/GenoTEX", "candidate_domains": ["D01", "D02", "D05"], "value": "数据选择、预处理、条件基因性状分析", "availability": "见stage2：已获得部分或全部公开记录，尚未完成任务适用性和参考复现", "priority": "P1", "caveat": "来源记录不是正式就绪题；按研究/数据家族去重", "stage2_materials": {"indexed_records": 1384, "status": "source_records_not_validated_tasks", "report": "stage2/README_zh.md"}, "current_qualified_fixed_contract_count": 6}
+
+获取/来源URL（沿用原来源登记）：https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE248830

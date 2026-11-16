@@ -1,0 +1,129 @@
+{
+  "tables": {
+    "capture_fractions.csv": {
+      "columns": [
+        "id",
+        "rule",
+        "region",
+        "capture_run",
+        "program",
+        "cells",
+        "called",
+        "fraction"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "rule": "text",
+        "region": "text",
+        "capture_run": "int",
+        "program": "text",
+        "cells": "int",
+        "called": "int",
+        "fraction": "float"
+      },
+      "tolerance": {
+        "fraction": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "cell_programs.csv": {
+      "columns": [
+        "id",
+        "cell",
+        "rule",
+        "region",
+        "capture_run",
+        "astro",
+        "immune",
+        "neuronal",
+        "oligo",
+        "margin",
+        "call"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "cell": "text",
+        "rule": "text",
+        "region": "text",
+        "capture_run": "int",
+        "astro": "float",
+        "immune": "float",
+        "neuronal": "float",
+        "oligo": "float",
+        "margin": "float",
+        "call": "text"
+      },
+      "tolerance": {
+        "astro": [
+          1e-05,
+          1e-08
+        ],
+        "immune": [
+          1e-05,
+          1e-08
+        ],
+        "neuronal": [
+          1e-05,
+          1e-08
+        ],
+        "oligo": [
+          1e-05,
+          1e-08
+        ],
+        "margin": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "region_fractions.csv": {
+      "columns": [
+        "id",
+        "rule",
+        "region",
+        "program",
+        "cells",
+        "runs",
+        "pooled_fraction",
+        "equal_run_fraction",
+        "equal_minus_pooled"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "rule": "text",
+        "region": "text",
+        "program": "text",
+        "cells": "int",
+        "runs": "int",
+        "pooled_fraction": "float",
+        "equal_run_fraction": "float",
+        "equal_minus_pooled": "float"
+      },
+      "tolerance": {
+        "pooled_fraction": [
+          1e-05,
+          1e-08
+        ],
+        "equal_run_fraction": [
+          1e-05,
+          1e-08
+        ],
+        "equal_minus_pooled": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

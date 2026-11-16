@@ -1,0 +1,134 @@
+{
+  "task_id": "biodsh-candidate-mr-calcium-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "全部原暴露关联的一元F最小值",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "minimum_univ_F"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "全部原暴露关联的一元F均值",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "mean_univ_F"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "主锚定IVW估计",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "anchor_estimate"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "主锚定固定误差SE",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "anchor_standard_error"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "主锚定异质性Q",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "anchor_Q"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "全固定GLS信息矩阵最大条件数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "maximum_information_condition"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "锚定IVW关联p是否小于0.05？显著不验证MR工具排除限制",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "mr_estimates.csv",
+          "keys": {
+            "estimate_id": "IVW_GLS_fixed|calcium|calcium"
+          },
+          "column": "p_value"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "一元F或暴露关联相关矩阵能否证明MVMR条件工具强度？",
+      "options": [
+        "no_cross_exposure_error_covariance_and_assumptions_needed",
+        "yes_univ_F_is_conditional_F",
+        "yes_correlation_proves_valid_instruments"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "本输入是否支持声称已独立重做原GWAS等位基因协调？",
+      "options": [
+        "no_only_curated_summary_records_supplied",
+        "yes_source_row_ID_is_rsID",
+        "yes_MR_p_value_validates_harmonization"
+      ]
+    }
+  ]
+}

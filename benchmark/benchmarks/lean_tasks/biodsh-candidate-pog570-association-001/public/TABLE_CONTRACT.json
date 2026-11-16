@@ -1,0 +1,377 @@
+{
+  "tables": {
+    "association_tests.csv": {
+      "columns": [
+        "predictor",
+        "a",
+        "b",
+        "c",
+        "d",
+        "odds_ratio_defined",
+        "odds_ratio",
+        "fisher_p",
+        "pooled_logrank_chi2",
+        "pooled_logrank_p",
+        "stratified_logrank_chi2",
+        "stratified_logrank_p"
+      ],
+      "key": [
+        "predictor"
+      ],
+      "types": {
+        "predictor": "text",
+        "a": "int",
+        "b": "int",
+        "c": "int",
+        "d": "int",
+        "odds_ratio_defined": "int",
+        "odds_ratio": "float",
+        "fisher_p": "float",
+        "pooled_logrank_chi2": "float",
+        "pooled_logrank_p": "float",
+        "stratified_logrank_chi2": "float",
+        "stratified_logrank_p": "float"
+      },
+      "tolerance": {
+        "odds_ratio": [
+          1e-06,
+          1e-08
+        ],
+        "fisher_p": [
+          1e-06,
+          1e-08
+        ],
+        "pooled_logrank_chi2": [
+          1e-06,
+          1e-08
+        ],
+        "pooled_logrank_p": [
+          1e-06,
+          1e-08
+        ],
+        "stratified_logrank_chi2": [
+          1e-06,
+          1e-08
+        ],
+        "stratified_logrank_p": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "contingency.csv": {
+      "columns": [
+        "row_id",
+        "predictor",
+        "group",
+        "n",
+        "durable_benefit",
+        "no_durable_benefit"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "predictor": "text",
+        "group": "text",
+        "n": "int",
+        "durable_benefit": "int",
+        "no_durable_benefit": "int"
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "variables_available",
+        "estimable_here",
+        "inference_scope",
+        "statistical_decision"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "variables_available": "int",
+        "estimable_here": "int",
+        "inference_scope": "text",
+        "statistical_decision": "text"
+      }
+    },
+    "group_summary.csv": {
+      "columns": [
+        "row_id",
+        "predictor",
+        "group",
+        "n",
+        "events",
+        "censored",
+        "median_reached",
+        "median_months",
+        "survival_12_months",
+        "max_followup_months"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "predictor": "text",
+        "group": "text",
+        "n": "int",
+        "events": "int",
+        "censored": "int",
+        "median_reached": "int",
+        "median_months": "float",
+        "survival_12_months": "float",
+        "max_followup_months": "float"
+      },
+      "tolerance": {
+        "median_months": [
+          1e-06,
+          1e-08
+        ],
+        "survival_12_months": [
+          1e-06,
+          1e-08
+        ],
+        "max_followup_months": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "logrank_audit.csv": {
+      "columns": [
+        "row_id",
+        "predictor",
+        "stratum",
+        "n",
+        "high_n",
+        "observed_high_events",
+        "expected_high_events",
+        "variance"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "predictor": "text",
+        "stratum": "text",
+        "n": "int",
+        "high_n": "int",
+        "observed_high_events": "float",
+        "expected_high_events": "float",
+        "variance": "float"
+      },
+      "tolerance": {
+        "observed_high_events": [
+          1e-06,
+          1e-08
+        ],
+        "expected_high_events": [
+          1e-06,
+          1e-08
+        ],
+        "variance": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "patient_audit.csv": {
+      "columns": [
+        "patient_id",
+        "source_sample_count",
+        "ici_treated",
+        "included",
+        "exclusion_reason",
+        "cancer_type",
+        "mutation_category",
+        "sample_tmb",
+        "category_matches_sample_tmb",
+        "cd8_score",
+        "durable_benefit",
+        "tmb_group",
+        "cd8_group",
+        "event",
+        "time_months"
+      ],
+      "key": [
+        "patient_id"
+      ],
+      "types": {
+        "patient_id": "text",
+        "source_sample_count": "int",
+        "ici_treated": "int",
+        "included": "int",
+        "exclusion_reason": "text",
+        "cancer_type": "text",
+        "mutation_category": "text",
+        "sample_tmb": "float",
+        "category_matches_sample_tmb": "int",
+        "cd8_score": "float",
+        "durable_benefit": "int",
+        "tmb_group": "text",
+        "cd8_group": "text",
+        "event": "int",
+        "time_months": "float"
+      },
+      "tolerance": {
+        "sample_tmb": [
+          1e-06,
+          1e-08
+        ],
+        "cd8_score": [
+          1e-06,
+          1e-08
+        ],
+        "time_months": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "primary_tests.csv": {
+      "columns": [
+        "test_id",
+        "predictor",
+        "endpoint",
+        "test",
+        "p_value",
+        "bh_q",
+        "supported_at_fdr_005"
+      ],
+      "key": [
+        "test_id"
+      ],
+      "types": {
+        "test_id": "text",
+        "predictor": "text",
+        "endpoint": "text",
+        "test": "text",
+        "p_value": "float",
+        "bh_q": "float",
+        "supported_at_fdr_005": "int"
+      },
+      "tolerance": {
+        "p_value": [
+          1e-06,
+          1e-08
+        ],
+        "bh_q": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "sample_audit.csv": {
+      "columns": [
+        "sample_id",
+        "patient_id",
+        "patient_sample_count",
+        "used_as_independent_unit",
+        "cancer_type",
+        "sample_tmb"
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "types": {
+        "sample_id": "text",
+        "patient_id": "text",
+        "patient_sample_count": "int",
+        "used_as_independent_unit": "int",
+        "cancer_type": "text",
+        "sample_tmb": "float"
+      },
+      "tolerance": {
+        "sample_tmb": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "survival_curve.csv": {
+      "columns": [
+        "row_id",
+        "predictor",
+        "group",
+        "time_months",
+        "at_risk",
+        "events",
+        "censored",
+        "survival"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "predictor": "text",
+        "group": "text",
+        "time_months": "float",
+        "at_risk": "int",
+        "events": "int",
+        "censored": "int",
+        "survival": "float"
+      },
+      "tolerance": {
+        "time_months": [
+          1e-06,
+          1e-08
+        ],
+        "survival": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "thresholds.csv": {
+      "columns": [
+        "predictor",
+        "threshold",
+        "analysis_n",
+        "high_n",
+        "lower_n"
+      ],
+      "key": [
+        "predictor"
+      ],
+      "types": {
+        "predictor": "text",
+        "threshold": "float",
+        "analysis_n": "int",
+        "high_n": "int",
+        "lower_n": "int"
+      },
+      "tolerance": {
+        "threshold": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

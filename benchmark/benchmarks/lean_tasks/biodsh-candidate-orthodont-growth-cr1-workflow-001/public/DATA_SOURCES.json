@@ -1,0 +1,17 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/nlme/html/Orthodont.html",
+ "input_files_sha256": {
+  "inputs/OUTPUT_FIELD_CONVENTIONS_V2.json": "c74063fb5608e8efdfd74abf481d7e7c20aad17e2f6986ecf839575ec21f1dd3",
+  "inputs/artifact_contract.json": "b755ac003a86cc990b933f4fcfda3c51504db8649c5ae20c577da7a5a70cfd51",
+  "inputs/native_provenance__FULL_CLASS_FIELDS_AND_ATTRIBUTES.txt": "b047e5b9fb6fcfa26cbb7e66746523985fb3faf29df212229d7ffc7f6fc8853c",
+  "inputs/native_provenance__FULL_COLUMN_TYPES_LEVELS_NA.csv": "8d57dba08db62397896076fb57454820b6981e41f807a21aa2872e36e3722b45",
+  "inputs/native_provenance__FULL_NATIVE_OBJECT.rds": "12233442496f22fba9cd174893012bc53a2c5b22c68816628ad958688bb1537f",
+  "inputs/native_provenance__NATIVE_AND_PROVIDER_UNIT_LEDGER.txt": "e1dd2f96e27fee1cd101e1f444852c5e7995337c6ca8a6b05b051237029bfc63",
+  "inputs/native_provenance__SOURCE_BYTES_USED.raw": "a6470f7b21709bcc209a4d751b5d03003aabe845a2027ed8b6d8ce3e7d72c320",
+  "inputs/native_provenance__SOURCE_CENSUS_BOUNDARY.json": "7b985a522844a76385533ec29740b0b27a6522a065becc16c77c6071270a660e",
+  "inputs/observations.csv": "26ab2d187db0d0b1cd476b94b265289804a09f54de46fb8bc49db327ce948042",
+  "inputs/step_acceptance_schema_v1.json": "27f6d59828e8a4ac4a8561665fcbc389caea51399b4155b7946aa07d3d2c1f01",
+  "inputs/task_input_contract.json": "01e122117c3ea035d077b6785388987729571ef1d78f26e88d23f207fbe86f1d"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

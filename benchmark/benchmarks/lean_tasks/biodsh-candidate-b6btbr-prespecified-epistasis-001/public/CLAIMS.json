@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-b6btbr-prespecified-epistasis-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "完整样本数？",
+      "binding": {
+        "table": "interaction_test.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "四自由度互作F？",
+      "binding": {
+        "table": "interaction_test.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "F"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "互作p？",
+      "binding": {
+        "table": "interaction_test.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "p"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "加性×加性系数？",
+      "binding": {
+        "table": "coefficients.csv",
+        "key_column": "id",
+        "key": "interaction|A1_A2",
+        "column": "coef"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "显性×显性系数？",
+      "binding": {
+        "table": "coefficients.csv",
+        "key_column": "id",
+        "key": "interaction|D1_D2",
+        "column": "coef"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "去最大影响样本后的p？",
+      "binding": {
+        "table": "interaction_test.csv",
+        "key_column": "id",
+        "key": "drop_max_cook",
+        "column": "p"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "主分析是否有互作证据？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "interaction_test.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "p"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "删一敏感性是否仍有证据？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "interaction_test.csv",
+          "key_column": "id",
+          "key": "drop_max_cook",
+          "column": "p"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "互作项的解释边界？",
+      "options": [
+        "scale_specific_statistical_interaction_not_physical_binding",
+        "proves_two_causal_genes",
+        "any_large_Cook_value_must_be_deleted"
+      ]
+    }
+  ]
+}

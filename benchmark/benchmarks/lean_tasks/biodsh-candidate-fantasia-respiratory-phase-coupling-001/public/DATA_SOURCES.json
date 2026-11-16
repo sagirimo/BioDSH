@@ -1,0 +1,9 @@
+{
+ "source_url": "https://physionet.org/content/fantasia/1.0.0/",
+ "input_files_sha256": {
+  "inputs/f1y01.dat": "c992e4e69b1869e2da1f94e00a8cca070bc099cfc58911dd5a65aa436003b9bd",
+  "inputs/f1y01.hea": "519eff62d1ad082ea1f3ed68e4e90dc474dc35f7c99757b1d00cdaf1738bc9c2",
+  "inputs/shifts.csv": "2c5a6c50ec18799861d1d594f4e70e21db628288fe9617f1a2cfd82705763ada"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

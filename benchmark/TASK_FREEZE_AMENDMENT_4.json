@@ -1,0 +1,18 @@
+{
+ "amends": "benchmarks/formal_experiment/TASK_FREEZE.json",
+ "follows": "TASK_FREEZE_AMENDMENT_3.json",
+ "date": "2026-10-20",
+ "before_any_formal_run": true,
+ "summary": "Triage of the 11 failures of a Codex gpt-6.1-sol trial on the revised 120 (109 passed): 7 task defects fixed by prompt addenda (definitions only): cami-low-opal gold profile_id, qin-t2d contradictory adult-only rule vs reference, family-snv parent_carriers count, gvhd endpoint definition, pog570 audit flags, psoriasis case coding, liver-dose-time disclosed per-task budget. Shared preamble now states the 8 MiB per-file limit (3 trial failures).",
+ "revision_log": "benchmarks/formal_experiment/TASK_REVISIONS_20261020b.json",
+ "hashes_consistent_with_amendment_3": true,
+ "task_dir_sha256_after": {
+  "biodsh-candidate-cami-low-opal-001": "9438f0e52fa0d49cb51a977a3aeb1015578b37738628e6b25d461f97a2bd412a",
+  "biodsh-candidate-family-snv-clinvar-002": "fe26d987c5492bd23809dc64b4cec5a047e196cd5406aa3be7b1a2813c079d2d",
+  "biodsh-candidate-gvhd-flow-workflow-001": "5bb36e9e2292b45f483f412b6c7318f63be7d745ad3b4b0fc085e214c3a19939",
+  "biodsh-candidate-liver-dose-time-workflow-001": "a50e279313a85113865cf519b5b30a3d9ae4a96df37c59500adb542e590add21",
+  "biodsh-candidate-pog570-association-001": "012e0b9cf180aba9c4f4f83c79d355d92c0a6ffd1f855fa8d082260b318cb27c",
+  "biodsh-candidate-psoriasis-raw-design-001": "3ec61b98cb06404110a2cbb0d846d0010fe73252a335f7dddf3b4a1d428e9d55",
+  "biodsh-candidate-qin-t2d-composition-001": "233920b492c24ac49b9ad7d2df95b5763e6ad6d9c854879a1c121860cf8eca01"
+ }
+}

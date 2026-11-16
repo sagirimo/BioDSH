@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-hemoglobin-interface-symmetry-001",
+  "claims": [
+    {
+      "id": "ab_pairs",
+      "type": "number",
+      "question": "AB界面的残基接触对数。",
+      "binding": {
+        "table": "interfaces.csv",
+        "key_column": "id",
+        "key": "AB",
+        "column": "residue_pairs"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ad_pairs",
+      "type": "number",
+      "question": "AD界面的残基接触对数。",
+      "binding": {
+        "table": "interfaces.csv",
+        "key_column": "id",
+        "key": "AD",
+        "column": "residue_pairs"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ab_atoms",
+      "type": "number",
+      "question": "AB界面的重原子接触对数。",
+      "binding": {
+        "table": "interfaces.csv",
+        "key_column": "id",
+        "key": "AB",
+        "column": "atom_pairs"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ab_residues",
+      "type": "number",
+      "question": "A链参与AB界面的残基数。",
+      "binding": {
+        "table": "interfaces.csv",
+        "key_column": "id",
+        "key": "AB",
+        "column": "residues_left"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ab_cd_difference",
+      "type": "number",
+      "question": "AB/CD残基接触数的对称相对差。",
+      "binding": {
+        "table": "symmetry.csv",
+        "key_column": "id",
+        "key": "AB_vs_CD",
+        "column": "relative_pair_difference"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "total_residues",
+      "type": "number",
+      "question": "A链参与任意跨链界面的残基数。",
+      "binding": {
+        "table": "chain_summary.csv",
+        "key_column": "id",
+        "key": "A",
+        "column": "interface_residues"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "dimer_dominance",
+      "type": "derived",
+      "question": "AB+CD残基接触数是否多于AD+BC？",
+      "options": [
+        "intradimer_contacts_more",
+        "switch_contacts_at_least_as_many"
+      ],
+      "rule": {
+        "binding": {
+          "table": "assembly.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "intradimer_minus_switch"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "intradimer_contacts_more",
+          "false": "switch_contacts_at_least_as_many"
+        }
+      }
+    },
+    {
+      "id": "symmetry_close",
+      "type": "derived",
+      "question": "AB/CD接触数的相对差是否不超过20%？",
+      "options": [
+        "within_20pct",
+        "over_20pct"
+      ],
+      "rule": {
+        "binding": {
+          "table": "symmetry.csv",
+          "key_column": "id",
+          "key": "AB_vs_CD",
+          "column": "relative_pair_difference"
+        },
+        "op": "le",
+        "threshold": 0.2,
+        "outcomes": {
+          "true": "within_20pct",
+          "false": "over_20pct"
+        }
+      }
+    },
+    {
+      "id": "meaning",
+      "type": "choice",
+      "question": "重原子接触计数能直接解释为什么？",
+      "options": [
+        "geometric_interface_proxy_not_binding_free_energy",
+        "binding_free_energy_in_kcal_per_mol",
+        "biological_assembly_stoichiometry_in_solution_for_every_condition"
+      ]
+    }
+  ]
+}

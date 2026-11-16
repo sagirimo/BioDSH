@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE11923",
+ "input_files_sha256": {
+  "inputs/GSE11923_series_matrix.txt.gz": "2dd9f79ce8562155e003e43984e49b1ed8d190f4ac197f6d612274d21eab39ab"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

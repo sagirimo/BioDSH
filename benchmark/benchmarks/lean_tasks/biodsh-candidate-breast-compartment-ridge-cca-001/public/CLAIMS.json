@@ -1,0 +1,127 @@
+{
+  "revision": "round7_lean_v1",
+  "task_id": "biodsh-candidate-breast-compartment-ridge-cca-001",
+  "claims": [
+    {
+      "id": "C1",
+      "type": "number",
+      "question": "完整配对患者数？",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C2",
+      "type": "number",
+      "question": "第一正则典型奇异值？",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "ridge_singular"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C3",
+      "type": "number",
+      "question": "完整配对样本的典型得分 Pearson r？",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "in_sample_r"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C4",
+      "type": "number",
+      "question": "逐患者留出得分的 Pearson r？",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "loo_r"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C5",
+      "type": "number",
+      "question": "两侧留出得分差的 RMSE？",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "loo_rmse"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C6",
+      "type": "number",
+      "question": "上皮201839_s_at的标准化空间权重？",
+      "binding": {
+        "table": "coefficients.csv",
+        "key_column": "id",
+        "key": "epithelium:201839_s_at",
+        "column": "weight"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C7",
+      "type": "derived",
+      "question": "留出相关是否超过0.5？",
+      "options": [
+        "高于0.5",
+        "不高于0.5"
+      ],
+      "rule": {
+        "binding": {
+          "table": "summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "loo_r"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "高于0.5",
+          "false": "不高于0.5"
+        }
+      }
+    },
+    {
+      "id": "C8",
+      "type": "choice",
+      "question": "留出相关支持怎样的解释？",
+      "options": [
+        "当前配对队列的跨组织关联稳定性",
+        "已证明旁分泌因果作用",
+        "已验证其他医院的临床预测"
+      ]
+    },
+    {
+      "id": "C9",
+      "type": "choice",
+      "question": "样本量应以什么计算？",
+      "options": [
+        "完整配对患者",
+        "两个组织样本数之和",
+        "探针数量乘患者数"
+      ]
+    }
+  ]
+}

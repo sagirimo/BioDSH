@@ -1,0 +1,4 @@
+Peng C-K, Lipsitz L. Fantasia Database v1.0.0. PhysioNet 2003; DOI:10.13026/C2RG61. Iyengar N, Peng C-K, Morin R, Goldberger AL, Lipsitz LA. Age-related alterations in the fractal scaling of cardiac interbeat interval dynamics. Am J Physiol 1996;271:R1078–R1084; PMID:8898003.
+https://physionet.org/content/fantasia/1.0.0/
+原文件：https://physionet.org/files/fantasia/1.0.0/f1y01.dat 及 f1y01.hea。许可Open Data Commons Attribution v1.0。使用原始记录，题内自行规定耦合协议；未从任何agent基准或挑战赛提取题目。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

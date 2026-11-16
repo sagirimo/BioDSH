@@ -1,0 +1,4 @@
+Roth B, Baccanari DP, Sigel CW, Hubbell JP, Eaddy J, Kao JC, Grace ME, Rauckman BS. 2,4-Diamino-5-benzylpyrimidines and analogues as antibacterial agents. 9. Lipophilic trimethoprim analogues as antigonococcal agents. J Med Chem 1988. DOI:10.1021/jm00396a018; PMID:3121854.
+ChEMBL CC BY-SA3.0；获取 https://www.ebi.ac.uk/chembl/api/data/activity.json?assay_chembl_id=CHEMBL879983&limit=1000 及所给14个分子的molecule.json。原始assay_description称Neisseria gonorrhoeae DHFR，而target_organism为Homo sapiens，二者矛盾：本题只称CHEMBL879983测定，不作物种外推。
+permutations.csv为本题预生成的199行索引方案，不是生物测量；ChEMBL描述符为预计算，参考解不需要RDKit。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

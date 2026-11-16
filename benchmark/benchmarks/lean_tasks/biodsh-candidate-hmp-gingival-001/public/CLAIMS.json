@@ -1,0 +1,134 @@
+{
+  "task_id": "biodsh-candidate-hmp-gingival-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "指定样本的Faith PD",
+      "binding": {
+        "table": "hmp_diversity.csv",
+        "keys": {
+          "sample_id": "700014989"
+        },
+        "column": "Faith_PD"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "指定属的人级subjects",
+      "binding": {
+        "table": "genus_paired_tests.csv",
+        "keys": {
+          "genus_id": "g0000"
+        },
+        "column": "subjects"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "指定属的人级mean_delta",
+      "binding": {
+        "table": "genus_paired_tests.csv",
+        "keys": {
+          "genus_id": "g0000"
+        },
+        "column": "mean_delta"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "指定属的人级sd_ddof1",
+      "binding": {
+        "table": "genus_paired_tests.csv",
+        "keys": {
+          "genus_id": "g0000"
+        },
+        "column": "sd_ddof1"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "指定属的人级standard_error",
+      "binding": {
+        "table": "genus_paired_tests.csv",
+        "keys": {
+          "genus_id": "g0000"
+        },
+        "column": "standard_error"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "指定属的人级q_BH",
+      "binding": {
+        "table": "genus_paired_tests.csv",
+        "keys": {
+          "genus_id": "g0000"
+        },
+        "column": "q_BH"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "指定属BH q是否小于0.05？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "genus_paired_tests.csv",
+          "keys": {
+            "genus_id": "g0000"
+          },
+          "column": "q_BH"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "多次配对访视的推断单位是什么？",
+      "options": [
+        "受试者内先平均再在人级推断",
+        "每次访视独立",
+        "每个OTU独立"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "CLR差异能支持什么？",
+      "options": [
+        "相对组成关联",
+        "绝对菌量差异",
+        "因果临床效应"
+      ]
+    }
+  ]
+}

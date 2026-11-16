@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.rcsb.org/structure/1LYZ",
+ "input_files_sha256": {
+  "inputs/1LYZ.pdb": "28e95e819d4e0fc48acdf44209e37ba06f5c9d5d93d9950d67a760b32964326e"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

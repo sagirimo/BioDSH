@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-markevich-conserved-polynomial-bistability-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "K=50最低Mpp稳态？",
+      "binding": {
+        "table": "kinase_scan.csv",
+        "key_column": "id",
+        "key": "50",
+        "column": "min_Mpp"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "K=50最高Mpp稳态？",
+      "binding": {
+        "table": "kinase_scan.csv",
+        "key_column": "id",
+        "key": "50",
+        "column": "max_Mpp"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "K=50稳定根数？",
+      "binding": {
+        "table": "kinase_scan.csv",
+        "key_column": "id",
+        "key": "50",
+        "column": "n_stable"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "正折点数？",
+      "binding": {
+        "table": "fold_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "fold_count"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "最低q根主导实部？",
+      "binding": {
+        "table": "kinase_scan.csv",
+        "key_column": "id",
+        "key": "50",
+        "column": "low_dominant_real"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "K=50根平均第一步流量？",
+      "binding": {
+        "table": "kinase_scan.csv",
+        "key_column": "id",
+        "key": "50",
+        "column": "mean_flux_first"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "K=50是否多于一个稳定根？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "kinase_scan.csv",
+          "key_column": "id",
+          "key": "50",
+          "column": "n_stable"
+        },
+        "op": "gt",
+        "threshold": 1,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "低q根主导实部是否<0？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "kinase_scan.csv",
+          "key_column": "id",
+          "key": "50",
+          "column": "low_dominant_real"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "折点和稳定性应如何解释？",
+      "options": [
+        "在守恒池约束和该动力学近似下的局部平衡结构，不保证体内迟滞",
+        "3×3守恒零模证明不稳定",
+        "多根本身保证每个根稳定"
+      ]
+    }
+  ]
+}

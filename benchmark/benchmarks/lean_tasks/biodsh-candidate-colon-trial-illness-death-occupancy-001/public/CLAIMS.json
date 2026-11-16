@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-colon-trial-illness-death-occupancy-001",
+  "claims": [
+    {
+      "id": "n",
+      "type": "number",
+      "question": "观察组患者数？",
+      "binding": {
+        "table": "state_summary.csv",
+        "key_column": "id",
+        "key": "Obs",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "p_rec",
+      "type": "number",
+      "question": "观察组5年处于复发存活状态的概率？",
+      "binding": {
+        "table": "state_horizons.csv",
+        "key_column": "id",
+        "key": "Obs|1825",
+        "column": "p1"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "rm0",
+      "type": "number",
+      "question": "观察组5年限制无复发时间？",
+      "binding": {
+        "table": "state_summary.csv",
+        "key_column": "id",
+        "key": "Obs",
+        "column": "rm_time0"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "rm1",
+      "type": "number",
+      "question": "联合治疗组5年限制复发存活时间？",
+      "binding": {
+        "table": "state_summary.csv",
+        "key_column": "id",
+        "key": "Lev+5FU",
+        "column": "rm_time1"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "d0",
+      "type": "number",
+      "question": "联合组相对观察组限制无复发时间差？",
+      "binding": {
+        "table": "arm_contrasts.csv",
+        "key_column": "id",
+        "key": "Lev+5FU_vs_Obs",
+        "column": "delta_time0"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "d2",
+      "type": "number",
+      "question": "限制死亡状态时间差？",
+      "binding": {
+        "table": "arm_contrasts.csv",
+        "key_column": "id",
+        "key": "Lev+5FU_vs_Obs",
+        "column": "delta_time2"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "direction",
+      "type": "derived",
+      "question": "联合组限制无复发时间是否更长？",
+      "options": [
+        "longer_recurrence_free",
+        "not_longer"
+      ],
+      "rule": {
+        "binding": {
+          "table": "arm_contrasts.csv",
+          "key_column": "id",
+          "key": "Lev+5FU_vs_Obs",
+          "column": "delta_time0"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "longer_recurrence_free",
+          "false": "not_longer"
+        }
+      }
+    },
+    {
+      "id": "death",
+      "type": "derived",
+      "question": "联合组死亡状态限制时间是否更短？",
+      "options": [
+        "less_time_dead",
+        "not_less"
+      ],
+      "rule": {
+        "binding": {
+          "table": "arm_contrasts.csv",
+          "key_column": "id",
+          "key": "Lev+5FU_vs_Obs",
+          "column": "delta_time2"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "less_time_dead",
+          "false": "not_less"
+        }
+      }
+    },
+    {
+      "id": "interpret",
+      "type": "choice",
+      "question": "p1与累计复发风险的关系？",
+      "options": [
+        "p1_excludes_patients_who_recurred_then_died",
+        "p1_is_cumulative_recurrence_incidence",
+        "one_endpoint_row_is_one_independent_patient"
+      ]
+    }
+  ]
+}

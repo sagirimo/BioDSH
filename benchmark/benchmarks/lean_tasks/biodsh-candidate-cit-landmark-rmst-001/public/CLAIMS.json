@@ -1,0 +1,152 @@
+{
+  "revision": "round2_lean_v1",
+  "task_id": "biodsh-candidate-cit-landmark-rmst-001",
+  "claims": [
+    {
+      "id": "stage2",
+      "type": "number",
+      "question": "landmark队列II期人数",
+      "binding": {
+        "table": "stage_weights.csv",
+        "key_column": "stage",
+        "key": "2",
+        "column": "n"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "weight2",
+      "type": "number",
+      "question": "II期标准化权重",
+      "binding": {
+        "table": "stage_weights.csv",
+        "key_column": "stage",
+        "key": "2",
+        "column": "weight"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "difference36",
+      "type": "number",
+      "question": "未来36月标准化RMST差",
+      "binding": {
+        "table": "contrasts.csv",
+        "key_column": "contrast",
+        "key": "dMMR_minus_pMMR_36",
+        "column": "difference"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "se36",
+      "type": "number",
+      "question": "未来36月差值标准误",
+      "binding": {
+        "table": "contrasts.csv",
+        "key_column": "contrast",
+        "key": "dMMR_minus_pMMR_36",
+        "column": "se"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "p36",
+      "type": "number",
+      "question": "未来36月差值双侧正态p",
+      "binding": {
+        "table": "contrasts.csv",
+        "key_column": "contrast",
+        "key": "dMMR_minus_pMMR_36",
+        "column": "p_value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "difference24",
+      "type": "number",
+      "question": "未来24月标准化RMST差",
+      "binding": {
+        "table": "contrasts.csv",
+        "key_column": "contrast",
+        "key": "dMMR_minus_pMMR_24",
+        "column": "difference"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "direction",
+      "type": "derived",
+      "question": "主分析RMST差方向",
+      "options": [
+        "dMMR_longer",
+        "dMMR_not_longer",
+        "proves_causation"
+      ],
+      "rule": {
+        "binding": {
+          "table": "contrasts.csv",
+          "key_column": "contrast",
+          "key": "dMMR_minus_pMMR_36",
+          "column": "difference"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "dMMR_longer",
+          "false": "dMMR_not_longer"
+        }
+      }
+    },
+    {
+      "id": "evidence",
+      "type": "derived",
+      "question": "主分析关联证据",
+      "options": [
+        "nominal_evidence",
+        "insufficient_evidence",
+        "proves_causation"
+      ],
+      "rule": {
+        "binding": {
+          "table": "contrasts.csv",
+          "key_column": "contrast",
+          "key": "dMMR_minus_pMMR_36",
+          "column": "p_value"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "nominal_evidence",
+          "false": "insufficient_evidence"
+        }
+      }
+    },
+    {
+      "id": "landmark",
+      "type": "choice",
+      "question": "本题估计面向什么人群",
+      "options": [
+        "observed_alive_beyond_month12_with_stage2_or3",
+        "all_patients_at_diagnosis",
+        "patients_selected_by_future_recurrence"
+      ]
+    },
+    {
+      "id": "rmst_meaning",
+      "type": "choice",
+      "question": "RMST差单位及含义",
+      "options": [
+        "expected_survival_months_within_fixed_post_landmark_window",
+        "hazard_ratio",
+        "difference_in_median_survival"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-bci-spatial-turnover-decomposition-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "平均Sørensen差异？",
+      "binding": {
+        "table": "mantel_summary.csv",
+        "key_column": "id",
+        "key": "sorensen",
+        "column": "mean"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "平均替代分量？",
+      "binding": {
+        "table": "mantel_summary.csv",
+        "key_column": "id",
+        "key": "turnover",
+        "column": "mean"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "平均嵌套分量？",
+      "binding": {
+        "table": "mantel_summary.csv",
+        "key_column": "id",
+        "key": "nestedness",
+        "column": "mean"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "总差异的空间相关？",
+      "binding": {
+        "table": "mantel_summary.csv",
+        "key_column": "id",
+        "key": "sorensen",
+        "column": "mantel_r"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "替代分量空间相关？",
+      "binding": {
+        "table": "mantel_summary.csv",
+        "key_column": "id",
+        "key": "turnover",
+        "column": "mantel_r"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "替代分量置换p？",
+      "binding": {
+        "table": "mantel_summary.csv",
+        "key_column": "id",
+        "key": "turnover",
+        "column": "p_two_sided"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "替代空间关联p是否<.05？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "mantel_summary.csv",
+          "key_column": "id",
+          "key": "turnover",
+          "column": "p_two_sided"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "平均嵌套分量是否>.1？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "mantel_summary.csv",
+          "key_column": "id",
+          "key": "nestedness",
+          "column": "mean"
+        },
+        "op": "gt",
+        "threshold": 0.1,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "推断边界？",
+      "options": [
+        "历史大树样地的空间组成描述，样地对并非独立重复",
+        "可以推断空间距离的因果作用",
+        "包含所有胸径大小的树木"
+      ]
+    }
+  ]
+}

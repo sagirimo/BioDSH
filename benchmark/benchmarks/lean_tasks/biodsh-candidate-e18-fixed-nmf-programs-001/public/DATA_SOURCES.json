@@ -1,0 +1,11 @@
+{
+ "source_url": "https://www.10xgenomics.com/datasets/1-k-brain-cells-from-an-e-18-mouse-v-3-chemistry-3-standard-3-0-0",
+ "input_files_sha256": {
+  "inputs/H_init.csv": "3019490e953711aae682866ada35597646a377c4604d12ffea89e68b7cc5e797",
+  "inputs/W_init.csv": "8d0707e8ad0695d00f2ecfa09e28a28ee96ffe07d73e66e3eb0e8c3bbb9f3070",
+  "inputs/barcodes.csv": "bea6ae183287804634d41815a807087f593f7a7f71c2c3be000d53796e1f0b9a",
+  "inputs/counts.npz": "3e15d324638d0335bd4bddcd44ce89c8fed06426c539fcaaedf2bf6739e8ecbc",
+  "inputs/features.csv": "ab9cfb1cb2c06a80fe02904792067b421766e3e237fa3e4ff7b7b2e25467bab9"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

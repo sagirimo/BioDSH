@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-trpcage-ensemble-dispersion-001",
+  "claims": [
+    {
+      "id": "models",
+      "type": "number",
+      "question": "结构模型数。",
+      "binding": {
+        "table": "ensemble.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "n_models"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "mean_rmsd",
+      "type": "number",
+      "question": "相对于模型1的平均CA RMSD。",
+      "binding": {
+        "table": "ensemble.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "mean_reference_rmsd_A"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "rmsf20",
+      "type": "number",
+      "question": "残基20在全CA对齐后的RMSF。",
+      "binding": {
+        "table": "fluctuation.csv",
+        "key_column": "id",
+        "key": "A:20",
+        "column": "rmsf_A"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "pc1",
+      "type": "number",
+      "question": "PC1解释的集合方差比例。",
+      "binding": {
+        "table": "pca.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "variance_fraction"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "terminal_ratio",
+      "type": "number",
+      "question": "仅核心对齐时末端平均RMSF/核心平均RMSF。",
+      "binding": {
+        "table": "sensitivity.csv",
+        "key_column": "id",
+        "key": "core_alignment",
+        "column": "terminal_to_core_ratio"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "total_variance",
+      "type": "number",
+      "question": "展平CA协方差矩阵的迹。",
+      "binding": {
+        "table": "ensemble.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "total_variance_A2"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "pc1_majority",
+      "type": "derived",
+      "question": "PC1是否解释超过一半方差？",
+      "options": [
+        "pc1_explains_more_than_half",
+        "pc1_at_most_half"
+      ],
+      "rule": {
+        "binding": {
+          "table": "pca.csv",
+          "key_column": "id",
+          "key": "1",
+          "column": "variance_fraction"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "pc1_explains_more_than_half",
+          "false": "pc1_at_most_half"
+        }
+      }
+    },
+    {
+      "id": "terminal_mobile",
+      "type": "derived",
+      "question": "核心对齐下末端是否更分散？",
+      "options": [
+        "terminal_more_dispersed",
+        "terminal_not_more_dispersed"
+      ],
+      "rule": {
+        "binding": {
+          "table": "sensitivity.csv",
+          "key_column": "id",
+          "key": "core_alignment",
+          "column": "terminal_to_core_ratio"
+        },
+        "op": "gt",
+        "threshold": 1,
+        "outcomes": {
+          "true": "terminal_more_dispersed",
+          "false": "terminal_not_more_dispersed"
+        }
+      }
+    },
+    {
+      "id": "meaning",
+      "type": "choice",
+      "question": "NMR模型集合的RMSF应如何解读？",
+      "options": [
+        "dispersion_of_deposited_models_not_time_resolved_dynamics",
+        "experimental_fluctuation_rate_per_second",
+        "independent_biological_replicates_of_folding"
+      ]
+    }
+  ]
+}

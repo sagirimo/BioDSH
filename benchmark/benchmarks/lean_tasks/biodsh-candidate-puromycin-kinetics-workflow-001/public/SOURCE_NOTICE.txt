@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "r_published_enzyme_kinetics",
+  "source_case": "Puromycin_whole_published_example",
+  "original_parent_source_case": "Study:Treloar1974:Puromycin_enzyme",
+  "page": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Puromycin.html",
+  "source_terms": "Original source and source package notices retained;exact packaged-input/publication attribution review pending",
+  "limitations": [
+    "Whole23-observation source example, not independent biological replicates: two assay runs/conditions; substrateppm and initial rate counts/min/min. Technical repeats must not be silently collapsed; original raw assay or biological effect significance not claimed.",
+    "Small published assay case;not a complete external agent benchmark or broad enzyme experimental validation",
+    "Formal history/family,source delivery and actual paired agent comparisons pending"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

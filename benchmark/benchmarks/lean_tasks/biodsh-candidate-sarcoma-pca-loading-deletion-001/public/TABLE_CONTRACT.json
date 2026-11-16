@@ -1,0 +1,175 @@
+{
+  "tables": {
+    "feature_qc.csv": {
+      "columns": [
+        "id",
+        "missing_count",
+        "mean",
+        "variance"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "missing_count": "int",
+        "mean": "float",
+        "variance": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-05,
+          1e-08
+        ],
+        "variance": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "loadings.csv": {
+      "columns": [
+        "id",
+        "PC1",
+        "PC2",
+        "influence"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "PC1": "float",
+        "PC2": "float",
+        "influence": "float"
+      },
+      "tolerance": {
+        "PC1": [
+          1e-05,
+          1e-08
+        ],
+        "PC2": [
+          1e-05,
+          1e-08
+        ],
+        "influence": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "pca_summary.csv": {
+      "columns": [
+        "id",
+        "eigenvalue",
+        "explained_fraction"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "eigenvalue": "float",
+        "explained_fraction": "float"
+      },
+      "tolerance": {
+        "eigenvalue": [
+          1e-05,
+          1e-08
+        ],
+        "explained_fraction": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "removed_features.csv": {
+      "columns": [
+        "id",
+        "influence",
+        "removal_rank"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "influence": "float",
+        "removal_rank": "int"
+      },
+      "tolerance": {
+        "influence": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "sample_scores.csv": {
+      "columns": [
+        "id",
+        "diagnosis",
+        "PC1",
+        "PC2"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "diagnosis": "text",
+        "PC1": "float",
+        "PC2": "float"
+      },
+      "tolerance": {
+        "PC1": [
+          1e-05,
+          1e-08
+        ],
+        "PC2": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "sensitivity.csv": {
+      "columns": [
+        "id",
+        "n_samples",
+        "n_probes_retained",
+        "between_fraction_full",
+        "between_fraction_reduced",
+        "max_principal_angle_deg"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_samples": "int",
+        "n_probes_retained": "int",
+        "between_fraction_full": "float",
+        "between_fraction_reduced": "float",
+        "max_principal_angle_deg": "float"
+      },
+      "tolerance": {
+        "between_fraction_full": [
+          1e-05,
+          1e-08
+        ],
+        "between_fraction_reduced": [
+          1e-05,
+          1e-08
+        ],
+        "max_principal_angle_deg": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  },
+  "comparison_rule": "abs(candidate-reference) <= abs_tol + rel_tol*abs(reference); tolerance=[rel_tol,abs_tol]",
+  "missing": "NA; 按题面规则过滤或处理，不将缺失当0",
+  "ordering": "主键字符串精确比较；行顺序不计，列名按合同；并列按题面规则",
+  "randomness": "无随机步骤，或严格读取预生成方案输入",
+  "equivalent_implementations": "允许符合定义及容差的科学等价实现，不要求参考代码写法"
+}

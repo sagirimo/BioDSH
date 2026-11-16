@@ -1,0 +1,10 @@
+{
+ "source_url": "https://zenodo.org/records/16605299",
+ "input_files_sha256": {
+  "inputs/design.json": "00cf5876e8948de1a257b38422fae52e57e0738c9ac5e4b4f324b6748e5a46d0",
+  "inputs/sequences.csv": "583ecbfa175d422595485cdf5dbc6c7811dfddb5e6925f439c1ada06c72f12d7",
+  "inputs/split_assignment.csv": "c249b3c954560a78fd4e4e997ce1dcfd8e46ca86a0d9a65df4b86832dc54fcb2",
+  "inputs/train_valid_labels.csv": "f7f9c14ce80232040710e5be8bce2ab7e7567e90404d5f09b645afbb5ce77191"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,16 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/nlme/html/Oxboys.html",
+ "input_files_sha256": {
+  "inputs/OUTPUT_FIELD_CONVENTIONS_V2.json": "ebb55a76377effcbdc5996bae5ac16af8f70944cbfeef121c5d5846a86c19e63",
+  "inputs/Oxboys.rda": "5ed91a90896ca887c1fa813bfe7f6e0697eda1a6d5592da381e72ad54f95f558",
+  "inputs/design.json": "d8392baef8a9f57f0b43d04a33c01e7dfd0af588ab5745cc5c18b582a15138da",
+  "inputs/evidence_input.csv": "3c2f82f2a10380e04f13c90fc46ad1e011037a6d6b6ffd1fcea687a476beda07",
+  "inputs/kind.txt": "e7406bad200fb9c3c6e08657d28133b903c1352874411af4f69e3c1507cabe32",
+  "inputs/native_attributes.dput.txt": "d87f7a4d3332148e23dbe4799f3dd8cb855db43eb299c41487c846ee7e992250",
+  "inputs/native_field_dictionary.csv": "424842990fcc8f82fb9def5c5d1fbd4eda11f6d6ac0937ab5cf652a200d95870",
+  "inputs/records.csv": "8b7cf9c3ac7eb1d27aa8977fdb6cf685193588f82168c1ea088e765ee2d956f2",
+  "inputs/subject_levels.csv": "44acfcc1854b27faf88662ecbaa4b27fb7397099024e3e5b5fdf56ce477dc6bf",
+  "inputs/table_schema.csv": "8e42296a55838554ff8282a772dbdef63ca65db3330285217751bdc00ae4e069"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

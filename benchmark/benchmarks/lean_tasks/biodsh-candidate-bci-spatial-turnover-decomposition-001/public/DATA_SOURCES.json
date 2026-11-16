@@ -1,0 +1,9 @@
+{
+ "source_url": "https://github.com/vegandevs/vegan/blob/master/man/BCI.Rd",
+ "input_files_sha256": {
+  "inputs/BCI.csv": "42a069403ebd1b73dd3264c29cb92210ce11905d9d7da84342e67cbe38b7f766",
+  "inputs/BCI.env.csv": "41aa2bbace9850d6830c687ca73a8d10b6cb1aa8e61037bd28c93d2d4734ff27",
+  "inputs/permutations.csv": "a494718a678157a7fd311d0df3c260f11af51e1be4909a5382b64154cdd1fa96"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

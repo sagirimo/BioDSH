@@ -1,0 +1,2 @@
+Varshney LR et al.2011 Structural properties of the Caenorhabditis elegans neuronal network. PLoS Comput Biol7:e1001066 DOI10.1371/journal.pcbi.1001066。原作者分析与数据公开存放openworm/VarshneyEtAl2011，ConnOrdered_040903.mat；作者说明是结合White等材料与新电镜所得的雌雄同体连接整理。prepare.py用scipy.io载入化学矩阵，逐非零元导出，不更改边权、不采用benchmark切分。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

@@ -1,0 +1,5 @@
+原始研究：Edelstein SJ, Schaad O, Henry E, Bertrand D, Changeux JP (1996). A kinetic mechanism for nicotinic acetylcholine receptors based on multiple allosteric transitions. Biological Cybernetics 75:361–379. DOI10.1007/s004220050302; PMID8983160。
+公共原始模型：BioModels BIOMD0000000001（Edelstein1996 - EPSP ACh event）。下载 https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000001?filename=BIOMD0000000001_url.xml 。完整保留SBML及CC0公开模型编码声明，模型整理者Nicolas Le Novère。
+同研究模型BIOMD0000000002也列入独立性检索，避免把表示版本当独立研究。
+本题自拟固定配体条件的机制审计：关闭RemovalACh事件，并对8条结合正向率施加给定倍率；不是复现原刺激-撤药事件轨迹，也不从其他benchmark取题。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

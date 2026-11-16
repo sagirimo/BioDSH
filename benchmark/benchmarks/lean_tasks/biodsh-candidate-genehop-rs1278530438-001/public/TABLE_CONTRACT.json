@@ -1,0 +1,742 @@
+{
+  "tables": {
+    "placements.csv": {
+      "columns": [
+        "placement_id",
+        "placement_index",
+        "assembly_index",
+        "allele_index",
+        "seq_id",
+        "assembly_name",
+        "assembly_accession",
+        "seq_type",
+        "mol_type",
+        "position_0based",
+        "deleted_sequence",
+        "inserted_sequence",
+        "deleted_length",
+        "inserted_length",
+        "reference_start_1based",
+        "reference_end_1based",
+        "is_reference",
+        "hgvs",
+        "is_ptlp",
+        "is_top_level",
+        "is_alt",
+        "is_patch",
+        "is_chromosome",
+        "opposite_orientation",
+        "is_mismatch"
+      ],
+      "key": [
+        "placement_id"
+      ],
+      "types": {
+        "placement_id": "text",
+        "placement_index": "float",
+        "assembly_index": "float",
+        "allele_index": "float",
+        "seq_id": "text",
+        "assembly_name": "text",
+        "assembly_accession": "text",
+        "seq_type": "text",
+        "mol_type": "text",
+        "position_0based": "float",
+        "deleted_sequence": "text",
+        "inserted_sequence": "text",
+        "deleted_length": "float",
+        "inserted_length": "float",
+        "reference_start_1based": "float",
+        "reference_end_1based": "float",
+        "is_reference": "float",
+        "hgvs": "text",
+        "is_ptlp": "float",
+        "is_top_level": "float",
+        "is_alt": "float",
+        "is_patch": "float",
+        "is_chromosome": "float",
+        "opposite_orientation": "float",
+        "is_mismatch": "float"
+      },
+      "tolerance": {
+        "placement_index": [
+          0,
+          0
+        ],
+        "assembly_index": [
+          0,
+          0
+        ],
+        "allele_index": [
+          0,
+          0
+        ],
+        "position_0based": [
+          0,
+          0
+        ],
+        "deleted_length": [
+          0,
+          0
+        ],
+        "inserted_length": [
+          0,
+          0
+        ],
+        "reference_start_1based": [
+          0,
+          0
+        ],
+        "reference_end_1based": [
+          0,
+          0
+        ],
+        "is_reference": [
+          0,
+          0
+        ],
+        "is_ptlp": [
+          0,
+          0
+        ],
+        "is_top_level": [
+          0,
+          0
+        ],
+        "is_alt": [
+          0,
+          0
+        ],
+        "is_patch": [
+          0,
+          0
+        ],
+        "is_chromosome": [
+          0,
+          0
+        ],
+        "opposite_orientation": [
+          0,
+          0
+        ],
+        "is_mismatch": [
+          0,
+          0
+        ]
+      },
+      "row_set": {
+        "key": [
+          "placement_id"
+        ],
+        "row_count": 4,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "placement_id": [
+            "p000|a000|v000",
+            "p000|a000|v001",
+            "p001|a000|v000",
+            "p001|a000|v001"
+          ]
+        }
+      }
+    },
+    "gene_links.csv": {
+      "columns": [
+        "link_id",
+        "allele_annotation_index",
+        "assembly_annotation_index",
+        "gene_index",
+        "seq_id",
+        "annotation_release",
+        "gene_id",
+        "locus",
+        "source_name",
+        "orientation",
+        "is_pseudo",
+        "gene_SO"
+      ],
+      "key": [
+        "link_id"
+      ],
+      "types": {
+        "link_id": "text",
+        "allele_annotation_index": "float",
+        "assembly_annotation_index": "float",
+        "gene_index": "float",
+        "seq_id": "text",
+        "annotation_release": "text",
+        "gene_id": "float",
+        "locus": "text",
+        "source_name": "text",
+        "orientation": "text",
+        "is_pseudo": "float",
+        "gene_SO": "text"
+      },
+      "tolerance": {
+        "allele_annotation_index": [
+          0,
+          0
+        ],
+        "assembly_annotation_index": [
+          0,
+          0
+        ],
+        "gene_index": [
+          0,
+          0
+        ],
+        "gene_id": [
+          0,
+          0
+        ],
+        "is_pseudo": [
+          0,
+          0
+        ]
+      },
+      "row_set": {
+        "key": [
+          "link_id"
+        ],
+        "row_count": 2,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "link_id": [
+            "a000|b000|g000",
+            "a001|b000|g000"
+          ]
+        }
+      }
+    },
+    "transcript_consequences.csv": {
+      "columns": [
+        "consequence_id",
+        "allele_annotation_index",
+        "assembly_annotation_index",
+        "gene_index",
+        "rna_index",
+        "so_index",
+        "gene_id",
+        "seq_id",
+        "rna_id",
+        "product_id",
+        "SO_accession",
+        "SO_name",
+        "has_SO",
+        "hgvs"
+      ],
+      "key": [
+        "consequence_id"
+      ],
+      "types": {
+        "consequence_id": "text",
+        "allele_annotation_index": "float",
+        "assembly_annotation_index": "float",
+        "gene_index": "float",
+        "rna_index": "float",
+        "so_index": "float",
+        "gene_id": "float",
+        "seq_id": "text",
+        "rna_id": "text",
+        "product_id": "text",
+        "SO_accession": "text",
+        "SO_name": "text",
+        "has_SO": "float",
+        "hgvs": "text"
+      },
+      "tolerance": {
+        "allele_annotation_index": [
+          0,
+          0
+        ],
+        "assembly_annotation_index": [
+          0,
+          0
+        ],
+        "gene_index": [
+          0,
+          0
+        ],
+        "rna_index": [
+          0,
+          0
+        ],
+        "so_index": [
+          0,
+          0
+        ],
+        "gene_id": [
+          0,
+          0
+        ],
+        "has_SO": [
+          0,
+          0
+        ]
+      },
+      "row_set": {
+        "key": [
+          "consequence_id"
+        ],
+        "row_count": 104,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "consequence_id": [
+            "a000|b000|g000|r000|s000",
+            "a000|b000|g000|r001|s000",
+            "a000|b000|g000|r002|s000",
+            "a000|b000|g000|r003|s000",
+            "a000|b000|g000|r004|s000",
+            "a000|b000|g000|r005|s000",
+            "a000|b000|g000|r006|s000",
+            "a000|b000|g000|r007|s000",
+            "a000|b000|g000|r008|s000",
+            "a000|b000|g000|r009|s000",
+            "a000|b000|g000|r010|s000",
+            "a000|b000|g000|r011|s000",
+            "a000|b000|g000|r012|s000",
+            "a000|b000|g000|r013|s000",
+            "a000|b000|g000|r014|s000",
+            "a000|b000|g000|r015|s000",
+            "a000|b000|g000|r016|s000",
+            "a000|b000|g000|r017|s000",
+            "a000|b000|g000|r018|s000",
+            "a000|b000|g000|r019|s000",
+            "a000|b000|g000|r020|s000",
+            "a000|b000|g000|r021|s000",
+            "a000|b000|g000|r022|s000",
+            "a000|b000|g000|r023|s000",
+            "a000|b000|g000|r024|s000",
+            "a000|b000|g000|r025|s000",
+            "a000|b000|g000|r026|s000",
+            "a000|b000|g000|r027|s000",
+            "a000|b000|g000|r028|s000",
+            "a000|b000|g000|r029|s000",
+            "a000|b000|g000|r030|s000",
+            "a000|b000|g000|r031|s000",
+            "a000|b000|g000|r032|s000",
+            "a000|b000|g000|r033|s000",
+            "a000|b000|g000|r034|s000",
+            "a000|b000|g000|r035|s000",
+            "a000|b000|g000|r036|s000",
+            "a000|b000|g000|r037|s000",
+            "a000|b000|g000|r038|s000",
+            "a000|b000|g000|r039|s000",
+            "a000|b000|g000|r040|s000",
+            "a000|b000|g000|r041|s000",
+            "a000|b000|g000|r042|s000",
+            "a000|b000|g000|r043|s000",
+            "a000|b000|g000|r044|s000",
+            "a000|b000|g000|r045|s000",
+            "a000|b000|g000|r046|s000",
+            "a000|b000|g000|r047|s000",
+            "a000|b000|g000|r048|s000",
+            "a000|b000|g000|r049|s000",
+            "a000|b000|g000|r050|s000",
+            "a000|b000|g000|r051|s000",
+            "a001|b000|g000|r000|s000",
+            "a001|b000|g000|r001|s000",
+            "a001|b000|g000|r002|s000",
+            "a001|b000|g000|r003|s000",
+            "a001|b000|g000|r004|s000",
+            "a001|b000|g000|r005|s000",
+            "a001|b000|g000|r006|s000",
+            "a001|b000|g000|r007|s000",
+            "a001|b000|g000|r008|s000",
+            "a001|b000|g000|r009|s000",
+            "a001|b000|g000|r010|s000",
+            "a001|b000|g000|r011|s000",
+            "a001|b000|g000|r012|s000",
+            "a001|b000|g000|r013|s000",
+            "a001|b000|g000|r014|s000",
+            "a001|b000|g000|r015|s000",
+            "a001|b000|g000|r016|s000",
+            "a001|b000|g000|r017|s000",
+            "a001|b000|g000|r018|s000",
+            "a001|b000|g000|r019|s000",
+            "a001|b000|g000|r020|s000",
+            "a001|b000|g000|r021|s000",
+            "a001|b000|g000|r022|s000",
+            "a001|b000|g000|r023|s000",
+            "a001|b000|g000|r024|s000",
+            "a001|b000|g000|r025|s000",
+            "a001|b000|g000|r026|s000",
+            "a001|b000|g000|r027|s000",
+            "a001|b000|g000|r028|s000",
+            "a001|b000|g000|r029|s000",
+            "a001|b000|g000|r030|s000",
+            "a001|b000|g000|r031|s000",
+            "a001|b000|g000|r032|s000",
+            "a001|b000|g000|r033|s000",
+            "a001|b000|g000|r034|s000",
+            "a001|b000|g000|r035|s000",
+            "a001|b000|g000|r036|s000",
+            "a001|b000|g000|r037|s000",
+            "a001|b000|g000|r038|s000",
+            "a001|b000|g000|r039|s000",
+            "a001|b000|g000|r040|s000",
+            "a001|b000|g000|r041|s000",
+            "a001|b000|g000|r042|s000",
+            "a001|b000|g000|r043|s000",
+            "a001|b000|g000|r044|s000",
+            "a001|b000|g000|r045|s000",
+            "a001|b000|g000|r046|s000",
+            "a001|b000|g000|r047|s000",
+            "a001|b000|g000|r048|s000",
+            "a001|b000|g000|r049|s000",
+            "a001|b000|g000|r050|s000",
+            "a001|b000|g000|r051|s000"
+          ]
+        }
+      }
+    },
+    "frequencies.csv": {
+      "columns": [
+        "frequency_id",
+        "allele_annotation_index",
+        "frequency_index",
+        "study_name",
+        "study_version",
+        "local_row_id",
+        "seq_id",
+        "position_0based",
+        "deleted_sequence",
+        "inserted_sequence",
+        "allele_count",
+        "total_count",
+        "allele_frequency",
+        "is_reference"
+      ],
+      "key": [
+        "frequency_id"
+      ],
+      "types": {
+        "frequency_id": "text",
+        "allele_annotation_index": "float",
+        "frequency_index": "float",
+        "study_name": "text",
+        "study_version": "float",
+        "local_row_id": "float",
+        "seq_id": "text",
+        "position_0based": "float",
+        "deleted_sequence": "text",
+        "inserted_sequence": "text",
+        "allele_count": "float",
+        "total_count": "float",
+        "allele_frequency": "float",
+        "is_reference": "float"
+      },
+      "tolerance": {
+        "allele_annotation_index": [
+          0,
+          1e-12
+        ],
+        "frequency_index": [
+          0,
+          1e-12
+        ],
+        "study_version": [
+          0,
+          1e-12
+        ],
+        "local_row_id": [
+          0,
+          1e-12
+        ],
+        "position_0based": [
+          0,
+          1e-12
+        ],
+        "allele_count": [
+          0,
+          1e-12
+        ],
+        "total_count": [
+          0,
+          1e-12
+        ],
+        "allele_frequency": [
+          0,
+          1e-12
+        ],
+        "is_reference": [
+          0,
+          1e-12
+        ]
+      },
+      "row_set": {
+        "key": [
+          "frequency_id"
+        ],
+        "row_count": 2,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "frequency_id": [
+            "a000|f000",
+            "a001|f000"
+          ]
+        }
+      }
+    },
+    "genes.csv": {
+      "columns": [
+        "gene_id",
+        "tax_id",
+        "symbol",
+        "chromosome",
+        "map_location",
+        "description",
+        "type_of_gene",
+        "Entrezgene_type",
+        "has_summary",
+        "summary_characters",
+        "summary_sha256",
+        "GO_annotation_rows",
+        "distinct_GO_terms",
+        "function_evidence_status"
+      ],
+      "key": [
+        "gene_id"
+      ],
+      "types": {
+        "gene_id": "text",
+        "tax_id": "float",
+        "symbol": "text",
+        "chromosome": "text",
+        "map_location": "text",
+        "description": "text",
+        "type_of_gene": "text",
+        "Entrezgene_type": "text",
+        "has_summary": "float",
+        "summary_characters": "float",
+        "summary_sha256": "text",
+        "GO_annotation_rows": "float",
+        "distinct_GO_terms": "float",
+        "function_evidence_status": "text"
+      },
+      "tolerance": {
+        "tax_id": [
+          0,
+          0
+        ],
+        "has_summary": [
+          0,
+          0
+        ],
+        "summary_characters": [
+          0,
+          0
+        ],
+        "GO_annotation_rows": [
+          0,
+          0
+        ],
+        "distinct_GO_terms": [
+          0,
+          0
+        ]
+      },
+      "row_set": {
+        "key": [
+          "gene_id"
+        ],
+        "row_count": 1,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "gene_id": [
+            "753"
+          ]
+        }
+      }
+    },
+    "gene_aliases.csv": {
+      "columns": [
+        "alias_id",
+        "gene_id",
+        "alias_index",
+        "alias"
+      ],
+      "key": [
+        "alias_id"
+      ],
+      "types": {
+        "alias_id": "text",
+        "gene_id": "float",
+        "alias_index": "float",
+        "alias": "text"
+      },
+      "tolerance": {
+        "gene_id": [
+          0,
+          0
+        ],
+        "alias_index": [
+          0,
+          0
+        ]
+      },
+      "row_set": {
+        "key": [
+          "alias_id"
+        ],
+        "row_count": 1,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "alias_id": [
+            "753|a000"
+          ]
+        }
+      }
+    },
+    "GO_annotations.csv": {
+      "columns": [
+        "annotation_id",
+        "gene_id",
+        "category",
+        "GO_number",
+        "GO_id",
+        "term",
+        "relation_text",
+        "evidence_text",
+        "pubmed_ids",
+        "pubmed_count"
+      ],
+      "key": [
+        "annotation_id"
+      ],
+      "types": {
+        "annotation_id": "text",
+        "gene_id": "float",
+        "category": "text",
+        "GO_number": "float",
+        "GO_id": "text",
+        "term": "text",
+        "relation_text": "text",
+        "evidence_text": "text",
+        "pubmed_ids": "text",
+        "pubmed_count": "float"
+      },
+      "tolerance": {
+        "gene_id": [
+          0,
+          0
+        ],
+        "GO_number": [
+          0,
+          0
+        ],
+        "pubmed_count": [
+          0,
+          0
+        ]
+      },
+      "row_set": {
+        "key": [
+          "annotation_id"
+        ],
+        "row_count": 16,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "annotation_id": [
+            "753|g000|c000|a000|s000",
+            "753|g000|c000|a001|s000",
+            "753|g000|c000|a002|s000",
+            "753|g000|c000|a003|s000",
+            "753|g000|c001|a000|s000",
+            "753|g000|c001|a001|s000",
+            "753|g000|c001|a002|s000",
+            "753|g000|c001|a003|s000",
+            "753|g000|c001|a004|s000",
+            "753|g000|c001|a005|s000",
+            "753|g000|c001|a006|s000",
+            "753|g000|c002|a000|s000",
+            "753|g000|c002|a001|s000",
+            "753|g000|c002|a002|s000",
+            "753|g000|c002|a003|s000",
+            "753|g000|c002|a004|s000"
+          ]
+        }
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "float",
+        "scope": "text"
+      },
+      "tolerance": {
+        "supported_by_inputs": [
+          0,
+          0
+        ]
+      },
+      "row_set": {
+        "key": [
+          "claim_id"
+        ],
+        "row_count": 6,
+        "rule": "各键列给定取值的全部笛卡尔积，每个组合一行（包括零值、对角与反向项）。",
+        "domains": {
+          "claim_id": [
+            "variant_to_gene_association",
+            "coordinate_scope",
+            "functional_coverage_complete_for_snapshot",
+            "absence_proves_no_function",
+            "cross_study_AF_pooling_valid",
+            "clinical_or_causal_validation"
+          ]
+        }
+      }
+    },
+    "terminal_summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "metric"
+        ],
+        "row_count": 12,
+        "rule": "原 design.answer_fields 中全部数值终点各一行。",
+        "domains": {
+          "metric": [
+            "placement_rows",
+            "allele_annotation_records",
+            "gene_links",
+            "distinct_genes",
+            "transcript_consequence_rows",
+            "frequency_rows",
+            "alias_rows",
+            "GO_annotation_rows",
+            "distinct_GO_terms",
+            "genes_without_GO",
+            "genes_without_summary",
+            "functional_causality_established"
+          ]
+        }
+      }
+    }
+  }
+}

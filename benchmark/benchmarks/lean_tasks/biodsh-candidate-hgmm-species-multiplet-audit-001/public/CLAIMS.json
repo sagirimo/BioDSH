@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-hgmm-species-multiplet-audit-001",
+  "claims": [
+    {
+      "id": "n",
+      "type": "number",
+      "question": "质控保留的条码数。",
+      "binding": {
+        "table": "mixture.csv",
+        "key_column": "id",
+        "key": "0.1",
+        "column": "n_barcodes"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "mixed",
+      "type": "number",
+      "question": "0.1阈值的混合条码数。",
+      "binding": {
+        "table": "mixture.csv",
+        "key_column": "id",
+        "key": "0.1",
+        "column": "mixed_units"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "human",
+      "type": "number",
+      "question": "单物种条码中人的比例。",
+      "binding": {
+        "table": "mixture.csv",
+        "key_column": "id",
+        "key": "0.1",
+        "column": "human_singlet_fraction"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "multiplet",
+      "type": "number",
+      "question": "校正同物种不可见双细胞后的估计双细胞率。",
+      "binding": {
+        "table": "mixture.csv",
+        "key_column": "id",
+        "key": "0.1",
+        "column": "estimated_doublet_rate"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "lower",
+      "type": "number",
+      "question": "把混合比例Wilson下限映射后的条件下限。",
+      "binding": {
+        "table": "mixture.csv",
+        "key_column": "id",
+        "key": "0.1",
+        "column": "conditional_ci_low"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "strict",
+      "type": "number",
+      "question": "0.05阈值下的估计双细胞率。",
+      "binding": {
+        "table": "mixture.csv",
+        "key_column": "id",
+        "key": "0.05",
+        "column": "estimated_doublet_rate"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "doublet_level",
+      "type": "derived",
+      "question": "估计双细胞率是否超过5%？",
+      "options": [
+        "above_5pct",
+        "at_most_5pct"
+      ],
+      "rule": {
+        "binding": {
+          "table": "mixture.csv",
+          "key_column": "id",
+          "key": "0.1",
+          "column": "estimated_doublet_rate"
+        },
+        "op": "gt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "above_5pct",
+          "false": "at_most_5pct"
+        }
+      }
+    },
+    {
+      "id": "balance",
+      "type": "derived",
+      "question": "人源条码是否占单物种条码多数？",
+      "options": [
+        "more_human_singlets",
+        "human_not_majority"
+      ],
+      "rule": {
+        "binding": {
+          "table": "mixture.csv",
+          "key_column": "id",
+          "key": "0.1",
+          "column": "human_singlet_fraction"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "more_human_singlets",
+          "false": "human_not_majority"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "混合物种方法的主要推断边界是？",
+      "options": [
+        "same_species_doublets_unseen_and_correction_requires_random_pairing",
+        "every_doublet_is_observed_directly",
+        "UMI_weighted_cell_fraction_is_unbiased_cell_fraction"
+      ]
+    }
+  ]
+}

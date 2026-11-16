@@ -1,0 +1,11 @@
+Qin J et al. A metagenome-wide association study of gut microbiota in type 2 diabetes. Nature 2012;490:55–60.
+DOI: 10.1038/nature11450
+原研究: https://www.nature.com/articles/nature11450
+登录号: SRA045646, SRA050230
+处理数据: curatedMetagenomicData 2021-03-31; MetaPhlAn3 相对丰度。
+获取 URL: https://mghp.osn.xsede.org/bir190004-bucket01/ExperimentHub/curatedMetagenomicData/2021-03-31/QinJ_2012/2021-03-31.QinJ_2012.relative_abundance.rda
+元数据: https://github.com/waldronlab/curatedMetagenomicData/blob/RELEASE_3_14/data/sampleMetadata.rda
+提供者引用: Pasolli E et al. Accessible, curated metagenomic data through ExperimentHub. Nat Methods 2017;14:1023–1024. DOI:10.1038/nmeth.4468.
+加工: 仅保留物种层级（含 |s__ 且不含 |t__）；物种名去掉上级分类路径，数值仍为百分数；元数据只裁剪列，不预做题目筛选、填补、建模或聚合。转换脚本及下载原件保存在 lean_data/Qin2012/。
+用途: 按用户 2026-10-15 决定仅限本地科研使用，保留原作者和处理数据提供者署名，不对外再分发；本声明不授予题包再分发权。
+本题分析流程由 BioDSH 独立制定，不复刻原文结论或其他 agent benchmark 题目。

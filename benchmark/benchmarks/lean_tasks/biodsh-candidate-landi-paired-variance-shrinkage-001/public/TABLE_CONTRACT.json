@@ -1,0 +1,152 @@
+{
+  "tables": {
+    "differential.csv": {
+      "columns": [
+        "id",
+        "mean_difference",
+        "s2",
+        "posterior_s2",
+        "moderated_t",
+        "p_value",
+        "q_value",
+        "ordinary_t",
+        "ordinary_p",
+        "ordinary_q"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "mean_difference": "float",
+        "s2": "float",
+        "posterior_s2": "float",
+        "moderated_t": "float",
+        "p_value": "float",
+        "q_value": "float",
+        "ordinary_t": "float",
+        "ordinary_p": "float",
+        "ordinary_q": "float"
+      },
+      "tolerance": {
+        "mean_difference": [
+          1e-05,
+          1e-08
+        ],
+        "s2": [
+          1e-05,
+          1e-08
+        ],
+        "posterior_s2": [
+          1e-05,
+          1e-08
+        ],
+        "moderated_t": [
+          1e-05,
+          1e-08
+        ],
+        "p_value": [
+          1e-05,
+          1e-08
+        ],
+        "q_value": [
+          1e-05,
+          1e-08
+        ],
+        "ordinary_t": [
+          1e-05,
+          1e-08
+        ],
+        "ordinary_p": [
+          1e-05,
+          1e-08
+        ],
+        "ordinary_q": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "pairs.csv": {
+      "columns": [
+        "id",
+        "tumor_gsm",
+        "normal_gsm"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "tumor_gsm": "text",
+        "normal_gsm": "text"
+      },
+      "tolerance": {}
+    },
+    "prior.csv": {
+      "columns": [
+        "id",
+        "pairs",
+        "residual_df",
+        "prior_df",
+        "s0_squared"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "pairs": "int",
+        "residual_df": "int",
+        "prior_df": "int",
+        "s0_squared": "float"
+      },
+      "tolerance": {
+        "s0_squared": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "sensitivity.csv": {
+      "columns": [
+        "id",
+        "shared_discoveries",
+        "moderated_only",
+        "ordinary_only"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "shared_discoveries": "int",
+        "moderated_only": "int",
+        "ordinary_only": "int"
+      },
+      "tolerance": {}
+    },
+    "summary.csv": {
+      "columns": [
+        "id",
+        "pairs",
+        "features",
+        "q_lt_005",
+        "up",
+        "down"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "pairs": "int",
+        "features": "int",
+        "q_lt_005": "int",
+        "up": "int",
+        "down": "int"
+      },
+      "tolerance": {}
+    }
+  }
+}

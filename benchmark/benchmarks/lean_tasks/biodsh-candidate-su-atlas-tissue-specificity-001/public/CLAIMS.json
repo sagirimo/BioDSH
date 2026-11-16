@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-su-atlas-tissue-specificity-001",
+  "claims": [
+    {
+      "id": "n",
+      "type": "number",
+      "question": "分析探针数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "features"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "median_tau",
+      "type": "number",
+      "question": "全探针组织特异性tau中位数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "median_tau"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "reproducible",
+      "type": "number",
+      "question": "两份测量的最高组织相同的探针数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "reproducible_winner"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "liver",
+      "type": "number",
+      "question": "最高表达为肝且tau≥0.8并可重复的探针数。",
+      "binding": {
+        "table": "tissue_summary.csv",
+        "key_column": "id",
+        "key": "liver",
+        "column": "specific_reproducible"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "tau_probe",
+      "type": "number",
+      "question": "1007_s_at的tau。",
+      "binding": {
+        "table": "specificity.csv",
+        "key_column": "id",
+        "key": "1007_s_at",
+        "column": "tau"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "floor_change",
+      "type": "number",
+      "question": "提高背景下限后tau变化的中位数。",
+      "binding": {
+        "table": "sensitivity.csv",
+        "key_column": "id",
+        "key": "floor100",
+        "column": "median_delta_tau"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "high_specificity",
+      "type": "derived",
+      "question": "指定探针是否达到tau≥0.8？",
+      "options": [
+        "tau_at_least_0_8",
+        "tau_below_0_8"
+      ],
+      "rule": {
+        "binding": {
+          "table": "specificity.csv",
+          "key_column": "id",
+          "key": "1007_s_at",
+          "column": "tau"
+        },
+        "op": "ge",
+        "threshold": 0.8,
+        "outcomes": {
+          "true": "tau_at_least_0_8",
+          "false": "tau_below_0_8"
+        }
+      }
+    },
+    {
+      "id": "floor_direction",
+      "type": "derived",
+      "question": "提高下限后的tau中位变化是否为负？",
+      "options": [
+        "median_specificity_decreases",
+        "median_specificity_does_not_decrease"
+      ],
+      "rule": {
+        "binding": {
+          "table": "sensitivity.csv",
+          "key_column": "id",
+          "key": "floor100",
+          "column": "median_delta_tau"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "median_specificity_decreases",
+          "false": "median_specificity_does_not_decrease"
+        }
+      }
+    },
+    {
+      "id": "meaning",
+      "type": "choice",
+      "question": "本组织图谱中“可重复”应如何解释？",
+      "options": [
+        "winner_agreement_between_two_supplied_profiles_not_population_inference",
+        "two_measurements_prove_no_donor_variation",
+        "tissue_specificity_proves_exclusive_gene_expression"
+      ]
+    }
+  ]
+}

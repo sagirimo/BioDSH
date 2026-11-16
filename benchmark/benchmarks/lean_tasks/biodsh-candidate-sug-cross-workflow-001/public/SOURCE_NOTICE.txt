@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "rqtl_published_crosses",
+  "source_case": "sug_complete_provided_intercross",
+  "original_parent_source_case": "PMID:12118100",
+  "page": "https://www.biostat.wisc.edu/~kbroman/teaching/misc/Hyderabad/rqtltour3.pdf",
+  "source_terms": "Source package/code GPL3 does not automatically establish exact study data delivery rights; task-specific review pending",
+  "limitations": [
+    "All163 provided male F2 rows and93 autosomal markers. BP155 complete; BW adjustment uses BP/BW jointly complete cases. Original publication207 F2 mice differs from provided163-row teaching file; not a complete-paper reproduction. Native mouse_ID retained.",
+    "No latent-genotype experimental ground truth; library validation is computational only",
+    "Family/exact delivery review pending; no pretraining independence claim"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

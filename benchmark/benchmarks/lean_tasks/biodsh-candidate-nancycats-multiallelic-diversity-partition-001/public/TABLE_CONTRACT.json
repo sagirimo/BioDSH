@@ -1,0 +1,206 @@
+{
+  "tables": {
+    "allele_frequencies.csv": {
+      "columns": [
+        "id",
+        "gene_copies",
+        "frequency"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "gene_copies": "int",
+        "frequency": "float"
+      },
+      "tolerance": {
+        "frequency": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "colony_diversity.csv": {
+      "columns": [
+        "id",
+        "n",
+        "eligible",
+        "observed_heterozygosity",
+        "expected_heterozygosity",
+        "Fis",
+        "allelic_richness8"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "eligible": "int",
+        "observed_heterozygosity": "float",
+        "expected_heterozygosity": "float",
+        "Fis": "float",
+        "allelic_richness8": "float"
+      },
+      "tolerance": {
+        "observed_heterozygosity": [
+          1e-05,
+          1e-08
+        ],
+        "expected_heterozygosity": [
+          1e-05,
+          1e-08
+        ],
+        "Fis": [
+          1e-05,
+          1e-08
+        ],
+        "allelic_richness8": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "locus_influence.csv": {
+      "columns": [
+        "id",
+        "leave_one_Gst",
+        "delta_Gst"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "leave_one_Gst": "float",
+        "delta_Gst": "float"
+      },
+      "tolerance": {
+        "leave_one_Gst": [
+          1e-05,
+          1e-08
+        ],
+        "delta_Gst": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "locus_partition.csv": {
+      "columns": [
+        "id",
+        "locus",
+        "mode",
+        "n_colonies",
+        "n_individuals",
+        "Hs",
+        "Ht",
+        "Gst",
+        "Ho",
+        "pooled_deficit"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "locus": "text",
+        "mode": "text",
+        "n_colonies": "int",
+        "n_individuals": "int",
+        "Hs": "float",
+        "Ht": "float",
+        "Gst": "float",
+        "Ho": "float",
+        "pooled_deficit": "float"
+      },
+      "tolerance": {
+        "Hs": [
+          1e-05,
+          1e-08
+        ],
+        "Ht": [
+          1e-05,
+          1e-08
+        ],
+        "Gst": [
+          1e-05,
+          1e-08
+        ],
+        "Ho": [
+          1e-05,
+          1e-08
+        ],
+        "pooled_deficit": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "multilocus_summary.csv": {
+      "columns": [
+        "id",
+        "n_loci",
+        "ratio_Gst",
+        "mean_Hs",
+        "mean_Ht",
+        "mean_pooled_deficit"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_loci": "int",
+        "ratio_Gst": "float",
+        "mean_Hs": "float",
+        "mean_Ht": "float",
+        "mean_pooled_deficit": "float"
+      },
+      "tolerance": {
+        "ratio_Gst": [
+          1e-05,
+          1e-08
+        ],
+        "mean_Hs": [
+          1e-05,
+          1e-08
+        ],
+        "mean_Ht": [
+          1e-05,
+          1e-08
+        ],
+        "mean_pooled_deficit": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "weight_sensitivity.csv": {
+      "columns": [
+        "id",
+        "delta_Gst",
+        "delta_Hs"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "delta_Gst": "float",
+        "delta_Hs": "float"
+      },
+      "tolerance": {
+        "delta_Gst": [
+          1e-05,
+          1e-08
+        ],
+        "delta_Hs": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

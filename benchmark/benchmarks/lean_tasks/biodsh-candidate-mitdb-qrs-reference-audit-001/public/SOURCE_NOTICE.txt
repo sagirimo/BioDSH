@@ -1,0 +1,5 @@
+Moody G, Mark R. MIT-BIH Arrhythmia Database v1.0.0 (2005). DOI:10.13026/C2F305. Original publication: Moody GB, Mark RG. The impact of the MIT-BIH Arrhythmia Database. IEEE Eng Med Biol 2001;20(3):45–50. DOI:10.1109/51.932724.
+https://physionet.org/content/mitdb/1.0.0/
+文件：https://physionet.org/files/mitdb/1.0.0/100.dat ; 100.hea ; 100.atr。许可 Open Data Commons Attribution v1.0（原数据页明确标注）。
+annotations.csv只解码原始N/A/V注释，本记录其他代码仅节律/辅助字段；源注释2239 N、33 A、1 V，无SKIP。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

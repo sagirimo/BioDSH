@@ -1,0 +1,3 @@
+Smaill JB, Showalter HD, Zhou H, Bridges AJ, McNamara DJ, Fry DW, Nelson JM, Sherwood V, Vincent PW, Roberts BJ, Elliott WL, Denny WA. Tyrosine kinase inhibitors. 18. 6-Substituted 4-anilinoquinazolines and 4-anilinopyrido[3,4-d]pyrimidines as soluble, irreversible inhibitors of the epidermal growth factor receptor. J Med Chem 2001. DOI:10.1021/jm000372i; PMID:11462982.
+ChEMBL，CC BY-SA 3.0；获取 https://www.ebi.ac.uk/chembl/api/data/activity.json?document_chembl_id=CHEMBL1134843&limit=1000 及 molecule.json?molecule_chembl_id__in=（所给33个分子）&limit=1000。描述符由ChEMBL预计算，本题不依赖RDKit。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

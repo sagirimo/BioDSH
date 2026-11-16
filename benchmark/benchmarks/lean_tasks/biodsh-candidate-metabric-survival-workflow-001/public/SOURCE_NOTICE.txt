@@ -1,0 +1,12 @@
+存量原题 biodsh-candidate-metabric-survival-workflow-001 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-metabric-survival-workflow-001
+source: "cbioportal_published_clinical"
+source_registry_id: "cbioportal_published_clinical"
+source_family: "cbioportal_published_clinical"
+source_case: "brca_metabric_complete_provided_clinical"
+source_revision: "dca75cb3f32b82d54a6f78bf0a6323e5b975aca1"
+source_terms: "Public provider access is not by itself exact downstream data redistribution permission; task-specific review pending"
+family_keys: ["cBioPortal:brca_metabric", "cbioportal:brca_metabric", "Study:METABRIC", "PMID:27161491", "PMID:30867590", "PMID:22522925"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+
+来源登记条目：{"id": "cbioportal_published_clinical", "family": "cbioportal_published_clinical", "name": "Published cBioPortal complete clinical study resources", "type": "published_scientific_data_resource", "url": "https://github.com/cBioPortal/datahub", "candidate_domains": ["D05"], "value": "Whole clinical multistep workflows; patients, time points and covariates are not tasks", "availability": "Complete source, independent full survival science, two actual censoring faults per task and task-only delivered-code replay passed; exact public delivery/history family review pending", "priority": "P1", "caveat": "Exact data delivery and historical/umbrella study family review pending", "current_qualified_fixed_contract_count": 2, "intake_report": "report/sprint_2026-09-28/stage70_cancer_solvation_gait_intake/source_manifest.json", "latest_qualified_stage": "report/sprint_2026-09-28/stage71_cancer_survival_workflows/README_zh.md"}

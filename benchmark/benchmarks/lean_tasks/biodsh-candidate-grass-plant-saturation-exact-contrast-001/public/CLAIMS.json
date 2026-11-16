@@ -1,0 +1,140 @@
+{
+  "revision": "round5_lean_v1",
+  "task_id": "biodsh-candidate-grass-plant-saturation-exact-contrast-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "350原刻度下平均低温处理对比？",
+      "binding": {
+        "table": "plant_contrasts.csv",
+        "key_column": "id",
+        "key": "all|chilling",
+        "column": "estimate"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "产地间处理效应差？",
+      "binding": {
+        "table": "plant_contrasts.csv",
+        "key_column": "id",
+        "key": "all|interaction",
+        "column": "estimate"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "处理对比精确p值？",
+      "binding": {
+        "table": "plant_contrasts.csv",
+        "key_column": "id",
+        "key": "all|chilling",
+        "column": "exact_p"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "交互精确p值？",
+      "binding": {
+        "table": "plant_contrasts.csv",
+        "key_column": "id",
+        "key": "all|interaction",
+        "column": "exact_p"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "Quebec处理组拟合摄取均值？",
+      "binding": {
+        "table": "group_uptake.csv",
+        "key_column": "id",
+        "key": "all|Quebec|1",
+        "column": "mean_uptake350"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "去低浓度对处理对比的影响？",
+      "binding": {
+        "table": "dose_sensitivity.csv",
+        "key_column": "id",
+        "key": "chilling",
+        "column": "delta_estimate"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "平均低温处理对比是否为负？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "plant_contrasts.csv",
+          "key_column": "id",
+          "key": "all|chilling",
+          "column": "estimate"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "产地交互是否达到0.05标签检验水平？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "plant_contrasts.csv",
+          "key_column": "id",
+          "key": "all|interaction",
+          "column": "exact_p"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "推断单位和边界？",
+      "options": [
+        "独立单位按植株处理，检验依赖产地内可交换而非84次独立测量",
+        "84个浓度观测都是独立植株",
+        "这项结果可直接给出所有C4植物的低温因果效应"
+      ]
+    }
+  ]
+}

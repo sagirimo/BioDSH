@@ -1,0 +1,8 @@
+{
+ "source_url": "https://github.com/joey711/phyloseq/blob/master/man/data-soilrep.Rd",
+ "input_files_sha256": {
+  "inputs/counts.csv": "b66aa05015b5b6becf04118eff6f898694bab134347c7e435899f0ae962c8a9d",
+  "inputs/metadata.csv": "971bf03e784b675bd9ee242d71cf428a487a431b352b8c14ffcf33298f37b250"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

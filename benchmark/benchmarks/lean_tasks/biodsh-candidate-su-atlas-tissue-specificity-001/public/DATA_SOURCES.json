@@ -1,0 +1,8 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE1133",
+ "input_files_sha256": {
+  "inputs/GSE1133-GPL96_series_matrix.txt.gz": "1fc5b0fa56db15237ada72a68aab561d6c31924f30acdffb965e6d0d31595033",
+  "inputs/tissue_map.csv": "1a2463c1aca688dbccd2c27cab76e710fcad7854e8052303d927e142d7407096"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

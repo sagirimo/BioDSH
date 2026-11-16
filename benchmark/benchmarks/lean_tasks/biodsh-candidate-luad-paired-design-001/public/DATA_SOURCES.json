@@ -1,0 +1,10 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE248830",
+ "input_files_sha256": {
+  "inputs/design.json": "45d596a86879cc6ad00684cf874aa94e6511641100256df4e348eb70bd031151",
+  "inputs/expression.csv": "f0ab7f0ab509a440685b9ae7d2c7260f24b8e0f2fa8d3cfaa676368de1220c44",
+  "inputs/series_metadata.tsv": "dc6cbda715f80e2d7d85fce1ebe70761cacd6a9043c14c4b0dc44463291f0091",
+  "inputs/upstream_clinical.csv": "ca6e3f3fe9a69820b116dcc3bf99283c8113ec1320e0f0648f5181c86eafa859"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

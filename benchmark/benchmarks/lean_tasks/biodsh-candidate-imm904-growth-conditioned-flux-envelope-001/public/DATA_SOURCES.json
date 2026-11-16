@@ -1,0 +1,9 @@
+{
+ "source_url": "https://bigg.ucsd.edu/models/iMM904",
+ "input_files_sha256": {
+  "inputs/conditions.csv": "2ddc1efad5dae4fe9e4069d7b3d40e8245e8bc3b2120e5ff2a7d4b968b97d5a2",
+  "inputs/iMM904.json": "1f7c573c2cf3da104fe48c49d6ae8e5a4a3472e7dc03c173c660e8bd9bb2557f",
+  "inputs/target_reactions.csv": "97826242f9c64a8fb75ef8a4e28cbfaa14b983cd3c254b977e04e88b0fe54e61"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

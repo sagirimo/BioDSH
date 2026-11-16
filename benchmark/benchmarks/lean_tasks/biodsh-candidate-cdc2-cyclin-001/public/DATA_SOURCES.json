@@ -1,0 +1,8 @@
+{
+ "source_url": "",
+ "input_files_sha256": {
+  "inputs/design.json": "3a2e602d5465f704479761a27bb66134b1da268faaa7c3c535d1462ed4261e30",
+  "inputs/model.xml": "17913f267de284d8a5b7592e6378e26ec60fe536d4cd5e8506fbef9da2b450de"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

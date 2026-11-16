@@ -1,0 +1,29 @@
+{
+ "source_url": "https://bioconductor.org/packages/mixOmics/",
+ "input_files_sha256": {
+  "inputs/LEAN_ARRAY_PLAN.json": "b0236e8a715dbb369922d259d307901ce44a85189d74928e1215641c31ca0489",
+  "inputs/animal_identity.csv": "d4a1f22b19877e573df8c9c49619f792e31cfc61e10e7762c220b5567642bcc7",
+  "inputs/animal_metadata.csv": "819365a62b3947e5c03ea9953a2b66ed799a73ff428df10e31434f5b5a5662f0",
+  "inputs/clinical_measurements.csv": "b2a21f71b928bff195d17e2a7e4e276a323db911c12812d21a71dc45a2db16af",
+  "inputs/design.json": "663c72dedf862b0618f14d97ef1fdfa38ae7780b1f946e32b9009329703b558d",
+  "inputs/design_draft.json": "8191b18e3f7eea0a052dfce02e7ba1c88e8562f260dc3f1e1e1dce0dabba0820",
+  "inputs/gene_measurements.csv": "fae0d263b251984960d8dfbe4796d5069b6603d98769af5ba6e90a0baea60c56",
+  "inputs/native_clinic.csv": "4145818497ef8689543b5a568474eccb1f01a7f6d7392dd3e89cbf292bf1c529",
+  "inputs/native_clinic_attributes.rds": "6c2e5f8c2b25999e47b51278a241e20c3dd91dcd9ed5268b7073e82dd0e91690",
+  "inputs/native_gene.ID.csv": "8752c67a9b4675106636ff5c200a4dde98d6a5719b23dd82dd78e1dd73a7fff8",
+  "inputs/native_gene.ID_attributes.rds": "5ad480ab274b1fc5afb422161972f1cef3b2538c08240b35ab99163c0825a662",
+  "inputs/native_gene.csv": "9e7f6b1c051a74aa83ede640cee90dacb593b92c40a1c8ac251ede61deb1040b",
+  "inputs/native_gene_attributes.rds": "f9994e4b827b2fa00abc5fb419f41690ec6f41af22a5c31935f39011bf20a9e4",
+  "inputs/native_native_attributes.rds": "e3e838a62efc38b61c23a5f460a370030a69813f4995cfbc49128c61dc3b3b17",
+  "inputs/native_native_attributes.txt": "1a0d23698c51a41458e02c5187e83d8da67004e837c0a4c2728886459fc4590c",
+  "inputs/native_native_object.rds": "2f61b5ff4358f1308eafb9b8a5300daee3681b84bfe40f28ce01e5f6e835319f",
+  "inputs/native_native_structure.txt": "dabfa49aa15bd53aa5e9e253ab93b15107ff1139f0a88d79e95cc6f93940b41b",
+  "inputs/native_treatment.csv": "37c230d464e7eda396aa2a9533173052d79cf7fae115807e942e8b23cf31e88b",
+  "inputs/native_treatment_attributes.rds": "7966743a158b481b1546c2e4a7871e6d7a3ce8fe1ec36130caa7d44dec33e5a4",
+  "inputs/native_treatment_cell_census.csv": "a157088611b7b993d7a04f5b96cba8242b2ad6a0b66c6343fd2b42dec15fea1e",
+  "inputs/original_liver.toxicity.rda": "af7c3865a437bc616eba63fac2a63e63d1acb234387e87730c97ee8cb5ead65d",
+  "inputs/source_DESCRIPTION": "8df3514a357c2c75c233878b9bf60e4bfa22518349533aeef77d6554e2a388b2",
+  "inputs/source_liver.toxicity.Rd": "97db6ac81106ac92d201a7dce2594a0f07c042a41f9e42b2b8598424a096092d"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,3 @@
+Pearlstein RA, Vaz RJ, Kang J, Chen XL, Preobrazhenskaya M, Shchekotikhin AE, Korolev AM, Lysenkova LN, Miroshnikova OV, Hendrix J, Rampe D. Characterization of HERG potassium channel inhibition using CoMSiA 3D QSAR and homology modeling approaches. Bioorg Med Chem Lett 2003. DOI:10.1016/s0960-894x(03)00196-3; PMID:12729675.
+ChEMBL CC BY-SA 3.0，获取 https://www.ebi.ac.uk/chembl/api/data/activity.json?assay_chembl_id=CHEMBL766816&limit=1000；原文 CHEMBL766816 测定的全部32条活性记录。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

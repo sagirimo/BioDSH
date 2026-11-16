@@ -1,0 +1,130 @@
+{
+  "revision": "round6_lean_v1",
+  "task_id": "biodsh-candidate-liver-circadian-conditional-harmonics-001",
+  "claims": [
+    {
+      "id": "n_retained",
+      "type": "number",
+      "question": "进入节律模型的探针数。",
+      "binding": {
+        "table": "rhythm_summary.csv",
+        "key_column": "id",
+        "key": "full",
+        "column": "n_probes"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "n_24h",
+      "type": "number",
+      "question": "24h 条件检验 BH q<0.05 的探针数。",
+      "binding": {
+        "table": "rhythm_summary.csv",
+        "key_column": "id",
+        "key": "full",
+        "column": "n24"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "n_12h",
+      "type": "number",
+      "question": "12h 条件检验 BH q<0.05 的探针数。",
+      "binding": {
+        "table": "rhythm_summary.csv",
+        "key_column": "id",
+        "key": "full",
+        "column": "n12"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "median_amp24",
+      "type": "number",
+      "question": "24h 振幅中位数。",
+      "binding": {
+        "table": "rhythm_summary.csv",
+        "key_column": "id",
+        "key": "full",
+        "column": "median_amp24"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "median_amp12",
+      "type": "number",
+      "question": "12h 振幅中位数。",
+      "binding": {
+        "table": "rhythm_summary.csv",
+        "key_column": "id",
+        "key": "full",
+        "column": "median_amp12"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "shape_rmse",
+      "type": "number",
+      "question": "24h 排名前200探针的跨日形状预测 RMSE 均值。",
+      "binding": {
+        "table": "validation_summary.csv",
+        "key_column": "id",
+        "key": "top200",
+        "column": "mean_shape_rmse"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "phase_gap",
+      "type": "number",
+      "question": "前200探针两天24h相位的最短小时差中位数。",
+      "binding": {
+        "table": "validation_summary.csv",
+        "key_column": "id",
+        "key": "top200",
+        "column": "median_phase_gap"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "harmonic_evidence",
+      "type": "derived",
+      "question": "是否存在通过条件12h检验的探针？",
+      "options": [
+        "some_conditional_12h_evidence",
+        "no_12h_discovery"
+      ],
+      "rule": {
+        "binding": {
+          "table": "rhythm_summary.csv",
+          "key_column": "id",
+          "key": "full",
+          "column": "n12"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "some_conditional_12h_evidence",
+          "false": "no_12h_discovery"
+        }
+      }
+    },
+    {
+      "id": "biological_unit",
+      "type": "choice",
+      "question": "本数据的推断限制是什么？",
+      "options": [
+        "pooled_timepoint_arrays_not_individual_mouse_repeats",
+        "48_repeated_measures_per_mouse",
+        "each_probe_is_an_independent_mouse"
+      ]
+    }
+  ]
+}

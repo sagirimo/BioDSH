@@ -1,0 +1,19 @@
+{
+ "source_url": "https://physionet.org/content/sleep-edfx/1.0.0/",
+ "input_files_sha256": {
+  "inputs/SC4001EC-Hypnogram.edf": "a4cf67694ade1b52a0ddd06d5817fd45d2d3e8bac5302f640f3e9cfbbf12a996",
+  "inputs/SC4002EC-Hypnogram.edf": "76e8457a67eaaaa62c7f6cc6e098fbe1c0a9c3fa02fa90ea01460aa481d71e82",
+  "inputs/SC4011EH-Hypnogram.edf": "5bbf7b4ed8a95c8d20e4347b08c2ded2ee21e2dac4680dedf629795adc2edc83",
+  "inputs/SC4012EC-Hypnogram.edf": "b6323df8b3867a5fdbd80f0cd8233b59659ac496fa48c8c7277f48bfbb1d9a0e",
+  "inputs/SC4021EH-Hypnogram.edf": "62b49b26bf08941cb0e974cfeeb0a820bf7dd43fb0c66dd89b4c3a6c0ee45dd8",
+  "inputs/SC4022EJ-Hypnogram.edf": "5289ca8a9417307cbbf8b2a4e511909ac742c69d45c17aee7f1731a2a98c49ce",
+  "inputs/SC4031EC-Hypnogram.edf": "7ec3d3c8d8f1a89d48df4cc85be374fbdf70d4b5ec5ec321c03d586dd2cc1617",
+  "inputs/SC4032EP-Hypnogram.edf": "0ef073c5cfba31459732be96cc51e7106d5650c1db1b9669f10c0482844c5641",
+  "inputs/SC4041EC-Hypnogram.edf": "da33d90216e031a6b04c9ebaddcdf7abc223f1e61fd5899093815c7aea65e39a",
+  "inputs/SC4042EC-Hypnogram.edf": "28ece9383d5c49f375a34d63c1226cd0eb8c5a4bb9f887eb80c18caccd3bc544",
+  "inputs/SC4051EC-Hypnogram.edf": "3551410c52b819efbe6297d333ee729e4f5c7ba11c0cae6d321feee79a39ed43",
+  "inputs/SC4052EC-Hypnogram.edf": "4b3f236c98808407386c5c815ee0e2f68330e902dba3b744625981858cb668d9",
+  "inputs/sign_patterns.csv": "fec1d488103999df6f7e872d3ba01dcb7b217544210c5523456f71790562d9ed"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

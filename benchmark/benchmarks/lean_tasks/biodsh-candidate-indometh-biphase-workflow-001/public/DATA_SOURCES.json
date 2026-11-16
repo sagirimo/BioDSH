@@ -1,0 +1,20 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Indometh.html",
+ "input_files_sha256": {
+  "inputs/Indometh.R": "84388e857e7c2fcad0a225c3f690e1536b0017052b472230795361858e137f9c",
+  "inputs/PUBLIC_OUTPUT_NAMING_AND_TYPES.json": "f09f331b049d1089496b3f5c7ef030c6267806a416a279726ffb0e129db707f4",
+  "inputs/bi_rate_dictionary_input.csv": "099f730541bd44eff8351f0a9ce08da6e6960a29c1f226267f9faea5012579f2",
+  "inputs/design.json": "64aef5a4450e460a64e9d3952c16a479bf565b22470c1108988ef0d089c980ba",
+  "inputs/evidence_input.csv": "0cfb49c1537cf81fc9328e5da8b4694313a132098e546315bf9456932819c37a",
+  "inputs/kind.txt": "e13d915bb275a1d73ad865ca08cfee0ac1139810ec90c2150605517d008aea5c",
+  "inputs/mono_rate_dictionary_input.csv": "381b8f9ada020ba7179245ff769bee1fa7fbdc75ed363e6ed5eeb0ef6f37c79c",
+  "inputs/native_attributes.dput.txt": "4fcf5fe8b004066ec99ae9bd2356eb05cc5d484a41cf0413d9c09a1304d434ee",
+  "inputs/native_factor_levels.csv": "3c4569d056c832e99f955c75776e13eafc2d63ad2833f9a3b7864b7e7508454a",
+  "inputs/native_field_dictionary.csv": "4ae7b08d0edb7c645deb80765d5639b93c45e0f87c4595e4ec85a892833ab026",
+  "inputs/native_records.csv": "db06c73c9f4f2681cff116a0ece3bc3608af6564b71b8cba18fd6839863b85bd",
+  "inputs/prediction_grid_input.csv": "58830f698da6075ccfebdf50a315421fb726d03715f704621867f00a62786042",
+  "inputs/table_schema.csv": "c0eaacbe4e73e157f1eaa8d95d78c37ce835016b635527f8c9b27d1d5523a322",
+  "inputs/whole_native.rds": "a841785c4f2dbb1b0667886faa4e24f5c16734d194ba51c7f06328a16ea071d6"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

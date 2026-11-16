@@ -1,0 +1,12 @@
+存量原题 biodsh-candidate-pog570-association-001 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-pog570-association-001
+source: "biodsa_1k"
+source_registry_id: "biodsa_1k"
+source_family: "biodsa_1k"
+source_case: "pog570_bcgsc_2020_clinical_association_adaptation"
+source_revision: "dca75cb3f32b82d54a6f78bf0a6323e5b975aca1"
+source_terms: "BioDSA metadata ODbL; source study/data delivery separately pending"
+family_keys: ["cbioportal:pog570_bcgsc_2020", "PMID:35121966"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+
+来源登记条目：{"id": "biodsa_1k", "family": "biodsa_1k", "type": "task_collection", "name": "BioDSA-1K", "reported_size": "Approximately 1,000 hypothesis tasks; exact selected snapshot count pending import", "url": "https://huggingface.co/datasets/zifeng-ai/BioDSA-1K", "paper": "https://arxiv.org/abs/2505.16100", "value": "用真实表格数据检验生物医学假设，含不可判定情形", "candidate_domains": ["D05", "D07", "D09"], "availability": "公开数据卡；本轮未导入条目", "priority": "P0", "caveat": "同一研究的多个假设及反向命题必须聚类，不能当独立研究", "stage2_materials": {"indexed_records": 2054, "status": "source_records_not_validated_tasks", "report": "stage2/README_zh.md"}, "current_qualified_fixed_contract_count": 4}

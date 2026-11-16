@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.rcsb.org/structure/1UBQ",
+ "input_files_sha256": {
+  "inputs/1UBQ.pdb": "d4a6812d8951cf6594e6a0763f089e35f5a80b62acb3c117b2c5565228a7b161"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

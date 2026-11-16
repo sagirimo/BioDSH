@@ -1,0 +1,223 @@
+{
+  "tables": {
+    "day_validation.csv": {
+      "columns": [
+        "id",
+        "rank24",
+        "phase_day1",
+        "phase_day2",
+        "phase_gap",
+        "shape_rmse",
+        "flat_rmse"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "rank24": "int",
+        "phase_day1": "float",
+        "phase_day2": "float",
+        "phase_gap": "float",
+        "shape_rmse": "float",
+        "flat_rmse": "float"
+      },
+      "tolerance": {
+        "phase_day1": [
+          1e-05,
+          1e-08
+        ],
+        "phase_day2": [
+          1e-05,
+          1e-08
+        ],
+        "phase_gap": [
+          1e-05,
+          1e-08
+        ],
+        "shape_rmse": [
+          1e-05,
+          1e-08
+        ],
+        "flat_rmse": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "probe_rhythms.csv": {
+      "columns": [
+        "id",
+        "mean_expression",
+        "day_shift",
+        "amp24",
+        "phase24",
+        "amp12",
+        "rss",
+        "p24",
+        "q24",
+        "p12",
+        "q12"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "mean_expression": "float",
+        "day_shift": "float",
+        "amp24": "float",
+        "phase24": "float",
+        "amp12": "float",
+        "rss": "float",
+        "p24": "float",
+        "q24": "float",
+        "p12": "float",
+        "q12": "float"
+      },
+      "tolerance": {
+        "mean_expression": [
+          1e-05,
+          1e-08
+        ],
+        "day_shift": [
+          1e-05,
+          1e-08
+        ],
+        "amp24": [
+          1e-05,
+          1e-08
+        ],
+        "phase24": [
+          1e-05,
+          1e-08
+        ],
+        "amp12": [
+          1e-05,
+          1e-08
+        ],
+        "rss": [
+          1e-05,
+          1e-08
+        ],
+        "p24": [
+          1e-05,
+          1e-08
+        ],
+        "q24": [
+          1e-05,
+          1e-08
+        ],
+        "p12": [
+          1e-05,
+          1e-08
+        ],
+        "q12": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "rhythm_summary.csv": {
+      "columns": [
+        "id",
+        "n_probes",
+        "n24",
+        "n12",
+        "median_amp24",
+        "median_amp12",
+        "median_rss"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_probes": "int",
+        "n24": "int",
+        "n12": "int",
+        "median_amp24": "float",
+        "median_amp12": "float",
+        "median_rss": "float"
+      },
+      "tolerance": {
+        "median_amp24": [
+          1e-05,
+          1e-08
+        ],
+        "median_amp12": [
+          1e-05,
+          1e-08
+        ],
+        "median_rss": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "sample_qc.csv": {
+      "columns": [
+        "id",
+        "ct",
+        "model_time",
+        "raw_median",
+        "panel_median"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "ct": "int",
+        "model_time": "int",
+        "raw_median": "float",
+        "panel_median": "float"
+      },
+      "tolerance": {
+        "raw_median": [
+          1e-05,
+          1e-08
+        ],
+        "panel_median": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "validation_summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "median_phase_gap",
+        "mean_shape_rmse",
+        "mean_flat_rmse",
+        "n_better_than_flat"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "median_phase_gap": "float",
+        "mean_shape_rmse": "float",
+        "mean_flat_rmse": "float",
+        "n_better_than_flat": "int"
+      },
+      "tolerance": {
+        "median_phase_gap": [
+          1e-05,
+          1e-08
+        ],
+        "mean_shape_rmse": [
+          1e-05,
+          1e-08
+        ],
+        "mean_flat_rmse": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

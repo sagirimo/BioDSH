@@ -1,0 +1,151 @@
+{
+  "tables": {
+    "mutation_coverage.csv": {
+      "columns": [
+        "token",
+        "source_variants",
+        "train_variants",
+        "valid_variants",
+        "test_variants",
+        "single_anchor_supplied"
+      ],
+      "key": [
+        "token"
+      ],
+      "types": {
+        "token": "text",
+        "source_variants": "int",
+        "train_variants": "int",
+        "valid_variants": "int",
+        "test_variants": "int",
+        "single_anchor_supplied": "int"
+      }
+    },
+    "position_group_audit.csv": {
+      "columns": [
+        "position_group_id",
+        "assigned_split",
+        "source_variants",
+        "variant_ids"
+      ],
+      "key": [
+        "position_group_id"
+      ],
+      "types": {
+        "position_group_id": "text",
+        "assigned_split": "text",
+        "source_variants": "int",
+        "variant_ids": "text"
+      }
+    },
+    "source_variant_audit.csv": {
+      "columns": [
+        "variant_id",
+        "canonical_mutant",
+        "mutation_order",
+        "positions",
+        "first_position",
+        "second_position",
+        "source_sequence_sha256",
+        "sequence_matches",
+        "position_group_id",
+        "assigned_split"
+      ],
+      "key": [
+        "variant_id"
+      ],
+      "types": {
+        "variant_id": "text",
+        "canonical_mutant": "text",
+        "mutation_order": "int",
+        "positions": "text",
+        "first_position": "int",
+        "second_position": "int",
+        "source_sequence_sha256": "text",
+        "sequence_matches": "int",
+        "position_group_id": "text",
+        "assigned_split": "text"
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "int"
+      }
+    },
+    "test_predictions.csv": {
+      "columns": [
+        "variant_id",
+        "prediction"
+      ],
+      "key": [
+        "variant_id"
+      ],
+      "types": {
+        "variant_id": "text",
+        "prediction": "float"
+      },
+      "tolerance": {
+        "prediction": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "training_token_statistics.csv": {
+      "columns": [
+        "token",
+        "training_variants",
+        "present_variants",
+        "mean",
+        "sample_sd"
+      ],
+      "key": [
+        "token"
+      ],
+      "types": {
+        "token": "text",
+        "training_variants": "int",
+        "present_variants": "int",
+        "mean": "float",
+        "sample_sd": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-06,
+          1e-07
+        ],
+        "sample_sd": [
+          1e-06,
+          1e-07
+        ]
+      }
+    },
+    "valid_predictions.csv": {
+      "columns": [
+        "variant_id",
+        "prediction"
+      ],
+      "key": [
+        "variant_id"
+      ],
+      "types": {
+        "variant_id": "text",
+        "prediction": "float"
+      },
+      "tolerance": {
+        "prediction": [
+          1e-06,
+          1e-10
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+ "source_url": "https://mixomics.org/wp-content/uploads/2025/01/CCA-rCCA.html",
+ "input_files_sha256": {
+  "inputs/OUTPUT_FIELD_CONVENTIONS_V2.json": "8ce1bc011d6eb5a1f37cca2628f113308c331ad126ac2d537a90ac95412fedbb",
+  "inputs/design.json": "028b49f283d63a73bdf4eefc2d90510173c6b68e5fc9d1abd679a320372c9f84",
+  "inputs/evidence_input.csv": "c2826e90e910ef07c3ba552c54b22528153760fd4f44710d33089bb6091d4287",
+  "inputs/feature_catalog.csv": "c73db2d41eece7de41e5dc2af812928f47332d1511655f810ba3cab8429e13ba",
+  "inputs/genes.csv": "3d321280e3070e7e925ad102c10edb9365a318d10329d3730e7cd30aeb6f6596",
+  "inputs/kind.txt": "2a7ea303bebcac809fcfa8e370a5bda2f704d29f2b80bbda043b2c83c91bbdf3",
+  "inputs/lipids.csv": "d110def1b791d8522d799351104b104ec39fca0d940f53a42756b36d29941192",
+  "inputs/mouse_design.csv": "e7a95029377308b57d51aa7ed74966e4f16e3799a525cf4d1b278b10cf1e61b5",
+  "inputs/nutrimouse.rda": "3c6212f3f13feb88e3ff8e48c855a284d496cf60ca1b53c7e5913978bf8261fc",
+  "inputs/table_schema.csv": "49044b0f2c3ab1c76e82a530e95d4c3139b71e16a4bd1b03ddc5a6cfea448748"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

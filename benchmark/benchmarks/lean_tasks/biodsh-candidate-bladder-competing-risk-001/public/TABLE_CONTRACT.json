@@ -1,0 +1,182 @@
+{
+  "tables": {
+    "cohort_summary.csv": {
+      "columns": [
+        "group",
+        "n",
+        "cancer_deaths",
+        "other_deaths",
+        "censored"
+      ],
+      "key": [
+        "group"
+      ],
+      "types": {
+        "group": "text",
+        "n": "int",
+        "cancer_deaths": "int",
+        "other_deaths": "int",
+        "censored": "int"
+      },
+      "tolerance": {}
+    },
+    "horizons.csv": {
+      "columns": [
+        "group",
+        "month",
+        "at_risk",
+        "survival",
+        "cif_cancer",
+        "cif_other",
+        "net_cancer_risk",
+        "net_minus_cif"
+      ],
+      "key": [
+        "group",
+        "month"
+      ],
+      "types": {
+        "group": "text",
+        "month": "int",
+        "at_risk": "int",
+        "survival": "float",
+        "cif_cancer": "float",
+        "cif_other": "float",
+        "net_cancer_risk": "float",
+        "net_minus_cif": "float"
+      },
+      "tolerance": {
+        "survival": [
+          1e-06,
+          1e-08
+        ],
+        "cif_cancer": [
+          1e-06,
+          1e-08
+        ],
+        "cif_other": [
+          1e-06,
+          1e-08
+        ],
+        "net_cancer_risk": [
+          1e-06,
+          1e-08
+        ],
+        "net_minus_cif": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "patients.csv": {
+      "columns": [
+        "gsm",
+        "title",
+        "group",
+        "months",
+        "status"
+      ],
+      "key": [
+        "gsm"
+      ],
+      "types": {
+        "gsm": "text",
+        "title": "text",
+        "group": "text",
+        "months": "float",
+        "status": "int"
+      },
+      "tolerance": {
+        "months": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "risk_difference.csv": {
+      "columns": [
+        "contrast",
+        "difference",
+        "ci_low",
+        "ci_high",
+        "replicates"
+      ],
+      "key": [
+        "contrast"
+      ],
+      "types": {
+        "contrast": "text",
+        "difference": "float",
+        "ci_low": "float",
+        "ci_high": "float",
+        "replicates": "int"
+      },
+      "tolerance": {
+        "difference": [
+          1e-06,
+          1e-08
+        ],
+        "ci_low": [
+          1e-06,
+          1e-08
+        ],
+        "ci_high": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "risk_sets.csv": {
+      "columns": [
+        "group",
+        "months",
+        "at_risk",
+        "cancer_deaths",
+        "other_deaths",
+        "censors",
+        "survival",
+        "cif_cancer",
+        "cif_other",
+        "net_cancer_risk"
+      ],
+      "key": [
+        "group",
+        "months"
+      ],
+      "types": {
+        "group": "text",
+        "months": "float",
+        "at_risk": "int",
+        "cancer_deaths": "int",
+        "other_deaths": "int",
+        "censors": "int",
+        "survival": "float",
+        "cif_cancer": "float",
+        "cif_other": "float",
+        "net_cancer_risk": "float"
+      },
+      "tolerance": {
+        "months": [
+          1e-06,
+          1e-08
+        ],
+        "survival": [
+          1e-06,
+          1e-08
+        ],
+        "cif_cancer": [
+          1e-06,
+          1e-08
+        ],
+        "cif_other": [
+          1e-06,
+          1e-08
+        ],
+        "net_cancer_risk": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

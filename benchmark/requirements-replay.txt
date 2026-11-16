@@ -1,0 +1,10 @@
+# Frozen replay environment (CPython 3.12, linux x86_64). Install with:
+#   python3.12 -m pip install --target .tools/benchmark-linux-science-20261013 -r requirements-replay.txt
+numpy==2.5.2
+pandas==2.3.3
+python-dateutil==2.9.0.post0
+pytz==2026.3.post1
+scipy==1.18.1
+six==1.17.0
+threadpoolctl==3.6.0
+tzdata==2026.3

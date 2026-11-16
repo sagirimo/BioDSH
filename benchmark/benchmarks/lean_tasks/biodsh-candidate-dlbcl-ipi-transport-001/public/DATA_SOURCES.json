@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE10846",
+ "input_files_sha256": {
+  "inputs/GSE10846_series_matrix.txt.gz": "86f6d450da70f3a47f7072431690748efbd5c99635c3afd36cf0bb44945ffda6"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

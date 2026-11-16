@@ -1,0 +1,8 @@
+{
+ "source_url": "https://github.com/openworm/VarshneyEtAl2011",
+ "input_files_sha256": {
+  "inputs/chemical_edges.csv": "c18e43914105f0da4053bea74d9cf6c5aabc32086436e52c34a80b096c979ff9",
+  "inputs/neurons.csv": "a8b9b0b8a0aca8c0e452802807c29f5aea7958f90b4a202ba2c4e009be86c89f"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

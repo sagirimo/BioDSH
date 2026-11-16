@@ -1,0 +1,2 @@
+Kalyakulina AI et al.2020 LUDB: A New Open-Access Validation Tool for Electrocardiogram Delineation Algorithms. IEEE Access8:186181–186190 DOI10.1109/ACCESS.2020.3029211。PhysioNet LUDB1.0.1 DOI10.13026/eegm-h675，ODC Attribution1.0，原始库200个10秒12导联记录，500Hz。仅取预定编号1–3的专家人工边界标注，未使用任何已包装任务/benchmark划分。原始hea及1.i/1.ii等标注保留lean_data/r4_ludb，来自https://physionet-open.s3.amazonaws.com/ludb/1.0.1/data/。prepare.py按WFDB字节格式无损输出事件表，没有预先计算QT答案。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

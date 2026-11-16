@@ -1,0 +1,2 @@
+来源：Meyer H. A. (1953), Forest Mensuration；Ryan T.A., Joiner B.L., Ryan B.F. (1976), The Minitab Student Handbook, ISBN087150359X。R Core datasets trees官方数据：https://raw.githubusercontent.com/wch/r-source/trunk/src/library/datasets/data/trees.R ，文档 https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/trees.html 。原始数值向量无损CSV导出，添加来源行号；Girth实际为直径。官方引用为书籍，未提供DOI，不补猜。R源码GPL≥2，保留来源署名，仅本地研究。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

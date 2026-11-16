@@ -1,0 +1,7 @@
+{
+ "source_url": "https://github.com/thibautjombart/adegenet/blob/master/data/nancycats.rda",
+ "input_files_sha256": {
+  "inputs/genotypes.csv": "61b5e34ac060cbd1f68cfdca9cee6794fe3ac8c7650d70b85996cbbc40cd2d13"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

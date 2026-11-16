@@ -1,0 +1,2558 @@
+{
+  "tables": {
+    "source_frame.csv": {
+      "columns": [
+        "source_id",
+        "source_row",
+        "native_row_label",
+        "time_day",
+        "source_status",
+        "incidence_status",
+        "event_melanoma",
+        "event_other",
+        "censored",
+        "sex",
+        "age_year",
+        "operation_year",
+        "thickness_mm",
+        "working_thickness_mm",
+        "ulcer",
+        "age10",
+        "log_thickness",
+        "year10"
+      ],
+      "key": [
+        "source_id"
+      ],
+      "types": {
+        "source_id": "text",
+        "source_row": "int",
+        "native_row_label": "text",
+        "time_day": "int",
+        "source_status": "int",
+        "incidence_status": "int",
+        "event_melanoma": "int",
+        "event_other": "int",
+        "censored": "int",
+        "sex": "int",
+        "age_year": "int",
+        "operation_year": "int",
+        "thickness_mm": "float",
+        "working_thickness_mm": "float",
+        "ulcer": "int",
+        "age10": "float",
+        "log_thickness": "float",
+        "year10": "float"
+      },
+      "tolerance": {
+        "thickness_mm": [
+          1e-06,
+          1e-08
+        ],
+        "working_thickness_mm": [
+          1e-06,
+          1e-08
+        ],
+        "age10": [
+          1e-06,
+          1e-08
+        ],
+        "log_thickness": [
+          1e-06,
+          1e-08
+        ],
+        "year10": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "source_id"
+        ],
+        "row_count": 205,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "set_ref": "set_1"
+            }
+          ]
+        }
+      }
+    },
+    "nonparam_risksets.csv": {
+      "columns": [
+        "row_id",
+        "group_id",
+        "time_day",
+        "at_risk",
+        "melanoma_deaths",
+        "other_deaths",
+        "censors",
+        "S_before",
+        "S_after",
+        "CIF1_before",
+        "CIF1_after",
+        "CIF3_before",
+        "CIF3_after",
+        "net_KM1_after",
+        "net_gap1_after",
+        "mass_total"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "group_id": "text",
+        "time_day": "int",
+        "at_risk": "int",
+        "melanoma_deaths": "int",
+        "other_deaths": "int",
+        "censors": "int",
+        "S_before": "float",
+        "S_after": "float",
+        "CIF1_before": "float",
+        "CIF1_after": "float",
+        "CIF3_before": "float",
+        "CIF3_after": "float",
+        "net_KM1_after": "float",
+        "net_gap1_after": "float",
+        "mass_total": "float"
+      },
+      "tolerance": {
+        "S_before": [
+          1e-06,
+          1e-08
+        ],
+        "S_after": [
+          1e-06,
+          1e-08
+        ],
+        "CIF1_before": [
+          1e-06,
+          1e-08
+        ],
+        "CIF1_after": [
+          1e-06,
+          1e-08
+        ],
+        "CIF3_before": [
+          1e-06,
+          1e-08
+        ],
+        "CIF3_after": [
+          1e-06,
+          1e-08
+        ],
+        "net_KM1_after": [
+          1e-06,
+          1e-08
+        ],
+        "net_gap1_after": [
+          1e-06,
+          1e-08
+        ],
+        "mass_total": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 596,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "all"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "set_ref": "set_2"
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "female"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "set_ref": "set_3"
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "male"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "set_ref": "set_4"
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "ulcer0"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "set_ref": "set_5"
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "ulcer1"
+              ],
+              "then": {
+                "cartesian": [
+                  {
+                    "set_ref": "set_6"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "nonparam_horizons.csv": {
+      "columns": [
+        "row_id",
+        "group_id",
+        "horizon_day",
+        "patients",
+        "melanoma_deaths",
+        "other_deaths",
+        "censors",
+        "within_observed_range",
+        "supported_tau_day",
+        "S",
+        "CIF1",
+        "CIF3",
+        "net_KM1",
+        "net_gap1",
+        "RMST",
+        "RMTL1",
+        "RMTL3",
+        "time_mass"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "group_id": "text",
+        "horizon_day": "int",
+        "patients": "int",
+        "melanoma_deaths": "int",
+        "other_deaths": "int",
+        "censors": "int",
+        "within_observed_range": "int",
+        "supported_tau_day": "int",
+        "S": "float",
+        "CIF1": "float",
+        "CIF3": "float",
+        "net_KM1": "float",
+        "net_gap1": "float",
+        "RMST": "float",
+        "RMTL1": "float",
+        "RMTL3": "float",
+        "time_mass": "float"
+      },
+      "tolerance": {
+        "S": [
+          1e-06,
+          1e-08
+        ],
+        "CIF1": [
+          1e-06,
+          1e-08
+        ],
+        "CIF3": [
+          1e-06,
+          1e-08
+        ],
+        "net_KM1": [
+          1e-06,
+          1e-08
+        ],
+        "net_gap1": [
+          1e-06,
+          1e-08
+        ],
+        "RMST": [
+          1e-06,
+          1e-08
+        ],
+        "RMTL1": [
+          1e-06,
+          1e-08
+        ],
+        "RMTL3": [
+          1e-06,
+          1e-08
+        ],
+        "time_mass": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 20,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "all",
+              "female",
+              "male",
+              "ulcer0",
+              "ulcer1"
+            ],
+            [
+              "h00365",
+              "h01095",
+              "h01825",
+              "h03650"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "group_contrasts.csv": {
+      "columns": [
+        "row_id",
+        "contrast",
+        "horizon_day",
+        "reference_group",
+        "comparison_group",
+        "CIF1_difference",
+        "CIF3_difference",
+        "S_difference",
+        "RMST_difference"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "contrast": "text",
+        "horizon_day": "int",
+        "reference_group": "text",
+        "comparison_group": "text",
+        "CIF1_difference": "float",
+        "CIF3_difference": "float",
+        "S_difference": "float",
+        "RMST_difference": "float"
+      },
+      "tolerance": {
+        "CIF1_difference": [
+          1e-06,
+          1e-08
+        ],
+        "CIF3_difference": [
+          1e-06,
+          1e-08
+        ],
+        "S_difference": [
+          1e-06,
+          1e-08
+        ],
+        "RMST_difference": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 8,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "male_minus_female|h00365",
+              "male_minus_female|h01095",
+              "male_minus_female|h01825",
+              "male_minus_female|h03650",
+              "ulcer1_minus_ulcer0|h00365",
+              "ulcer1_minus_ulcer0|h01095",
+              "ulcer1_minus_ulcer0|h01825",
+              "ulcer1_minus_ulcer0|h03650"
+            ]
+          ]
+        }
+      }
+    },
+    "nonparam_deletions.csv": {
+      "columns": [
+        "row_id",
+        "held_source_id",
+        "horizon_day",
+        "patients",
+        "S",
+        "CIF1",
+        "CIF3",
+        "net_gap1",
+        "RMST",
+        "RMTL1",
+        "RMTL3",
+        "S_difference",
+        "CIF1_difference",
+        "CIF3_difference",
+        "RMST_difference"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "held_source_id": "text",
+        "horizon_day": "int",
+        "patients": "int",
+        "S": "float",
+        "CIF1": "float",
+        "CIF3": "float",
+        "net_gap1": "float",
+        "RMST": "float",
+        "RMTL1": "float",
+        "RMTL3": "float",
+        "S_difference": "float",
+        "CIF1_difference": "float",
+        "CIF3_difference": "float",
+        "RMST_difference": "float"
+      },
+      "tolerance": {
+        "S": [
+          1e-06,
+          1e-08
+        ],
+        "CIF1": [
+          1e-06,
+          1e-08
+        ],
+        "CIF3": [
+          1e-06,
+          1e-08
+        ],
+        "net_gap1": [
+          1e-06,
+          1e-08
+        ],
+        "RMST": [
+          1e-06,
+          1e-08
+        ],
+        "RMTL1": [
+          1e-06,
+          1e-08
+        ],
+        "RMTL3": [
+          1e-06,
+          1e-08
+        ],
+        "S_difference": [
+          1e-06,
+          1e-08
+        ],
+        "CIF1_difference": [
+          1e-06,
+          1e-08
+        ],
+        "CIF3_difference": [
+          1e-06,
+          1e-08
+        ],
+        "RMST_difference": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 820,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "set_ref": "set_1"
+            },
+            [
+              "h00365",
+              "h01095",
+              "h01825",
+              "h03650"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "nonparam_influence.csv": {
+      "columns": [
+        "row_id",
+        "horizon_day",
+        "deletions",
+        "max_abs_S_difference",
+        "max_abs_CIF1_difference",
+        "max_abs_CIF3_difference",
+        "max_abs_RMST_difference",
+        "jackknife_variance_CIF1",
+        "jackknife_variance_CIF3"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "horizon_day": "int",
+        "deletions": "int",
+        "max_abs_S_difference": "float",
+        "max_abs_CIF1_difference": "float",
+        "max_abs_CIF3_difference": "float",
+        "max_abs_RMST_difference": "float",
+        "jackknife_variance_CIF1": "float",
+        "jackknife_variance_CIF3": "float"
+      },
+      "tolerance": {
+        "max_abs_S_difference": [
+          1e-06,
+          1e-08
+        ],
+        "max_abs_CIF1_difference": [
+          1e-06,
+          1e-08
+        ],
+        "max_abs_CIF3_difference": [
+          1e-06,
+          1e-08
+        ],
+        "max_abs_RMST_difference": [
+          1e-06,
+          1e-08
+        ],
+        "jackknife_variance_CIF1": [
+          1e-06,
+          1e-08
+        ],
+        "jackknife_variance_CIF3": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 4,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "h00365",
+              "h01095",
+              "h01825",
+              "h03650"
+            ]
+          ]
+        }
+      }
+    },
+    "cox_profile_scores.csv": {
+      "columns": [
+        "row_id",
+        "model_id",
+        "source_id",
+        "cause",
+        "event",
+        "included_dimensions",
+        "sex",
+        "age10",
+        "log_thickness",
+        "ulcer",
+        "year10",
+        "linear_predictor",
+        "exp_lp"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "model_id": "text",
+        "source_id": "text",
+        "cause": "text",
+        "event": "int",
+        "included_dimensions": "int",
+        "sex": "int",
+        "age10": "float",
+        "log_thickness": "float",
+        "ulcer": "int",
+        "year10": "float",
+        "linear_predictor": "float",
+        "exp_lp": "float"
+      },
+      "tolerance": {
+        "age10": [
+          1e-06,
+          1e-08
+        ],
+        "log_thickness": [
+          1e-06,
+          1e-08
+        ],
+        "year10": [
+          1e-06,
+          1e-08
+        ],
+        "linear_predictor": [
+          1e-06,
+          1e-08
+        ],
+        "exp_lp": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 2460,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "drop_age10",
+              "drop_log_thickness",
+              "drop_sex",
+              "drop_ulcer",
+              "drop_year10",
+              "full"
+            ],
+            [
+              "melanoma",
+              "other"
+            ],
+            {
+              "set_ref": "set_1"
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "cox_coefficients.csv": {
+      "columns": [
+        "row_id",
+        "model_id",
+        "cause",
+        "term",
+        "included",
+        "coefficient",
+        "SE",
+        "HR",
+        "lower95",
+        "upper95"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "model_id": "text",
+        "cause": "text",
+        "term": "text",
+        "included": "int",
+        "coefficient": "float",
+        "SE": "float",
+        "HR": "float",
+        "lower95": "float",
+        "upper95": "float"
+      },
+      "tolerance": {
+        "coefficient": [
+          1e-06,
+          1e-08
+        ],
+        "SE": [
+          1e-06,
+          1e-08
+        ],
+        "HR": [
+          1e-06,
+          1e-08
+        ],
+        "lower95": [
+          1e-06,
+          1e-08
+        ],
+        "upper95": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 60,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "drop_age10",
+              "drop_log_thickness",
+              "drop_sex",
+              "drop_ulcer",
+              "drop_year10",
+              "full"
+            ],
+            [
+              "melanoma",
+              "other"
+            ],
+            [
+              "age10",
+              "log_thickness",
+              "sex",
+              "ulcer",
+              "year10"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "cox_information.csv": {
+      "columns": [
+        "row_id",
+        "model_id",
+        "term1",
+        "term2",
+        "included1",
+        "included2",
+        "information",
+        "covariance"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "model_id": "text",
+        "term1": "text",
+        "term2": "text",
+        "included1": "int",
+        "included2": "int",
+        "information": "float",
+        "covariance": "float"
+      },
+      "tolerance": {
+        "information": [
+          1e-06,
+          1e-08
+        ],
+        "covariance": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 300,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "drop_age10",
+              "drop_log_thickness",
+              "drop_sex",
+              "drop_ulcer",
+              "drop_year10",
+              "full"
+            ],
+            [
+              "melanoma",
+              "other"
+            ],
+            [
+              "age10",
+              "log_thickness",
+              "sex",
+              "ulcer",
+              "year10"
+            ],
+            [
+              "age10",
+              "log_thickness",
+              "sex",
+              "ulcer",
+              "year10"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "cox_audit.csv": {
+      "columns": [
+        "model_id",
+        "pair_id",
+        "cause",
+        "patients",
+        "events",
+        "dimensions",
+        "score_converged",
+        "null_loglik",
+        "loglik",
+        "LR_null",
+        "partial_AIC"
+      ],
+      "key": [
+        "model_id"
+      ],
+      "types": {
+        "model_id": "text",
+        "pair_id": "text",
+        "cause": "text",
+        "patients": "int",
+        "events": "int",
+        "dimensions": "int",
+        "score_converged": "int",
+        "null_loglik": "float",
+        "loglik": "float",
+        "LR_null": "float",
+        "partial_AIC": "float"
+      },
+      "tolerance": {
+        "null_loglik": [
+          1e-06,
+          1e-08
+        ],
+        "loglik": [
+          1e-06,
+          1e-08
+        ],
+        "LR_null": [
+          1e-06,
+          1e-08
+        ],
+        "partial_AIC": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "model_id"
+        ],
+        "row_count": 12,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "drop_age10|melanoma",
+              "drop_age10|other",
+              "drop_log_thickness|melanoma",
+              "drop_log_thickness|other",
+              "drop_sex|melanoma",
+              "drop_sex|other",
+              "drop_ulcer|melanoma",
+              "drop_ulcer|other",
+              "drop_year10|melanoma",
+              "drop_year10|other",
+              "full|melanoma",
+              "full|other"
+            ]
+          ]
+        }
+      }
+    },
+    "cox_risksets.csv": {
+      "columns": [
+        "row_id",
+        "model_id",
+        "cause",
+        "time_day",
+        "at_risk",
+        "deaths",
+        "sum_exp_lp",
+        "event_lp_sum",
+        "loglik_contribution",
+        "hazard_increment",
+        "baseline_cumulative_hazard"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "model_id": "text",
+        "cause": "text",
+        "time_day": "int",
+        "at_risk": "int",
+        "deaths": "int",
+        "sum_exp_lp": "float",
+        "event_lp_sum": "float",
+        "loglik_contribution": "float",
+        "hazard_increment": "float",
+        "baseline_cumulative_hazard": "float"
+      },
+      "tolerance": {
+        "sum_exp_lp": [
+          1e-06,
+          1e-08
+        ],
+        "event_lp_sum": [
+          1e-06,
+          1e-08
+        ],
+        "loglik_contribution": [
+          1e-06,
+          1e-08
+        ],
+        "hazard_increment": [
+          1e-06,
+          1e-08
+        ],
+        "baseline_cumulative_hazard": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 426,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "drop_age10",
+                "drop_log_thickness",
+                "drop_sex",
+                "drop_ulcer",
+                "drop_year10",
+                "full"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "melanoma"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "set_ref": "set_7"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "other"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "set_ref": "set_8"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "cox_riskset_moments.csv": {
+      "columns": [
+        "row_id",
+        "model_id",
+        "time_day",
+        "term1",
+        "term2",
+        "weighted_mean1",
+        "weighted_mean2",
+        "weighted_second_moment",
+        "information_increment"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "model_id": "text",
+        "time_day": "int",
+        "term1": "text",
+        "term2": "text",
+        "weighted_mean1": "float",
+        "weighted_mean2": "float",
+        "weighted_second_moment": "float",
+        "information_increment": "float"
+      },
+      "tolerance": {
+        "weighted_mean1": [
+          1e-06,
+          1e-08
+        ],
+        "weighted_mean2": [
+          1e-06,
+          1e-08
+        ],
+        "weighted_second_moment": [
+          1e-06,
+          1e-08
+        ],
+        "information_increment": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 10650,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "drop_age10",
+                "drop_log_thickness",
+                "drop_sex",
+                "drop_ulcer",
+                "drop_year10",
+                "full"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "melanoma"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "set_ref": "set_7"
+                        },
+                        [
+                          "age10",
+                          "log_thickness",
+                          "sex",
+                          "ulcer",
+                          "year10"
+                        ],
+                        [
+                          "age10",
+                          "log_thickness",
+                          "sex",
+                          "ulcer",
+                          "year10"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "other"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "set_ref": "set_8"
+                        },
+                        [
+                          "age10",
+                          "log_thickness",
+                          "sex",
+                          "ulcer",
+                          "year10"
+                        ],
+                        [
+                          "age10",
+                          "log_thickness",
+                          "sex",
+                          "ulcer",
+                          "year10"
+                        ]
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "nested_comparisons.csv": {
+      "columns": [
+        "row_id",
+        "cause",
+        "omitted_term",
+        "full_loglik",
+        "reduced_loglik",
+        "LR_stat",
+        "df",
+        "LR_pvalue"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "cause": "text",
+        "omitted_term": "text",
+        "full_loglik": "float",
+        "reduced_loglik": "float",
+        "LR_stat": "float",
+        "df": "int",
+        "LR_pvalue": "float"
+      },
+      "tolerance": {
+        "full_loglik": [
+          1e-06,
+          1e-08
+        ],
+        "reduced_loglik": [
+          1e-06,
+          1e-08
+        ],
+        "LR_stat": [
+          1e-06,
+          1e-08
+        ],
+        "LR_pvalue": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 10,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "melanoma|age10",
+              "melanoma|log_thickness",
+              "melanoma|sex",
+              "melanoma|ulcer",
+              "melanoma|year10",
+              "other|age10",
+              "other|log_thickness",
+              "other|sex",
+              "other|ulcer",
+              "other|year10"
+            ]
+          ]
+        }
+      }
+    },
+    "joint_baseline_jumps.csv": {
+      "columns": [
+        "row_id",
+        "pair_id",
+        "time_day",
+        "hazard1_increment",
+        "hazard3_increment",
+        "H1",
+        "H3"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "pair_id": "text",
+        "time_day": "int",
+        "hazard1_increment": "float",
+        "hazard3_increment": "float",
+        "H1": "float",
+        "H3": "float"
+      },
+      "tolerance": {
+        "hazard1_increment": [
+          1e-06,
+          1e-08
+        ],
+        "hazard3_increment": [
+          1e-06,
+          1e-08
+        ],
+        "H1": [
+          1e-06,
+          1e-08
+        ],
+        "H3": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 420,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "drop_age10",
+              "drop_log_thickness",
+              "drop_sex",
+              "drop_ulcer",
+              "drop_year10",
+              "full"
+            ],
+            {
+              "set_ref": "set_9"
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "profile_horizons.csv": {
+      "columns": [
+        "row_id",
+        "pair_id",
+        "source_id",
+        "horizon_day",
+        "observed_exit_day",
+        "after_person_exit",
+        "S",
+        "CIF1",
+        "CIF3",
+        "RMST",
+        "RMTL1",
+        "RMTL3",
+        "time_mass"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "pair_id": "text",
+        "source_id": "text",
+        "horizon_day": "int",
+        "observed_exit_day": "int",
+        "after_person_exit": "int",
+        "S": "float",
+        "CIF1": "float",
+        "CIF3": "float",
+        "RMST": "float",
+        "RMTL1": "float",
+        "RMTL3": "float",
+        "time_mass": "float"
+      },
+      "tolerance": {
+        "S": [
+          1e-06,
+          1e-08
+        ],
+        "CIF1": [
+          1e-06,
+          1e-08
+        ],
+        "CIF3": [
+          1e-06,
+          1e-08
+        ],
+        "RMST": [
+          1e-06,
+          1e-08
+        ],
+        "RMTL1": [
+          1e-06,
+          1e-08
+        ],
+        "RMTL3": [
+          1e-06,
+          1e-08
+        ],
+        "time_mass": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 4920,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "drop_age10",
+              "drop_log_thickness",
+              "drop_sex",
+              "drop_ulcer",
+              "drop_year10",
+              "full"
+            ],
+            {
+              "set_ref": "set_1"
+            },
+            [
+              "h00365",
+              "h01095",
+              "h01825",
+              "h03650"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "cohort_predictions.csv": {
+      "columns": [
+        "row_id",
+        "pair_id",
+        "horizon_day",
+        "profiles",
+        "mean_S",
+        "mean_CIF1",
+        "mean_CIF3",
+        "SD_CIF1",
+        "SD_CIF3",
+        "mean_RMST",
+        "mean_RMTL1",
+        "mean_RMTL3",
+        "mean_CIF1_minus_empirical",
+        "mean_CIF3_minus_empirical"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "pair_id": "text",
+        "horizon_day": "int",
+        "profiles": "int",
+        "mean_S": "float",
+        "mean_CIF1": "float",
+        "mean_CIF3": "float",
+        "SD_CIF1": "float",
+        "SD_CIF3": "float",
+        "mean_RMST": "float",
+        "mean_RMTL1": "float",
+        "mean_RMTL3": "float",
+        "mean_CIF1_minus_empirical": "float",
+        "mean_CIF3_minus_empirical": "float"
+      },
+      "tolerance": {
+        "mean_S": [
+          1e-06,
+          1e-08
+        ],
+        "mean_CIF1": [
+          1e-06,
+          1e-08
+        ],
+        "mean_CIF3": [
+          1e-06,
+          1e-08
+        ],
+        "SD_CIF1": [
+          1e-06,
+          1e-08
+        ],
+        "SD_CIF3": [
+          1e-06,
+          1e-08
+        ],
+        "mean_RMST": [
+          1e-06,
+          1e-08
+        ],
+        "mean_RMTL1": [
+          1e-06,
+          1e-08
+        ],
+        "mean_RMTL3": [
+          1e-06,
+          1e-08
+        ],
+        "mean_CIF1_minus_empirical": [
+          1e-06,
+          1e-08
+        ],
+        "mean_CIF3_minus_empirical": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 24,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "drop_age10",
+              "drop_log_thickness",
+              "drop_sex",
+              "drop_ulcer",
+              "drop_year10",
+              "full"
+            ],
+            [
+              "h00365",
+              "h01095",
+              "h01825",
+              "h03650"
+            ]
+          ]
+        },
+        "composite_key": {
+          "column": "row_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "int",
+        "scope": "text"
+      },
+      "tolerance": {},
+      "row_set": {
+        "key": [
+          "claim_id"
+        ],
+        "row_count": 6,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "clinical_or_causal_validation",
+              "declared_connected_scientific_workflow",
+              "hidden_external_prediction",
+              "original_provider_pipeline",
+              "proportional_hazards_assumption_validated",
+              "whole_public_provider_example"
+            ]
+          ]
+        }
+      }
+    },
+    "terminal_summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "metric"
+        ],
+        "row_count": 28,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "set_ref": "set_10"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "row_set_definitions": {
+    "set_1": [
+      "p001",
+      "p002",
+      "p003",
+      "p004",
+      "p005",
+      "p006",
+      "p007",
+      "p008",
+      "p009",
+      "p010",
+      "p011",
+      "p012",
+      "p013",
+      "p014",
+      "p015",
+      "p016",
+      "p017",
+      "p018",
+      "p019",
+      "p020",
+      "p021",
+      "p022",
+      "p023",
+      "p024",
+      "p025",
+      "p026",
+      "p027",
+      "p028",
+      "p029",
+      "p030",
+      "p031",
+      "p032",
+      "p033",
+      "p034",
+      "p035",
+      "p036",
+      "p037",
+      "p038",
+      "p039",
+      "p040",
+      "p041",
+      "p042",
+      "p043",
+      "p044",
+      "p045",
+      "p046",
+      "p047",
+      "p048",
+      "p049",
+      "p050",
+      "p051",
+      "p052",
+      "p053",
+      "p054",
+      "p055",
+      "p056",
+      "p057",
+      "p058",
+      "p059",
+      "p060",
+      "p061",
+      "p062",
+      "p063",
+      "p064",
+      "p065",
+      "p066",
+      "p067",
+      "p068",
+      "p069",
+      "p070",
+      "p071",
+      "p072",
+      "p073",
+      "p074",
+      "p075",
+      "p076",
+      "p077",
+      "p078",
+      "p079",
+      "p080",
+      "p081",
+      "p082",
+      "p083",
+      "p084",
+      "p085",
+      "p086",
+      "p087",
+      "p088",
+      "p089",
+      "p090",
+      "p091",
+      "p092",
+      "p093",
+      "p094",
+      "p095",
+      "p096",
+      "p097",
+      "p098",
+      "p099",
+      "p100",
+      "p101",
+      "p102",
+      "p103",
+      "p104",
+      "p105",
+      "p106",
+      "p107",
+      "p108",
+      "p109",
+      "p110",
+      "p111",
+      "p112",
+      "p113",
+      "p114",
+      "p115",
+      "p116",
+      "p117",
+      "p118",
+      "p119",
+      "p120",
+      "p121",
+      "p122",
+      "p123",
+      "p124",
+      "p125",
+      "p126",
+      "p127",
+      "p128",
+      "p129",
+      "p130",
+      "p131",
+      "p132",
+      "p133",
+      "p134",
+      "p135",
+      "p136",
+      "p137",
+      "p138",
+      "p139",
+      "p140",
+      "p141",
+      "p142",
+      "p143",
+      "p144",
+      "p145",
+      "p146",
+      "p147",
+      "p148",
+      "p149",
+      "p150",
+      "p151",
+      "p152",
+      "p153",
+      "p154",
+      "p155",
+      "p156",
+      "p157",
+      "p158",
+      "p159",
+      "p160",
+      "p161",
+      "p162",
+      "p163",
+      "p164",
+      "p165",
+      "p166",
+      "p167",
+      "p168",
+      "p169",
+      "p170",
+      "p171",
+      "p172",
+      "p173",
+      "p174",
+      "p175",
+      "p176",
+      "p177",
+      "p178",
+      "p179",
+      "p180",
+      "p181",
+      "p182",
+      "p183",
+      "p184",
+      "p185",
+      "p186",
+      "p187",
+      "p188",
+      "p189",
+      "p190",
+      "p191",
+      "p192",
+      "p193",
+      "p194",
+      "p195",
+      "p196",
+      "p197",
+      "p198",
+      "p199",
+      "p200",
+      "p201",
+      "p202",
+      "p203",
+      "p204",
+      "p205"
+    ],
+    "set_2": [
+      "t00010",
+      "t00030",
+      "t00035",
+      "t00099",
+      "t00185",
+      "t00204",
+      "t00210",
+      "t00232",
+      "t00279",
+      "t00295",
+      "t00355",
+      "t00386",
+      "t00426",
+      "t00469",
+      "t00493",
+      "t00529",
+      "t00621",
+      "t00629",
+      "t00659",
+      "t00667",
+      "t00718",
+      "t00752",
+      "t00779",
+      "t00793",
+      "t00817",
+      "t00826",
+      "t00833",
+      "t00858",
+      "t00869",
+      "t00872",
+      "t00967",
+      "t00977",
+      "t00982",
+      "t01041",
+      "t01055",
+      "t01062",
+      "t01075",
+      "t01156",
+      "t01228",
+      "t01252",
+      "t01271",
+      "t01312",
+      "t01427",
+      "t01435",
+      "t01499",
+      "t01506",
+      "t01508",
+      "t01510",
+      "t01512",
+      "t01516",
+      "t01525",
+      "t01542",
+      "t01548",
+      "t01557",
+      "t01560",
+      "t01563",
+      "t01584",
+      "t01605",
+      "t01621",
+      "t01627",
+      "t01634",
+      "t01641",
+      "t01648",
+      "t01652",
+      "t01654",
+      "t01667",
+      "t01678",
+      "t01685",
+      "t01690",
+      "t01710",
+      "t01726",
+      "t01745",
+      "t01762",
+      "t01779",
+      "t01787",
+      "t01793",
+      "t01804",
+      "t01812",
+      "t01836",
+      "t01839",
+      "t01854",
+      "t01856",
+      "t01860",
+      "t01864",
+      "t01899",
+      "t01914",
+      "t01919",
+      "t01920",
+      "t01927",
+      "t01933",
+      "t01942",
+      "t01955",
+      "t01956",
+      "t01958",
+      "t01963",
+      "t01970",
+      "t02005",
+      "t02007",
+      "t02011",
+      "t02024",
+      "t02028",
+      "t02038",
+      "t02056",
+      "t02059",
+      "t02061",
+      "t02062",
+      "t02075",
+      "t02085",
+      "t02102",
+      "t02103",
+      "t02104",
+      "t02108",
+      "t02112",
+      "t02150",
+      "t02156",
+      "t02165",
+      "t02209",
+      "t02227",
+      "t02256",
+      "t02264",
+      "t02339",
+      "t02361",
+      "t02387",
+      "t02388",
+      "t02403",
+      "t02426",
+      "t02431",
+      "t02460",
+      "t02467",
+      "t02492",
+      "t02493",
+      "t02521",
+      "t02542",
+      "t02559",
+      "t02565",
+      "t02570",
+      "t02660",
+      "t02666",
+      "t02676",
+      "t02738",
+      "t02782",
+      "t02787",
+      "t02984",
+      "t03032",
+      "t03040",
+      "t03042",
+      "t03067",
+      "t03079",
+      "t03101",
+      "t03144",
+      "t03152",
+      "t03154",
+      "t03180",
+      "t03182",
+      "t03185",
+      "t03199",
+      "t03228",
+      "t03229",
+      "t03278",
+      "t03297",
+      "t03328",
+      "t03330",
+      "t03338",
+      "t03383",
+      "t03384",
+      "t03385",
+      "t03388",
+      "t03402",
+      "t03441",
+      "t03458",
+      "t03459",
+      "t03476",
+      "t03523",
+      "t03667",
+      "t03695",
+      "t03776",
+      "t03830",
+      "t03856",
+      "t03872",
+      "t03909",
+      "t03968",
+      "t04001",
+      "t04103",
+      "t04119",
+      "t04124",
+      "t04207",
+      "t04310",
+      "t04390",
+      "t04479",
+      "t04492",
+      "t04668",
+      "t04688",
+      "t04926",
+      "t05565"
+    ],
+    "set_3": [
+      "t00099",
+      "t00232",
+      "t00279",
+      "t00295",
+      "t00355",
+      "t00386",
+      "t00469",
+      "t00667",
+      "t00817",
+      "t00826",
+      "t00833",
+      "t00858",
+      "t00869",
+      "t00872",
+      "t00982",
+      "t01055",
+      "t01156",
+      "t01252",
+      "t01271",
+      "t01312",
+      "t01510",
+      "t01512",
+      "t01525",
+      "t01542",
+      "t01548",
+      "t01557",
+      "t01560",
+      "t01563",
+      "t01605",
+      "t01621",
+      "t01627",
+      "t01634",
+      "t01641",
+      "t01648",
+      "t01652",
+      "t01654",
+      "t01667",
+      "t01678",
+      "t01685",
+      "t01710",
+      "t01726",
+      "t01745",
+      "t01762",
+      "t01787",
+      "t01793",
+      "t01804",
+      "t01836",
+      "t01839",
+      "t01854",
+      "t01864",
+      "t01899",
+      "t01914",
+      "t01933",
+      "t01942",
+      "t01955",
+      "t01956",
+      "t01958",
+      "t01963",
+      "t02005",
+      "t02011",
+      "t02024",
+      "t02038",
+      "t02056",
+      "t02062",
+      "t02085",
+      "t02104",
+      "t02108",
+      "t02112",
+      "t02150",
+      "t02156",
+      "t02209",
+      "t02227",
+      "t02256",
+      "t02264",
+      "t02339",
+      "t02387",
+      "t02403",
+      "t02426",
+      "t02431",
+      "t02460",
+      "t02467",
+      "t02492",
+      "t02521",
+      "t02559",
+      "t02570",
+      "t02660",
+      "t02666",
+      "t02676",
+      "t02738",
+      "t03032",
+      "t03040",
+      "t03042",
+      "t03067",
+      "t03152",
+      "t03180",
+      "t03185",
+      "t03199",
+      "t03228",
+      "t03229",
+      "t03297",
+      "t03338",
+      "t03383",
+      "t03384",
+      "t03385",
+      "t03441",
+      "t03458",
+      "t03459",
+      "t03476",
+      "t03523",
+      "t03667",
+      "t03695",
+      "t03776",
+      "t03856",
+      "t03872",
+      "t03968",
+      "t04001",
+      "t04103",
+      "t04124",
+      "t04390",
+      "t04479",
+      "t04668",
+      "t04688",
+      "t04926",
+      "t05565"
+    ],
+    "set_4": [
+      "t00010",
+      "t00030",
+      "t00035",
+      "t00185",
+      "t00204",
+      "t00210",
+      "t00232",
+      "t00426",
+      "t00493",
+      "t00529",
+      "t00621",
+      "t00629",
+      "t00659",
+      "t00718",
+      "t00752",
+      "t00779",
+      "t00793",
+      "t00967",
+      "t00977",
+      "t01041",
+      "t01062",
+      "t01075",
+      "t01228",
+      "t01427",
+      "t01435",
+      "t01499",
+      "t01506",
+      "t01508",
+      "t01516",
+      "t01584",
+      "t01641",
+      "t01654",
+      "t01690",
+      "t01710",
+      "t01779",
+      "t01787",
+      "t01812",
+      "t01839",
+      "t01856",
+      "t01860",
+      "t01919",
+      "t01920",
+      "t01927",
+      "t01970",
+      "t02007",
+      "t02028",
+      "t02059",
+      "t02061",
+      "t02075",
+      "t02102",
+      "t02103",
+      "t02165",
+      "t02227",
+      "t02361",
+      "t02388",
+      "t02493",
+      "t02542",
+      "t02565",
+      "t02782",
+      "t02787",
+      "t02984",
+      "t03079",
+      "t03101",
+      "t03144",
+      "t03154",
+      "t03182",
+      "t03278",
+      "t03328",
+      "t03330",
+      "t03388",
+      "t03402",
+      "t03459",
+      "t03776",
+      "t03830",
+      "t03909",
+      "t04119",
+      "t04207",
+      "t04310",
+      "t04492"
+    ],
+    "set_5": [
+      "t00030",
+      "t00035",
+      "t00099",
+      "t00817",
+      "t00858",
+      "t00869",
+      "t00872",
+      "t01041",
+      "t01427",
+      "t01435",
+      "t01499",
+      "t01510",
+      "t01512",
+      "t01542",
+      "t01548",
+      "t01557",
+      "t01560",
+      "t01563",
+      "t01584",
+      "t01605",
+      "t01627",
+      "t01634",
+      "t01641",
+      "t01648",
+      "t01652",
+      "t01654",
+      "t01678",
+      "t01685",
+      "t01690",
+      "t01710",
+      "t01762",
+      "t01787",
+      "t01793",
+      "t01804",
+      "t01836",
+      "t01839",
+      "t01856",
+      "t01864",
+      "t01899",
+      "t01914",
+      "t01919",
+      "t01933",
+      "t01942",
+      "t01956",
+      "t01958",
+      "t01963",
+      "t02005",
+      "t02007",
+      "t02024",
+      "t02056",
+      "t02061",
+      "t02062",
+      "t02085",
+      "t02102",
+      "t02103",
+      "t02104",
+      "t02150",
+      "t02156",
+      "t02165",
+      "t02209",
+      "t02227",
+      "t02339",
+      "t02361",
+      "t02388",
+      "t02426",
+      "t02431",
+      "t02460",
+      "t02492",
+      "t02570",
+      "t02660",
+      "t02738",
+      "t02782",
+      "t02787",
+      "t02984",
+      "t03032",
+      "t03040",
+      "t03067",
+      "t03079",
+      "t03101",
+      "t03144",
+      "t03152",
+      "t03154",
+      "t03180",
+      "t03182",
+      "t03185",
+      "t03199",
+      "t03229",
+      "t03278",
+      "t03328",
+      "t03383",
+      "t03385",
+      "t03402",
+      "t03441",
+      "t03458",
+      "t03459",
+      "t03476",
+      "t03523",
+      "t03667",
+      "t03695",
+      "t03830",
+      "t03856",
+      "t03968",
+      "t04001",
+      "t04103",
+      "t04119",
+      "t04207",
+      "t04310",
+      "t04668",
+      "t04688",
+      "t04926",
+      "t05565"
+    ],
+    "set_6": [
+      "t00010",
+      "t00185",
+      "t00204",
+      "t00210",
+      "t00232",
+      "t00279",
+      "t00295",
+      "t00355",
+      "t00386",
+      "t00426",
+      "t00469",
+      "t00493",
+      "t00529",
+      "t00621",
+      "t00629",
+      "t00659",
+      "t00667",
+      "t00718",
+      "t00752",
+      "t00779",
+      "t00793",
+      "t00826",
+      "t00833",
+      "t00967",
+      "t00977",
+      "t00982",
+      "t01055",
+      "t01062",
+      "t01075",
+      "t01156",
+      "t01228",
+      "t01252",
+      "t01271",
+      "t01312",
+      "t01506",
+      "t01508",
+      "t01516",
+      "t01525",
+      "t01621",
+      "t01667",
+      "t01726",
+      "t01745",
+      "t01779",
+      "t01787",
+      "t01812",
+      "t01839",
+      "t01854",
+      "t01860",
+      "t01920",
+      "t01927",
+      "t01955",
+      "t01970",
+      "t02011",
+      "t02028",
+      "t02038",
+      "t02059",
+      "t02075",
+      "t02108",
+      "t02112",
+      "t02227",
+      "t02256",
+      "t02264",
+      "t02387",
+      "t02403",
+      "t02426",
+      "t02467",
+      "t02493",
+      "t02521",
+      "t02542",
+      "t02559",
+      "t02565",
+      "t02666",
+      "t02676",
+      "t03042",
+      "t03228",
+      "t03297",
+      "t03330",
+      "t03338",
+      "t03384",
+      "t03388",
+      "t03459",
+      "t03776",
+      "t03872",
+      "t03909",
+      "t04124",
+      "t04390",
+      "t04479",
+      "t04492"
+    ],
+    "set_7": [
+      "t00185",
+      "t00204",
+      "t00210",
+      "t00232",
+      "t00279",
+      "t00295",
+      "t00386",
+      "t00426",
+      "t00469",
+      "t00529",
+      "t00621",
+      "t00629",
+      "t00659",
+      "t00667",
+      "t00718",
+      "t00752",
+      "t00779",
+      "t00793",
+      "t00817",
+      "t00833",
+      "t00858",
+      "t00869",
+      "t00872",
+      "t00967",
+      "t00977",
+      "t00982",
+      "t01041",
+      "t01055",
+      "t01062",
+      "t01075",
+      "t01156",
+      "t01228",
+      "t01252",
+      "t01271",
+      "t01312",
+      "t01435",
+      "t01506",
+      "t01516",
+      "t01548",
+      "t01560",
+      "t01584",
+      "t01621",
+      "t01667",
+      "t01690",
+      "t01726",
+      "t01933",
+      "t02061",
+      "t02062",
+      "t02103",
+      "t02108",
+      "t02256",
+      "t02388",
+      "t02467",
+      "t02565",
+      "t02782",
+      "t03042",
+      "t03338"
+    ],
+    "set_8": [
+      "t00010",
+      "t00030",
+      "t00099",
+      "t00232",
+      "t00355",
+      "t00493",
+      "t00826",
+      "t01427",
+      "t01525",
+      "t01860",
+      "t02085",
+      "t03154",
+      "t03182",
+      "t03458"
+    ],
+    "set_9": [
+      "t00010",
+      "t00030",
+      "t00099",
+      "t00185",
+      "t00204",
+      "t00210",
+      "t00232",
+      "t00279",
+      "t00295",
+      "t00355",
+      "t00386",
+      "t00426",
+      "t00469",
+      "t00493",
+      "t00529",
+      "t00621",
+      "t00629",
+      "t00659",
+      "t00667",
+      "t00718",
+      "t00752",
+      "t00779",
+      "t00793",
+      "t00817",
+      "t00826",
+      "t00833",
+      "t00858",
+      "t00869",
+      "t00872",
+      "t00967",
+      "t00977",
+      "t00982",
+      "t01041",
+      "t01055",
+      "t01062",
+      "t01075",
+      "t01156",
+      "t01228",
+      "t01252",
+      "t01271",
+      "t01312",
+      "t01427",
+      "t01435",
+      "t01506",
+      "t01516",
+      "t01525",
+      "t01548",
+      "t01560",
+      "t01584",
+      "t01621",
+      "t01667",
+      "t01690",
+      "t01726",
+      "t01860",
+      "t01933",
+      "t02061",
+      "t02062",
+      "t02085",
+      "t02103",
+      "t02108",
+      "t02256",
+      "t02388",
+      "t02467",
+      "t02565",
+      "t02782",
+      "t03042",
+      "t03154",
+      "t03182",
+      "t03338",
+      "t03458"
+    ],
+    "set_10": [
+      "Cox_models",
+      "Cox_nested_comparisons",
+      "all_CIF1_1825",
+      "all_CIF3_1825",
+      "all_RMST_1825",
+      "all_RMTL1_1825",
+      "all_RMTL3_1825",
+      "all_S_1825",
+      "all_net_gap_1825",
+      "censored_records",
+      "deletion_refits",
+      "full_C1_HR_log_thickness",
+      "full_C3_HR_age10",
+      "full_mean_CIF1_1825",
+      "full_mean_CIF3_1825",
+      "hidden_clinical_or_causal_validation",
+      "horizon_prediction_rows",
+      "max_abs_leave_patient_CIF1_1825",
+      "melanoma_deaths",
+      "nonparametric_groups",
+      "nonparametric_riskset_rows",
+      "original_author_pipeline_reproduced",
+      "other_deaths",
+      "prediction_horizons",
+      "prediction_pairs",
+      "prediction_profiles",
+      "source_exit_times",
+      "source_records"
+    ]
+  }
+}

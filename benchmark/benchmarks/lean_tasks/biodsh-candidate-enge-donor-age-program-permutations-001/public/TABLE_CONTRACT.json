@@ -1,0 +1,151 @@
+{
+  "tables": {
+    "age_association.csv": {
+      "columns": [
+        "program",
+        "n_donors",
+        "spearman_rho",
+        "permutation_p",
+        "loo_min_rho",
+        "loo_max_rho",
+        "loo_sign_fraction"
+      ],
+      "key": [
+        "program"
+      ],
+      "types": {
+        "program": "text",
+        "n_donors": "int",
+        "spearman_rho": "float",
+        "permutation_p": "float",
+        "loo_min_rho": "float",
+        "loo_max_rho": "float",
+        "loo_sign_fraction": "float"
+      },
+      "tolerance": {
+        "spearman_rho": [
+          1e-06,
+          1e-08
+        ],
+        "permutation_p": [
+          1e-06,
+          1e-08
+        ],
+        "loo_min_rho": [
+          1e-06,
+          1e-08
+        ],
+        "loo_max_rho": [
+          1e-06,
+          1e-08
+        ],
+        "loo_sign_fraction": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "cell_programs.csv": {
+      "columns": [
+        "cell_id",
+        "donor_id",
+        "program",
+        "total_reads",
+        "score"
+      ],
+      "key": [
+        "cell_id",
+        "program"
+      ],
+      "types": {
+        "cell_id": "text",
+        "donor_id": "text",
+        "program": "text",
+        "total_reads": "int",
+        "score": "float"
+      },
+      "tolerance": {
+        "score": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "donor_programs.csv": {
+      "columns": [
+        "donor_id",
+        "program",
+        "n",
+        "mean_score",
+        "sd_score",
+        "age_order"
+      ],
+      "key": [
+        "donor_id",
+        "program"
+      ],
+      "types": {
+        "donor_id": "text",
+        "program": "text",
+        "n": "int",
+        "mean_score": "float",
+        "sd_score": "float",
+        "age_order": "int"
+      },
+      "tolerance": {
+        "mean_score": [
+          1e-06,
+          1e-08
+        ],
+        "sd_score": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "leave_donor_out.csv": {
+      "columns": [
+        "omitted_donor",
+        "program",
+        "spearman_rho"
+      ],
+      "key": [
+        "omitted_donor",
+        "program"
+      ],
+      "types": {
+        "omitted_donor": "text",
+        "program": "text",
+        "spearman_rho": "float"
+      },
+      "tolerance": {
+        "spearman_rho": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "permutation_stats.csv": {
+      "columns": [
+        "permutation_id",
+        "program",
+        "spearman_rho"
+      ],
+      "key": [
+        "permutation_id",
+        "program"
+      ],
+      "types": {
+        "permutation_id": "text",
+        "program": "text",
+        "spearman_rho": "float"
+      },
+      "tolerance": {
+        "spearman_rho": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

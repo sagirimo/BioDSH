@@ -1,0 +1,152 @@
+{
+  "revision": "qin_lean_v1",
+  "task_id": "biodsh-candidate-qin-t2d-composition-001",
+  "claims": [
+    {
+      "id": "n",
+      "type": "number",
+      "question": "分析单位数。",
+      "binding": {
+        "table": "cohort_summary.csv",
+        "key_column": "metric",
+        "key": "analysis_units",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "taxa",
+      "type": "number",
+      "question": "通过过滤的物种数。",
+      "binding": {
+        "table": "cohort_summary.csv",
+        "key_column": "metric",
+        "key": "retained_taxa",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "visits",
+      "type": "number",
+      "question": "符合条件的原始样本数。",
+      "binding": {
+        "table": "cohort_summary.csv",
+        "key_column": "metric",
+        "key": "eligible_visits",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "focal_effect",
+      "type": "number",
+      "question": "Escherichia_coli 的主模型系数。",
+      "binding": {
+        "table": "association.csv",
+        "key_column": "taxon",
+        "key": "Escherichia_coli",
+        "column": "coef"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "focal_q",
+      "type": "number",
+      "question": "Escherichia_coli 的主模型 BH q 值。",
+      "binding": {
+        "table": "association.csv",
+        "key_column": "taxon",
+        "key": "Escherichia_coli",
+        "column": "q_value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "focal_sensitivity",
+      "type": "number",
+      "question": "Escherichia_coli 在较大伪计数下的系数。",
+      "binding": {
+        "table": "sensitivity.csv",
+        "key_column": "taxon",
+        "key": "Escherichia_coli",
+        "column": "coef"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "focal_sign",
+      "type": "derived",
+      "question": "主模型中目标物种关联的方向？",
+      "options": [
+        "nonnegative_compositional_association",
+        "negative_compositional_association",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "association.csv",
+          "key_column": "taxon",
+          "key": "Escherichia_coli",
+          "column": "coef"
+        },
+        "op": "ge",
+        "threshold": 0,
+        "outcomes": {
+          "true": "nonnegative_compositional_association",
+          "false": "negative_compositional_association"
+        }
+      }
+    },
+    {
+      "id": "focal_fdr",
+      "type": "derived",
+      "question": "目标物种是否通过本题 BH 0.05 标准？",
+      "options": [
+        "passes_FDR_0_05",
+        "does_not_pass_not_proof_of_no_association",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "association.csv",
+          "key_column": "taxon",
+          "key": "Escherichia_coli",
+          "column": "q_value"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "passes_FDR_0_05",
+          "false": "does_not_pass_not_proof_of_no_association"
+        }
+      }
+    },
+    {
+      "id": "effect_meaning",
+      "type": "choice",
+      "question": "如何解释该 CLR 回归系数？",
+      "options": [
+        "conditional_log_ratio_association_not_absolute_load",
+        "absolute_bacterial_cells_per_gram",
+        "causal_effect_of_disease"
+      ]
+    },
+    {
+      "id": "sensitivity_meaning",
+      "type": "choice",
+      "question": "改变伪计数后的分析提供什么证据？",
+      "options": [
+        "pseudocount_dependence_not_independent_replication",
+        "independent_external_validation",
+        "proof_that_zero_abundance_is_true_absence"
+      ]
+    }
+  ]
+}

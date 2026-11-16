@@ -1,0 +1,170 @@
+{
+  "tables": {
+    "calibration_bins.csv": {
+      "columns": [
+        "arm",
+        "bin",
+        "n",
+        "mean_prediction",
+        "observed_rate"
+      ],
+      "key": [
+        "arm",
+        "bin"
+      ],
+      "types": {
+        "arm": "text",
+        "bin": "int",
+        "n": "int",
+        "mean_prediction": "float",
+        "observed_rate": "float"
+      },
+      "tolerance": {
+        "mean_prediction": [
+          1e-06,
+          1e-08
+        ],
+        "observed_rate": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "coefficients.csv": {
+      "columns": [
+        "term",
+        "coef",
+        "odds_ratio"
+      ],
+      "key": [
+        "term"
+      ],
+      "types": {
+        "term": "text",
+        "coef": "float",
+        "odds_ratio": "float"
+      },
+      "tolerance": {
+        "coef": [
+          1e-06,
+          1e-08
+        ],
+        "odds_ratio": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "patients.csv": {
+      "columns": [
+        "gsm",
+        "patient_id",
+        "arm",
+        "pcr",
+        "predicted_pcr",
+        "call"
+      ],
+      "key": [
+        "gsm"
+      ],
+      "types": {
+        "gsm": "text",
+        "patient_id": "text",
+        "arm": "text",
+        "pcr": "int",
+        "predicted_pcr": "float",
+        "call": "int"
+      },
+      "tolerance": {
+        "predicted_pcr": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "performance.csv": {
+      "columns": [
+        "arm",
+        "n",
+        "pcr_events",
+        "auc",
+        "brier",
+        "log_loss",
+        "mean_prediction",
+        "observed_rate",
+        "sensitivity",
+        "specificity"
+      ],
+      "key": [
+        "arm"
+      ],
+      "types": {
+        "arm": "text",
+        "n": "int",
+        "pcr_events": "int",
+        "auc": "float",
+        "brier": "float",
+        "log_loss": "float",
+        "mean_prediction": "float",
+        "observed_rate": "float",
+        "sensitivity": "float",
+        "specificity": "float"
+      },
+      "tolerance": {
+        "auc": [
+          1e-06,
+          1e-08
+        ],
+        "brier": [
+          1e-06,
+          1e-08
+        ],
+        "log_loss": [
+          1e-06,
+          1e-08
+        ],
+        "mean_prediction": [
+          1e-06,
+          1e-08
+        ],
+        "observed_rate": [
+          1e-06,
+          1e-08
+        ],
+        "sensitivity": [
+          1e-06,
+          1e-08
+        ],
+        "specificity": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "threshold.csv": {
+      "columns": [
+        "rule",
+        "threshold",
+        "youden"
+      ],
+      "key": [
+        "rule"
+      ],
+      "types": {
+        "rule": "text",
+        "threshold": "float",
+        "youden": "float"
+      },
+      "tolerance": {
+        "threshold": [
+          1e-06,
+          1e-08
+        ],
+        "youden": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

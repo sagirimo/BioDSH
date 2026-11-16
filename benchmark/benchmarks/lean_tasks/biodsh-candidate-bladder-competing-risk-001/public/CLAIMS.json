@@ -1,0 +1,152 @@
+{
+  "revision": "round2_lean_v1",
+  "task_id": "biodsh-candidate-bladder-competing-risk-001",
+  "claims": [
+    {
+      "id": "n_MIBC",
+      "type": "number",
+      "question": "MIBC人数",
+      "binding": {
+        "table": "cohort_summary.csv",
+        "key_column": "group",
+        "key": "MIBC",
+        "column": "n"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "cancer_MIBC",
+      "type": "number",
+      "question": "MIBC癌症死亡数",
+      "binding": {
+        "table": "cohort_summary.csv",
+        "key_column": "group",
+        "key": "MIBC",
+        "column": "cancer_deaths"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "other_NMIBC",
+      "type": "number",
+      "question": "NMIBC其他死亡数",
+      "binding": {
+        "table": "cohort_summary.csv",
+        "key_column": "group",
+        "key": "NMIBC",
+        "column": "other_deaths"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "difference",
+      "type": "number",
+      "question": "60月癌症CIF差",
+      "binding": {
+        "table": "risk_difference.csv",
+        "key_column": "contrast",
+        "key": "MIBC_minus_NMIBC_60",
+        "column": "difference"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ci_low",
+      "type": "number",
+      "question": "CIF差自助法下界",
+      "binding": {
+        "table": "risk_difference.csv",
+        "key_column": "contrast",
+        "key": "MIBC_minus_NMIBC_60",
+        "column": "ci_low"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ci_high",
+      "type": "number",
+      "question": "CIF差自助法上界",
+      "binding": {
+        "table": "risk_difference.csv",
+        "key_column": "contrast",
+        "key": "MIBC_minus_NMIBC_60",
+        "column": "ci_high"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "direction",
+      "type": "derived",
+      "question": "MIBC风险差方向",
+      "options": [
+        "MIBC_higher",
+        "MIBC_not_higher",
+        "proves_causation"
+      ],
+      "rule": {
+        "binding": {
+          "table": "risk_difference.csv",
+          "key_column": "contrast",
+          "key": "MIBC_minus_NMIBC_60",
+          "column": "difference"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "MIBC_higher",
+          "false": "MIBC_not_higher"
+        }
+      }
+    },
+    {
+      "id": "interval",
+      "type": "derived",
+      "question": "风险差区间是否全部大于零",
+      "options": [
+        "interval_above_zero",
+        "interval_not_wholly_positive",
+        "proves_causation"
+      ],
+      "rule": {
+        "binding": {
+          "table": "risk_difference.csv",
+          "key_column": "contrast",
+          "key": "MIBC_minus_NMIBC_60",
+          "column": "ci_low"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "interval_above_zero",
+          "false": "interval_not_wholly_positive"
+        }
+      }
+    },
+    {
+      "id": "competing",
+      "type": "choice",
+      "question": "将其他原因死亡作普通删失的1-KM解释",
+      "options": [
+        "net_risk_not_observed_cumulative_incidence",
+        "same_as_cif_always",
+        "probability_of_any_death"
+      ]
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "本题风险差的推断边界",
+      "options": [
+        "unadjusted_prognostic_difference",
+        "causal_effect_of_invasion",
+        "treatment_effect_adjusted_for_age"
+      ]
+    }
+  ]
+}

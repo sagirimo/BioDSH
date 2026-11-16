@@ -1,0 +1,152 @@
+{
+  "revision": "round2_lean_v1",
+  "task_id": "biodsh-candidate-lung-parametric-aft-001",
+  "claims": [
+    {
+      "id": "n",
+      "type": "number",
+      "question": "完整病例数",
+      "binding": {
+        "table": "model_fit.csv",
+        "key_column": "model",
+        "key": "lognormal",
+        "column": "n"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "deaths",
+      "type": "number",
+      "question": "死亡事件数",
+      "binding": {
+        "table": "model_fit.csv",
+        "key_column": "model",
+        "key": "lognormal",
+        "column": "deaths"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "sigma",
+      "type": "number",
+      "question": "主模型对数时间尺度参数",
+      "binding": {
+        "table": "model_fit.csv",
+        "key_column": "model",
+        "key": "lognormal",
+        "column": "sigma"
+      },
+      "rel_tol": 0.0001,
+      "abs_tol": 1e-06
+    },
+    {
+      "id": "aic",
+      "type": "number",
+      "question": "主模型AIC",
+      "binding": {
+        "table": "model_fit.csv",
+        "key_column": "model",
+        "key": "lognormal",
+        "column": "aic"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 0.0001
+    },
+    {
+      "id": "nodal_LR",
+      "type": "number",
+      "question": "主模型N1/N2联合似然比统计量",
+      "binding": {
+        "table": "model_comparison.csv",
+        "key_column": "comparison",
+        "key": "nodal_LR",
+        "column": "statistic"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 0.0001
+    },
+    {
+      "id": "AIC_difference",
+      "type": "number",
+      "question": "Weibull减对数正态的AIC",
+      "binding": {
+        "table": "model_comparison.csv",
+        "key_column": "comparison",
+        "key": "weibull_minus_lognormal_AIC",
+        "column": "statistic"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 0.0001
+    },
+    {
+      "id": "distribution",
+      "type": "derived",
+      "question": "哪个预设分布AIC更低",
+      "options": [
+        "lognormal_lower_AIC",
+        "weibull_not_higher_AIC",
+        "proves_causation"
+      ],
+      "rule": {
+        "binding": {
+          "table": "model_comparison.csv",
+          "key_column": "comparison",
+          "key": "weibull_minus_lognormal_AIC",
+          "column": "statistic"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "lognormal_lower_AIC",
+          "false": "weibull_not_higher_AIC"
+        }
+      }
+    },
+    {
+      "id": "nodal_evidence",
+      "type": "derived",
+      "question": "淋巴结变量联合证据",
+      "options": [
+        "nominal_nodal_association",
+        "insufficient_evidence",
+        "proves_causation"
+      ],
+      "rule": {
+        "binding": {
+          "table": "model_comparison.csv",
+          "key_column": "comparison",
+          "key": "nodal_LR",
+          "column": "p_value"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "nominal_nodal_association",
+          "false": "insufficient_evidence"
+        }
+      }
+    },
+    {
+      "id": "effect",
+      "type": "choice",
+      "question": "AFT的exp(beta)含义",
+      "options": [
+        "conditional_survival_time_ratio",
+        "proportional_hazard_ratio",
+        "ratio_of_death_fractions"
+      ]
+    },
+    {
+      "id": "median_scope",
+      "type": "choice",
+      "question": "输出的生存中位数解释",
+      "options": [
+        "parametric_extrapolation_may_exceed_observed_followup",
+        "nonparametric_km_median_always_observed",
+        "causal_life_extension"
+      ]
+    }
+  ]
+}

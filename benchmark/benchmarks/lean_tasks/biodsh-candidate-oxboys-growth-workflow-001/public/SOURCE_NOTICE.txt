@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "nlme_published_growth",
+  "source_case": "oxboys_complete_native",
+  "original_parent_source_case": "Study:Goldstein1987:Oxford_boys_native",
+  "page": "https://stat.ethz.ch/R-manual/R-devel/library/nlme/html/Oxboys.html",
+  "source_terms": "GPL>=2 source-package declaration; exact delivery/attribution review pending",
+  "limitations": [
+    "Whole public example not whole original paper",
+    "Declared conditional OLS not original random effects or external prediction",
+    "Book/study data-history/terms and formal freeze pending"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

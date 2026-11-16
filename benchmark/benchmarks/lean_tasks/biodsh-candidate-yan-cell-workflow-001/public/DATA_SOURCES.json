@@ -1,0 +1,18 @@
+{
+ "source_url": "https://bioconductor.org/packages/release/bioc/html/SC3.html",
+ "input_files_sha256": {
+  "inputs/PUBLIC_OUTPUT_NAMING_AND_TYPES.json": "50601205f08a6ae46f7ed31f46c57c977d075800526336fe1454953d8366a614",
+  "inputs/design.json": "e9ff58b0efca7e60d2bbdf5ae395e397d4643579be1cbcd9263547a022323723",
+  "inputs/evidence_input.csv": "9c6adcefd1c3613d504cc8ceccdb6b9ab89420cfe8ac59e98844b4b2b0539eb4",
+  "inputs/kind.txt": "05df17409288122e4cbe966ab7cbf19dbc45cd48998ac25bc60630b42f794af2",
+  "inputs/native_attributes.dput.txt": "09f9a4ff4ffa897cbda3e74b8a8747736f5be9b8684edeb62899cf8223ba2096",
+  "inputs/native_cell_order.csv": "0d26e12144f918953c5d76aecc5ad3c81dc1288c72a414983184033f09efa9fa",
+  "inputs/native_field_dictionary.csv": "cce2f9e72fc7a8b100798f3091981fb2a2185c351dc086c841237fa77f3cd827",
+  "inputs/source_export_identity.csv": "c5f7f610f3303095e3488ef56432e77079b82cf9b6c5150543c99f8d739714d1",
+  "inputs/table_schema.csv": "d2bcbedd9c71c79e4fea52221cc2bf152fcff43a5a7eff60d1868886f3d0ecdf",
+  "inputs/yan.rda": "04dbe1de78f59e157da8c438295d07b7c8694effe2e3adffa12c18fcd69c0a26",
+  "inputs/yan_annotation.csv": "8367f1f46cbbd232c76d3962de1cfc709f07e144dfe58b5be7e872122d127d94",
+  "inputs/yan_expression.csv": "d62ea6086f8709596996ab8ce9a02b8e8568174ee39711ff38036718f2f12ff4"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

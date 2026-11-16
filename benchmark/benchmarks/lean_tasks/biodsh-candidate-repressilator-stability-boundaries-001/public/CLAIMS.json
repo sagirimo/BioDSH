@@ -1,0 +1,141 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-repressilator-stability-boundaries-001",
+  "claims": [
+    {
+      "id": "C1",
+      "type": "number",
+      "question": "原始10分钟蛋白半衰期的对称稳态蛋白拷贝数？",
+      "binding": {
+        "table": "symmetric_steady.csv",
+        "key_column": "id",
+        "key": "10",
+        "column": "protein_copies"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C2",
+      "type": "number",
+      "question": "对应mRNA拷贝数？",
+      "binding": {
+        "table": "symmetric_steady.csv",
+        "key_column": "id",
+        "key": "10",
+        "column": "mRNA_copies"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C3",
+      "type": "number",
+      "question": "10分钟条件的主导特征值实部（min^-1）？",
+      "binding": {
+        "table": "stability_summary.csv",
+        "key_column": "id",
+        "key": "10",
+        "column": "dominant_real"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C4",
+      "type": "number",
+      "question": "对应线性振荡时间尺度（分钟）？",
+      "binding": {
+        "table": "stability_summary.csv",
+        "key_column": "id",
+        "key": "10",
+        "column": "linear_period_min"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C5",
+      "type": "number",
+      "question": "1分钟条件的主导特征值实部？",
+      "binding": {
+        "table": "stability_summary.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "dominant_real"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C6",
+      "type": "number",
+      "question": "扫描范围内检测到的稳定性边界数？",
+      "binding": {
+        "table": "stability_boundaries.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "root_count"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C7",
+      "type": "derived",
+      "question": "10分钟条件的线性稳定性？",
+      "options": [
+        "局部不稳定",
+        "非正实部"
+      ],
+      "rule": {
+        "binding": {
+          "table": "stability_summary.csv",
+          "key_column": "id",
+          "key": "10",
+          "column": "dominant_real"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "局部不稳定",
+          "false": "非正实部"
+        }
+      }
+    },
+    {
+      "id": "C8",
+      "type": "derived",
+      "question": "1分钟条件的线性稳定性？",
+      "options": [
+        "局部不稳定",
+        "非正实部"
+      ],
+      "rule": {
+        "binding": {
+          "table": "stability_summary.csv",
+          "key_column": "id",
+          "key": "1",
+          "column": "dominant_real"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "局部不稳定",
+          "false": "非正实部"
+        }
+      }
+    },
+    {
+      "id": "C9",
+      "type": "choice",
+      "question": "线性谱给出的周期应怎样解释？",
+      "options": [
+        "稳态附近的线性振荡时间尺度，不能直接当作有限振幅极限环周期",
+        "它严格等于所有初值的长期周期",
+        "正实部已经证明随机模型也周期振荡",
+        "半衰期的倒数总是准确的一阶衰减常数"
+      ]
+    }
+  ]
+}

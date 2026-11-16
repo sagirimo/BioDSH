@@ -1,0 +1,8 @@
+{
+ "source_url": "https://www.nature.com/articles/nature11450",
+ "input_files_sha256": {
+  "inputs/metadata.tsv": "3a96c6ed5c0d017e84ad0007921c2767152fd69ac87638042050bf9902ab1abb",
+  "inputs/species_percent.tsv": "a9083a5a0776bdadab43f8cf37fba5ceeb39e6ab80724e1cb462e624766fb6da"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

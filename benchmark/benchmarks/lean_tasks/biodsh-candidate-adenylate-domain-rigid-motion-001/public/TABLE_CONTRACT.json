@@ -1,0 +1,155 @@
+{
+  "tables": {
+    "alignment_sensitivity.csv": {
+      "columns": [
+        "id",
+        "delta_global_rmsd_A",
+        "delta_rotation_deg"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "delta_global_rmsd_A": "float",
+        "delta_rotation_deg": "float"
+      },
+      "tolerance": {
+        "delta_global_rmsd_A": [
+          1e-05,
+          1e-08
+        ],
+        "delta_rotation_deg": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "alignment_summary.csv": {
+      "columns": [
+        "id",
+        "fit_residues",
+        "fit_rmsd_A",
+        "whole_rmsd_A",
+        "above_5A"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "fit_residues": "int",
+        "fit_rmsd_A": "float",
+        "whole_rmsd_A": "float",
+        "above_5A": "int"
+      },
+      "tolerance": {
+        "fit_rmsd_A": [
+          1e-05,
+          1e-08
+        ],
+        "whole_rmsd_A": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "alignment_transforms.csv": {
+      "columns": [
+        "id",
+        "r0",
+        "r1",
+        "r2",
+        "translation"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "r0": "float",
+        "r1": "float",
+        "r2": "float",
+        "translation": "float"
+      },
+      "tolerance": {
+        "r0": [
+          1e-05,
+          1e-08
+        ],
+        "r1": [
+          1e-05,
+          1e-08
+        ],
+        "r2": [
+          1e-05,
+          1e-08
+        ],
+        "translation": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "domain_motion.csv": {
+      "columns": [
+        "id",
+        "n_residues",
+        "global_rmsd_A",
+        "local_rmsd_A",
+        "relative_rotation_deg",
+        "centroid_shift_A"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_residues": "int",
+        "global_rmsd_A": "float",
+        "local_rmsd_A": "float",
+        "relative_rotation_deg": "float",
+        "centroid_shift_A": "float"
+      },
+      "tolerance": {
+        "global_rmsd_A": [
+          1e-05,
+          1e-08
+        ],
+        "local_rmsd_A": [
+          1e-05,
+          1e-08
+        ],
+        "relative_rotation_deg": [
+          1e-05,
+          1e-05
+        ],
+        "centroid_shift_A": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "residue_displacements.csv": {
+      "columns": [
+        "id",
+        "domain",
+        "displacement_A"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "domain": "text",
+        "displacement_A": "float"
+      },
+      "tolerance": {
+        "displacement_A": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

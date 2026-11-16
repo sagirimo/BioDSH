@@ -1,0 +1,134 @@
+{
+  "task_id": "biodsh-candidate-hyper-cross-workflow-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "原定义汇总 primary_peak_LOD 的计算结果",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "primary_peak_LOD"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "原定义汇总 sensitivity_peak_LOD 的计算结果",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "sensitivity_peak_LOD"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "原定义汇总 LOD_change_max_abs 的计算结果",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "LOD_change_max_abs"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "原定义汇总 confirmatory_genomewide_p_values 的计算结果",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "confirmatory_genomewide_p_values"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "根据 phenotype_missingness.csv 的指定记录报告 typed_bp_mean",
+      "binding": {
+        "table": "phenotype_missingness.csv",
+        "keys": {
+          "marker_id": "D1Mit296"
+        },
+        "column": "typed_bp_mean"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "根据 phenotype_missingness.csv 的指定记录报告 untyped_bp_mean",
+      "binding": {
+        "table": "phenotype_missingness.csv",
+        "keys": {
+          "marker_id": "D1Mit296"
+        },
+        "column": "untyped_bp_mean"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "指定估计相对零的方向如何（严格小于零选below_threshold）？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "model_coefficients.csv",
+          "keys": {
+            "row_id": "primary|primary|D1Mit296|Intercept"
+          },
+          "column": "coefficient"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "本题的独立推断/计算单位应如何理解？",
+      "options": [
+        "按原设计：原回交个体",
+        "每个输出表单元都是独立生物学重复",
+        "每次敏感性重算都是独立新研究"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "给定方法的拟合与敏感性分析支持何种结论？",
+      "options": [
+        "限于原研究及声明模型的关联或描述，不能自行推成因果/外部验证",
+        "数值拟合通过即证明生物因果效应",
+        "删除重算自动提供隐藏外部验证"
+      ]
+    }
+  ]
+}

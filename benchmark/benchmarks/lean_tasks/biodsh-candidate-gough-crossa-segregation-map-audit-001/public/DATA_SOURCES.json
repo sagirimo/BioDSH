@@ -1,0 +1,8 @@
+{
+ "source_url": "https://github.com/rqtl/qtl2data/tree/main/Gough",
+ "input_files_sha256": {
+  "inputs/gough_thin.csv": "68db8b664bb476395ea5dec7b2ddcf48221417555c6928a0a16fb97c73899c07",
+  "inputs/preprocessing.txt": "20593ae6fa9daba3006b7ce7b2aa5a6013ad8e11102739a5c29b2f40e7dfce34"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

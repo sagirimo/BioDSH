@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-dhfr-descriptor-neighborhood-roughness-001",
+  "claims": [
+    {
+      "id": "n",
+      "type": "number",
+      "question": "完整分子数？",
+      "binding": {
+        "table": "neighborhood_summary.csv",
+        "key_column": "id",
+        "key": "primary",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "edges",
+      "type": "number",
+      "question": "对称邻域边数？",
+      "binding": {
+        "table": "neighborhood_summary.csv",
+        "key_column": "id",
+        "key": "primary",
+        "column": "edges"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "cliffs",
+      "type": "number",
+      "question": "相差至少两个log单位的边数？",
+      "binding": {
+        "table": "neighborhood_summary.csv",
+        "key_column": "id",
+        "key": "primary",
+        "column": "cliffs"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "rough",
+      "type": "number",
+      "question": "加权局部粗糙度？",
+      "binding": {
+        "table": "neighborhood_summary.csv",
+        "key_column": "id",
+        "key": "primary",
+        "column": "roughness"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "p",
+      "type": "number",
+      "question": "置换平滑性p？",
+      "binding": {
+        "table": "neighborhood_summary.csv",
+        "key_column": "id",
+        "key": "primary",
+        "column": "p_smooth"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "sens",
+      "type": "number",
+      "question": "移除alogP后粗糙度？",
+      "binding": {
+        "table": "neighborhood_summary.csv",
+        "key_column": "id",
+        "key": "without_logP",
+        "column": "roughness"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "smooth",
+      "type": "derived",
+      "question": "局部平滑证据p<.05？",
+      "options": [
+        "local_smoothness_supported",
+        "not_supported"
+      ],
+      "rule": {
+        "binding": {
+          "table": "neighborhood_summary.csv",
+          "key_column": "id",
+          "key": "primary",
+          "column": "p_smooth"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "local_smoothness_supported",
+          "false": "not_supported"
+        }
+      }
+    },
+    {
+      "id": "cliff_any",
+      "type": "derived",
+      "question": "是否有描述符邻域效价悬崖？",
+      "options": [
+        "has_descriptor_cliffs",
+        "none"
+      ],
+      "rule": {
+        "binding": {
+          "table": "neighborhood_summary.csv",
+          "key_column": "id",
+          "key": "primary",
+          "column": "cliffs"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "has_descriptor_cliffs",
+          "false": "none"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "本题邻域与分子结构的关系？",
+      "options": [
+        "physicochemical_proximity_does_not_establish_matched_molecular_pairs",
+        "identical_scaffolds_are_guaranteed",
+        "distance_proves_a_causal_substituent_effect"
+      ]
+    }
+  ]
+}

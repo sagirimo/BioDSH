@@ -1,0 +1,140 @@
+{
+  "revision": "round5_lean_v1",
+  "task_id": "biodsh-candidate-nancycats-multiallelic-diversity-partition-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "样本权重多位点Gst？",
+      "binding": {
+        "table": "multilocus_summary.csv",
+        "key_column": "id",
+        "key": "sample",
+        "column": "ratio_Gst"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "群等权多位点Gst？",
+      "binding": {
+        "table": "multilocus_summary.csv",
+        "key_column": "id",
+        "key": "colony",
+        "column": "ratio_Gst"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "平均群内多样性？",
+      "binding": {
+        "table": "multilocus_summary.csv",
+        "key_column": "id",
+        "key": "sample",
+        "column": "mean_Hs"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "平均总体多样性？",
+      "binding": {
+        "table": "multilocus_summary.csv",
+        "key_column": "id",
+        "key": "sample",
+        "column": "mean_Ht"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "fca45合格群数？",
+      "binding": {
+        "table": "locus_partition.csv",
+        "key_column": "id",
+        "key": "sample|fca45",
+        "column": "n_colonies"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "群权重敏感性？",
+      "binding": {
+        "table": "weight_sensitivity.csv",
+        "key_column": "id",
+        "key": "colony_minus_sample",
+        "column": "delta_Gst"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "多位点Gst是否大于0.05？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "multilocus_summary.csv",
+          "key_column": "id",
+          "key": "sample",
+          "column": "ratio_Gst"
+        },
+        "op": "gt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "合池平均杂合缺额是否为正？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "multilocus_summary.csv",
+          "key_column": "id",
+          "key": "sample",
+          "column": "mean_pooled_deficit"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "如何解释合池杂合缺额？",
+      "options": [
+        "可能包含群间频率结构和群内偏离，不能单独识别近交原因",
+        "等于每个群真实近交系数且没有混杂",
+        "NA基因型必然是纯合参考等位"
+      ]
+    }
+  ]
+}

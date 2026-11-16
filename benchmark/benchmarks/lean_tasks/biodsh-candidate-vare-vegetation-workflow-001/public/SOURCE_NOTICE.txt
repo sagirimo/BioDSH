@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "vegan_published_ecology",
+  "source_case": "Vare1995_complete_species_and_environment_tables",
+  "original_parent_source_case": "Study:VareOhtonenOksanen1995",
+  "page": "https://cran.r-project.org/web/packages/vegan/index.html",
+  "source_terms": "Exact source/input terms and attribution review pending; package/code license not generalized to original study",
+  "limitations": [
+    "原覆盖度的Hellinger全RDA及整site重排；统计结果依赖site可交换假设，未控制未提供的空间/实验分层，也不证明环境因果作用。",
+    "Not free model performance or independent biological gold",
+    "Family/exact delivery review pending; no pretraining independence claim"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

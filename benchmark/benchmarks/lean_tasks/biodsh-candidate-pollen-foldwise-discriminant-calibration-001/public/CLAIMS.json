@@ -1,0 +1,140 @@
+{
+  "revision": "round5_lean_v1",
+  "task_id": "biodsh-candidate-pollen-foldwise-discriminant-calibration-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "折外细胞数？",
+      "binding": {
+        "table": "prediction_summary.csv",
+        "key_column": "id",
+        "key": "100",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "100基因准确率？",
+      "binding": {
+        "table": "prediction_summary.csv",
+        "key_column": "id",
+        "key": "100",
+        "column": "accuracy"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "100基因平衡准确率？",
+      "binding": {
+        "table": "prediction_summary.csv",
+        "key_column": "id",
+        "key": "100",
+        "column": "balanced_accuracy"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "多类别Brier分数？",
+      "binding": {
+        "table": "prediction_summary.csv",
+        "key_column": "id",
+        "key": "100",
+        "column": "brier"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "等宽概率箱ECE？",
+      "binding": {
+        "table": "prediction_summary.csv",
+        "key_column": "id",
+        "key": "100",
+        "column": "ece"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "特征数增加的Brier变化？",
+      "binding": {
+        "table": "panel_sensitivity.csv",
+        "key_column": "id",
+        "key": "100_minus_50",
+        "column": "delta_brier"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "平均群召回率是否超过80%？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "prediction_summary.csv",
+          "key_column": "id",
+          "key": "100",
+          "column": "balanced_accuracy"
+        },
+        "op": "gt",
+        "threshold": 0.8,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "ECE是否超过0.1？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "prediction_summary.csv",
+          "key_column": "id",
+          "key": "100",
+          "column": "ece"
+        },
+        "op": "gt",
+        "threshold": 0.1,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "这个验证能回答哪类问题？",
+      "options": [
+        "在同一实验来源混合物中留出细胞的来源群可分性与概率表现",
+        "模型已通过独立供体外部验证",
+        "高置信度输出就证明概率校准良好"
+      ]
+    }
+  ]
+}

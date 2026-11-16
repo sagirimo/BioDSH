@@ -1,0 +1,8 @@
+{
+ "source_url": "https://www.rcsb.org/structure/4AKE",
+ "input_files_sha256": {
+  "inputs/1AKE.pdb": "651e952f55f1317f50f4e82b7f0e99053397032cd8da5b2896f79d0af9f619a9",
+  "inputs/4AKE.pdb": "ff798ee8791878eb58bac1c6bed32042f51b455512ac93b50bda8fa0ff0e7f78"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

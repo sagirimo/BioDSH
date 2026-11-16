@@ -1,0 +1,17 @@
+{
+ "source_url": "https://kbroman.org/qtl2/pages/sampledata.html",
+ "input_files_sha256": {
+  "inputs/OUTPUT_FIELD_CONVENTIONS_V2.json": "66710ff26c6269fdb178075e67cf33075a6cf3c2ca61f8955841ff3d8ec01bf4",
+  "inputs/design.json": "b5db1b248690a65dab6df01459e08a72e79101702cf63c6273ea72597edf2a1d",
+  "inputs/evidence_input.csv": "9bfa3127830a6fd3660ff510a2dfa9ce399fdd97c877021b52d3386478a8ae2b",
+  "inputs/grav2.yaml": "bd75572d5bc855c2c8c6a76896a86761d907382510f8dfdd0215f6b029d0236a",
+  "inputs/grav2_geno.csv": "3f96d124b3ac60bd586fcfbf94e128d8a636a0c9912b58f188dbfd736095fa7c",
+  "inputs/grav2_gmap.csv": "8572843747602f4f4c56318d950c020718d090218ad0965de71e6f5659578b30",
+  "inputs/grav2_pheno.csv": "fe7b1c7a6012eadfd494f6573a1dfde7db43ea2680429a216d0ca1f396f04671",
+  "inputs/grav2_phenocovar.csv": "20b3db2d70f645229f07ac806129760ca5c65d81d9067c9870fef31296ffbac6",
+  "inputs/individual_order.csv": "8dbf6f960de7dd207702af54859f45e78245a21c43af12651618dd3993b3436b",
+  "inputs/kind.txt": "89090e02f2f5e913607b09d961189ce9bf316fd4ece4079c392eca2c694de990",
+  "inputs/table_schema.csv": "97a2cc7cadcc69d7311d98b66635bd4215c9fd5f957f75fd20fed7ec1e47c33d"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

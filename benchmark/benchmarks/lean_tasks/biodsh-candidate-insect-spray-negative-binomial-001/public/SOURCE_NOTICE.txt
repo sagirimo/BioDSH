@@ -1,0 +1,2 @@
+来源：Beall G (1942), The Transformation of Data from Entomological Field Experiments so that the Analysis of Variance Becomes Applicable. Biometrika32:243–262，DOI10.1093/biomet/32.3-4.243。R Core datasets官方InsectSprays.R，https://raw.githubusercontent.com/wch/r-source/trunk/src/library/datasets/data/InsectSprays.R 。从官方R源码的数值/因子字面量无损导出CSV，添加来源行号id；未采用R文档示例的方差分析或任何benchmark切分。R源码GPL≥2；保留文献及R Core署名，仅本地研究。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

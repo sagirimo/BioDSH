@@ -1,0 +1,10 @@
+{
+ "source_url": "https://www.biostat.wisc.edu/~kbroman/teaching/misc/Hyderabad/rqtltour3.pdf",
+ "input_files_sha256": {
+  "inputs/design.json": "1b243f07651e1537e62992aabb77cb6ddae1cff4c046f892d225b19f4f823c3a",
+  "inputs/genotypes.csv": "26d1fdbbf7fade1f5ecba82d1326b9c5039bb71c81eb4cad20029f6c783efde1",
+  "inputs/marker_map.csv": "c4521f992ac4a1b58d8786770b256f33cac8f88807bfa79791ab8d3952cd5047",
+  "inputs/phenotypes.csv": "9c722055a4c549d65551da2f15489d42de6dd0dd1a2c462fcb8a60f1a606fb6a"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

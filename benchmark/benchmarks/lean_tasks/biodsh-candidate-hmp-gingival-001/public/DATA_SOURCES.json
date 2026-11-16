@@ -1,0 +1,11 @@
+{
+ "source_url": "",
+ "input_files_sha256": {
+  "inputs/count_matrix.tsv": "ce6e34b826fd8647fcf77d6dd2d6b6ea9d9b8ca8b08552a2d1ee6826bff72ec7",
+  "inputs/design.json": "6fd200375bd9ef79a61be92174004e1eab19aaa1c0bd1b9c48c29ea956e9ee56",
+  "inputs/sample_metadata.tsv": "87072802eae073c6a8df7f884f86419db10fc42701318a97dc7956f5eda32ccc",
+  "inputs/taxonomy_table.tsv": "7d127b55c40580e63d60438a9e2498e53f85149c52a898e60606c78eb6aad95e",
+  "inputs/taxonomy_tree.newick": "f98ad3015b514535369dafe51422c3b45fcc57bc7db8716809f46fead58180c7"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

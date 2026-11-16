@@ -1,0 +1,5 @@
+原始研究：Elowitz MB, Leibler S (2000). A synthetic oscillatory network of transcriptional regulators. Nature 403:335–338. DOI10.1038/35002125; PMID10659856。
+原始公共模型：BioModels BIOMD0000000012（Elowitz2000 - Repressilator），下载 https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml 。原始SBML完整保留；版本内容以输入SHA256固定。
+BioModels模型编码声明CC0（https://www.ebi.ac.uk/biomodels/services/download/get-files/MODEL6615351360/3/BIOMD0000000012.pdf）；原研究及模型整理者署名保留。
+本题采用SBML修正后有量纲动力学及其assignmentRule，推导稳态与线性谱，不采用其他benchmark给出的任务、结果或切分。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

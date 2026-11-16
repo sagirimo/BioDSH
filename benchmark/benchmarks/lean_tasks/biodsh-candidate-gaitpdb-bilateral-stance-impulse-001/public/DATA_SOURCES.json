@@ -1,0 +1,11 @@
+{
+ "source_url": "https://physionet.org/content/gaitpdb/1.0.0/",
+ "input_files_sha256": {
+  "inputs/GaCo01_01.txt": "81bcedc0f72c1c6804d7830627431a6c1b76e9ddb42de0cf1ae2f418848c13a4",
+  "inputs/GaCo02_01.txt": "8e36793cbe901f5fd1f14af2e553353978f2a997b2121b41dcc0e05b8c64d87f",
+  "inputs/GaPt03_01.txt": "e2e55fb21fa64392eaa924005c5615ce1fac690d7d52f078404ec3ff7e2c7f3d",
+  "inputs/GaPt04_01.txt": "5f3ea1b726cc054823c683f6de7efe56e872b229ad513a639d84316c361a2af7",
+  "inputs/format.txt": "8a91a8c4181e790474f247b59c8189d6af915fd5af45178a8b355c69a884bff6"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

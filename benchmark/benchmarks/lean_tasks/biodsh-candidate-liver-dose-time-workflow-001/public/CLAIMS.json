@@ -1,0 +1,134 @@
+{
+  "task_id": "biodsh-candidate-liver-dose-time-workflow-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "原定义 full_mean_squared_residual_correlation",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "full_mean_squared_residual_correlation"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "原定义 maximum_defined_whole_animal_correlation_change",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "maximum_defined_whole_animal_correlation_change"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "原定义 full_defined_pair_count",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "full_defined_pair_count"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "原定义 all_run_pair_count",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "all_run_pair_count"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "首基因与首临床指标的完整模型残差相关",
+      "binding": {
+        "table": "residual_correlation__run000.csv",
+        "keys": {
+          "axis_index": "1"
+        },
+        "column": "v1"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "首基因完整模型截距",
+      "binding": {
+        "table": "gene_coefficients__run000.csv",
+        "keys": {
+          "axis_index": "1"
+        },
+        "column": "v1"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "首基因与首临床指标残差相关是否小于0？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "residual_correlation__run000.csv",
+          "keys": {
+            "axis_index": "1"
+          },
+          "column": "v1"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "时间轴如何解释？",
+      "options": [
+        "不同动物的分类时间，非同体曲线",
+        "同一动物64次随访",
+        "时间本身为随机化证据"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "供应商筛选基因的分析支持何种结论？",
+      "options": [
+        "给定筛选面板的条件关联与删除敏感性",
+        "无偏全基因发现",
+        "因果临床效应"
+      ]
+    }
+  ]
+}

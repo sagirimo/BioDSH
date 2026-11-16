@@ -1,0 +1,152 @@
+{
+  "revision": "round9_lean_v1",
+  "task_id": "biodsh-candidate-klein-lifwithdrawal-distribution-shift-001",
+  "claims": [
+    {
+      "id": "sox2_transport",
+      "type": "number",
+      "question": "Sox2 两日归一化表达分布的一阶 Wasserstein 距离。",
+      "binding": {
+        "table": "distribution_shift.csv",
+        "key_column": "gene",
+        "key": "Sox2",
+        "column": "wasserstein"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "nanog_shift",
+      "type": "number",
+      "question": "Nanog 的 d4−d2 平均 log 表达差。",
+      "binding": {
+        "table": "distribution_shift.csv",
+        "key_column": "gene",
+        "key": "Nanog",
+        "column": "mean_shift"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "pou5f1_rank",
+      "type": "number",
+      "question": "Pou5f1 的 d4 相对 d2 秩二列效应量。",
+      "binding": {
+        "table": "distribution_shift.csv",
+        "key_column": "gene",
+        "key": "Pou5f1",
+        "column": "rank_biserial"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "gata6_transport",
+      "type": "number",
+      "question": "Gata6 分布距离。",
+      "binding": {
+        "table": "distribution_shift.csv",
+        "key_column": "gene",
+        "key": "Gata6",
+        "column": "wasserstein"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "fgf5_fdr",
+      "type": "number",
+      "question": "Fgf5 在全部十基因中 BH 校正的 q 值。",
+      "binding": {
+        "table": "distribution_shift.csv",
+        "key_column": "gene",
+        "key": "Fgf5",
+        "column": "q_value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "sox17_shift",
+      "type": "number",
+      "question": "Sox17 的均值位移。",
+      "binding": {
+        "table": "distribution_shift.csv",
+        "key_column": "gene",
+        "key": "Sox17",
+        "column": "mean_shift"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "nanog_direction",
+      "type": "derived",
+      "question": "Nanog 的均值位移是否为正？",
+      "options": [
+        "higher_d4",
+        "not_higher_d4",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "distribution_shift.csv",
+          "key_column": "gene",
+          "key": "Nanog",
+          "column": "mean_shift"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "higher_d4",
+          "false": "not_higher_d4"
+        }
+      }
+    },
+    {
+      "id": "sox2_distance_large",
+      "type": "derived",
+      "question": "Sox2 分布距离是否超过 0.5 log 单位？",
+      "options": [
+        "above_half_log_unit",
+        "at_most_half_log_unit",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "distribution_shift.csv",
+          "key_column": "gene",
+          "key": "Sox2",
+          "column": "wasserstein"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "above_half_log_unit",
+          "false": "at_most_half_log_unit"
+        }
+      }
+    },
+    {
+      "id": "inference",
+      "type": "choice",
+      "question": "根据样本来源，本分析的适当推断边界是什么？",
+      "options": [
+        "descriptive_cells_in_two_cultures",
+        "population_causal_LIF_effect",
+        "independent_mouse_replicates"
+      ]
+    },
+    {
+      "id": "distance_meaning",
+      "type": "choice",
+      "question": "均值位移接近零时，非零 Wasserstein 距离仍可能表示什么？",
+      "options": [
+        "distribution_shape_difference",
+        "necessarily_no_expression_change",
+        "proves_lineage_conversion"
+      ]
+    }
+  ]
+}

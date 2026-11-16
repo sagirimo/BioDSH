@@ -1,0 +1,156 @@
+{
+  "tables": {
+    "cell_expression.csv": {
+      "columns": [
+        "cell_id",
+        "gene",
+        "day",
+        "log_cp10k",
+        "detected"
+      ],
+      "key": [
+        "cell_id",
+        "gene"
+      ],
+      "types": {
+        "cell_id": "text",
+        "gene": "text",
+        "day": "text",
+        "log_cp10k": "float",
+        "detected": "int"
+      },
+      "tolerance": {
+        "log_cp10k": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "cell_qc.csv": {
+      "columns": [
+        "cell_id",
+        "day",
+        "total_umi",
+        "detected_genes",
+        "retained"
+      ],
+      "key": [
+        "cell_id"
+      ],
+      "types": {
+        "cell_id": "text",
+        "day": "text",
+        "total_umi": "int",
+        "detected_genes": "int",
+        "retained": "int"
+      }
+    },
+    "day_gene.csv": {
+      "columns": [
+        "day",
+        "gene",
+        "n",
+        "mean_log",
+        "detection_fraction"
+      ],
+      "key": [
+        "day",
+        "gene"
+      ],
+      "types": {
+        "day": "text",
+        "gene": "text",
+        "n": "int",
+        "mean_log": "float",
+        "detection_fraction": "float"
+      },
+      "tolerance": {
+        "mean_log": [
+          1e-06,
+          1e-08
+        ],
+        "detection_fraction": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "distribution_shift.csv": {
+      "columns": [
+        "gene",
+        "n_d2",
+        "n_d4",
+        "mean_shift",
+        "wasserstein",
+        "rank_biserial",
+        "p_value",
+        "q_value"
+      ],
+      "key": [
+        "gene"
+      ],
+      "types": {
+        "gene": "text",
+        "n_d2": "int",
+        "n_d4": "int",
+        "mean_shift": "float",
+        "wasserstein": "float",
+        "rank_biserial": "float",
+        "p_value": "float",
+        "q_value": "float"
+      },
+      "tolerance": {
+        "mean_shift": [
+          1e-06,
+          1e-08
+        ],
+        "wasserstein": [
+          1e-06,
+          1e-08
+        ],
+        "rank_biserial": [
+          1e-06,
+          1e-08
+        ],
+        "p_value": [
+          1e-06,
+          1e-08
+        ],
+        "q_value": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "programs.csv": {
+      "columns": [
+        "program",
+        "day",
+        "n",
+        "mean_score",
+        "sd_score"
+      ],
+      "key": [
+        "program",
+        "day"
+      ],
+      "types": {
+        "program": "text",
+        "day": "text",
+        "n": "int",
+        "mean_score": "float",
+        "sd_score": "float"
+      },
+      "tolerance": {
+        "mean_score": [
+          1e-06,
+          1e-08
+        ],
+        "sd_score": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

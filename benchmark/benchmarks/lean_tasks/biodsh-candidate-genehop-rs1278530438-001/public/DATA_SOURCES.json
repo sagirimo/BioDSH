@@ -1,0 +1,10 @@
+{
+ "source_url": "",
+ "input_files_sha256": {
+  "inputs/Homo_sapiens.gene_info.gz": "2111e243a3e6a38d1b41804929adaa499f24a3050a00d1de0cb4e7c7802303bd",
+  "inputs/design.json": "23e84838a2f14317e7c0814baf6e2cb93b59b39c071b40105b1409cdfc3a2fd6",
+  "inputs/genes.xml": "40618713a60b706a917cea9655bcd4ab80ded088d39f49ef779db9fc9ef151b4",
+  "inputs/refsnp.json": "8889dca700f26ae91dee935fdad376213da26ca47794775916e90622a5879610"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

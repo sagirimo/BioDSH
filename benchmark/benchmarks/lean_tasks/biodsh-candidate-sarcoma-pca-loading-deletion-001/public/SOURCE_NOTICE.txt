@@ -1,0 +1,2 @@
+来源：Baird K、Meltzer P、Davis S等，Gene Expression Profiling of Human Sarcomas，Cancer Research 2005；PMID16230383；DOI10.1158/0008-5472.CAN-05-1699。GEO GSE2553/GPL1977。下载 https://ftp.ncbi.nlm.nih.gov/geo/series/GSE2nnn/GSE2553/matrix/GSE2553_series_matrix.txt.gz；原始压缩表原样交付；samples仅从GEO标题提取诊断。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

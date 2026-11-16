@@ -1,0 +1,114 @@
+{
+  "tables": {
+    "contacts.csv": {
+      "columns": [
+        "id",
+        "residue_i",
+        "residue_j",
+        "distance_A"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "residue_i": "text",
+        "residue_j": "text",
+        "distance_A": "float"
+      },
+      "tolerance": {
+        "distance_A": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "network_summary.csv": {
+      "columns": [
+        "id",
+        "nodes",
+        "edges",
+        "components",
+        "mean_degree",
+        "global_efficiency",
+        "mean_clustering"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "nodes": "int",
+        "edges": "int",
+        "components": "int",
+        "mean_degree": "float",
+        "global_efficiency": "float",
+        "mean_clustering": "float"
+      },
+      "tolerance": {
+        "mean_degree": [
+          1e-05,
+          1e-08
+        ],
+        "global_efficiency": [
+          1e-05,
+          1e-08
+        ],
+        "mean_clustering": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "residues.csv": {
+      "columns": [
+        "id",
+        "resname",
+        "degree",
+        "harmonic_closeness",
+        "clustering"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "resname": "text",
+        "degree": "int",
+        "harmonic_closeness": "float",
+        "clustering": "float"
+      },
+      "tolerance": {
+        "harmonic_closeness": [
+          1e-05,
+          1e-08
+        ],
+        "clustering": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "sensitivity.csv": {
+      "columns": [
+        "id",
+        "edge_retention",
+        "edges_lost"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "edge_retention": "float",
+        "edges_lost": "int"
+      },
+      "tolerance": {
+        "edge_retention": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

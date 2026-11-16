@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "mixomics_published_multiomics",
+  "source_case": "nutrimouse_complete_native",
+  "original_parent_source_case": "Study:Martin2007:Nutrimouse",
+  "page": "https://mixomics.org/wp-content/uploads/2025/01/CCA-rCCA.html",
+  "source_terms": "Exact underlying source delivery/attribution review pending",
+  "limitations": [
+    "Computational correctness not actual agent advantage or causal validity",
+    "Declared workflow not original provider default pipeline",
+    "Detailed historical source-family/input-delivery review pending"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

@@ -1,0 +1,32 @@
+{
+ "source_url": "https://gnw.sourceforge.net/dreamchallenge.html",
+ "input_files_sha256": {
+  "inputs/design.json": "c2a6919006c3471908499c1c51c4892218f4669680bbdccc9413d727d334dc63",
+  "inputs/insilico_size100_1_dualknockouts_indexes.tsv": "02c050da2c9383ba802d2cde6ff09ce403d1447a9b9972b2c5913fa86a925ee0",
+  "inputs/insilico_size100_1_knockdowns.tsv": "f213c0701f8adc0326a7c6ae875e201283673592553ebdad3b6e8f8374fb5ca7",
+  "inputs/insilico_size100_1_knockouts.tsv": "704c5757493c6ff9499f2011ec283eb9d3d30f554d8809ddd46e04206062f378",
+  "inputs/insilico_size100_1_timeseries.tsv": "d2701670f17e5ade34624c9252fbad4e799156ed4a055ddc97388c1aeddd6336",
+  "inputs/insilico_size100_1_wildtype.tsv": "a273db43ee852bd2fd2cd0e37d043397c446e2cc5b93ff9c0549cf752f2bc68c",
+  "inputs/insilico_size100_2_dualknockouts_indexes.tsv": "65e42c26819f976b5ce04a66c8af7e97ebff50208bf38b0b7dc456ef637ae087",
+  "inputs/insilico_size100_2_knockdowns.tsv": "717bf2100f7d1a4904dc812665dfecb57912cec4f720aba1381b648c6ea4612f",
+  "inputs/insilico_size100_2_knockouts.tsv": "8d8426c00661bf9dffe1a970d2c8d0960fa255fba10d9a324df1ecbc0ede40eb",
+  "inputs/insilico_size100_2_timeseries.tsv": "5e738fc7ae6c45ff163aa81e66f8a765fa1562fc67464cfe204d326e4d05f87a",
+  "inputs/insilico_size100_2_wildtype.tsv": "c2133e469dae2b3f59fa01d3876f80d4fd4683356f140d82322fc0a34e24fe6c",
+  "inputs/insilico_size100_3_dualknockouts_indexes.tsv": "0d765eada4f6f755a1ee29e396c88c1fe763a8355565b14d79b73b352b225e80",
+  "inputs/insilico_size100_3_knockdowns.tsv": "c3aa0512cfc27ab66bc2c7a0628f6ece52206725aab3adc453143652398ee288",
+  "inputs/insilico_size100_3_knockouts.tsv": "dba45a866a61fb0321e9b4573c709d6faedccfc007f8029f8f68011aecf769f4",
+  "inputs/insilico_size100_3_timeseries.tsv": "4820581efddce33d9eb161a9d5c2d530d73e8d1aaeef96609eea6bb405769e18",
+  "inputs/insilico_size100_3_wildtype.tsv": "d2198a38fd741764cf6bcdbdb4772cd4f1e30da59467cc682821b3cbd067e686",
+  "inputs/insilico_size100_4_dualknockouts_indexes.tsv": "dd61c2207cc627b19c62640344135096675d35f14a84f9a5a7c7a950c83c182d",
+  "inputs/insilico_size100_4_knockdowns.tsv": "117f0a5e84b84012bf300719a7389f334a6fea0b60bc9ce98c96ba0223ea0e11",
+  "inputs/insilico_size100_4_knockouts.tsv": "cdcf9a4f3717f1dad2f8e38259da731fa4195408de5728d6a258aa3bfb5fd585",
+  "inputs/insilico_size100_4_timeseries.tsv": "392e44acca4a7af9fd16b3d57cdfd3b5f9b60c4c013508cf34496eb106b7f65e",
+  "inputs/insilico_size100_4_wildtype.tsv": "74e6adfe95acf9db2057f12163d525c1b92f189384981850210ebf778dc63397",
+  "inputs/insilico_size100_5_dualknockouts_indexes.tsv": "8461e94f2804ecd7a85ec68e02858d817e227bd67f6a762c09441a48489da299",
+  "inputs/insilico_size100_5_knockdowns.tsv": "ac14fcfdf3a879149e0c2f75990eb02d5187ab997d72f7499cd15f0c3209371f",
+  "inputs/insilico_size100_5_knockouts.tsv": "d31b31b2f5eaf9c7523b22fb619cb377c3090cf0ac136e5a8d37e54c7cc91732",
+  "inputs/insilico_size100_5_timeseries.tsv": "234c4b36cf55ff185d12d201a22286844b38a2ce494b72380e96b195f8e6150d",
+  "inputs/insilico_size100_5_wildtype.tsv": "be27ea54d05759972ef9409e981f024d0d86cee78c89d2dd0b6a2014f1b33267"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

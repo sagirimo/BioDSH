@@ -1,0 +1,17 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/Melanoma.html",
+ "input_files_sha256": {
+  "inputs/Melanoma.rda": "1e7ad847d69477837c1fff5d16de96e57103fafb6f3051a6afa0593c0a786df4",
+  "inputs/PUBLIC_OUTPUT_NAMING_AND_TYPES.json": "2ea247797d450d032f7b14329dace7aab013fade337873632739a4e171737d87",
+  "inputs/design.json": "f3d14a125b29c87e7df415a75ca473564ca44913a1a1238ab6e02b1354b5e9b6",
+  "inputs/evidence_input.csv": "277e86c4f903686c73d206d8c38ab2860299c6e159173c342b42791a4d2f92b8",
+  "inputs/kind.txt": "f71eb5f5ea579f27e3b6247afbdd4afda5e0d8baa5fb497d201cd0e7c6c26626",
+  "inputs/native_attributes.dput.txt": "c9b97d0d9a9865ec2509f3ddc60c1728a6819cc999aed18b498e408450089c5f",
+  "inputs/native_factor_levels.csv": "e6937869502834895f59e92e630dd575a12cdaeee8a09704dd0cc22a35e76edf",
+  "inputs/native_field_dictionary.csv": "8ff1386ad0f1f1a86a862c3c0408a63352e5c869e58ed2d7ebada95892f91add",
+  "inputs/native_records.csv": "40313f55bf458d61f2bad256e87750db25c31f164a5f70bb76a7d6fed04992c5",
+  "inputs/table_schema.csv": "e3732615dabcf171b2d5734a7caf51099b681c5acf6ac2691f7ee58b1c1043c8",
+  "inputs/whole_native.rds": "98520e0cf6db3a4cdd9a297f0edd6f2e7840f22f613a079e8461ab4e7ea03eed"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

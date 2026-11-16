@@ -1,0 +1,7 @@
+Mo ML, Palsson BO, Herrgård MJ. Connecting extracellular metabolomic measurements to intracellular flux states in yeast. BMC Systems Biology 2009;3:37. DOI:10.1186/1752-0509-3-37.
+Primary model page: https://bigg.ucsd.edu/models/iMM904
+Original download, 2026-10-16: https://bigg.ucsd.edu/static/models/iMM904.json (unmodified bytes).
+BiGG database citation: King ZA et al. BiGG Models: A platform for integrating, standardizing and sharing genome-scale models. Nucleic Acids Res. 2016;44:D515–D522. DOI:10.1093/nar/gkv1049.
+conditions.csv and target_reactions.csv are task-authored deterministic analysis specifications, not measured phenotypes. Original metadata/identifiers retained. Model-wide bound truncation is defined in the prompt, not baked into source input.
+Public database access and attributed local research use only; no additional rights over the original model are asserted.
+仅限本地科研使用、保留署名；本任务包不得对外再分发。分析协议由本项目新编，不采用其他 agent benchmark 的题目或切分。

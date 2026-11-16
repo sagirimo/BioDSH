@@ -1,0 +1,127 @@
+{
+  "revision": "round7_lean_v1",
+  "task_id": "biodsh-candidate-cherry-geometric-allometry-smearing-001",
+  "claims": [
+    {
+      "id": "C1",
+      "type": "number",
+      "question": "逐树几何形数的算术均值？",
+      "binding": {
+        "table": "comparison.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "mean_form_factor"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C2",
+      "type": "number",
+      "question": "非约束异速模型的直径指数？",
+      "binding": {
+        "table": "coefficients.csv",
+        "key_column": "id",
+        "key": "allometric:log_diameter",
+        "column": "coefficient"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C3",
+      "type": "number",
+      "question": "非约束异速模型的高度指数？",
+      "binding": {
+        "table": "coefficients.csv",
+        "key_column": "id",
+        "key": "allometric:log_height",
+        "column": "coefficient"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C4",
+      "type": "number",
+      "question": "指数固定(2,1)的嵌套F统计量？",
+      "binding": {
+        "table": "comparison.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "constraint_F"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C5",
+      "type": "number",
+      "question": "非约束模型逐树留出体积RMSE(m³)？",
+      "binding": {
+        "table": "comparison.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "loo_rmse_allometric"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C6",
+      "type": "number",
+      "question": "几何约束模型逐树留出体积RMSE(m³)？",
+      "binding": {
+        "table": "comparison.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "loo_rmse_geometric"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C7",
+      "type": "derived",
+      "question": "几何指数约束的F检验是否低于0.05？",
+      "options": [
+        "低于0.05",
+        "不低于0.05"
+      ],
+      "rule": {
+        "binding": {
+          "table": "comparison.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "constraint_p"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "低于0.05",
+          "false": "不低于0.05"
+        }
+      }
+    },
+    {
+      "id": "C8",
+      "type": "choice",
+      "question": "Girth字段的正确理解是什么？",
+      "options": [
+        "原资料实际记录树干直径英寸",
+        "原资料记录圆周长厘米",
+        "原资料记录树干半径英尺"
+      ]
+    },
+    {
+      "id": "C9",
+      "type": "choice",
+      "question": "重新变换到体积尺度为何使用训练残差smearing？",
+      "options": [
+        "校正对数模型回变换的均值偏差且避免留出泄漏",
+        "把预测强制等于观测",
+        "保证换树种后仍无偏"
+      ]
+    }
+  ]
+}

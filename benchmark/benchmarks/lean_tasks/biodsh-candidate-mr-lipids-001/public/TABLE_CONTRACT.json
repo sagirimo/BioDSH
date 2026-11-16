@@ -1,0 +1,873 @@
+{
+  "tables": {
+    "variant_audit.csv": {
+      "columns": [
+        "variant_id",
+        "source_row",
+        "effect_allele",
+        "other_allele",
+        "effect_allele_frequency",
+        "palindromic"
+      ],
+      "key": [
+        "variant_id"
+      ],
+      "types": {
+        "variant_id": "text",
+        "source_row": "float",
+        "effect_allele": "text",
+        "other_allele": "text",
+        "effect_allele_frequency": "float",
+        "palindromic": "float"
+      },
+      "tolerance": {
+        "source_row": [
+          1e-08,
+          1e-08
+        ],
+        "effect_allele_frequency": [
+          1e-08,
+          1e-08
+        ],
+        "palindromic": [
+          1e-08,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "variant_id"
+        ],
+        "row_count": 28,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                28
+              ],
+              "prefix": "v",
+              "suffix": "",
+              "zero_pad": 3
+            }
+          ]
+        }
+      }
+    },
+    "oriented_associations.csv": {
+      "columns": [
+        "association_id",
+        "variant_id",
+        "exposure",
+        "orientation_sign",
+        "bx_original",
+        "bx_oriented",
+        "bx_se",
+        "by_original",
+        "by_oriented",
+        "by_se",
+        "F_univ",
+        "ratio",
+        "ratio_se_first_order",
+        "ratio_se_delta_no_overlap"
+      ],
+      "key": [
+        "association_id"
+      ],
+      "types": {
+        "association_id": "text",
+        "variant_id": "text",
+        "exposure": "text",
+        "orientation_sign": "float",
+        "bx_original": "float",
+        "bx_oriented": "float",
+        "bx_se": "float",
+        "by_original": "float",
+        "by_oriented": "float",
+        "by_se": "float",
+        "F_univ": "float",
+        "ratio": "float",
+        "ratio_se_first_order": "float",
+        "ratio_se_delta_no_overlap": "float"
+      },
+      "tolerance": {
+        "orientation_sign": [
+          1e-08,
+          1e-08
+        ],
+        "bx_original": [
+          1e-08,
+          1e-08
+        ],
+        "bx_oriented": [
+          1e-08,
+          1e-08
+        ],
+        "bx_se": [
+          1e-08,
+          1e-08
+        ],
+        "by_original": [
+          1e-08,
+          1e-08
+        ],
+        "by_oriented": [
+          1e-08,
+          1e-08
+        ],
+        "by_se": [
+          1e-08,
+          1e-08
+        ],
+        "F_univ": [
+          1e-08,
+          1e-08
+        ],
+        "ratio": [
+          1e-08,
+          1e-08
+        ],
+        "ratio_se_first_order": [
+          1e-08,
+          1e-08
+        ],
+        "ratio_se_delta_no_overlap": [
+          1e-08,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "association_id"
+        ],
+        "row_count": 84,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "hdlc",
+              "ldlc",
+              "trig"
+            ],
+            {
+              "integer_range": [
+                1,
+                28
+              ],
+              "prefix": "v",
+              "suffix": "",
+              "zero_pad": 3
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "association_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "mr_estimates.csv": {
+      "columns": [
+        "estimate_id",
+        "model",
+        "exposure",
+        "coefficient",
+        "n",
+        "df",
+        "estimate",
+        "se",
+        "z",
+        "p_value",
+        "ci_low",
+        "ci_high",
+        "Q",
+        "Q_p_value",
+        "dispersion_multiplier",
+        "odds_ratio"
+      ],
+      "key": [
+        "estimate_id"
+      ],
+      "types": {
+        "estimate_id": "text",
+        "model": "text",
+        "exposure": "text",
+        "coefficient": "text",
+        "n": "float",
+        "df": "float",
+        "estimate": "float",
+        "se": "float",
+        "z": "float",
+        "p_value": "float",
+        "ci_low": "float",
+        "ci_high": "float",
+        "Q": "float",
+        "Q_p_value": "float",
+        "dispersion_multiplier": "float",
+        "odds_ratio": "float"
+      },
+      "tolerance": {
+        "n": [
+          1e-08,
+          1e-08
+        ],
+        "df": [
+          1e-08,
+          1e-08
+        ],
+        "estimate": [
+          1e-08,
+          1e-08
+        ],
+        "se": [
+          1e-08,
+          1e-08
+        ],
+        "z": [
+          1e-08,
+          1e-08
+        ],
+        "p_value": [
+          1e-08,
+          1e-08
+        ],
+        "ci_low": [
+          1e-08,
+          1e-08
+        ],
+        "ci_high": [
+          1e-08,
+          1e-08
+        ],
+        "Q": [
+          1e-08,
+          1e-08
+        ],
+        "Q_p_value": [
+          1e-08,
+          1e-08
+        ],
+        "dispersion_multiplier": [
+          1e-08,
+          1e-08
+        ],
+        "odds_ratio": [
+          1e-08,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "estimate_id"
+        ],
+        "row_count": 24,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "IVW_fixed",
+                "IVW_multiplicative_random"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "ldlc"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "ldlc"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "hdlc"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "hdlc"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "trig"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "trig"
+                        ]
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "Egger_fixed",
+                "Egger_multiplicative_random"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "ldlc"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "intercept",
+                          "ldlc"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "hdlc"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "hdlc",
+                          "intercept"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "trig"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "intercept",
+                          "trig"
+                        ]
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "MVMR_fixed",
+                "MVMR_multiplicative_random"
+              ],
+              "then": {
+                "cartesian": [
+                  [
+                    "all3"
+                  ],
+                  [
+                    "hdlc",
+                    "ldlc",
+                    "trig"
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "estimate_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "leave_one_out.csv": {
+      "columns": [
+        "fit_id",
+        "model",
+        "omitted_variant",
+        "exposure",
+        "coefficient",
+        "n",
+        "estimate",
+        "se",
+        "z",
+        "p_value",
+        "delta_from_full"
+      ],
+      "key": [
+        "fit_id"
+      ],
+      "types": {
+        "fit_id": "text",
+        "model": "text",
+        "omitted_variant": "text",
+        "exposure": "text",
+        "coefficient": "text",
+        "n": "float",
+        "estimate": "float",
+        "se": "float",
+        "z": "float",
+        "p_value": "float",
+        "delta_from_full": "float"
+      },
+      "tolerance": {
+        "n": [
+          1e-08,
+          1e-08
+        ],
+        "estimate": [
+          1e-08,
+          1e-08
+        ],
+        "se": [
+          1e-08,
+          1e-08
+        ],
+        "z": [
+          1e-08,
+          1e-08
+        ],
+        "p_value": [
+          1e-08,
+          1e-08
+        ],
+        "delta_from_full": [
+          1e-08,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "fit_id"
+        ],
+        "row_count": 336,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "IVW"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "ldlc"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "ldlc"
+                        ],
+                        {
+                          "integer_range": [
+                            1,
+                            28
+                          ],
+                          "prefix": "omit_v",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "hdlc"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "hdlc"
+                        ],
+                        {
+                          "integer_range": [
+                            1,
+                            28
+                          ],
+                          "prefix": "omit_v",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "trig"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "trig"
+                        ],
+                        {
+                          "integer_range": [
+                            1,
+                            28
+                          ],
+                          "prefix": "omit_v",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "Egger"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "ldlc"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "intercept",
+                          "ldlc"
+                        ],
+                        {
+                          "integer_range": [
+                            1,
+                            28
+                          ],
+                          "prefix": "omit_v",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "hdlc"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "hdlc",
+                          "intercept"
+                        ],
+                        {
+                          "integer_range": [
+                            1,
+                            28
+                          ],
+                          "prefix": "omit_v",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "trig"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        [
+                          "intercept",
+                          "trig"
+                        ],
+                        {
+                          "integer_range": [
+                            1,
+                            28
+                          ],
+                          "prefix": "omit_v",
+                          "suffix": "",
+                          "zero_pad": 3
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "MVMR"
+              ],
+              "then": {
+                "cartesian": [
+                  [
+                    "all3"
+                  ],
+                  [
+                    "hdlc",
+                    "ldlc",
+                    "trig"
+                  ],
+                  {
+                    "integer_range": [
+                      1,
+                      28
+                    ],
+                    "prefix": "omit_v",
+                    "suffix": "",
+                    "zero_pad": 3
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "fit_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "heterogeneity_contributions.csv": {
+      "columns": [
+        "residual_id",
+        "model",
+        "exposure",
+        "variant_id",
+        "residual",
+        "precision_times_residual",
+        "Q_contribution"
+      ],
+      "key": [
+        "residual_id"
+      ],
+      "types": {
+        "residual_id": "text",
+        "model": "text",
+        "exposure": "text",
+        "variant_id": "text",
+        "residual": "float",
+        "precision_times_residual": "float",
+        "Q_contribution": "float"
+      },
+      "tolerance": {
+        "residual": [
+          1e-08,
+          1e-08
+        ],
+        "precision_times_residual": [
+          1e-08,
+          1e-08
+        ],
+        "Q_contribution": [
+          1e-08,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "residual_id"
+        ],
+        "row_count": 196,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "Egger",
+                "IVW"
+              ],
+              "then": {
+                "cartesian": [
+                  [
+                    "hdlc",
+                    "ldlc",
+                    "trig"
+                  ],
+                  {
+                    "integer_range": [
+                      1,
+                      28
+                    ],
+                    "prefix": "v",
+                    "suffix": "",
+                    "zero_pad": 3
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "MVMR"
+              ],
+              "then": {
+                "cartesian": [
+                  [
+                    "all3"
+                  ],
+                  {
+                    "integer_range": [
+                      1,
+                      28
+                    ],
+                    "prefix": "v",
+                    "suffix": "",
+                    "zero_pad": 3
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "composite_key": {
+          "column": "residual_id",
+          "join": "|",
+          "rule": "展开key_set得到的各分量按join原样连接成唯一键；不对分量作数值重写。"
+        }
+      }
+    },
+    "exposure_correlations.csv": {
+      "columns": [
+        "pair_id",
+        "exposure1",
+        "exposure2",
+        "association_vector_correlation"
+      ],
+      "key": [
+        "pair_id"
+      ],
+      "types": {
+        "pair_id": "text",
+        "exposure1": "text",
+        "exposure2": "text",
+        "association_vector_correlation": "float"
+      },
+      "tolerance": {
+        "association_vector_correlation": [
+          1e-08,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "pair_id"
+        ],
+        "row_count": 9,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "hdlc|hdlc",
+              "hdlc|ldlc",
+              "hdlc|trig",
+              "ldlc|hdlc",
+              "ldlc|ldlc",
+              "ldlc|trig",
+              "trig|hdlc",
+              "trig|ldlc",
+              "trig|trig"
+            ]
+          ]
+        }
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "float",
+        "scope": "text"
+      },
+      "tolerance": {
+        "supported_by_inputs": [
+          1e-08,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "claim_id"
+        ],
+        "row_count": 5,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "MR_conditional_F",
+              "allele_harmonization",
+              "causal_instrument_validity",
+              "raw_GWAS_genotype_analysis",
+              "source_phenotype_units"
+            ]
+          ]
+        }
+      }
+    },
+    "terminal_summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "metric"
+        ],
+        "row_count": 16,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "set_ref": "set_1"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "row_set_definitions": {
+    "set_1": [
+      "anchor_Q",
+      "anchor_estimate",
+      "anchor_standard_error",
+      "causal_or_clinical_validation",
+      "estimate_rows",
+      "heterogeneity_rows",
+      "independent_allele_harmonization",
+      "leave_one_out_rows",
+      "maximum_information_condition",
+      "mean_univ_F",
+      "minimum_univ_F",
+      "new_GWAS_or_genotype_processing",
+      "oriented_association_rows",
+      "palindromic_variants",
+      "source_exposures",
+      "source_variants"
+    ]
+  }
+}

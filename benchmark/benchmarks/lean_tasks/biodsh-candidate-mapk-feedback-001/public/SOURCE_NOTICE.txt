@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "biomodels",
+  "source_case": "BIOMD0000000010_full_structured_workflow_adaptation",
+  "original_parent_source_case": "BIOMD0000000010",
+  "page": null,
+  "source_terms": "Official model repositories LICENSE CC0; source article copyright separate; public delivery review pending",
+  "limitations": [
+    "Formal family/historical exposure/public delivery review pending",
+    "Source model and annotations supplied rather than experimentally rediscovered",
+    "No semantic explanation or causal/clinical validity scoring"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

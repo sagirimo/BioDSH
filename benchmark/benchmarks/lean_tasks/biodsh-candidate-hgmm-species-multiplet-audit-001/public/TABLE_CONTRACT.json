@@ -1,0 +1,121 @@
+{
+  "tables": {
+    "barcodes.csv": {
+      "columns": [
+        "id",
+        "hg19",
+        "mm10",
+        "total",
+        "human_fraction",
+        "human_fraction_ci_low",
+        "human_fraction_ci_high",
+        "class",
+        "source_call"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "hg19": "int",
+        "mm10": "int",
+        "total": "int",
+        "human_fraction": "float",
+        "human_fraction_ci_low": "float",
+        "human_fraction_ci_high": "float",
+        "class": "text",
+        "source_call": "text"
+      },
+      "tolerance": {
+        "human_fraction": [
+          1e-05,
+          1e-08
+        ],
+        "human_fraction_ci_low": [
+          1e-05,
+          1e-08
+        ],
+        "human_fraction_ci_high": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "mixture.csv": {
+      "columns": [
+        "id",
+        "n_barcodes",
+        "human_units",
+        "mouse_units",
+        "mixed_units",
+        "human_singlet_fraction",
+        "observed_mixed_fraction",
+        "estimated_doublet_rate",
+        "conditional_ci_low",
+        "conditional_ci_high"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_barcodes": "int",
+        "human_units": "int",
+        "mouse_units": "int",
+        "mixed_units": "int",
+        "human_singlet_fraction": "float",
+        "observed_mixed_fraction": "float",
+        "estimated_doublet_rate": "float",
+        "conditional_ci_low": "float",
+        "conditional_ci_high": "float"
+      },
+      "tolerance": {
+        "human_singlet_fraction": [
+          1e-05,
+          1e-08
+        ],
+        "observed_mixed_fraction": [
+          1e-05,
+          1e-08
+        ],
+        "estimated_doublet_rate": [
+          1e-05,
+          1e-08
+        ],
+        "conditional_ci_low": [
+          1e-05,
+          1e-08
+        ],
+        "conditional_ci_high": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "species_summary.csv": {
+      "columns": [
+        "id",
+        "n_barcodes",
+        "analysis_units",
+        "median_UMI",
+        "median_human_fraction"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_barcodes": "int",
+        "analysis_units": "int",
+        "median_UMI": "int",
+        "median_human_fraction": "float"
+      },
+      "tolerance": {
+        "median_human_fraction": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

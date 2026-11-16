@@ -2,3 +2,5 @@
 docs/brand/** -text
 docs/brand-showcase/** -text
 desktop/site/** -text
+# Benchmark files are hashed byte for byte (MANIFEST.json, TASK_FREEZE.json); no line-ending conversion.
+benchmark/** -text

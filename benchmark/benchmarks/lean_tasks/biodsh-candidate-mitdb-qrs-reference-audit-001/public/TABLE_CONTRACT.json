@@ -1,0 +1,150 @@
+{
+  "tables": {
+    "detection.csv": {
+      "columns": [
+        "id",
+        "detected",
+        "reference",
+        "TP",
+        "FP",
+        "FN",
+        "sensitivity",
+        "precision",
+        "f1"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "detected": "int",
+        "reference": "int",
+        "TP": "int",
+        "FP": "int",
+        "FN": "int",
+        "sensitivity": "int",
+        "precision": "int",
+        "f1": "int"
+      },
+      "tolerance": {}
+    },
+    "intervals.csv": {
+      "columns": [
+        "id",
+        "series",
+        "start_sample",
+        "end_sample",
+        "RR_ms",
+        "valid"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "series": "text",
+        "start_sample": "int",
+        "end_sample": "int",
+        "RR_ms": "float",
+        "valid": "int"
+      },
+      "tolerance": {
+        "RR_ms": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "interval_summary.csv": {
+      "columns": [
+        "id",
+        "all_intervals",
+        "valid_intervals",
+        "mean_ms",
+        "mean_rate_bpm",
+        "sd_ms",
+        "rmssd_ms",
+        "adjacent_valid_differences"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "all_intervals": "int",
+        "valid_intervals": "int",
+        "mean_ms": "float",
+        "mean_rate_bpm": "float",
+        "sd_ms": "float",
+        "rmssd_ms": "float",
+        "adjacent_valid_differences": "int"
+      },
+      "tolerance": {
+        "mean_ms": [
+          1e-05,
+          1e-08
+        ],
+        "mean_rate_bpm": [
+          1e-05,
+          1e-08
+        ],
+        "sd_ms": [
+          1e-05,
+          1e-08
+        ],
+        "rmssd_ms": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "matches.csv": {
+      "columns": [
+        "id",
+        "detected_sample",
+        "signed_error_ms",
+        "beat_type"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "detected_sample": "int",
+        "signed_error_ms": "float",
+        "beat_type": "text"
+      },
+      "tolerance": {
+        "signed_error_ms": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "peaks.csv": {
+      "columns": [
+        "id",
+        "time_s",
+        "amplitude_mV"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "time_s": "float",
+        "amplitude_mV": "float"
+      },
+      "tolerance": {
+        "time_s": [
+          1e-05,
+          1e-08
+        ],
+        "amplitude_mV": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

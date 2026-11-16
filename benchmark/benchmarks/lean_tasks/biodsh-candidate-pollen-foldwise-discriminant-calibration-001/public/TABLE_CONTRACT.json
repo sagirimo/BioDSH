@@ -1,0 +1,173 @@
+{
+  "tables": {
+    "calibration.csv": {
+      "columns": [
+        "id",
+        "n",
+        "mean_confidence",
+        "accuracy"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "mean_confidence": "float",
+        "accuracy": "float"
+      },
+      "tolerance": {
+        "mean_confidence": [
+          1e-05,
+          1e-08
+        ],
+        "accuracy": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "cell_predictions.csv": {
+      "columns": [
+        "id",
+        "truth",
+        "prediction",
+        "confidence",
+        "p_true",
+        "fold"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "truth": "text",
+        "prediction": "text",
+        "confidence": "float",
+        "p_true": "float",
+        "fold": "int"
+      },
+      "tolerance": {
+        "confidence": [
+          1e-05,
+          1e-08
+        ],
+        "p_true": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "confusion.csv": {
+      "columns": [
+        "id",
+        "count"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "count": "int"
+      },
+      "tolerance": {}
+    },
+    "panel_sensitivity.csv": {
+      "columns": [
+        "id",
+        "delta_accuracy",
+        "delta_brier",
+        "delta_log_loss"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "delta_accuracy": "float",
+        "delta_brier": "float",
+        "delta_log_loss": "float"
+      },
+      "tolerance": {
+        "delta_accuracy": [
+          1e-05,
+          1e-08
+        ],
+        "delta_brier": [
+          1e-05,
+          1e-08
+        ],
+        "delta_log_loss": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "prediction_summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "accuracy",
+        "balanced_accuracy",
+        "brier",
+        "log_loss",
+        "ece"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "accuracy": "float",
+        "balanced_accuracy": "float",
+        "brier": "float",
+        "log_loss": "float",
+        "ece": "float"
+      },
+      "tolerance": {
+        "accuracy": [
+          1e-05,
+          1e-08
+        ],
+        "balanced_accuracy": [
+          1e-05,
+          1e-08
+        ],
+        "brier": [
+          1e-05,
+          1e-08
+        ],
+        "log_loss": [
+          1e-05,
+          1e-08
+        ],
+        "ece": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "selected_features.csv": {
+      "columns": [
+        "id",
+        "rank",
+        "train_variance"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "rank": "int",
+        "train_variance": "float"
+      },
+      "tolerance": {
+        "train_variance": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "task_id": "biodsh-candidate-cdc2-cyclin-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "主可观测量基线积分",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "baseline_primary_AUC"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "参数减半时积分差",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "half_primary_AUC_delta"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "参数加倍时积分差",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "double_primary_AUC_delta"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "主可观测量基线 time_mean",
+      "binding": {
+        "table": "metrics.csv",
+        "keys": {
+          "metric_id": "baseline|M"
+        },
+        "column": "time_mean"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "主可观测量基线 end_concentration",
+      "binding": {
+        "table": "metrics.csv",
+        "keys": {
+          "metric_id": "baseline|M"
+        },
+        "column": "end_concentration"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "主可观测量基线 maximum",
+      "binding": {
+        "table": "metrics.csv",
+        "keys": {
+          "metric_id": "baseline|M"
+        },
+        "column": "maximum"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "局部参数加倍时主可观测量积分相对基线是否下降？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "terminal_summary.csv",
+          "keys": {
+            "metric": "double_primary_AUC_delta"
+          },
+          "column": "value"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "编码守恒量与数值轨迹一致意味着什么？",
+      "options": [
+        "consistency_with_encoded_model_not_physiological_validation",
+        "model_proves_biological_causality",
+        "each_grid_time_is_an_independent_animal"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "独立扰动情景如何初始化？",
+      "options": [
+        "same_source_initial_state_for_each_scenario",
+        "previous_scenario_terminal_state",
+        "new_random_initial_state"
+      ]
+    }
+  ]
+}

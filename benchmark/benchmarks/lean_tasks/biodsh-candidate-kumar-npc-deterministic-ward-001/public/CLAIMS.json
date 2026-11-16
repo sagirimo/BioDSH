@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-kumar-npc-deterministic-ward-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "第一簇细胞数？",
+      "binding": {
+        "table": "cluster_summary.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "第二簇内SSE？",
+      "binding": {
+        "table": "cluster_summary.csv",
+        "key_column": "id",
+        "key": "2",
+        "column": "within_SSE"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "PC1解释比例？",
+      "binding": {
+        "table": "pca_variance.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "fraction"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "PC2特征值？",
+      "binding": {
+        "table": "pca_variance.csv",
+        "key_column": "id",
+        "key": "2",
+        "column": "eigenvalue"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "第三簇细胞数？",
+      "binding": {
+        "table": "cluster_summary.csv",
+        "key_column": "id",
+        "key": "3",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "第一次合并增量？",
+      "binding": {
+        "table": "ward_merges.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "delta_SSE"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "PC1是否解释超过20%方差？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "pca_variance.csv",
+          "key_column": "id",
+          "key": "1",
+          "column": "fraction"
+        },
+        "op": "gt",
+        "threshold": 0.2,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "第一簇是否至少10细胞？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "cluster_summary.csv",
+          "key_column": "id",
+          "key": "1",
+          "column": "n"
+        },
+        "op": "ge",
+        "threshold": 10,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "如何解释簇内标记？",
+      "options": [
+        "descriptive_same_data_contrasts_not_independent_celltype_validation",
+        "confirmatory_differential_expression_p_values",
+        "four_clusters_prove_four_lineages"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+ "source_url": "https://rqtl.org/manual/qtl-manual.pdf",
+ "input_files_sha256": {
+  "inputs/R_session_info.txt": "3ec585c08159a3f3858e18acef6b47b3eb08ea622adb03c8dcedf3d9ac021be6",
+  "inputs/design.json": "67ecb531333dda8f0ef6e08a9c6d3675a02c7b533a1962ac287a34d055a38ebd",
+  "inputs/genotypes.csv": "0881407758db6f0543ddf2f787f9c470bc359217388a3f6e918ad0c37eee5caa",
+  "inputs/kind.txt": "bf0b9d79011d1ad5db0ec9ea28f2ece0fd13a3a2e7d31e7bfe8cc7df89efb16a",
+  "inputs/markers.csv": "03f52371633a71d24d93b264c4573d911afbbb8d748c3537da033653e2b40bf3",
+  "inputs/native_attributes.txt": "865094063b955081123ed8ef1376edce4c8b8cb01f73696a00f856be92dd302d",
+  "inputs/native_bristle3.rds": "3e2c5b2765cbf9206c1a53a894674d316c7f081886b77070743dd8a9d973ddbc",
+  "inputs/native_census.csv": "0c27b28f94967953d76cf33efdb931283f8f5abdcd805ac7a08ecf7397446bad",
+  "inputs/native_genotypes.csv": "f11675ab3ceb41fee321e9f45420b06db360026fa357ff610f17a409cd74ca7c",
+  "inputs/native_lines.csv": "27e70a355d528e5ca3ecaa63b258f14ad69087cc9fa7191c14c7400029f80185",
+  "inputs/native_map.csv": "fd18d41f7f0e3820968753934f686b5641bf14de748a7985e2d446f36c78368d",
+  "inputs/native_phenotypes.csv": "c590e1c212e55176d5dc2dcedfc930623eb74aaa44d5f10b8884c85e81e4ce7e",
+  "inputs/native_structure.txt": "40db6bf6e230193f3c0f01f72b1a372095526b3d59bdaa6b2e307934c2e2adcd",
+  "inputs/original_bristle3.RData": "475c37acdebe4b8f8e6902e2ed16602e6a6c6646ad51582c68b5059ccf65932e",
+  "inputs/permutations.csv": "179a02df8562f68f588cb1ffe5dadec88bd208b24acd17834c8a0cc5152067a9",
+  "inputs/phenotypes.csv": "d068f764b12635c4725a9757b86d882c6d9b576aaf0be480b184583be55747a0",
+  "inputs/table_schema.csv": "d28949a993e69e2abe6df4bba52ae18c41b71ac83ab1770a2f50c80ba1190002"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

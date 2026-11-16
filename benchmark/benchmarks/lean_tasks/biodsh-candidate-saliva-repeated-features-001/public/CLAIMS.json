@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-saliva-repeated-features-001",
+  "claims": [
+    {
+      "id": "subjects",
+      "type": "number",
+      "question": "有测量的受试者数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "subjects",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "metadata_only_subjects",
+      "type": "number",
+      "question": "只有条件元数据、没有测量的受试者数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "metadata_only_subjects",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "auc_duration_min",
+      "type": "number",
+      "question": "预设AUC分析时长，分钟。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "auc_duration_min",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "mean_difference",
+      "type": "number",
+      "question": "平均浓度特征的Intervention减Control差。",
+      "binding": {
+        "table": "condition_comparisons.csv",
+        "key_column": "feature",
+        "key": "mean",
+        "column": "difference_intervention_minus_control"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "auci_difference",
+      "type": "number",
+      "question": "AUCi特征的组间均值差。",
+      "binding": {
+        "table": "condition_comparisons.csv",
+        "key_column": "feature",
+        "key": "auc_i",
+        "column": "difference_intervention_minus_control"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "auci_p",
+      "type": "number",
+      "question": "AUCi的双侧Welch p值。",
+      "binding": {
+        "table": "condition_comparisons.csv",
+        "key_column": "feature",
+        "key": "auc_i",
+        "column": "p_two_sided"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "auci_direction",
+      "type": "derived",
+      "question": "AUCi在两个条件的描述性方向？",
+      "options": [
+        "intervention_lower_mean_AUCi",
+        "intervention_at_least_control_mean_AUCi",
+        "causal_treatment_reduction_proven"
+      ],
+      "rule": {
+        "binding": {
+          "table": "condition_comparisons.csv",
+          "key_column": "feature",
+          "key": "auc_i",
+          "column": "difference_intervention_minus_control"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "intervention_lower_mean_AUCi",
+          "false": "intervention_at_least_control_mean_AUCi"
+        }
+      }
+    },
+    {
+      "id": "auci_evidence",
+      "type": "derived",
+      "question": "AUCi在单项未调整alpha=0.05下？",
+      "options": [
+        "nominal_difference_not_multiplicity_controlled",
+        "no_nominal_evidence_not_equivalence",
+        "familywise_significance_established"
+      ],
+      "rule": {
+        "binding": {
+          "table": "condition_comparisons.csv",
+          "key_column": "feature",
+          "key": "auc_i",
+          "column": "p_two_sided"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "nominal_difference_not_multiplicity_controlled",
+          "false": "no_nominal_evidence_not_equivalence"
+        }
+      }
+    },
+    {
+      "id": "repeated_unit",
+      "type": "choice",
+      "question": "为何先计算每人的特征再做条件比较？",
+      "options": [
+        "respect_subject_as_inference_unit",
+        "all_repeated_measurements_are_independent_people",
+        "discard_within_subject_time_information"
+      ]
+    },
+    {
+      "id": "auci_meaning",
+      "type": "choice",
+      "question": "AUCi相对AUCg去除了什么？",
+      "options": [
+        "baseline_concentration_times_elapsed_duration",
+        "all_measurement_error",
+        "between_subject_confounding"
+      ]
+    }
+  ]
+}

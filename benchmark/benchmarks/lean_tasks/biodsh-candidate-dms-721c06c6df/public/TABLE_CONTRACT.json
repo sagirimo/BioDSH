@@ -1,0 +1,97 @@
+{
+  "tables": {
+    "fit_trials.csv": {
+      "columns": [
+        "alpha",
+        "valid_spearman"
+      ],
+      "key": [
+        "alpha"
+      ],
+      "types": {
+        "alpha": "text",
+        "valid_spearman": "float"
+      },
+      "tolerance": {
+        "valid_spearman": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "mutation_audit.csv": {
+      "columns": [
+        "mutation_id",
+        "position",
+        "wt",
+        "mut",
+        "length",
+        "sequence_matches",
+        "assigned_split"
+      ],
+      "key": [
+        "mutation_id"
+      ],
+      "types": {
+        "mutation_id": "text",
+        "position": "int",
+        "wt": "text",
+        "mut": "text",
+        "length": "int",
+        "sequence_matches": "int",
+        "assigned_split": "text"
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "int"
+      }
+    },
+    "test_predictions.csv": {
+      "columns": [
+        "mutation_id",
+        "predicted_DMS_score"
+      ],
+      "key": [
+        "mutation_id"
+      ],
+      "types": {
+        "mutation_id": "text",
+        "predicted_DMS_score": "float"
+      },
+      "tolerance": {
+        "predicted_DMS_score": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "valid_predictions.csv": {
+      "columns": [
+        "mutation_id",
+        "predicted_DMS_score"
+      ],
+      "key": [
+        "mutation_id"
+      ],
+      "types": {
+        "mutation_id": "text",
+        "predicted_DMS_score": "float"
+      },
+      "tolerance": {
+        "predicted_DMS_score": [
+          1e-06,
+          1e-10
+        ]
+      }
+    }
+  }
+}

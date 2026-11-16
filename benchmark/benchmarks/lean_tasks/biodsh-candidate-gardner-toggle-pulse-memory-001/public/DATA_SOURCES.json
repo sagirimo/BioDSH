@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.ebi.ac.uk/biomodels/BIOMD0000000507",
+ "input_files_sha256": {
+  "inputs/BIOMD0000000507.xml": "0f4371739524b1fd6afba694f3688bb35d007a4600f38662d862d5f0c8da62ca"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

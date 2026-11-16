@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-hippocampus-mmse-rank-influence-001",
+  "claims": [
+    {
+      "id": "n",
+      "type": "number",
+      "question": "完整协变量样本数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "features",
+      "type": "number",
+      "question": "过滤后探针数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "features"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "rho",
+      "type": "number",
+      "question": "指定1007_s_at探针的调整秩相关。",
+      "binding": {
+        "table": "association.csv",
+        "key_column": "id",
+        "key": "1007_s_at",
+        "column": "partial_rho"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "p",
+      "type": "number",
+      "question": "该探针双侧近似p值。",
+      "binding": {
+        "table": "association.csv",
+        "key_column": "id",
+        "key": "1007_s_at",
+        "column": "p_value"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "influence",
+      "type": "number",
+      "question": "该探针最大留一相关变化。",
+      "binding": {
+        "table": "influence.csv",
+        "key_column": "id",
+        "key": "1007_s_at",
+        "column": "max_abs_delta_rho"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "discoveries",
+      "type": "number",
+      "question": "全探针BH q<0.05数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "q_lt_005"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "direction",
+      "type": "derived",
+      "question": "指定探针与认知评分的调整秩相关是否为正？",
+      "options": [
+        "higher_MMSE_higher_expression",
+        "higher_MMSE_not_higher_expression"
+      ],
+      "rule": {
+        "binding": {
+          "table": "association.csv",
+          "key_column": "id",
+          "key": "1007_s_at",
+          "column": "partial_rho"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "higher_MMSE_higher_expression",
+          "false": "higher_MMSE_not_higher_expression"
+        }
+      }
+    },
+    {
+      "id": "influence_large",
+      "type": "derived",
+      "question": "单样本删除是否使指定探针rho改变超过0.1？",
+      "options": [
+        "sensitive_over_0_1",
+        "change_at_most_0_1"
+      ],
+      "rule": {
+        "binding": {
+          "table": "influence.csv",
+          "key_column": "id",
+          "key": "1007_s_at",
+          "column": "max_abs_delta_rho"
+        },
+        "op": "gt",
+        "threshold": 0.1,
+        "outcomes": {
+          "true": "sensitive_over_0_1",
+          "false": "change_at_most_0_1"
+        }
+      }
+    },
+    {
+      "id": "meaning",
+      "type": "choice",
+      "question": "这种横断面脑组织关联能说明什么？",
+      "options": [
+        "conditional_rank_association_not_causal_cognitive_effect",
+        "expression_change_proves_it_causes_dementia",
+        "MMSE_rank_is_an_independent_measure_of_every_pathological_process"
+      ]
+    }
+  ]
+}

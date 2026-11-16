@@ -1,0 +1,2 @@
+Potvin C, Lechowicz MJ, Tardif S (1990). The statistical analysis of ecophysiological response curves obtained from experiments involving repeated measures. Ecology71:1389–1400 DOI10.2307/1938276。官方R datasets CO2.rda https://raw.githubusercontent.com/wch/r-source/trunk/src/library/datasets/data/CO2.rda，文档zCO2.Rd，R Core GPL2或更高。rdata只用于原样CSV导出，参考解不依赖R。附穷举400行处理方案，构造为每产地6选3的笛卡尔积，无随机库。早先同名镜像返回的大气co2时间序列未使用。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

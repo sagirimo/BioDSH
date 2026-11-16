@@ -1,0 +1,179 @@
+{
+  "tables": {
+    "cell_trajectory.csv": {
+      "columns": [
+        "id",
+        "hours",
+        "PC1",
+        "PC2",
+        "PC3",
+        "degree",
+        "root",
+        "tree_distance",
+        "pseudotime"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "hours": "int",
+        "PC1": "float",
+        "PC2": "float",
+        "PC3": "float",
+        "degree": "int",
+        "root": "int",
+        "tree_distance": "float",
+        "pseudotime": "float"
+      },
+      "tolerance": {
+        "PC1": [
+          1e-05,
+          1e-08
+        ],
+        "PC2": [
+          1e-05,
+          1e-08
+        ],
+        "PC3": [
+          1e-05,
+          1e-08
+        ],
+        "tree_distance": [
+          1e-05,
+          1e-08
+        ],
+        "pseudotime": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "gene_loadings.csv": {
+      "columns": [
+        "id",
+        "variance",
+        "PC1",
+        "PC2",
+        "PC3"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "variance": "float",
+        "PC1": "float",
+        "PC2": "float",
+        "PC3": "float"
+      },
+      "tolerance": {
+        "variance": [
+          1e-05,
+          1e-08
+        ],
+        "PC1": [
+          1e-05,
+          1e-08
+        ],
+        "PC2": [
+          1e-05,
+          1e-08
+        ],
+        "PC3": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "mst_edges.csv": {
+      "columns": [
+        "id",
+        "left",
+        "right",
+        "distance"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "left": "text",
+        "right": "text",
+        "distance": "float"
+      },
+      "tolerance": {
+        "distance": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "time_summary.csv": {
+      "columns": [
+        "id",
+        "cells",
+        "median_pseudotime",
+        "mean_pseudotime"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "cells": "int",
+        "median_pseudotime": "float",
+        "mean_pseudotime": "float"
+      },
+      "tolerance": {
+        "median_pseudotime": [
+          1e-05,
+          1e-08
+        ],
+        "mean_pseudotime": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "trajectory_summary.csv": {
+      "columns": [
+        "id",
+        "cells",
+        "edges",
+        "total_length",
+        "leaves",
+        "PC1_fraction",
+        "time_rank_correlation",
+        "root_cell"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "cells": "int",
+        "edges": "int",
+        "total_length": "float",
+        "leaves": "int",
+        "PC1_fraction": "float",
+        "time_rank_correlation": "float",
+        "root_cell": "text"
+      },
+      "tolerance": {
+        "total_length": [
+          1e-05,
+          1e-08
+        ],
+        "PC1_fraction": [
+          1e-05,
+          1e-08
+        ],
+        "time_rank_correlation": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+Blalock EM et al. Incipient Alzheimer's disease: microarray correlation analyses reveal major transcriptional and tumor suppressor responses. PNAS 2004. DOI:10.1073/pnas.0308512100. GEO:GSE1297.
+原始公开NCBI GEO series matrix：https://ftp.ncbi.nlm.nih.gov/geo/series/GSE1nnn/GSE1297/matrix/GSE1297_series_matrix.txt.gz
+NCBI GEO公共数据用于本地科研，保留提交者署名；未主张独立取得再分发许可。仅使用上传者的处理后表达，不复用其他benchmark设计。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

@@ -1,0 +1,3 @@
+Muller CW & Schulz GE (1992), J Mol Biol224:159–177 DOI10.1016/0022-2836(92)90582-5，闭合结构1AKE DOI10.2210/pdb1AKE/pdb；Muller CW et al. (1996), Adenylate kinase motions during catalysis: an energetic counterweight balancing substrate binding，开放结构4AKE DOI10.2210/pdb4AKE/pdb。原始https://files.rcsb.org/download/1AKE.pdb 与 https://files.rcsb.org/download/4AKE.pdb。两个独立沉积作为同一构象比较案例，均核对登记标识。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。
+4AKE原始论文：Structure4:147–156 DOI10.1016/S0969-2126(96)00018-4 PMID8805521；1AKE PMID1548697。

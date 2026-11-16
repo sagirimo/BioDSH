@@ -1,0 +1,6 @@
+Klein AM et al. Droplet barcoding for single-cell transcriptomics applied to embryonic stem cells. Cell 2015;161:1187–1201. DOI:10.1016/j.cell.2015.04.044.
+GEO GSE65525；原始附件未改动，仅选d2与d4两个完整样本：
+https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1599nnn/GSM1599497/suppl/GSM1599497_ES_d2_LIFminus.csv.bz2
+https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1599nnn/GSM1599498/suppl/GSM1599498_ES_d4_LIFminus.csv.bz2
+获取：2026-10-16；NCBI GEO公开研究数据。
+仅限本地科研使用、保留署名；本任务包不得对外再分发。分析协议由本项目新编，不采用其他 agent benchmark 的题目或切分。

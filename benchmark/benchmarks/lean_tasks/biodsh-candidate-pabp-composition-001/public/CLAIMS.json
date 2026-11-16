@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-pabp-composition-001",
+  "claims": [
+    {
+      "id": "source_variants",
+      "type": "number",
+      "question": "完整输入变体数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "source_variants",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "double_variants",
+      "type": "number",
+      "question": "双突变体数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "double_variants",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "train_variants",
+      "type": "number",
+      "question": "实际训练变体数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "train_variants",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "token_frequency",
+      "type": "number",
+      "question": "G126A在训练集的出现频率。",
+      "binding": {
+        "table": "training_token_statistics.csv",
+        "key_column": "token",
+        "key": "G126A",
+        "column": "mean"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-07
+    },
+    {
+      "id": "token_coverage",
+      "type": "number",
+      "question": "G126A在训练集的出现数。",
+      "binding": {
+        "table": "training_token_statistics.csv",
+        "key_column": "token",
+        "key": "G126A",
+        "column": "present_variants"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "double_prediction",
+      "type": "number",
+      "question": "验证变体PV001566b18c0d8339adda的连续分数预测。",
+      "binding": {
+        "table": "valid_predictions.csv",
+        "key_column": "variant_id",
+        "key": "PV001566b18c0d8339adda",
+        "column": "prediction"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "token_observed",
+      "type": "derived",
+      "question": "该token在训练中是否被观察到？",
+      "options": [
+        "token_observed_in_training",
+        "token_unobserved_in_training",
+        "token_effect_experimentally_causal"
+      ],
+      "rule": {
+        "binding": {
+          "table": "training_token_statistics.csv",
+          "key_column": "token",
+          "key": "G126A",
+          "column": "present_variants"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "token_observed_in_training",
+          "false": "token_unobserved_in_training"
+        }
+      }
+    },
+    {
+      "id": "single_anchor",
+      "type": "derived",
+      "question": "该token是否提供了单突变锚点？",
+      "options": [
+        "single_mutant_anchor_supplied",
+        "no_single_mutant_anchor",
+        "all_double_mutant_interactions_identified"
+      ],
+      "rule": {
+        "binding": {
+          "table": "mutation_coverage.csv",
+          "key_column": "token",
+          "key": "G126A",
+          "column": "single_anchor_supplied"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "single_mutant_anchor_supplied",
+          "false": "no_single_mutant_anchor"
+        }
+      }
+    },
+    {
+      "id": "generalization",
+      "type": "choice",
+      "question": "位置对持出且共享单突变训练锚点，评估哪种能力？",
+      "options": [
+        "within_protein_compositional_prediction",
+        "unseen_protein_transfer",
+        "complete_unseen_residue_generalization"
+      ]
+    },
+    {
+      "id": "additivity",
+      "type": "choice",
+      "question": "二值token加性模型的科学局限？",
+      "options": [
+        "does_not_explicitly_fit_pairwise_epistasis",
+        "directly_identifies_all_epistatic_interactions",
+        "proves_independent_biochemical_mechanisms"
+      ]
+    }
+  ]
+}

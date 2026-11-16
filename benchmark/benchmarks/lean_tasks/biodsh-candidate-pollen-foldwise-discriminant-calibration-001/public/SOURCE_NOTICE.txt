@@ -1,0 +1,2 @@
+Pollen AA et al. (2014). Low-coverage single-cell mRNA sequencing reveals cellular heterogeneity and activated signaling pathways in developing cerebral cortex. Nat Biotechnol32:1053–1058 DOI10.1038/nbt.2967 PMID25086649 BioProjectPRJNA236018。作者资源页https://www.pollenlab.org/datasets；作者原始表https://www.dropbox.com/s/kob3d6umib1b4g6/NBT_hiseq_linear_tpm_values.txt?dl=1。输入仅无损压缩，fold按每population内cell字典序循环0..4预先生成；来源标签为Hi_与末尾_编号之间的字符串。无其他benchmark数据或切分。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

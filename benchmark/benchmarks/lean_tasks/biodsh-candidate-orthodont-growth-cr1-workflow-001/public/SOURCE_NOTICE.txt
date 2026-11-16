@@ -1,0 +1,16 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "nlme_published_growth",
+  "source_case": "Orthodont_whole_native_repeated_trajectory",
+  "original_parent_source_case": "Study:PotthoffRoy1964:UNC_Dental_growth_curve_example",
+  "page": "https://stat.ethz.ch/R-manual/R-devel/library/nlme/html/Orthodont.html",
+  "source_terms": "Package Rd states GPL2-or-later for package documentation; exact scientific-input local use and public redistribution remain separate pending task-specific gates",
+  "limitations": [
+    "Primary individual study identifiers/cross-bank transformations and original enrollment/measurement protocol remain unverified; Rd female-level typo must not override accepted native census.",
+    "R native load then Python reads complete R-exported source CSV: independent math references, not two independent native readers.",
+    "Group/category slopes with CR1 are a prospective descriptive approximation, not source mixed-model likelihood/causal inference.",
+    "Curator template and accepted reference outputs are exposed during preparation; public textbook/package material may be in pretraining.",
+    "Fresh workdirs/log audits do not prove operating-system exclusion of gold, evaluator code or alternate arm outputs."
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

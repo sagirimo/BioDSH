@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-herg-censored-safety-001",
+  "claims": [
+    {
+      "id": "n",
+      "type": "number",
+      "question": "纳入分子数。",
+      "binding": {
+        "table": "fit.csv",
+        "key_column": "id",
+        "key": "censored",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "censored",
+      "type": "number",
+      "question": "右删失的分子数。",
+      "binding": {
+        "table": "fit.csv",
+        "key_column": "id",
+        "key": "censored",
+        "column": "right_censored"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "mu",
+      "type": "number",
+      "question": "log10(IC50/nM) 的删失正态均值。",
+      "binding": {
+        "table": "fit.csv",
+        "key_column": "id",
+        "key": "censored",
+        "column": "mu"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "sigma",
+      "type": "number",
+      "question": "删失正态标准差。",
+      "binding": {
+        "table": "fit.csv",
+        "key_column": "id",
+        "key": "censored",
+        "column": "sigma"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "median",
+      "type": "number",
+      "question": "拟合效力分布的中位 IC50（nM）。",
+      "binding": {
+        "table": "quantiles.csv",
+        "key_column": "id",
+        "key": "0.5",
+        "column": "IC50_nM"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "sensitivity",
+      "type": "number",
+      "question": "删失模型中位数相对只保留精确值模型的倍数。",
+      "binding": {
+        "table": "sensitivity.csv",
+        "key_column": "id",
+        "key": "comparison",
+        "column": "median_ratio"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "median_above_10uM",
+      "type": "derived",
+      "question": "拟合中位IC50是否大于10μM？",
+      "options": [
+        "median_above_10uM",
+        "median_at_most_10uM"
+      ],
+      "rule": {
+        "binding": {
+          "table": "quantiles.csv",
+          "key_column": "id",
+          "key": "0.5",
+          "column": "IC50_nM"
+        },
+        "op": "gt",
+        "threshold": 10000,
+        "outcomes": {
+          "true": "median_above_10uM",
+          "false": "median_at_most_10uM"
+        }
+      }
+    },
+    {
+      "id": "direction",
+      "type": "derived",
+      "question": "考虑删失后中位IC50是否更高？",
+      "options": [
+        "censor_aware_median_higher",
+        "censor_aware_median_not_higher"
+      ],
+      "rule": {
+        "binding": {
+          "table": "sensitivity.csv",
+          "key_column": "id",
+          "key": "comparison",
+          "column": "median_ratio"
+        },
+        "op": "gt",
+        "threshold": 1,
+        "outcomes": {
+          "true": "censor_aware_median_higher",
+          "false": "censor_aware_median_not_higher"
+        }
+      }
+    },
+    {
+      "id": "meaning",
+      "type": "choice",
+      "question": "对 >c 记录的合理解读是？",
+      "options": [
+        "IC50_exceeds_limit_not_an_exact_measurement",
+        "IC50_equals_c",
+        "compound_has_zero_activity_at_every_dose"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,554 @@
+{
+  "tables": {
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "float",
+        "scope": "text"
+      },
+      "tolerance": {
+        "supported_by_inputs": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "source_map.csv": {
+      "columns": [
+        "marker",
+        "chr",
+        "genetic_cm",
+        "physical_mbp",
+        "has_physical_map"
+      ],
+      "key": [
+        "marker"
+      ],
+      "types": {
+        "marker": "text",
+        "chr": "text",
+        "genetic_cm": "float",
+        "physical_mbp": "float",
+        "has_physical_map": "float"
+      },
+      "tolerance": {
+        "genetic_cm": [
+          1e-06,
+          1e-08
+        ],
+        "physical_mbp": [
+          1e-06,
+          1e-08
+        ],
+        "has_physical_map": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "genotype_audit.csv": {
+      "columns": [
+        "row_id",
+        "individual_id",
+        "marker",
+        "original_token",
+        "genotype_code",
+        "missing",
+        "sex",
+        "cross_direction",
+        "additive",
+        "dominance"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "individual_id": "text",
+        "marker": "text",
+        "original_token": "text",
+        "genotype_code": "float",
+        "missing": "float",
+        "sex": "text",
+        "cross_direction": "text",
+        "additive": "float",
+        "dominance": "float"
+      },
+      "tolerance": {
+        "genotype_code": [
+          1e-06,
+          1e-08
+        ],
+        "missing": [
+          1e-06,
+          1e-08
+        ],
+        "additive": [
+          1e-06,
+          1e-08
+        ],
+        "dominance": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "marker_missingness.csv": {
+      "columns": [
+        "marker",
+        "chr",
+        "individuals",
+        "observed",
+        "missing",
+        "parent1",
+        "heterozygous",
+        "parent2"
+      ],
+      "key": [
+        "marker"
+      ],
+      "types": {
+        "marker": "text",
+        "chr": "text",
+        "individuals": "float",
+        "observed": "float",
+        "missing": "float",
+        "parent1": "float",
+        "heterozygous": "float",
+        "parent2": "float"
+      },
+      "tolerance": {
+        "individuals": [
+          1e-06,
+          1e-08
+        ],
+        "observed": [
+          1e-06,
+          1e-08
+        ],
+        "missing": [
+          1e-06,
+          1e-08
+        ],
+        "parent1": [
+          1e-06,
+          1e-08
+        ],
+        "heterozygous": [
+          1e-06,
+          1e-08
+        ],
+        "parent2": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "scan_coefficients.csv": {
+      "columns": [
+        "row_id",
+        "scan_id",
+        "term",
+        "estimate",
+        "SE"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scan_id": "text",
+        "term": "text",
+        "estimate": "float",
+        "SE": "float"
+      },
+      "tolerance": {
+        "estimate": [
+          1e-06,
+          1e-08
+        ],
+        "SE": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "scan_audit.csv": {
+      "columns": [
+        "scan_id",
+        "scenario",
+        "response",
+        "marker",
+        "chr",
+        "genetic_cm",
+        "individuals",
+        "null_rank",
+        "full_rank",
+        "numerator_df",
+        "residual_df",
+        "null_SSE",
+        "full_SSE",
+        "F_stat",
+        "p_value",
+        "BH_q",
+        "LOD"
+      ],
+      "key": [
+        "scan_id"
+      ],
+      "types": {
+        "scan_id": "text",
+        "scenario": "text",
+        "response": "text",
+        "marker": "text",
+        "chr": "text",
+        "genetic_cm": "float",
+        "individuals": "float",
+        "null_rank": "float",
+        "full_rank": "float",
+        "numerator_df": "float",
+        "residual_df": "float",
+        "null_SSE": "float",
+        "full_SSE": "float",
+        "F_stat": "float",
+        "p_value": "float",
+        "BH_q": "float",
+        "LOD": "float"
+      },
+      "tolerance": {
+        "genetic_cm": [
+          1e-06,
+          1e-08
+        ],
+        "individuals": [
+          1e-06,
+          1e-08
+        ],
+        "null_rank": [
+          1e-06,
+          1e-08
+        ],
+        "full_rank": [
+          1e-06,
+          1e-08
+        ],
+        "numerator_df": [
+          1e-06,
+          1e-08
+        ],
+        "residual_df": [
+          1e-06,
+          1e-08
+        ],
+        "null_SSE": [
+          1e-06,
+          1e-08
+        ],
+        "full_SSE": [
+          1e-06,
+          1e-08
+        ],
+        "F_stat": [
+          1e-06,
+          1e-08
+        ],
+        "p_value": [
+          1e-06,
+          1e-08
+        ],
+        "BH_q": [
+          1e-06,
+          1e-08
+        ],
+        "LOD": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "chromosome_peaks.csv": {
+      "columns": [
+        "row_id",
+        "scenario",
+        "response",
+        "chr",
+        "marker",
+        "genetic_cm",
+        "F_stat",
+        "p_value",
+        "BH_q"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "scenario": "text",
+        "response": "text",
+        "chr": "text",
+        "marker": "text",
+        "genetic_cm": "float",
+        "F_stat": "float",
+        "p_value": "float",
+        "BH_q": "float"
+      },
+      "tolerance": {
+        "genetic_cm": [
+          1e-06,
+          1e-08
+        ],
+        "F_stat": [
+          1e-06,
+          1e-08
+        ],
+        "p_value": [
+          1e-06,
+          1e-08
+        ],
+        "BH_q": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "time_axis.csv": {
+      "columns": [
+        "phenotype",
+        "source_index",
+        "source_hour",
+        "working_clock"
+      ],
+      "key": [
+        "phenotype"
+      ],
+      "types": {
+        "phenotype": "text",
+        "source_index": "float",
+        "source_hour": "float",
+        "working_clock": "float"
+      },
+      "tolerance": {
+        "source_index": [
+          1e-06,
+          1e-08
+        ],
+        "source_hour": [
+          1e-06,
+          1e-08
+        ],
+        "working_clock": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "curve_points.csv": {
+      "columns": [
+        "row_id",
+        "individual_id",
+        "phenotype",
+        "source_hour",
+        "working_clock",
+        "source_value",
+        "baseline_value",
+        "change",
+        "cumulative_raw_AUC",
+        "cumulative_change_AUC"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "individual_id": "text",
+        "phenotype": "text",
+        "source_hour": "float",
+        "working_clock": "float",
+        "source_value": "float",
+        "baseline_value": "float",
+        "change": "float",
+        "cumulative_raw_AUC": "float",
+        "cumulative_change_AUC": "float"
+      },
+      "tolerance": {
+        "source_hour": [
+          1e-06,
+          1e-08
+        ],
+        "working_clock": [
+          1e-06,
+          1e-08
+        ],
+        "source_value": [
+          1e-06,
+          1e-08
+        ],
+        "baseline_value": [
+          1e-06,
+          1e-08
+        ],
+        "change": [
+          1e-06,
+          1e-08
+        ],
+        "cumulative_raw_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "cumulative_change_AUC": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "curve_intervals.csv": {
+      "columns": [
+        "row_id",
+        "individual_id",
+        "left_phenotype",
+        "right_phenotype",
+        "delta_clock",
+        "raw_delta",
+        "rate",
+        "raw_area",
+        "change_area"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "individual_id": "text",
+        "left_phenotype": "text",
+        "right_phenotype": "text",
+        "delta_clock": "float",
+        "raw_delta": "float",
+        "rate": "float",
+        "raw_area": "float",
+        "change_area": "float"
+      },
+      "tolerance": {
+        "delta_clock": [
+          1e-06,
+          1e-08
+        ],
+        "raw_delta": [
+          1e-06,
+          1e-08
+        ],
+        "rate": [
+          1e-06,
+          1e-08
+        ],
+        "raw_area": [
+          1e-06,
+          1e-08
+        ],
+        "change_area": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "curve_summary.csv": {
+      "columns": [
+        "individual_id",
+        "observations",
+        "baseline_value",
+        "covered_time",
+        "raw_AUC",
+        "change_AUC",
+        "mean_change",
+        "slope",
+        "final_change",
+        "linear_intercept",
+        "linear_SSE"
+      ],
+      "key": [
+        "individual_id"
+      ],
+      "types": {
+        "individual_id": "text",
+        "observations": "float",
+        "baseline_value": "float",
+        "covered_time": "float",
+        "raw_AUC": "float",
+        "change_AUC": "float",
+        "mean_change": "float",
+        "slope": "float",
+        "final_change": "float",
+        "linear_intercept": "float",
+        "linear_SSE": "float"
+      },
+      "tolerance": {
+        "observations": [
+          1e-06,
+          1e-08
+        ],
+        "baseline_value": [
+          1e-06,
+          1e-08
+        ],
+        "covered_time": [
+          1e-06,
+          1e-08
+        ],
+        "raw_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "change_AUC": [
+          1e-06,
+          1e-08
+        ],
+        "mean_change": [
+          1e-06,
+          1e-08
+        ],
+        "slope": [
+          1e-06,
+          1e-08
+        ],
+        "final_change": [
+          1e-06,
+          1e-08
+        ],
+        "linear_intercept": [
+          1e-06,
+          1e-08
+        ],
+        "linear_SSE": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "terminal_summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+ "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1124217",
+ "input_files_sha256": {
+  "inputs/activities.json": "668cb76fff2b024ca71fa7eb0cc63dd9796121119c0f8783815640471320c3a8",
+  "inputs/molecules.json": "8d552476a144e80d62161d711a008183cdd4b351c2d8970fa439362a4d0a3bdd",
+  "inputs/permutations.csv": "be9311c77d6eb554ff643c9bc872431d3d1fdd1c0a86c15c15c36624377c9e88"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

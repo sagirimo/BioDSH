@@ -1,0 +1,16 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "survival_published_cohort_examples",
+  "source_case": "flchain_whole_public7874_age_sex_stratified_half",
+  "original_parent_source_case": "Study:OlmstedCounty1995MGUS_2010FLC",
+  "page": "https://stat.ethz.ch/R-manual/R-devel/library/survival/html/flchain.html",
+  "source_terms": null,
+  "limitations": [
+    "One complete public7874 age/sex-stratified half-sample, not the original15759-person cohort.",
+    "Independent R/survfit and Python math share one R native decoder; not two independent native readers.",
+    "Descriptive prespecified riskset/RMST task; causal FLC prognosis and paper-result reproduction not proven.",
+    "Known registry aliases show no matches; full history/arbitrary-transform/global independence not certified.",
+    "Original-data copyright/public redistribution and OSgold/hidden/formal certification not inferred from package license."
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

@@ -1,0 +1,178 @@
+{
+  "tables": {
+    "curve_residuals.csv": {
+      "columns": [
+        "id",
+        "concentration",
+        "observed",
+        "fitted"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "concentration": "int",
+        "observed": "float",
+        "fitted": "float"
+      },
+      "tolerance": {
+        "observed": [
+          1e-05,
+          1e-08
+        ],
+        "fitted": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "dose_sensitivity.csv": {
+      "columns": [
+        "id",
+        "delta_estimate",
+        "delta_p"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "delta_estimate": "float",
+        "delta_p": "float"
+      },
+      "tolerance": {
+        "delta_estimate": [
+          1e-05,
+          1e-08
+        ],
+        "delta_p": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "exact_assignment_statistics.csv": {
+      "columns": [
+        "id",
+        "chilling",
+        "interaction"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "chilling": "float",
+        "interaction": "float"
+      },
+      "tolerance": {
+        "chilling": [
+          1e-05,
+          1e-08
+        ],
+        "interaction": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "group_uptake.csv": {
+      "columns": [
+        "id",
+        "n_plants",
+        "mean_uptake350",
+        "sd_uptake350"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_plants": "int",
+        "mean_uptake350": "float",
+        "sd_uptake350": "float"
+      },
+      "tolerance": {
+        "mean_uptake350": [
+          1e-05,
+          1e-08
+        ],
+        "sd_uptake350": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "plant_contrasts.csv": {
+      "columns": [
+        "id",
+        "estimate",
+        "exact_p"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "estimate": "float",
+        "exact_p": "float"
+      },
+      "tolerance": {
+        "estimate": [
+          1e-05,
+          1e-08
+        ],
+        "exact_p": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "plant_fits.csv": {
+      "columns": [
+        "id",
+        "origin",
+        "treatment",
+        "n",
+        "A",
+        "K",
+        "sse",
+        "uptake350",
+        "uptake700"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "origin": "text",
+        "treatment": "text",
+        "n": "int",
+        "A": "float",
+        "K": "int",
+        "sse": "float",
+        "uptake350": "float",
+        "uptake700": "float"
+      },
+      "tolerance": {
+        "A": [
+          1e-05,
+          1e-08
+        ],
+        "sse": [
+          1e-05,
+          1e-08
+        ],
+        "uptake350": [
+          1e-05,
+          1e-08
+        ],
+        "uptake700": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

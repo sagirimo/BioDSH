@@ -1,0 +1,13 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "nlme_published_growth",
+  "source_case": "Alfalfa_whole72_native_splitplot",
+  "original_parent_source_case": "Study:Alfalfa1943:third_cutting_SnedecorCochran1980_example",
+  "page": "https://stat.ethz.ch/R-manual/R-devel/library/nlme/html/Alfalfa.html",
+  "source_terms": "nlme official archive notes retained at intake; exact task-specific packaged delivery and actual history/family review pending",
+  "limitations": [
+    "Native attributes supply Yield unit (T/Acre), outcome year 1944, treatment year 1943 and grouping Block/Variety. Ton convention, primary experiment DOI/location and original randomization/layout record remain unspecified; reconcile Rd/native design descriptions before selecting the inferential protocol.",
+    "Native grouping is computational convention, original randomization and inferential assumptions not recovered;unadjusted inference exploratory,public textbook may be in pretraining."
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-pog570-association-001",
+  "claims": [
+    {
+      "id": "analysis_units",
+      "type": "number",
+      "question": "ICI治疗分析患者数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "analysis_units",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "durable_benefit_patients",
+      "type": "number",
+      "question": "治疗队列耐久临床获益人数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "durable_benefit_patients",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "CD8_threshold",
+      "type": "number",
+      "question": "ICI治疗者的CD8中位数阈值。",
+      "binding": {
+        "table": "thresholds.csv",
+        "key_column": "predictor",
+        "key": "cd8",
+        "column": "threshold"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "TMB_Fisher_p",
+      "type": "number",
+      "question": "TMB与耐久获益的双侧Fisher p值。",
+      "binding": {
+        "table": "association_tests.csv",
+        "key_column": "predictor",
+        "key": "tmb",
+        "column": "fisher_p"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "TMB_DCB_q",
+      "type": "number",
+      "question": "TMB获益检验在四项BH族中的q值。",
+      "binding": {
+        "table": "primary_tests.csv",
+        "key_column": "test_id",
+        "key": "tmb_dcb",
+        "column": "bh_q"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "CD8_OS_q",
+      "type": "number",
+      "question": "CD8癌种分层OS比较的BH q值。",
+      "binding": {
+        "table": "primary_tests.csv",
+        "key_column": "test_id",
+        "key": "cd8_os_strat",
+        "column": "bh_q"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "TMB_DCB_support",
+      "type": "derived",
+      "question": "TMB获益关联按预设四项BH<0.05的结论？",
+      "options": [
+        "FDR_supported_observational_association",
+        "not_FDR_supported",
+        "causal_ICI_benefit_proven"
+      ],
+      "rule": {
+        "binding": {
+          "table": "primary_tests.csv",
+          "key_column": "test_id",
+          "key": "tmb_dcb",
+          "column": "bh_q"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "FDR_supported_observational_association",
+          "false": "not_FDR_supported"
+        }
+      }
+    },
+    {
+      "id": "CD8_OS_support",
+      "type": "derived",
+      "question": "CD8分层OS关联按四项BH<0.05的结论？",
+      "options": [
+        "FDR_supported_stratified_association",
+        "not_FDR_supported_not_equivalence",
+        "clinical_CD8_assay_validated"
+      ],
+      "rule": {
+        "binding": {
+          "table": "primary_tests.csv",
+          "key_column": "test_id",
+          "key": "cd8_os_strat",
+          "column": "bh_q"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "FDR_supported_stratified_association",
+          "false": "not_FDR_supported_not_equivalence"
+        }
+      }
+    },
+    {
+      "id": "untreated_missing",
+      "type": "choice",
+      "question": "未治疗者空的ICI获益字段意味着什么？",
+      "options": [
+        "outcome_not_observed_for_this_treatment",
+        "observed_no_benefit",
+        "observed_treatment_failure"
+      ]
+    },
+    {
+      "id": "OS_origin",
+      "type": "choice",
+      "question": "缺治疗起始时间对解释有什么影响？",
+      "options": [
+        "cannot_reinterpret_diagnosis_based_OS_as_time_since_ICI",
+        "OS_is_automatically_time_since_ICI",
+        "treatment_effect_is_randomized"
+      ]
+    }
+  ]
+}

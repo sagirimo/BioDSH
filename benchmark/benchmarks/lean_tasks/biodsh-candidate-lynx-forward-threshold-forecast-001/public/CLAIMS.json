@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-lynx-forward-threshold-forecast-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "AR2误差RMSE？",
+      "binding": {
+        "table": "forecast_summary.csv",
+        "key_column": "id",
+        "key": "AR2",
+        "column": "rmse"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "阈值模型RMSE？",
+      "binding": {
+        "table": "forecast_summary.csv",
+        "key_column": "id",
+        "key": "SETAR2",
+        "column": "rmse"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "AR2相对持续性基线技能？",
+      "binding": {
+        "table": "forecast_summary.csv",
+        "key_column": "id",
+        "key": "AR2",
+        "column": "mse_skill"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "阈值模型技能？",
+      "binding": {
+        "table": "forecast_summary.csv",
+        "key_column": "id",
+        "key": "SETAR2",
+        "column": "mse_skill"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "阈值模型偏差？",
+      "binding": {
+        "table": "forecast_summary.csv",
+        "key_column": "id",
+        "key": "SETAR2",
+        "column": "bias"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "阈值模型误差一阶相关？",
+      "binding": {
+        "table": "forecast_summary.csv",
+        "key_column": "id",
+        "key": "SETAR2",
+        "column": "error_lag1"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "AR2是否优于持续性基线？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "forecast_summary.csv",
+          "key_column": "id",
+          "key": "AR2",
+          "column": "mse_skill"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "阈值模型是否优于持续性基线？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "forecast_summary.csv",
+          "key_column": "id",
+          "key": "SETAR2",
+          "column": "mse_skill"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "捕获数解释？",
+      "options": [
+        "是捕获记录代理，不能直接辨识真实种群与捕获努力的作用",
+        "等于真实种群普查",
+        "阈值模型证明捕食机制"
+      ]
+    }
+  ]
+}

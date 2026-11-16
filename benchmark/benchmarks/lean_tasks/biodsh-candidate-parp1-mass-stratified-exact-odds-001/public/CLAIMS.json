@@ -1,0 +1,127 @@
+{
+  "revision": "round7_lean_v1",
+  "task_id": "biodsh-candidate-parp1-mass-stratified-exact-odds-001",
+  "claims": [
+    {
+      "id": "C1",
+      "type": "number",
+      "question": "筛选后的化合物数？",
+      "binding": {
+        "table": "thresholds.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C2",
+      "type": "number",
+      "question": "ALogP中位数阈值？",
+      "binding": {
+        "table": "thresholds.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "median_alogp"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C3",
+      "type": "number",
+      "question": "控制分子量层后的条件优势比？",
+      "binding": {
+        "table": "estimates.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "conditional_or"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C4",
+      "type": "number",
+      "question": "条件精确95%区间下界？",
+      "binding": {
+        "table": "estimates.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "ci_low"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C5",
+      "type": "number",
+      "question": "条件精确95%区间上界？",
+      "binding": {
+        "table": "estimates.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "ci_high"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C6",
+      "type": "number",
+      "question": "两倍较小尾概率的双侧p值？",
+      "binding": {
+        "table": "estimates.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "two_sided_p"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C7",
+      "type": "derived",
+      "question": "条件关联检验是否低于0.05？",
+      "options": [
+        "低于0.05",
+        "不低于0.05"
+      ],
+      "rule": {
+        "binding": {
+          "table": "estimates.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "two_sided_p"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "低于0.05",
+          "false": "不低于0.05"
+        }
+      }
+    },
+    {
+      "id": "C8",
+      "type": "choice",
+      "question": "该优势比针对哪一人群或集合？",
+      "options": [
+        "当前精确效价完整的化合物子集",
+        "全部未来PARP1候选物",
+        "接受药物治疗的患者"
+      ]
+    },
+    {
+      "id": "C9",
+      "type": "choice",
+      "question": "被排除的 >2500 nM 可以替为2500吗？",
+      "options": [
+        "不能：这是删失界而非精确效价",
+        "可以：二者定义完全相同",
+        "可以：替换保证效价无偏"
+      ]
+    }
+  ]
+}

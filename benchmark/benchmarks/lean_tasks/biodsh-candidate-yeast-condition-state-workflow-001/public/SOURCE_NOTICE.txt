@@ -1,0 +1,12 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "mixomics_published_multiomics",
+  "source_case": "yeast_whole37x55_native_condition_state",
+  "original_parent_source_case": "Study:VillasBoas2005:yeast_metabolic_state",
+  "page": "https://bioconductor.org/packages/mixOmics/",
+  "source_terms": "Pinned original mixOmics6.32.0 archive; task-specific delivery/history pending",
+  "limitations": [
+    "37metabolites/55observed samples are not certified55independent cultures; no originalraw assay units, pvalues, causal/pathway network, originalpapercomplete protocol or hidden externalvalidation claimed."
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

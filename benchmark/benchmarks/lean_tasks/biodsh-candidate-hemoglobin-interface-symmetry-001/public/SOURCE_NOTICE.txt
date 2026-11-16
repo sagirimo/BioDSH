@@ -1,0 +1,3 @@
+Fermi, G., Perutz, M.F., Shaanan, B., Fourme, R. The crystal structure of human deoxyhaemoglobin at 1.74 A resolution 1984. DOI:10.1016/0022-2836(84)90472-8; PMID:6726807. PDB:4HHB, dataset DOI:10.2210/pdb4HHB/pdb.
+原始文件 https://files.rcsb.org/download/4HHB.pdb；元数据 https://data.rcsb.org/rest/v1/core/entry/4HHB；wwPDB/RCSB数据CC0 1.0：https://www.rcsb.org/pages/usage-policy 。保留原始坐标和署名。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

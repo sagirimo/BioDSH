@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE52529",
+ "input_files_sha256": {
+  "inputs/fpkm.txt.gz": "d139829d53314ff718188f5e0ed3b90af9ad737b32bf65f997345bfabfcfdcae"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

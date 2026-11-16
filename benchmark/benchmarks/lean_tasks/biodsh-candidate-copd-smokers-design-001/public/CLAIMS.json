@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-copd-smokers-design-001",
+  "claims": [
+    {
+      "id": "analysis_assays",
+      "type": "number",
+      "question": "实际纳入分析的assay数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "analysis_assays",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "case_assays",
+      "type": "number",
+      "question": "纳入的COPD病例数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "case_assays",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "adjusted_selected_features",
+      "type": "number",
+      "question": "调整模型BH<0.05的特征数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "adjusted_selected_features",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "unadjusted_selected_features",
+      "type": "number",
+      "question": "未调整模型BH<0.05的特征数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "unadjusted_selected_features",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "A1BG_beta",
+      "type": "number",
+      "question": "A1BG调整后病例相对对照效应。",
+      "binding": {
+        "table": "all_gene_stats.csv",
+        "key_column": "gene_id",
+        "key": "A1BG",
+        "column": "adjusted_beta"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "A1BG_q",
+      "type": "number",
+      "question": "A1BG全特征BH调整p值。",
+      "binding": {
+        "table": "all_gene_stats.csv",
+        "key_column": "gene_id",
+        "key": "A1BG",
+        "column": "adjusted_padj"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "A1BG_direction",
+      "type": "derived",
+      "question": "A1BG调整后表达差的方向？",
+      "options": [
+        "case_lower_than_control",
+        "case_at_least_control",
+        "causal_repression_proven"
+      ],
+      "rule": {
+        "binding": {
+          "table": "all_gene_stats.csv",
+          "key_column": "gene_id",
+          "key": "A1BG",
+          "column": "adjusted_beta"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "case_lower_than_control",
+          "false": "case_at_least_control"
+        }
+      }
+    },
+    {
+      "id": "A1BG_evidence",
+      "type": "derived",
+      "question": "A1BG在全特征BH的0.05阈值下？",
+      "options": [
+        "selected_adjusted_association",
+        "not_selected_does_not_prove_no_effect",
+        "clinical_diagnostic_validity_established"
+      ],
+      "rule": {
+        "binding": {
+          "table": "all_gene_stats.csv",
+          "key_column": "gene_id",
+          "key": "A1BG",
+          "column": "adjusted_padj"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "selected_adjusted_association",
+          "false": "not_selected_does_not_prove_no_effect"
+        }
+      }
+    },
+    {
+      "id": "inference_scope",
+      "type": "choice",
+      "question": "该病例系数可支持的推断？",
+      "options": [
+        "covariate_adjusted_observational_association",
+        "causal_effect_of_COPD",
+        "external_diagnostic_accuracy"
+      ]
+    },
+    {
+      "id": "multiple_testing",
+      "type": "choice",
+      "question": "为何BH应包含所有提供feature？",
+      "options": [
+        "preserves_declared_hypothesis_family",
+        "only_small_raw_p_values_are_hypotheses",
+        "selected_genes_can_be_treated_as_preselected"
+      ]
+    }
+  ]
+}

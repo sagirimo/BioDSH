@@ -1,0 +1,12 @@
+{
+ "source_url": "",
+ "input_files_sha256": {
+  "inputs/cells.csv": "6c3ebffdd547990ff2eecd57d2bf292f36472fc93788d8938a7581ad6f7a7d12",
+  "inputs/design.json": "f2f64e171733e91131b6ded8f05c7375798eb6bfb785b6bfcf38fd3bd94303bb",
+  "inputs/genes.csv": "cb4435ccfed915a9d7e22a649eb724784cc9c4e463e9b4ea0b659cfa199c7c88",
+  "inputs/panel_counts.npz": "1d73bebcb4bb6314041c0f5066973b3d08794be2cca4a802fe5bea62b19b4e19",
+  "inputs/permutation_indices.npz": "eadfbd621f3367a4abf9f722c4f36472bb020534780b1d0a3bbcfd453cf92ae5",
+  "inputs/permutation_plan_notice.json": "4b0439004c7b003ffdcae80052e1d69bb16fdf4bb9de54d01e1f2d46a2c50e10"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,12 @@
+存量原题 biodsh-candidate-pabp-composition-001 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-pabp-composition-001
+source: "proteingym"
+source_registry_id: "proteingym"
+source_family: "proteingym"
+source_case: "PABP_YEAST_Melamed_2013"
+source_revision: "ProteinGym_pinned_full_substitution_archive_3a83766254ac9ac9984ec25cb73c6e010ea4418f5e35f143933e6b6e6473b921"
+source_terms: "Primary source pages/repositories/licenses pinned; task-input delivery/family review still required"
+family_keys: ["ProteinGym:PABP_YEAST_Melamed_2013", "DOI:10.1261/rna.040709.113", "Protein:UniProt:PABP_YEAST"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+
+来源登记条目：{"id": "proteingym", "family": "proteingym", "type": "method_data_benchmark", "name": "ProteinGym", "reported_size": "Protein mutation assays and experimental measurements; not counted as agent tasks", "url": "https://github.com/OATML-Markslab/ProteinGym", "value": "蛋白变异功能、实验测量与泛化划分", "candidate_domains": ["D02", "D04"], "availability": "公开仓库和数据入口", "priority": "P1", "caveat": "以蛋白/实验为隔离单位；新编题需记录与原预测任务的差别", "current_qualified_fixed_contract_count": 6}

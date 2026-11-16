@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-e18-fixed-nmf-programs-001",
+  "claims": [
+    {
+      "id": "cells",
+      "type": "number",
+      "question": "用于分解的细胞数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "cells"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "features",
+      "type": "number",
+      "question": "选用高方差基因数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "genes"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "initial_error",
+      "type": "number",
+      "question": "给定初始化的均方重建误差。",
+      "binding": {
+        "table": "optimization.csv",
+        "key_column": "id",
+        "key": "0",
+        "column": "mse"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "final_error",
+      "type": "number",
+      "question": "300次规定更新后的均方重建误差。",
+      "binding": {
+        "table": "optimization.csv",
+        "key_column": "id",
+        "key": "300",
+        "column": "mse"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "c1",
+      "type": "number",
+      "question": "C1权重占比最大的细胞数。",
+      "binding": {
+        "table": "components.csv",
+        "key_column": "id",
+        "key": "C1",
+        "column": "dominant_cells"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "entropy",
+      "type": "number",
+      "question": "细胞成分占比归一化熵均值。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "mean_program_entropy"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "improvement",
+      "type": "derived",
+      "question": "均方重建误差是否降低超过一半？",
+      "options": [
+        "error_reduced_more_than_half",
+        "error_reduced_at_most_half"
+      ],
+      "rule": {
+        "binding": {
+          "table": "summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "relative_error_reduction"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "error_reduced_more_than_half",
+          "false": "error_reduced_at_most_half"
+        }
+      }
+    },
+    {
+      "id": "mixed",
+      "type": "derived",
+      "question": "成分占比平均熵是否高于0.8？",
+      "options": [
+        "mean_entropy_above_0_8",
+        "mean_entropy_at_most_0_8"
+      ],
+      "rule": {
+        "binding": {
+          "table": "summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "mean_program_entropy"
+        },
+        "op": "gt",
+        "threshold": 0.8,
+        "outcomes": {
+          "true": "mean_entropy_above_0_8",
+          "false": "mean_entropy_at_most_0_8"
+        }
+      }
+    },
+    {
+      "id": "meaning",
+      "type": "choice",
+      "question": "本分解可以支持哪类解释？",
+      "options": [
+        "fixed_algorithm_expression_programs_not_validated_cell_types",
+        "three_components_prove_three_cell_lineages",
+        "a_unique_global_NMF_optimum_is_guaranteed"
+      ]
+    }
+  ]
+}

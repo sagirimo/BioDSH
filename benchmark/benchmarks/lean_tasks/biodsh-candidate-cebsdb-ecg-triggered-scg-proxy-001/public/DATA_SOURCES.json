@@ -1,0 +1,10 @@
+{
+ "source_url": "https://physionet.org/content/cebsdb/1.0.0/",
+ "input_files_sha256": {
+  "inputs/b001.dat": "a005044bb47b58ab6a39b53d29b6667eefe04a0ea82d725a84fccf81956e96e6",
+  "inputs/b001.hea": "d3c32b4b83712b954d34319fb25dd81e108a4fa753c20bbfffe652d167353d7f",
+  "inputs/b002.dat": "99ff01cddebe5b4ecb525ccf313f434d962edd8a2867e44891e0377a95dff05a",
+  "inputs/b002.hea": "3f15e995550ddb15bfb36be45eef66824d03f79b52a22acbb6639a86fef6f402"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

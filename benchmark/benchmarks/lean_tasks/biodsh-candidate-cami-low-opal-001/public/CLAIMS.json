@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-cami-low-opal-001",
+  "claims": [
+    {
+      "id": "rank_comparisons",
+      "type": "number",
+      "question": "工具×rank比较数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "rank_comparisons",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "taxon_error_rows",
+      "type": "number",
+      "question": "逐taxon误差行数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "taxon_error_rows",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "precision",
+      "type": "number",
+      "question": "cranky_wozniak_13物种层级的检出精确率。",
+      "binding": {
+        "table": "rank_metrics.csv",
+        "key_column": "metric_id",
+        "key": "cranky_wozniak_13|species",
+        "column": "precision"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "recall",
+      "type": "number",
+      "question": "cranky_wozniak_13物种层级的检出召回率。",
+      "binding": {
+        "table": "rank_metrics.csv",
+        "key_column": "metric_id",
+        "key": "cranky_wozniak_13|species",
+        "column": "recall"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "normalized_L1",
+      "type": "number",
+      "question": "cranky_wozniak_13物种层级的条件组成L1误差。",
+      "binding": {
+        "table": "rank_metrics.csv",
+        "key_column": "metric_id",
+        "key": "cranky_wozniak_13|species",
+        "column": "normalized_L1"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "predicted_mass_percentage",
+      "type": "number",
+      "question": "cranky_wozniak_13物种层级的原预测质量百分数。",
+      "binding": {
+        "table": "rank_metrics.csv",
+        "key_column": "metric_id",
+        "key": "cranky_wozniak_13|species",
+        "column": "predicted_mass_percentage"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "species_recall",
+      "type": "derived",
+      "question": "该工具物种层级是否漏掉至少一个gold正丰度taxon？",
+      "options": [
+        "some_positive_gold_taxa_missed",
+        "all_positive_gold_taxa_recalled",
+        "no_false_positive_taxa_possible"
+      ],
+      "rule": {
+        "binding": {
+          "table": "rank_metrics.csv",
+          "key_column": "metric_id",
+          "key": "cranky_wozniak_13|species",
+          "column": "recall"
+        },
+        "op": "lt",
+        "threshold": 1,
+        "outcomes": {
+          "true": "some_positive_gold_taxa_missed",
+          "false": "all_positive_gold_taxa_recalled"
+        }
+      }
+    },
+    {
+      "id": "species_mass",
+      "type": "derived",
+      "question": "预测物种层级总质量是否低于100%（不把覆盖等同组成准确）？",
+      "options": [
+        "below_100_percent_mass",
+        "at_least_100_percent_mass",
+        "perfect_conditional_composition"
+      ],
+      "rule": {
+        "binding": {
+          "table": "rank_metrics.csv",
+          "key_column": "metric_id",
+          "key": "cranky_wozniak_13|species",
+          "column": "predicted_mass_percentage"
+        },
+        "op": "lt",
+        "threshold": 100,
+        "outcomes": {
+          "true": "below_100_percent_mass",
+          "false": "at_least_100_percent_mass"
+        }
+      }
+    },
+    {
+      "id": "normalization",
+      "type": "choice",
+      "question": "为何每rank单独归一化？",
+      "options": [
+        "ancestor_descendant_ranks_overlap_mass",
+        "all_taxonomic_ranks_are_disjoint_species",
+        "source_profile_rows_are_independent_samples"
+      ]
+    },
+    {
+      "id": "evaluation_scope",
+      "type": "choice",
+      "question": "本题是否运行了新的读段分类工具？",
+      "options": [
+        "compares_supplied_profiles_of_one_simulated_sample",
+        "executes_seven_new_profilers",
+        "validates_real_animal_cohort_performance"
+      ]
+    }
+  ]
+}

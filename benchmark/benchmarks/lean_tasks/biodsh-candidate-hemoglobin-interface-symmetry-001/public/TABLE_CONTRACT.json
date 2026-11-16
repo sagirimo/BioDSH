@@ -1,0 +1,128 @@
+{
+  "tables": {
+    "assembly.csv": {
+      "columns": [
+        "id",
+        "intradimer_contacts",
+        "switch_contacts",
+        "intradimer_minus_switch"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "intradimer_contacts": "int",
+        "switch_contacts": "int",
+        "intradimer_minus_switch": "int"
+      },
+      "tolerance": {}
+    },
+    "atom_audit.csv": {
+      "columns": [
+        "id",
+        "heavy_atoms",
+        "residues"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "heavy_atoms": "int",
+        "residues": "int"
+      },
+      "tolerance": {}
+    },
+    "chain_summary.csv": {
+      "columns": [
+        "id",
+        "residues",
+        "interface_residues",
+        "contact_degree_sum"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "residues": "int",
+        "interface_residues": "int",
+        "contact_degree_sum": "int"
+      },
+      "tolerance": {}
+    },
+    "interfaces.csv": {
+      "columns": [
+        "id",
+        "atom_pairs",
+        "residue_pairs",
+        "residues_left",
+        "residues_right",
+        "min_distance_A"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "atom_pairs": "int",
+        "residue_pairs": "int",
+        "residues_left": "int",
+        "residues_right": "int",
+        "min_distance_A": "float"
+      },
+      "tolerance": {
+        "min_distance_A": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "residue_interfaces.csv": {
+      "columns": [
+        "id",
+        "chain",
+        "resname",
+        "cross_chain_neighbors",
+        "mean_B"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "chain": "text",
+        "resname": "text",
+        "cross_chain_neighbors": "int",
+        "mean_B": "float"
+      },
+      "tolerance": {
+        "mean_B": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "symmetry.csv": {
+      "columns": [
+        "id",
+        "pairs_first",
+        "pairs_second",
+        "absolute_difference",
+        "relative_pair_difference"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "pairs_first": "int",
+        "pairs_second": "int",
+        "absolute_difference": "int",
+        "relative_pair_difference": "int"
+      },
+      "tolerance": {}
+    }
+  }
+}

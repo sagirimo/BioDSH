@@ -1,0 +1,152 @@
+{
+  "revision": "round9_lean_v1",
+  "task_id": "biodsh-candidate-komarova-positive-equilibrium-response-001",
+  "claims": [
+    {
+      "id": "baseline_x1",
+      "type": "number",
+      "question": "原始参数下的正稳态 x1。",
+      "binding": {
+        "table": "steady_states.csv",
+        "key_column": "scenario",
+        "key": "base",
+        "column": "x1"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "baseline_x2",
+      "type": "number",
+      "question": "原始参数下的正稳态 x2。",
+      "binding": {
+        "table": "steady_states.csv",
+        "key_column": "scenario",
+        "key": "base",
+        "column": "x2"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "high_turnover",
+      "type": "number",
+      "question": "高 beta1 情景的 x2 稳态周转量（item/day）。",
+      "binding": {
+        "table": "steady_states.csv",
+        "key_column": "scenario",
+        "key": "high",
+        "column": "turnover2"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "baseline_spectral",
+      "type": "number",
+      "question": "原始参数下 Jacobian 最大特征值实部（day^-1）。",
+      "binding": {
+        "table": "steady_states.csv",
+        "key_column": "scenario",
+        "key": "base",
+        "column": "spectral_abscissa"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "alpha1_x2_response",
+      "type": "number",
+      "question": "alpha1 增加1%时 x2 正稳态的相对变化。",
+      "binding": {
+        "table": "elasticities.csv",
+        "key_column": "sensitivity_id",
+        "key": "base__alpha1__x2",
+        "column": "fractional_change_1pct"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "high_t50_x2",
+      "type": "number",
+      "question": "高 beta1 阶跃后50天的 x2。",
+      "binding": {
+        "table": "step_response.csv",
+        "key_column": "response_id",
+        "key": "high__50",
+        "column": "x2"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "local_stability",
+      "type": "derived",
+      "question": "最大特征值实部是否大于0？",
+      "options": [
+        "locally_unstable",
+        "not_locally_unstable",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "steady_states.csv",
+          "key_column": "scenario",
+          "key": "base",
+          "column": "spectral_abscissa"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "locally_unstable",
+          "false": "not_locally_unstable"
+        }
+      }
+    },
+    {
+      "id": "positive_alpha1_effect",
+      "type": "derived",
+      "question": "alpha1 增加是否提高 x2 正稳态？",
+      "options": [
+        "positive_response",
+        "nonpositive_response",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "elasticities.csv",
+          "key_column": "sensitivity_id",
+          "key": "base__alpha1__x2",
+          "column": "fractional_change_1pct"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "positive_response",
+          "false": "nonpositive_response"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "对阶跃结果可作哪种结论？",
+      "options": [
+        "response_of_given_deterministic_cell_subsystem",
+        "validated_patient_treatment_effect",
+        "clinical_dose_recommendation"
+      ]
+    },
+    {
+      "id": "steady_meaning",
+      "type": "choice",
+      "question": "正稳态周转非零说明什么？",
+      "options": [
+        "balanced_production_and_removal",
+        "all_reactions_have_stopped",
+        "bone_mass_is_identified_by_two_cell_counts"
+      ]
+    }
+  ]
+}

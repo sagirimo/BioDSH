@@ -1,0 +1,3 @@
+Kumar RM et al. Deconstructing transcriptional heterogeneity in pluripotent stem cells. Nature 2014;516:56–61. DOI:10.1038/nature13920. GSE60749, PRJNA259420。
+原始GEO作者处理表 https://ftp.ncbi.nlm.nih.gov/geo/series/GSE60nnn/GSE60749/suppl/GSE60749_RnaSeq_single_cell_NPC_TPM.csv.gz ，改本地文件名NPC_TPM.csv.gz，字节不改。GSM1487046等GEO处理说明明确ln(TPM+1)，不是原始TPM或整数计数。公共GEO，按项目决定仅本地科研、署名，不另行分发。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

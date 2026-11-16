@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-fantasia-respiratory-phase-coupling-001",
+  "claims": [
+    {
+      "id": "intervals",
+      "type": "number",
+      "question": "合格RR数。",
+      "binding": {
+        "table": "fit.csv",
+        "key_column": "id",
+        "key": "main",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "mean_rr",
+      "type": "number",
+      "question": "相位回归截距（毫秒）。",
+      "binding": {
+        "table": "fit.csv",
+        "key_column": "id",
+        "key": "main",
+        "column": "intercept_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "amplitude",
+      "type": "number",
+      "question": "呼吸相位回归振幅。",
+      "binding": {
+        "table": "fit.csv",
+        "key_column": "id",
+        "key": "main",
+        "column": "amplitude_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "r2",
+      "type": "number",
+      "question": "相位回归解释度。",
+      "binding": {
+        "table": "fit.csv",
+        "key_column": "id",
+        "key": "main",
+        "column": "r_squared"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "p",
+      "type": "number",
+      "question": "给定循环移位方案的右尾p。",
+      "binding": {
+        "table": "surrogate_summary.csv",
+        "key_column": "id",
+        "key": "main",
+        "column": "p_value"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "narrow_amp",
+      "type": "number",
+      "question": "窄带敏感性振幅。",
+      "binding": {
+        "table": "fit.csv",
+        "key_column": "id",
+        "key": "narrow",
+        "column": "amplitude_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "coupling",
+      "type": "derived",
+      "question": "耦合强度是否在移位零分布下达到0.05？",
+      "options": [
+        "exceeds_shift_null_at_005",
+        "not_above_shift_null_at_005"
+      ],
+      "rule": {
+        "binding": {
+          "table": "surrogate_summary.csv",
+          "key_column": "id",
+          "key": "main",
+          "column": "p_value"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "exceeds_shift_null_at_005",
+          "false": "not_above_shift_null_at_005"
+        }
+      }
+    },
+    {
+      "id": "strength",
+      "type": "derived",
+      "question": "模型是否解释超过10%的RR方差？",
+      "options": [
+        "explains_more_than_10pct",
+        "explains_at_most_10pct"
+      ],
+      "rule": {
+        "binding": {
+          "table": "fit.csv",
+          "key_column": "id",
+          "key": "main",
+          "column": "r_squared"
+        },
+        "op": "gt",
+        "threshold": 0.1,
+        "outcomes": {
+          "true": "explains_more_than_10pct",
+          "false": "explains_at_most_10pct"
+        }
+      }
+    },
+    {
+      "id": "meaning",
+      "type": "choice",
+      "question": "循环移位检验的适用解释是？",
+      "options": [
+        "within_record_alignment_sensitive_association_not_causal_or_population_effect",
+        "proof_respiration_causes_every_RR_change",
+        "each_heartbeat_is_an_independent_person"
+      ]
+    }
+  ]
+}

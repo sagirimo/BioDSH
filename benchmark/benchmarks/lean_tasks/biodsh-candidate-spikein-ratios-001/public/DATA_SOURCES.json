@@ -1,0 +1,10 @@
+{
+ "source_url": "https://github.com/waldronlab/MicrobiomeBenchmarkData",
+ "input_files_sha256": {
+  "inputs/count_matrix.tsv": "f3401ea59b03311c5f23c805d65a6833ca5ecec0d2bff9a4d82ba44442131655",
+  "inputs/design.json": "4881058cac403ca9c42e730ee2f492ec126acd37156aeb6b2de6c75991d319df",
+  "inputs/sample_metadata.tsv": "c71960a62e9730e1bf4ac4d9207946688485ae026f904155a09748ee1ba42364",
+  "inputs/taxonomy_table.tsv": "5eeca52a054d7968cba5e547e6d95a39ea468d29485ae0d58633a27798e0d4a6"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

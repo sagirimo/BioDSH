@@ -1,0 +1,2 @@
+公开原始历史序列的R datasets::lynx整理版（Rdatasets CSV镜像）。官方文档来源Brockwell & Davis1991书Series G，称似为Campbell & Walker1977的Mackenzie River序列，故不把这一联系写为已确证的原始档案溯源。Campbell MJ, Walker AM1977 JRSS A140:411，DOI10.2307/2345277。数据路径https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/datasets/lynx.csv；官方说明附URL。没有使用benchmark或已包装预测切分。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

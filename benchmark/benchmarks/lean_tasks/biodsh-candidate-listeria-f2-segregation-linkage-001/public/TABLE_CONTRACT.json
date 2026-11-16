@@ -1,0 +1,141 @@
+{
+  "tables": {
+    "adjacent_linkage.csv": {
+      "columns": [
+        "id",
+        "chromosome",
+        "left",
+        "right",
+        "n_pairs",
+        "distance_cM",
+        "r_hat",
+        "map_r",
+        "delta_r",
+        "LOD"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "chromosome": "int",
+        "left": "text",
+        "right": "text",
+        "n_pairs": "int",
+        "distance_cM": "float",
+        "r_hat": "float",
+        "map_r": "float",
+        "delta_r": "float",
+        "LOD": "float"
+      },
+      "tolerance": {
+        "distance_cM": [
+          1e-05,
+          1e-08
+        ],
+        "r_hat": [
+          1e-05,
+          1e-08
+        ],
+        "map_r": [
+          1e-05,
+          1e-08
+        ],
+        "delta_r": [
+          1e-05,
+          1e-08
+        ],
+        "LOD": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "chromosome_summary.csv": {
+      "columns": [
+        "id",
+        "n_markers",
+        "distorted_q05",
+        "n_intervals",
+        "linked_LOD3",
+        "median_r",
+        "r_rmse"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_markers": "int",
+        "distorted_q05": "int",
+        "n_intervals": "int",
+        "linked_LOD3": "int",
+        "median_r": "float",
+        "r_rmse": "float"
+      },
+      "tolerance": {
+        "median_r": [
+          1e-05,
+          1e-08
+        ],
+        "r_rmse": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "marker_segregation.csv": {
+      "columns": [
+        "id",
+        "chromosome",
+        "position_cM",
+        "n_called",
+        "AA",
+        "AB",
+        "BB",
+        "call_rate",
+        "chi_square",
+        "p",
+        "q"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "chromosome": "int",
+        "position_cM": "float",
+        "n_called": "int",
+        "AA": "int",
+        "AB": "int",
+        "BB": "int",
+        "call_rate": "float",
+        "chi_square": "float",
+        "p": "float",
+        "q": "float"
+      },
+      "tolerance": {
+        "position_cM": [
+          1e-05,
+          1e-08
+        ],
+        "call_rate": [
+          1e-05,
+          1e-08
+        ],
+        "chi_square": [
+          1e-05,
+          1e-08
+        ],
+        "p": [
+          1e-05,
+          1e-08
+        ],
+        "q": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

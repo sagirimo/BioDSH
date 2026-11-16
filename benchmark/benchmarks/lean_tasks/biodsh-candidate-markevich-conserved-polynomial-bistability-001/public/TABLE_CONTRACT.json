@@ -1,0 +1,156 @@
+{
+  "tables": {
+    "equilibria.csv": {
+      "columns": [
+        "id",
+        "kinase",
+        "q",
+        "M",
+        "Mp",
+        "Mpp",
+        "dominant_real",
+        "stable",
+        "residual",
+        "flux_first",
+        "flux_second"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "kinase": "int",
+        "q": "float",
+        "M": "float",
+        "Mp": "float",
+        "Mpp": "float",
+        "dominant_real": "float",
+        "stable": "int",
+        "residual": "float",
+        "flux_first": "float",
+        "flux_second": "float"
+      },
+      "tolerance": {
+        "q": [
+          1e-05,
+          1e-08
+        ],
+        "M": [
+          1e-05,
+          1e-08
+        ],
+        "Mp": [
+          1e-05,
+          1e-08
+        ],
+        "Mpp": [
+          1e-05,
+          1e-08
+        ],
+        "dominant_real": [
+          1e-05,
+          1e-08
+        ],
+        "residual": [
+          1e-05,
+          1e-08
+        ],
+        "flux_first": [
+          1e-05,
+          1e-08
+        ],
+        "flux_second": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "fold_summary.csv": {
+      "columns": [
+        "id",
+        "fold_count",
+        "minimum_kinase",
+        "maximum_kinase"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "fold_count": "int",
+        "minimum_kinase": "float",
+        "maximum_kinase": "float"
+      },
+      "tolerance": {
+        "minimum_kinase": [
+          1e-05,
+          1e-08
+        ],
+        "maximum_kinase": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "kinase_scan.csv": {
+      "columns": [
+        "id",
+        "n_roots",
+        "n_stable",
+        "min_Mpp",
+        "max_Mpp",
+        "low_dominant_real",
+        "mean_flux_first"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_roots": "int",
+        "n_stable": "int",
+        "min_Mpp": "float",
+        "max_Mpp": "float",
+        "low_dominant_real": "float",
+        "mean_flux_first": "float"
+      },
+      "tolerance": {
+        "min_Mpp": [
+          1e-05,
+          1e-08
+        ],
+        "max_Mpp": [
+          1e-05,
+          1e-08
+        ],
+        "low_dominant_real": [
+          1e-05,
+          1e-08
+        ],
+        "mean_flux_first": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "polynomial_coefficients.csv": {
+      "columns": [
+        "id",
+        "coefficient"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "coefficient": "float"
+      },
+      "tolerance": {
+        "coefficient": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

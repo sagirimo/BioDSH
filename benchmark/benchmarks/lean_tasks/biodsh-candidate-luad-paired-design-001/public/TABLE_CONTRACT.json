@@ -1,0 +1,212 @@
+{
+  "tables": {
+    "all_gene_stats.csv": {
+      "columns": [
+        "gene_id",
+        "n_pairs",
+        "mean_difference",
+        "se",
+        "t_stat",
+        "pvalue",
+        "padj",
+        "selected",
+        "estimable"
+      ],
+      "key": [
+        "gene_id"
+      ],
+      "types": {
+        "gene_id": "text",
+        "n_pairs": "int",
+        "mean_difference": "float",
+        "se": "float",
+        "t_stat": "float",
+        "pvalue": "float",
+        "padj": "float",
+        "selected": "int",
+        "estimable": "int"
+      },
+      "tolerance": {
+        "mean_difference": [
+          1e-06,
+          1e-10
+        ],
+        "se": [
+          1e-06,
+          1e-10
+        ],
+        "t_stat": [
+          1e-06,
+          1e-10
+        ],
+        "pvalue": [
+          1e-06,
+          1e-10
+        ],
+        "padj": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "cohort_audit.csv": {
+      "columns": [
+        "sample_id",
+        "title",
+        "source_name",
+        "included",
+        "exclusion_reason",
+        "group",
+        "case",
+        "raw_endpoint",
+        "baseline_rhythm",
+        "age_years",
+        "male",
+        "cardiopathy",
+        "smoking_status",
+        "pack_years",
+        "origin",
+        "site",
+        "pair_id",
+        "upstream_age",
+        "upstream_male",
+        "upstream_trait",
+        "recovered_raw_age",
+        "recovered_raw_sex"
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "types": {
+        "sample_id": "text",
+        "title": "text",
+        "source_name": "text",
+        "included": "int",
+        "exclusion_reason": "text",
+        "group": "text",
+        "case": "int",
+        "raw_endpoint": "text",
+        "baseline_rhythm": "text",
+        "age_years": "float",
+        "male": "int",
+        "cardiopathy": "text",
+        "smoking_status": "text",
+        "pack_years": "float",
+        "origin": "text",
+        "site": "text",
+        "pair_id": "text",
+        "upstream_age": "float",
+        "upstream_male": "float",
+        "upstream_trait": "float",
+        "recovered_raw_age": "int",
+        "recovered_raw_sex": "int"
+      },
+      "tolerance": {
+        "age_years": [
+          1e-06,
+          1e-10
+        ],
+        "pack_years": [
+          1e-06,
+          1e-10
+        ],
+        "upstream_age": [
+          1e-06,
+          1e-10
+        ],
+        "upstream_male": [
+          1e-06,
+          1e-10
+        ],
+        "upstream_trait": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "variables_available",
+        "estimable_here",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "variables_available": "int",
+        "estimable_here": "int",
+        "scope": "text"
+      }
+    },
+    "pair_audit.csv": {
+      "columns": [
+        "pair_id",
+        "origin",
+        "primary_sample",
+        "brain_sample",
+        "included"
+      ],
+      "key": [
+        "pair_id"
+      ],
+      "types": {
+        "pair_id": "text",
+        "origin": "text",
+        "primary_sample": "text",
+        "brain_sample": "text",
+        "included": "int"
+      }
+    },
+    "paired_gene_differences.csv": {
+      "columns": [
+        "row_id",
+        "gene_id",
+        "pair_id",
+        "primary_expression",
+        "brain_expression",
+        "paired_difference"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "gene_id": "text",
+        "pair_id": "text",
+        "primary_expression": "float",
+        "brain_expression": "float",
+        "paired_difference": "float"
+      },
+      "tolerance": {
+        "primary_expression": [
+          1e-06,
+          1e-10
+        ],
+        "brain_expression": [
+          1e-06,
+          1e-10
+        ],
+        "paired_difference": [
+          1e-06,
+          1e-10
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "int"
+      }
+    }
+  }
+}

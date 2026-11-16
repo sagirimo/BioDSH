@@ -1,0 +1,194 @@
+{
+  "tables": {
+    "contrasts.csv": {
+      "columns": [
+        "contrast",
+        "horizon",
+        "difference",
+        "se",
+        "ci_low",
+        "ci_high",
+        "p_value"
+      ],
+      "key": [
+        "contrast"
+      ],
+      "types": {
+        "contrast": "text",
+        "horizon": "int",
+        "difference": "float",
+        "se": "float",
+        "ci_low": "float",
+        "ci_high": "float",
+        "p_value": "float"
+      },
+      "tolerance": {
+        "difference": [
+          1e-06,
+          1e-08
+        ],
+        "se": [
+          1e-06,
+          1e-08
+        ],
+        "ci_low": [
+          1e-06,
+          1e-08
+        ],
+        "ci_high": [
+          1e-06,
+          1e-08
+        ],
+        "p_value": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "km_event_steps.csv": {
+      "columns": [
+        "stage",
+        "mmr",
+        "residual_months",
+        "at_risk",
+        "events",
+        "survival"
+      ],
+      "key": [
+        "stage",
+        "mmr",
+        "residual_months"
+      ],
+      "types": {
+        "stage": "int",
+        "mmr": "text",
+        "residual_months": "int",
+        "at_risk": "int",
+        "events": "int",
+        "survival": "float"
+      },
+      "tolerance": {
+        "survival": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "landmark_patients.csv": {
+      "columns": [
+        "gsm",
+        "title",
+        "stage",
+        "mmr",
+        "months",
+        "residual_months",
+        "event"
+      ],
+      "key": [
+        "gsm"
+      ],
+      "types": {
+        "gsm": "text",
+        "title": "text",
+        "stage": "int",
+        "mmr": "text",
+        "months": "int",
+        "residual_months": "int",
+        "event": "int"
+      },
+      "tolerance": {}
+    },
+    "stage_weights.csv": {
+      "columns": [
+        "stage",
+        "n",
+        "weight"
+      ],
+      "key": [
+        "stage"
+      ],
+      "types": {
+        "stage": "int",
+        "n": "int",
+        "weight": "float"
+      },
+      "tolerance": {
+        "weight": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "standardized_rmst.csv": {
+      "columns": [
+        "mmr",
+        "horizon",
+        "rmst",
+        "se"
+      ],
+      "key": [
+        "mmr",
+        "horizon"
+      ],
+      "types": {
+        "mmr": "text",
+        "horizon": "int",
+        "rmst": "float",
+        "se": "float"
+      },
+      "tolerance": {
+        "rmst": [
+          1e-06,
+          1e-08
+        ],
+        "se": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "stratum_rmst.csv": {
+      "columns": [
+        "stage",
+        "mmr",
+        "horizon",
+        "n",
+        "events_to_horizon",
+        "at_risk_horizon",
+        "rmst",
+        "variance",
+        "survival_at_horizon"
+      ],
+      "key": [
+        "stage",
+        "mmr",
+        "horizon"
+      ],
+      "types": {
+        "stage": "int",
+        "mmr": "text",
+        "horizon": "int",
+        "n": "int",
+        "events_to_horizon": "int",
+        "at_risk_horizon": "int",
+        "rmst": "float",
+        "variance": "float",
+        "survival_at_horizon": "float"
+      },
+      "tolerance": {
+        "rmst": [
+          1e-06,
+          1e-08
+        ],
+        "variance": [
+          1e-06,
+          1e-08
+        ],
+        "survival_at_horizon": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

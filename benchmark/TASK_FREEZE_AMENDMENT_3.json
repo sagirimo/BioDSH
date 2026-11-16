@@ -1,0 +1,38 @@
+{
+ "amends": "benchmarks/formal_experiment/TASK_FREEZE.json",
+ "date": "2026-10-20",
+ "before_any_formal_run": true,
+ "summary": "Task-side defects found by four Codex audit workers (all 160 lean tasks) and a failure analysis on the 38-task closed set: undefined or unguessable labels and columns, missing-value marker conflicts (__NA__ vs NA), count/sign/direction definitions, template leftovers, contract type and tolerance conflicts. Each fix appends a short '补充说明（2026-10-20 修订）' paragraph to public/prompt.md (definitions only, no computed answers) or patches TABLE_CONTRACT.json. Evaluator, expected outputs and inputs unchanged.",
+ "harness_changes_same_day": [
+  "runners copy the whole public/ directory (37 frozen tasks name attachments such as ROW_SETS.json that agents never received)",
+  "PREAMBLE_zh.md states the interpretation_claims.json shape and the replay limits"
+ ],
+ "revision_log": "benchmarks/formal_experiment/TASK_REVISIONS_20261020.json",
+ "frozen_tasks_changed": 23,
+ "frozen_hash_mismatch_before_revision": [],
+ "task_dir_sha256_after": {
+  "biodsh-candidate-ca-isoform-selectivity-001": "5dfc0e8705372f7642ca5e8d5f36fa63d351973eaba34a85f45ce1d89ab9e722",
+  "biodsh-candidate-cefamandole-complete-pk-workflow-001": "a20b33c4052e58ed7f17568cee6a46a4186fbce66b3a6a31d615f0fde422019b",
+  "biodsh-candidate-dietswap-paired-workflow-001": "1160a2c52dc794cbd439e3bfbae8c4ee68af9b3d01ad372844aa6c3ff21df667",
+  "biodsh-candidate-dream4-size100-001": "17d80130ae02216ed079a37bb1b11fbe231487a369ab2546e5a0b833d9f4f7f8",
+  "biodsh-candidate-enge-donor-age-program-permutations-001": "20e231392dfe13c6f9009d647b170e6a6469e42ff89c97af2cab7b90ff9dc3f4",
+  "biodsh-candidate-gaitndd-subject-workflow-001": "fbeea2dc0d2cd12cebac61ce802c3b5d713c488fd1125ecdf3231577070967ce",
+  "biodsh-candidate-genehop-rs1278530438-001": "4bf0c3c754b0b90cc0c9051d3ae28059f4a22d8cd49091457234a76f179ba524",
+  "biodsh-candidate-globalpatterns-workflow-001": "4cc8089eecfece80a569878d64a860e08c7b5bbfb183cd8be836c48e83e9fb3a",
+  "biodsh-candidate-grav2-timecross-workflow-001": "500378cb6c21243ee2d15c3d709224d4ab7bf694837da932f89e239b3391df9f",
+  "biodsh-candidate-hmp-gingival-001": "3f1cda8d0d2913cec0dc28eb364258de4ec7ebef904c8deb5c24e1d362e56f5e",
+  "biodsh-candidate-indometh-biphase-workflow-001": "f541a1bc1c9cdc830b11902fd4954d7f6ae7136d26153b27d0bc2297e3081051",
+  "biodsh-candidate-liver-dose-time-workflow-001": "8033f04efb3a03a6e17f90653a83d313d4bf73b0f0fcdfb5a16d5571bf86d055",
+  "biodsh-candidate-melanoma-competing-workflow-001": "f7dfd4eb512d170324e84d0d831afe570b940e36771407486771b426092266b2",
+  "biodsh-candidate-mite-community-workflow-001": "0203eeb66cf36a27e471bbb07bb23ad615d182edbb1a627ec8a2d56739e303b9",
+  "biodsh-candidate-mr-lipids-001": "fff4033442ff1377c7cbde0671059b403a09c4eaf08519a5c5d7e6e45dc8d506",
+  "biodsh-candidate-orthodont-growth-cr1-workflow-001": "3b1dd8cb6bb860cb886c6d7142474b609e2b09c0a60d1c30462c02bb70000811",
+  "biodsh-candidate-oxboys-growth-workflow-001": "457996fdcd3635ad89ee28b49e42169ca3c295143ff4cc998c6eadbd3f2e2247",
+  "biodsh-candidate-qin-t2d-composition-001": "9b5773e6dd33a9badeb6269460e20ce4a61bc3df696f887b3a168981aef21184",
+  "biodsh-candidate-seqfish-neighborhood-001": "6905a38e8b2966a101d86db544fc2481c1ec7e780be72e93aad89e07b68eead0",
+  "biodsh-candidate-spikein-ratios-001": "2638e785f2712d9dcc1dac8a3bef12a916a71fad92d3cd0f2bdd071b544be558",
+  "biodsh-candidate-sug-cross-workflow-001": "35ecc2f4423df4df688a7c361678262579d4a2357388ca93930ad43623118f6a",
+  "biodsh-candidate-vare-vegetation-workflow-001": "ec24e0e36e95b4d2cf66b5e51b7d0c08871571d21f5fa8d2452ba1ad1ae3a145",
+  "biodsh-candidate-woodmouse-evolution-001": "9feac39e8a7dabede542734ccb08def1f2519023ebb4a073abb10f45ea9591f7"
+ }
+}

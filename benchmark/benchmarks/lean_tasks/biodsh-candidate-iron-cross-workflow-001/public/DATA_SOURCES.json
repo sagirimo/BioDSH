@@ -1,0 +1,19 @@
+{
+ "source_url": "https://kbroman.org/qtl2/pages/sampledata.html",
+ "input_files_sha256": {
+  "inputs/OUTPUT_FIELD_CONVENTIONS_V2.json": "5a3bf326bfd53fc6fdf04761ea055a4a5546c9c68e5b3ded47093088842e76b8",
+  "inputs/design.json": "597595eb51015272a13057f9218d35828b92d84584ec9736c5bff358a1c56dbf",
+  "inputs/evidence_input.csv": "2d682c1fba66beb115e370003c86b67a22757d391ac26007e1f2c698480b8ced",
+  "inputs/individual_order.csv": "9ccd6c132745869136f901759774e8e187229f5368152dc5594def71a78faf26",
+  "inputs/iron.yaml": "ff13240124fe894725128fbe55f76fee602de7fae8d9fb28cec97be02deb65d8",
+  "inputs/iron_covar.csv": "2947c8d72cdb433ca8c112b803c08398731f5906d88ba3af1e622b4df1bf1fdb",
+  "inputs/iron_geno.csv": "8c908af1479dc8fbc4a4aa9a01a8cb52dd62a361058311e8a8d444a2b24b406b",
+  "inputs/iron_gmap.csv": "d567fc543669f5b170bf71570ff87468ab2d2f029ecfcd7aabf61d309fa814d3",
+  "inputs/iron_pheno.csv": "23410010b6a3c938e844ef143474667ced98e0603db4ade77e6844c1304bce96",
+  "inputs/iron_phenocovar.csv": "6cdc05c876cc80b32aee878c9a1d512c738192afa87adcbc2a9ff4af902abd3f",
+  "inputs/iron_pmap.csv": "a55e15497686ff718bd3c1a9e8f7713838c98d0978323436a0370743888de98a",
+  "inputs/kind.txt": "50b4617d120889720cf3a2848f857a6f26d102081c1d0f142bc5451133a7385d",
+  "inputs/table_schema.csv": "9f0f2ecbd4b27ffd413c2060b72823fae8998cc10f1eb6c5046762e39eb85714"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

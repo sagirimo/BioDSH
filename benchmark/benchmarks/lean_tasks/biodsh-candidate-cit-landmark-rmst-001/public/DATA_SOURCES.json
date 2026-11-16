@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE39582",
+ "input_files_sha256": {
+  "inputs/GSE39582_sample_metadata.txt": "149777fe629ccfaab30650908653ed6dbb6f3bb71e0fb02250d618eb72c26fd4"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

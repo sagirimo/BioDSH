@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-egfr-efficiency-frontier-001",
+  "claims": [
+    {
+      "id": "n",
+      "type": "number",
+      "question": "完整可评估化合物数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "median_lle",
+      "type": "number",
+      "question": "脂溶性效率中位数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "median_LLE"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "median_le",
+      "type": "number",
+      "question": "重原子效率中位数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "median_LE"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "front",
+      "type": "number",
+      "question": "Pareto第一层的化合物数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "front_size"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "selected",
+      "type": "number",
+      "question": "满足全部筛选规则的化合物数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "selected"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "relaxed",
+      "type": "number",
+      "question": "放宽LE阈值为0.25后的候选数。",
+      "binding": {
+        "table": "sensitivity.csv",
+        "key_column": "id",
+        "key": "relaxed",
+        "column": "selected"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "any_selected",
+      "type": "derived",
+      "question": "严格规则下是否存在候选？",
+      "options": [
+        "at_least_one",
+        "none"
+      ],
+      "rule": {
+        "binding": {
+          "table": "summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "selected"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "at_least_one",
+          "false": "none"
+        }
+      }
+    },
+    {
+      "id": "lle_level",
+      "type": "derived",
+      "question": "LLE中位数是否达到5？",
+      "options": [
+        "median_at_least_5",
+        "median_below_5"
+      ],
+      "rule": {
+        "binding": {
+          "table": "summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "median_LLE"
+        },
+        "op": "ge",
+        "threshold": 5,
+        "outcomes": {
+          "true": "median_at_least_5",
+          "false": "median_below_5"
+        }
+      }
+    },
+    {
+      "id": "meaning",
+      "type": "choice",
+      "question": "IC50构造的 LE/LLE 应如何解释？",
+      "options": [
+        "context_dependent_prioritization_heuristics",
+        "measured_binding_free_energy",
+        "guaranteed_oral_bioavailability"
+      ]
+    }
+  ]
+}

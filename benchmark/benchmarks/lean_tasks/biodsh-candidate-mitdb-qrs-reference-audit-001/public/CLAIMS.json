@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-mitdb-qrs-reference-audit-001",
+  "claims": [
+    {
+      "id": "detected",
+      "type": "number",
+      "question": "有效窗内检测心搏数。",
+      "binding": {
+        "table": "detection.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "detected"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "sensitivity",
+      "type": "number",
+      "question": "对官方心搏注释的检出率。",
+      "binding": {
+        "table": "detection.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "sensitivity"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "f1",
+      "type": "number",
+      "question": "一对一匹配F1。",
+      "binding": {
+        "table": "detection.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "f1"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "mean_hr",
+      "type": "number",
+      "question": "有效检测RR导出的平均心率。",
+      "binding": {
+        "table": "interval_summary.csv",
+        "key_column": "id",
+        "key": "detected",
+        "column": "mean_rate_bpm"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "sdnn",
+      "type": "number",
+      "question": "参考正常NN间期样本标准差。",
+      "binding": {
+        "table": "interval_summary.csv",
+        "key_column": "id",
+        "key": "reference_NN",
+        "column": "sd_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "rmssd",
+      "type": "number",
+      "question": "检测RR的相邻有效差RMSSD。",
+      "binding": {
+        "table": "interval_summary.csv",
+        "key_column": "id",
+        "key": "detected",
+        "column": "rmssd_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "detector_quality",
+      "type": "derived",
+      "question": "该窗F1是否达到0.95？",
+      "options": [
+        "f1_at_least_0_95",
+        "f1_below_0_95"
+      ],
+      "rule": {
+        "binding": {
+          "table": "detection.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "f1"
+        },
+        "op": "ge",
+        "threshold": 0.95,
+        "outcomes": {
+          "true": "f1_at_least_0_95",
+          "false": "f1_below_0_95"
+        }
+      }
+    },
+    {
+      "id": "rate_level",
+      "type": "derived",
+      "question": "平均检测心率是否超过100次/分？",
+      "options": [
+        "above_100",
+        "at_most_100"
+      ],
+      "rule": {
+        "binding": {
+          "table": "interval_summary.csv",
+          "key_column": "id",
+          "key": "detected",
+          "column": "mean_rate_bpm"
+        },
+        "op": "gt",
+        "threshold": 100,
+        "outcomes": {
+          "true": "above_100",
+          "false": "at_most_100"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "参考NN与检测RR的区别是什么？",
+      "options": [
+        "reference_NN_excludes_intervals_touching_non_N_beats",
+        "all_detected_RR_are_proven_sinus_NN",
+        "one_record_validates_a_clinical_monitor_for_all_patients"
+      ]
+    }
+  ]
+}

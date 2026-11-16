@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1136402",
+ "input_files_sha256": {
+  "inputs/activities.json": "1b93a660fdac7ae0a00c6c22f2631873344a5a29043798bcc61c4f50b4d271d4"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

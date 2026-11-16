@@ -1,0 +1,7 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/trees.html",
+ "input_files_sha256": {
+  "inputs/trees.csv": "cd4bfc506ee3a91b518f954bab54921b64c262f0d5c77c49cfd2af3f3aaecb21"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

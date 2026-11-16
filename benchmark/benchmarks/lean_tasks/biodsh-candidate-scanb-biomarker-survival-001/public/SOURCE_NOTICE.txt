@@ -1,0 +1,5 @@
+GSE96058 (SCAN-B, Sweden Cancerome Analysis Network - Breast; ClinicalTrials.gov NCT02306096).
+Brueffer C, et al. Clinical Value of RNA Sequencing-Based Classifiers for Prediction of the Five Conventional Breast Cancer Biomarkers: A Report From the Population-Based Multicenter Sweden Cancerome Analysis Network-Breast Initiative. JCO Precis Oncol. 2018;2:PO.17.00135. doi:10.1200/PO.17.00135.
+Data obtained unmodified from NCBI GEO (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE96058), series matrix files for GPL11154 and GPL18573.
+Use: bounded local research use with attribution under the NCBI GEO public-data policy (project decision 2026-10-15); no redistribution of the benchmark package is authorized by this notice. NCBI places no restrictions on use of GEO data but submitters may claim rights; study-specific terms were not separately verified.
+This task is a BioDSH-authored analysis protocol, not a reproduction of the original paper's analyses.

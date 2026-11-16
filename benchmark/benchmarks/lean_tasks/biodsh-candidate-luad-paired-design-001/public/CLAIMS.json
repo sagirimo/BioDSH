@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-luad-paired-design-001",
+  "claims": [
+    {
+      "id": "analysis_pairs",
+      "type": "number",
+      "question": "肺癌完整配对数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "analysis_pairs",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "features_in_BH",
+      "type": "number",
+      "question": "BH特征总数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "features_in_BH",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "selected_features",
+      "type": "number",
+      "question": "BH<0.05入选特征数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "selected_features",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "mean_difference",
+      "type": "number",
+      "question": "A2M的平均brain-primary差。",
+      "binding": {
+        "table": "all_gene_stats.csv",
+        "key_column": "gene_id",
+        "key": "A2M",
+        "column": "mean_difference"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "se",
+      "type": "number",
+      "question": "A2M的配对差均值标准误。",
+      "binding": {
+        "table": "all_gene_stats.csv",
+        "key_column": "gene_id",
+        "key": "A2M",
+        "column": "se"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "padj",
+      "type": "number",
+      "question": "A2M的全特征BH值。",
+      "binding": {
+        "table": "all_gene_stats.csv",
+        "key_column": "gene_id",
+        "key": "A2M",
+        "column": "padj"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "A2M_direction",
+      "type": "derived",
+      "question": "A2M在配对脑转移中的方向？",
+      "options": [
+        "brain_lower_than_primary",
+        "brain_at_least_primary",
+        "causal_metastasis_suppression"
+      ],
+      "rule": {
+        "binding": {
+          "table": "all_gene_stats.csv",
+          "key_column": "gene_id",
+          "key": "A2M",
+          "column": "mean_difference"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "brain_lower_than_primary",
+          "false": "brain_at_least_primary"
+        }
+      }
+    },
+    {
+      "id": "A2M_evidence",
+      "type": "derived",
+      "question": "A2M按全特征BH阈值的结论？",
+      "options": [
+        "selected_paired_association",
+        "not_selected_not_equivalence",
+        "independent_patient_validation"
+      ],
+      "rule": {
+        "binding": {
+          "table": "all_gene_stats.csv",
+          "key_column": "gene_id",
+          "key": "A2M",
+          "column": "padj"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "selected_paired_association",
+          "false": "not_selected_not_equivalence"
+        }
+      }
+    },
+    {
+      "id": "paired_unit",
+      "type": "choice",
+      "question": "配对t检验的独立单位？",
+      "options": [
+        "title_supported_patient_pair",
+        "each_assay_as_independent_patient",
+        "each_gene_as_independent_patient"
+      ]
+    },
+    {
+      "id": "contrast_scope",
+      "type": "choice",
+      "question": "这里的比较能说明什么？",
+      "options": [
+        "within_pair_metastasis_vs_primary_association",
+        "lung_cancer_vs_healthy",
+        "causal_effect_of_metastasis"
+      ]
+    }
+  ]
+}

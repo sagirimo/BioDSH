@@ -1,0 +1,171 @@
+{
+  "tables": {
+    "assignment_summary.csv": {
+      "columns": [
+        "id",
+        "n_cysteines",
+        "n_matchings",
+        "best_score",
+        "second_gap",
+        "mean_distance_A",
+        "max_deviation_A",
+        "annotated_matches",
+        "minimum_exclusion_gap"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_cysteines": "int",
+        "n_matchings": "int",
+        "best_score": "float",
+        "second_gap": "float",
+        "mean_distance_A": "float",
+        "max_deviation_A": "float",
+        "annotated_matches": "int",
+        "minimum_exclusion_gap": "float"
+      },
+      "tolerance": {
+        "best_score": [
+          1e-05,
+          1e-08
+        ],
+        "second_gap": [
+          1e-05,
+          1e-08
+        ],
+        "mean_distance_A": [
+          1e-05,
+          1e-08
+        ],
+        "max_deviation_A": [
+          1e-05,
+          1e-08
+        ],
+        "minimum_exclusion_gap": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "bond_exclusion.csv": {
+      "columns": [
+        "id",
+        "best_without_score",
+        "gap",
+        "retained_bonds"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "best_without_score": "float",
+        "gap": "float",
+        "retained_bonds": "int"
+      },
+      "tolerance": {
+        "best_without_score": [
+          1e-05,
+          1e-08
+        ],
+        "gap": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "cysteine_pairs.csv": {
+      "columns": [
+        "id",
+        "distance_A",
+        "squared_deviation",
+        "chi3_deg",
+        "sequence_span",
+        "annotated"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "distance_A": "float",
+        "squared_deviation": "float",
+        "chi3_deg": "float",
+        "sequence_span": "int",
+        "annotated": "int"
+      },
+      "tolerance": {
+        "distance_A": [
+          1e-05,
+          1e-08
+        ],
+        "squared_deviation": [
+          1e-05,
+          1e-08
+        ],
+        "chi3_deg": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "matching_scores.csv": {
+      "columns": [
+        "id",
+        "score",
+        "rank"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "score": "float",
+        "rank": "int"
+      },
+      "tolerance": {
+        "score": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "selected_bonds.csv": {
+      "columns": [
+        "id",
+        "distance_A",
+        "squared_deviation",
+        "chi3_deg",
+        "sequence_span",
+        "annotated"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "distance_A": "float",
+        "squared_deviation": "float",
+        "chi3_deg": "float",
+        "sequence_span": "int",
+        "annotated": "int"
+      },
+      "tolerance": {
+        "distance_A": [
+          1e-05,
+          1e-08
+        ],
+        "squared_deviation": [
+          1e-05,
+          1e-08
+        ],
+        "chi3_deg": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+存量原题 biodsh-candidate-saliva-repeated-features-001 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-saliva-repeated-features-001
+source: "scienceagentbench"
+source_registry_id: "scienceagentbench"
+source_family: "scienceagentbench"
+source_case: "85_saliva_whole_source_workflow_adaptation"
+source_revision: "git-tree:c0ea4fc47c4057c5762e5a6ed05b1a51471ae19a"
+source_terms: "Code license and underlying biosignal/participant-example redistribution reviewed separately before public release"
+family_keys: ["ScienceAgentBench:85", "BioPsyKit:cortisol_sample", "BioPsyKit:example_collection:undisclosed_participants", "GitBlobSHA1:95597ea4d9f485005fd53f90c749568c7f1b25ef"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+
+来源登记条目：{"id": "scienceagentbench", "family": "scienceagentbench", "type": "task_collection", "name": "ScienceAgentBench", "reported_size": "102 tasks from 44 papers across four disciplines; only biological tasks are eligible here", "url": "https://github.com/OSU-NLP-Group/ScienceAgentBench", "value": "从论文任务生成可执行程序并核验产物", "candidate_domains": ["D01", "D03", "D04", "D05", "D06", "D09", "D10"], "availability": "公开仓库；逐题核数据访问和复用条件", "priority": "P0", "caveat": "102 不是全部生命科学题；领域标签需要逐题审核", "current_qualified_fixed_contract_count": 7}

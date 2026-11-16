@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "mass_published_clinical_examples",
+  "source_case": "bacteria_whole_public220",
+  "original_parent_source_case": "Study:Leach:Menzies1999_2000:otitis_repeated_presence",
+  "page": "https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/bacteria.html",
+  "source_terms": "Exact MASS package/native/manual retained;actual family/history and full packaged-input delivery pending",
+  "limitations": [
+    "Only retrospective provided presence/absence records and deidentified IDs; no culturing, biological modification, pathogen optimization or wet-lab instructions. Provider describes50children/five weeks with30missing checks. Preserve observed records; actual IDs/visit completeness to census before methods. No clinical treatment efficacy or individual care advice.",
+    "Public named teaching panel may occur in model pretraining;not original trial/PQL or hidden evaluation",
+    "CR1 between-person independence/mean-model assumptions not validated;working AIC/LR and normal/chi-square approximations not causal certification"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

@@ -1,0 +1,8 @@
+{
+ "source_url": "https://github.com/wch/r-source/blob/trunk/src/library/datasets/data/CO2.rda",
+ "input_files_sha256": {
+  "inputs/plant_data.csv": "96aca49b3910e342a11606d0caa74639e99fbeb10a2ab9cb9ab6ae2a99c88370",
+  "inputs/treatment_assignments.csv": "c134f5528493bb6af92d11613dd7f36006f4f8a5df46c7eeb25b1cc77005d762"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

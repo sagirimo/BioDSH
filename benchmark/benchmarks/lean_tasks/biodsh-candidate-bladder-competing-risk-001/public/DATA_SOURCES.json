@@ -1,0 +1,9 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE13507",
+ "input_files_sha256": {
+  "inputs/GSE13507_sample_metadata.txt": "8072a8d8736486bfabc46045bc252a310970e13f20e109b6ffa324c43e633d5c",
+  "inputs/bootstrap_draws_MIBC.csv": "c2820820006e41aa9891ed2756f6724008945719a5a71792bb9e513208cd394f",
+  "inputs/bootstrap_draws_NMIBC.csv": "93db122eccc3fe4b564574f3947add6539e4386ef30218a0f1a6418e45671fe7"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

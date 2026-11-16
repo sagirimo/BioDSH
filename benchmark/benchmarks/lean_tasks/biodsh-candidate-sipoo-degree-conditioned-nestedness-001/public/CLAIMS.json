@@ -1,0 +1,140 @@
+{
+  "revision": "round5_lean_v1",
+  "task_id": "biodsh-candidate-sipoo-degree-conditioned-nestedness-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "总嵌套指标？",
+      "binding": {
+        "table": "nestedness_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "nodf"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "岛屿轴指标？",
+      "binding": {
+        "table": "nestedness_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "row_nodf"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "物种轴指标？",
+      "binding": {
+        "table": "nestedness_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "column_nodf"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "空模型标准化效应？",
+      "binding": {
+        "table": "nestedness_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "standardized_effect"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "上尾置换p？",
+      "binding": {
+        "table": "nestedness_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "p_upper"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "去稀有物种的指标变化？",
+      "binding": {
+        "table": "prevalence_sensitivity.csv",
+        "key_column": "id",
+        "key": "prevalence3_minus_all",
+        "column": "delta_nodf"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "固定物种占有率空模型下是否达到0.05上尾水平？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "nestedness_summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "p_upper"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "总嵌套指标是否超过50？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "nestedness_summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "nodf"
+        },
+        "op": "gt",
+        "threshold": 50,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "该空模型和嵌套结果能说明什么？",
+      "options": [
+        "在保留各物种占有率的空模型下比较结构，不能判定迁入或灭绝机制",
+        "同时严格固定每岛物种数和每种出现岛数",
+        "高嵌套程度直接证明灭绝导致小岛贫化"
+      ]
+    }
+  ]
+}

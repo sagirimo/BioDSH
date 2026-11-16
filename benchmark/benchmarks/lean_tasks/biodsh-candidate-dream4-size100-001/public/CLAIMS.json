@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-dream4-size100-001",
+  "claims": [
+    {
+      "id": "source_networks",
+      "type": "number",
+      "question": "输入网络数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "source_networks",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "source_training_rows",
+      "type": "number",
+      "question": "输入训练表达行总数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "source_training_rows",
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "G1_KO_G2_delta",
+      "type": "number",
+      "question": "network1中敲除G1对G2的WT校正差值。",
+      "binding": {
+        "table": "perturbation_effects_network1.csv",
+        "key_column": "effect_id",
+        "key": "network1|knockouts|G1|G2",
+        "column": "delta"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "G1_KO_G2_logratio",
+      "type": "number",
+      "question": "同干预的带伪计数log2比。",
+      "binding": {
+        "table": "perturbation_effects_network1.csv",
+        "key_column": "effect_id",
+        "key": "network1|knockouts|G1|G2",
+        "column": "log2_ratio_pseudocount1e_minus6"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "G1_trajectory_integral",
+      "type": "number",
+      "question": "network1首轨迹G1的全程积分。",
+      "binding": {
+        "table": "timeseries_summary.csv",
+        "key_column": "trajectory_id",
+        "key": "network1|ts01|G1",
+        "column": "integral_0to1000"
+      },
+      "rel_tol": 1e-08,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "G1_to_G2_score",
+      "type": "number",
+      "question": "network1有向G1→G2的固定分数。",
+      "binding": {
+        "table": "network1_scores.csv",
+        "key_column": "edge_id",
+        "key": "G1->G2",
+        "column": "score"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "KO_response_direction",
+      "type": "derived",
+      "question": "敲除G1后G2相对WT如何变化？",
+      "options": [
+        "G2_below_WT",
+        "G2_at_or_above_WT",
+        "direct_regulatory_edge_proven"
+      ],
+      "rule": {
+        "binding": {
+          "table": "perturbation_effects_network1.csv",
+          "key_column": "effect_id",
+          "key": "network1|knockouts|G1|G2",
+          "column": "delta"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "G2_below_WT",
+          "false": "G2_at_or_above_WT"
+        }
+      }
+    },
+    {
+      "id": "relative_response_strength",
+      "type": "derived",
+      "question": "两干预平均绝对反应是否超过WT+1e-6，即score>0.5？",
+      "options": [
+        "mean_response_exceeds_baseline",
+        "mean_response_not_above_baseline",
+        "clinical_probability_over_half"
+      ],
+      "rule": {
+        "binding": {
+          "table": "network1_scores.csv",
+          "key_column": "edge_id",
+          "key": "G1->G2",
+          "column": "score"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "mean_response_exceeds_baseline",
+          "false": "mean_response_not_above_baseline"
+        }
+      }
+    },
+    {
+      "id": "edge_scope",
+      "type": "choice",
+      "question": "较高扰动得分是否等于直接调控证据？",
+      "options": [
+        "may_include_indirect_pathways_and_noise",
+        "proves_direct_transcription_factor_binding",
+        "identifies_clinical_causality"
+      ]
+    },
+    {
+      "id": "replicate_unit",
+      "type": "choice",
+      "question": "轨迹的21时点应如何看待？",
+      "options": [
+        "dependent_timepoints_of_one_simulated_trajectory",
+        "21_independent_experimental_replicates",
+        "21_independent_biological_studies"
+      ]
+    }
+  ]
+}

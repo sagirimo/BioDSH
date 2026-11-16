@@ -1,0 +1,295 @@
+{
+  "tables": {
+    "candidate_genotypes.csv": {
+      "columns": [
+        "row_id",
+        "record_id",
+        "sample_id",
+        "affected",
+        "genotype",
+        "alt_dosage"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "record_id": "text",
+        "sample_id": "text",
+        "affected": "int",
+        "genotype": "text",
+        "alt_dosage": "int"
+      }
+    },
+    "clinvar_evidence.csv": {
+      "columns": [
+        "evidence_id",
+        "record_id",
+        "chromosome",
+        "position",
+        "reference",
+        "alternate",
+        "clinvar_variation_id",
+        "rs_id",
+        "gene_info",
+        "molecular_consequence",
+        "clinical_significance",
+        "diseases",
+        "review_status",
+        "observed_inheritance_supported",
+        "strict_complete_inheritance_supported",
+        "CFTR_gene",
+        "CF_condition",
+        "supportive_germline_classification",
+        "final_selected"
+      ],
+      "key": [
+        "evidence_id"
+      ],
+      "types": {
+        "evidence_id": "text",
+        "record_id": "text",
+        "chromosome": "int",
+        "position": "int",
+        "reference": "text",
+        "alternate": "text",
+        "clinvar_variation_id": "int",
+        "rs_id": "int",
+        "gene_info": "text",
+        "molecular_consequence": "text",
+        "clinical_significance": "text",
+        "diseases": "text",
+        "review_status": "text",
+        "observed_inheritance_supported": "int",
+        "strict_complete_inheritance_supported": "int",
+        "CFTR_gene": "int",
+        "CF_condition": "int",
+        "supportive_germline_classification": "int",
+        "final_selected": "int"
+      }
+    },
+    "duplicate_record_audit.csv": {
+      "columns": [
+        "record_id",
+        "representative_record_id",
+        "chromosome",
+        "position",
+        "reference",
+        "alternate"
+      ],
+      "key": [
+        "record_id"
+      ],
+      "types": {
+        "record_id": "text",
+        "representative_record_id": "text",
+        "chromosome": "int",
+        "position": "int",
+        "reference": "text",
+        "alternate": "text"
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "int",
+        "scope": "text"
+      }
+    },
+    "family_audit.csv": {
+      "columns": [
+        "sample_id",
+        "role",
+        "sex",
+        "affected",
+        "father_id",
+        "mother_id"
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "types": {
+        "sample_id": "text",
+        "role": "text",
+        "sex": "text",
+        "affected": "int",
+        "father_id": "text",
+        "mother_id": "text"
+      }
+    },
+    "final_candidates.csv": {
+      "columns": [
+        "evidence_id",
+        "record_id",
+        "allele_id",
+        "clinvar_variation_id",
+        "rs_id",
+        "gene_info",
+        "molecular_consequence",
+        "clinical_significance",
+        "diseases",
+        "review_status",
+        "evidence_completeness",
+        "missing_unaffected_samples",
+        "informative_trios",
+        "uninformative_trios"
+      ],
+      "key": [
+        "evidence_id"
+      ],
+      "types": {
+        "evidence_id": "text",
+        "record_id": "text",
+        "allele_id": "text",
+        "clinvar_variation_id": "int",
+        "rs_id": "int",
+        "gene_info": "text",
+        "molecular_consequence": "text",
+        "clinical_significance": "text",
+        "diseases": "text",
+        "review_status": "text",
+        "evidence_completeness": "text",
+        "missing_unaffected_samples": "text",
+        "informative_trios": "int",
+        "uninformative_trios": "int"
+      }
+    },
+    "genotype_qc.csv": {
+      "columns": [
+        "sample_id",
+        "all_records",
+        "fully_called",
+        "hom_ref",
+        "het_ref_alt",
+        "het_alt_alt",
+        "hom_alt",
+        "missing_or_invalid",
+        "biallelic_SNV_records",
+        "biallelic_SNV_called",
+        "biallelic_SNV_hom_ref",
+        "biallelic_SNV_het",
+        "biallelic_SNV_hom_alt",
+        "biallelic_SNV_missing_or_invalid"
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "types": {
+        "sample_id": "text",
+        "all_records": "int",
+        "fully_called": "int",
+        "hom_ref": "int",
+        "het_ref_alt": "int",
+        "het_alt_alt": "int",
+        "hom_alt": "int",
+        "missing_or_invalid": "int",
+        "biallelic_SNV_records": "int",
+        "biallelic_SNV_called": "int",
+        "biallelic_SNV_hom_ref": "int",
+        "biallelic_SNV_het": "int",
+        "biallelic_SNV_hom_alt": "int",
+        "biallelic_SNV_missing_or_invalid": "int"
+      }
+    },
+    "input_record_classes.csv": {
+      "columns": [
+        "class_id",
+        "chromosome",
+        "allele_class",
+        "source_records"
+      ],
+      "key": [
+        "class_id"
+      ],
+      "types": {
+        "class_id": "text",
+        "chromosome": "int",
+        "allele_class": "text",
+        "source_records": "int"
+      }
+    },
+    "recessive_candidates.csv": {
+      "columns": [
+        "record_id",
+        "chromosome",
+        "position",
+        "reference",
+        "alternate",
+        "affected_hom_alt",
+        "unaffected_hom_alt",
+        "unaffected_missing_or_invalid",
+        "parent_carriers",
+        "informative_trios",
+        "uninformative_trios",
+        "mendel_errors",
+        "observed_inheritance_supported",
+        "strict_complete_inheritance_supported"
+      ],
+      "key": [
+        "record_id"
+      ],
+      "types": {
+        "record_id": "text",
+        "chromosome": "int",
+        "position": "int",
+        "reference": "text",
+        "alternate": "text",
+        "affected_hom_alt": "int",
+        "unaffected_hom_alt": "int",
+        "unaffected_missing_or_invalid": "int",
+        "parent_carriers": "int",
+        "informative_trios": "int",
+        "uninformative_trios": "int",
+        "mendel_errors": "int",
+        "observed_inheritance_supported": "int",
+        "strict_complete_inheritance_supported": "int"
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "int"
+      }
+    },
+    "trio_qc.csv": {
+      "columns": [
+        "trio_id",
+        "child_id",
+        "father_id",
+        "mother_id",
+        "biallelic_SNV_records",
+        "informative_trios",
+        "uninformative_trios",
+        "mendel_errors"
+      ],
+      "key": [
+        "trio_id"
+      ],
+      "types": {
+        "trio_id": "text",
+        "child_id": "text",
+        "father_id": "text",
+        "mother_id": "text",
+        "biallelic_SNV_records": "int",
+        "informative_trios": "int",
+        "uninformative_trios": "int",
+        "mendel_errors": "int"
+      }
+    }
+  }
+}

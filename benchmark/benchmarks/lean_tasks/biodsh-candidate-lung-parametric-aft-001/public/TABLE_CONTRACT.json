@@ -1,0 +1,191 @@
+{
+ "tables": {
+  "aft_coefficients.csv": {
+   "columns": [
+    "model",
+    "term",
+    "coef",
+    "time_ratio"
+   ],
+   "key": [
+    "model",
+    "term"
+   ],
+   "types": {
+    "model": "text",
+    "term": "text",
+    "coef": "float",
+    "time_ratio": "float"
+   },
+   "tolerance": {
+    "coef": [
+     0.0001,
+     1e-06
+    ],
+    "time_ratio": [
+     0.0001,
+     1e-06
+    ]
+   }
+  },
+  "individual_predictions.csv": {
+   "columns": [
+    "model",
+    "gsm",
+    "location_logtime",
+    "survival60"
+   ],
+   "key": [
+    "model",
+    "gsm"
+   ],
+   "types": {
+    "model": "text",
+    "gsm": "text",
+    "location_logtime": "float",
+    "survival60": "float"
+   },
+   "tolerance": {
+    "location_logtime": [
+     0.0001,
+     1e-06
+    ],
+    "survival60": [
+     0.0001,
+     1e-06
+    ]
+   }
+  },
+  "model_comparison.csv": {
+   "columns": [
+    "comparison",
+    "statistic",
+    "df",
+    "p_value"
+   ],
+   "key": [
+    "comparison"
+   ],
+   "types": {
+    "comparison": "text",
+    "statistic": "float",
+    "df": "int",
+    "p_value": "float"
+   },
+   "tolerance": {
+    "statistic": [
+     0.0001,
+     0.0001
+    ],
+    "p_value": [
+     0.001,
+     1e-08
+    ]
+   }
+  },
+  "model_fit.csv": {
+   "columns": [
+    "model",
+    "n",
+    "deaths",
+    "parameters",
+    "sigma",
+    "log_likelihood",
+    "aic"
+   ],
+   "key": [
+    "model"
+   ],
+   "types": {
+    "model": "text",
+    "n": "int",
+    "deaths": "int",
+    "parameters": "int",
+    "sigma": "float",
+    "log_likelihood": "float",
+    "aic": "float"
+   },
+   "tolerance": {
+    "sigma": [
+     0.0001,
+     1e-06
+    ],
+    "log_likelihood": [
+     1e-07,
+     0.0001
+    ],
+    "aic": [
+     1e-07,
+     0.0001
+    ]
+   }
+  },
+  "patients.csv": {
+   "columns": [
+    "gsm",
+    "title",
+    "months",
+    "event",
+    "age65_per10",
+    "male",
+    "N1",
+    "N2",
+    "T2",
+    "T3_T4"
+   ],
+   "key": [
+    "gsm"
+   ],
+   "types": {
+    "gsm": "text",
+    "title": "text",
+    "months": "float",
+    "event": "int",
+    "age65_per10": "float",
+    "male": "int",
+    "N1": "int",
+    "N2": "int",
+    "T2": "int",
+    "T3_T4": "int"
+   },
+   "tolerance": {
+    "months": [
+     1e-06,
+     1e-08
+    ],
+    "age65_per10": [
+     1e-06,
+     1e-08
+    ]
+   }
+  },
+  "profiles.csv": {
+   "columns": [
+    "model",
+    "profile",
+    "median_months",
+    "survival60"
+   ],
+   "key": [
+    "model",
+    "profile"
+   ],
+   "types": {
+    "model": "text",
+    "profile": "text",
+    "median_months": "float",
+    "survival60": "float"
+   },
+   "tolerance": {
+    "median_months": [
+     0.0001,
+     1e-06
+    ],
+    "survival60": [
+     0.0001,
+     1e-06
+    ]
+   }
+  }
+ }
+}

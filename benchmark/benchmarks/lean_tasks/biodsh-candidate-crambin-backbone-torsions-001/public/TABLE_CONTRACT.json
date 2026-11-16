@@ -1,0 +1,126 @@
+{
+  "tables": {
+    "dihedrals.csv": {
+      "columns": [
+        "id",
+        "resnum",
+        "resname",
+        "phi_deg",
+        "psi_deg",
+        "region",
+        "tight_region"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "resnum": "int",
+        "resname": "text",
+        "phi_deg": "float",
+        "psi_deg": "float",
+        "region": "text",
+        "tight_region": "text"
+      },
+      "tolerance": {
+        "phi_deg": [
+          1e-05,
+          1e-08
+        ],
+        "psi_deg": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "regions.csv": {
+      "columns": [
+        "id",
+        "n",
+        "fraction"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "fraction": "float"
+      },
+      "tolerance": {
+        "fraction": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "segments.csv": {
+      "columns": [
+        "id",
+        "region",
+        "start_resnum",
+        "end_resnum",
+        "length"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "region": "text",
+        "start_resnum": "int",
+        "end_resnum": "int",
+        "length": "int"
+      },
+      "tolerance": {}
+    },
+    "sensitivity.csv": {
+      "columns": [
+        "id",
+        "reclassified",
+        "fraction_reclassified",
+        "tight_alpha_count"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "reclassified": "int",
+        "fraction_reclassified": "float",
+        "tight_alpha_count": "int"
+      },
+      "tolerance": {
+        "fraction_reclassified": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "alpha_count",
+        "alpha_fraction",
+        "longest_alpha_run"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "alpha_count": "int",
+        "alpha_fraction": "float",
+        "longest_alpha_run": "int"
+      },
+      "tolerance": {
+        "alpha_fraction": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

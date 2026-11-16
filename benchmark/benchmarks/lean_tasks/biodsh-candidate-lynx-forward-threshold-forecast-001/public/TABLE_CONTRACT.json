@@ -1,0 +1,162 @@
+{
+  "tables": {
+    "forecasts.csv": {
+      "columns": [
+        "id",
+        "model",
+        "year",
+        "observed",
+        "predicted",
+        "error",
+        "persistence_error"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "model": "text",
+        "year": "int",
+        "observed": "float",
+        "predicted": "float",
+        "error": "float",
+        "persistence_error": "float"
+      },
+      "tolerance": {
+        "observed": [
+          1e-05,
+          1e-08
+        ],
+        "predicted": [
+          1e-05,
+          1e-08
+        ],
+        "error": [
+          1e-05,
+          1e-08
+        ],
+        "persistence_error": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "forecast_summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "rmse",
+        "mae",
+        "bias",
+        "mse_skill",
+        "error_lag1"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "rmse": "float",
+        "mae": "float",
+        "bias": "float",
+        "mse_skill": "float",
+        "error_lag1": "float"
+      },
+      "tolerance": {
+        "rmse": [
+          1e-05,
+          1e-08
+        ],
+        "mae": [
+          1e-05,
+          1e-08
+        ],
+        "bias": [
+          1e-05,
+          1e-08
+        ],
+        "mse_skill": [
+          1e-05,
+          1e-08
+        ],
+        "error_lag1": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "period_sensitivity.csv": {
+      "columns": [
+        "id",
+        "n",
+        "rmse",
+        "mae"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "rmse": "float",
+        "mae": "float"
+      },
+      "tolerance": {
+        "rmse": [
+          1e-05,
+          1e-08
+        ],
+        "mae": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "rolling_fits.csv": {
+      "columns": [
+        "id",
+        "n_train",
+        "threshold",
+        "intercept",
+        "lag1",
+        "lag2",
+        "residual_rmse"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_train": "int",
+        "threshold": "float",
+        "intercept": "float",
+        "lag1": "float",
+        "lag2": "float",
+        "residual_rmse": "float"
+      },
+      "tolerance": {
+        "threshold": [
+          1e-05,
+          1e-08
+        ],
+        "intercept": [
+          1e-05,
+          1e-08
+        ],
+        "lag1": [
+          1e-05,
+          1e-08
+        ],
+        "lag2": [
+          1e-05,
+          1e-08
+        ],
+        "residual_rmse": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

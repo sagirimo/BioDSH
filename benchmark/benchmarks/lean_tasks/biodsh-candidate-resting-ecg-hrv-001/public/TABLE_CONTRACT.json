@@ -1,0 +1,258 @@
+{
+  "tables": {
+    "cleaned_ecg.csv": {
+      "columns": [
+        "sample_id",
+        "sample_index",
+        "time_s",
+        "cleaned_ecg"
+      ],
+      "key": [
+        "sample_id"
+      ],
+      "types": {
+        "sample_id": "text",
+        "sample_index": "int",
+        "time_s": "float",
+        "cleaned_ecg": "float"
+      },
+      "tolerance": {
+        "time_s": [
+          1e-07,
+          1e-08
+        ],
+        "cleaned_ecg": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "dfa_scales.csv": {
+      "columns": [
+        "scale_id",
+        "scale_beats",
+        "segments",
+        "fluctuation_ms"
+      ],
+      "key": [
+        "scale_id"
+      ],
+      "types": {
+        "scale_id": "text",
+        "scale_beats": "int",
+        "segments": "int",
+        "fluctuation_ms": "float"
+      },
+      "tolerance": {
+        "fluctuation_ms": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "claim_id",
+        "supported_by_inputs",
+        "scope"
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "types": {
+        "claim_id": "text",
+        "supported_by_inputs": "int",
+        "scope": "text"
+      }
+    },
+    "hrv_metrics.csv": {
+      "columns": [
+        "metric",
+        "value",
+        "unit"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float",
+        "unit": "text"
+      },
+      "tolerance": {
+        "value": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "hrv_psd.csv": {
+      "columns": [
+        "bin_id",
+        "frequency_hz",
+        "density_ms2_per_hz",
+        "band"
+      ],
+      "key": [
+        "bin_id"
+      ],
+      "types": {
+        "bin_id": "text",
+        "frequency_hz": "float",
+        "density_ms2_per_hz": "float",
+        "band": "text"
+      },
+      "tolerance": {
+        "frequency_hz": [
+          1e-07,
+          1e-08
+        ],
+        "density_ms2_per_hz": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "input_audit.csv": {
+      "columns": [
+        "channel",
+        "samples",
+        "missing",
+        "mean",
+        "sample_sd",
+        "minimum",
+        "maximum"
+      ],
+      "key": [
+        "channel"
+      ],
+      "types": {
+        "channel": "text",
+        "samples": "int",
+        "missing": "int",
+        "mean": "float",
+        "sample_sd": "float",
+        "minimum": "float",
+        "maximum": "float"
+      },
+      "tolerance": {
+        "mean": [
+          1e-07,
+          1e-08
+        ],
+        "sample_sd": [
+          1e-07,
+          1e-08
+        ],
+        "minimum": [
+          1e-07,
+          1e-08
+        ],
+        "maximum": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "rpeaks.csv": {
+      "columns": [
+        "peak_id",
+        "sample_index",
+        "time_s",
+        "amplitude"
+      ],
+      "key": [
+        "peak_id"
+      ],
+      "types": {
+        "peak_id": "text",
+        "sample_index": "int",
+        "time_s": "float",
+        "amplitude": "float"
+      },
+      "tolerance": {
+        "time_s": [
+          1e-07,
+          1e-08
+        ],
+        "amplitude": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "rr_intervals.csv": {
+      "columns": [
+        "interval_id",
+        "left_peak_id",
+        "right_peak_id",
+        "right_time_s",
+        "rr_ms",
+        "range_accepted",
+        "nonlinear_selected"
+      ],
+      "key": [
+        "interval_id"
+      ],
+      "types": {
+        "interval_id": "text",
+        "left_peak_id": "text",
+        "right_peak_id": "text",
+        "right_time_s": "float",
+        "rr_ms": "int",
+        "range_accepted": "int",
+        "nonlinear_selected": "int"
+      },
+      "tolerance": {
+        "right_time_s": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "rr_tachogram.csv": {
+      "columns": [
+        "grid_id",
+        "time_s",
+        "rr_ms"
+      ],
+      "key": [
+        "grid_id"
+      ],
+      "types": {
+        "grid_id": "text",
+        "time_s": "float",
+        "rr_ms": "float"
+      },
+      "tolerance": {
+        "time_s": [
+          1e-07,
+          1e-08
+        ],
+        "rr_ms": [
+          1e-07,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-10
+        ]
+      }
+    }
+  }
+}

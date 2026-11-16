@@ -1,0 +1,15 @@
+{
+ "source_url": "https://bioconductor.posit.co/packages/release/bioc/vignettes/ropls/inst/doc/ropls-vignette.html",
+ "input_files_sha256": {
+  "inputs/design.json": "7911a6bdb7da3e49f51b2cf00acf3343cbcbee311bfad717c09c8e862d6b9c7a",
+  "inputs/evidence_input.csv": "1e2d04632c7e4c0bff930ed14bb8ec34f73476e9781d02c94d9e80651d2155e4",
+  "inputs/kind.txt": "e1012e1ce2e4652e0da5d68bb84c2543aa47095418ce87541e0fa3c5b411f660",
+  "inputs/log10_intensities.csv": "dbfa82c4a15dfaac792afd9bf92d5b1bd63c29ba5e3077d26f54b0daf9a054c8",
+  "inputs/metabolite_metadata.csv": "4501701534c8c879f8bbfc58f40f95a969fdfe7024ba284839254e347c294362",
+  "inputs/native_representations.csv": "75118de99ceb6ae04f5838b3ca9007044e2e721a767d62dd81136b8f328a29cc",
+  "inputs/sacurine.rdata": "dcdc931962a2d165e83980689021e452ea890853ec0a02516944dd1359725fb3",
+  "inputs/sample_metadata.csv": "49bcbaa35f5fb892615da709adbe23e402db693051db9926737eb1821fe979ae",
+  "inputs/table_schema.csv": "1617de10b0c81f67017189bcb7a9c6eeae0805b1a6794a8033a21f6b6f72e24f"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

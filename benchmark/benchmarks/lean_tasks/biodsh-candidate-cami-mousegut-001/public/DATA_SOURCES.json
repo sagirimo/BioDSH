@@ -1,0 +1,8 @@
+{
+ "source_url": "https://www.nature.com/articles/s41592-022-01431-4",
+ "input_files_sha256": {
+  "inputs/communities.profile": "c8bacb3a87426934077abd3379e3a2486f542449f896405783280882a16b9a42",
+  "inputs/design.json": "65e84f3fe5f85a79ac9d5c156d5a45fa913c41ca23d7579ba8b28f1d21968445"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

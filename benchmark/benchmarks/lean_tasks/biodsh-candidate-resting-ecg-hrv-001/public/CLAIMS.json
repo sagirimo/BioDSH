@@ -1,0 +1,152 @@
+{
+ "revision": "legacy_lean_v1_20261015",
+ "task_id": "biodsh-candidate-resting-ecg-hrv-001",
+ "claims": [
+  {
+   "id": "rpeaks",
+   "type": "number",
+   "question": "检测到的R峰数。",
+   "binding": {
+    "table": "summary.csv",
+    "key_column": "metric",
+    "key": "rpeaks",
+    "column": "value"
+   },
+   "rel_tol": 1e-06,
+   "abs_tol": 1e-10
+  },
+  {
+   "id": "accepted_rr_intervals",
+   "type": "number",
+   "question": "通过范围过滤的RR间期数。",
+   "binding": {
+    "table": "summary.csv",
+    "key_column": "metric",
+    "key": "accepted_rr_intervals",
+    "column": "value"
+   },
+   "rel_tol": 1e-06,
+   "abs_tol": 1e-10
+  },
+  {
+   "id": "MeanNN",
+   "type": "number",
+   "question": "平均NN间期，ms。",
+   "binding": {
+    "table": "hrv_metrics.csv",
+    "key_column": "metric",
+    "key": "MeanNN",
+    "column": "value"
+   },
+   "rel_tol": 1e-07,
+   "abs_tol": 1e-08
+  },
+  {
+   "id": "RMSSD",
+   "type": "number",
+   "question": "相邻接受间期差的RMSSD，ms。",
+   "binding": {
+    "table": "hrv_metrics.csv",
+    "key_column": "metric",
+    "key": "RMSSD",
+    "column": "value"
+   },
+   "rel_tol": 1e-07,
+   "abs_tol": 1e-08
+  },
+  {
+   "id": "LF_HF",
+   "type": "number",
+   "question": "LF/HF谱功率比。",
+   "binding": {
+    "table": "hrv_metrics.csv",
+    "key_column": "metric",
+    "key": "LF_HF",
+    "column": "value"
+   },
+   "rel_tol": 1e-07,
+   "abs_tol": 1e-08
+  },
+  {
+   "id": "SampEn_m2",
+   "type": "number",
+   "question": "所声明连续段的m=2样本熵。",
+   "binding": {
+    "table": "hrv_metrics.csv",
+    "key_column": "metric",
+    "key": "SampEn_m2",
+    "column": "value"
+   },
+   "rel_tol": 1e-07,
+   "abs_tol": 1e-08
+  },
+  {
+   "id": "frequency_balance",
+   "type": "derived",
+   "question": "LF与HF中哪一段积分功率更大（只作特征比较）？",
+   "options": [
+    "LF_power_greater_than_HF",
+    "LF_power_not_greater_than_HF",
+    "sympathetic_disease_diagnosed"
+   ],
+   "rule": {
+    "binding": {
+     "table": "hrv_metrics.csv",
+     "key_column": "metric",
+     "key": "LF_HF",
+     "column": "value"
+    },
+    "op": "gt",
+    "threshold": 1,
+    "outcomes": {
+     "true": "LF_power_greater_than_HF",
+     "false": "LF_power_not_greater_than_HF"
+    }
+   }
+  },
+  {
+   "id": "artifact_range",
+   "type": "derived",
+   "question": "是否有间期被300–2000ms范围规则排除？",
+   "options": [
+    "some_intervals_outside_range",
+    "none_outside_range_not_expert_validation",
+    "all_peaks_expert_confirmed"
+   ],
+   "rule": {
+    "binding": {
+     "table": "summary.csv",
+     "key_column": "metric",
+     "key": "rejected_rr_intervals",
+     "column": "value"
+    },
+    "op": "gt",
+    "threshold": 0.5,
+    "outcomes": {
+     "true": "some_intervals_outside_range",
+     "false": "none_outside_range_not_expert_validation"
+    }
+   }
+  },
+  {
+   "id": "sampling_unit",
+   "type": "choice",
+   "question": "该记录的30000采样点是什么统计单位？",
+   "options": [
+    "dependent_time_samples_of_one_recording",
+    "30000_independent_people",
+    "30000_clinical_trials"
+   ]
+  },
+  {
+   "id": "nonlinear_gap",
+   "type": "choice",
+   "question": "非线性HRV为何选最长连续接受段？",
+   "options": [
+    "avoid_artificial_adjacency_across_rejected_gaps",
+    "increase_number_of_independent_subjects",
+    "impute_missing_beats_as_normal"
+   ]
+  }
+ ]
+}

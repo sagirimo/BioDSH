@@ -1,0 +1,12 @@
+{
+ "source_url": "https://github.com/cBioPortal/datahub",
+ "input_files_sha256": {
+  "inputs/data_clinical_patient.txt": "2a6bbadc6e4b2b07c0505559d438da959fc5c9aba55c7194abc394e2d6454995",
+  "inputs/data_clinical_sample.txt": "9a2291e065e2a0a5337b4eaeb09836e70b1bc3e1ed17714a013b53515697e6dc",
+  "inputs/design.json": "cd9259af350e79719df57f5d68c392d8f3670dba8003176b57528b638ed890f4",
+  "inputs/meta_clinical_patient.txt": "884b5b0f83a632f8a347dc9b539312ed631d63a71c4da03a88116903b7ee0ec2",
+  "inputs/meta_clinical_sample.txt": "6303f0e6b959b306c09d50653555888f04244a3338fc6e1e97a03d807e646a02",
+  "inputs/meta_study.txt": "e3520792252f2910c10cb9361f48a66beeaded678616173db9f455d9af1aa06b"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

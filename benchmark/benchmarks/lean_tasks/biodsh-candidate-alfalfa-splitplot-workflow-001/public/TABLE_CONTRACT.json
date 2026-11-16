@@ -1,0 +1,964 @@
+{
+  "tables": {
+    "source_audit.csv": {
+      "columns": [
+        "observation_id",
+        "native_Block",
+        "native_Variety",
+        "native_Date",
+        "native_Yield",
+        "working_Block",
+        "working_Variety",
+        "working_Date",
+        "working_Yield"
+      ],
+      "key": [
+        "observation_id"
+      ],
+      "types": {
+        "observation_id": "text",
+        "native_Block": "text",
+        "native_Variety": "text",
+        "native_Date": "text",
+        "native_Yield": "float",
+        "working_Block": "text",
+        "working_Variety": "text",
+        "working_Date": "text",
+        "working_Yield": "float"
+      },
+      "tolerance": {
+        "native_Yield": [
+          1e-06,
+          1e-08
+        ],
+        "working_Yield": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "design_cells.csv": {
+      "columns": [
+        "Block",
+        "Variety",
+        "Date",
+        "observation_id",
+        "Yield"
+      ],
+      "key": [
+        "Block",
+        "Variety",
+        "Date"
+      ],
+      "types": {
+        "Block": "text",
+        "Variety": "text",
+        "Date": "text",
+        "observation_id": "text",
+        "Yield": "float"
+      },
+      "tolerance": {
+        "Yield": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "wholeplots.csv": {
+      "columns": [
+        "Block",
+        "Variety",
+        "n_subplots",
+        "mean_Yield"
+      ],
+      "key": [
+        "Block",
+        "Variety"
+      ],
+      "types": {
+        "Block": "text",
+        "Variety": "text",
+        "n_subplots": "int",
+        "mean_Yield": "float"
+      },
+      "tolerance": {
+        "mean_Yield": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "projection_cells.csv": {
+      "columns": [
+        "Block",
+        "Variety",
+        "Date",
+        "grand",
+        "block_component",
+        "variety_component",
+        "date_component",
+        "block_variety_component",
+        "block_date_component",
+        "variety_date_component",
+        "threeway_component",
+        "treatment_fitted",
+        "wholeplot_fitted",
+        "subplot_residual"
+      ],
+      "key": [
+        "Block",
+        "Variety",
+        "Date"
+      ],
+      "types": {
+        "Block": "text",
+        "Variety": "text",
+        "Date": "text",
+        "grand": "float",
+        "block_component": "float",
+        "variety_component": "float",
+        "date_component": "float",
+        "block_variety_component": "float",
+        "block_date_component": "float",
+        "variety_date_component": "float",
+        "threeway_component": "float",
+        "treatment_fitted": "float",
+        "wholeplot_fitted": "float",
+        "subplot_residual": "float"
+      },
+      "tolerance": {
+        "grand": [
+          1e-06,
+          1e-08
+        ],
+        "block_component": [
+          1e-06,
+          1e-08
+        ],
+        "variety_component": [
+          1e-06,
+          1e-08
+        ],
+        "date_component": [
+          1e-06,
+          1e-08
+        ],
+        "block_variety_component": [
+          1e-06,
+          1e-08
+        ],
+        "block_date_component": [
+          1e-06,
+          1e-08
+        ],
+        "variety_date_component": [
+          1e-06,
+          1e-08
+        ],
+        "threeway_component": [
+          1e-06,
+          1e-08
+        ],
+        "treatment_fitted": [
+          1e-06,
+          1e-08
+        ],
+        "wholeplot_fitted": [
+          1e-06,
+          1e-08
+        ],
+        "subplot_residual": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "anova_components.csv": {
+      "columns": [
+        "component",
+        "component_df",
+        "SS",
+        "MS"
+      ],
+      "key": [
+        "component"
+      ],
+      "types": {
+        "component": "text",
+        "component_df": "int",
+        "SS": "float",
+        "MS": "float"
+      },
+      "tolerance": {
+        "SS": [
+          1e-06,
+          1e-08
+        ],
+        "MS": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "anova_tests.csv": {
+      "columns": [
+        "effect",
+        "numerator_df",
+        "SS",
+        "MS",
+        "denominator",
+        "denominator_df",
+        "denominator_MS",
+        "F",
+        "p"
+      ],
+      "key": [
+        "effect"
+      ],
+      "types": {
+        "effect": "text",
+        "numerator_df": "int",
+        "SS": "float",
+        "MS": "float",
+        "denominator": "text",
+        "denominator_df": "int",
+        "denominator_MS": "float",
+        "F": "float",
+        "p": "float"
+      },
+      "tolerance": {
+        "SS": [
+          1e-06,
+          1e-08
+        ],
+        "MS": [
+          1e-06,
+          1e-08
+        ],
+        "denominator_MS": [
+          1e-06,
+          1e-08
+        ],
+        "F": [
+          1e-06,
+          1e-08
+        ],
+        "p": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "cell_means.csv": {
+      "columns": [
+        "Variety",
+        "Date",
+        "n_blocks",
+        "mean_Yield",
+        "SE",
+        "satterthwaite_df",
+        "CI_low",
+        "CI_high"
+      ],
+      "key": [
+        "Variety",
+        "Date"
+      ],
+      "types": {
+        "Variety": "text",
+        "Date": "text",
+        "n_blocks": "int",
+        "mean_Yield": "float",
+        "SE": "float",
+        "satterthwaite_df": "float",
+        "CI_low": "float",
+        "CI_high": "float"
+      },
+      "tolerance": {
+        "mean_Yield": [
+          1e-06,
+          1e-08
+        ],
+        "SE": [
+          1e-06,
+          1e-08
+        ],
+        "satterthwaite_df": [
+          1e-06,
+          1e-08
+        ],
+        "CI_low": [
+          1e-06,
+          1e-08
+        ],
+        "CI_high": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "cell_covariance.csv": {
+      "columns": [
+        "Variety_a",
+        "Date_a",
+        "Variety_b",
+        "Date_b",
+        "whole_component",
+        "subplot_component",
+        "covariance"
+      ],
+      "key": [
+        "Variety_a",
+        "Date_a",
+        "Variety_b",
+        "Date_b"
+      ],
+      "types": {
+        "Variety_a": "text",
+        "Date_a": "text",
+        "Variety_b": "text",
+        "Date_b": "text",
+        "whole_component": "float",
+        "subplot_component": "float",
+        "covariance": "float"
+      },
+      "tolerance": {
+        "whole_component": [
+          1e-06,
+          1e-08
+        ],
+        "subplot_component": [
+          1e-06,
+          1e-08
+        ],
+        "covariance": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "contrast_weights.csv": {
+      "columns": [
+        "contrast_id",
+        "family",
+        "Variety",
+        "Date",
+        "weight"
+      ],
+      "key": [
+        "contrast_id",
+        "Variety",
+        "Date"
+      ],
+      "types": {
+        "contrast_id": "text",
+        "family": "text",
+        "Variety": "text",
+        "Date": "text",
+        "weight": "float"
+      },
+      "tolerance": {
+        "weight": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "contrasts.csv": {
+      "columns": [
+        "contrast_id",
+        "family",
+        "estimate",
+        "whole_variance",
+        "subplot_variance",
+        "variance",
+        "SE",
+        "satterthwaite_df",
+        "t",
+        "p",
+        "CI_low",
+        "CI_high"
+      ],
+      "key": [
+        "contrast_id"
+      ],
+      "types": {
+        "contrast_id": "text",
+        "family": "text",
+        "estimate": "float",
+        "whole_variance": "float",
+        "subplot_variance": "float",
+        "variance": "float",
+        "SE": "float",
+        "satterthwaite_df": "float",
+        "t": "float",
+        "p": "float",
+        "CI_low": "float",
+        "CI_high": "float"
+      },
+      "tolerance": {
+        "estimate": [
+          1e-06,
+          1e-08
+        ],
+        "whole_variance": [
+          1e-06,
+          1e-08
+        ],
+        "subplot_variance": [
+          1e-06,
+          1e-08
+        ],
+        "variance": [
+          1e-06,
+          1e-08
+        ],
+        "SE": [
+          1e-06,
+          1e-08
+        ],
+        "satterthwaite_df": [
+          1e-06,
+          1e-08
+        ],
+        "t": [
+          1e-06,
+          1e-08
+        ],
+        "p": [
+          1e-06,
+          1e-08
+        ],
+        "CI_low": [
+          1e-06,
+          1e-08
+        ],
+        "CI_high": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "contrast_covariance.csv": {
+      "columns": [
+        "contrast_a",
+        "contrast_b",
+        "whole_component",
+        "subplot_component",
+        "covariance"
+      ],
+      "key": [
+        "contrast_a",
+        "contrast_b"
+      ],
+      "types": {
+        "contrast_a": "text",
+        "contrast_b": "text",
+        "whole_component": "float",
+        "subplot_component": "float",
+        "covariance": "float"
+      },
+      "tolerance": {
+        "whole_component": [
+          1e-06,
+          1e-08
+        ],
+        "subplot_component": [
+          1e-06,
+          1e-08
+        ],
+        "covariance": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "deleted_projection_cells.csv": {
+      "columns": [
+        "dropped_Block",
+        "Block",
+        "Variety",
+        "Date",
+        "grand",
+        "block_component",
+        "variety_component",
+        "date_component",
+        "block_variety_component",
+        "block_date_component",
+        "variety_date_component",
+        "threeway_component",
+        "treatment_fitted",
+        "wholeplot_fitted",
+        "subplot_residual"
+      ],
+      "key": [
+        "dropped_Block",
+        "Block",
+        "Variety",
+        "Date"
+      ],
+      "types": {
+        "dropped_Block": "text",
+        "Block": "text",
+        "Variety": "text",
+        "Date": "text",
+        "grand": "float",
+        "block_component": "float",
+        "variety_component": "float",
+        "date_component": "float",
+        "block_variety_component": "float",
+        "block_date_component": "float",
+        "variety_date_component": "float",
+        "threeway_component": "float",
+        "treatment_fitted": "float",
+        "wholeplot_fitted": "float",
+        "subplot_residual": "float"
+      },
+      "tolerance": {
+        "grand": [
+          1e-06,
+          1e-08
+        ],
+        "block_component": [
+          1e-06,
+          1e-08
+        ],
+        "variety_component": [
+          1e-06,
+          1e-08
+        ],
+        "date_component": [
+          1e-06,
+          1e-08
+        ],
+        "block_variety_component": [
+          1e-06,
+          1e-08
+        ],
+        "block_date_component": [
+          1e-06,
+          1e-08
+        ],
+        "variety_date_component": [
+          1e-06,
+          1e-08
+        ],
+        "threeway_component": [
+          1e-06,
+          1e-08
+        ],
+        "treatment_fitted": [
+          1e-06,
+          1e-08
+        ],
+        "wholeplot_fitted": [
+          1e-06,
+          1e-08
+        ],
+        "subplot_residual": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "deleted_anova_components.csv": {
+      "columns": [
+        "dropped_Block",
+        "component",
+        "component_df",
+        "SS",
+        "MS"
+      ],
+      "key": [
+        "dropped_Block",
+        "component"
+      ],
+      "types": {
+        "dropped_Block": "text",
+        "component": "text",
+        "component_df": "int",
+        "SS": "float",
+        "MS": "float"
+      },
+      "tolerance": {
+        "SS": [
+          1e-06,
+          1e-08
+        ],
+        "MS": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "deleted_anova_tests.csv": {
+      "columns": [
+        "dropped_Block",
+        "effect",
+        "numerator_df",
+        "SS",
+        "MS",
+        "denominator",
+        "denominator_df",
+        "denominator_MS",
+        "F",
+        "p"
+      ],
+      "key": [
+        "dropped_Block",
+        "effect"
+      ],
+      "types": {
+        "dropped_Block": "text",
+        "effect": "text",
+        "numerator_df": "int",
+        "SS": "float",
+        "MS": "float",
+        "denominator": "text",
+        "denominator_df": "int",
+        "denominator_MS": "float",
+        "F": "float",
+        "p": "float"
+      },
+      "tolerance": {
+        "SS": [
+          1e-06,
+          1e-08
+        ],
+        "MS": [
+          1e-06,
+          1e-08
+        ],
+        "denominator_MS": [
+          1e-06,
+          1e-08
+        ],
+        "F": [
+          1e-06,
+          1e-08
+        ],
+        "p": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "deleted_cell_means.csv": {
+      "columns": [
+        "dropped_Block",
+        "Variety",
+        "Date",
+        "n_blocks",
+        "mean_Yield",
+        "SE",
+        "satterthwaite_df",
+        "CI_low",
+        "CI_high"
+      ],
+      "key": [
+        "dropped_Block",
+        "Variety",
+        "Date"
+      ],
+      "types": {
+        "dropped_Block": "text",
+        "Variety": "text",
+        "Date": "text",
+        "n_blocks": "int",
+        "mean_Yield": "float",
+        "SE": "float",
+        "satterthwaite_df": "float",
+        "CI_low": "float",
+        "CI_high": "float"
+      },
+      "tolerance": {
+        "mean_Yield": [
+          1e-06,
+          1e-08
+        ],
+        "SE": [
+          1e-06,
+          1e-08
+        ],
+        "satterthwaite_df": [
+          1e-06,
+          1e-08
+        ],
+        "CI_low": [
+          1e-06,
+          1e-08
+        ],
+        "CI_high": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "deleted_cell_covariance.csv": {
+      "columns": [
+        "dropped_Block",
+        "Variety_a",
+        "Date_a",
+        "Variety_b",
+        "Date_b",
+        "whole_component",
+        "subplot_component",
+        "covariance"
+      ],
+      "key": [
+        "dropped_Block",
+        "Variety_a",
+        "Date_a",
+        "Variety_b",
+        "Date_b"
+      ],
+      "types": {
+        "dropped_Block": "text",
+        "Variety_a": "text",
+        "Date_a": "text",
+        "Variety_b": "text",
+        "Date_b": "text",
+        "whole_component": "float",
+        "subplot_component": "float",
+        "covariance": "float"
+      },
+      "tolerance": {
+        "whole_component": [
+          1e-06,
+          1e-08
+        ],
+        "subplot_component": [
+          1e-06,
+          1e-08
+        ],
+        "covariance": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "deleted_contrasts.csv": {
+      "columns": [
+        "dropped_Block",
+        "contrast_id",
+        "family",
+        "estimate",
+        "whole_variance",
+        "subplot_variance",
+        "variance",
+        "SE",
+        "satterthwaite_df",
+        "t",
+        "p",
+        "CI_low",
+        "CI_high"
+      ],
+      "key": [
+        "dropped_Block",
+        "contrast_id"
+      ],
+      "types": {
+        "dropped_Block": "text",
+        "contrast_id": "text",
+        "family": "text",
+        "estimate": "float",
+        "whole_variance": "float",
+        "subplot_variance": "float",
+        "variance": "float",
+        "SE": "float",
+        "satterthwaite_df": "float",
+        "t": "float",
+        "p": "float",
+        "CI_low": "float",
+        "CI_high": "float"
+      },
+      "tolerance": {
+        "estimate": [
+          1e-06,
+          1e-08
+        ],
+        "whole_variance": [
+          1e-06,
+          1e-08
+        ],
+        "subplot_variance": [
+          1e-06,
+          1e-08
+        ],
+        "variance": [
+          1e-06,
+          1e-08
+        ],
+        "SE": [
+          1e-06,
+          1e-08
+        ],
+        "satterthwaite_df": [
+          1e-06,
+          1e-08
+        ],
+        "t": [
+          1e-06,
+          1e-08
+        ],
+        "p": [
+          1e-06,
+          1e-08
+        ],
+        "CI_low": [
+          1e-06,
+          1e-08
+        ],
+        "CI_high": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "deleted_contrast_covariance.csv": {
+      "columns": [
+        "dropped_Block",
+        "contrast_a",
+        "contrast_b",
+        "whole_component",
+        "subplot_component",
+        "covariance"
+      ],
+      "key": [
+        "dropped_Block",
+        "contrast_a",
+        "contrast_b"
+      ],
+      "types": {
+        "dropped_Block": "text",
+        "contrast_a": "text",
+        "contrast_b": "text",
+        "whole_component": "float",
+        "subplot_component": "float",
+        "covariance": "float"
+      },
+      "tolerance": {
+        "whole_component": [
+          1e-06,
+          1e-08
+        ],
+        "subplot_component": [
+          1e-06,
+          1e-08
+        ],
+        "covariance": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "deletion_sensitivity.csv": {
+      "columns": [
+        "dropped_Block",
+        "contrast_id",
+        "full_estimate",
+        "deleted_estimate",
+        "estimate_delta",
+        "full_SE",
+        "deleted_SE",
+        "SE_delta",
+        "full_p",
+        "deleted_p",
+        "p_delta"
+      ],
+      "key": [
+        "dropped_Block",
+        "contrast_id"
+      ],
+      "types": {
+        "dropped_Block": "text",
+        "contrast_id": "text",
+        "full_estimate": "float",
+        "deleted_estimate": "float",
+        "estimate_delta": "float",
+        "full_SE": "float",
+        "deleted_SE": "float",
+        "SE_delta": "float",
+        "full_p": "float",
+        "deleted_p": "float",
+        "p_delta": "float"
+      },
+      "tolerance": {
+        "full_estimate": [
+          1e-06,
+          1e-08
+        ],
+        "deleted_estimate": [
+          1e-06,
+          1e-08
+        ],
+        "estimate_delta": [
+          1e-06,
+          1e-08
+        ],
+        "full_SE": [
+          1e-06,
+          1e-08
+        ],
+        "deleted_SE": [
+          1e-06,
+          1e-08
+        ],
+        "SE_delta": [
+          1e-06,
+          1e-08
+        ],
+        "full_p": [
+          1e-06,
+          1e-08
+        ],
+        "deleted_p": [
+          1e-06,
+          1e-08
+        ],
+        "p_delta": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "evidence_audit.csv": {
+      "columns": [
+        "check",
+        "value"
+      ],
+      "key": [
+        "check"
+      ],
+      "types": {
+        "check": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-06
+        ]
+      }
+    },
+    "terminal_summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "float"
+      },
+      "tolerance": {
+        "value": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

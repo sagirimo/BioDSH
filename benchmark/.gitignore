@@ -1,0 +1,7 @@
+# never commit answers, inputs or the replay environment
+answers.tar.gz.enc
+answers.tar.gz
+.tools/
+benchmarks/lean_tasks/*/private/
+benchmarks/lean_tasks/*/task_metadata.json
+benchmarks/lean_tasks/*/public/inputs/

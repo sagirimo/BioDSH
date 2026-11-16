@@ -1,0 +1,163 @@
+{
+  "tables": {
+    "ensemble.csv": {
+      "columns": [
+        "id",
+        "n_models",
+        "n_residues",
+        "mean_reference_rmsd_A",
+        "total_variance_A2",
+        "mean_rmsf_A"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_models": "int",
+        "n_residues": "int",
+        "mean_reference_rmsd_A": "float",
+        "total_variance_A2": "float",
+        "mean_rmsf_A": "float"
+      },
+      "tolerance": {
+        "mean_reference_rmsd_A": [
+          1e-05,
+          1e-08
+        ],
+        "total_variance_A2": [
+          1e-05,
+          1e-08
+        ],
+        "mean_rmsf_A": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "fluctuation.csv": {
+      "columns": [
+        "id",
+        "mean_x_A",
+        "mean_y_A",
+        "mean_z_A",
+        "rmsf_A",
+        "core_aligned_rmsf_A"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "mean_x_A": "float",
+        "mean_y_A": "float",
+        "mean_z_A": "float",
+        "rmsf_A": "float",
+        "core_aligned_rmsf_A": "float"
+      },
+      "tolerance": {
+        "mean_x_A": [
+          1e-05,
+          1e-08
+        ],
+        "mean_y_A": [
+          1e-05,
+          1e-08
+        ],
+        "mean_z_A": [
+          1e-05,
+          1e-08
+        ],
+        "rmsf_A": [
+          1e-05,
+          1e-08
+        ],
+        "core_aligned_rmsf_A": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "model_alignment.csv": {
+      "columns": [
+        "id",
+        "rmsd_A",
+        "core_aligned_rmsd_A"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "rmsd_A": "float",
+        "core_aligned_rmsd_A": "float"
+      },
+      "tolerance": {
+        "rmsd_A": [
+          1e-05,
+          1e-08
+        ],
+        "core_aligned_rmsd_A": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "pca.csv": {
+      "columns": [
+        "id",
+        "eigenvalue_A2",
+        "variance_fraction"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "eigenvalue_A2": "float",
+        "variance_fraction": "float"
+      },
+      "tolerance": {
+        "eigenvalue_A2": [
+          1e-05,
+          1e-08
+        ],
+        "variance_fraction": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "sensitivity.csv": {
+      "columns": [
+        "id",
+        "terminal_mean_rmsf_A",
+        "core_mean_rmsf_A",
+        "terminal_to_core_ratio"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "terminal_mean_rmsf_A": "float",
+        "core_mean_rmsf_A": "float",
+        "terminal_to_core_ratio": "float"
+      },
+      "tolerance": {
+        "terminal_mean_rmsf_A": [
+          1e-05,
+          1e-08
+        ],
+        "core_mean_rmsf_A": [
+          1e-05,
+          1e-08
+        ],
+        "terminal_to_core_ratio": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

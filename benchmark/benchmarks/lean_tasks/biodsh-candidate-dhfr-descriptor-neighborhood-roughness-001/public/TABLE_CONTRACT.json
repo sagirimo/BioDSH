@@ -1,0 +1,177 @@
+{
+  "tables": {
+    "descriptor_scaling.csv": {
+      "columns": [
+        "id",
+        "view",
+        "feature",
+        "mean",
+        "sd",
+        "included"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "view": "text",
+        "feature": "text",
+        "mean": "float",
+        "sd": "float",
+        "included": "int"
+      },
+      "tolerance": {
+        "mean": [
+          1e-05,
+          1e-08
+        ],
+        "sd": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "molecule_audit.csv": {
+      "columns": [
+        "id",
+        "pIC50",
+        "mw_freebase",
+        "alogp",
+        "psa",
+        "hba",
+        "hbd"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "pIC50": "float",
+        "mw_freebase": "float",
+        "alogp": "float",
+        "psa": "float",
+        "hba": "int",
+        "hbd": "int"
+      },
+      "tolerance": {
+        "pIC50": [
+          1e-05,
+          1e-08
+        ],
+        "mw_freebase": [
+          1e-05,
+          1e-08
+        ],
+        "alogp": [
+          1e-05,
+          1e-08
+        ],
+        "psa": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "neighborhood_edges.csv": {
+      "columns": [
+        "id",
+        "view",
+        "left",
+        "right",
+        "distance",
+        "weight",
+        "absolute_delta",
+        "cliff"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "view": "text",
+        "left": "text",
+        "right": "text",
+        "distance": "float",
+        "weight": "float",
+        "absolute_delta": "float",
+        "cliff": "int"
+      },
+      "tolerance": {
+        "distance": [
+          1e-05,
+          1e-08
+        ],
+        "weight": [
+          1e-05,
+          1e-08
+        ],
+        "absolute_delta": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "neighborhood_summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "edges",
+        "cliffs",
+        "roughness",
+        "p_smooth",
+        "mean_gap",
+        "dimensions"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "edges": "int",
+        "cliffs": "int",
+        "roughness": "float",
+        "p_smooth": "float",
+        "mean_gap": "float",
+        "dimensions": "int"
+      },
+      "tolerance": {
+        "roughness": [
+          1e-05,
+          1e-08
+        ],
+        "p_smooth": [
+          1e-05,
+          1e-08
+        ],
+        "mean_gap": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "permuted_roughness.csv": {
+      "columns": [
+        "id",
+        "view",
+        "draw",
+        "roughness"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "view": "text",
+        "draw": "int",
+        "roughness": "float"
+      },
+      "tolerance": {
+        "roughness": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

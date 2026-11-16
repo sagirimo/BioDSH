@@ -1,0 +1,144 @@
+{
+  "tables": {
+    "elasticities.csv": {
+      "columns": [
+        "sensitivity_id",
+        "scenario",
+        "parameter",
+        "species",
+        "log_elasticity",
+        "fractional_change_1pct"
+      ],
+      "key": [
+        "sensitivity_id"
+      ],
+      "types": {
+        "sensitivity_id": "text",
+        "scenario": "text",
+        "parameter": "text",
+        "species": "text",
+        "log_elasticity": "float",
+        "fractional_change_1pct": "float"
+      },
+      "tolerance": {
+        "log_elasticity": [
+          1e-06,
+          1e-08
+        ],
+        "fractional_change_1pct": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "jacobian.csv": {
+      "columns": [
+        "entry_id",
+        "scenario",
+        "row_species",
+        "column_species",
+        "derivative"
+      ],
+      "key": [
+        "entry_id"
+      ],
+      "types": {
+        "entry_id": "text",
+        "scenario": "text",
+        "row_species": "text",
+        "column_species": "text",
+        "derivative": "float"
+      },
+      "tolerance": {
+        "derivative": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "steady_states.csv": {
+      "columns": [
+        "scenario",
+        "beta1_multiplier",
+        "x1",
+        "x2",
+        "turnover1",
+        "turnover2",
+        "spectral_abscissa"
+      ],
+      "key": [
+        "scenario"
+      ],
+      "types": {
+        "scenario": "text",
+        "beta1_multiplier": "float",
+        "x1": "float",
+        "x2": "float",
+        "turnover1": "float",
+        "turnover2": "float",
+        "spectral_abscissa": "float"
+      },
+      "tolerance": {
+        "beta1_multiplier": [
+          1e-06,
+          1e-08
+        ],
+        "x1": [
+          1e-06,
+          1e-08
+        ],
+        "x2": [
+          1e-06,
+          1e-08
+        ],
+        "turnover1": [
+          1e-06,
+          1e-08
+        ],
+        "turnover2": [
+          1e-06,
+          1e-08
+        ],
+        "spectral_abscissa": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "step_response.csv": {
+      "columns": [
+        "response_id",
+        "scenario",
+        "time_day",
+        "x1",
+        "x2",
+        "relative_distance"
+      ],
+      "key": [
+        "response_id"
+      ],
+      "types": {
+        "response_id": "text",
+        "scenario": "text",
+        "time_day": "int",
+        "x1": "float",
+        "x2": "float",
+        "relative_distance": "float"
+      },
+      "tolerance": {
+        "x1": [
+          1e-06,
+          1e-08
+        ],
+        "x2": [
+          1e-06,
+          1e-08
+        ],
+        "relative_distance": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

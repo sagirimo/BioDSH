@@ -1,0 +1,15 @@
+{
+ "source_url": "https://bioconductor.org/packages/release/data/experiment/vignettes/fission/inst/doc/fission.html",
+ "input_files_sha256": {
+  "inputs/counts.csv": "e9a97f9a7014f5c020cc74d851b9c5a1410737ec986eae737247b27348e8c686",
+  "inputs/design.json": "f7d1fc91ddfa09a69f61ab4330bab7752e3d6e10b5acc0c4f44a00227fb37043",
+  "inputs/evidence_input.csv": "1454423ef160282c6c3e43ae4d6ef78d6e3da8d8604602feccc8d8831bcacb99",
+  "inputs/fission.RData": "33d85d0c8f5f1394e2e1041479280b6b04f12f607b8a76f711a3c960f803ae34",
+  "inputs/gene_annotations.csv": "f089247492efbfde2725e2c399a87d6ab892aeaf3a7a67187339f71b8e52f132",
+  "inputs/kind.txt": "31ac29680d460e285f2e7d135e5efd27ef714fba501fa5186704a0293ff4d9be",
+  "inputs/sample_metadata.csv": "6f48be74b159f18bdaf34d828ca670a7f3a83bb483f66ef0fbfd41e6920980aa",
+  "inputs/sequence_dictionary.csv": "4d4af7799a4a476f3e0c0671c19d3c364744c6e642ed079859687f9561f58f68",
+  "inputs/table_schema.csv": "26fa7fdd7110f6b90098227c70713a0139d3e032184349f3f4c54602435a8b01"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,8 @@
+{
+ "source_url": "https://ornisfennica.journal.fi/article/view/133331",
+ "input_files_sha256": {
+  "inputs/column_permutations.csv.gz": "ca9be03a69d18b2506243c49c14fe723fea49d4425066e5859eec97e0823bdf7",
+  "inputs/incidence.csv": "33dde5f9b3959e71e8c56b343205fbc1c8ad278805c5cf72cddd74f953cc54e6"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

@@ -1,0 +1,8 @@
+{
+ "source_url": "https://physionet.org/content/ludb/1.0.1/",
+ "input_files_sha256": {
+  "inputs/annotations.csv": "be16e17b3153f805f53202e57923836679ff99bfd425e50c886bb83fe487868b",
+  "inputs/records.csv": "71803036003ab2295a8168f2468abe814cd115800216ac33b0c75013677732a3"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

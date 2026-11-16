@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-psoriasis-raw-design-001",
+  "claims": [
+    {
+      "id": "analysis_assays",
+      "type": "number",
+      "question": "分析样本数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "analysis_assays",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "recovered_age_entries",
+      "type": "number",
+      "question": "原始元数据恢复年龄的样本数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "recovered_age_entries",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "adjusted_selected_features",
+      "type": "number",
+      "question": "调整后BH显著特征数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "adjusted_selected_features",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "shared_selected_features",
+      "type": "number",
+      "question": "两种模型共同BH显著的特征数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "shared_selected_features",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "gene_beta",
+      "type": "number",
+      "question": "Entrez 1的调整后效应。",
+      "binding": {
+        "table": "all_gene_stats.csv",
+        "key_column": "gene_id",
+        "key": "1",
+        "column": "adjusted_beta"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "gene_q",
+      "type": "number",
+      "question": "Entrez 1的调整后BH值。",
+      "binding": {
+        "table": "all_gene_stats.csv",
+        "key_column": "gene_id",
+        "key": "1",
+        "column": "adjusted_padj"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "gene_direction",
+      "type": "derived",
+      "question": "该Entrez特征在病例中的调整后方向？",
+      "options": [
+        "lower_in_psoriasis",
+        "at_least_as_high_in_psoriasis",
+        "causal_suppression_proven"
+      ],
+      "rule": {
+        "binding": {
+          "table": "all_gene_stats.csv",
+          "key_column": "gene_id",
+          "key": "1",
+          "column": "adjusted_beta"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "lower_in_psoriasis",
+          "false": "at_least_as_high_in_psoriasis"
+        }
+      }
+    },
+    {
+      "id": "gene_evidence",
+      "type": "derived",
+      "question": "该特征按全特征BH<0.05是否入选？",
+      "options": [
+        "selected_association",
+        "not_selected_not_proof_of_no_effect",
+        "clinical_marker_validated"
+      ],
+      "rule": {
+        "binding": {
+          "table": "all_gene_stats.csv",
+          "key_column": "gene_id",
+          "key": "1",
+          "column": "adjusted_padj"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "selected_association",
+          "false": "not_selected_not_proof_of_no_effect"
+        }
+      }
+    },
+    {
+      "id": "missingness",
+      "type": "choice",
+      "question": "原始元数据恢复缺失协变量代表什么？",
+      "options": [
+        "source_key_reconciliation_not_statistical_imputation",
+        "mean_imputation",
+        "additional_independent_patients"
+      ]
+    },
+    {
+      "id": "effect_scope",
+      "type": "choice",
+      "question": "调整后病例系数如何解释？",
+      "options": [
+        "observational_difference_on_supplied_expression_scale",
+        "causal_effect_of_diagnosis",
+        "validated_external_predictor"
+      ]
+    }
+  ]
+}

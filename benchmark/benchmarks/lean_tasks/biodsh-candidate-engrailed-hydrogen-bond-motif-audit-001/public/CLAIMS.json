@@ -1,0 +1,140 @@
+{
+  "revision": "round5_lean_v1",
+  "task_id": "biodsh-candidate-engrailed-hydrogen-bond-motif-audit-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "合格供体数？",
+      "binding": {
+        "table": "motif_summary.csv",
+        "key_column": "id",
+        "key": "base",
+        "column": "n_donors"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "基础氢键数？",
+      "binding": {
+        "table": "motif_summary.csv",
+        "key_column": "id",
+        "key": "base",
+        "column": "n_bonds"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "基础i到i+4键数？",
+      "binding": {
+        "table": "motif_summary.csv",
+        "key_column": "id",
+        "key": "base",
+        "column": "i4_bonds"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "基础连续螺旋支持残基数？",
+      "binding": {
+        "table": "motif_summary.csv",
+        "key_column": "id",
+        "key": "base",
+        "column": "supported_residues"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "严格判据最长支持段？",
+      "binding": {
+        "table": "motif_summary.csv",
+        "key_column": "id",
+        "key": "strict",
+        "column": "longest_supported_run"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "严格判据相对基础的键数变化？",
+      "binding": {
+        "table": "sensitivity.csv",
+        "key_column": "id",
+        "key": "strict_minus_base",
+        "column": "delta_bonds"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "基础支持残基数是否超过20？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "motif_summary.csv",
+          "key_column": "id",
+          "key": "base",
+          "column": "supported_residues"
+        },
+        "op": "gt",
+        "threshold": 20,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "严格判据保留的键是否至少80%？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "sensitivity.csv",
+          "key_column": "id",
+          "key": "strict_minus_base",
+          "column": "retained_bond_fraction"
+        },
+        "op": "ge",
+        "threshold": 0.8,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "supported片段的证据范围？",
+      "options": [
+        "固定重原子和补氢规则下的几何支持，不能替代完整二级结构判定",
+        "证明这些残基在溶液中永久形成螺旋",
+        "每个通过距离阈值的接触都有同等结合自由能"
+      ]
+    }
+  ]
+}

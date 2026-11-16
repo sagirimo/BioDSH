@@ -1,0 +1,194 @@
+{
+  "tables": {
+    "compounds.csv": {
+      "columns": [
+        "id",
+        "n_measurements",
+        "pIC50",
+        "alogp",
+        "mw_freebase",
+        "strong",
+        "high_logp",
+        "mass_stratum"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_measurements": "int",
+        "pIC50": "float",
+        "alogp": "float",
+        "mw_freebase": "float",
+        "strong": "int",
+        "high_logp": "int",
+        "mass_stratum": "text"
+      },
+      "tolerance": {
+        "pIC50": [
+          1e-05,
+          1e-08
+        ],
+        "alogp": [
+          1e-05,
+          1e-08
+        ],
+        "mw_freebase": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "conditional_distribution.csv": {
+      "columns": [
+        "id",
+        "probability_null",
+        "probability_fitted"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "probability_null": "float",
+        "probability_fitted": "float"
+      },
+      "tolerance": {
+        "probability_null": [
+          1e-05,
+          1e-08
+        ],
+        "probability_fitted": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "estimates.csv": {
+      "columns": [
+        "id",
+        "observed_T",
+        "null_mean",
+        "conditional_or",
+        "ci_low",
+        "ci_high",
+        "two_sided_p"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "observed_T": "int",
+        "null_mean": "float",
+        "conditional_or": "float",
+        "ci_low": "float",
+        "ci_high": "float",
+        "two_sided_p": "int"
+      },
+      "tolerance": {
+        "null_mean": [
+          1e-05,
+          1e-08
+        ],
+        "conditional_or": [
+          1e-05,
+          1e-08
+        ],
+        "ci_low": [
+          1e-05,
+          1e-08
+        ],
+        "ci_high": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "leave_stratum.csv": {
+      "columns": [
+        "id",
+        "observed_T",
+        "null_mean",
+        "two_sided_p"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "observed_T": "int",
+        "null_mean": "float",
+        "two_sided_p": "float"
+      },
+      "tolerance": {
+        "null_mean": [
+          1e-05,
+          1e-08
+        ],
+        "two_sided_p": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "stratum_counts.csv": {
+      "columns": [
+        "id",
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "a": "int",
+        "b": "int",
+        "c": "int",
+        "d": "int"
+      },
+      "tolerance": {}
+    },
+    "thresholds.csv": {
+      "columns": [
+        "id",
+        "n",
+        "median_pIC50",
+        "median_alogp",
+        "median_mw"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "median_pIC50": "float",
+        "median_alogp": "float",
+        "median_mw": "float"
+      },
+      "tolerance": {
+        "median_pIC50": [
+          1e-05,
+          1e-08
+        ],
+        "median_alogp": [
+          1e-05,
+          1e-08
+        ],
+        "median_mw": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  },
+  "comparison_rule": "abs(candidate-reference) <= abs_tol + rel_tol*abs(reference); tolerance=[rel_tol,abs_tol]",
+  "missing": "NA; 按题面规则过滤或处理，不将缺失当0",
+  "ordering": "主键字符串精确比较；行顺序不计，列名按合同；并列按题面规则",
+  "randomness": "无随机步骤，或严格读取预生成方案输入",
+  "equivalent_implementations": "允许符合定义及容差的科学等价实现，不要求参考代码写法"
+}

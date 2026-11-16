@@ -1,0 +1,16 @@
+{
+ "source_url": "",
+ "input_files_sha256": {
+  "inputs/FULL_COLUMN_TYPES_LEVELS_NA.csv": "e2a6f5895b3a3b88e6d1a1c8e45f5b54d3d3bdfa4f62852bc4a92aaaaa6a7776",
+  "inputs/FULL_NATIVE_CLASS_ATTRIBUTES.txt": "7eb9a7be0c4634fd400f6968868e33723700a0694227217bbf1dddd1c8096807",
+  "inputs/OUTPUT_CONTRACT.json": "09dbc51ef602dc5fe560ef24387ddef222b2c9aa5625366d7e7d702a00359e5b",
+  "inputs/PROBLEM_zh.md": "88392a578d5d1a55e04dd3474fc4cae0aebe62bf8a34695675c7df41bfc01431",
+  "inputs/PUBLIC_OUTPUT_CONVENTIONS.json": "5e21bf2ad15f20b9f36b372749c612722fc4a87aebefb33bd5930f4e98cde03a",
+  "inputs/answer_fields.json": "20bd0782366dd08f07c09feade692b44edc86c0d7e015a1e677ae1882aa2d2a9",
+  "inputs/artifact_contract.json": "09dbc51ef602dc5fe560ef24387ddef222b2c9aa5625366d7e7d702a00359e5b",
+  "inputs/data_manifest.json": "ddab223bfb9a198ffaa8626726e680b0a1308d4468630d5c75fc6ca713840f75",
+  "inputs/observations.csv": "f453497433bbcad7d66dba346c6ff4ccd2b65a04f26df7ab519bb4b5c9e74f95",
+  "inputs/step_schema.json": "1f9dfecdb0fa618746b3e52a37b769bec12ab654b88b6e1add201ff7d1f5eb4f"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

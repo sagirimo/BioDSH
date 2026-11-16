@@ -1,0 +1,141 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-listeria-f2-segregation-linkage-001",
+  "claims": [
+    {
+      "id": "C1",
+      "type": "number",
+      "question": "合格常染色体标记数？",
+      "binding": {
+        "table": "chromosome_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "n_markers"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C2",
+      "type": "number",
+      "question": "FDR<0.05 的标记数？",
+      "binding": {
+        "table": "chromosome_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "distorted_q05"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C3",
+      "type": "number",
+      "question": "1号染色体相邻区间重组率中位数？",
+      "binding": {
+        "table": "chromosome_summary.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "median_r"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C4",
+      "type": "number",
+      "question": "全体区间估计重组率与地图转换值的 RMSE？",
+      "binding": {
+        "table": "chromosome_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "r_rmse"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C5",
+      "type": "number",
+      "question": "D1M3 的分离比例卡方？",
+      "binding": {
+        "table": "marker_segregation.csv",
+        "key_column": "id",
+        "key": "D1M3",
+        "column": "chi_square"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C6",
+      "type": "number",
+      "question": "首区间的连锁 LOD？",
+      "binding": {
+        "table": "adjacent_linkage.csv",
+        "key_column": "id",
+        "key": "D10M44|D1M3",
+        "column": "LOD"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C7",
+      "type": "derived",
+      "question": "是否检出分离比例偏离？",
+      "options": [
+        "存在偏离",
+        "没有检出"
+      ],
+      "rule": {
+        "binding": {
+          "table": "chromosome_summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "distorted_q05"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "存在偏离",
+          "false": "没有检出"
+        }
+      }
+    },
+    {
+      "id": "C8",
+      "type": "derived",
+      "question": "首区间是否达到 LOD≥3？",
+      "options": [
+        "达到",
+        "未达到"
+      ],
+      "rule": {
+        "binding": {
+          "table": "adjacent_linkage.csv",
+          "key_column": "id",
+          "key": "D10M44|D1M3",
+          "column": "LOD"
+        },
+        "op": "ge",
+        "threshold": 3,
+        "outcomes": {
+          "true": "达到",
+          "false": "未达到"
+        }
+      }
+    },
+    {
+      "id": "C9",
+      "type": "choice",
+      "question": "本审计对原始感染研究的解释边界？",
+      "options": [
+        "描述所给F2基因型的分离和连锁，不等于定位感染因果基因",
+        "显著分离偏离就是感染因果基因",
+        "C代码可以直接当作杂合子",
+        "X染色体也应直接使用常染色体1:2:1比例"
+      ]
+    }
+  ]
+}

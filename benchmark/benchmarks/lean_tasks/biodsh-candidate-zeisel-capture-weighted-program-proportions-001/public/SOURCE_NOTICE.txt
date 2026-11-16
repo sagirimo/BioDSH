@@ -1,0 +1,3 @@
+Zeisel A et al. Cell types in the mouse cortex and hippocampus revealed by single-cell RNA-seq. Science 2015;347:1138–1142. DOI:10.1126/science.aaa1934; PMID:25700174. GSE60361。
+原表 https://ftp.ncbi.nlm.nih.gov/geo/series/GSE60nnn/GSE60361/suppl/GSE60361_C1-3005-Expression.txt.gz ，元数据 ../matrix/GSE60361_series_matrix.txt.gz。prepare.py逐行汇总全基因UMI总量/检测基因数并抽取12个预定标记原始计数；以Sample_description精确连接细胞，不依赖行序。marker_sets为本题预设解释性面板，不是原论文细胞标签；原始表和预处理脚本保留lean_data/r4_zeisel。公共GEO数据仅本地科研。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

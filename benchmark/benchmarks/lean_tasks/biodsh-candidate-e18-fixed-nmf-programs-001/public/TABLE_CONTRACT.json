@@ -1,0 +1,182 @@
+{
+  "tables": {
+    "cell_programs.csv": {
+      "columns": [
+        "id",
+        "total_UMI",
+        "detected_genes",
+        "mitochondrial_fraction",
+        "C1",
+        "C2",
+        "C3",
+        "program_entropy",
+        "dominant_component"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "total_UMI": "int",
+        "detected_genes": "int",
+        "mitochondrial_fraction": "float",
+        "C1": "float",
+        "C2": "float",
+        "C3": "float",
+        "program_entropy": "float",
+        "dominant_component": "text"
+      },
+      "tolerance": {
+        "mitochondrial_fraction": [
+          1e-05,
+          1e-08
+        ],
+        "C1": [
+          1e-05,
+          1e-08
+        ],
+        "C2": [
+          1e-05,
+          1e-08
+        ],
+        "C3": [
+          1e-05,
+          1e-08
+        ],
+        "program_entropy": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "components.csv": {
+      "columns": [
+        "id",
+        "dominant_cells",
+        "mean_fraction",
+        "loading_squared_norm",
+        "top_gene"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "dominant_cells": "int",
+        "mean_fraction": "float",
+        "loading_squared_norm": "int",
+        "top_gene": "text"
+      },
+      "tolerance": {
+        "mean_fraction": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "loadings.csv": {
+      "columns": [
+        "id",
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "C1": "float",
+        "C2": "float",
+        "C3": "float"
+      },
+      "tolerance": {
+        "C1": [
+          1e-05,
+          1e-08
+        ],
+        "C2": [
+          1e-05,
+          1e-08
+        ],
+        "C3": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "optimization.csv": {
+      "columns": [
+        "id",
+        "mse"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "mse": "float"
+      },
+      "tolerance": {
+        "mse": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "selected_genes.csv": {
+      "columns": [
+        "id",
+        "symbol",
+        "variance",
+        "feature_rank"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "symbol": "text",
+        "variance": "float",
+        "feature_rank": "int"
+      },
+      "tolerance": {
+        "variance": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "summary.csv": {
+      "columns": [
+        "id",
+        "cells",
+        "genes",
+        "eligible_cells",
+        "mean_program_entropy",
+        "relative_error_reduction"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "cells": "int",
+        "genes": "int",
+        "eligible_cells": "int",
+        "mean_program_entropy": "float",
+        "relative_error_reduction": "float"
+      },
+      "tolerance": {
+        "mean_program_entropy": [
+          1e-05,
+          1e-08
+        ],
+        "relative_error_reduction": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-ludb-multilead-qt-boundary-audit-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "记录1中位QT？",
+      "binding": {
+        "table": "record_summary.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "median_QT_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "记录1中位Bazett QTc？",
+      "binding": {
+        "table": "record_summary.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "median_QTcB_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "记录1中位Fridericia QTc？",
+      "binding": {
+        "table": "record_summary.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "median_QTcF_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "记录2中位Fridericia QTc？",
+      "binding": {
+        "table": "record_summary.csv",
+        "key_column": "id",
+        "key": "2",
+        "column": "median_QTcF_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "记录3导联QT极差中位数？",
+      "binding": {
+        "table": "record_summary.csv",
+        "key_column": "id",
+        "key": "3",
+        "column": "median_QT_range_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "记录2跨导联中位QT与II差均值？",
+      "binding": {
+        "table": "record_summary.csv",
+        "key_column": "id",
+        "key": "2",
+        "column": "mean_median_minus_II_ms"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "记录1校正值是否>400ms（纯数值比较）？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "record_summary.csv",
+          "key_column": "id",
+          "key": "1",
+          "column": "median_QTcF_ms"
+        },
+        "op": "gt",
+        "threshold": 400,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "记录3导联极差是否>20ms？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "record_summary.csv",
+          "key_column": "id",
+          "key": "3",
+          "column": "median_QT_range_ms"
+        },
+        "op": "gt",
+        "threshold": 20,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "分析单位与结论？",
+      "options": [
+        "仅三条记录的测量约定审计，导联和搏动不是独立患者，不作诊断",
+        "导联数就是患者数",
+        "率校正公式等价于疾病标签"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "revision": "round5_lean_v1",
+  "task_id": "biodsh-candidate-amgut-shrinkage-network-stability-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "λ0.2入选边平均绝对条件相关？",
+      "binding": {
+        "table": "network_summary.csv",
+        "key_column": "id",
+        "key": "0.2",
+        "column": "mean_abs_selected"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "λ0.2稳定边数？",
+      "binding": {
+        "table": "network_summary.csv",
+        "key_column": "id",
+        "key": "0.2",
+        "column": "stable_edges"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "λ0.2子样本平均Jaccard？",
+      "binding": {
+        "table": "network_summary.csv",
+        "key_column": "id",
+        "key": "0.2",
+        "column": "mean_jaccard"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "λ0.5全体入选边的平均稳定性？",
+      "binding": {
+        "table": "network_summary.csv",
+        "key_column": "id",
+        "key": "0.5",
+        "column": "mean_selected_frequency"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "两λ共有边数？",
+      "binding": {
+        "table": "shrinkage_sensitivity.csv",
+        "key_column": "id",
+        "key": "0.5_vs_0.2",
+        "column": "shared_edges"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "收缩强度对稳定性的影响？",
+      "binding": {
+        "table": "shrinkage_sensitivity.csv",
+        "key_column": "id",
+        "key": "0.5_vs_0.2",
+        "column": "delta_mean_jaccard"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "平均子样本Jaccard是否大于0.5？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "network_summary.csv",
+          "key_column": "id",
+          "key": "0.2",
+          "column": "mean_jaccard"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "两收缩强度边集合Jaccard是否至少0.8？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "shrinkage_sensitivity.csv",
+          "key_column": "id",
+          "key": "0.5_vs_0.2",
+          "column": "jaccard"
+        },
+        "op": "ge",
+        "threshold": 0.8,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "稳定边可以解释为什么？",
+      "options": [
+        "给定过滤、变换、收缩和子样本方案下的条件关联稳定性",
+        "已经证实两个微生物直接竞争或互利",
+        "稳定频率就是相互作用存在的贝叶斯后验概率"
+      ]
+    }
+  ]
+}

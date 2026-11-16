@@ -1,0 +1,134 @@
+{
+  "task_id": "biodsh-candidate-sug-cross-workflow-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "原定义汇总 primary_peak_LOD 的计算结果",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "primary_peak_LOD"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "原定义汇总 sensitivity_peak_LOD 的计算结果",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "sensitivity_peak_LOD"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "原定义汇总 LOD_change_max_abs 的计算结果",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "LOD_change_max_abs"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "原定义汇总 confirmatory_genomewide_p_values 的计算结果",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "confirmatory_genomewide_p_values"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "原定义汇总 adjusted_primary_peak_LOD 的计算结果",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "adjusted_primary_peak_LOD"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "原定义汇总 adjustment_max_abs_LOD_change 的计算结果",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "adjustment_max_abs_LOD_change"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "指定检验的p或多重校正q是否小于0.05？不显著不表示效应相等",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "genotype_posteriors.csv",
+          "keys": {
+            "row_id": "primary|3|D1MIT171"
+          },
+          "column": "p_state1"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "本题的独立推断/计算单位应如何理解？",
+      "options": [
+        "按原设计：原F2个体",
+        "每个输出表单元都是独立生物学重复",
+        "每次敏感性重算都是独立新研究"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "给定方法的拟合与敏感性分析支持何种结论？",
+      "options": [
+        "限于原研究及声明模型的关联或描述，不能自行推成因果/外部验证",
+        "数值拟合通过即证明生物因果效应",
+        "删除重算自动提供隐藏外部验证"
+      ]
+    }
+  ]
+}

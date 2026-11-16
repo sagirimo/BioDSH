@@ -1,0 +1,5 @@
+10x Genomics (2017-11-08), 1k 1:1 Mixture of Fresh Frozen Human (HEK293T) and Mouse (NIH3T3) Cells; Cell Ranger 2.1.0, hgmm_1k.
+官方页面：https://www.10xgenomics.com/datasets/1-k-1-1-mixture-of-fresh-frozen-human-hek-293-t-and-mouse-nih-3-t-3-cells-2-standard-2-1-0
+官方对象：https://s3-us-west-2.amazonaws.com/10x.files/samples/cell-exp/2.1.0/hgmm_1k/hgmm_1k_analysis.tar.gz ，只提取analysis/gem_classification.csv，无数值加工。
+许可CC BY 4.0；本公开技术数据集没有单独列出的论文DOI，引用10x原始数据页。未使用任何benchmark切分。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

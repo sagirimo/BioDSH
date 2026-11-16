@@ -1,0 +1,7 @@
+{
+ "source_url": "https://rqtl.org/sampledata/listeria.csv",
+ "input_files_sha256": {
+  "inputs/listeria.csv": "024931da3fc64d101f4cf3ac386e576661618bd74cd7b7341edc1af87cb5e749"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

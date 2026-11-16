@@ -1,0 +1,172 @@
+{
+  "tables": {
+    "edge_stability.csv": {
+      "columns": [
+        "id",
+        "partial_r",
+        "selected",
+        "selection_frequency",
+        "selected_sign_agreement"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "partial_r": "float",
+        "selected": "int",
+        "selection_frequency": "float",
+        "selected_sign_agreement": "int"
+      },
+      "tolerance": {
+        "partial_r": [
+          1e-05,
+          1e-08
+        ],
+        "selection_frequency": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "network_summary.csv": {
+      "columns": [
+        "id",
+        "n_samples",
+        "n_taxa",
+        "mean_abs_selected",
+        "positive_edges",
+        "stable_edges",
+        "mean_jaccard",
+        "mean_selected_frequency"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_samples": "int",
+        "n_taxa": "int",
+        "mean_abs_selected": "float",
+        "positive_edges": "int",
+        "stable_edges": "int",
+        "mean_jaccard": "float",
+        "mean_selected_frequency": "float"
+      },
+      "tolerance": {
+        "mean_abs_selected": [
+          1e-05,
+          1e-08
+        ],
+        "mean_jaccard": [
+          1e-05,
+          1e-08
+        ],
+        "mean_selected_frequency": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "node_summary.csv": {
+      "columns": [
+        "id",
+        "degree",
+        "weighted_degree",
+        "stable_degree"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "degree": "int",
+        "weighted_degree": "float",
+        "stable_degree": "int"
+      },
+      "tolerance": {
+        "weighted_degree": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "shrinkage_sensitivity.csv": {
+      "columns": [
+        "id",
+        "shared_edges",
+        "jaccard",
+        "delta_mean_jaccard"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "shared_edges": "int",
+        "jaccard": "float",
+        "delta_mean_jaccard": "float"
+      },
+      "tolerance": {
+        "jaccard": [
+          1e-05,
+          1e-08
+        ],
+        "delta_mean_jaccard": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "subsample_agreement.csv": {
+      "columns": [
+        "id",
+        "n_samples",
+        "jaccard",
+        "positive_edges"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_samples": "int",
+        "jaccard": "float",
+        "positive_edges": "int"
+      },
+      "tolerance": {
+        "jaccard": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "taxon_filter.csv": {
+      "columns": [
+        "id",
+        "prevalence",
+        "mean_relative",
+        "selected"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "prevalence": "float",
+        "mean_relative": "float",
+        "selected": "int"
+      },
+      "tolerance": {
+        "prevalence": [
+          1e-05,
+          1e-08
+        ],
+        "mean_relative": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

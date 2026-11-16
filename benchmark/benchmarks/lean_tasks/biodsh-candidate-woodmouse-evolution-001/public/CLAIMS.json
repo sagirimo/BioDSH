@@ -1,0 +1,134 @@
+{
+  "task_id": "biodsh-candidate-woodmouse-evolution-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "全局保留的比对列数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "retained_columns"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-07
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "全局删除的比对列数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "discarded_columns"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-07
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "指定个体对的K2P距离",
+      "binding": {
+        "table": "distance_audit.csv",
+        "keys": {
+          "pair_id": "No0906S||No0908S"
+        },
+        "column": "K2P"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-07
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "指定个体对的JC69距离",
+      "binding": {
+        "table": "distance_audit.csv",
+        "keys": {
+          "pair_id": "No0906S||No0908S"
+        },
+        "column": "JC69"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-07
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "指定个体对在K2P树上的路径距离",
+      "binding": {
+        "table": "distance_audit.csv",
+        "keys": {
+          "pair_id": "No0906S||No0908S"
+        },
+        "column": "K2P_tree_distance"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-07
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "K2P主树负分支数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "K2P_negative_branches"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-07
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "K2P主树是否无负分支？整数计数小于0.5即为无负分支",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "terminal_summary.csv",
+          "keys": {
+            "metric": "K2P_negative_branches"
+          },
+          "column": "value"
+        },
+        "op": "lt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "200次列重采样支持怎样的解释？",
+      "options": [
+        "alignment_column_resampling_support_not_independent_animals",
+        "200_new_animal_experiments",
+        "probability_species_tree_is_true"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "无根标记树能否直接提供生物学根？",
+      "options": [
+        "no_root_or_species_delimitation_from_this_marker_tree",
+        "root_is_NJ_center",
+        "each_individual_is_a_species"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5953 @@
+{
+  "tables": {
+    "native_source_rows.csv": {
+      "columns": [
+        "row_id",
+        "native_row_name",
+        "age",
+        "sex",
+        "sample.yr",
+        "kappa",
+        "lambda",
+        "flc.grp",
+        "creatinine",
+        "mgus",
+        "futime",
+        "death",
+        "chapter"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "native_row_name": "text",
+        "age": "float",
+        "sex": "text",
+        "sample.yr": "float",
+        "kappa": "float",
+        "lambda": "float",
+        "flc.grp": "float",
+        "creatinine": "float",
+        "mgus": "float",
+        "futime": "float",
+        "death": "float",
+        "chapter": "text"
+      },
+      "tolerance": {
+        "age": [
+          1e-07,
+          1e-08
+        ],
+        "sample.yr": [
+          1e-07,
+          1e-08
+        ],
+        "kappa": [
+          1e-07,
+          1e-08
+        ],
+        "lambda": [
+          1e-07,
+          1e-08
+        ],
+        "flc.grp": [
+          1e-07,
+          1e-08
+        ],
+        "creatinine": [
+          1e-07,
+          1e-08
+        ],
+        "mgus": [
+          1e-07,
+          1e-08
+        ],
+        "futime": [
+          1e-07,
+          1e-08
+        ],
+        "death": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 7874,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                7874
+              ],
+              "prefix": "source_",
+              "suffix": "",
+              "zero_pad": 6
+            }
+          ]
+        }
+      }
+    },
+    "endpoint_ledger.csv": {
+      "columns": [
+        "row_id",
+        "sex",
+        "flc_group",
+        "sample_year",
+        "followup_days",
+        "native_death",
+        "event_used"
+      ],
+      "key": [
+        "row_id"
+      ],
+      "types": {
+        "row_id": "text",
+        "sex": "text",
+        "flc_group": "text",
+        "sample_year": "text",
+        "followup_days": "float",
+        "native_death": "int",
+        "event_used": "int"
+      },
+      "tolerance": {
+        "followup_days": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "row_id"
+        ],
+        "row_count": 7874,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                7874
+              ],
+              "prefix": "source_",
+              "suffix": "",
+              "zero_pad": 6
+            }
+          ]
+        }
+      }
+    },
+    "group_dictionary.csv": {
+      "columns": [
+        "group_id",
+        "field",
+        "level"
+      ],
+      "key": [
+        "group_id"
+      ],
+      "types": {
+        "group_id": "text",
+        "field": "text",
+        "level": "text"
+      },
+      "tolerance": {},
+      "row_set": {
+        "key": [
+          "group_id"
+        ],
+        "row_count": 13,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "set_ref": "set_1"
+            }
+          ]
+        }
+      }
+    },
+    "run_dictionary.csv": {
+      "columns": [
+        "run_id",
+        "deleted_year"
+      ],
+      "key": [
+        "run_id"
+      ],
+      "types": {
+        "run_id": "text",
+        "deleted_year": "text"
+      },
+      "tolerance": {},
+      "row_set": {
+        "key": [
+          "run_id"
+        ],
+        "row_count": 10,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "delete_year_001",
+              "delete_year_002",
+              "delete_year_003",
+              "delete_year_004",
+              "delete_year_005",
+              "delete_year_006",
+              "delete_year_007",
+              "delete_year_008",
+              "delete_year_009",
+              "full"
+            ]
+          ]
+        }
+      }
+    },
+    "complete_run_membership.csv": {
+      "columns": [
+        "run_id",
+        "row_id",
+        "included"
+      ],
+      "key": [
+        "run_id",
+        "row_id"
+      ],
+      "types": {
+        "run_id": "text",
+        "row_id": "text",
+        "included": "int"
+      },
+      "tolerance": {},
+      "row_set": {
+        "key": [
+          "run_id",
+          "row_id"
+        ],
+        "row_count": 78740,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "delete_year_001",
+              "delete_year_002",
+              "delete_year_003",
+              "delete_year_004",
+              "delete_year_005",
+              "delete_year_006",
+              "delete_year_007",
+              "delete_year_008",
+              "delete_year_009",
+              "full"
+            ],
+            {
+              "integer_range": [
+                1,
+                7874
+              ],
+              "prefix": "source_",
+              "suffix": "",
+              "zero_pad": 6
+            }
+          ]
+        }
+      }
+    },
+    "complete_risksets.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "time_index",
+        "time_days",
+        "n_risk",
+        "n_event",
+        "n_censor"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "time_index"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "time_index": "text",
+        "time_days": "float",
+        "n_risk": "int",
+        "n_event": "int",
+        "n_censor": "int"
+      },
+      "tolerance": {
+        "time_days": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "time_index"
+        ],
+        "row_count": 119933,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "full"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2977
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2096
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1901
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            530
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            691
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            585
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            609
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            611
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            596
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            615
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            651
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            631
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            672
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "delete_year_001"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2670
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1876
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1664
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            452
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            596
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            511
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            520
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            540
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            519
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            521
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            563
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            552
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            572
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "delete_year_002"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2116
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1406
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1271
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            286
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            405
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            352
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004",
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            373
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            351
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            380
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            374
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            394
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            400
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "delete_year_003"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2565
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1723
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1617
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            423
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            593
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            458
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            476
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            494
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            473
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            512
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            539
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            528
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            571
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "delete_year_004"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2741
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1894
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1715
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            489
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            628
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            530
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            556
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            561
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            531
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            552
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            584
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            559
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            610
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "delete_year_005"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2837
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1987
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1793
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            514
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            648
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            556
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            572
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            577
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            566
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            585
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            620
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            596
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            633
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "delete_year_006"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2852
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2014
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1815
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            515
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            658
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            571
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            590
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            582
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            577
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            593
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            618
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            606
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            652
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "delete_year_007"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2906
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2046
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1841
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            520
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            668
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            567
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            594
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            595
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            583
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            600
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            637
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            616
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            652
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "delete_year_008"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2963
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2085
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1890
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            529
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            691
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            581
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            607
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            603
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            591
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            609
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            646
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            626
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            666
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "values": [
+                "delete_year_009"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2906
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2036
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1832
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            524
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            675
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003",
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            570
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            592
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            599
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            593
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            621
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            603
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            649
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "complete_horizon_RMST.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "horizon_days",
+        "max_followup_days",
+        "support_status",
+        "KM_at_horizon",
+        "RMST_days"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "horizon_days"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "horizon_days": "text",
+        "max_followup_days": "float",
+        "support_status": "text",
+        "KM_at_horizon": "float",
+        "RMST_days": "float"
+      },
+      "tolerance": {
+        "max_followup_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_at_horizon": [
+          1e-07,
+          1e-08
+        ],
+        "RMST_days": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "horizon_days"
+        ],
+        "row_count": 520,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            [
+              "delete_year_001",
+              "delete_year_002",
+              "delete_year_003",
+              "delete_year_004",
+              "delete_year_005",
+              "delete_year_006",
+              "delete_year_007",
+              "delete_year_008",
+              "delete_year_009",
+              "full"
+            ],
+            {
+              "set_ref": "set_1"
+            },
+            [
+              "1095",
+              "1825",
+              "365",
+              "3650"
+            ]
+          ]
+        }
+      }
+    },
+    "complete_delete_year_contrasts.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "horizon_days",
+        "comparison_status",
+        "RMST_difference_days",
+        "KM_difference"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "horizon_days"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "horizon_days": "text",
+        "comparison_status": "text",
+        "RMST_difference_days": "float",
+        "KM_difference": "float"
+      },
+      "tolerance": {
+        "RMST_difference_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_difference": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "horizon_days"
+        ],
+        "row_count": 468,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "cartesian": [
+            {
+              "integer_range": [
+                1,
+                9
+              ],
+              "prefix": "delete_year_",
+              "suffix": "",
+              "zero_pad": 3
+            },
+            {
+              "set_ref": "set_1"
+            },
+            [
+              "1095",
+              "1825",
+              "365",
+              "3650"
+            ]
+          ]
+        }
+      }
+    },
+    "complete_curves__full.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "time_index",
+        "time_days",
+        "n_risk",
+        "n_event",
+        "n_censor",
+        "KM_survival",
+        "NA_cumulative_hazard",
+        "Greenwood_sum",
+        "Greenwood_variance",
+        "variance_status"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "time_index"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "time_index": "text",
+        "time_days": "float",
+        "n_risk": "int",
+        "n_event": "int",
+        "n_censor": "int",
+        "KM_survival": "float",
+        "NA_cumulative_hazard": "float",
+        "Greenwood_sum": "float",
+        "Greenwood_variance": "float",
+        "variance_status": "text"
+      },
+      "tolerance": {
+        "time_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_survival": [
+          1e-07,
+          1e-08
+        ],
+        "NA_cumulative_hazard": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_sum": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_variance": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "time_index"
+        ],
+        "row_count": 13165,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "full"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2977
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2096
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1901
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            530
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            691
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            585
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            609
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            611
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            596
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            615
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            651
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            631
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            672
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "complete_curves__delete_year_001.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "time_index",
+        "time_days",
+        "n_risk",
+        "n_event",
+        "n_censor",
+        "KM_survival",
+        "NA_cumulative_hazard",
+        "Greenwood_sum",
+        "Greenwood_variance",
+        "variance_status"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "time_index"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "time_index": "text",
+        "time_days": "float",
+        "n_risk": "int",
+        "n_event": "int",
+        "n_censor": "int",
+        "KM_survival": "float",
+        "NA_cumulative_hazard": "float",
+        "Greenwood_sum": "float",
+        "Greenwood_variance": "float",
+        "variance_status": "text"
+      },
+      "tolerance": {
+        "time_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_survival": [
+          1e-07,
+          1e-08
+        ],
+        "NA_cumulative_hazard": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_sum": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_variance": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "time_index"
+        ],
+        "row_count": 11556,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "delete_year_001"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2670
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1876
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1664
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            452
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            596
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            511
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            520
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            540
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            519
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            521
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            563
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            552
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            572
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "complete_curves__delete_year_002.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "time_index",
+        "time_days",
+        "n_risk",
+        "n_event",
+        "n_censor",
+        "KM_survival",
+        "NA_cumulative_hazard",
+        "Greenwood_sum",
+        "Greenwood_variance",
+        "variance_status"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "time_index"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "time_index": "text",
+        "time_days": "float",
+        "n_risk": "int",
+        "n_event": "int",
+        "n_censor": "int",
+        "KM_survival": "float",
+        "NA_cumulative_hazard": "float",
+        "Greenwood_sum": "float",
+        "Greenwood_variance": "float",
+        "variance_status": "text"
+      },
+      "tolerance": {
+        "time_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_survival": [
+          1e-07,
+          1e-08
+        ],
+        "NA_cumulative_hazard": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_sum": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_variance": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "time_index"
+        ],
+        "row_count": 8481,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "delete_year_002"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2116
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1406
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1271
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            286
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            405
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            352
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004",
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            373
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            351
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            380
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            374
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            394
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            400
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "complete_curves__delete_year_003.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "time_index",
+        "time_days",
+        "n_risk",
+        "n_event",
+        "n_censor",
+        "KM_survival",
+        "NA_cumulative_hazard",
+        "Greenwood_sum",
+        "Greenwood_variance",
+        "variance_status"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "time_index"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "time_index": "text",
+        "time_days": "float",
+        "n_risk": "int",
+        "n_event": "int",
+        "n_censor": "int",
+        "KM_survival": "float",
+        "NA_cumulative_hazard": "float",
+        "Greenwood_sum": "float",
+        "Greenwood_variance": "float",
+        "variance_status": "text"
+      },
+      "tolerance": {
+        "time_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_survival": [
+          1e-07,
+          1e-08
+        ],
+        "NA_cumulative_hazard": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_sum": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_variance": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "time_index"
+        ],
+        "row_count": 10972,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "delete_year_003"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2565
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1723
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1617
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            423
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            593
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            458
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            476
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            494
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            473
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            512
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            539
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            528
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            571
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "complete_curves__delete_year_004.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "time_index",
+        "time_days",
+        "n_risk",
+        "n_event",
+        "n_censor",
+        "KM_survival",
+        "NA_cumulative_hazard",
+        "Greenwood_sum",
+        "Greenwood_variance",
+        "variance_status"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "time_index"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "time_index": "text",
+        "time_days": "float",
+        "n_risk": "int",
+        "n_event": "int",
+        "n_censor": "int",
+        "KM_survival": "float",
+        "NA_cumulative_hazard": "float",
+        "Greenwood_sum": "float",
+        "Greenwood_variance": "float",
+        "variance_status": "text"
+      },
+      "tolerance": {
+        "time_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_survival": [
+          1e-07,
+          1e-08
+        ],
+        "NA_cumulative_hazard": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_sum": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_variance": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "time_index"
+        ],
+        "row_count": 11950,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "delete_year_004"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2741
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1894
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1715
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            489
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            628
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            530
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            556
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            561
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            531
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            552
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            584
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            559
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            610
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "complete_curves__delete_year_005.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "time_index",
+        "time_days",
+        "n_risk",
+        "n_event",
+        "n_censor",
+        "KM_survival",
+        "NA_cumulative_hazard",
+        "Greenwood_sum",
+        "Greenwood_variance",
+        "variance_status"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "time_index"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "time_index": "text",
+        "time_days": "float",
+        "n_risk": "int",
+        "n_event": "int",
+        "n_censor": "int",
+        "KM_survival": "float",
+        "NA_cumulative_hazard": "float",
+        "Greenwood_sum": "float",
+        "Greenwood_variance": "float",
+        "variance_status": "text"
+      },
+      "tolerance": {
+        "time_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_survival": [
+          1e-07,
+          1e-08
+        ],
+        "NA_cumulative_hazard": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_sum": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_variance": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "time_index"
+        ],
+        "row_count": 12484,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "delete_year_005"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2837
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1987
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1793
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            514
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            648
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            556
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            572
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            577
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            566
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            585
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            620
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            596
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            633
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "complete_curves__delete_year_006.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "time_index",
+        "time_days",
+        "n_risk",
+        "n_event",
+        "n_censor",
+        "KM_survival",
+        "NA_cumulative_hazard",
+        "Greenwood_sum",
+        "Greenwood_variance",
+        "variance_status"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "time_index"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "time_index": "text",
+        "time_days": "float",
+        "n_risk": "int",
+        "n_event": "int",
+        "n_censor": "int",
+        "KM_survival": "float",
+        "NA_cumulative_hazard": "float",
+        "Greenwood_sum": "float",
+        "Greenwood_variance": "float",
+        "variance_status": "text"
+      },
+      "tolerance": {
+        "time_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_survival": [
+          1e-07,
+          1e-08
+        ],
+        "NA_cumulative_hazard": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_sum": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_variance": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "time_index"
+        ],
+        "row_count": 12643,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "delete_year_006"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2852
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2014
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1815
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            515
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            658
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            571
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            590
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            582
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            577
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            593
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            618
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            606
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            652
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "complete_curves__delete_year_007.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "time_index",
+        "time_days",
+        "n_risk",
+        "n_event",
+        "n_censor",
+        "KM_survival",
+        "NA_cumulative_hazard",
+        "Greenwood_sum",
+        "Greenwood_variance",
+        "variance_status"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "time_index"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "time_index": "text",
+        "time_days": "float",
+        "n_risk": "int",
+        "n_event": "int",
+        "n_censor": "int",
+        "KM_survival": "float",
+        "NA_cumulative_hazard": "float",
+        "Greenwood_sum": "float",
+        "Greenwood_variance": "float",
+        "variance_status": "text"
+      },
+      "tolerance": {
+        "time_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_survival": [
+          1e-07,
+          1e-08
+        ],
+        "NA_cumulative_hazard": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_sum": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_variance": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "time_index"
+        ],
+        "row_count": 12825,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "delete_year_007"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2906
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2046
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1841
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            520
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            668
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            567
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            594
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            595
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            583
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            600
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            637
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            616
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            652
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "complete_curves__delete_year_008.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "time_index",
+        "time_days",
+        "n_risk",
+        "n_event",
+        "n_censor",
+        "KM_survival",
+        "NA_cumulative_hazard",
+        "Greenwood_sum",
+        "Greenwood_variance",
+        "variance_status"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "time_index"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "time_index": "text",
+        "time_days": "float",
+        "n_risk": "int",
+        "n_event": "int",
+        "n_censor": "int",
+        "KM_survival": "float",
+        "NA_cumulative_hazard": "float",
+        "Greenwood_sum": "float",
+        "Greenwood_variance": "float",
+        "variance_status": "text"
+      },
+      "tolerance": {
+        "time_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_survival": [
+          1e-07,
+          1e-08
+        ],
+        "NA_cumulative_hazard": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_sum": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_variance": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "time_index"
+        ],
+        "row_count": 13087,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "delete_year_008"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2963
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2085
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1890
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            529
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            691
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            581
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            607
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            603
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            591
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            609
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            646
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            626
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            666
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "complete_curves__delete_year_009.csv": {
+      "columns": [
+        "run_id",
+        "group_id",
+        "time_index",
+        "time_days",
+        "n_risk",
+        "n_event",
+        "n_censor",
+        "KM_survival",
+        "NA_cumulative_hazard",
+        "Greenwood_sum",
+        "Greenwood_variance",
+        "variance_status"
+      ],
+      "key": [
+        "run_id",
+        "group_id",
+        "time_index"
+      ],
+      "types": {
+        "run_id": "text",
+        "group_id": "text",
+        "time_index": "text",
+        "time_days": "float",
+        "n_risk": "int",
+        "n_event": "int",
+        "n_censor": "int",
+        "KM_survival": "float",
+        "NA_cumulative_hazard": "float",
+        "Greenwood_sum": "float",
+        "Greenwood_variance": "float",
+        "variance_status": "text"
+      },
+      "tolerance": {
+        "time_days": [
+          1e-07,
+          1e-08
+        ],
+        "KM_survival": [
+          1e-07,
+          1e-08
+        ],
+        "NA_cumulative_hazard": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_sum": [
+          1e-07,
+          1e-08
+        ],
+        "Greenwood_variance": [
+          1e-07,
+          1e-08
+        ]
+      },
+      "row_set": {
+        "key": [
+          "run_id",
+          "group_id",
+          "time_index"
+        ],
+        "row_count": 12770,
+        "rule": "按下述无损键集合表达式展开全部组合，每个键元组恰好一行；集合定义见row_set_definitions。",
+        "key_set": {
+          "branches": [
+            {
+              "values": [
+                "delete_year_009"
+              ],
+              "then": {
+                "branches": [
+                  {
+                    "values": [
+                      "all"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2906
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            2036
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "sex_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            1832
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_001"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            524
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_002"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            675
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_003",
+                      "flc_006"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            570
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_004"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            592
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_005"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            599
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_007"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            593
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_008"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            621
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_009"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            603
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "values": [
+                      "flc_010"
+                    ],
+                    "then": {
+                      "cartesian": [
+                        {
+                          "integer_range": [
+                            1,
+                            649
+                          ],
+                          "prefix": "",
+                          "suffix": "",
+                          "zero_pad": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "row_set_definitions": {
+    "set_1": [
+      "all",
+      "flc_001",
+      "flc_002",
+      "flc_003",
+      "flc_004",
+      "flc_005",
+      "flc_006",
+      "flc_007",
+      "flc_008",
+      "flc_009",
+      "flc_010",
+      "sex_001",
+      "sex_002"
+    ]
+  }
+}

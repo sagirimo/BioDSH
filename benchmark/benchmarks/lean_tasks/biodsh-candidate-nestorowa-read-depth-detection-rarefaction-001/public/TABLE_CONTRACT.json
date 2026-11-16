@@ -1,0 +1,171 @@
+{
+  "tables": {
+    "cell_qc.csv": {
+      "columns": [
+        "cell_id",
+        "library_reads",
+        "ercc_reads",
+        "unassigned_reads",
+        "detected_genes",
+        "retained",
+        "depth_group"
+      ],
+      "key": [
+        "cell_id"
+      ],
+      "types": {
+        "cell_id": "text",
+        "library_reads": "int",
+        "ercc_reads": "int",
+        "unassigned_reads": "int",
+        "detected_genes": "int",
+        "retained": "int",
+        "depth_group": "text"
+      }
+    },
+    "cell_rarefaction.csv": {
+      "columns": [
+        "curve_id",
+        "cell_id",
+        "depth",
+        "depth_group",
+        "raw_detected",
+        "expected_detected",
+        "retention"
+      ],
+      "key": [
+        "curve_id"
+      ],
+      "types": {
+        "curve_id": "text",
+        "cell_id": "text",
+        "depth": "text",
+        "depth_group": "text",
+        "raw_detected": "int",
+        "expected_detected": "float",
+        "retention": "float"
+      },
+      "tolerance": {
+        "expected_detected": [
+          1e-06,
+          1e-08
+        ],
+        "retention": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "depth_summary.csv": {
+      "columns": [
+        "summary_id",
+        "depth_group",
+        "depth",
+        "n_cells",
+        "mean_library",
+        "mean_raw_detected",
+        "mean_expected_detected",
+        "sd_expected_detected",
+        "mean_retention"
+      ],
+      "key": [
+        "summary_id"
+      ],
+      "types": {
+        "summary_id": "text",
+        "depth_group": "text",
+        "depth": "text",
+        "n_cells": "int",
+        "mean_library": "float",
+        "mean_raw_detected": "float",
+        "mean_expected_detected": "float",
+        "sd_expected_detected": "float",
+        "mean_retention": "float"
+      },
+      "tolerance": {
+        "mean_library": [
+          1e-06,
+          1e-08
+        ],
+        "mean_raw_detected": [
+          1e-06,
+          1e-08
+        ],
+        "mean_expected_detected": [
+          1e-06,
+          1e-08
+        ],
+        "sd_expected_detected": [
+          1e-06,
+          1e-08
+        ],
+        "mean_retention": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "gene_occupancy.csv": {
+      "columns": [
+        "occupancy_id",
+        "depth",
+        "panel_rank",
+        "gene_id",
+        "observed_fraction",
+        "expected_fraction",
+        "retention"
+      ],
+      "key": [
+        "occupancy_id"
+      ],
+      "types": {
+        "occupancy_id": "text",
+        "depth": "text",
+        "panel_rank": "text",
+        "gene_id": "text",
+        "observed_fraction": "float",
+        "expected_fraction": "float",
+        "retention": "float"
+      },
+      "tolerance": {
+        "observed_fraction": [
+          1e-06,
+          1e-08
+        ],
+        "expected_fraction": [
+          1e-06,
+          1e-08
+        ],
+        "retention": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "panel_genes.csv": {
+      "columns": [
+        "panel_rank",
+        "gene_id",
+        "detected_cells",
+        "mean_reads",
+        "total_reads"
+      ],
+      "key": [
+        "panel_rank"
+      ],
+      "types": {
+        "panel_rank": "text",
+        "gene_id": "text",
+        "detected_cells": "int",
+        "mean_reads": "float",
+        "total_reads": "int"
+      },
+      "tolerance": {
+        "mean_reads": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

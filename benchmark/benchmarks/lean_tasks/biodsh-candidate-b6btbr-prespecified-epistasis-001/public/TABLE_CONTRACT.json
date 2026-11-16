@@ -1,0 +1,161 @@
+{
+  "tables": {
+    "analysis_units.csv": {
+      "columns": [
+        "id",
+        "outcome",
+        "male",
+        "A1",
+        "D1",
+        "A2",
+        "D2",
+        "A1_A2",
+        "A1_D2",
+        "D1_A2",
+        "D1_D2"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "outcome": "float",
+        "male": "int",
+        "A1": "int",
+        "D1": "int",
+        "A2": "int",
+        "D2": "int",
+        "A1_A2": "int",
+        "A1_D2": "int",
+        "D1_A2": "int",
+        "D1_D2": "int"
+      },
+      "tolerance": {
+        "outcome": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "coefficients.csv": {
+      "columns": [
+        "id",
+        "model",
+        "term",
+        "coef",
+        "se"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "model": "text",
+        "term": "text",
+        "coef": "float",
+        "se": "float"
+      },
+      "tolerance": {
+        "coef": [
+          1e-05,
+          1e-08
+        ],
+        "se": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "influence.csv": {
+      "columns": [
+        "id",
+        "leverage",
+        "cooks_D"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "leverage": "float",
+        "cooks_D": "float"
+      },
+      "tolerance": {
+        "leverage": [
+          1e-05,
+          1e-08
+        ],
+        "cooks_D": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "interaction_test.csv": {
+      "columns": [
+        "id",
+        "n",
+        "RSS_main",
+        "RSS_interaction",
+        "F",
+        "p",
+        "df1",
+        "df2"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "RSS_main": "float",
+        "RSS_interaction": "float",
+        "F": "float",
+        "p": "float",
+        "df1": "int",
+        "df2": "int"
+      },
+      "tolerance": {
+        "RSS_main": [
+          1e-05,
+          1e-08
+        ],
+        "RSS_interaction": [
+          1e-05,
+          1e-08
+        ],
+        "F": [
+          1e-05,
+          1e-08
+        ],
+        "p": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "selected_markers.csv": {
+      "columns": [
+        "id",
+        "marker",
+        "chromosome",
+        "cM"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "marker": "text",
+        "chromosome": "int",
+        "cM": "float"
+      },
+      "tolerance": {
+        "cM": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

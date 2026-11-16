@@ -1,0 +1,140 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-ca-isoform-selectivity-001",
+  "claims": [
+    {
+      "id": "paired_n",
+      "type": "number",
+      "question": "具有两种亚型测量的分子数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "CA2_vs_CA1",
+        "column": "n"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "selectivity",
+      "type": "number",
+      "question": "CA2 相对 CA1 的平均 pKi 差。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "CA2_vs_CA1",
+        "column": "mean_delta_pKi"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "lower_ci",
+      "type": "number",
+      "question": "同一配对差的95%置信下限。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "CA2_vs_CA1",
+        "column": "ci_low"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "ca4_selectivity",
+      "type": "number",
+      "question": "CA2 相对 CA4 的平均 pKi 差。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "id",
+        "key": "CA2_vs_CA4",
+        "column": "mean_delta_pKi"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "candidates",
+      "type": "number",
+      "question": "同时满足效力与两项选择性阈值的分子数。",
+      "binding": {
+        "table": "prioritization.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "selected"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "median_potency",
+      "type": "number",
+      "question": "完整三亚型分子的 CA2 pKi 中位数。",
+      "binding": {
+        "table": "prioritization.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "median_CA2_pKi"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "evidence",
+      "type": "derived",
+      "question": "BH q<0.05 是否支持配对效力差？",
+      "options": [
+        "paired_difference_supported",
+        "not_supported"
+      ],
+      "rule": {
+        "binding": {
+          "table": "summary.csv",
+          "key_column": "id",
+          "key": "CA2_vs_CA1",
+          "column": "q_value"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "paired_difference_supported",
+          "false": "not_supported"
+        }
+      }
+    },
+    {
+      "id": "candidate_exists",
+      "type": "derived",
+      "question": "是否存在符合阈值的候选？",
+      "options": [
+        "has_candidates",
+        "no_candidates"
+      ],
+      "rule": {
+        "binding": {
+          "table": "prioritization.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "selected"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "has_candidates",
+          "false": "no_candidates"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "这些体外亚型数据足以支持哪种结论？",
+      "options": [
+        "assay_context_selectivity_not_clinical_efficacy",
+        "proven_human_eye_efficacy",
+        "absence_of_off_target_effects"
+      ]
+    }
+  ]
+}

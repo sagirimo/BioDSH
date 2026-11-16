@@ -1,0 +1,2 @@
+Gardner TS,Cantor CR,Collins JJ2000 Construction of a genetic toggle switch in Escherichia coli. Nature403:339–342 DOI10.1038/35002131 PMID10659857。公开BioModels模型BIOMD0000000507（MODEL1401190000），完整SBML下载https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000507?filename=BIOMD0000000507_url.xml，参数及IPTG赋值规则保留。本题自拟有限脉冲协议，不取自benchmark；未使用Elowitz repressilator数据或流程。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

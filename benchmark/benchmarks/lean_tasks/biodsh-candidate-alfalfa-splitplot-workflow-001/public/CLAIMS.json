@@ -1,0 +1,158 @@
+{
+  "task_id": "biodsh-candidate-alfalfa-splitplot-workflow-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "原单位T/Acre下的全实验平均产量",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "grand_mean"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "整区误差均方",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "whole_error_MS"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "子区误差均方",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "subplot_error_MS"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "品种的整区F统计量",
+      "binding": {
+        "table": "anova_tests.csv",
+        "keys": {
+          "effect": "Variety"
+        },
+        "column": "F"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "日期的子区F统计量",
+      "binding": {
+        "table": "anova_tests.csv",
+        "keys": {
+          "effect": "Date"
+        },
+        "column": "F"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "删除整Block导致的最大对比估计绝对变化",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "maximum_abs_deleted_estimate_delta"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "品种检验p是否小于探索性0.05阈值？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "anova_tests.csv",
+          "keys": {
+            "effect": "Variety"
+          },
+          "column": "p"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "derived_2",
+      "type": "derived",
+      "question": "品种与日期交互检验p是否小于探索性0.05阈值？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "anova_tests.csv",
+          "keys": {
+            "effect": "Variety:Date"
+          },
+          "column": "p"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "六次Block删除结果应如何解释？",
+      "options": [
+        "same_experiment_sensitivity_not_external_validation",
+        "six_independent_replication_experiments",
+        "causal_validation_of_variety_effect"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "57个未校正对比的置信区间可支持什么？",
+      "options": [
+        "exploratory_marginal_intervals_not_familywise_confirmation",
+        "simultaneous_95_percent_coverage_guaranteed",
+        "proof_original_randomization_recovered"
+      ]
+    }
+  ]
+}

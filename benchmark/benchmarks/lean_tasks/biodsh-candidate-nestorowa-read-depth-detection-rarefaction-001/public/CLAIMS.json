@@ -1,0 +1,152 @@
+{
+  "revision": "round9_lean_v1",
+  "task_id": "biodsh-candidate-nestorowa-read-depth-detection-rarefaction-001",
+  "claims": [
+    {
+      "id": "low_cells",
+      "type": "number",
+      "question": "低读深层保留细胞数。",
+      "binding": {
+        "table": "depth_summary.csv",
+        "key_column": "summary_id",
+        "key": "low__1000",
+        "column": "n_cells"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "low_standardized_detection",
+      "type": "number",
+      "question": "低读深层在50000读段下的平均期望检出基因数。",
+      "binding": {
+        "table": "depth_summary.csv",
+        "key_column": "summary_id",
+        "key": "low__50000",
+        "column": "mean_expected_detected"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "high_standardized_detection",
+      "type": "number",
+      "question": "高读深层在50000读段下的平均期望检出基因数。",
+      "binding": {
+        "table": "depth_summary.csv",
+        "key_column": "summary_id",
+        "key": "high__50000",
+        "column": "mean_expected_detected"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "middle_retention",
+      "type": "number",
+      "question": "中读深层在10000读段下的平均检出保留比例。",
+      "binding": {
+        "table": "depth_summary.csv",
+        "key_column": "summary_id",
+        "key": "middle__10000",
+        "column": "mean_retention"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "panel1_detection",
+      "type": "number",
+      "question": "面板rank1基因在10000读段下的平均检出概率。",
+      "binding": {
+        "table": "gene_occupancy.csv",
+        "key_column": "occupancy_id",
+        "key": "10000__1",
+        "column": "expected_fraction"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "panel1_observed",
+      "type": "number",
+      "question": "面板rank1基因在保留细胞中的原始检出细胞数。",
+      "binding": {
+        "table": "panel_genes.csv",
+        "key_column": "panel_rank",
+        "key": "1",
+        "column": "detected_cells"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "high_retention_below_half",
+      "type": "derived",
+      "question": "高读深层在1000读段下的平均检出保留比例是否大于0.5？",
+      "options": [
+        "above_half",
+        "at_most_half",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "depth_summary.csv",
+          "key_column": "summary_id",
+          "key": "high__1000",
+          "column": "mean_retention"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "above_half",
+          "false": "at_most_half"
+        }
+      }
+    },
+    {
+      "id": "panel1_occupancy",
+      "type": "derived",
+      "question": "面板rank1基因标准化到10000读段后的平均检出概率是否大于0.25？",
+      "options": [
+        "above_quarter",
+        "at_most_quarter",
+        "proves_causality"
+      ],
+      "rule": {
+        "binding": {
+          "table": "gene_occupancy.csv",
+          "key_column": "occupancy_id",
+          "key": "10000__1",
+          "column": "expected_fraction"
+        },
+        "op": "gt",
+        "threshold": 0.25,
+        "outcomes": {
+          "true": "above_quarter",
+          "false": "at_most_quarter"
+        }
+      }
+    },
+    {
+      "id": "counts_unit",
+      "type": "choice",
+      "question": "这些计数的正确统计单位是什么？",
+      "options": [
+        "assigned_smartseq2_read_counts_not_umi_molecules",
+        "deduplicated_umi_molecules",
+        "absolute_transcripts_per_cell"
+      ]
+    },
+    {
+      "id": "inference",
+      "type": "choice",
+      "question": "固定读深后的差异能说明什么？",
+      "options": [
+        "descriptive_detection_given_observed_libraries_not_cell_fate_causality",
+        "causal_effect_of_sequencing_depth_on_lineage",
+        "biological_variance_without_technical_components"
+      ]
+    }
+  ]
+}

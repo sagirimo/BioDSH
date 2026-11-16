@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "r_published_pharmacokinetics",
+  "source_case": "Indometh_whole_published_example",
+  "original_parent_source_case": "DOI:10.1007/bf01063617",
+  "page": "https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Indometh.html",
+  "source_terms": "Original source-package/native/notices retained;exact packaged-input delivery/attribution review pending",
+  "limitations": [
+    "All66source records/6subjects; time hours and plasma mcg/ml. Native factor ordering is by increasing response maximum, not numeric Subject. IV context is supplied but dose is absent; no invented clearance/dose/clinical treatment advice. Declared data-fit descriptors are not a validated compartment/clinical model.",
+    "Prespecified finite rate dictionary is an adapted descriptor workflow,not original continuous free-rate model/measurement/author analysis",
+    "Conditional precision excludes model selection;formal source gates and actual paired agent runs pending"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

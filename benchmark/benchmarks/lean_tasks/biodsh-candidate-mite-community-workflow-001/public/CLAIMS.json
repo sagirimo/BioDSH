@@ -1,0 +1,134 @@
+{
+  "task_id": "biodsh-candidate-mite-community-workflow-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "分析样点数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "sites"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "中心化群落总平方和",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "total_SS"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "环境约束平方和",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "constrained_SS"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "模型解释变异比例",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "R_squared"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "完整模型伪F统计量",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "pseudo_F"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "按所给999方案计算的置换p值",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "permutation_p"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "置换p是否低于0.05（仅在交换性假设下解释）？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "terminal_summary.csv",
+          "keys": {
+            "metric": "permutation_p"
+          },
+          "column": "value"
+        },
+        "op": "lt",
+        "threshold": 0.05,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "Hellinger响应的构造是否赋予因果解释？",
+      "options": [
+        "association_conditional_on_design_not_causality",
+        "randomized_environmental_effect",
+        "species_are_independent_field_replicates"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "原PCNM和坐标字段支持何种表述？",
+      "options": [
+        "supplied_source_audit_not_reconstructed_spatial_basis",
+        "spatial_independence_proven",
+        "PCNM_algorithm_reconstructed_from_coordinates"
+      ]
+    }
+  ]
+}

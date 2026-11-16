@@ -1,0 +1,186 @@
+{
+  "tables": {
+    "array_qc.csv": {
+      "columns": [
+        "id",
+        "cell_line",
+        "replicate",
+        "n_probes",
+        "floor_count",
+        "array_median",
+        "median_shift"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "cell_line": "text",
+        "replicate": "int",
+        "n_probes": "int",
+        "floor_count": "int",
+        "array_median": "float",
+        "median_shift": "float"
+      },
+      "tolerance": {
+        "array_median": [
+          1e-05,
+          1e-08
+        ],
+        "median_shift": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "probe_reliability.csv": {
+      "columns": [
+        "id",
+        "mean_expression",
+        "MS_between",
+        "MS_replicate",
+        "MS_error",
+        "ICC_consistency",
+        "ICC_absolute",
+        "between_component",
+        "replicate_bias",
+        "expression_quartile",
+        "between_rank"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "mean_expression": "float",
+        "MS_between": "float",
+        "MS_replicate": "float",
+        "MS_error": "float",
+        "ICC_consistency": "float",
+        "ICC_absolute": "float",
+        "between_component": "float",
+        "replicate_bias": "float",
+        "expression_quartile": "int",
+        "between_rank": "int"
+      },
+      "tolerance": {
+        "mean_expression": [
+          1e-05,
+          1e-08
+        ],
+        "MS_between": [
+          1e-05,
+          1e-08
+        ],
+        "MS_replicate": [
+          1e-05,
+          1e-08
+        ],
+        "MS_error": [
+          1e-05,
+          1e-08
+        ],
+        "ICC_consistency": [
+          1e-05,
+          1e-08
+        ],
+        "ICC_absolute": [
+          1e-05,
+          1e-08
+        ],
+        "between_component": [
+          1e-05,
+          1e-08
+        ],
+        "replicate_bias": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "reliability_summary.csv": {
+      "columns": [
+        "id",
+        "n_probes",
+        "median_ICC_consistency",
+        "median_ICC_absolute",
+        "fraction_consistency_ge075",
+        "median_error_variance",
+        "fraction_negative_between",
+        "median_abs_replicate_bias"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_probes": "int",
+        "median_ICC_consistency": "float",
+        "median_ICC_absolute": "float",
+        "fraction_consistency_ge075": "float",
+        "median_error_variance": "float",
+        "fraction_negative_between": "float",
+        "median_abs_replicate_bias": "float"
+      },
+      "tolerance": {
+        "median_ICC_consistency": [
+          1e-05,
+          1e-08
+        ],
+        "median_ICC_absolute": [
+          1e-05,
+          1e-08
+        ],
+        "fraction_consistency_ge075": [
+          1e-05,
+          1e-08
+        ],
+        "median_error_variance": [
+          1e-05,
+          1e-08
+        ],
+        "fraction_negative_between": [
+          1e-05,
+          1e-08
+        ],
+        "median_abs_replicate_bias": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "top_dispersion_probes.csv": {
+      "columns": [
+        "id",
+        "probe",
+        "between_component",
+        "ICC_consistency",
+        "ICC_absolute"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "probe": "text",
+        "between_component": "float",
+        "ICC_consistency": "float",
+        "ICC_absolute": "float"
+      },
+      "tolerance": {
+        "between_component": [
+          1e-05,
+          1e-08
+        ],
+        "ICC_consistency": [
+          1e-05,
+          1e-08
+        ],
+        "ICC_absolute": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

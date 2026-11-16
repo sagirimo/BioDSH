@@ -1,0 +1,9 @@
+{
+ "source_url": "https://physionet.org/content/mitdb/1.0.0/",
+ "input_files_sha256": {
+  "inputs/100.dat": "b2ea3c250e56e48f4b7b90697832b8ecd1afa1e0bb31f2dcfea4ed6e1075a639",
+  "inputs/100.hea": "60ebc904c7bf3e04d142638d3fd5c903e8dc9f10f1ea3264e07926aa089ee75e",
+  "inputs/annotations.csv": "ab37744b05a04e1f6ed47760a2162bb8c82969b320d2b123fc5d42198dbba747"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

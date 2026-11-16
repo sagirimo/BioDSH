@@ -1,0 +1,127 @@
+{
+  "revision": "round7_lean_v1",
+  "task_id": "biodsh-candidate-sarcoma-pca-loading-deletion-001",
+  "claims": [
+    {
+      "id": "C1",
+      "type": "number",
+      "question": "筛选合格的探针数？",
+      "binding": {
+        "table": "sensitivity.csv",
+        "key_column": "id",
+        "key": "drop10",
+        "column": "n_probes_retained"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C2",
+      "type": "number",
+      "question": "PC1样本协方差特征值？",
+      "binding": {
+        "table": "pca_summary.csv",
+        "key_column": "id",
+        "key": "PC1",
+        "column": "eigenvalue"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C3",
+      "type": "number",
+      "question": "PC2解释方差比例？",
+      "binding": {
+        "table": "pca_summary.csv",
+        "key_column": "id",
+        "key": "PC2",
+        "column": "explained_fraction"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C4",
+      "type": "number",
+      "question": "原两轴诊断组间平方和占比？",
+      "binding": {
+        "table": "sensitivity.csv",
+        "key_column": "id",
+        "key": "drop10",
+        "column": "between_fraction_full"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C5",
+      "type": "number",
+      "question": "删除高载荷探针后的最大主夹角（度）？",
+      "binding": {
+        "table": "sensitivity.csv",
+        "key_column": "id",
+        "key": "drop10",
+        "column": "max_principal_angle_deg"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C6",
+      "type": "number",
+      "question": "删除高载荷探针后的组间占比？",
+      "binding": {
+        "table": "sensitivity.csv",
+        "key_column": "id",
+        "key": "drop10",
+        "column": "between_fraction_reduced"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C7",
+      "type": "derived",
+      "question": "子空间变化是否超过20度？",
+      "options": [
+        "超过20度",
+        "不超过20度"
+      ],
+      "rule": {
+        "binding": {
+          "table": "sensitivity.csv",
+          "key_column": "id",
+          "key": "drop10",
+          "column": "max_principal_angle_deg"
+        },
+        "op": "gt",
+        "threshold": 20,
+        "outcomes": {
+          "true": "超过20度",
+          "false": "不超过20度"
+        }
+      }
+    },
+    {
+      "id": "C8",
+      "type": "choice",
+      "question": "两轴组间占比能支持什么？",
+      "options": [
+        "本队列的描述性组织学分离",
+        "无偏的外部分类准确率",
+        "诊断标签对转录组的因果效应"
+      ]
+    },
+    {
+      "id": "C9",
+      "type": "choice",
+      "question": "这些负表达值应如何解释？",
+      "options": [
+        "来源给定的log2比值可为负",
+        "负分子计数必须删除",
+        "需对负值取绝对值后再log"
+      ]
+    }
+  ]
+}

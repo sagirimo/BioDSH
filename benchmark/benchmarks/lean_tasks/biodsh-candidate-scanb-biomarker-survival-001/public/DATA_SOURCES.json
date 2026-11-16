@@ -1,0 +1,8 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE96058",
+ "input_files_sha256": {
+  "inputs/GSE96058-GPL11154_series_matrix.txt.gz": "47e4e488911f688a9c9ac7a0bb1223a22259ca1dcae2a1a7501ae5b5e55794ce",
+  "inputs/GSE96058-GPL18573_series_matrix.txt.gz": "d7a77604b78dc01235ebee55e39aceb4ff24ecae4fd540e3fa2a773ddb8be091"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

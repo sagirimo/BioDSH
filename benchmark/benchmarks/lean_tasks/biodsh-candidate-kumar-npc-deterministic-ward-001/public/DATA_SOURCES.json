@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60749",
+ "input_files_sha256": {
+  "inputs/NPC_TPM.csv.gz": "7bafb4a1367930ecf95b47f20161a8da51377711fca1ab297575cade57797a49"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

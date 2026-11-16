@@ -1,0 +1,2 @@
+Hughes ME et al. Harmonics of circadian gene transcription in mammals. PLoS Genet. 2009;5:e1000442. DOI:10.1371/journal.pgen.1000442. GEO GSE11923; https://ftp.ncbi.nlm.nih.gov/geo/series/GSE11nnn/GSE11923/matrix/GSE11923_series_matrix.txt.gz 。下载2026-10-16。原始公开提交的MAS5处理表，非原始CEL；仅本地科研使用；保留来源署名，NCBI GEO公共数据政策。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

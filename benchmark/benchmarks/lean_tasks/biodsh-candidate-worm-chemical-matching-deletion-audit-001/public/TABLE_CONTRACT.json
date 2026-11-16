@@ -1,0 +1,107 @@
+{
+  "tables": {
+    "deletion_effects.csv": {
+      "columns": [
+        "id",
+        "n_nodes",
+        "n_edges",
+        "maximum_matching",
+        "deficiency",
+        "n_scc",
+        "largest_scc",
+        "delta_deficiency",
+        "delta_largest_scc"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_nodes": "int",
+        "n_edges": "int",
+        "maximum_matching": "int",
+        "deficiency": "int",
+        "n_scc": "int",
+        "largest_scc": "int",
+        "delta_deficiency": "int",
+        "delta_largest_scc": "int"
+      },
+      "tolerance": {}
+    },
+    "deletion_summary.csv": {
+      "columns": [
+        "id",
+        "n_deletions",
+        "increased",
+        "unchanged",
+        "decreased",
+        "mean_delta",
+        "max_delta",
+        "mean_scc_loss"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_deletions": "int",
+        "increased": "int",
+        "unchanged": "int",
+        "decreased": "int",
+        "mean_delta": "float",
+        "max_delta": "int",
+        "mean_scc_loss": "float"
+      },
+      "tolerance": {
+        "mean_delta": [
+          1e-05,
+          1e-08
+        ],
+        "mean_scc_loss": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "network_summary.csv": {
+      "columns": [
+        "id",
+        "n_nodes",
+        "n_edges",
+        "maximum_matching",
+        "deficiency",
+        "n_scc",
+        "largest_scc"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_nodes": "int",
+        "n_edges": "int",
+        "maximum_matching": "int",
+        "deficiency": "int",
+        "n_scc": "int",
+        "largest_scc": "int"
+      },
+      "tolerance": {}
+    },
+    "node_degrees.csv": {
+      "columns": [
+        "id",
+        "in_degree",
+        "out_degree"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "in_degree": "int",
+        "out_degree": "int"
+      },
+      "tolerance": {}
+    }
+  }
+}

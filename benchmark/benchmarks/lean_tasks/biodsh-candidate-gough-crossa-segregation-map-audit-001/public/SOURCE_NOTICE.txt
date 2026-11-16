@@ -1,0 +1,2 @@
+Gray MM et al. 2015 Genetics201:213–228, Genetics of rapid and extreme size evolution in island mice. DOI10.1534/genetics.115.177790 PMID26199233。作者R/qtl2data Gough目录；MPD Payseur1。原始gough.zip公开下载，本地派生文件和确定性预处理说明附后。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。

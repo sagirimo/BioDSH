@@ -1,0 +1,7 @@
+{
+ "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE5859",
+ "input_files_sha256": {
+  "inputs/GSE5859_series_matrix.txt.gz": "a1f956ad1a7e91b398421cde823e1cbfc9700ded70328ad5ce3aa9d8f9fbc1dd"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

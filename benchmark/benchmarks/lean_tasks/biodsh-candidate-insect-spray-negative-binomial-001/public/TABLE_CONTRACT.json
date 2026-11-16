@@ -1,0 +1,187 @@
+{
+  "tables": {
+    "contrasts.csv": {
+      "columns": [
+        "id",
+        "log_rate_ratio",
+        "se",
+        "rate_ratio",
+        "ci_low",
+        "ci_high",
+        "p",
+        "q"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "log_rate_ratio": "float",
+        "se": "float",
+        "rate_ratio": "float",
+        "ci_low": "float",
+        "ci_high": "float",
+        "p": "float",
+        "q": "float"
+      },
+      "tolerance": {
+        "log_rate_ratio": [
+          1e-05,
+          1e-08
+        ],
+        "se": [
+          1e-05,
+          1e-08
+        ],
+        "rate_ratio": [
+          1e-05,
+          1e-08
+        ],
+        "ci_low": [
+          1e-05,
+          1e-08
+        ],
+        "ci_high": [
+          1e-05,
+          1e-08
+        ],
+        "p": [
+          1e-05,
+          1e-08
+        ],
+        "q": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "dispersion.csv": {
+      "columns": [
+        "id",
+        "n",
+        "k",
+        "alpha",
+        "loglik_nb",
+        "loglik_poisson",
+        "lr_vs_poisson",
+        "boundary_p"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "k": "float",
+        "alpha": "float",
+        "loglik_nb": "float",
+        "loglik_poisson": "float",
+        "lr_vs_poisson": "float",
+        "boundary_p": "float"
+      },
+      "tolerance": {
+        "k": [
+          1e-05,
+          1e-08
+        ],
+        "alpha": [
+          1e-05,
+          1e-08
+        ],
+        "loglik_nb": [
+          1e-05,
+          1e-08
+        ],
+        "loglik_poisson": [
+          1e-05,
+          1e-08
+        ],
+        "lr_vs_poisson": [
+          1e-05,
+          1e-08
+        ],
+        "boundary_p": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "group_summary.csv": {
+      "columns": [
+        "id",
+        "n",
+        "mean_count",
+        "sample_variance",
+        "model_variance",
+        "pearson_sum"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "mean_count": "float",
+        "sample_variance": "float",
+        "model_variance": "float",
+        "pearson_sum": "float"
+      },
+      "tolerance": {
+        "mean_count": [
+          1e-05,
+          1e-08
+        ],
+        "sample_variance": [
+          1e-05,
+          1e-08
+        ],
+        "model_variance": [
+          1e-05,
+          1e-08
+        ],
+        "pearson_sum": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "leave_spray.csv": {
+      "columns": [
+        "id",
+        "n",
+        "k",
+        "alpha",
+        "delta_log_k"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "k": "float",
+        "alpha": "float",
+        "delta_log_k": "float"
+      },
+      "tolerance": {
+        "k": [
+          1e-05,
+          1e-08
+        ],
+        "alpha": [
+          1e-05,
+          1e-08
+        ],
+        "delta_log_k": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  },
+  "comparison_rule": "abs(candidate-reference) <= abs_tol + rel_tol*abs(reference); tolerance=[rel_tol,abs_tol]",
+  "missing": "NA; 按题面规则过滤或处理，不将缺失当0",
+  "ordering": "主键字符串精确比较；行顺序不计，列名按合同；并列按题面规则",
+  "randomness": "无随机步骤，或严格读取预生成方案输入",
+  "equivalent_implementations": "允许符合定义及容差的科学等价实现，不要求参考代码写法"
+}

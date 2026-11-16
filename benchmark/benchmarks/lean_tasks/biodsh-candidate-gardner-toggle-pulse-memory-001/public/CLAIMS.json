@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-gardner-toggle-pulse-memory-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "发生切换的协议数？",
+      "binding": {
+        "table": "dose_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "switched_count"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "100μM平均最终V？",
+      "binding": {
+        "table": "dose_summary.csv",
+        "key_column": "id",
+        "key": "100",
+        "column": "mean_final_V"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "300μM平均脉冲V面积？",
+      "binding": {
+        "table": "dose_summary.csv",
+        "key_column": "id",
+        "key": "300",
+        "column": "mean_pulse_auc"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "100μM时长2的脉冲终点V？",
+      "binding": {
+        "table": "pulse_outcomes.csv",
+        "key_column": "id",
+        "key": "100|2",
+        "column": "pulse_end_V"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "其洗脱终点V？",
+      "binding": {
+        "table": "pulse_outcomes.csv",
+        "key_column": "id",
+        "key": "100|2",
+        "column": "wash200_V"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "100到200洗脱最大变化？",
+      "binding": {
+        "table": "dose_summary.csv",
+        "key_column": "id",
+        "key": "all",
+        "column": "max_convergence"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "是否有切换协议？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "dose_summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "switched_count"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "最大洗脱变化是否<.01？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "dose_summary.csv",
+          "key_column": "id",
+          "key": "all",
+          "column": "max_convergence"
+        },
+        "op": "lt",
+        "threshold": 0.01,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "切换判据意味着什么？",
+      "options": [
+        "是给定确定性模型、脉冲与有限洗脱下的终点分类",
+        "就是单细胞永久切换概率",
+        "归一化时间天然等于分钟"
+      ]
+    }
+  ]
+}

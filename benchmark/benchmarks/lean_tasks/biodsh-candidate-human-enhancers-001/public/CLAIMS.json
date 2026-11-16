@@ -1,0 +1,152 @@
+{
+  "revision": "legacy_lean_v1_20261015",
+  "task_id": "biodsh-candidate-human-enhancers-001",
+  "claims": [
+    {
+      "id": "train_sequences",
+      "type": "number",
+      "question": "训练序列数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "train_sequences",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "test_sequences",
+      "type": "number",
+      "question": "测试序列数。",
+      "binding": {
+        "table": "summary.csv",
+        "key_column": "metric",
+        "key": "test_sequences",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "AUROC_0.1",
+      "type": "number",
+      "question": "C=0.1的验证AUROC。",
+      "binding": {
+        "table": "fit_trials.csv",
+        "key_column": "C",
+        "key": "0.1",
+        "column": "valid_AUROC"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "AUROC_1.0",
+      "type": "number",
+      "question": "C=1.0的验证AUROC。",
+      "binding": {
+        "table": "fit_trials.csv",
+        "key_column": "C",
+        "key": "1.0",
+        "column": "valid_AUROC"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "AUROC_10.0",
+      "type": "number",
+      "question": "C=10.0的验证AUROC。",
+      "binding": {
+        "table": "fit_trials.csv",
+        "key_column": "C",
+        "key": "10.0",
+        "column": "valid_AUROC"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "validation_probability",
+      "type": "number",
+      "question": "验证序列seq000003的预测概率。",
+      "binding": {
+        "table": "valid_predictions.csv",
+        "key_column": "sequence_id",
+        "key": "seq000003",
+        "column": "p_positive"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-10
+    },
+    {
+      "id": "C1_discrimination",
+      "type": "derived",
+      "question": "C=1的验证排序区分度是否高于随机基线？",
+      "options": [
+        "above_random_AUROC",
+        "not_above_random_AUROC",
+        "proves_external_functional_validity"
+      ],
+      "rule": {
+        "binding": {
+          "table": "fit_trials.csv",
+          "key_column": "C",
+          "key": "1.0",
+          "column": "valid_AUROC"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "above_random_AUROC",
+          "false": "not_above_random_AUROC"
+        }
+      }
+    },
+    {
+      "id": "validation_call",
+      "type": "derived",
+      "question": "该验证序列按概率≥0.5的类别？",
+      "options": [
+        "predicted_enhancer",
+        "predicted_negative",
+        "experimentally_confirmed_enhancer"
+      ],
+      "rule": {
+        "binding": {
+          "table": "valid_predictions.csv",
+          "key_column": "sequence_id",
+          "key": "seq000003",
+          "column": "p_positive"
+        },
+        "op": "ge",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "predicted_enhancer",
+          "false": "predicted_negative"
+        }
+      }
+    },
+    {
+      "id": "selection_scope",
+      "type": "choice",
+      "question": "验证集用于选C后，测试集预测如何训练？",
+      "options": [
+        "retain_training_only_coefficients",
+        "refit_on_visible_validation_targets",
+        "select_C_using_test_targets"
+      ]
+    },
+    {
+      "id": "biological_scope",
+      "type": "choice",
+      "question": "这种预测可支持什么？",
+      "options": [
+        "source_annotation_prediction_within_shared_reference_genome",
+        "new_genome_generalization",
+        "direct_experimental_function_validation"
+      ]
+    }
+  ]
+}

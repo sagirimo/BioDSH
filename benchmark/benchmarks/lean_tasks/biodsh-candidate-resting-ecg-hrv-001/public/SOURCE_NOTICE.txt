@@ -1,0 +1,35 @@
+存量原题 biodsh-candidate-resting-ecg-hrv-001 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-resting-ecg-hrv-001
+source: "scienceagentbench"
+source_registry_id: "scienceagentbench"
+source_family: "scienceagentbench"
+source_case: "34_ecg_whole_source_workflow_adaptation"
+source_revision: "ff419d983568ef492eb8d229af643c0ef0100b32"
+source_terms: "Code license and underlying biosignal/participant-example redistribution reviewed separately before public release"
+family_keys: ["ScienceAgentBench:34", "ScienceAgentBench:42", "ScienceAgentBench:63", "NeuroKit:bio_resting_5min_100hz", "GitBlobSHA1:30c8f566768a79da64e56080a22f4337d2a92ae9"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+LICENSE_NeuroKit.txt
+MIT License
+
+Copyright (c) 2020, Dominique Makowski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+来源登记条目：{"id": "scienceagentbench", "family": "scienceagentbench", "type": "task_collection", "name": "ScienceAgentBench", "reported_size": "102 tasks from 44 papers across four disciplines; only biological tasks are eligible here", "url": "https://github.com/OSU-NLP-Group/ScienceAgentBench", "value": "从论文任务生成可执行程序并核验产物", "candidate_domains": ["D01", "D03", "D04", "D05", "D06", "D09", "D10"], "availability": "公开仓库；逐题核数据访问和复用条件", "priority": "P0", "caveat": "102 不是全部生命科学题；领域标签需要逐题审核", "current_qualified_fixed_contract_count": 7}

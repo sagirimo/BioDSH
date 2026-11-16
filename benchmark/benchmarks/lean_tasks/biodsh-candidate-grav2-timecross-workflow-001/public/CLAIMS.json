@@ -1,0 +1,134 @@
+{
+  "task_id": "biodsh-candidate-grav2-timecross-workflow-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "RIL谱系数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "source_lines"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "原缺失基因型调用数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "genotype_missing_calls"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "实际小时下各谱系原曲线面积之和",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "total_raw_AUC"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "谱系线性斜率的均值",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "mean_curve_slope"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "谱系平均变化之和",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "total_mean_change"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "702次统一校正后q低于0.05的扫描数",
+      "binding": {
+        "table": "terminal_summary.csv",
+        "keys": {
+          "metric": "BH_below_005"
+        },
+        "column": "value"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "平均时间斜率是否为负（阈值0）？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "terminal_summary.csv",
+          "keys": {
+            "metric": "mean_curve_slope"
+          },
+          "column": "value"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "谱系内241个时间点可否当独立遗传重复？",
+      "options": [
+        "no_line_is_inference_unit",
+        "yes_241_independent_lines_per_curve",
+        "yes_if_time_labels_are_unique"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "显著观察标记意味着什么？",
+      "options": [
+        "association_under_declared_scan_not_causal_locus_proof",
+        "validated_causal_variant",
+        "reproduced_original_image_pipeline"
+      ]
+    }
+  ]
+}

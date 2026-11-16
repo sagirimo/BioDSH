@@ -1,0 +1,8 @@
+{
+ "source_url": "",
+ "input_files_sha256": {
+  "inputs/associations.csv": "03ff50ff95e7e7fb9d141dd8ad4d53876db42d85693b3ed9d15058a08edb5e65",
+  "inputs/design.json": "9751d9a5e8de65c869ecac115c68a1c92b346761fe5744d0f6b881e266b60a8b"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

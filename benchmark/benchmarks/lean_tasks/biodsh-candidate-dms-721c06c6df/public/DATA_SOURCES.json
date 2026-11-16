@@ -1,0 +1,9 @@
+{
+ "source_url": "https://proteingym.org/",
+ "input_files_sha256": {
+  "inputs/design.json": "a61ae573f3ed1ad334906c20648ecd75c0ba20319ee18f16e5980c8a49c3d26c",
+  "inputs/variants.csv": "e45f6b48b50cf4dfa9a5ba4467e304fb4b463f9397e447ad9ca754db03ad7bc7",
+  "inputs/wildtype.fasta": "f119d0b7c6d5bee49cf4d40fc6497e266a5611668a251b984224d9423199835b"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

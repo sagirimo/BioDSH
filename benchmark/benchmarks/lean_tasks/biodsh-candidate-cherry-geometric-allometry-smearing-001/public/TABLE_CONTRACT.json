@@ -1,0 +1,202 @@
+{
+  "tables": {
+    "coefficients.csv": {
+      "columns": [
+        "id",
+        "model",
+        "term",
+        "coefficient",
+        "se"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "model": "text",
+        "term": "text",
+        "coefficient": "float",
+        "se": "float"
+      },
+      "tolerance": {
+        "coefficient": [
+          1e-05,
+          1e-08
+        ],
+        "se": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "comparison.csv": {
+      "columns": [
+        "id",
+        "n",
+        "mean_form_factor",
+        "constraint_F",
+        "constraint_p",
+        "loo_rmse_allometric",
+        "loo_rmse_geometric"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n": "int",
+        "mean_form_factor": "float",
+        "constraint_F": "float",
+        "constraint_p": "float",
+        "loo_rmse_allometric": "float",
+        "loo_rmse_geometric": "float"
+      },
+      "tolerance": {
+        "mean_form_factor": [
+          1e-05,
+          1e-08
+        ],
+        "constraint_F": [
+          1e-05,
+          1e-08
+        ],
+        "constraint_p": [
+          1e-05,
+          1e-08
+        ],
+        "loo_rmse_allometric": [
+          1e-05,
+          1e-08
+        ],
+        "loo_rmse_geometric": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "geometry.csv": {
+      "columns": [
+        "id",
+        "diameter_m",
+        "height_m",
+        "volume_m3",
+        "cylinder_m3",
+        "form_factor"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "diameter_m": "float",
+        "height_m": "float",
+        "volume_m3": "float",
+        "cylinder_m3": "float",
+        "form_factor": "float"
+      },
+      "tolerance": {
+        "diameter_m": [
+          1e-05,
+          1e-08
+        ],
+        "height_m": [
+          1e-05,
+          1e-08
+        ],
+        "volume_m3": [
+          1e-05,
+          1e-08
+        ],
+        "cylinder_m3": [
+          1e-05,
+          1e-08
+        ],
+        "form_factor": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "models.csv": {
+      "columns": [
+        "id",
+        "log_sse",
+        "residual_df",
+        "smearing",
+        "geometric_form_factor"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "log_sse": "float",
+        "residual_df": "int",
+        "smearing": "float",
+        "geometric_form_factor": "float"
+      },
+      "tolerance": {
+        "log_sse": [
+          1e-05,
+          1e-08
+        ],
+        "smearing": [
+          1e-05,
+          1e-08
+        ],
+        "geometric_form_factor": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "predictions.csv": {
+      "columns": [
+        "id",
+        "observed_m3",
+        "in_sample_allometric",
+        "in_sample_geometric",
+        "loo_allometric",
+        "loo_geometric"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "observed_m3": "float",
+        "in_sample_allometric": "float",
+        "in_sample_geometric": "float",
+        "loo_allometric": "float",
+        "loo_geometric": "float"
+      },
+      "tolerance": {
+        "observed_m3": [
+          1e-05,
+          1e-08
+        ],
+        "in_sample_allometric": [
+          1e-05,
+          1e-08
+        ],
+        "in_sample_geometric": [
+          1e-05,
+          1e-08
+        ],
+        "loo_allometric": [
+          1e-05,
+          1e-08
+        ],
+        "loo_geometric": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  },
+  "comparison_rule": "abs(candidate-reference) <= abs_tol + rel_tol*abs(reference); tolerance=[rel_tol,abs_tol]",
+  "missing": "NA; 按题面规则过滤或处理，不将缺失当0",
+  "ordering": "主键字符串精确比较；行顺序不计，列名按合同；并列按题面规则",
+  "randomness": "无随机步骤，或严格读取预生成方案输入",
+  "equivalent_implementations": "允许符合定义及容差的科学等价实现，不要求参考代码写法"
+}

@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-kyoto-phenology-blocked-knot-profile-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "全数据最优转折年？",
+      "binding": {
+        "table": "full_fit.csv",
+        "key_column": "id",
+        "key": "segmented",
+        "column": "knot"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "转折前斜率？",
+      "binding": {
+        "table": "full_fit.csv",
+        "key_column": "id",
+        "key": "segmented",
+        "column": "slope_before"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "转折后斜率？",
+      "binding": {
+        "table": "full_fit.csv",
+        "key_column": "id",
+        "key": "segmented",
+        "column": "slope_after"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "线性留年代RMSE？",
+      "binding": {
+        "table": "cv_summary.csv",
+        "key_column": "id",
+        "key": "linear",
+        "column": "cv_rmse"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "分段留年代RMSE？",
+      "binding": {
+        "table": "cv_summary.csv",
+        "key_column": "id",
+        "key": "segmented",
+        "column": "cv_rmse"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "各折最小转折年？",
+      "binding": {
+        "table": "cv_summary.csv",
+        "key_column": "id",
+        "key": "segmented",
+        "column": "knot_min"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "后段开花是否随年份提前？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "full_fit.csv",
+          "key_column": "id",
+          "key": "segmented",
+          "column": "slope_after"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "分段留年代误差是否小于10天？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "cv_summary.csv",
+          "key_column": "id",
+          "key": "segmented",
+          "column": "cv_rmse"
+        },
+        "op": "lt",
+        "threshold": 10,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "该检验能说明什么？",
+      "options": [
+        "固定物候序列下描述趋势和缺段敏感性，不是因果转折或前向预测",
+        "转折年证明人类影响从该年开始",
+        "重建温度是独立验证"
+      ]
+    }
+  ]
+}

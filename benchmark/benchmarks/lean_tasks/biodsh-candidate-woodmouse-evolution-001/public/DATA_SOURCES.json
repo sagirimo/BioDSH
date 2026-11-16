@@ -1,0 +1,9 @@
+{
+ "source_url": "",
+ "input_files_sha256": {
+  "inputs/bootstrap_columns.csv": "3bf0f51fd23ca54e3db3c97739a0e6b7235148f21318ced554a041fdb0519dda",
+  "inputs/design.json": "51699e2f8f3d8b10f957cf3d2c795163096e9fe93fc20be93b0a84815166b7c6",
+  "inputs/source_alignment.fasta": "b3c520e78014dbf96a26b7436501cd53130114416ecd144c7e1ca8514c737ce3"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

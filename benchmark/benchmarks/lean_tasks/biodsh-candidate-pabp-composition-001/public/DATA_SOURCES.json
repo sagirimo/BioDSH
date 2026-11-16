@@ -1,0 +1,10 @@
+{
+ "source_url": "https://github.com/OATML-Markslab/ProteinGym",
+ "input_files_sha256": {
+  "inputs/design.json": "6d7c868e72066d3cd5f81567750f8a4ba79d95196ab1e80d7b915edb7604c789",
+  "inputs/split_assignment.csv": "ce85c4a4c93b40a999f106dccaa414916c39957162e886295395144378aacbaf",
+  "inputs/train_valid_labels.csv": "912c285936980125c3b0d6836df3e356d78f7a03465d687b5b22d69498cb9b2e",
+  "inputs/variants.csv": "d3e864ae4a0e902f9cb02aa4a14f8bb2e7cbd19dd86d923f753c6e9f25a60121"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

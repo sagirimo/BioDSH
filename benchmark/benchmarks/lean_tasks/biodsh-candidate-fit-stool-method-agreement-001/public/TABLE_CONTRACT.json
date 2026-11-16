@@ -1,0 +1,208 @@
+{
+  "tables": {
+    "agreement.csv": {
+      "columns": [
+        "genus",
+        "n",
+        "bias",
+        "sd_difference",
+        "loa_low",
+        "loa_high",
+        "ccc"
+      ],
+      "key": [
+        "genus"
+      ],
+      "types": {
+        "genus": "text",
+        "n": "int",
+        "bias": "float",
+        "sd_difference": "float",
+        "loa_low": "float",
+        "loa_high": "float",
+        "ccc": "float"
+      },
+      "tolerance": {
+        "bias": [
+          1e-06,
+          1e-08
+        ],
+        "sd_difference": [
+          1e-06,
+          1e-08
+        ],
+        "loa_low": [
+          1e-06,
+          1e-08
+        ],
+        "loa_high": [
+          1e-06,
+          1e-08
+        ],
+        "ccc": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "bootstrap_bias.csv": {
+      "columns": [
+        "genus",
+        "replicates",
+        "ci_low",
+        "ci_high"
+      ],
+      "key": [
+        "genus"
+      ],
+      "types": {
+        "genus": "text",
+        "replicates": "int",
+        "ci_low": "float",
+        "ci_high": "float"
+      },
+      "tolerance": {
+        "ci_low": [
+          1e-06,
+          1e-08
+        ],
+        "ci_high": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "cohort_summary.csv": {
+      "columns": [
+        "metric",
+        "value"
+      ],
+      "key": [
+        "metric"
+      ],
+      "types": {
+        "metric": "text",
+        "value": "int"
+      },
+      "tolerance": {}
+    },
+    "paired_metrics.csv": {
+      "columns": [
+        "subject_id",
+        "genus",
+        "stool_sample",
+        "fit_sample",
+        "stool_log10",
+        "fit_log10",
+        "pair_mean",
+        "fit_minus_stool"
+      ],
+      "key": [
+        "subject_id",
+        "genus"
+      ],
+      "types": {
+        "subject_id": "int",
+        "genus": "text",
+        "stool_sample": "int",
+        "fit_sample": "text",
+        "stool_log10": "float",
+        "fit_log10": "float",
+        "pair_mean": "float",
+        "fit_minus_stool": "float"
+      },
+      "tolerance": {
+        "stool_log10": [
+          1e-06,
+          1e-08
+        ],
+        "fit_log10": [
+          1e-06,
+          1e-08
+        ],
+        "pair_mean": [
+          1e-06,
+          1e-08
+        ],
+        "fit_minus_stool": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "proportional_bias.csv": {
+      "columns": [
+        "genus",
+        "slope",
+        "se",
+        "t",
+        "p_value"
+      ],
+      "key": [
+        "genus"
+      ],
+      "types": {
+        "genus": "text",
+        "slope": "float",
+        "se": "float",
+        "t": "float",
+        "p_value": "float"
+      },
+      "tolerance": {
+        "slope": [
+          1e-06,
+          1e-08
+        ],
+        "se": [
+          1e-06,
+          1e-08
+        ],
+        "t": [
+          1e-06,
+          1e-08
+        ],
+        "p_value": [
+          1e-06,
+          1e-08
+        ]
+      }
+    },
+    "sample_metrics.csv": {
+      "columns": [
+        "sample",
+        "subject_id",
+        "type",
+        "total_reads",
+        "Bacteroides",
+        "Faecalibacterium",
+        "Fusobacterium"
+      ],
+      "key": [
+        "sample"
+      ],
+      "types": {
+        "sample": "text",
+        "subject_id": "int",
+        "type": "text",
+        "total_reads": "int",
+        "Bacteroides": "float",
+        "Faecalibacterium": "float",
+        "Fusobacterium": "float"
+      },
+      "tolerance": {
+        "Bacteroides": [
+          1e-06,
+          1e-08
+        ],
+        "Faecalibacterium": [
+          1e-06,
+          1e-08
+        ],
+        "Fusobacterium": [
+          1e-06,
+          1e-08
+        ]
+      }
+    }
+  }
+}

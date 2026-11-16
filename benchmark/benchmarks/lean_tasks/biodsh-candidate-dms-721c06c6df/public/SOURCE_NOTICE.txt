@@ -1,0 +1,13 @@
+存量原题 biodsh-candidate-dms-721c06c6df 的 lean 格式初稿；保留原研究及原task_id，不构成新独立题。
+原题路径：benchmarks/releases/candidate_v0.60/tasks/biodsh-candidate-dms-721c06c6df
+source: "proteingym"
+source_registry_id: "proteingym"
+source_family: "proteingym"
+source_case: "AMIE_PSEAE_Wrenbeck_2017"
+source_revision: "144fe22b07dfaeec2b366f2346203a9838a55b4c"
+family_keys: ["UniProt:AMIE_PSEAE", "ProteinGymPublicationSHA256:985cc46a9e8facbe847919efd697443cb7a9fae8768fbc76bb70dbaf7193d3b4"]
+用途：仅限本地科研，保留原署名，不对外再分发。原始输入未改变；新增的公开固定计算方案另在题面说明。来源/独立性沿用原候选记录，迁移不重新宣称独立性。
+
+原始研究署名与实验：{"DMS_id": "AMIE_PSEAE_Wrenbeck_2017", "UniProt_ID": "AMIE_PSEAE", "source_organism": "Pseudomonas aeruginosa", "title": "Single-mutation fitness landscapes for an enzyme on multiple substrates reveal specificity is globally encoded", "first_author": "Wrenbeck", "year": "2017", "selection_assay": "Enzyme function", "coarse_selection_type": "Activity", "raw_DMS_phenotype_name": "isobutyramide_normalized_fitness", "raw_DMS_directionality": "1", "ProteinGym_version": "0.1"}
+获取入口：https://proteingym.org/；提供方包版本见source_assay。原题未附原论文DOI，不自行补造。
+来源登记条目：{"id": "proteingym", "family": "proteingym", "type": "method_data_benchmark", "name": "ProteinGym", "reported_size": "Protein mutation assays and experimental measurements; not counted as agent tasks", "url": "https://github.com/OATML-Markslab/ProteinGym", "value": "蛋白变异功能、实验测量与泛化划分", "candidate_domains": ["D02", "D04"], "availability": "公开仓库和数据入口", "priority": "P1", "caveat": "以蛋白/实验为隔离单位；新编题需记录与原预测任务的差别", "current_qualified_fixed_contract_count": 6}

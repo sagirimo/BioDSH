@@ -1,0 +1,139 @@
+{
+  "task_id": "biodsh-candidate-yeast-condition-state-workflow-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "按给定原模型报告指定记录的 mean（完整键见绑定；估计、误差或敏感性不作因果解释）",
+      "binding": {
+        "table": "group_feature_descriptors.csv",
+        "keys": {
+          "metabolite_id": "m001",
+          "strain": "WT",
+          "condition": "AER"
+        },
+        "column": "mean"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "按给定原模型报告指定记录的 estimate（完整键见绑定；估计、误差或敏感性不作因果解释）",
+      "binding": {
+        "table": "model_coefficients.csv",
+        "keys": {
+          "metabolite_id": "m001",
+          "term": "intercept_WT_AER"
+        },
+        "column": "estimate"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "按给定原模型报告指定记录的 covariance（完整键见绑定；估计、误差或敏感性不作因果解释）",
+      "binding": {
+        "table": "residual_covariance.csv",
+        "keys": {
+          "metabolite_a": "m001",
+          "metabolite_b": "m001"
+        },
+        "column": "covariance"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "按给定原模型报告指定记录的 eigenvalue（完整键见绑定；估计、误差或敏感性不作因果解释）",
+      "binding": {
+        "table": "residual_eigenspectrum.csv",
+        "keys": {
+          "component_id": "PC001"
+        },
+        "column": "eigenvalue"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "按给定原模型报告指定记录的 maximum_abs_interaction_delta（完整键见绑定；估计、误差或敏感性不作因果解释）",
+      "binding": {
+        "table": "deletion_summary.csv",
+        "keys": {
+          "dropped_sample_id": "s001"
+        },
+        "column": "maximum_abs_interaction_delta"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "按给定原模型报告指定记录的 covariance_delta_Frobenius（完整键见绑定；估计、误差或敏感性不作因果解释）",
+      "binding": {
+        "table": "deletion_summary.csv",
+        "keys": {
+          "dropped_sample_id": "s001"
+        },
+        "column": "covariance_delta_Frobenius"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "指定估计相对零的方向如何（严格小于零选below_threshold）？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "model_coefficients.csv",
+          "keys": {
+            "metabolite_id": "m001",
+            "term": "intercept_WT_AER"
+          },
+          "column": "estimate"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "本题的独立推断/计算单位应如何理解？",
+      "options": [
+        "按原设计：原样本；条件/状态是声明分组",
+        "每个输出表单元都是独立生物学重复",
+        "每次敏感性重算都是独立新研究"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "给定方法的拟合与敏感性分析支持何种结论？",
+      "options": [
+        "限于原研究及声明模型的关联或描述，不能自行推成因果/外部验证",
+        "数值拟合通过即证明生物因果效应",
+        "删除重算自动提供隐藏外部验证"
+      ]
+    }
+  ]
+}

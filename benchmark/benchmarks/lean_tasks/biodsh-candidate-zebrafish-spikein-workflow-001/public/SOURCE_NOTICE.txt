@@ -1,0 +1,14 @@
+沿用原题来源与研究家族，未新增研究或下载数据。
+{
+  "source": "bioconductor_spikein_rnaseq",
+  "source_case": "zfGenes_whole32561x6",
+  "original_parent_source_case": "Study:Ferreira2014:olfactory_zebrafish_RNAseq",
+  "page": "https://bioconductor.posit.co/packages/3.22/data/experiment/html/zebrafishRNASeq.html",
+  "source_terms": "Original package GPL notice/CITATION/native documentation preserved;actual family/history and exact delivery pending",
+  "limitations": [
+    "Whole published matrix;32469endogenous genes+92ERCC features,six pooled FACS/RNA libraries. Source calls three treated/three controls,with two sequencing runs summed per library. No invented person/fish/sample-pair/batch identity or treating genes/runs/fish within pools as independent replicates. Existing gene-level counts,not raw alignment reconstruction.",
+    "Original source says pairs but no sample pairing identifier delivered;no invented matching/batch. Public named dataset may occur in pretraining.",
+    "Declared exploratory Gaussian log projection,not source RUVSeq defaults or original edgeR/DESeq2 pipeline;control/variance assumptions and clinical/causal/hidden validity not certified"
+  ]
+}
+用途：保留原署名与引用，仅本地科研使用，不据此授权对外再分发。原始归档/原生属性及出处随 inputs 保留。

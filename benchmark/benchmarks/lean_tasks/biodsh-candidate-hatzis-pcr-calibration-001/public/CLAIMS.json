@@ -1,0 +1,152 @@
+{
+  "revision": "round2_lean_v1",
+  "task_id": "biodsh-candidate-hatzis-pcr-calibration-001",
+  "claims": [
+    {
+      "id": "train_n",
+      "type": "number",
+      "question": "训练完整病例数",
+      "binding": {
+        "table": "performance.csv",
+        "key_column": "arm",
+        "key": "train",
+        "column": "n"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "val_n",
+      "type": "number",
+      "question": "验证完整病例数",
+      "binding": {
+        "table": "performance.csv",
+        "key_column": "arm",
+        "key": "validation",
+        "column": "n"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "auc",
+      "type": "number",
+      "question": "验证AUC",
+      "binding": {
+        "table": "performance.csv",
+        "key_column": "arm",
+        "key": "validation",
+        "column": "auc"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "brier",
+      "type": "number",
+      "question": "验证Brier分数",
+      "binding": {
+        "table": "performance.csv",
+        "key_column": "arm",
+        "key": "validation",
+        "column": "brier"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "threshold",
+      "type": "number",
+      "question": "训练确定的阈值",
+      "binding": {
+        "table": "threshold.csv",
+        "key_column": "rule",
+        "key": "training_youden",
+        "column": "threshold"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "sensitivity",
+      "type": "number",
+      "question": "验证灵敏度",
+      "binding": {
+        "table": "performance.csv",
+        "key_column": "arm",
+        "key": "validation",
+        "column": "sensitivity"
+      },
+      "rel_tol": 1e-06,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "discrimination",
+      "type": "derived",
+      "question": "验证区分度",
+      "options": [
+        "above_chance",
+        "not_above_chance",
+        "proves_causation"
+      ],
+      "rule": {
+        "binding": {
+          "table": "performance.csv",
+          "key_column": "arm",
+          "key": "validation",
+          "column": "auc"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "above_chance",
+          "false": "not_above_chance"
+        }
+      }
+    },
+    {
+      "id": "er_direction",
+      "type": "derived",
+      "question": "ER阴性系数方向",
+      "options": [
+        "higher_pcr_odds",
+        "not_higher_pcr_odds",
+        "proves_causation"
+      ],
+      "rule": {
+        "binding": {
+          "table": "coefficients.csv",
+          "key_column": "term",
+          "key": "ER_negative",
+          "column": "coef"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "higher_pcr_odds",
+          "false": "not_higher_pcr_odds"
+        }
+      }
+    },
+    {
+      "id": "calibration_scope",
+      "type": "choice",
+      "question": "固定分箱校准的意义",
+      "options": [
+        "agreement_of_predicted_probabilities_and_observed_rates",
+        "same_quantity_as_auc",
+        "proof_of_clinical_utility"
+      ]
+    },
+    {
+      "id": "regularization",
+      "type": "choice",
+      "question": "本题岭惩罚的作用",
+      "options": [
+        "finite_stable_shrunken_coefficients_not_unpenalized_mle",
+        "eliminates_all_confounding",
+        "makes_validation_optional"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+ "source_url": "https://stat.ethz.ch/R-manual/R-devel/library/survival/html/flchain.html",
+ "input_files_sha256": {
+  "inputs/OUTPUT_CONTRACT.json": "26c730bd710bfcafc22b8a0044556ce772b3540e01196d8aa0e25fe2c3f48930",
+  "inputs/PROBLEM_zh.md": "0331e30530a616b5267871cdf5b75867b91663bb8b52bae88b49d3e7e8199d2e",
+  "inputs/PUBLIC_OUTPUT_CONVENTIONS.json": "0cec39c4e482fcccd9e62bc1a9be1cc5998aed496fa24a0da5d19077c71c65de",
+  "inputs/SOURCE_NOTICE.json": "f282828ab8a6858a36d5c48067ede91959a00361d533c6b0b0423c15e0d6a1a3",
+  "inputs/answer_fields.json": "964feed6d0716e478b5b115b29d11713249bd4f682b0ca73e45d43eeea85478a",
+  "inputs/artifact_contract.json": "26c730bd710bfcafc22b8a0044556ce772b3540e01196d8aa0e25fe2c3f48930",
+  "inputs/data_manifest.json": "765de75ec6e5bb2b1b2aa063167ab439eae98b81ac562b7b8c81c451317f823d",
+  "inputs/observations.csv": "40cd91ad84b7226c1d720dac94e793d88216dfe31e884d0f757985b59aab34cf",
+  "inputs/step_schema.json": "4054a193c6fe7ad08acf266226be8bf450d9d6b8f660118f6b31d284ecf616b6"
+ },
+ "note": "Inputs are not redistributed. Download them from the source and place them under inputs/; check against the hashes."
+}

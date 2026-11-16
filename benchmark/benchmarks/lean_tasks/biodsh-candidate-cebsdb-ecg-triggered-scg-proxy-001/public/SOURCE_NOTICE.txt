@@ -1,0 +1,3 @@
+García-González MA,Argelagós-Palau A,Fernández-Chimeno M,Ramos-Castro J.2013 A comparison of heartbeat detectors for the seismocardiogram. Computing in Cardiology40:461–464，原文https://www.cinc.org/archives/2013/pdf/0461.pdf。CEBSDB1.0.0 DOI10.13026/C2KW23，公开ODC Attribution1.0。b001/b002原始hea/dat下载https://physionet.org/files/cebsdb/1.0.0/，仅使用两名志愿者baseline前120秒，完整原文件保留。来源与MIT-BIH/BIDMC/Fantasia不同，不调用付费API。
+仅限本地科研使用，保留原作者署名；本项目不对外再分发。分析协议为本题自拟，不取自 agent benchmark，不使用 benchmark 划分。
+实际二进制取自同一PhysioNet公开桶镜像：https://physionet-open.s3.amazonaws.com/cebsdb/1.0.0/；使用完整文件，SHA256见metadata。

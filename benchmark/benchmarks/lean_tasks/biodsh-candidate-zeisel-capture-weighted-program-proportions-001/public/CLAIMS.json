@@ -1,0 +1,140 @@
+{
+  "revision": "round4_lean_v1",
+  "task_id": "biodsh-candidate-zeisel-capture-weighted-program-proportions-001",
+  "claims": [
+    {
+      "id": "N1",
+      "type": "number",
+      "question": "皮层保留细胞数？",
+      "binding": {
+        "table": "region_fractions.csv",
+        "key_column": "id",
+        "key": "primary|sscortex|neuronal",
+        "column": "cells"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N2",
+      "type": "number",
+      "question": "皮层批次等权神经程序比例？",
+      "binding": {
+        "table": "region_fractions.csv",
+        "key_column": "id",
+        "key": "primary|sscortex|neuronal",
+        "column": "equal_run_fraction"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N3",
+      "type": "number",
+      "question": "海马按细胞汇总神经程序比例？",
+      "binding": {
+        "table": "region_fractions.csv",
+        "key_column": "id",
+        "key": "primary|ca1hippocampus|neuronal",
+        "column": "pooled_fraction"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N4",
+      "type": "number",
+      "question": "皮层少突程序权重差？",
+      "binding": {
+        "table": "region_fractions.csv",
+        "key_column": "id",
+        "key": "primary|sscortex|oligo",
+        "column": "equal_minus_pooled"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N5",
+      "type": "number",
+      "question": "严格规则皮层不确定比例？",
+      "binding": {
+        "table": "region_fractions.csv",
+        "key_column": "id",
+        "key": "strict|sscortex|ambiguous",
+        "column": "pooled_fraction"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "N6",
+      "type": "number",
+      "question": "海马星形程序等权比例？",
+      "binding": {
+        "table": "region_fractions.csv",
+        "key_column": "id",
+        "key": "primary|ca1hippocampus|astro",
+        "column": "equal_run_fraction"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "D1",
+      "type": "derived",
+      "question": "等批次权重是否提高皮层少突程序比例？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "region_fractions.csv",
+          "key_column": "id",
+          "key": "primary|sscortex|oligo",
+          "column": "equal_minus_pooled"
+        },
+        "op": "gt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "D2",
+      "type": "derived",
+      "question": "皮层不确定比例是否超过10%？",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "rule": {
+        "binding": {
+          "table": "region_fractions.csv",
+          "key_column": "id",
+          "key": "primary|sscortex|ambiguous",
+          "column": "pooled_fraction"
+        },
+        "op": "gt",
+        "threshold": 0.1,
+        "outcomes": {
+          "true": "yes",
+          "false": "no"
+        }
+      }
+    },
+    {
+      "id": "scope",
+      "type": "choice",
+      "question": "程序调用应怎样解释？",
+      "options": [
+        "predefined_marker_dominance_not_validated_celltype_or_unbiased_tissue_fraction",
+        "capture_runs_are_independent_animals",
+        "marker_counts_equal_total_UMI"
+      ]
+    }
+  ]
+}

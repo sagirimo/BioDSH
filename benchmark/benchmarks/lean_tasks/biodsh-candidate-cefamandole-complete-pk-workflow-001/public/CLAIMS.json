@@ -1,0 +1,143 @@
+{
+  "task_id": "biodsh-candidate-cefamandole-complete-pk-workflow-001",
+  "revision": "legacy2_lean_v1",
+  "claims": [
+    {
+      "id": "number_1",
+      "type": "number",
+      "question": "根据 complete_trapezoid_intervals.csv 的指定记录报告 AUC",
+      "binding": {
+        "table": "complete_trapezoid_intervals.csv",
+        "keys": {
+          "run_id": "delete_subject_001",
+          "Subject": "2",
+          "interval_index": "1"
+        },
+        "column": "AUC"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_2",
+      "type": "number",
+      "question": "根据 complete_terminal_fits.csv 的指定记录报告 slope_per_min",
+      "binding": {
+        "table": "complete_terminal_fits.csv",
+        "keys": {
+          "run_id": "delete_subject_001",
+          "Subject": "2"
+        },
+        "column": "slope_per_min"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_3",
+      "type": "number",
+      "question": "根据 complete_terminal_fits.csv 的指定记录报告 tail_SSE",
+      "binding": {
+        "table": "complete_terminal_fits.csv",
+        "keys": {
+          "run_id": "delete_subject_001",
+          "Subject": "2"
+        },
+        "column": "tail_SSE"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_4",
+      "type": "number",
+      "question": "根据 all_terminal_predictions.csv 的指定记录报告 used_in_tail",
+      "binding": {
+        "table": "all_terminal_predictions.csv",
+        "keys": {
+          "run_id": "delete_subject_001",
+          "Subject": "2",
+          "row_id": "source_000015"
+        },
+        "column": "used_in_tail"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_5",
+      "type": "number",
+      "question": "根据 complete_subject_metrics.csv 的指定记录报告 observed_AUC",
+      "binding": {
+        "table": "complete_subject_metrics.csv",
+        "keys": {
+          "run_id": "delete_subject_001",
+          "Subject": "2"
+        },
+        "column": "observed_AUC"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "number_6",
+      "type": "number",
+      "question": "根据 complete_subject_metrics.csv 的指定记录报告 observed_AUMC",
+      "binding": {
+        "table": "complete_subject_metrics.csv",
+        "keys": {
+          "run_id": "delete_subject_001",
+          "Subject": "2"
+        },
+        "column": "observed_AUMC"
+      },
+      "rel_tol": 1e-07,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "derived_1",
+      "type": "derived",
+      "question": "指定估计相对零的方向如何（严格小于零选below_threshold）？",
+      "options": [
+        "below_threshold",
+        "at_or_above_threshold"
+      ],
+      "rule": {
+        "binding": {
+          "table": "complete_terminal_fits.csv",
+          "keys": {
+            "run_id": "delete_subject_001",
+            "Subject": "2"
+          },
+          "column": "slope_per_min"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "below_threshold",
+          "false": "at_or_above_threshold"
+        }
+      }
+    },
+    {
+      "id": "concept_1",
+      "type": "choice",
+      "question": "本题的独立推断/计算单位应如何理解？",
+      "options": [
+        "按原设计：受试者，按实际时间的浓度轨迹",
+        "每个输出表单元都是独立生物学重复",
+        "每次敏感性重算都是独立新研究"
+      ]
+    },
+    {
+      "id": "concept_2",
+      "type": "choice",
+      "question": "给定方法的拟合与敏感性分析支持何种结论？",
+      "options": [
+        "限于原研究及声明模型的关联或描述，不能自行推成因果/外部验证",
+        "数值拟合通过即证明生物因果效应",
+        "删除重算自动提供隐藏外部验证"
+      ]
+    }
+  ]
+}

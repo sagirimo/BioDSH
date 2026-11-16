@@ -1,0 +1,150 @@
+{
+  "tables": {
+    "marginals.csv": {
+      "columns": [
+        "id",
+        "degree"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "degree": "int"
+      },
+      "tolerance": {}
+    },
+    "nestedness_summary.csv": {
+      "columns": [
+        "id",
+        "n_islands",
+        "n_species",
+        "row_nodf",
+        "column_nodf",
+        "nodf",
+        "null_mean",
+        "null_sd",
+        "standardized_effect",
+        "p_upper"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "n_islands": "int",
+        "n_species": "int",
+        "row_nodf": "float",
+        "column_nodf": "float",
+        "nodf": "float",
+        "null_mean": "float",
+        "null_sd": "float",
+        "standardized_effect": "float",
+        "p_upper": "float"
+      },
+      "tolerance": {
+        "row_nodf": [
+          1e-05,
+          1e-08
+        ],
+        "column_nodf": [
+          1e-05,
+          1e-08
+        ],
+        "nodf": [
+          1e-05,
+          1e-08
+        ],
+        "null_mean": [
+          1e-05,
+          1e-08
+        ],
+        "null_sd": [
+          1e-05,
+          1e-08
+        ],
+        "standardized_effect": [
+          1e-05,
+          1e-08
+        ],
+        "p_upper": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "null_statistics.csv": {
+      "columns": [
+        "id",
+        "nodf"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "nodf": "float"
+      },
+      "tolerance": {
+        "nodf": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "pair_nestedness.csv": {
+      "columns": [
+        "id",
+        "degree1",
+        "degree2",
+        "overlap",
+        "eligible",
+        "score"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "degree1": "int",
+        "degree2": "int",
+        "overlap": "int",
+        "eligible": "int",
+        "score": "float"
+      },
+      "tolerance": {
+        "score": [
+          1e-05,
+          1e-08
+        ]
+      }
+    },
+    "prevalence_sensitivity.csv": {
+      "columns": [
+        "id",
+        "delta_nodf",
+        "delta_standardized_effect",
+        "delta_p"
+      ],
+      "key": [
+        "id"
+      ],
+      "types": {
+        "id": "text",
+        "delta_nodf": "float",
+        "delta_standardized_effect": "float",
+        "delta_p": "int"
+      },
+      "tolerance": {
+        "delta_nodf": [
+          1e-05,
+          1e-08
+        ],
+        "delta_standardized_effect": [
+          1e-05,
+          1e-08
+        ]
+      }
+    }
+  }
+}

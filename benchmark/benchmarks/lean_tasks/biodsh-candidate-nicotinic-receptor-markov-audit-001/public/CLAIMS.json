@@ -1,0 +1,141 @@
+{
+  "revision": "round3_lean_v1",
+  "task_id": "biodsh-candidate-nicotinic-receptor-markov-audit-001",
+  "claims": [
+    {
+      "id": "C1",
+      "type": "number",
+      "question": "原始配体条件的开放态稳态占有率？",
+      "binding": {
+        "table": "model_summary.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "active_probability"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C2",
+      "type": "number",
+      "question": "原始条件的完全脱敏态占有率？",
+      "binding": {
+        "table": "model_summary.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "desensitized_probability"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C3",
+      "type": "number",
+      "question": "平均结合配体数？",
+      "binding": {
+        "table": "model_summary.csv",
+        "key_column": "id",
+        "key": "1",
+        "column": "mean_bound_ligands"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C4",
+      "type": "number",
+      "question": "从B首次进入任一开放态的平均秒数？",
+      "binding": {
+        "table": "first_passage.csv",
+        "key_column": "id",
+        "key": "1|B",
+        "column": "mean_seconds"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C5",
+      "type": "number",
+      "question": "0.1倍配体条件的首次开放时间标准差？",
+      "binding": {
+        "table": "first_passage.csv",
+        "key_column": "id",
+        "key": "0.1|B",
+        "column": "SD_seconds"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C6",
+      "type": "number",
+      "question": "B→BL→AL→A→B循环的对数正反向速率比？",
+      "binding": {
+        "table": "cycle_audit.csv",
+        "key_column": "id",
+        "key": "1|BA|0",
+        "column": "log_cycle_ratio"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "C7",
+      "type": "derived",
+      "question": "原始条件的完全脱敏稳态占比是否超过90%？",
+      "options": [
+        "超过90%",
+        "不超过90%"
+      ],
+      "rule": {
+        "binding": {
+          "table": "model_summary.csv",
+          "key_column": "id",
+          "key": "1",
+          "column": "desensitized_probability"
+        },
+        "op": "gt",
+        "threshold": 0.9,
+        "outcomes": {
+          "true": "超过90%",
+          "false": "不超过90%"
+        }
+      }
+    },
+    {
+      "id": "C8",
+      "type": "derived",
+      "question": "六个基本循环是否存在|亲和力|>1e-6？",
+      "options": [
+        "不满足严格详细平衡阈值",
+        "满足阈值"
+      ],
+      "rule": {
+        "binding": {
+          "table": "model_summary.csv",
+          "key_column": "id",
+          "key": "1",
+          "column": "max_abs_cycle_affinity"
+        },
+        "op": "gt",
+        "threshold": 1e-06,
+        "outcomes": {
+          "true": "不满足严格详细平衡阈值",
+          "false": "满足阈值"
+        }
+      }
+    },
+    {
+      "id": "C9",
+      "type": "choice",
+      "question": "该固定配体首次到达分析意味着什么？",
+      "options": [
+        "对原模型转移率的条件机制计算；首次开放等待时间不同于稳态开放占有率",
+        "稳态开放占有率的倒数总等于首次开放时间",
+        "删除原有撤药事件仍完整重现原EPSP刺激实验",
+        "受体各状态应当被当成独立生物重复"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "revision": "dlbcl_lean_v1",
+  "task_id": "biodsh-candidate-dlbcl-ipi-transport-001",
+  "claims": [
+    {
+      "id": "patients",
+      "type": "number",
+      "question": "分析患者数。",
+      "binding": {
+        "table": "cohort_summary.csv",
+        "key_column": "metric",
+        "key": "patients",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "patients_complete_ipi",
+      "type": "number",
+      "question": "IPI 五要素完整的患者数。",
+      "binding": {
+        "table": "cohort_summary.csv",
+        "key_column": "metric",
+        "key": "patients_complete_ipi",
+        "column": "value"
+      },
+      "rel_tol": 0,
+      "abs_tol": 0
+    },
+    {
+      "id": "HR_ipi_per_point_CHOP",
+      "type": "number",
+      "question": "CHOP 模型中 IPI 每分的风险比。",
+      "binding": {
+        "table": "chop_cox.csv",
+        "key_column": "term",
+        "key": "ipi_score",
+        "column": "hazard_ratio"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "HR_gcb_score_CHOP",
+      "type": "number",
+      "question": "CHOP 模型中 GCB 评分每单位的风险比。",
+      "binding": {
+        "table": "chop_cox.csv",
+        "key_column": "term",
+        "key": "gcb_score",
+        "column": "hazard_ratio"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "auc_RCHOP",
+      "type": "number",
+      "question": "R-CHOP 队列中 GCB 评分区分 GCB 与 ABC 的 AUC。",
+      "binding": {
+        "table": "score_validation.csv",
+        "key_column": "arm",
+        "key": "RCHOP",
+        "column": "auc_gcb_vs_abc"
+      },
+      "rel_tol": 1e-09,
+      "abs_tol": 1e-12
+    },
+    {
+      "id": "harrell_c_RCHOP",
+      "type": "number",
+      "question": "迁移到 R-CHOP 的 Harrell C。",
+      "binding": {
+        "table": "rchop_validation.csv",
+        "key_column": "metric",
+        "key": "harrell_c",
+        "column": "value"
+      },
+      "rel_tol": 1e-05,
+      "abs_tol": 1e-08
+    },
+    {
+      "id": "gcb_score_direction",
+      "type": "derived",
+      "question": "按你的 CHOP Cox 结果，GCB 评分方向？",
+      "options": [
+        "higher_gcb_score_lower_hazard_in_CHOP",
+        "higher_gcb_score_higher_hazard_in_CHOP",
+        "gcb_score_unrelated_by_construction"
+      ],
+      "rule": {
+        "binding": {
+          "table": "chop_cox.csv",
+          "key_column": "term",
+          "key": "gcb_score",
+          "column": "coef"
+        },
+        "op": "lt",
+        "threshold": 0,
+        "outcomes": {
+          "true": "higher_gcb_score_lower_hazard_in_CHOP",
+          "false": "higher_gcb_score_higher_hazard_in_CHOP"
+        }
+      }
+    },
+    {
+      "id": "transport_discrimination",
+      "type": "derived",
+      "question": "按你的 R-CHOP Harrell C，迁移后区分度？",
+      "options": [
+        "better_than_random_c_above_0_5",
+        "no_better_than_random_c_at_most_0_5",
+        "perfect_discrimination"
+      ],
+      "rule": {
+        "binding": {
+          "table": "rchop_validation.csv",
+          "key_column": "metric",
+          "key": "harrell_c",
+          "column": "value"
+        },
+        "op": "gt",
+        "threshold": 0.5,
+        "outcomes": {
+          "true": "better_than_random_c_above_0_5",
+          "false": "no_better_than_random_c_at_most_0_5"
+        }
+      }
+    },
+    {
+      "id": "standardization_scope",
+      "type": "choice",
+      "question": "探针标准化参数应从哪里估计？",
+      "options": [
+        "parameters_estimated_on_CHOP_training_cohort_only",
+        "all_patients_including_R_CHOP",
+        "each_cohort_separately"
+      ]
+    },
+    {
+      "id": "validation_design",
+      "type": "choice",
+      "question": "R-CHOP 验证的设计是？",
+      "options": [
+        "coefficients_fixed_from_CHOP_applied_to_independent_R_CHOP_cohort",
+        "model_refit_on_R_CHOP",
+        "random_split_of_pooled_patients"
+      ]
+    },
+    {
+      "id": "c_index_meaning",
+      "type": "choice",
+      "question": "Harrell C 表示？",
+      "options": [
+        "probability_that_of_two_comparable_patients_the_earlier_death_has_higher_predicted_risk",
+        "proportion_of_deaths_correctly_predicted_at_5_years",
+        "hazard_ratio_per_risk_unit"
+      ]
+    },
+    {
+      "id": "causal_scope",
+      "type": "choice",
+      "question": "这些结果说明？",
+      "options": [
+        "prognostic_association_not_evidence_that_treatment_or_COO_causes_outcome",
+        "rituximab_causally_improves_survival",
+        "COO_causally_determines_survival"
+      ]
+    }
+  ]
+}
