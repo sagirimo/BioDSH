@@ -28,7 +28,7 @@ BioDSH runs on your own computer and is built on [DeepSeek Harness (dsh)](https:
 - **Plain language in, conclusions out.** You don't need to write code or set up an environment. A Python analysis environment (scanpy, anndata, pandas, statsmodels, matplotlib…) installs itself on first launch.
 - **Validated methods instead of improvised code.** It ships 17 official analysis skills: single-cell QC, clustering, annotation and treatment response; bulk RNA-seq with limma-voom; Kaplan–Meier and Cox survival; regression with robust standard errors; ANOVA designs; and more. The statistics skills were checked against R on tens of thousands of cases (for example, 101,587 survival comparisons with zero mismatches).
 - **The right skill picked automatically.** For each request, a model selects the one or two relevant skills from the 17 official skills and a library of 2,000+ community skills, and loads only those, so the context stays small. Community skills are scanned, and those that ship benchmark answers are excluded.
-- **Frontier-level accuracy from an inexpensive model.** With DeepSeek V4 Flash, BioDSH matches Claude Code driven by Opus on our 120-task benchmark (102 vs 103) at about a third of the API-equivalent cost (see [Results](#results)).
+- **Frontier-level accuracy from an inexpensive model.** With DeepSeek V4 Flash, BioDSH scored 102 of 120 on our benchmark against 103 for Claude Code driven by Opus, at about a third of the API-equivalent cost (see [Results](#results)).
 - **Long analyses always finish.** A convergence guard keeps the agent from running in circles. It first asks the agent to wrap up, then asks for a final answer, so you always get a result.
 - **Your data stays safe.** Original files are never modified, and every analysis writes into a new folder. In offline mode BioDSH talks only to a model on your own machine or intranet, which suits hospitals and labs.
 - **Every result can be traced.** Every step goes into an append-only session log that you can review, export or hand to a reviewer.
@@ -66,7 +66,7 @@ From our preprint (*arXiv link coming*). The benchmark is BioDSH-Bench-120: 120 
 
 The tasks, the grader, the isolation scripts, the contamination scanner and per-task results are in [`benchmark/`](benchmark/); the encrypted reference answers are attached to the [`bench-120-v1.0`](https://github.com/sagirimo/BioDSH/releases/tag/bench-120-v1.0) release.
 
-**Same model, different agent: a tie.** With every agent on DeepSeek V4 Flash:
+**Same model, different agent: no detected accuracy advantage.** With every agent on DeepSeek V4 Flash:
 
 | Agent (DeepSeek V4 Flash) | Correct / 120 |
 | --- | --- |
@@ -76,11 +76,11 @@ The tasks, the grader, the isolation scripts, the contamination scanner and per-
 | Codex CLI | 98 |
 | Claude Code | 96 |
 
-No pairwise difference is statistically significant.
+No pairwise difference is statistically significant. This does not show that the agents are equivalent: with single runs of 120 tasks, differences of a few tasks are within run-to-run noise.
 
-**The model matters more than the agent.** With their own models, Codex ranges from 76 to 116 and Claude Code from 95 to 103. On BixBench-Verified-50, run behind a network allow-list, all four agents score 33–34/50.
+**Model choice had a larger effect than the agent.** With their own models, Codex ranges from 76 to 116 and Claude Code from 95 to 103. On BixBench-Verified-50, run behind a network allow-list, all four agents score 33–34/50.
 
-What BioDSH adds is therefore not accuracy on the same model but the environment around it: a desktop app, vetted skills, isolated and auditable runs, and a choice of local or remote models.
+BioDSH therefore did not show an accuracy advantage on the same model. What it adds is the environment around it: a desktop app, vetted skills, isolated and auditable runs, and a choice of local or remote models.
 
 **A note on benchmark contamination.** Coding agents read whatever files they can reach and look answers up online, and several widely shared community skills ship benchmark answers. BioDSH's skill library is scanned for this, and the contaminated skills we found are excluded (`dsh-biodsh` 1.0.0-preview.2 and later).
 
